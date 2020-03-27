@@ -13,8 +13,11 @@ class CreateRestaurantFoodPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant_food_photos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::connection('restaurant')->create('restaurant_food_photos', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('restaurant_basic_info_id');
+            $table->uuid('user_id');
+            $table->string('path');
             $table->timestamps();
         });
     }
