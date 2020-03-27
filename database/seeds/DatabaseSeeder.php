@@ -1,6 +1,7 @@
 <?php
 
 use App\Restaurant\RestaurantBasicInfo;
+use App\Restaurant\RestaurantComment;
 use App\Restaurant\RestaurantFacility;
 use App\Restaurant\RestaurantFoodPhoto;
 use App\Restaurant\RestaurantMenuPhoto;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         factory(RestaurantOperationDay::class, 2)->create();
         factory(RestaurantFoodPhoto::class, 2)->create();
         factory(RestaurantMenuPhoto::class, 2)->create();
+        factory(RestaurantComment::class, 2)->create();
     }
 }

@@ -45,4 +45,8 @@ class RestaurantBasicInfo extends Model
     {
         return $this->hasMany(RestaurantMenuPhoto::class);
     }
+    public function restaurant_comments()
+    {
+        return $this->hasMany(RestaurantComment::class);
+    }
 }
