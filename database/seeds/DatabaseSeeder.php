@@ -3,6 +3,7 @@
 use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantFacility;
 use App\Restaurant\RestaurantFoodPhoto;
+use App\Restaurant\RestaurantMenuPhoto;
 use App\Restaurant\RestaurantOperationDay;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         factory(RestaurantFacility::class, 2)->create();
         factory(RestaurantOperationDay::class, 2)->create();
         factory(RestaurantFoodPhoto::class, 2)->create();
+        factory(RestaurantMenuPhoto::class, 2)->create();
     }
 }
