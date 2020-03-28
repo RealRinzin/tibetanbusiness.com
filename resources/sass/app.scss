@@ -6,3 +6,34 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+// Navigation Bar
+#navbar{
+    background-color: #941c18;
+    .nav-item{
+        border:solid 1px #fff;
+        border-radius: 4px;
+        margin: 0px 2px;
+        a{
+            color:#fff !important;
+        }
+    }
+
+}
+// Home Search
+#home_search{
+    padding: 20px 0px;
+    background-image: url('img/background2.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:auto;
+}
+
+
+// footer
+footer{
+    background-color:#282c35;
+    padding: 10px 0px;
+}

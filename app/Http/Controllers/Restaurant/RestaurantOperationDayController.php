@@ -15,6 +15,7 @@ class RestaurantOperationDayController extends Controller
     public function index()
     {
         //
+        return "Restaurant Operation Days";
     }
 
     /**

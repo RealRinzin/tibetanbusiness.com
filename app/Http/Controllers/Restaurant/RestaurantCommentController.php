@@ -15,6 +15,7 @@ class RestaurantCommentController extends Controller
     public function index()
     {
         //
+        return "message comments";
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Restaurant\RestaurantBasicInfoResource;
 use Illuminate\Support\Facades\DB;
 use App\Restaurant\RestaurantBasicInfo;
 class RestaurantBasicInfoController extends Controller
@@ -15,11 +16,8 @@ class RestaurantBasicInfoController extends Controller
      */
     public function index()
     {
+        return new RestaurantBasicInfoResource(RestaurantBasicInfo::paginate());
         //
-        // $list = DB::table('restaurants.restaurant_basic_infos')->get();
-        // $list = DB::connection('restaurant')->select('select * from restaurant_basic_infos');
-        $list = RestaurantBasicInfo::get();
-        return $list;
     }
 
     /**

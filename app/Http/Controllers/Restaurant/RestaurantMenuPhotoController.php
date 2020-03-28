@@ -15,6 +15,7 @@ class RestaurantMenuPhotoController extends Controller
     public function index()
     {
         //
+        return "Restaurant Menu Photos";
     }
 
     /**

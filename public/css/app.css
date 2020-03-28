@@ -10882,3 +10882,31 @@ a.text-dark:focus {
   }
 }
 
+#navbar {
+  background-color: #941c18;
+}
+
+#navbar .nav-item {
+  border: solid 1px #fff;
+  border-radius: 4px;
+  margin: 0px 2px;
+}
+
+#navbar .nav-item a {
+  color: #fff !important;
+}
+
+#home_search {
+  padding: 20px 0px;
+  background-image: url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+}
+
+footer {
+  background-color: #282c35;
+  padding: 10px 0px;
+}
+

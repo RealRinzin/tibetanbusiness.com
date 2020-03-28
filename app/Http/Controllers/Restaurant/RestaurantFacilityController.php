@@ -15,6 +15,7 @@ class RestaurantFacilityController extends Controller
     public function index()
     {
         //
+        return "Restaurant facilities";
     }
 
     /**
