@@ -15,7 +15,7 @@
             <div class="col-md-8 mx-auto">
                 <div class="input-group input-group-lg mb-3">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             Action
                         </button>
                         <ul class="dropdown-menu">
@@ -28,6 +28,11 @@
                     </div>
                     <!-- /btn-group -->
                     <input type="text" class="form-control">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
