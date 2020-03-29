@@ -10915,27 +10915,46 @@ a.text-dark:focus {
 
 #home_featured .card-body {
   padding: 0.7rem !important;
+  font-size: 0.9rem !important;
+  color: #89959B !important;
 }
 
-#home_featured .card .likes {
-  position: absolute;
-  font-size: 15px;
-  font-weight: 600;
-  top: 0px;
-  border-radius: 3px;
-  color: #ffffff;
-  right: 18px;
-  padding: 3px 6px;
+#home_featured .card-body h5 {
+  color: #33373D !important;
 }
 
 #home_featured .card .list {
   height: 120px;
   position: relative;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
+}
+
+#home_featured .card .likes {
+  position: absolute;
+  font-size: 12px !important;
+  font-weight: 600;
+  top: 0px;
+  border-radius: 3px;
+  color: #ffffff;
+  right: 0px;
+  padding: 3px 6px;
+}
+
+#home_featured .card .likes .btn {
+  padding: 1px 4px !important;
+  font-size: 0.8rem !important;
+}
+
+#home_featured .card .types {
+  position: absolute;
+  padding: 2px 6px;
+  top: 58%;
+  right: 10px;
 }
 
 footer {

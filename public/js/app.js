@@ -1962,6 +1962,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37402,20 +37405,27 @@ var staticRenderFns = [
       _c("div", { staticClass: "row py-3" }, [
         _c("div", { staticClass: "col-md-4" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "list" }),
+            _c("a", { attrs: { href: "#" } }, [
+              _c("div", { staticClass: "list" })
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "likes" }, [
-              _c("button", { staticClass: "btn btn-danger" }, [
-                _c("span", {
-                  staticClass: "glyphicon glyphicon-star",
-                  attrs: { "aria-hidden": "true" }
-                }),
+              _c("p", { staticClass: "btn btn-danger" }, [
+                _c("i", { staticClass: "fas fa-star text-white" }),
                 _vm._v("9.2")
               ])
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "types" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-outline-info btn-xs py-1" },
+                [_vm._v("Restuarant")]
+              )
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _c("h6", [_vm._v("Khawa Hotel")]),
+              _c("h5", [_vm._v("Khawa Hotel")]),
               _vm._v(" "),
               _c("h6", [_vm._v("8353049170")]),
               _vm._v(" "),

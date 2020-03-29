@@ -4,12 +4,15 @@
         <div class="row py-3">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="list"></div>
+                    <a href="#"><div class="list"></div></a>
                     <div class="likes">
-                        <button class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>9.2</button>
+                        <p class="btn btn-danger"><i class="fas fa-star text-white"></i>9.2</p>
+                    </div>
+                    <div class="types">
+                        <button class="btn btn-outline-info btn-xs py-1">Restuarant</button>
                     </div>
                     <div class="card-body">
-                        <h6>Khawa Hotel</h6>
+                        <h5>Khawa Hotel</h5>
                         <h6>8353049170</h6>
                         <h6>Dharamsala</h6>
                     </div>
