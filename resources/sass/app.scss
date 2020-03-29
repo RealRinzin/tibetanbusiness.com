@@ -19,19 +19,52 @@
             color:#fff !important;
         }
     }
+    .nav-item:hover{
+        background-color: white;
+        transition: .6s;
+        a{
+            color: #941c18 !important;
+        }
+    }
 
 }
 // Home Search
 #home_search{
-    padding: 20px 0px;
-    background-image: url('img/background2.jpg');
+    background-image:linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5), 
+    ), url('img/background2.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     height:auto;
 }
 
-
+// Featured Home
+#home_featured{
+    .card-body{
+        padding:.7rem !important;
+    }
+    .card .likes{
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    top: 0px;
+    border-radius: 3px;
+    color: #ffffff;
+    right: 18px;
+    padding: 3px 6px;
+    }
+    .card .list{
+    height: 120px;
+    position: relative;
+    border-radius: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url('img/background2.jpg');
+    }
+}
 // footer
 footer{
     background-color:#282c35;

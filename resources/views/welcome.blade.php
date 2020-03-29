@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <div id="home_search">
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
             <!-- logo -->
             <div class="col-md-12 d-flex justify-content-center">
                 <img src="img/tibetanbusiness.png" alt="Tibetanbusiness logo" class="elevation-3" style="opacity: .8">
             </div>
             <!-- Text -->
-            <div class="col-md-12 my-2">
+            <div class="col-md-12 py-4">
                 <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
             </div>
             <!-- search box -->
@@ -26,7 +26,7 @@
                             <li class="dropdown-item"><a href="#">Separated link</a></li>
                         </ul>
                     </div>
-                    <!-- /btn-group -->
+                    <!-- btn-group -->
                     <input type="text" class="form-control">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-danger">
@@ -37,5 +37,8 @@
             </div>
         </div>
     </div>
+</div>
+<div id="home_featured" class="py-4">
+    <home-featured></home-featured>
 </div>
 @endsection

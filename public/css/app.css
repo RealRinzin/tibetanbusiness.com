@@ -10896,13 +10896,46 @@ a.text-dark:focus {
   color: #fff !important;
 }
 
+#navbar .nav-item:hover {
+  background-color: white;
+  transition: 0.6s;
+}
+
+#navbar .nav-item:hover a {
+  color: #941c18 !important;
+}
+
 #home_search {
-  padding: 20px 0px;
-  background-image: url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: auto;
+}
+
+#home_featured .card-body {
+  padding: 0.7rem !important;
+}
+
+#home_featured .card .likes {
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  top: 0px;
+  border-radius: 3px;
+  color: #ffffff;
+  right: 18px;
+  padding: 3px 6px;
+}
+
+#home_featured .card .list {
+  height: 120px;
+  position: relative;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
 }
 
 footer {
