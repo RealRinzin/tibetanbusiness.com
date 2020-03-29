@@ -10931,7 +10931,6 @@ a.text-dark:focus {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url(/images/background2.jpg?cad4d843770e98038f1339790949c341);
 }
 
 #home_featured .card .likes {
@@ -10952,7 +10951,7 @@ a.text-dark:focus {
 
 #home_featured .card .types {
   position: absolute;
-  padding: 2px 6px;
+  padding: 3px 6px;
   top: 58%;
   right: 10px;
 }
@@ -10960,5 +10959,37 @@ a.text-dark:focus {
 footer {
   background-color: #282c35;
   padding: 10px 0px;
+  color: #cdcdcd;
+}
+
+footer .divider {
+  border-top: 1px solid #3C3F46;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+footer ul {
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+footer ul li {
+  display: block;
+  padding: 0 0 8px;
+  font-size: 14px;
+}
+
+footer .copyright {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+footer img {
+  margin: 0px auto;
+  display: block;
+  height: 50px;
+  width: 50px;
 }
 

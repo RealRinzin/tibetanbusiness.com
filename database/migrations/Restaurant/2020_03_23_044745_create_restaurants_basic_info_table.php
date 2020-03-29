@@ -17,6 +17,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('name',80);
+            $table->string('banner',80);
             $table->decimal('rate',5,1);
             $table->decimal('location',5,1);
             $table->text('address');

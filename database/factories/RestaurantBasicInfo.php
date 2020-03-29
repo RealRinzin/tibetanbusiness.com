@@ -13,6 +13,7 @@ $factory->define(RestaurantBasicInfo::class, function (Faker $faker) {
         'name' => $faker->sentence(),
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 10), // 48.8932,
         'location' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100), // 48.8932,
+        'banner' => $faker->sentence(),
         'address' => $faker->text(),
         'mobile_no' => $faker->numberBetween($min = 1000, $max = 9000),
         'email' => $faker->sentence(),

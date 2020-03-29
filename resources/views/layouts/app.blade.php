@@ -67,14 +67,82 @@
             <!-- content -->
             @yield('content')
             <footer>
-                <div class="row">
-                    <div class="col-md-12">
-                        asdfads
+                <div class="container">
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            <img src="img/tibetanbusiness.png" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
+                        </div>
+                    </div>
+                    <div class=" divider"></div>
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="divider"></div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Miao</li>
+                                <li>Tezu</li>
+                                <li>Kollegal</li>
+                                <li>Bylakuppe</li>
+                                <li>Herbertpur</li>
+                                <li>Mungod</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Ravangala</li>
+                                <li>Bandara</li>
+                                <li>Mainpat</li>
+                                <li>Odisha</li>
+                                <li>Hunsur</li>
+                                <li>Ladak</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Tuting</li>
+                                <li>Bir</li>
+                                <li>Dalhousie</li>
+                                <li>Kamrao</li>
+                                <li>Kham karto</li>
+                                <li>Ponta</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Puruwala</li>
+                                <li>Shimla</li>
+                                <li>Bomdila</li>
+                                <li>Dharamsala</li>
+                                <li>Darjeeling</li>
+                                <li>Clement Town</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Gangtok</li>
+                                <li>Kalimpong</li>
+                                <li>Munduwala</li>
+                                <li>Manali</li>
+                                <li>Delhi</li>
+                                <li>Shilong</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4">
+                            <ul>
+                                <li>Dekyiling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row py-1">
+                        <p class="copyright text-center">© Copyright 2017</p>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 </body>
-
 </html>

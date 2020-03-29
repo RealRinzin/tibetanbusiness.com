@@ -16,7 +16,9 @@ class RestaurantBasicInfoController extends Controller
      */
     public function index()
     {
-        return new RestaurantBasicInfoResource(RestaurantBasicInfo::paginate());
+        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::get());
+        $restaurants =  RestaurantBasicInfo::all();
+        return $restaurants->toArray($restaurants);
         //
     }
 

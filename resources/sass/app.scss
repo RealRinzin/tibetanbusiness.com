@@ -60,7 +60,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
-            background-image: url('img/background2.jpg');
+            // background-image: url('img/background2.jpg');
             }
         .likes{
             position: absolute;
@@ -79,7 +79,7 @@
         } 
         .types{
             position: absolute;
-            padding: 2px 6px;
+            padding: 3px 6px;
             top: 58%;
             right: 10px;
        }
@@ -89,4 +89,31 @@
 footer{
     background-color:#282c35;
     padding: 10px 0px;
+    color: #cdcdcd;
+    .divider{
+    border-top: 1px solid #3C3F46;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    }
+    ul{
+        text-decoration: none;
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        li{
+            display: block;
+            padding: 0 0 8px;
+            font-size: 14px;
+        }
+    }
+    .copyright{
+        font-size: 12px;
+        color: #9a9a9a;
+    }
+    img{
+        margin: 0px auto;
+        display: block;
+        height: 50px;
+        width: 50px;
+    }
 }
