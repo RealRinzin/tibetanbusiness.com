@@ -57,9 +57,31 @@
 
                     <!-- Right navbar links -->
                     <ul class="navbar-nav ml-auto">
+                        @guest
                         <li class="nav-item d-none d-sm-inline-block">
-                            <a href="#" class="nav-link">Login </a>
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
                         </li>
+                        @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                        <!-- <li class="nav-item d-none d-sm-inline-block">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
+                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -144,5 +166,30 @@
             </footer>
         </div>
     </div>
+    <!-- login Modal -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Login with Tibetanbusiness.com</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body login-card-body">
+                        <a href="#" class="btn btn-block btn-primary">
+                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                        </a>
+                        <a href="#" class="btn btn-block btn-danger">
+                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
+
 </html>

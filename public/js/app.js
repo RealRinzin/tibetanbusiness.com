@@ -38105,7 +38105,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(0, true),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "card-body text-truncate" }, [
                   _c("h5", [_vm._v(_vm._s(restaurants.name))]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(restaurants.mobile_no))]),

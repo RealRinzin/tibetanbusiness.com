@@ -13,7 +13,7 @@
                         <div class="types">
                             <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body text-truncate">
                             <h5>{{restaurants.name}}</h5>
                             <h6>{{restaurants.mobile_no}}</h6>
                             <h6>{{restaurants.location}}</h6>

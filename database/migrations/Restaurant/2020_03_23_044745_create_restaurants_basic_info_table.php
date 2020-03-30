@@ -19,8 +19,8 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('name',80);
             $table->string('banner',80);
             $table->decimal('rate',5,1);
-            $table->decimal('location',5,1);
-            $table->text('address');
+            $table->decimal('address',5,1);
+            $table->text('location');
             $table->string('mobile_no',12);
             $table->string('email',100);
             $table->string('opening_hour',10);

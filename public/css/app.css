@@ -10882,6 +10882,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
 #navbar {
   background-color: #941c18;
 }
@@ -10921,6 +10925,7 @@ a.text-dark:focus {
 
 #home_featured .card-body h5 {
   color: #33373D !important;
+  font-size: 1rem !important;
 }
 
 #home_featured .card .list {

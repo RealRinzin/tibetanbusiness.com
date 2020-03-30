@@ -6,7 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
+// body
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
 
 // Navigation Bar
 #navbar{
@@ -48,6 +51,7 @@
         color:#89959B !important;
         h5{
             color:#33373D !important;
+            font-size: 1rem !important;
         }
     }
     .card
