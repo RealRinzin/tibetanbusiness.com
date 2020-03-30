@@ -170,19 +170,38 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Login with Tibetanbusiness.com</h5>
+                <!-- <div class="modal-header bg-danger">
+                    <h5 class="modal-title text-center" id="exampleModalLabel" style="margin: 0px auto !important">Login with Tibetanbusiness.com</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
-                </div>
+                </div> -->
                 <div class="modal-body">
-                    <div class="card-body login-card-body">
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    <div class="container">
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <a href="login/github" class="btn btn-block btn-primary">
+                                    <i class="fab fa-facebook-square fa-lg"></i>
+                                    <span>Sign in using Facebook</span>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="login/github" class="btn btn-block btn-danger">
+                                    <i class="fab fa-github-square fa-lg"></i>
+                                    <span>Sign in using Github</span>
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="card-body login-card-body text-center">
+                        <img src="img/tibetanbusiness.png" alt="">
+                        <h5 class="text-center my-3">Sign in with</h5>
+                        <a href="#" class="btn btn-block btn-primary py-1">
+                            <i class="fab fa-facebook fa-lg mr-2"></i> Sign in using Facebook
                         </a>
-                        <a href="#" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                        <a href="login/github" class="btn btn-block btn-secondary py-1 my-3">
+                            <i class="fab fa-github-square fa-lg mr-3"></i>
+                            <span>Sign in using Github</span>
                         </a>
                     </div>
                 </div>
