@@ -41,13 +41,14 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://tibetanbusiness.com:8888/login/github/callback',
+        'redirect' => 'https://tibetanbusiness.com:8890/login/github/callback',
     ],
     // Facebook Login
     'facebook' => [
-        'client_id' => env('FACEBOOK_KEY'),
-        'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect' => env('FACEBOOK_REDIRECT_URI')
+        'client_id' =>  '320651235266376',
+        'client_secret' => 'ba5b7ff26f82df76340c456ba5802a94',
+        'redirect' => 'https://tibetanbusiness.com:8890/login/facebook/callback',
+
     ],
 
 ];

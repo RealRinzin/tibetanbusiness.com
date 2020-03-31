@@ -44,9 +44,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($service)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
     /**
@@ -54,17 +54,19 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($service)
     {
-        $github_user = Socialite::driver('github')->user();
+        $github_user = Socialite::driver($service)->user();
         /**
          * Add User to Database
          *  */ 
+        dd($github_user);
         $user = User::where('provider_id',$github_user->getId())->first();
         if(!$user){
             $user = User::create([
                 'email' => $github_user->getEmail(),
-                'name' => 'rinzin',
+                'name' => $github_user->nickname,
+                'avatar' => $github_user->avatar,
                 'provider_id' => $github_user->getId(),
             ]);
         }
