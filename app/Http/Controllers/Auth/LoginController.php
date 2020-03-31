@@ -60,14 +60,14 @@ class LoginController extends Controller
         /**
          * Add User to Database
          *  */ 
-        dd($github_user);
+        // dd($github_user);
         $user = User::where('provider_id',$github_user->getId())->first();
         if(!$user){
             $user = User::create([
-                'email' => $github_user->getEmail(),
-                'name' => $github_user->nickname,
+                'email' => $github_user->email,
+                'name' => $github_user->name,
                 'avatar' => $github_user->avatar,
-                'provider_id' => $github_user->getId(),
+                'provider_id' => $github_user->id,
             ]);
         }
         // $user->token;

@@ -22,6 +22,7 @@
                 </div>
             </div>
         </div>
+        <business-list></business-list>
     </div>
 </template>
 

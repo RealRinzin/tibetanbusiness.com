@@ -10884,6 +10884,7 @@ a.text-dark:focus {
 
 body {
   font-family: "Source Sans Pro", sans-serif;
+  background-color: #edf1f4 !important;
 }
 
 #navbar {
@@ -10959,6 +10960,73 @@ body {
   padding: 3px 6px;
   top: 58%;
   right: 10px;
+}
+
+#business_list .banner {
+  height: 100px;
+  background: red;
+  position: relative;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#business_list .info h5 {
+  font-size: 12px !important;
+  color: #3e4041;
+  font-weight: bold;
+  -webkit-animation: blinkingText 1.2s infinite;
+          animation: blinkingText 1.2s infinite;
+}
+
+@-webkit-keyframes blinkingText {
+  0% {
+    color: #000;
+  }
+
+  49% {
+    color: #000;
+  }
+
+  60% {
+    color: transparent;
+  }
+
+  99% {
+    color: transparent;
+  }
+
+  100% {
+    color: #000;
+  }
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #000;
+  }
+
+  49% {
+    color: #000;
+  }
+
+  60% {
+    color: transparent;
+  }
+
+  99% {
+    color: transparent;
+  }
+
+  100% {
+    color: #000;
+  }
+}
+
+#business_list .info h6 {
+  color: #89959B;
+  font-size: 10px;
 }
 
 footer {

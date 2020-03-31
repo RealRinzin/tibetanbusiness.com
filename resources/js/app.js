@@ -25,6 +25,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * Front Page Component 
  * */
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
+Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 
 
 /**

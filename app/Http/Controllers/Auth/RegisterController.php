@@ -67,6 +67,7 @@ class RegisterController extends Controller
         // return User::connection('mysql')->create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'provider_id' => '234234234',
             'password' => Hash::make($data['password']),
         ]);
     }

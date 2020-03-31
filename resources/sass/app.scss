@@ -9,6 +9,7 @@
 // body
 body{
     font-family: 'Source Sans Pro', sans-serif;
+    background-color: #edf1f4 !important;
 }
 
 // Navigation Bar
@@ -87,6 +88,38 @@ body{
             top: 58%;
             right: 10px;
        }
+    }
+}
+
+#business_list{
+    .banner{
+        height:100px;
+        background: red;
+        position: relative;
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .info{
+        h5{
+            font-size: 12px !important;
+            // color:#89959B;
+            color: #3e4041;
+            font-weight: bold;
+            animation:blinkingText 1.2s infinite;
+        }
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: #000; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+}
+        h6{
+            color:#89959B;
+            font-size: 10px;
+        }
     }
 }
 // footer
