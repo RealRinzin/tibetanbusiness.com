@@ -69,16 +69,16 @@ class RestaurantBasicInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     //
-    //     return "Return Individual";
-    // }
-    public function show(RestaurantBasicInfo $request): RestaurantBasicInfoResource
+    public function show($id)
     {
-        // return specific user;
-        return new RestaurantBasicInfoResource($request);
+        return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     }
+    // public function show(RestaurantBasicInfo $id): RestaurantBasicInfoResource
+    // {
+    //     // return "fine";
+    //     // return specific user;
+    //     return new RestaurantBasicInfoResource($id);
+    // }
 
     /**
      * Show the form for editing the specified resource.

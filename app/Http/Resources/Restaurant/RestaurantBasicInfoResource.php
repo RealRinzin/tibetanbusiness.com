@@ -15,5 +15,13 @@ class RestaurantBasicInfoResource extends JsonResource
     public function toArray($request)
     {
         return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            // 'posts' => RestaurantFacilityResource::collection($this->restaurant_facilites),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }
