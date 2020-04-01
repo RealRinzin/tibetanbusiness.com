@@ -38203,15 +38203,11 @@ var render = function() {
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("div", {
-                          staticClass: "banner",
-                          style: {
-                            backgroundImage:
-                              "url(img/" + restaurants.banner + ")"
-                          }
-                        })
-                      ])
+                      _c(
+                        "a",
+                        { attrs: { href: "restaurant/" + restaurants.id } },
+                        [_c("div", { staticClass: "banner" })]
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-6 col-sm-6 p-3 info" }, [
@@ -38279,7 +38275,7 @@ var render = function() {
           _vm._l(_vm.restaurants, function(restaurants, index) {
             return _c("div", { staticClass: "col-md-4 py-1" }, [
               _c("div", { staticClass: "card" }, [
-                _c("a", { attrs: { href: "#" } }, [
+                _c("a", { attrs: { href: "restaurant/" + restaurants.id } }, [
                   _c("div", {
                     staticClass: "list",
                     style: {

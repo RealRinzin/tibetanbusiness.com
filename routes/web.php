@@ -21,4 +21,8 @@ Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
 // Other route
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('restaurant','Restaurant\RestaurantBasicInfoController');
+// Route::resource('restaurant','Restaurant\RestaurantBasicInfoController');
+/**
+ * Restaurant Route
+ *  */ 
+Route::get('restaurant/{id}','Restaurant\RestaurantBasicInfoController@restaurant');

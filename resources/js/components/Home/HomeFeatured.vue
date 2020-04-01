@@ -6,7 +6,7 @@
             <div class="row py-3">
                 <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants">
                     <div class="card">
-                        <a href="#"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
+                        <a v-bind:href="'restaurant/'+restaurants.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
                         <div class="likes">
                             <p class="btn btn-danger"><i class="fas fa-star text-white"></i>{{restaurants.rate}}</p>
                         </div>

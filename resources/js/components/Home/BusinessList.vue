@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <a href="#"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
+                                        <a v-bind:href="'restaurant/'+restaurants.id"><div class="banner"></div></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">
                                         <h5>{{restaurants.name}}</h5>

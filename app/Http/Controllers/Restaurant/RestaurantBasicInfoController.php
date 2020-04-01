@@ -14,6 +14,15 @@ class RestaurantBasicInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function restaurant()
+    {
+        return view('restaurant.show');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         // return new RestaurantBasicInfoResource(RestaurantBasicInfo::get());

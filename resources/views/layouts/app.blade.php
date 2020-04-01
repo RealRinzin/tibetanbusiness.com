@@ -31,7 +31,7 @@
             <nav id="navbar" class="navbar navbar-expand navbar-light">
                 <div class="container">
                     <a href="index3.html" class="navbar-brand">
-                        <img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
+                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="AdminLTE Logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                     </a>
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
@@ -92,7 +92,7 @@
                 <div class="container">
                     <div class="row py-2">
                         <div class="col-md-12">
-                            <img src="img/tibetanbusiness.png" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
+                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
                         </div>
                     </div>
                     <div class=" divider"></div>
@@ -217,13 +217,14 @@
 
                             <div class="social-auth-links text-center mb-3">
                                 <p>- OR -</p>
-                                <a href="login/facebook" class="btn btn-block btn-primary">
+                                <a href="{{url('login/facebook')}}" class="btn btn-block btn-primary">
                                     <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
                                 </a>
-                                <a href="login/google" class="btn btn-block btn-danger">
+
+                                <a href="{{ url('login/google') }}" class="btn btn-block btn-danger">
                                     <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
                                 </a>
-                                <a href="login/github" class="btn btn-block btn-secondary">
+                                <a href="{{url('login/github')}}" class="btn btn-block btn-secondary">
                                     <i class="fab fa-github mr-2"></i> Sign in using Github
                                 </a>
                             </div>

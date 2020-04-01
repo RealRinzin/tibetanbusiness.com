@@ -94,7 +94,8 @@ body{
 #business_list{
     .banner{
         height:100px;
-        background: red;
+        // background: red;
+        background-image: url('img/5.gif');
         position: relative;
         border-radius: 4px;
         background-size: cover;
@@ -118,7 +119,7 @@ body{
 }
         h6{
             color:#89959B;
-            font-size: 10px;
+            font-size: 11px;
         }
     }
 }
