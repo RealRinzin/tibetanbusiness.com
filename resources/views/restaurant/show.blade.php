@@ -1,4 +1,4 @@
 @extends('welcome')
 @section('content')
-This is individual
+<restaurant-show></restaurant-show>
 @endsection

@@ -14,6 +14,17 @@ class RestaurantBasicInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function all(){
+        return "message";
+    
+        $restaurants =  RestaurantBasicInfo::all();
+        return $restaurants->toArray($restaurants);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function restaurant()
     {
         return view('restaurant.show');
@@ -58,10 +69,15 @@ class RestaurantBasicInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    // public function show($id)
+    // {
+    //     //
+    //     return "Return Individual";
+    // }
+    public function show(RestaurantBasicInfo $request): RestaurantBasicInfoResource
     {
-        //
-        return "Return Individual";
+        // return specific user;
+        return new RestaurantBasicInfoResource($request);
     }
 
     /**

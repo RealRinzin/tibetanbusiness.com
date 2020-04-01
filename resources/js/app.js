@@ -27,6 +27,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 
+/**
+ * 
+ * Restaurant Components
+ * */ 
+Vue.component('restaurant-show', require('./components/Restaurant/Show.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
