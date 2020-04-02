@@ -1,0 +1,24 @@
+/* Restaurant scss */
+#restaurant{
+    // background-color: red;
+    .banner{
+        height: 250px;
+        position: relative;
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        .overlay{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 100%;
+            height: inherit;
+            background: rgba(0, 0, 0, 0.4);
+            h6{
+                bottom:10px;
+                left:5px;
+            }
+        }
+    }
+}

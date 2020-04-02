@@ -2134,9 +2134,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  /**
+   * Data
+   *  */
+  data: function data() {
+    return {
+      restaurant: [],
+      //individual show
+      restaurants: {} // Restaurant objects
+
+    };
+  },
+
+  /**
+   * Methods
+   *  */
+  methods: {
+    show: function show() {
+      var _this = this;
+
+      axios.get('/api' + window.location.pathname).then(function (response) {
+        _this.restaurant = response.data.data;
+      });
+    }
+  },
   mounted: function mounted() {
-    console.log("show individual");
+    this.show();
   }
 });
 
@@ -38374,24 +38420,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _vm._v("\n                this is fine\n            ")
+  return _c("div", { attrs: { id: "restaurant" } }, [
+    _c("div", { staticClass: "container py-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8 col-sm-6" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "banner",
+                    style: {
+                      backgroundImage: "url(/img/" + _vm.restaurant.banner + ")"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "overlay" }, [
+                      _c(
+                        "h6",
+                        { staticClass: "position-absolute btn btn-warning" },
+                        [_vm._v(_vm._s(_vm.restaurant.name))]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "overview p-3" }, [
+                  _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "pt-2 text-muted" }, [
+                    _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "pt-2 text-muted" }, [
+                    _vm._v(_vm._s(_vm.restaurant.location))
+                  ])
+                ])
+              ])
+            ])
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+          _vm._v("\n                Sidebar\n            ")
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
