@@ -2199,6 +2199,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * Data
@@ -38520,7 +38549,11 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4 col-sm-6" }, [
@@ -38564,7 +38597,14 @@ var staticRenderFns = [
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [_c("h6", [_vm._v("Location")])])
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("h6", [_vm._v("Location")]),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/map.jpeg", alt: "" }
+          })
+        ])
       ])
     ])
   },
@@ -38644,6 +38684,68 @@ var staticRenderFns = [
             staticClass: "img-fluid img-thumbnail",
             attrs: { src: "/img/background.jpg", alt: "" }
           })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h5", [_vm._v("Write comments")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group input-group-sm" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "input-group-append" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-flat",
+                  attrs: { type: "button", placeholder: "Write your comment" }
+                },
+                [_vm._v("Post")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "media" }, [
+            _c("img", {
+              staticClass: "mr-3 img-circle",
+              staticStyle: { height: "50px", width: "50px" },
+              attrs: {
+                src:
+                  "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                alt: "Generic placeholder image"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-body" }, [
+              _c("h5", { staticClass: "mt-0" }, [_vm._v("Media heading")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-muted" }, [
+                _vm._v(
+                  "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus."
+                )
+              ])
+            ])
+          ])
         ])
       ])
     ])
