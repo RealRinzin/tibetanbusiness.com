@@ -38385,7 +38385,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
-            _vm._v("\n                individual\n            ")
+            _vm._v("\n                this is fine\n            ")
           ])
         ])
       ])

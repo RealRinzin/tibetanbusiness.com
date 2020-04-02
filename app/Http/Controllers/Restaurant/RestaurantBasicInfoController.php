@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Restaurant\RestaurantBasicInfoResource;
+use App\Http\Resources\Restaurant\RestaurantBasicInfoResourceCollection;
 use Illuminate\Support\Facades\DB;
 use App\Restaurant\RestaurantBasicInfo;
+use App\User;
+
 class RestaurantBasicInfoController extends Controller
 {
     /**
@@ -36,7 +39,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function index()
     {
-        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::get());
+        // return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::get());
         $restaurants =  RestaurantBasicInfo::all();
         return $restaurants->toArray($restaurants);
         //
@@ -69,16 +72,15 @@ class RestaurantBasicInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function show($id)
+    // {
+    //     return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
+    // }
     public function show($id)
     {
+        // return specific user;
         return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     }
-    // public function show(RestaurantBasicInfo $id): RestaurantBasicInfoResource
-    // {
-    //     // return "fine";
-    //     // return specific user;
-    //     return new RestaurantBasicInfoResource($id);
-    // }
 
     /**
      * Show the form for editing the specified resource.
