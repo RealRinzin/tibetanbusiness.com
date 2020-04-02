@@ -82,14 +82,19 @@
                         </div>
                     </div>
                     <!-- Comment View -->
-                    <div class="card">
+                    <div class="card" v-for="comments in restaurant.comments">
                         <div class="row p-3">
-                            <div class="col-md-12">
+                            <div class="col-md-12" >
                                 <div class="media">
                                 <img class="mr-3 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
                                 <div class="media-body">
-                                    <h5 class="mt-0">Media heading</h5>
-                                    <p class="text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <h6 class="mt-0">Rinzin 
+                                        <small>
+                                        <span class="bg-info p-1 rounded"><i class="fas fa-star px-1"></i>{{comments.rate}}</span>
+                                        </small>
+                                        </h6>
+                                    <p class="text-muted">1 day ago</p>
+                                    <p class="text-muted">{{comments.comment}}</p>
                                 </div>
                                 </div>
                             </div>

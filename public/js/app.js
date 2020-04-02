@@ -2228,6 +2228,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * Data
@@ -38495,66 +38500,112 @@ var render = function() {
   return _c("div", { attrs: { id: "restaurant" } }, [
     _c("div", { staticClass: "container py-4" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-sm-6" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + _vm.restaurant.banner + ")"
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "overlay" }, [
-                      _c(
-                        "h6",
-                        { staticClass: "position-absolute btn btn-warning" },
-                        [_vm._v(_vm._s(_vm.restaurant.name))]
+        _c(
+          "div",
+          { staticClass: "col-md-8 col-sm-6" },
+          [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage:
+                          "url(/img/" + _vm.restaurant.banner + ")"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "overlay" }, [
+                        _c(
+                          "h6",
+                          { staticClass: "position-absolute btn btn-warning" },
+                          [_vm._v(_vm._s(_vm.restaurant.name))]
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "overview p-3" }, [
+                    _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "pt-3 text-muted" }, [
+                      _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                    ]),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "text-muted" }, [
+                      _vm._v(_vm._s(_vm.restaurant.location))
+                    ]),
+                    _vm._v(" "),
+                    _c("h6", { staticClass: "text-muted" }, [
+                      _vm._v(
+                        _vm._s(_vm.restaurant.opening_hour) +
+                          " - " +
+                          _vm._s(_vm.restaurant.closing_hour)
                       )
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "overview p-3" }, [
-                  _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "pt-3 text-muted" }, [
-                    _vm._v(_vm._s(_vm.restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-muted" }, [
-                    _vm._v(_vm._s(_vm.restaurant.location))
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      _vm._s(_vm.restaurant.opening_hour) +
-                        " - " +
-                        _vm._s(_vm.restaurant.closing_hour)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _vm._m(5)
-        ]),
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._l(_vm.restaurant.comments, function(comments) {
+              return _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "row p-3" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "mr-3 img-circle",
+                        staticStyle: { height: "50px", width: "50px" },
+                        attrs: {
+                          src:
+                            "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                          alt: "Generic placeholder image"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("h6", { staticClass: "mt-0" }, [
+                          _vm._v(
+                            "Rinzin \n                                    "
+                          ),
+                          _c("small", [
+                            _c("span", { staticClass: "bg-info p-1 rounded" }, [
+                              _c("i", { staticClass: "fas fa-star px-1" }),
+                              _vm._v(_vm._s(comments.rate))
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-muted" }, [
+                          _vm._v("1 day ago")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-muted" }, [
+                          _vm._v(_vm._s(comments.comment))
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4 col-sm-6" }, [
           _vm._v("\n                Sidebar\n            ")
@@ -38712,38 +38763,6 @@ var staticRenderFns = [
                 },
                 [_vm._v("Post")]
               )
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "row p-3" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "media" }, [
-            _c("img", {
-              staticClass: "mr-3 img-circle",
-              staticStyle: { height: "50px", width: "50px" },
-              attrs: {
-                src:
-                  "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                alt: "Generic placeholder image"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "media-body" }, [
-              _c("h5", { staticClass: "mt-0" }, [_vm._v("Media heading")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-muted" }, [
-                _vm._v(
-                  "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus."
-                )
-              ])
             ])
           ])
         ])
