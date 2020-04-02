@@ -17,10 +17,53 @@
                             <div class="col-md-12">
                                 <div class="overview p-3">
                                     <h5>{{restaurant.name}}</h5>
-                                    <h6 class="pt-2 text-muted">{{restaurant.mobile_no}}</h6>
-                                    <h6 class="pt-2 text-muted">{{restaurant.location}}</h6>
+                                    <h6 class="pt-3 text-muted">{{restaurant.mobile_no}}</h6>
+                                    <h6 class="text-muted">{{restaurant.location}}</h6>
+                                    <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
+                                    <h6 class="text-muted">
+                                        <span>Mon</span><span>Tues</span>
+                                        <span>Wed</span><span>Thurs</span>
+                                        <span>Fri</span><span>Satur</span>
+                                        <span>Sun</span>
+                                    </h6>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Info -->
+                    <div class="card">
+                        <div class="row p-3">
+                            <div class="col-md-6">
+                                <h5 class="text-dark">Brief</h5>
+                                <p class="text-muted">Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                            </div>
+                            <div class="col-md-6"> 
+                                <h6>Location</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Menu Photo -->
+                    <div class="card">
+                        <div class="row p-3">
+                            <div class="col-md-12">
+                                <h5 class="text-dark">Menu Photo (3)</h5>
+                            </div>
+                            <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background1.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background2.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                        </div>
+                    </div>
+                    <!-- Food Photo -->
+                    <div class="card">
+                        <div class="row p-3">
+                            <div class="col-md-12">
+                                <h5 class="text-dark">Food Photo (4)</h5>
+                            </div>
+                            <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background1.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background2.jpg" alt="" class="img-fluid img-thumbnail"></div>
+                            <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
                         </div>
                     </div>
                 </div>

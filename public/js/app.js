@@ -2156,6 +2156,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * Data
@@ -38451,17 +38494,33 @@ var render = function() {
                 _c("div", { staticClass: "overview p-3" }, [
                   _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
                   _vm._v(" "),
-                  _c("h6", { staticClass: "pt-2 text-muted" }, [
+                  _c("h6", { staticClass: "pt-3 text-muted" }, [
                     _vm._v(_vm._s(_vm.restaurant.mobile_no))
                   ]),
                   _vm._v(" "),
-                  _c("h6", { staticClass: "pt-2 text-muted" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
                     _vm._v(_vm._s(_vm.restaurant.location))
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(
+                      _vm._s(_vm.restaurant.opening_hour) +
+                        " - " +
+                        _vm._s(_vm.restaurant.closing_hour)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
                 ])
               ])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4 col-sm-6" }, [
@@ -38471,7 +38530,125 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "text-muted" }, [
+      _c("span", [_vm._v("Mon")]),
+      _c("span", [_vm._v("Tues")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Wed")]),
+      _c("span", [_vm._v("Thurs")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Fri")]),
+      _c("span", [_vm._v("Satur")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Sun")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("h5", { staticClass: "text-dark" }, [_vm._v("Brief")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "text-muted" }, [
+            _vm._v(
+              "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim."
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [_c("h6", [_vm._v("Location")])])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h5", { staticClass: "text-dark" }, [_vm._v("Menu Photo (3)")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background1.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background2.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background.jpg", alt: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h5", { staticClass: "text-dark" }, [_vm._v("Food Photo (4)")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background1.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background2.jpg", alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("img", {
+            staticClass: "img-fluid img-thumbnail",
+            attrs: { src: "/img/background.jpg", alt: "" }
+          })
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

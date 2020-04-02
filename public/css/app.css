@@ -10907,6 +10907,10 @@ a.text-dark:focus {
   left: 5px;
 }
 
+#restaurant .overview h6 span {
+  padding: 0px 3px;
+}
+
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;
