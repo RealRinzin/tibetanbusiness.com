@@ -10930,6 +10930,7 @@ a.text-dark:focus {
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;
+  min-height: 100%;
 }
 
 #navbar {

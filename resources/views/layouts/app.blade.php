@@ -30,7 +30,7 @@
             <!-- Navbar -->
             <nav id="navbar" class="navbar navbar-expand navbar-light">
                 <div class="container">
-                    <a href="index3.html" class="navbar-brand">
+                    <a href="" class="navbar-brand">
                         <img src="{{asset('img/tibetanbusiness.png')}}" alt="AdminLTE Logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                     </a>
                     <!-- Left navbar links -->
