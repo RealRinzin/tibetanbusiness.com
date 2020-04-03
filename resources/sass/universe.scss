@@ -1,0 +1,15 @@
+/* Sidebar  */
+#sidebar{
+    .banner{
+        background-image: url('img/background.jpg');
+        height: 70px;
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    h5::after{
+        background: red;
+        content: " - Remember this";
+    }
+}

@@ -101,8 +101,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Sidebar -->
                 <div class="col-md-4 col-sm-6">
-                    Sidebar
+                    <restaurant-sidebar></restaurant-sidebar>
                 </div>
             </div>
         </div>

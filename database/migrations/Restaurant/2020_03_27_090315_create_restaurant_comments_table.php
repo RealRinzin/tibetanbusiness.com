@@ -19,6 +19,8 @@ class CreateRestaurantCommentsTable extends Migration
             $table->uuid('restaurant_basic_info_id');
             $table->decimal('rate', 5, 1);
             $table->string('comment');
+            $table->string('name');
+            $table->string('avatar');
             $table->timestamps();
         });
     }

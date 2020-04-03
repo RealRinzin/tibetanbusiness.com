@@ -10911,6 +10911,22 @@ a.text-dark:focus {
   padding: 0px 3px;
 }
 
+/* Sidebar  */
+
+#sidebar .banner {
+  background-image: url(/images/background.jpg?1023b264e26b8630eb77887f42b6aee5);
+  height: 70px;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#sidebar h5::after {
+  background: red;
+  content: " - Remember this";
+}
+
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;

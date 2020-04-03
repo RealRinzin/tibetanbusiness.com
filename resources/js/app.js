@@ -32,6 +32,7 @@ Vue.component('business-list', require('./components/Home/BusinessList.vue').def
  * Restaurant Components
  * */ 
 Vue.component('restaurant-show', require('./components/Restaurant/Show.vue').default);
+Vue.component('restaurant-sidebar', require('./components/Restaurant/SideBar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

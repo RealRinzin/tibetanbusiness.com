@@ -12,6 +12,8 @@ $factory->define(RestaurantComment::class, function (Faker $faker) {
         //
         'comment' => $faker->sentence(),
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 10), // 48.8932,
+        'name' => 'Tenzin',
+        'avatar' => 'Profile picture',
         'user_id' => function () {
             return User::all()->random();
         },
