@@ -1,11 +1,15 @@
 <template>
+<div>
     <div id="sidebar">
         <!-- Restaurant -->
         <div class="card p-3">
             <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6>
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
-                    <a v-bind:href="'/restaurant/'+restaurant.id"><div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div></a>
+                <div class="col-md-6 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
+                    <a v-bind:href="'/restaurant/'+restaurant.id">
+                    <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div>
+                    <div class="rate"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
+                    </a>
                     <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
                     <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
                     <p class="text-muted my-0">{{restaurant.location}}</p>
@@ -61,6 +65,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
 export default {
@@ -81,6 +86,22 @@ export default {
         restaurants(){
             axios.get('/api/restaurant').then(response=>{
                 this.restaurant = response.data
+                /**
+                 * Rate
+                 *  */ 
+                for (let index = 0; index < this.restaurant.length; index++) {
+                    if(this.restaurant[index].rate >= 0.0 && this.restaurant[index].rate <= 3.5){
+                        this.restaurant[index].rate_color = 'bg-danger';
+                    }else if(this.restaurant[index].rate >= 3.6 && this.restaurant[index].rate <= 5.5 ){
+                        this.restaurant.rate_color = 'bg-warning';
+                    }else if(this.restaurant[index].rate >= 5.6 && this.restaurant[index].rate <= 7.0 ){
+                        this.restaurant[index].rate_color = 'bg-info';
+                    }else if(this.restaurant[index].rate >= 7.1 && this.restaurant[index].rate <= 10.0 ){
+                        this.restaurant[index].rate_color = 'bg-success';
+                    }else{
+                        this.restaurant.comments[index].rate_color = 'bg-secondary';
+                    }
+                }
             })
         }
     },

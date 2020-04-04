@@ -10927,6 +10927,17 @@ a.text-dark:focus {
   background-position: center center;
 }
 
+#sidebar .rate {
+  position: absolute;
+  top: 2px;
+  right: 9px;
+}
+
+#sidebar .rate .btn {
+  padding: 2px;
+  font-size: 14px;
+}
+
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;

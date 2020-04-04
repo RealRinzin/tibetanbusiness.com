@@ -90,11 +90,11 @@
                             <div class="card p-3">
                                 <div class="row">
                                     <h5>Reviews</h5>
-                                    <div class="col-md-12 p-3" v-for="(comments,index) in restaurant.comments" v-if="index <=4">
+                                    <div class="col-md-12 p-3" v-for="(comments,index) in restaurant.comments" v-if="index <4">
                                         <div class="media">
                                         <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
                                         <div class="media-body">
-                                            <h6 class="mt-0">Rinzin 
+                                            <h6 class="mt-0">{{comments.name}} 
                                                 <!-- <small v-if="restaurant.rate < 9"> -->
                                                 <small>
                                                 <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-center">
-                                        <button class="btn btn-danger btn-sm">Load more</button>
+                                        <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
                                     </div>
                                 </div>
                             </div>
@@ -177,6 +177,15 @@ export default {
                 }
                 
             })
+        },
+        /**
+         * 
+         * Load Comments
+         * Pagination
+         *  */
+        load_comments(){
+            console.log("comments more");
+
         }
     },
 

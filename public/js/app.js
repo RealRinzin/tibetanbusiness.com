@@ -2347,6 +2347,15 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+
+    /**
+     * 
+     * Load Comments
+     * Pagination
+     *  */
+    load_comments: function load_comments() {
+      console.log("comments more");
     }
   },
   mounted: function mounted() {
@@ -2365,6 +2374,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2455,6 +2469,23 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/restaurant').then(function (response) {
         _this.restaurant = response.data;
+        /**
+         * Rate
+         *  */
+
+        for (var index = 0; index < _this.restaurant.length; index++) {
+          if (_this.restaurant[index].rate >= 0.0 && _this.restaurant[index].rate <= 3.5) {
+            _this.restaurant[index].rate_color = 'bg-danger';
+          } else if (_this.restaurant[index].rate >= 3.6 && _this.restaurant[index].rate <= 5.5) {
+            _this.restaurant.rate_color = 'bg-warning';
+          } else if (_this.restaurant[index].rate >= 5.6 && _this.restaurant[index].rate <= 7.0) {
+            _this.restaurant[index].rate_color = 'bg-info';
+          } else if (_this.restaurant[index].rate >= 7.1 && _this.restaurant[index].rate <= 10.0) {
+            _this.restaurant[index].rate_color = 'bg-success';
+          } else {
+            _this.restaurant.comments[index].rate_color = 'bg-secondary';
+          }
+        }
       });
     }
   },
@@ -38848,7 +38879,7 @@ var render = function() {
                           comments,
                           index
                         ) {
-                          return index <= 4
+                          return index < 4
                             ? _c("div", { staticClass: "col-md-12 p-3" }, [
                                 _c("div", { staticClass: "media" }, [
                                   _c("img", {
@@ -38867,7 +38898,8 @@ var render = function() {
                                   _c("div", { staticClass: "media-body" }, [
                                     _c("h6", { staticClass: "mt-0" }, [
                                       _vm._v(
-                                        "Rinzin \n                                            "
+                                        _vm._s(comments.name) +
+                                          " \n                                            "
                                       ),
                                       _vm._v(" "),
                                       _c("small", [
@@ -38900,7 +38932,20 @@ var render = function() {
                             : _vm._e()
                         }),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _c("div", { staticClass: "col-md-12 text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.load_comments()
+                                }
+                              }
+                            },
+                            [_vm._v("Load more")]
+                          )
+                        ])
                       ],
                       2
                     )
@@ -39073,16 +39118,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 text-center" }, [
-      _c("button", { staticClass: "btn btn-danger btn-sm" }, [
-        _vm._v("Load more")
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -39106,185 +39141,195 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "sidebar" } }, [
-    _c("div", { staticClass: "card p-3" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurant, function(restaurant, index) {
-          return index <= 1
-            ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                  _c("div", {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + restaurant.banner + ")"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "text-dark pt-3" }, [
-                  _vm._v(_vm._s(restaurant.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.mobile_no))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.location))
+  return _c("div", [
+    _c("div", { attrs: { id: "sidebar" } }, [
+      _c("div", { staticClass: "card p-3" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.restaurant, function(restaurant, index) {
+            return index <= 1
+              ? _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
+                    _c("div", {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage: "url(/img/" + restaurant.banner + ")"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "rate" }, [
+                      _c(
+                        "span",
+                        { staticClass: "btn", class: restaurant.rate_color },
+                        [_vm._v(_vm._s(restaurant.rate))]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-dark pt-3" }, [
+                    _vm._v(_vm._s(restaurant.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.location))
+                  ])
                 ])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card p-3" }, [
-      _vm._m(1),
+              : _vm._e()
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurant, function(restaurant, index) {
-          return index <= 1
-            ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                  _c("div", {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + restaurant.banner + ")"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "text-dark pt-3" }, [
-                  _vm._v(_vm._s(restaurant.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.mobile_no))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.location))
+      _c("div", { staticClass: "card p-3" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.restaurant, function(restaurant, index) {
+            return index <= 1
+              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
+                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
+                    _c("div", {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage: "url(/img/" + restaurant.banner + ")"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-dark pt-3" }, [
+                    _vm._v(_vm._s(restaurant.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.location))
+                  ])
                 ])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card p-3" }, [
-      _vm._m(2),
+              : _vm._e()
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurant, function(restaurant, index) {
-          return index <= 1
-            ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                  _c("div", {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + restaurant.banner + ")"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "text-dark pt-3" }, [
-                  _vm._v(_vm._s(restaurant.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.mobile_no))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.location))
+      _c("div", { staticClass: "card p-3" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.restaurant, function(restaurant, index) {
+            return index <= 1
+              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
+                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
+                    _c("div", {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage: "url(/img/" + restaurant.banner + ")"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-dark pt-3" }, [
+                    _vm._v(_vm._s(restaurant.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.location))
+                  ])
                 ])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card p-3" }, [
-      _vm._m(3),
+              : _vm._e()
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurant, function(restaurant, index) {
-          return index <= 1
-            ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                  _c("div", {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + restaurant.banner + ")"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "text-dark pt-3" }, [
-                  _vm._v(_vm._s(restaurant.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.mobile_no))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.location))
+      _c("div", { staticClass: "card p-3" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.restaurant, function(restaurant, index) {
+            return index <= 1
+              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
+                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
+                    _c("div", {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage: "url(/img/" + restaurant.banner + ")"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-dark pt-3" }, [
+                    _vm._v(_vm._s(restaurant.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.location))
+                  ])
                 ])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card p-3" }, [
-      _vm._m(4),
+              : _vm._e()
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.restaurant, function(restaurant, index) {
-          return index <= 1
-            ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                  _c("div", {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + restaurant.banner + ")"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("h6", { staticClass: "text-dark pt-3" }, [
-                  _vm._v(_vm._s(restaurant.name))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.mobile_no))
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-muted my-0" }, [
-                  _vm._v(_vm._s(restaurant.location))
+      _c("div", { staticClass: "card p-3" }, [
+        _vm._m(4),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.restaurant, function(restaurant, index) {
+            return index <= 1
+              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
+                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
+                    _c("div", {
+                      staticClass: "banner",
+                      style: {
+                        backgroundImage: "url(/img/" + restaurant.banner + ")"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-dark pt-3" }, [
+                    _vm._v(_vm._s(restaurant.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.mobile_no))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted my-0" }, [
+                    _vm._v(_vm._s(restaurant.location))
+                  ])
                 ])
-              ])
-            : _vm._e()
-        }),
-        0
-      )
+              : _vm._e()
+          }),
+          0
+        )
+      ])
     ])
   ])
 }

@@ -8,4 +8,13 @@
         background-repeat: no-repeat;
         background-position: center center;
     }
+    .rate{
+        position: absolute;
+        top:2px;
+        right: 9px;
+        .btn{
+            padding:2px;
+            font-size: 14px;
+        }
+    }
 }
