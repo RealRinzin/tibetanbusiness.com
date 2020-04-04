@@ -115,15 +115,7 @@ body{
             // color:#89959B;
             color: #3e4041;
             font-weight: bold;
-            animation:blinkingText 1.2s infinite;
         }
-@keyframes blinkingText{
-    0%{     color: #000;    }
-    49%{    color: #000; }
-    60%{    color: transparent; }
-    99%{    color:transparent;  }
-    100%{   color: #000;    }
-}
         h6{
             color:#89959B;
             font-size: 11px;
@@ -166,7 +158,7 @@ footer{
 // login
 
 #login{
-    top:20%;
+    top:15%;
     .modal-content{
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;

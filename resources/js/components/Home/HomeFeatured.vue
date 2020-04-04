@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!loading">
+        <div v-if="!load">
             <loading :active.sync="isLoading"></loading>
         </div>
         <div v-else>
@@ -42,7 +42,7 @@
          *  */ 
         data(){
             return{
-                loading:false,
+                load:false,
                 isLoading : false,//Lazy loading
                 restaurants:[],
             }
@@ -58,7 +58,7 @@
                     response.data.forEach(element => {
                         this.restaurants = response.data; //data
                         this.isLoading = false; //Loading true
-                        this.loading = true;
+                        this.load = true;
                         // if(element.status === '1'){
                         // this.restaurants = response.data[0];
                         // }else{

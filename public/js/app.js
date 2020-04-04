@@ -2099,7 +2099,7 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   data: function data() {
     return {
-      loading: false,
+      load: false,
       isLoading: false,
       //Lazy loading
       restaurants: []
@@ -2122,7 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.isLoading = false; //Loading true
 
-          _this.loading = true; // if(element.status === '1'){
+          _this.load = true; // if(element.status === '1'){
           // this.restaurants = response.data[0];
           // }else{
           // this.restaurants = response.data[0];
@@ -2159,6 +2159,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2270,17 +2274,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+// Import component
+ // Import stylesheet
+
+ // Map APi
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * Data
    *  */
   data: function data() {
     return {
-      restaurant: [],
+      // Loading
+      loading: false,
+      isLoading: false,
+      //Lazy loading
+      // Object
+      restaurant: {},
       //individual show
-      restaurants: {} // Restaurant objects
-
+      restaurants: {},
+      // Restaurant objects
+      // comment rate
+      rate_background: ''
     };
+  },
+
+  /**
+   * 
+   * Components
+   *  */
+  components: {
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
   },
 
   /**
@@ -2290,8 +2321,37 @@ __webpack_require__.r(__webpack_exports__);
     show: function show() {
       var _this = this;
 
+      this.isLoading = true; //Loading true
+
       axios.get('/api' + window.location.pathname).then(function (response) {
-        _this.restaurant = response.data.data;
+        _this.restaurant = response.data.data; // loading
+
+        _this.isLoading = false; //Loading true
+
+        _this.loading = true;
+        /**
+         * Rating background
+         *  */
+        // this.restaurant.comments[0].push("background");
+
+        console.log(_this.restaurant.comments[0].push("te"));
+
+        for (var index = 0; index < _this.restaurant.comments.length; index++) {
+          // console.log(this.restaurant.comments[index]);
+          if (_this.restaurant.comments[index].rate >= 0.0 && _this.restaurant.comments[index].rate <= 3.5) {
+            _this.rate_background = 'bg-danger';
+          } else if (_this.restaurant.comments[index].rate >= 3.6 && _this.restaurant.comments[index].rate <= 5.5) {
+            _this.rate_background = 'bg-info';
+          }
+        } // console.log(this.restaurant.comments);
+        // this.restaurant.comments.forEach(element => {
+        //     if(element.rate >=0.0 && element.rate <= 3.5){
+        //         this.rate_background = 'bg-danger';
+        //     }else if(element.rate >=3.6 && element.rate <= 5.5){
+        //         this.rate_background = 'bg-warning';
+        //     }
+        // });
+
       });
     }
   },
@@ -38588,7 +38648,7 @@ var render = function() {
   return _c(
     "div",
     [
-      !_vm.loading
+      !_vm.load
         ? _c(
             "div",
             [
@@ -38692,125 +38752,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "restaurant" } }, [
-    _c("div", { staticClass: "container py-4" }, [
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-8 col-sm-6" },
-          [
-            _c("div", { staticClass: "card" }, [
+  return _c(
+    "div",
+    { staticStyle: { "min-height": "80vh" }, attrs: { id: "restaurant" } },
+    [
+      !_vm.loading
+        ? _c(
+            "div",
+            [
+              _c("loading", {
+                attrs: { active: _vm.isLoading },
+                on: {
+                  "update:active": function($event) {
+                    _vm.isLoading = $event
+                  }
+                }
+              })
+            ],
+            1
+          )
+        : _c("div", [
+            _c("div", { staticClass: "container py-4" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage:
-                          "url(/img/" + _vm.restaurant.banner + ")"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "overlay" }, [
-                        _c(
-                          "h6",
-                          { staticClass: "position-absolute btn btn-warning" },
-                          [_vm._v(_vm._s(_vm.restaurant.name))]
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "overview p-3" }, [
-                    _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "pt-3 text-muted" }, [
-                      _vm._v(_vm._s(_vm.restaurant.mobile_no))
-                    ]),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "text-muted" }, [
-                      _vm._v(_vm._s(_vm.restaurant.location))
-                    ]),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "text-muted" }, [
-                      _vm._v(
-                        _vm._s(_vm.restaurant.opening_hour) +
-                          " - " +
-                          _vm._s(_vm.restaurant.closing_hour)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(0)
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3),
-            _vm._v(" "),
-            _vm._m(4),
-            _vm._v(" "),
-            _vm._l(_vm.restaurant.comments, function(comments) {
-              return _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "row p-3" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "media" }, [
-                      _c("img", {
-                        staticClass: "mr-3 img-circle",
-                        staticStyle: { height: "50px", width: "50px" },
-                        attrs: {
-                          src:
-                            "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                          alt: "Generic placeholder image"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "media-body" }, [
-                        _c("h6", { staticClass: "mt-0" }, [
-                          _vm._v(
-                            "Rinzin \n                                    "
-                          ),
-                          _c("small", [
-                            _c("span", { staticClass: "bg-info p-1 rounded" }, [
-                              _c("i", { staticClass: "fas fa-star px-1" }),
-                              _vm._v(_vm._s(comments.rate))
-                            ])
+                _c(
+                  "div",
+                  { staticClass: "col-md-8 col-sm-6" },
+                  [
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "banner",
+                              style: {
+                                backgroundImage:
+                                  "url(/img/" + _vm.restaurant.banner + ")"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "overlay" }, [
+                                _c(
+                                  "h6",
+                                  {
+                                    staticClass:
+                                      "position-absolute btn btn-warning"
+                                  },
+                                  [_vm._v(_vm._s(_vm.restaurant.name))]
+                                )
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "overview p-3" }, [
+                            _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "pt-3 text-muted" }, [
+                              _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _vm._v(_vm._s(_vm.restaurant.location))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _vm._v(
+                                _vm._s(_vm.restaurant.opening_hour) +
+                                  " - " +
+                                  _vm._s(_vm.restaurant.closing_hour)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(0)
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-muted" }, [
-                          _vm._v("1 day ago")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-muted" }, [
-                          _vm._v(_vm._s(comments.comment))
                         ])
                       ])
-                    ])
-                  ])
-                ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._l(_vm.restaurant.comments, function(comments) {
+                      return _c("div", { staticClass: "card" }, [
+                        _c("div", { staticClass: "row p-3" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "media" }, [
+                              _c("img", {
+                                staticClass: "mr-2 img-circle",
+                                staticStyle: { height: "50px", width: "50px" },
+                                attrs: {
+                                  src:
+                                    "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                                  alt: "Generic placeholder image"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "media-body" }, [
+                                _c("h6", { staticClass: "mt-0" }, [
+                                  _vm._v(
+                                    "Rinzin \n                                            "
+                                  ),
+                                  _vm._v(" "),
+                                  _c("small", [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "p-1 rounded",
+                                        class: _vm.rate_background
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-star px-1"
+                                        }),
+                                        _vm._v(_vm._s(comments.rate))
+                                      ]
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "text-muted" }, [
+                                  _vm._v("1 day ago")
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "text-muted" }, [
+                                  _vm._v(_vm._s(comments.comment))
+                                ])
+                              ])
+                            ])
+                          ])
+                        ])
+                      ])
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 col-sm-6" },
+                  [_c("restaurant-sidebar")],
+                  1
+                )
               ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-4 col-sm-6" },
-          [_c("restaurant-sidebar")],
-          1
-        )
-      ])
-    ])
-  ])
+            ])
+          ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
