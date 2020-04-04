@@ -7,7 +7,7 @@
             <div class="container">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
-                    <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants">
+                    <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurants.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
                             <div class="likes">
@@ -59,11 +59,6 @@
                         this.restaurants = response.data; //data
                         this.isLoading = false; //Loading true
                         this.load = true;
-                        // if(element.status === '1'){
-                        // this.restaurants = response.data[0];
-                        // }else{
-                        // this.restaurants = response.data[0];
-                        // }
                     });
                 })
             }

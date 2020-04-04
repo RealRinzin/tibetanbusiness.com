@@ -80,7 +80,6 @@ export default {
     methods:{
         restaurants(){
             axios.get('/api/restaurant').then(response=>{
-                console.log(response.data);
                 this.restaurant = response.data
             })
         }

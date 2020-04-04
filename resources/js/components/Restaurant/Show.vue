@@ -96,7 +96,7 @@
                                             <h6 class="mt-0">Rinzin 
                                                 <!-- <small v-if="restaurant.rate < 9"> -->
                                                 <small>
-                                                <span  v-bind:class="rate_background" class="p-1 rounded"><i class="fas fa-star px-1"></i>{{comments.rate}}</span>
+                                                <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star px-1"></i>{{comments.rate}}</span>
                                                 </small>
                                                 </h6>
                                             <p class="text-muted">1 day ago</p>
@@ -134,8 +134,6 @@ export default {
             // Object
             restaurant:{}, //individual show
             restaurants:{}, // Restaurant objects
-            // comment rate
-            rate_background:'',
             
         }
     },
@@ -157,30 +155,22 @@ export default {
                 this.loading = true;
                 /**
                  * Rating background
+                 * Danger, Warning, Info, Success
+                 *  0-3 , 3-5, 5-7 , 7-3
                  *  */ 
-                // this.restaurant.comments[0].push("background");
-console.log(this.restaurant.comments[0].push("te"));
-
                 for (let index = 0; index < this.restaurant.comments.length; index++) {
-
-                    // console.log(this.restaurant.comments[index]);
-                    
                     if(this.restaurant.comments[index].rate >= 0.0 && this.restaurant.comments[index].rate <= 3.5){
-                        this.rate_background = 'bg-danger';
+                        this.restaurant.comments[index].rate_color = 'bg-danger';
                     }else if(this.restaurant.comments[index].rate >= 3.6 && this.restaurant.comments[index].rate <= 5.5 ){
-
-                        this.rate_background = 'bg-info';
+                        this.restaurant.comments[index].rate_color = 'bg-warning';
+                    }else if(this.restaurant.comments[index].rate >= 5.6 && this.restaurant.comments[index].rate <= 7.0 ){
+                        this.restaurant.comments[index].rate_color = 'bg-info';
+                    }else if(this.restaurant.comments[index].rate >= 7.1 && this.restaurant.comments[index].rate <= 10.0 ){
+                        this.restaurant.comments[index].rate_color = 'bg-success';
+                    }else{
+                        this.restaurant.comments[index].rate_color = 'bg-secondary';
                     }
                 }
-                    // console.log(this.restaurant.comments);
-
-                // this.restaurant.comments.forEach(element => {
-                //     if(element.rate >=0.0 && element.rate <= 3.5){
-                //         this.rate_background = 'bg-danger';
-                //     }else if(element.rate >=3.6 && element.rate <= 5.5){
-                //         this.rate_background = 'bg-warning';
-                //     }
-                // });
                 
             })
         }

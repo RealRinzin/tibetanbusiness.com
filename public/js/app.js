@@ -2122,11 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.isLoading = false; //Loading true
 
-          _this.load = true; // if(element.status === '1'){
-          // this.restaurants = response.data[0];
-          // }else{
-          // this.restaurants = response.data[0];
-          // }
+          _this.load = true;
         });
       });
     }
@@ -2299,10 +2295,8 @@ __webpack_require__.r(__webpack_exports__);
       // Object
       restaurant: {},
       //individual show
-      restaurants: {},
-      // Restaurant objects
-      // comment rate
-      rate_background: ''
+      restaurants: {} // Restaurant objects
+
     };
   },
 
@@ -2331,27 +2325,23 @@ __webpack_require__.r(__webpack_exports__);
         _this.loading = true;
         /**
          * Rating background
+         * Danger, Warning, Info, Success
+         *  0-3 , 3-5, 5-7 , 7-3
          *  */
-        // this.restaurant.comments[0].push("background");
-
-        console.log(_this.restaurant.comments[0].push("te"));
 
         for (var index = 0; index < _this.restaurant.comments.length; index++) {
-          // console.log(this.restaurant.comments[index]);
           if (_this.restaurant.comments[index].rate >= 0.0 && _this.restaurant.comments[index].rate <= 3.5) {
-            _this.rate_background = 'bg-danger';
+            _this.restaurant.comments[index].rate_color = 'bg-danger';
           } else if (_this.restaurant.comments[index].rate >= 3.6 && _this.restaurant.comments[index].rate <= 5.5) {
-            _this.rate_background = 'bg-info';
+            _this.restaurant.comments[index].rate_color = 'bg-warning';
+          } else if (_this.restaurant.comments[index].rate >= 5.6 && _this.restaurant.comments[index].rate <= 7.0) {
+            _this.restaurant.comments[index].rate_color = 'bg-info';
+          } else if (_this.restaurant.comments[index].rate >= 7.1 && _this.restaurant.comments[index].rate <= 10.0) {
+            _this.restaurant.comments[index].rate_color = 'bg-success';
+          } else {
+            _this.restaurant.comments[index].rate_color = 'bg-secondary';
           }
-        } // console.log(this.restaurant.comments);
-        // this.restaurant.comments.forEach(element => {
-        //     if(element.rate >=0.0 && element.rate <= 3.5){
-        //         this.rate_background = 'bg-danger';
-        //     }else if(element.rate >=3.6 && element.rate <= 5.5){
-        //         this.rate_background = 'bg-warning';
-        //     }
-        // });
-
+        }
       });
     }
   },
@@ -2460,7 +2450,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/restaurant').then(function (response) {
-        console.log(response.data);
         _this.restaurant = response.data;
       });
     }
@@ -38673,40 +38662,48 @@ var render = function() {
                 "div",
                 { staticClass: "row py-3" },
                 _vm._l(_vm.restaurants, function(restaurants, index) {
-                  return _c("div", { staticClass: "col-md-4 py-1" }, [
-                    _c("div", { staticClass: "card" }, [
-                      _c(
-                        "a",
-                        { attrs: { href: "restaurant/" + restaurants.id } },
-                        [
-                          _c("div", {
-                            staticClass: "list",
-                            style: {
-                              backgroundImage:
-                                "url(img/" + restaurants.banner + ")"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "likes" }, [
-                        _c("p", { staticClass: "btn btn-danger" }, [
-                          _c("i", { staticClass: "fas fa-star text-white" }),
-                          _vm._v(_vm._s(restaurants.rate))
+                  return index <= 5
+                    ? _c("div", { staticClass: "col-md-4 py-1" }, [
+                        _c("div", { staticClass: "card" }, [
+                          _c(
+                            "a",
+                            { attrs: { href: "restaurant/" + restaurants.id } },
+                            [
+                              _c("div", {
+                                staticClass: "list",
+                                style: {
+                                  backgroundImage:
+                                    "url(img/" + restaurants.banner + ")"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "likes" }, [
+                            _c("p", { staticClass: "btn btn-danger" }, [
+                              _c("i", {
+                                staticClass: "fas fa-star text-white"
+                              }),
+                              _vm._v(_vm._s(restaurants.rate))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0, true),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "card-body text-truncate" },
+                            [
+                              _c("h5", [_vm._v(_vm._s(restaurants.name))]),
+                              _vm._v(" "),
+                              _c("h6", [_vm._v(_vm._s(restaurants.mobile_no))]),
+                              _vm._v(" "),
+                              _c("h6", [_vm._v(_vm._s(restaurants.location))])
+                            ]
+                          )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(0, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card-body text-truncate" }, [
-                        _c("h5", [_vm._v(_vm._s(restaurants.name))]),
-                        _vm._v(" "),
-                        _c("h6", [_vm._v(_vm._s(restaurants.mobile_no))]),
-                        _vm._v(" "),
-                        _c("h6", [_vm._v(_vm._s(restaurants.location))])
                       ])
-                    ])
-                  ])
+                    : _vm._e()
                 }),
                 0
               )
@@ -38865,7 +38862,7 @@ var render = function() {
                                       "span",
                                       {
                                         staticClass: "p-1 rounded",
-                                        class: _vm.rate_background
+                                        class: comments.rate_color
                                       },
                                       [
                                         _c("i", {
