@@ -10912,6 +10912,10 @@ a.text-dark:focus {
   padding: 0px 3px;
 }
 
+#restaurant .media-body {
+  border-bottom: 1px solid #e8e8e8;
+}
+
 /* Sidebar  */
 
 #sidebar .banner {

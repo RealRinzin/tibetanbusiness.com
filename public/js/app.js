@@ -2277,6 +2277,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 // Import component
  // Import stylesheet
 
@@ -38771,125 +38775,137 @@ var render = function() {
         : _c("div", [
             _c("div", { staticClass: "container py-4" }, [
               _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-8 col-sm-6" },
-                  [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "banner",
-                              style: {
-                                backgroundImage:
-                                  "url(/img/" + _vm.restaurant.banner + ")"
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "overlay" }, [
-                                _c(
-                                  "h6",
-                                  {
-                                    staticClass:
-                                      "position-absolute btn btn-warning"
-                                  },
-                                  [_vm._v(_vm._s(_vm.restaurant.name))]
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "overview p-3" }, [
-                            _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "pt-3 text-muted" }, [
-                              _vm._v(_vm._s(_vm.restaurant.mobile_no))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _vm._v(_vm._s(_vm.restaurant.location))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _vm._v(
-                                _vm._s(_vm.restaurant.opening_hour) +
-                                  " - " +
-                                  _vm._s(_vm.restaurant.closing_hour)
+                _c("div", { staticClass: "col-md-8 col-sm-6" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "banner",
+                            style: {
+                              backgroundImage:
+                                "url(/img/" + _vm.restaurant.banner + ")"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "overlay" }, [
+                              _c(
+                                "h6",
+                                {
+                                  staticClass:
+                                    "position-absolute btn btn-warning"
+                                },
+                                [_vm._v(_vm._s(_vm.restaurant.name))]
                               )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(0)
-                          ])
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "overview p-3" }, [
+                          _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                          _vm._v(" "),
+                          _c("h6", { staticClass: "pt-3 text-muted" }, [
+                            _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                          ]),
+                          _vm._v(" "),
+                          _c("h6", { staticClass: "text-muted" }, [
+                            _vm._v(_vm._s(_vm.restaurant.location))
+                          ]),
+                          _vm._v(" "),
+                          _c("h6", { staticClass: "text-muted" }, [
+                            _vm._v(
+                              _vm._s(_vm.restaurant.opening_hour) +
+                                " - " +
+                                _vm._s(_vm.restaurant.closing_hour)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0)
                         ])
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._l(_vm.restaurant.comments, function(comments) {
-                      return _c("div", { staticClass: "card" }, [
-                        _c("div", { staticClass: "row p-3" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("div", { staticClass: "media" }, [
-                              _c("img", {
-                                staticClass: "mr-2 img-circle",
-                                staticStyle: { height: "50px", width: "50px" },
-                                attrs: {
-                                  src:
-                                    "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                                  alt: "Generic placeholder image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "media-body" }, [
-                                _c("h6", { staticClass: "mt-0" }, [
-                                  _vm._v(
-                                    "Rinzin \n                                            "
-                                  ),
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card p-3" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [
+                        _c("h5", [_vm._v("Reviews")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.restaurant.comments, function(
+                          comments,
+                          index
+                        ) {
+                          return index <= 4
+                            ? _c("div", { staticClass: "col-md-12 p-3" }, [
+                                _c("div", { staticClass: "media" }, [
+                                  _c("img", {
+                                    staticClass: "mr-2 img-circle",
+                                    staticStyle: {
+                                      height: "50px",
+                                      width: "50px"
+                                    },
+                                    attrs: {
+                                      src:
+                                        "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                                      alt: "Generic placeholder image"
+                                    }
+                                  }),
                                   _vm._v(" "),
-                                  _c("small", [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "p-1 rounded",
-                                        class: comments.rate_color
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-star px-1"
-                                        }),
-                                        _vm._v(_vm._s(comments.rate))
-                                      ]
-                                    )
+                                  _c("div", { staticClass: "media-body" }, [
+                                    _c("h6", { staticClass: "mt-0" }, [
+                                      _vm._v(
+                                        "Rinzin \n                                            "
+                                      ),
+                                      _vm._v(" "),
+                                      _c("small", [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "p-1 rounded",
+                                            class: comments.rate_color
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-star pr-1"
+                                            }),
+                                            _vm._v(_vm._s(comments.rate))
+                                          ]
+                                        )
+                                      ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "text-muted" }, [
+                                      _vm._v("1 day ago")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "text-muted" }, [
+                                      _vm._v(_vm._s(comments.comment))
+                                    ])
                                   ])
-                                ]),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "text-muted" }, [
-                                  _vm._v("1 day ago")
-                                ]),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "text-muted" }, [
-                                  _vm._v(_vm._s(comments.comment))
                                 ])
                               ])
-                            ])
-                          ])
-                        ])
-                      ])
-                    })
-                  ],
-                  2
-                ),
+                            : _vm._e()
+                        }),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ],
+                      2
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -39035,7 +39051,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "row p-3" }, [
         _c("div", { staticClass: "col-md-12" }, [
-          _c("h5", [_vm._v("Write comments")]),
+          _c("h5", [_vm._v("Write Reviews")]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group input-group-sm" }, [
             _c("input", {
@@ -39055,6 +39071,16 @@ var staticRenderFns = [
             ])
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 text-center" }, [
+      _c("button", { staticClass: "btn btn-danger btn-sm" }, [
+        _vm._v("Load more")
       ])
     ])
   }

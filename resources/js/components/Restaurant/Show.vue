@@ -76,7 +76,7 @@
                             <div class="card">
                                 <div class="row p-3">
                                     <div class="col-md-12">
-                                        <h5>Write comments</h5>
+                                        <h5>Write Reviews</h5>
                                         <div class="input-group input-group-sm">
                                             <input type="text" class="form-control">
                                             <span class="input-group-append">
@@ -87,22 +87,26 @@
                                 </div>
                             </div>
                             <!-- Comment View -->
-                            <div class="card" v-for="comments in restaurant.comments">
-                                <div class="row p-3">
-                                    <div class="col-md-12" >
+                            <div class="card p-3">
+                                <div class="row">
+                                    <h5>Reviews</h5>
+                                    <div class="col-md-12 p-3" v-for="(comments,index) in restaurant.comments" v-if="index <=4">
                                         <div class="media">
                                         <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
                                         <div class="media-body">
                                             <h6 class="mt-0">Rinzin 
                                                 <!-- <small v-if="restaurant.rate < 9"> -->
                                                 <small>
-                                                <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star px-1"></i>{{comments.rate}}</span>
+                                                <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
                                                 </small>
                                                 </h6>
                                             <p class="text-muted">1 day ago</p>
                                             <p class="text-muted">{{comments.comment}}</p>
                                         </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-danger btn-sm">Load more</button>
                                     </div>
                                 </div>
                             </div>
