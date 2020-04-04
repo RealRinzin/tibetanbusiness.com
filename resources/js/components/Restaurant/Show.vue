@@ -26,10 +26,20 @@
                                             <h6 class="text-muted">{{restaurant.location}}</h6>
                                             <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
                                             <h6 class="text-muted">
-                                                <span>Mon</span><span>Tues</span>
-                                                <span>Wed</span><span>Thurs</span>
-                                                <span>Fri</span><span>Satur</span>
-                                                <span>Sun</span>
+                                                <span v-if="restaurant.operation[0].monday == '1'" class="text-success btn btn-outline-success" >Mon</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Mon</span>
+                                                <span v-if="restaurant.operation[0].tuesday == '1'" class="text-success btn btn-outline-success" >Tues</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Tues</span>
+                                                <span v-if="restaurant.operation[0].wednesday == '1'" class="text-success btn btn-outline-success">Wed</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Wed</span>
+                                                <span v-if="restaurant.operation[0].thursday == '1'" class="text-success btn btn-outline-success">Thurs</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Thurs</span>
+                                                <span v-if="restaurant.operation[0].friday == '1'" class="text-success btn btn-outline-success">Fri</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Fri</span>
+                                                <span v-if="restaurant.operation[0].saturday == '1'" class="text-success btn btn-outline-success">Sat</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Sat</span>
+                                                <span v-if="restaurant.operation[0].sunday == '1'" class="text-success btn btn-outline-success">Sun</span>
+                                                <span v-else class="text-danger btn btn-outline-danger">Sun</span>
                                             </h6>
                                         </div>
                                     </div>
@@ -87,7 +97,7 @@
                                 </div>
                             </div>
                             <!-- Comment View -->
-                            <div class="card p-3">
+                            <div class="card p-3" v-if="restaurant.comments">
                                 <div class="row">
                                     <h5>Reviews</h5>
                                     <div class="col-md-12 p-3" v-for="(comments,index) in restaurant.comments" v-if="index <4">

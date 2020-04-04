@@ -29,6 +29,12 @@
                 padding: 0px 3px;
             }
         }
+
+        .btn:hover {
+        cursor: default;
+        // color: white !important;
+        background-color: transparent !important;
+        }
     }
     // Media Overrid
     .media-body{

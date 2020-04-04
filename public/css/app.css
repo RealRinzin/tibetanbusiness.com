@@ -10912,6 +10912,11 @@ a.text-dark:focus {
   padding: 0px 3px;
 }
 
+#restaurant .overview .btn:hover {
+  cursor: default;
+  background-color: transparent !important;
+}
+
 #restaurant .media-body {
   border-bottom: 1px solid #e8e8e8;
 }
@@ -10935,7 +10940,7 @@ a.text-dark:focus {
 
 #sidebar .rate .btn {
   padding: 2px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 body {

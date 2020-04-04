@@ -2281,6 +2281,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Import component
  // Import stylesheet
 
@@ -38854,11 +38864,139 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _vm._m(0)
+                          _c("h6", { staticClass: "text-muted" }, [
+                            _vm.restaurant.operation[0].monday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Mon")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Mon")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].tuesday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Tues")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Tues")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].wednesday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Wed")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Wed")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].thursday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Thurs")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Thurs")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].friday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Fri")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Fri")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].saturday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Sat")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Sat")]
+                                ),
+                            _vm._v(" "),
+                            _vm.restaurant.operation[0].sunday == "1"
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-success btn btn-outline-success"
+                                  },
+                                  [_vm._v("Sun")]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "text-danger btn btn-outline-danger"
+                                  },
+                                  [_vm._v("Sun")]
+                                )
+                          ])
                         ])
                       ])
                     ])
                   ]),
+                  _vm._v(" "),
+                  _vm._m(0),
                   _vm._v(" "),
                   _vm._m(1),
                   _vm._v(" "),
@@ -38866,90 +39004,95 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(3),
                   _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card p-3" }, [
-                    _c(
-                      "div",
-                      { staticClass: "row" },
-                      [
-                        _c("h5", [_vm._v("Reviews")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.restaurant.comments, function(
-                          comments,
-                          index
-                        ) {
-                          return index < 4
-                            ? _c("div", { staticClass: "col-md-12 p-3" }, [
-                                _c("div", { staticClass: "media" }, [
-                                  _c("img", {
-                                    staticClass: "mr-2 img-circle",
-                                    staticStyle: {
-                                      height: "50px",
-                                      width: "50px"
-                                    },
-                                    attrs: {
-                                      src:
-                                        "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                                      alt: "Generic placeholder image"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "media-body" }, [
-                                    _c("h6", { staticClass: "mt-0" }, [
-                                      _vm._v(
-                                        _vm._s(comments.name) +
-                                          " \n                                            "
-                                      ),
+                  _vm.restaurant.comments
+                    ? _c("div", { staticClass: "card p-3" }, [
+                        _c(
+                          "div",
+                          { staticClass: "row" },
+                          [
+                            _c("h5", [_vm._v("Reviews")]),
+                            _vm._v(" "),
+                            _vm._l(_vm.restaurant.comments, function(
+                              comments,
+                              index
+                            ) {
+                              return index < 4
+                                ? _c("div", { staticClass: "col-md-12 p-3" }, [
+                                    _c("div", { staticClass: "media" }, [
+                                      _c("img", {
+                                        staticClass: "mr-2 img-circle",
+                                        staticStyle: {
+                                          height: "50px",
+                                          width: "50px"
+                                        },
+                                        attrs: {
+                                          src:
+                                            "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                                          alt: "Generic placeholder image"
+                                        }
+                                      }),
                                       _vm._v(" "),
-                                      _c("small", [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass: "p-1 rounded",
-                                            class: comments.rate_color
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star pr-1"
-                                            }),
-                                            _vm._v(_vm._s(comments.rate))
-                                          ]
-                                        )
+                                      _c("div", { staticClass: "media-body" }, [
+                                        _c("h6", { staticClass: "mt-0" }, [
+                                          _vm._v(
+                                            _vm._s(comments.name) +
+                                              " \n                                            "
+                                          ),
+                                          _vm._v(" "),
+                                          _c("small", [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "p-1 rounded",
+                                                class: comments.rate_color
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-star pr-1"
+                                                }),
+                                                _vm._v(_vm._s(comments.rate))
+                                              ]
+                                            )
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("p", { staticClass: "text-muted" }, [
+                                          _vm._v("1 day ago")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("p", { staticClass: "text-muted" }, [
+                                          _vm._v(_vm._s(comments.comment))
+                                        ])
                                       ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "text-muted" }, [
-                                      _vm._v("1 day ago")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("p", { staticClass: "text-muted" }, [
-                                      _vm._v(_vm._s(comments.comment))
                                     ])
                                   ])
-                                ])
-                              ])
-                            : _vm._e()
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12 text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.load_comments()
-                                }
-                              }
-                            },
-                            [_vm._v("Load more")]
-                          )
-                        ])
-                      ],
-                      2
-                    )
-                  ])
+                                : _vm._e()
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-12 text-center" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger btn-sm",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.load_comments()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Load more")]
+                                )
+                              ]
+                            )
+                          ],
+                          2
+                        )
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c(
@@ -38965,23 +39108,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "text-muted" }, [
-      _c("span", [_vm._v("Mon")]),
-      _c("span", [_vm._v("Tues")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Wed")]),
-      _c("span", [_vm._v("Thurs")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Fri")]),
-      _c("span", [_vm._v("Satur")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Sun")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
