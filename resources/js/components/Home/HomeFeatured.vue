@@ -11,7 +11,7 @@
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurants.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
                             <div class="likes">
-                                <p class="btn btn-danger"><i class="fas fa-star text-white"></i>{{restaurants.rate}}</p>
+                                <p v-bind:class="restaurants.rate_color" class="btn"><i class="fas fa-star text-white"></i>{{restaurants.rate}}</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
@@ -60,6 +60,22 @@
                         this.isLoading = false; //Loading true
                         this.load = true;
                     });
+                    /**
+                     * Rate background color
+                     *  */ 
+                    for (let index = 0; index < this.restaurants.length; index++) {
+                        if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 3.5){
+                            this.restaurants[index].rate_color = 'bg-danger';
+                        }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 5.5 ){
+                            this.restaurants.rate_color = 'bg-warning';
+                        }else if(this.restaurants[index].rate >= 5.6 && this.restaurants[index].rate <= 7.0 ){
+                            this.restaurants[index].rate_color = 'bg-info';
+                        }else if(this.restaurants[index].rate >= 7.1 && this.restaurants[index].rate <= 10.0 ){
+                            this.restaurants[index].rate_color = 'bg-success';
+                        }else{
+                            this.restaurant.comments[index].rate_color = 'bg-secondary';
+                        }
+                    }
                 })
             }
         },

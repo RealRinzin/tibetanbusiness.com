@@ -16,12 +16,12 @@ class CreateRestaurantsBasicInfoTable extends Migration
         Schema::connection('restaurant')->create('restaurant_basic_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->string('name',80);
+            $table->string('name',30);
             $table->string('banner',80);
             $table->decimal('rate',5,1);
-            $table->decimal('rate_color', 20);
+            $table->string('rate_color', 15)->nullable();
             $table->decimal('address',5,1);
-            $table->text('location');
+            $table->text('location',30);
             $table->string('mobile_no',12);
             $table->string('email',100);
             $table->string('opening_hour',10);
@@ -30,7 +30,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('facebook',100);
             $table->string('website',100);
             $table->enum('status',['0','1']);
-            $table->text('description');
+            $table->text('description',225);
             $table->timestamps();
         });
     }

@@ -9,12 +9,12 @@ use Faker\Generator as Faker;
 $factory->define(RestaurantBasicInfo::class, function (Faker $faker) {
     return [
         //
-        'id' => $faker->sentence(),
-        'name' => $faker->sentence(),
+        'name' => $faker->sentence(1),
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 10), // 48.8932,
+        // 'rate_color' =>$faker->sentence(),
         'address' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100), // 48.8932,
         'banner' => $faker->sentence(),
-        'location' => $faker->text(),
+        'location' => $faker->sentence(1),
         'mobile_no' => $faker->numberBetween($min = 1000, $max = 9000),
         'email' => $faker->sentence(),
         'opening_hour' => $faker->randomDigit(),

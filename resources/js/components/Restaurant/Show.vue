@@ -110,7 +110,7 @@
                                                 <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
                                                 </small>
                                                 </h6>
-                                            <p class="text-muted">1 day ago</p>
+                                            <p class="text-muted"><timeago :datetime="comments.created_at" /></p>
                                             <p class="text-muted">{{comments.comment}}</p>
                                         </div>
                                         </div>
@@ -135,7 +135,7 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-    // Map APi
+
 export default {
     /**
      * Data
