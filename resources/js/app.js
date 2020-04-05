@@ -49,6 +49,7 @@ Vue.component('business-list', require('./components/Home/BusinessList.vue').def
  * */ 
 Vue.component('restaurant-show', require('./components/Restaurant/Show.vue').default);
 Vue.component('restaurant-sidebar', require('./components/Restaurant/SideBar.vue').default);
+Vue.component('geo-map', require('./components/Restaurant/Map.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

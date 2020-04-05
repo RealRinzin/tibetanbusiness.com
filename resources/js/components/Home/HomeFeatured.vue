@@ -11,7 +11,7 @@
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurants.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
                             <div class="likes">
-                                <p v-bind:class="restaurants.rate_color" class="btn"><i class="fas fa-star text-white"></i>{{restaurants.rate}}</p>
+                                <p v-bind:class="restaurants.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurants.rate}}</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>

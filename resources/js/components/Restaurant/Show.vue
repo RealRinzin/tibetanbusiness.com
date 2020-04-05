@@ -1,5 +1,4 @@
 <template>
-
     <div id="restaurant" style="min-height:80vh">
         <div v-if="!loading">
             <loading :active.sync="isLoading"></loading>
@@ -54,7 +53,7 @@
                                     </div>
                                     <div class="col-md-6"> 
                                         <h6>Location</h6>
-                                        <img src="/img/map.jpeg" alt="" class="img-fluid img-thumbnail">
+                                        <geo-map></geo-map>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +134,7 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-
+    // Map
 export default {
     /**
      * Data
@@ -148,7 +147,6 @@ export default {
             // Object
             restaurant:{}, //individual show
             restaurants:{}, // Restaurant objects
-            
         }
     },
     /**
@@ -160,7 +158,7 @@ export default {
      * Methods
      *  */ 
     methods:{
-        show(){   
+        show(){  
             this.isLoading = true; //Loading true
             axios.get('/api'+window.location.pathname).then(response=>{
                 this.restaurant = response.data.data;
@@ -187,7 +185,12 @@ export default {
                 }
                 
             })
+            /**
+             * Map Locate
+             *  */ 
+            // const mymap = L.map('issMap').setView([51.505, -0.09], 13);
         },
+
         /**
          * 
          * Load Comments
@@ -195,12 +198,11 @@ export default {
          *  */
         load_comments(){
             console.log("comments more");
-
         }
     },
-
+// Mounted
 mounted(){
     this.show();
-}
+    }
 }
 </script>

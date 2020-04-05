@@ -18,7 +18,7 @@
         </div>
         <!-- Event -->
         <div class="card p-3">
-            <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-info"></i></span> Events</h6>
+            <h6 class="py-2"> <span><i class="far fa-calendar-alt mr-2 text-info"></i></span> Events</h6>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
                     <a v-bind:href="'/restaurant/'+restaurant.id"><div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div></a>
@@ -42,7 +42,7 @@
         </div>
         <!-- Hotel -->
         <div class="card p-3">
-            <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-secondary"></i></span> Hotels</h6>
+            <h6 class="py-2"> <span><i class="fas fa-hotel mr-2 text-secondary"></i></span> Hotels</h6>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
                     <a v-bind:href="'/restaurant/'+restaurant.id"><div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div></a>
@@ -54,7 +54,7 @@
         </div>
         <!-- Rent -->
         <div class="card p-3">
-            <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-primary"></i></span> Rents</h6>
+            <h6 class="py-2"> <span><i class="fas fa-home mr-2 text-primary"></i></span> Rents</h6>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
                     <a v-bind:href="'/restaurant/'+restaurant.id"><div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div></a>
@@ -87,7 +87,7 @@ export default {
             axios.get('/api/restaurant').then(response=>{
                 this.restaurant = response.data
                 /**
-                 * Rate
+                 * Rate background color
                  *  */ 
                 for (let index = 0; index < this.restaurant.length; index++) {
                     if(this.restaurant[index].rate >= 0.0 && this.restaurant[index].rate <= 3.5){
