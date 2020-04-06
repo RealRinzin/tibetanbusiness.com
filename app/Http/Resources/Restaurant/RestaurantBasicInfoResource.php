@@ -25,6 +25,8 @@ class RestaurantBasicInfoResource extends JsonResource
             'banner' => $this->banner,
             'address' => $this->address,
             'location' => $this->location,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
             'mobile_no' => $this->mobile_no,
             'email' => $this->email,
             'opening_hour' => $this->opening_hour,

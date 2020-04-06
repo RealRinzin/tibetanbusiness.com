@@ -22,6 +22,21 @@
                 left:5px;
             }
         }
+        ul{
+            position: absolute;
+            bottom: 10px;
+            list-style: none;
+            right:6px;
+            li{
+                display: inline;
+                padding:0px 2px;
+                .btn-danger{
+                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+                    box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+                    border:none !important;
+                }
+            }
+        }
     }
     .overview{
         h6{
@@ -36,7 +51,12 @@
         background-color: transparent !important;
         }
     }
-    // Media Overrid
+    .contact{
+        p{
+            margin:0px;
+        }
+    }
+    // Media Override
     .media-body{
         border-bottom: 1px solid rgb(232, 232, 232)
     }

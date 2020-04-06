@@ -67,7 +67,7 @@
                         if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 3.5){
                             this.restaurants[index].rate_color = 'bg-danger';
                         }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 5.5 ){
-                            this.restaurants.rate_color = 'bg-warning';
+                            this.restaurants[index].rate_color = 'bg-warning';
                         }else if(this.restaurants[index].rate >= 5.6 && this.restaurants[index].rate <= 7.0 ){
                             this.restaurants[index].rate_color = 'bg-info';
                         }else if(this.restaurants[index].rate >= 7.1 && this.restaurants[index].rate <= 10.0 ){

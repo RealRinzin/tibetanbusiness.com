@@ -21,6 +21,8 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->decimal('rate',5,1);
             $table->string('rate_color', 15)->nullable();
             $table->decimal('address',5,1);
+            $table->decimal('longitude',10,6);
+            $table->decimal('latitude',10,6);
             $table->text('location',30);
             $table->string('mobile_no',12);
             $table->string('email',100);

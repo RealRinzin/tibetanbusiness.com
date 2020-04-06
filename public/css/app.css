@@ -10908,6 +10908,24 @@ a.text-dark:focus {
   left: 5px;
 }
 
+#restaurant .banner ul {
+  position: absolute;
+  bottom: 10px;
+  list-style: none;
+  right: 6px;
+}
+
+#restaurant .banner ul li {
+  display: inline;
+  padding: 0px 2px;
+}
+
+#restaurant .banner ul li .btn-danger {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  border: none !important;
+}
+
 #restaurant .overview h6 span {
   padding: 0px 3px;
 }
@@ -10915,6 +10933,10 @@ a.text-dark:focus {
 #restaurant .overview .btn:hover {
   cursor: default;
   background-color: transparent !important;
+}
+
+#restaurant .contact p {
+  margin: 0px;
 }
 
 #restaurant .media-body {

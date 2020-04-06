@@ -6,7 +6,8 @@
         <div v-else>
             <div class="container py-4">
                 <div class="row">
-                        <div class="col-md-8 col-sm-6">
+                        <div class="col-md-8 col-sm-12">
+                            <!-- basic -->
                             <div class="card">
                                 <div class="row">
                                     <!-- Banner -->
@@ -14,13 +15,17 @@
                                         <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'>
                                         <div class="overlay">
                                             <h6 class="position-absolute btn btn-warning">{{restaurant.name}}</h6>
+                                            <ul>
+                                                <li><a href=""><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                <li><a href=""><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                <li><a href=""><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                            </ul>
                                         </div>
                                         </div>                                
                                     </div>
                                     <!-- Overview -->
                                     <div class="col-md-12">
                                         <div class="overview p-3">
-                                            <h5>{{restaurant.name}}</h5>
                                             <h6 class="pt-3 text-muted">{{restaurant.mobile_no}}</h6>
                                             <h6 class="text-muted">{{restaurant.location}}</h6>
                                             <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
@@ -44,6 +49,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- facility & contact -->
+                            <div class="card contact">
+                                <div class="row p-3">
+                                    <div class="col-md-4 col-sm-6">
+                                        <h6 class="text-muted">Contact</h6>
+                                        <p class="text-dark">Email:</p>
+                                        <span class="text-muted">{{restaurant.email}}</span>
+                                        <p class="text-dark">Facebook: <i class="fab fa-facebook-square fa-2x text-primary"></i></p>
+                                        <a href=""><span class="text-muted">{{restaurant.facebook}}</span></a>
+                                        <p class="text-dark">Instagram:</p>
+                                        <a href=""><span class="text-muted">{{restaurant.instagram}}</span></a>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">sadf</div>
+                                    <div class="col-md-4 col-sm-6">sadf</div>
+                                </div>
+                            </div>
                             <!-- Info -->
                             <div class="card">
                                 <div class="row p-3">
@@ -53,7 +74,7 @@
                                     </div>
                                     <div class="col-md-6"> 
                                         <h6>Location</h6>
-                                        <geo-map></geo-map>
+                                        <geo-map v-bind:longitude="restaurant.longitude" :latitude="restaurant.latitude"></geo-map>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +142,7 @@
                             </div>
                         </div>
                     <!-- Sidebar -->
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-4 col-sm-12">
                             <restaurant-sidebar></restaurant-sidebar>
                         </div>
                 </div>

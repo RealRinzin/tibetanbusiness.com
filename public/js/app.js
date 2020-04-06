@@ -2132,7 +2132,7 @@ __webpack_require__.r(__webpack_exports__);
           if (_this.restaurants[index].rate >= 0.0 && _this.restaurants[index].rate <= 3.5) {
             _this.restaurants[index].rate_color = 'bg-danger';
           } else if (_this.restaurants[index].rate >= 3.6 && _this.restaurants[index].rate <= 5.5) {
-            _this.restaurants.rate_color = 'bg-warning';
+            _this.restaurants[index].rate_color = 'bg-warning';
           } else if (_this.restaurants[index].rate >= 5.6 && _this.restaurants[index].rate <= 7.0) {
             _this.restaurants[index].rate_color = 'bg-info';
           } else if (_this.restaurants[index].rate >= 7.1 && _this.restaurants[index].rate <= 10.0) {
@@ -2178,23 +2178,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['longitude', 'latitude'],
+  methods: {
+    location_map: function location_map() {
+      var mapProp = {
+        center: new google.maps.LatLng(this.latitude, this.longitude),
+        zoom: 8
+      };
+      var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+  },
   mounted: function mounted() {
-    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-    var marker = L.marker([51.5, -0.09]).addTo(mymap);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJjazhtbWh3eG0wY3R3M2VvMjQwYjRsM2k0In0.D42dDtVsmpkG27aWZ8HTew'
-    }).addTo(mymap);
-    var circle = L.circle([51.508, -0.11], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: 500
-    }).addTo(mymap);
+    this.location_map();
   }
 });
 
@@ -2213,6 +2208,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2545,7 +2561,7 @@ __webpack_require__.r(__webpack_exports__);
           if (_this.restaurant[index].rate >= 0.0 && _this.restaurant[index].rate <= 3.5) {
             _this.restaurant[index].rate_color = 'bg-danger';
           } else if (_this.restaurant[index].rate >= 3.6 && _this.restaurant[index].rate <= 5.5) {
-            _this.restaurant.rate_color = 'bg-warning';
+            _this.restaurant[index].rate_color = 'bg-warning';
           } else if (_this.restaurant[index].rate >= 5.6 && _this.restaurant[index].rate <= 7.0) {
             _this.restaurant[index].rate_color = 'bg-info';
           } else if (_this.restaurant[index].rate >= 7.1 && _this.restaurant[index].rate <= 10.0) {
@@ -38869,8 +38885,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", {
-        staticStyle: { height: "350px", width: "100%" },
-        attrs: { id: "mapid" }
+        staticClass: "card",
+        staticStyle: { width: "100%", height: "200px" },
+        attrs: { id: "googleMap" }
       })
     ])
   }
@@ -38918,7 +38935,7 @@ var render = function() {
         : _c("div", [
             _c("div", { staticClass: "container py-4" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8 col-sm-6" }, [
+                _c("div", { staticClass: "col-md-8 col-sm-12" }, [
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-md-12" }, [
@@ -38940,7 +38957,9 @@ var render = function() {
                                     "position-absolute btn btn-warning"
                                 },
                                 [_vm._v(_vm._s(_vm.restaurant.name))]
-                              )
+                              ),
+                              _vm._v(" "),
+                              _vm._m(0)
                             ])
                           ]
                         )
@@ -38948,8 +38967,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "overview p-3" }, [
-                          _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
-                          _vm._v(" "),
                           _c("h6", { staticClass: "pt-3 text-muted" }, [
                             _vm._v(_vm._s(_vm.restaurant.mobile_no))
                           ]),
@@ -39098,9 +39115,53 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "card contact" }, [
+                    _c("div", { staticClass: "row p-3" }, [
+                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                        _c("h6", { staticClass: "text-muted" }, [
+                          _vm._v("Contact")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-dark" }, [
+                          _vm._v("Email:")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-muted" }, [
+                          _vm._v(_vm._s(_vm.restaurant.email))
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "text-muted" }, [
+                            _vm._v(_vm._s(_vm.restaurant.facebook))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-dark" }, [
+                          _vm._v("Instagram:")
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("span", { staticClass: "text-muted" }, [
+                            _vm._v(_vm._s(_vm.restaurant.instagram))
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                        _vm._v("sadf")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                        _vm._v("sadf")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "row p-3" }, [
-                      _vm._m(0),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -39108,18 +39169,23 @@ var render = function() {
                         [
                           _c("h6", [_vm._v("Location")]),
                           _vm._v(" "),
-                          _c("geo-map")
+                          _c("geo-map", {
+                            attrs: {
+                              longitude: _vm.restaurant.longitude,
+                              latitude: _vm.restaurant.latitude
+                            }
+                          })
                         ],
                         1
                       )
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
                   _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5),
                   _vm._v(" "),
                   _vm.restaurant.comments
                     ? _c("div", { staticClass: "card p-3" }, [
@@ -39223,7 +39289,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "col-md-4 col-sm-6" },
+                  { staticClass: "col-md-4 col-sm-12" },
                   [_c("restaurant-sidebar")],
                   1
                 )
@@ -39234,6 +39300,43 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [
+        _c("a", { attrs: { href: "" } }, [
+          _c("i", {
+            staticClass: "fab fa-facebook-square fa-2x btn-primary btn"
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "" } }, [
+          _c("i", {
+            staticClass: "fab fa-internet-explorer fa-2x btn-secondary btn"
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "" } }, [
+          _c("i", { staticClass: "fab fa-instagram fa-2x btn-danger btn" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-dark" }, [
+      _vm._v("Facebook: "),
+      _c("i", { staticClass: "fab fa-facebook-square fa-2x text-primary" })
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39390,7 +39493,7 @@ var render = function() {
           { staticClass: "row" },
           _vm._l(_vm.restaurant, function(restaurant, index) {
             return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-12" }, [
                   _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
                     _c("div", {
                       staticClass: "banner",

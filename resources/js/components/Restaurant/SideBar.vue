@@ -5,7 +5,7 @@
         <div class="card p-3">
             <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6>
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
+                <div class="col-md-6 col-sm-6 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
                     <a v-bind:href="'/restaurant/'+restaurant.id">
                     <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div>
                     <div class="rate"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
@@ -93,7 +93,7 @@ export default {
                     if(this.restaurant[index].rate >= 0.0 && this.restaurant[index].rate <= 3.5){
                         this.restaurant[index].rate_color = 'bg-danger';
                     }else if(this.restaurant[index].rate >= 3.6 && this.restaurant[index].rate <= 5.5 ){
-                        this.restaurant.rate_color = 'bg-warning';
+                        this.restaurant[index].rate_color = 'bg-warning';
                     }else if(this.restaurant[index].rate >= 5.6 && this.restaurant[index].rate <= 7.0 ){
                         this.restaurant[index].rate_color = 'bg-info';
                     }else if(this.restaurant[index].rate >= 7.1 && this.restaurant[index].rate <= 10.0 ){
