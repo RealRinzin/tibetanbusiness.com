@@ -25,44 +25,32 @@
                                     </div>
                                     <!-- Overview -->
                                     <div class="col-md-12">
-                                        <div class="overview p-3">
-                                            <h6 class="pt-3 text-muted">{{restaurant.mobile_no}}</h6>
-                                            <h6 class="text-muted">{{restaurant.location}}</h6>
-                                            <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
-                                            <h6 class="text-muted">
-                                                <span v-if="restaurant.operation[0].monday == '1'" class="text-success btn btn-outline-success" >Mon</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Mon</span>
-                                                <span v-if="restaurant.operation[0].tuesday == '1'" class="text-success btn btn-outline-success" >Tues</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Tues</span>
-                                                <span v-if="restaurant.operation[0].wednesday == '1'" class="text-success btn btn-outline-success">Wed</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Wed</span>
-                                                <span v-if="restaurant.operation[0].thursday == '1'" class="text-success btn btn-outline-success">Thurs</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Thurs</span>
-                                                <span v-if="restaurant.operation[0].friday == '1'" class="text-success btn btn-outline-success">Fri</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Fri</span>
-                                                <span v-if="restaurant.operation[0].saturday == '1'" class="text-success btn btn-outline-success">Sat</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Sat</span>
-                                                <span v-if="restaurant.operation[0].sunday == '1'" class="text-success btn btn-outline-success">Sun</span>
-                                                <span v-else class="text-danger btn btn-outline-danger">Sun</span>
-                                            </h6>
+                                        <div class="row p-3 overview">
+                                            <div class="col-md-6 col-sm-6">
+                                                <h6 class="pt-3 text-muted">{{restaurant.mobile_no}}</h6>
+                                                <h6 class="text-muted">{{restaurant.location}}</h6>
+                                                <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
+                                                <h6 class="text-muted">
+                                                    <span v-if="restaurant.operation[0].monday == '1'" class="text-success btn btn-outline-success" >Mon</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Mon</span>
+                                                    <span v-if="restaurant.operation[0].tuesday == '1'" class="text-success btn btn-outline-success" >Tues</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Tues</span>
+                                                    <span v-if="restaurant.operation[0].wednesday == '1'" class="text-success btn btn-outline-success">Wed</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Wed</span>
+                                                    <span v-if="restaurant.operation[0].thursday == '1'" class="text-success btn btn-outline-success">Thurs</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Thurs</span>
+                                                    <span v-if="restaurant.operation[0].friday == '1'" class="text-success btn btn-outline-success">Fri</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Fri</span>
+                                                    <span v-if="restaurant.operation[0].saturday == '1'" class="text-success btn btn-outline-success">Sat</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Sat</span>
+                                                    <span v-if="restaurant.operation[0].sunday == '1'" class="text-success btn btn-outline-success">Sun</span>
+                                                    <span v-else class="text-danger btn btn-outline-danger">Sun</span>
+                                                </h6>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">dasfsd</div>
+                                            <div class="col-md-3 col-sm-6">dasfsd</div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- facility & contact -->
-                            <div class="card contact">
-                                <div class="row p-3">
-                                    <div class="col-md-4 col-sm-6">
-                                        <h6 class="text-muted">Contact</h6>
-                                        <p class="text-dark">Email:</p>
-                                        <span class="text-muted">{{restaurant.email}}</span>
-                                        <p class="text-dark">Facebook: <i class="fab fa-facebook-square fa-2x text-primary"></i></p>
-                                        <a href=""><span class="text-muted">{{restaurant.facebook}}</span></a>
-                                        <p class="text-dark">Instagram:</p>
-                                        <a href=""><span class="text-muted">{{restaurant.instagram}}</span></a>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">sadf</div>
-                                    <div class="col-md-4 col-sm-6">sadf</div>
                                 </div>
                             </div>
                             <!-- Info -->

@@ -2348,18 +2348,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Import component
  // Import stylesheet
 
@@ -38966,202 +38954,168 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "overview p-3" }, [
-                          _c("h6", { staticClass: "pt-3 text-muted" }, [
-                            _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                        _c("div", { staticClass: "row p-3 overview" }, [
+                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                            _c("h6", { staticClass: "pt-3 text-muted" }, [
+                              _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _vm._v(_vm._s(_vm.restaurant.location))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _vm._v(
+                                _vm._s(_vm.restaurant.opening_hour) +
+                                  " - " +
+                                  _vm._s(_vm.restaurant.closing_hour)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _vm.restaurant.operation[0].monday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Mon")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Mon")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].tuesday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Tues")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Tues")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].wednesday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Wed")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Wed")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].thursday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Thurs")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Thurs")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].friday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Fri")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Fri")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].saturday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Sat")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Sat")]
+                                  ),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0].sunday == "1"
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-success btn btn-outline-success"
+                                    },
+                                    [_vm._v("Sun")]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-danger btn btn-outline-danger"
+                                    },
+                                    [_vm._v("Sun")]
+                                  )
+                            ])
                           ]),
                           _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted" }, [
-                            _vm._v(_vm._s(_vm.restaurant.location))
+                          _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                            _vm._v("dasfsd")
                           ]),
                           _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted" }, [
-                            _vm._v(
-                              _vm._s(_vm.restaurant.opening_hour) +
-                                " - " +
-                                _vm._s(_vm.restaurant.closing_hour)
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted" }, [
-                            _vm.restaurant.operation[0].monday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Mon")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Mon")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].tuesday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Tues")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Tues")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].wednesday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Wed")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Wed")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].thursday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Thurs")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Thurs")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].friday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Fri")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Fri")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].saturday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Sat")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Sat")]
-                                ),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0].sunday == "1"
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-success btn btn-outline-success"
-                                  },
-                                  [_vm._v("Sun")]
-                                )
-                              : _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "text-danger btn btn-outline-danger"
-                                  },
-                                  [_vm._v("Sun")]
-                                )
+                          _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                            _vm._v("dasfsd")
                           ])
                         ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card contact" }, [
-                    _c("div", { staticClass: "row p-3" }, [
-                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                        _c("h6", { staticClass: "text-muted" }, [
-                          _vm._v("Contact")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-dark" }, [
-                          _vm._v("Email:")
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "text-muted" }, [
-                          _vm._v(_vm._s(_vm.restaurant.email))
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "text-muted" }, [
-                            _vm._v(_vm._s(_vm.restaurant.facebook))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-dark" }, [
-                          _vm._v("Instagram:")
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { attrs: { href: "" } }, [
-                          _c("span", { staticClass: "text-muted" }, [
-                            _vm._v(_vm._s(_vm.restaurant.instagram))
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                        _vm._v("sadf")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                        _vm._v("sadf")
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "row p-3" }, [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -39181,11 +39135,11 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
                   _vm._m(3),
                   _vm._v(" "),
                   _vm._m(4),
-                  _vm._v(" "),
-                  _vm._m(5),
                   _vm._v(" "),
                   _vm.restaurant.comments
                     ? _c("div", { staticClass: "card p-3" }, [
@@ -39326,15 +39280,6 @@ var staticRenderFns = [
           _c("i", { staticClass: "fab fa-instagram fa-2x btn-danger btn" })
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "text-dark" }, [
-      _vm._v("Facebook: "),
-      _c("i", { staticClass: "fab fa-facebook-square fa-2x text-primary" })
     ])
   },
   function() {
