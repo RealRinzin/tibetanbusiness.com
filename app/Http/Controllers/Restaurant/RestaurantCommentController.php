@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantComment;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantCommentController extends Controller
 {
@@ -14,10 +16,23 @@ class RestaurantCommentController extends Controller
      */
     public function index()
     {
-        //
-        return "message comments";
+        $comments =  RestaurantComment::all();
+        return $comments->toArray($comments);
+        // return "message comments";
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function comment(Request $request,$id){
+        // return $id;
+        // $comments = RestaurantComment::all();
+        $comments = RestaurantComment::where('restaurant_basic_info_id','=',"$id")
+            ->orderBy('created_at', 'desc')->paginate(3);
+        return $comments->toArray($comments);
 
+    }
     /**
      * Show the form for creating a new resource.
      *

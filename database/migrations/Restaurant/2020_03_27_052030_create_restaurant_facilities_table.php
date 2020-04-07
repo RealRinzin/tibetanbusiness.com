@@ -24,6 +24,8 @@ class CreateRestaurantFacilitiesTable extends Migration
             $table->enum('veg', ['0', '1']);
             $table->enum('none_veg', ['0', '1']);
             $table->enum('beverage', ['0', '1']);
+            $table->enum('parking_lot', ['0', '1']);
+            $table->enum('card_payment', ['0', '1']);
             $table->timestamps();
         });
     }

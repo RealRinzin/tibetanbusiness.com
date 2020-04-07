@@ -2369,7 +2369,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // Import component
  // Import stylesheet
 
@@ -2390,8 +2389,16 @@ __webpack_require__.r(__webpack_exports__);
       //individual show
       restaurants: {},
       // Restaurant objects
-      // Facility On & off
-      facility_on_off: ''
+
+      /**
+       * Comments
+       * Current Page 
+       * pagination
+       * last page
+       *  */
+      comments: {},
+      nextPage: 2,
+      load_more_button: true
     };
   },
 
@@ -2419,45 +2426,35 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.loading = true;
         /**
-         * Rating background
-         * Danger, Warning, Info, Success
-         *  0-3 , 3-5, 5-7 , 7-3
-         *  */
-
-        for (var index = 0; index < _this.restaurant.comments.length; index++) {
-          if (_this.restaurant.comments[index].rate >= 0.0 && _this.restaurant.comments[index].rate <= 3.5) {
-            _this.restaurant.comments[index].rate_color = 'bg-danger';
-          } else if (_this.restaurant.comments[index].rate >= 3.6 && _this.restaurant.comments[index].rate <= 5.5) {
-            _this.restaurant.comments[index].rate_color = 'bg-warning';
-          } else if (_this.restaurant.comments[index].rate >= 5.6 && _this.restaurant.comments[index].rate <= 7.0) {
-            _this.restaurant.comments[index].rate_color = 'bg-info';
-          } else if (_this.restaurant.comments[index].rate >= 7.1 && _this.restaurant.comments[index].rate <= 10.0) {
-            _this.restaurant.comments[index].rate_color = 'bg-success';
-          } else {
-            _this.restaurant.comments[index].rate_color = 'bg-secondary';
-          }
-        }
-        /**
-         * Facilities
-         *  On and Off
          * 
+         * Comments
+         * API 
+         * Comments
          *  */
 
+        axios.get('/api/restaurant_comments/comment/' + _this.restaurant.id).then(function (response) {
+          _this.comments = response.data.data;
+          /**
+           * Rating background
+           * Danger, Warning, Info, Success
+           *  0-3 , 3-5, 5-7 , 7-3
+           *  */
 
-        for (var x = 0; x < _this.restaurant.facility.length; x++) {}
-
-        _this.restaurant.facility.forEach(function (element) {
-          for (var _index = 0; _index < _this.restaurant.facility.length; _index++) {
-            if (element.ac === '1') {
-              _this.facility_on_off = 'bg-success';
-            } else {}
+          for (var index = 0; index < _this.comments.length; index++) {
+            if (_this.comments[index].rate >= 0.0 && _this.comments[index].rate <= 3.5) {
+              _this.comments[index].rate_color = 'bg-danger';
+            } else if (_this.comments[index].rate >= 3.6 && _this.comments[index].rate <= 5.5) {
+              _this.comments[index].rate_color = 'bg-warning';
+            } else if (_this.comments[index].rate >= 5.6 && _this.comments[index].rate <= 7.0) {
+              _this.comments[index].rate_color = 'bg-info';
+            } else if (_this.comments[index].rate >= 7.1 && _this.comments[index].rate <= 10.0) {
+              _this.comments[index].rate_color = 'bg-success';
+            } else {
+              _this.comments[index].rate_color = 'bg-secondary';
+            }
           }
         });
       });
-      /**
-       * Map Locate
-       *  */
-      // const mymap = L.map('issMap').setView([51.505, -0.09], 13);
     },
 
     /**
@@ -2465,8 +2462,18 @@ __webpack_require__.r(__webpack_exports__);
      * Load Comments
      * Pagination
      *  */
-    load_comments: function load_comments() {
-      console.log("comments more");
+    load_comments: function load_comments(nextPage) {
+      var _this2 = this;
+
+      axios.get('/api/restaurant_comments/comment/' + this.restaurant.id + '/?page=' + this.nextPage).then(function (response) {
+        if (response.data.current_page < response.data.last_page) {
+          _this2.nextPage = response.data.current_page + 1;
+          _this2.load_more_button = true;
+          console.log(response.data);
+        } else {
+          _this2.load_more_button = false;
+        }
+      });
     }
   },
   // Mounted
@@ -2605,6 +2612,53 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.restaurants();
     console.log("Sidebar");
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TestVue.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TestVue.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      reviews: {},
+      commentsToShow: 3,
+      totalComments: 0
+    };
+  },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      axios.get('/api/restaurant/1f3f951d64034e72a2936dae30f3f6e2').then(function (response) {
+        _this.reviews = response.data.data.comments;
+        _this.totalComments = _this.reviews.length;
+        console.log(_this.reviews.length);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.load();
   }
 });
 
@@ -39305,82 +39359,73 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(6),
                   _vm._v(" "),
-                  _vm.restaurant.comments
-                    ? _c("div", { staticClass: "card p-3" }, [
-                        _c(
-                          "div",
-                          { staticClass: "row" },
-                          [
-                            _c("h5", [_vm._v("Reviews")]),
-                            _vm._v(" "),
-                            _vm._l(_vm.restaurant.comments, function(
-                              comments,
-                              index
-                            ) {
-                              return index < 4
-                                ? _c("div", { staticClass: "col-md-12 p-3" }, [
-                                    _c("div", { staticClass: "media" }, [
-                                      _c("img", {
-                                        staticClass: "mr-2 img-circle",
-                                        staticStyle: {
-                                          height: "50px",
-                                          width: "50px"
-                                        },
-                                        attrs: {
-                                          src:
-                                            "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                                          alt: "Generic placeholder image"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "media-body" }, [
-                                        _c("h6", { staticClass: "mt-0" }, [
-                                          _vm._v(
-                                            _vm._s(comments.name) +
-                                              " \n                                            "
-                                          ),
-                                          _vm._v(" "),
-                                          _c("small", [
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass: "p-1 rounded",
-                                                class: comments.rate_color
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "fas fa-star pr-1"
-                                                }),
-                                                _vm._v(_vm._s(comments.rate))
-                                              ]
-                                            )
-                                          ])
-                                        ]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "p",
-                                          { staticClass: "text-muted" },
-                                          [
-                                            _c("timeago", {
-                                              attrs: {
-                                                datetime: comments.created_at
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("p", { staticClass: "text-muted" }, [
-                                          _vm._v(_vm._s(comments.comment))
-                                        ])
-                                      ])
-                                    ])
+                  _c("div", { staticClass: "card p-3" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [
+                        _c("h5", [_vm._v("Reviews")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.comments, function(comments, index) {
+                          return _c("div", { staticClass: "col-md-12 p-3" }, [
+                            _c("div", { staticClass: "media" }, [
+                              _c("img", {
+                                staticClass: "mr-2 img-circle",
+                                staticStyle: { height: "50px", width: "50px" },
+                                attrs: {
+                                  src:
+                                    "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                                  alt: "Generic placeholder image"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "media-body" }, [
+                                _c("h6", { staticClass: "mt-0" }, [
+                                  _vm._v(
+                                    _vm._s(comments.name) +
+                                      " \n                                            "
+                                  ),
+                                  _c("small", [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "p-1 rounded",
+                                        class: comments.rate_color
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-star pr-1"
+                                        }),
+                                        _vm._v(_vm._s(comments.rate))
+                                      ]
+                                    )
                                   ])
-                                : _vm._e()
-                            }),
-                            _vm._v(" "),
-                            _c(
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "text-muted",
+                                    staticStyle: { "font-size": "12px" }
+                                  },
+                                  [
+                                    _c("timeago", {
+                                      attrs: { datetime: comments.created_at }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "text-muted" }, [
+                                  _vm._v(_vm._s(comments.comment))
+                                ])
+                              ])
+                            ])
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _vm.load_more_button
+                          ? _c(
                               "div",
                               { staticClass: "col-md-12 text-center" },
                               [
@@ -39398,11 +39443,11 @@ var render = function() {
                                 )
                               ]
                             )
-                          ],
-                          2
-                        )
-                      ])
-                    : _vm._e()
+                          : _vm._e()
+                      ],
+                      2
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -39857,6 +39902,74 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.commentsToShow, function(commentIndex, index) {
+        return commentIndex < _vm.reviews.length
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    "transition-delay": "2s",
+                    "transation-duration": "2s"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.reviews[commentIndex].name) + " says:")]
+              ),
+              _vm._v(" "),
+              _c("i", [
+                _c("div", [_vm._v(_vm._s(_vm.reviews[commentIndex].id))])
+              ]),
+              _vm._v(" "),
+              _c("hr")
+            ])
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _vm.commentsToShow < _vm.reviews.length ||
+      _vm.reviews.length > _vm.commentsToShow
+        ? _c("div", [
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.commentsToShow += 3
+                  }
+                }
+              },
+              [_vm._v("show more reviews")]
+            )
+          ])
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -53559,6 +53672,7 @@ Vue.use(vue_timeago__WEBPACK_IMPORTED_MODULE_0__["default"], {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('test-vue', __webpack_require__(/*! ./components/TestVue.vue */ "./resources/js/components/TestVue.vue")["default"]);
 /**
  * 
  * Front Page Component 
@@ -54040,6 +54154,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SideBar_vue_vue_type_template_id_834a4a16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SideBar_vue_vue_type_template_id_834a4a16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TestVue.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/TestVue.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TestVue.vue?vue&type=template&id=20d7aa0e& */ "./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e&");
+/* harmony import */ var _TestVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TestVue.vue?vue&type=script&lang=js& */ "./resources/js/components/TestVue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TestVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TestVue.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TestVue.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/TestVue.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TestVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TestVue.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TestVue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TestVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TestVue.vue?vue&type=template&id=20d7aa0e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TestVue.vue?vue&type=template&id=20d7aa0e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TestVue_vue_vue_type_template_id_20d7aa0e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

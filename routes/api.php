@@ -23,3 +23,5 @@ Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityContro
 Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
 Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
 Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController');
+// Getting comment for restaurant paginate
+Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');

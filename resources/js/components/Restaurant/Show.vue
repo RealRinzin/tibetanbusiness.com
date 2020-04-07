@@ -127,25 +127,24 @@
                                 </div>
                             </div>
                             <!-- Comment View -->
-                            <div class="card p-3" v-if="restaurant.comments">
+                            <div class="card p-3">
                                 <div class="row">
                                     <h5>Reviews</h5>
-                                    <div class="col-md-12 p-3" v-for="(comments,index) in restaurant.comments" v-if="index <4">
+                                    <div class="col-md-12 p-3" v-for="(comments,index) in comments">
                                         <div class="media">
                                         <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
                                         <div class="media-body">
                                             <h6 class="mt-0">{{comments.name}} 
-                                                <!-- <small v-if="restaurant.rate < 9"> -->
                                                 <small>
                                                 <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
                                                 </small>
                                                 </h6>
-                                            <p class="text-muted"><timeago :datetime="comments.created_at" /></p>
+                                            <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
                                             <p class="text-muted">{{comments.comment}}</p>
                                         </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 text-center">
+                                    <div class="col-md-12 text-center" v-if="load_more_button">
                                         <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
                                     </div>
                                 </div>
@@ -178,8 +177,15 @@ export default {
             // Object
             restaurant:{}, //individual show
             restaurants:{}, // Restaurant objects
-            // Facility On & off
-            facility_on_off:'',
+            /**
+             * Comments
+             * Current Page 
+             * pagination
+             * last page
+             *  */ 
+            comments:{},
+            nextPage:2,
+            load_more_button : true,
         }
     },
     /**
@@ -198,46 +204,35 @@ export default {
                 // loading
                 this.isLoading = false; //Loading true
                 this.loading = true;
-                /**
-                 * Rating background
-                 * Danger, Warning, Info, Success
-                 *  0-3 , 3-5, 5-7 , 7-3
-                 *  */ 
-                for (let index = 0; index < this.restaurant.comments.length; index++) {
-                    if(this.restaurant.comments[index].rate >= 0.0 && this.restaurant.comments[index].rate <= 3.5){
-                        this.restaurant.comments[index].rate_color = 'bg-danger';
-                    }else if(this.restaurant.comments[index].rate >= 3.6 && this.restaurant.comments[index].rate <= 5.5 ){
-                        this.restaurant.comments[index].rate_color = 'bg-warning';
-                    }else if(this.restaurant.comments[index].rate >= 5.6 && this.restaurant.comments[index].rate <= 7.0 ){
-                        this.restaurant.comments[index].rate_color = 'bg-info';
-                    }else if(this.restaurant.comments[index].rate >= 7.1 && this.restaurant.comments[index].rate <= 10.0 ){
-                        this.restaurant.comments[index].rate_color = 'bg-success';
-                    }else{
-                        this.restaurant.comments[index].rate_color = 'bg-secondary';
-                    }
-                }
-                /**
-                 * Facilities
-                 *  On and Off
-                 * 
-                 *  */ 
-                for (let x = 0; x < this.restaurant.facility.length; x++) {
-                }
-                this.restaurant.facility.forEach(element => {
-                    for (let index = 0; index < this.restaurant.facility.length; index++) {
-                        if(element.ac ==='1'){
-                            this.facility_on_off ='bg-success'
-                        }else{
 
+                /**
+                 * 
+                 * Comments
+                 * API 
+                 * Comments
+                 *  */ 
+                axios.get('/api/restaurant_comments/comment/'+this.restaurant.id).then(response=>{
+                    this.comments = response.data.data;
+                    /**
+                     * Rating background
+                     * Danger, Warning, Info, Success
+                     *  0-3 , 3-5, 5-7 , 7-3
+                     *  */ 
+                    for (let index = 0; index < this.comments.length; index++) {
+                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                            this.comments[index].rate_color = 'bg-danger';
+                        }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                            this.comments[index].rate_color = 'bg-warning';
+                        }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                            this.comments[index].rate_color = 'bg-info';
+                        }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                            this.comments[index].rate_color = 'bg-success';
+                        }else{
+                            this.comments[index].rate_color = 'bg-secondary';
                         }
                     }
-                });
-                
+                })
             })
-            /**
-             * Map Locate
-             *  */ 
-            // const mymap = L.map('issMap').setView([51.505, -0.09], 13);
         },
 
         /**
@@ -245,8 +240,17 @@ export default {
          * Load Comments
          * Pagination
          *  */
-        load_comments(){
-            console.log("comments more");
+        load_comments(nextPage){
+            axios.get('/api/restaurant_comments/comment/'+this.restaurant.id+'/?page='+this.nextPage).then(response=>{
+                if(response.data.current_page < response.data.last_page){
+                    this.nextPage = response.data.current_page + 1;
+                    this.load_more_button = true;
+                    console.log(response.data);
+                    
+                }else{
+                    this.load_more_button = false;
+                }
+            })
         }
     },
 // Mounted

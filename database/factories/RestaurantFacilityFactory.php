@@ -16,6 +16,8 @@ $factory->define(RestaurantFacility::class, function (Faker $faker) {
         'veg' => $faker->randomElement(['1', '0']),
         'none_veg' => $faker->randomElement(['1', '0']),
         'beverage' => $faker->randomElement(['1', '0']),
+        // 'parking_lot' => $faker->randomElement(['1', '0']),
+        // 'card_payment' => $faker->randomElement(['1', '0']),
         'restaurant_basic_info_id' => function () {
             // return User::all()->random();
             return RestaurantBasicInfo::all()->random();
