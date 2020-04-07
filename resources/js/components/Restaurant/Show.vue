@@ -242,10 +242,32 @@ export default {
          *  */
         load_comments(nextPage){
             axios.get('/api/restaurant_comments/comment/'+this.restaurant.id+'/?page='+this.nextPage).then(response=>{
-                if(response.data.current_page < response.data.last_page){
+                if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true;
-                    console.log(response.data);
+                    this.load_more_button = true; 
+                    // this.comments = response.data.data;
+                    /**
+                     * Comments 
+                     * data Distribution
+                     *  */  
+                    this.comments = [
+                        ...this.comments,
+                        ...response.data.data
+                    ];
+                    // comments background
+                    for (let index = 0; index < this.comments.length; index++) {
+                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                            this.comments[index].rate_color = 'bg-danger';
+                        }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                            this.comments[index].rate_color = 'bg-warning';
+                        }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                            this.comments[index].rate_color = 'bg-info';
+                        }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                            this.comments[index].rate_color = 'bg-success';
+                        }else{
+                            this.comments[index].rate_color = 'bg-secondary';
+                        }
+                    }
                     
                 }else{
                     this.load_more_button = false;

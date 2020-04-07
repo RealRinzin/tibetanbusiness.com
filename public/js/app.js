@@ -2208,6 +2208,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -2466,10 +2478,30 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/api/restaurant_comments/comment/' + this.restaurant.id + '/?page=' + this.nextPage).then(function (response) {
-        if (response.data.current_page < response.data.last_page) {
+        if (response.data.current_page <= response.data.last_page) {
           _this2.nextPage = response.data.current_page + 1;
-          _this2.load_more_button = true;
-          console.log(response.data);
+          _this2.load_more_button = true; // this.comments = response.data.data;
+
+          /**
+           * Comments 
+           * data Distribution
+           *  */
+
+          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data)); // comments background
+
+          for (var index = 0; index < _this2.comments.length; index++) {
+            if (_this2.comments[index].rate >= 0.0 && _this2.comments[index].rate <= 3.5) {
+              _this2.comments[index].rate_color = 'bg-danger';
+            } else if (_this2.comments[index].rate >= 3.6 && _this2.comments[index].rate <= 5.5) {
+              _this2.comments[index].rate_color = 'bg-warning';
+            } else if (_this2.comments[index].rate >= 5.6 && _this2.comments[index].rate <= 7.0) {
+              _this2.comments[index].rate_color = 'bg-info';
+            } else if (_this2.comments[index].rate >= 7.1 && _this2.comments[index].rate <= 10.0) {
+              _this2.comments[index].rate_color = 'bg-success';
+            } else {
+              _this2.comments[index].rate_color = 'bg-secondary';
+            }
+          }
         } else {
           _this2.load_more_button = false;
         }
