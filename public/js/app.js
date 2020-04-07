@@ -2381,6 +2381,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 // Import component
  // Import stylesheet
 
@@ -2410,7 +2411,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        *  */
       comments: {},
       nextPage: 2,
-      load_more_button: true
+      load_more_button: true,
+      total_comments: 0
     };
   },
 
@@ -2446,6 +2448,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         axios.get('/api/restaurant_comments/comment/' + _this.restaurant.id).then(function (response) {
           _this.comments = response.data.data;
+          _this.total_comments = response.data.total;
           /**
            * Rating background
            * Danger, Warning, Info, Success
@@ -2487,7 +2490,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
            * data Distribution
            *  */
 
-          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data)); // comments background
+          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data));
+          /**
+           * Comment 
+           * Load rate background
+           * RGB
+           *  */
 
           for (var index = 0; index < _this2.comments.length; index++) {
             if (_this2.comments[index].rate >= 0.0 && _this2.comments[index].rate <= 3.5) {
@@ -39396,63 +39404,86 @@ var render = function() {
                       "div",
                       { staticClass: "row" },
                       [
-                        _c("h5", [_vm._v("Reviews")]),
+                        _c("h5", { staticClass: "text-dark" }, [
+                          _vm._v("Reviews"),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-muted ml-2",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [_vm._v("(" + _vm._s(_vm.total_comments) + ")")]
+                          )
+                        ]),
                         _vm._v(" "),
                         _vm._l(_vm.comments, function(comments, index) {
                           return _c("div", { staticClass: "col-md-12 p-3" }, [
-                            _c("div", { staticClass: "media" }, [
-                              _c("img", {
-                                staticClass: "mr-2 img-circle",
-                                staticStyle: { height: "50px", width: "50px" },
-                                attrs: {
-                                  src:
-                                    "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                                  alt: "Generic placeholder image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "media-body" }, [
-                                _c("h6", { staticClass: "mt-0" }, [
-                                  _vm._v(
-                                    _vm._s(comments.name) +
-                                      " \n                                            "
-                                  ),
-                                  _c("small", [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "p-1 rounded",
-                                        class: comments.rate_color
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fas fa-star pr-1"
-                                        }),
-                                        _vm._v(_vm._s(comments.rate))
-                                      ]
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass: "text-muted",
-                                    staticStyle: { "font-size": "12px" }
+                            _c(
+                              "div",
+                              {
+                                staticClass: "media animated fadeIn duration-1s"
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "mr-2 img-circle",
+                                  staticStyle: {
+                                    height: "50px",
+                                    width: "50px"
                                   },
-                                  [
-                                    _c("timeago", {
-                                      attrs: { datetime: comments.created_at }
-                                    })
-                                  ],
-                                  1
-                                ),
+                                  attrs: {
+                                    src:
+                                      "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                                    alt: "Generic placeholder image"
+                                  }
+                                }),
                                 _vm._v(" "),
-                                _c("p", { staticClass: "text-muted" }, [
-                                  _vm._v(_vm._s(comments.comment))
+                                _c("div", { staticClass: "media-body" }, [
+                                  _c("h6", { staticClass: "mt-0" }, [
+                                    _vm._v(
+                                      _vm._s(comments.name) +
+                                        "\n                                            "
+                                    ),
+                                    _c("small", [
+                                      _vm._v(_vm._s(comments.created_at))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("small", [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "p-1 rounded",
+                                          class: comments.rate_color
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star pr-1"
+                                          }),
+                                          _vm._v(_vm._s(comments.rate))
+                                        ]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass: "text-muted",
+                                      staticStyle: { "font-size": "12px" }
+                                    },
+                                    [
+                                      _c("timeago", {
+                                        attrs: { datetime: comments.created_at }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "text-muted" }, [
+                                    _vm._v(_vm._s(comments.comment))
+                                  ])
                                 ])
-                              ])
-                            ])
+                              ]
+                            )
                           ])
                         }),
                         _vm._v(" "),

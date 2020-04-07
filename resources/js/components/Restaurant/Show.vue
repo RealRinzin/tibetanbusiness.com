@@ -129,12 +129,13 @@
                             <!-- Comment View -->
                             <div class="card p-3">
                                 <div class="row">
-                                    <h5>Reviews</h5>
+                                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:12px">({{total_comments}})</span></h5>
                                     <div class="col-md-12 p-3" v-for="(comments,index) in comments">
-                                        <div class="media">
+                                        <div class="media animated fadeIn duration-1s">
                                         <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
                                         <div class="media-body">
-                                            <h6 class="mt-0">{{comments.name}} 
+                                            <h6 class="mt-0">{{comments.name}}
+                                                <small>{{comments.created_at}}</small>
                                                 <small>
                                                 <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
                                                 </small>
@@ -164,120 +165,126 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-    // Map
-export default {
-    /**
-     * Data
-     *  */ 
-    data(){
-        return{
-            // Loading
-            loading:false,
-            isLoading : false,//Lazy loading
-            // Object
-            restaurant:{}, //individual show
-            restaurants:{}, // Restaurant objects
-            /**
-             * Comments
-             * Current Page 
-             * pagination
-             * last page
-             *  */ 
-            comments:{},
-            nextPage:2,
-            load_more_button : true,
-        }
-    },
-    /**
-     * 
-     * Components
-     *  */  
-    components:{Loading},
-    /**
-     * Methods
-     *  */ 
-    methods:{
-        show(){  
-            this.isLoading = true; //Loading true
-            axios.get('/api'+window.location.pathname).then(response=>{
-                this.restaurant = response.data.data;
-                // loading
-                this.isLoading = false; //Loading true
-                this.loading = true;
-
+        // Map
+    export default {
+        /**
+         * Data
+         *  */ 
+        data(){
+            return{
+                // Loading
+                loading:false,
+                isLoading : false,//Lazy loading
+                // Object
+                restaurant:{}, //individual show
+                restaurants:{}, // Restaurant objects
                 /**
-                 * 
                  * Comments
-                 * API 
-                 * Comments
+                 * Current Page 
+                 * pagination
+                 * last page
                  *  */ 
-                axios.get('/api/restaurant_comments/comment/'+this.restaurant.id).then(response=>{
-                    this.comments = response.data.data;
-                    /**
-                     * Rating background
-                     * Danger, Warning, Info, Success
-                     *  0-3 , 3-5, 5-7 , 7-3
-                     *  */ 
-                    for (let index = 0; index < this.comments.length; index++) {
-                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
-                            this.comments[index].rate_color = 'bg-danger';
-                        }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
-                            this.comments[index].rate_color = 'bg-warning';
-                        }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
-                            this.comments[index].rate_color = 'bg-info';
-                        }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
-                            this.comments[index].rate_color = 'bg-success';
-                        }else{
-                            this.comments[index].rate_color = 'bg-secondary';
-                        }
-                    }
-                })
-            })
+                comments:{},
+                nextPage:2,
+                load_more_button : true,
+                total_comments:0,
+            }
         },
-
         /**
          * 
-         * Load Comments
-         * Pagination
-         *  */
-        load_comments(nextPage){
-            axios.get('/api/restaurant_comments/comment/'+this.restaurant.id+'/?page='+this.nextPage).then(response=>{
-                if(response.data.current_page <= response.data.last_page){
-                    this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
-                    // this.comments = response.data.data;
+         * Components
+         *  */  
+        components:{Loading},
+        /**
+         * Methods
+         *  */ 
+        methods:{
+            show(){  
+                this.isLoading = true; //Loading true
+                axios.get('/api'+window.location.pathname).then(response=>{
+                    this.restaurant = response.data.data;
+                    // loading
+                    this.isLoading = false; //Loading true
+                    this.loading = true;
+
                     /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.comments = [
-                        ...this.comments,
-                        ...response.data.data
-                    ];
-                    // comments background
-                    for (let index = 0; index < this.comments.length; index++) {
-                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
-                            this.comments[index].rate_color = 'bg-danger';
-                        }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
-                            this.comments[index].rate_color = 'bg-warning';
-                        }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
-                            this.comments[index].rate_color = 'bg-info';
-                        }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
-                            this.comments[index].rate_color = 'bg-success';
-                        }else{
-                            this.comments[index].rate_color = 'bg-secondary';
+                     * 
+                     * Comments
+                     * API 
+                     * Comments
+                     *  */ 
+                    axios.get('/api/restaurant_comments/comment/'+this.restaurant.id).then(response=>{
+                        this.comments = response.data.data;
+                        this.total_comments = response.data.total;
+                        /**
+                         * Rating background
+                         * Danger, Warning, Info, Success
+                         *  0-3 , 3-5, 5-7 , 7-3
+                         *  */ 
+                        for (let index = 0; index < this.comments.length; index++) {
+                            if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                                this.comments[index].rate_color = 'bg-danger';
+                            }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                                this.comments[index].rate_color = 'bg-warning';
+                            }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                                this.comments[index].rate_color = 'bg-info';
+                            }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                                this.comments[index].rate_color = 'bg-success';
+                            }else{
+                                this.comments[index].rate_color = 'bg-secondary';
+                            }
                         }
+                    })
+                })
+            },
+
+            /**
+             * 
+             * Load Comments
+             * Pagination
+             *  */
+            load_comments(nextPage){
+                axios.get('/api/restaurant_comments/comment/'+this.restaurant.id+'/?page='+this.nextPage).then(response=>{
+                    if(response.data.current_page <= response.data.last_page){
+                        this.nextPage = response.data.current_page + 1;
+                        this.load_more_button = true; 
+                        // this.comments = response.data.data;
+                        /**
+                         * Comments 
+                         * data Distribution
+                         *  */  
+                        this.comments = [
+                            ...this.comments,
+                            ...response.data.data
+                        ];
+                        /**
+                         * Comment 
+                         * Load rate background
+                         * RGB
+                         *  */ 
+                        for (let index = 0; index < this.comments.length; index++) {
+                            if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                                this.comments[index].rate_color = 'bg-danger';
+                            }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                                this.comments[index].rate_color = 'bg-warning';
+                            }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                                this.comments[index].rate_color = 'bg-info';
+                            }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                                this.comments[index].rate_color = 'bg-success';
+                            }else{
+                                this.comments[index].rate_color = 'bg-secondary';
+                            }
+                        }
+                        
+                    }else{
+                        this.load_more_button = false;
                     }
-                    
-                }else{
-                    this.load_more_button = false;
-                }
-            })
-        }
+                })
+            }
     },
-// Mounted
-mounted(){
-    this.show();
+    // Mounted
+    mounted(){
+        this.show();
     }
 }
 </script>
