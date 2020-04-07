@@ -44,11 +44,16 @@
                 padding: 0px 3px;
             }
         }
-
         .btn:hover {
         cursor: default;
         // color: white !important;
         background-color: transparent !important;
+        }
+        .facility{
+            p{
+                margin:0px 0px !important;
+                padding:2px 0px;
+            }
         }
     }
     .contact{

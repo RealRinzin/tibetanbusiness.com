@@ -47,8 +47,30 @@
                                                     <span v-else class="text-danger btn btn-outline-danger">Sun</span>
                                                 </h6>
                                             </div>
-                                            <div class="col-md-3 col-sm-6">dasfsd</div>
-                                            <div class="col-md-3 col-sm-6">dasfsd</div>
+                                            <div class="col-md-3 col-sm-6 facility">
+                                                <h6 class="mb-3 text-muted">Facilities</h6>
+                                                <p class="text-success" v-if="restaurant.facility[0].home_delivery === '1'"> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
+                                                <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].wifi === '1'"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
+                                                <p class="text-danger" v-else> <i class="fas fa-wifi mr-1"></i> Wifi</p>
+                                                <p class="text-success" > <i class="fab fa-cc-visa mr-1"></i>Card Payment</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].party_booking === '1'"><i class="fas fa-glass-cheers mr-1"></i>Party Booking</p>
+                                                <p class="text-danger" v-else><i class="fas fa-glass-cheers mr-1"></i>Party Booking</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].ac === '1'"> <i class="fas fa-fan mr-1"></i>AC</p>
+                                                <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>AC</p>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 facility">
+                                                <h6 class="mb-3 text-muted">More</h6>
+                                                <p class="text-success" v-if="restaurant.facility[0].roof_top === '1'"><i class="fas fa-building mr-1"></i>Roof Top</p>
+                                                <p class="text-danger" v-else><i class="fas fa-building mr-1"></i>Roof Top</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].veg === '1'"> <i class="far fa-stop-circle mr-1"></i>Veg</p>
+                                                <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Veg</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].none_veg === '1'"> <i class="far fa-stop-circle mr-1"></i>Non Veg</p>
+                                                <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Non Veg</p>
+                                                <p class="text-success" ><i class="fas fa-car mr-1"></i>Parking Lot</p>
+                                                <p class="text-success" v-if="restaurant.facility[0].beverage === '1'"> <i class="fas fa-beer mr-1"></i>Beverage</p>
+                                                <p class="text-danger" v-else> <i class="fas fa-beer mr-1"></i>Beverage</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -156,6 +178,8 @@ export default {
             // Object
             restaurant:{}, //individual show
             restaurants:{}, // Restaurant objects
+            // Facility On & off
+            facility_on_off:'',
         }
     },
     /**
@@ -192,6 +216,22 @@ export default {
                         this.restaurant.comments[index].rate_color = 'bg-secondary';
                     }
                 }
+                /**
+                 * Facilities
+                 *  On and Off
+                 * 
+                 *  */ 
+                for (let x = 0; x < this.restaurant.facility.length; x++) {
+                }
+                this.restaurant.facility.forEach(element => {
+                    for (let index = 0; index < this.restaurant.facility.length; index++) {
+                        if(element.ac ==='1'){
+                            this.facility_on_off ='bg-success'
+                        }else{
+
+                        }
+                    }
+                });
                 
             })
             /**

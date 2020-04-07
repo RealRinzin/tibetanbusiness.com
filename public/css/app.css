@@ -10935,6 +10935,11 @@ a.text-dark:focus {
   background-color: transparent !important;
 }
 
+#restaurant .overview .facility p {
+  margin: 0px 0px !important;
+  padding: 2px 0px;
+}
+
 #restaurant .contact p {
   margin: 0px;
 }
