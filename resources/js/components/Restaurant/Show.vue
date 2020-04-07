@@ -129,22 +129,24 @@
                             <!-- Comment View -->
                             <div class="card p-3">
                                 <div class="row">
-                                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:12px">({{total_comments}})</span></h5>
-                                    <div class="col-md-12 p-3" v-for="(comments,index) in comments">
-                                        <div class="media animated fadeIn duration-1s">
-                                        <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
-                                        <div class="media-body">
-                                            <h6 class="mt-0">{{comments.name}}
-                                                <small>{{comments.created_at}}</small>
-                                                <small>
-                                                <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
-                                                </small>
-                                                </h6>
-                                            <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
-                                            <p class="text-muted">{{comments.comment}}</p>
-                                        </div>
-                                        </div>
+                                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
+                                    <div v-if="comments_lazy_load">
+                                        <loading :active.sync="comments_lazy_load"></loading>
                                     </div>
+                                        <div class="col-md-12 p-3" v-for="(comments,index) in comments">
+                                            <div class="media animated fadeIn duration-1s">
+                                            <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
+                                            <div class="media-body">
+                                                <h6 class="mt-0">{{comments.name}}
+                                                    <small>
+                                                    <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
+                                                    </small>
+                                                    </h6>
+                                                <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
+                                                <p class="text-muted">{{comments.comment}}</p>
+                                            </div>
+                                            </div>
+                                        </div>
                                     <div class="col-md-12 text-center" v-if="load_more_button">
                                         <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
                                     </div>
@@ -188,6 +190,7 @@
                 nextPage:2,
                 load_more_button : true,
                 total_comments:0,
+                comments_lazy_load:false,
             }
         },
         /**

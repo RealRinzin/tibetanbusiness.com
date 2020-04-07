@@ -2382,6 +2382,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 // Import component
  // Import stylesheet
 
@@ -2412,7 +2414,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       comments: {},
       nextPage: 2,
       load_more_button: true,
-      total_comments: 0
+      total_comments: 0,
+      comments_lazy_load: false
     };
   },
 
@@ -39410,11 +39413,28 @@ var render = function() {
                             "span",
                             {
                               staticClass: "text-muted ml-2",
-                              staticStyle: { "font-size": "12px" }
+                              staticStyle: { "font-size": "14px" }
                             },
                             [_vm._v("(" + _vm._s(_vm.total_comments) + ")")]
                           )
                         ]),
+                        _vm._v(" "),
+                        _vm.comments_lazy_load
+                          ? _c(
+                              "div",
+                              [
+                                _c("loading", {
+                                  attrs: { active: _vm.comments_lazy_load },
+                                  on: {
+                                    "update:active": function($event) {
+                                      _vm.comments_lazy_load = $event
+                                    }
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.comments, function(comments, index) {
                           return _c("div", { staticClass: "col-md-12 p-3" }, [
@@ -39441,12 +39461,8 @@ var render = function() {
                                   _c("h6", { staticClass: "mt-0" }, [
                                     _vm._v(
                                       _vm._s(comments.name) +
-                                        "\n                                            "
+                                        "\n                                                "
                                     ),
-                                    _c("small", [
-                                      _vm._v(_vm._s(comments.created_at))
-                                    ]),
-                                    _vm._v(" "),
                                     _c("small", [
                                       _c(
                                         "span",
