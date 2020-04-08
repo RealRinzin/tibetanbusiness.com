@@ -10,7 +10,7 @@
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-xs-6 py-2">
-                <div @click="more_photo_modal()" class="photo text-center p-3">
+                <div @click="photo_modal()" class="photo text-center p-3">
                     <!-- <i class="fas fa-2x fa-plus text-muted py-2"></i> -->
                     <i class="far fa-images fa-2x text-muted py-2"></i>
                     <p> {{total_photos - 7}} Photos More</p>
@@ -22,21 +22,22 @@
         <div class="modal-dialog modal-lg modal_top" role="document">
             <div class="modal-content">
                 <div class="modal-body" v-if="modal_status">
-                    <div id="menu_picture" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                            <div class="slide" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'></div>
-                            <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
+                                <div class="slide" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'></div>
+                                <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
+                            </div>
                         </div>
-                        <a class="carousel-control-prev" href="#menu_picture" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#menu_picture" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <!-- <img v-bind:src="'/img/'+single_photo.path" alt="" class="img-fluid"> -->
                 </div>
             </div>
         </div>

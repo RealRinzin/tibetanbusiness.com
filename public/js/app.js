@@ -2249,6 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['menu_photos'],
   data: function data() {
@@ -39159,7 +39160,7 @@ var render = function() {
               staticClass: "photo text-center p-3",
               on: {
                 click: function($event) {
-                  return _vm.more_photo_modal()
+                  return _vm.photo_modal()
                 }
               }
             },
@@ -39203,34 +39204,41 @@ var render = function() {
                       "div",
                       {
                         staticClass: "carousel slide",
-                        attrs: { id: "menu_picture", "data-ride": "carousel" }
+                        attrs: {
+                          id: "carouselExampleControls",
+                          "data-ride": "carousel"
+                        }
                       },
                       [
-                        _vm._l(_vm.photos, function(photo, index) {
-                          return _c(
-                            "div",
-                            {
-                              staticClass:
-                                "carousel-item animated fadeIn duration-1s",
-                              class: { active: index == 0 }
-                            },
-                            [
-                              _c("div", {
-                                staticClass: "slide",
-                                style: {
-                                  backgroundImage:
-                                    "url(/img/" + photo.path + ")"
-                                }
-                              })
-                            ]
-                          )
-                        }),
+                        _c(
+                          "div",
+                          { staticClass: "carousel-inner" },
+                          _vm._l(_vm.photos, function(photo, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "carousel-item animated fadeIn duration-1s",
+                                class: { active: index == 0 }
+                              },
+                              [
+                                _c("div", {
+                                  staticClass: "slide",
+                                  style: {
+                                    backgroundImage:
+                                      "url(/img/" + photo.path + ")"
+                                  }
+                                })
+                              ]
+                            )
+                          }),
+                          0
+                        ),
                         _vm._v(" "),
                         _vm._m(1),
                         _vm._v(" "),
                         _vm._m(2)
-                      ],
-                      2
+                      ]
                     )
                   ])
                 : _vm._e()
@@ -39258,7 +39266,11 @@ var staticRenderFns = [
       "a",
       {
         staticClass: "carousel-control-prev",
-        attrs: { href: "#menu_picture", role: "button", "data-slide": "prev" }
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "prev"
+        }
       },
       [
         _c("span", {
@@ -39278,7 +39290,11 @@ var staticRenderFns = [
       "a",
       {
         staticClass: "carousel-control-next",
-        attrs: { href: "#menu_picture", role: "button", "data-slide": "next" }
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "next"
+        }
       },
       [
         _c("span", {
