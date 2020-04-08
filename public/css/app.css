@@ -10948,6 +10948,14 @@ a.text-dark:focus {
   border-bottom: 1px solid #e8e8e8;
 }
 
+#restaurant .photo {
+  height: 100px;
+  background-position: center center;
+  background-size: cover;
+  border: 0px;
+  border-radius: 10px;
+}
+
 /* Sidebar  */
 
 #sidebar .banner {

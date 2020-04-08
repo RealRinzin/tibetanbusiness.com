@@ -16,9 +16,9 @@
                                         <div class="overlay">
                                             <h6 class="position-absolute btn btn-warning">{{restaurant.name}}</h6>
                                             <ul>
-                                                <li><a href=""><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                <li><a href=""><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
-                                                <li><a href=""><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                <li v-if="restaurant.facebook !== ''"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                <li v-if="restaurant.website !== ''"><a :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                <li v-if="restaurant.instagram !==''"><a :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                             </ul>
                                         </div>
                                         </div>                                
@@ -90,21 +90,13 @@
                             </div>
                             <!-- Menu Photo -->
                             <div class="card">
-                                <div class="row p-3">
-                                    <div class="col-md-12">
-                                        <h5 class="text-dark">Menu Photo (3)</h5>
-                                    </div>
-                                    <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background1.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background2.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                </div>
+                                <menu-photo v-bind:menu_photos="restaurant.menu_photos"></menu-photo>
                             </div>
                             <!-- Food Photo -->
                             <div class="card">
                                 <div class="row p-3">
                                     <div class="col-md-12">
-                                        <h5 class="text-dark">Food Photo (4)</h5>
+                                        <h6 class="text-dark">Food Photo (3)</h6>
                                     </div>
                                     <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
                                     <div class="col-md-3"><img src="/img/background1.jpg" alt="" class="img-fluid img-thumbnail"></div>

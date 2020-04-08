@@ -65,4 +65,12 @@
     .media-body{
         border-bottom: 1px solid rgb(232, 232, 232)
     }
+    // Photos 
+    .photo{
+    height: 100px;
+    background-position: center center;
+    background-size: cover;
+    border: 0px;
+    border-radius: 10px;
+    }
 }

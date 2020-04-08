@@ -24,6 +24,7 @@ Vue.use(VueTimeago, {
     //     ja: require("date-fns/locale/ja")
     // }
 });
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -51,6 +52,7 @@ Vue.component('business-list', require('./components/Home/BusinessList.vue').def
 Vue.component('restaurant-show', require('./components/Restaurant/Show.vue').default);
 Vue.component('restaurant-sidebar', require('./components/Restaurant/SideBar.vue').default);
 Vue.component('geo-map', require('./components/Restaurant/Map.vue').default);
+Vue.component('menu-photo', require('./components/Restaurant/MenuPhoto.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
