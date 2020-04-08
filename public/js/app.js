@@ -2225,22 +2225,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['menu_photos'],
   data: function data() {
     return {
       photos: {},
       // photos object
+      total_photos: 0,
+      // total photo count
       single_photo: {},
       // single 
       // Modal status Off
-      modal_status: false
+      modal_status: false //modal status
+
     };
   },
   methods: {
     /* Photos */
     loadPhotos: function loadPhotos() {
       this.photos = this.menu_photos;
+      this.total_photos = this.photos.length;
     },
 
     /* Photo Modal */
@@ -2249,6 +2277,11 @@ __webpack_require__.r(__webpack_exports__);
       $("#menu_photo_modal").modal("show");
       this.modal_status = true;
       this.single_photo = this.photos[$id];
+    },
+
+    /* More Photo modal */
+    more_photo_modal: function more_photo_modal() {
+      console.log("More");
     }
   },
   mounted: function mounted() {
@@ -39102,18 +39135,43 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.photos, function(menu_photo, index) {
-          return _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
-            _c("div", {
-              staticClass: "photo",
-              style: { backgroundImage: "url(/img/" + menu_photo.path + ")" },
+          return index < 7
+            ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+                _c("div", {
+                  staticClass: "photo",
+                  style: {
+                    backgroundImage: "url(/img/" + menu_photo.path + ")"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.photo_modal(index)
+                    }
+                  }
+                })
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+          _c(
+            "div",
+            {
+              staticClass: "photo text-center p-3",
               on: {
                 click: function($event) {
-                  return _vm.photo_modal(index)
+                  return _vm.more_photo_modal()
                 }
               }
-            })
-          ])
-        })
+            },
+            [
+              _c("i", { staticClass: "far fa-images fa-2x text-muted py-2" }),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(" " + _vm._s(_vm.total_photos - 7) + " Photos More")
+              ])
+            ]
+          )
+        ])
       ],
       2
     ),
@@ -39133,15 +39191,47 @@ var render = function() {
       [
         _c(
           "div",
-          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
           [
             _c("div", { staticClass: "modal-content" }, [
               _vm.modal_status
                 ? _c("div", { staticClass: "modal-body" }, [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/" + _vm.single_photo.path, alt: "" }
-                    })
+                    _c(
+                      "div",
+                      {
+                        staticClass: "carousel slide",
+                        attrs: { id: "menu_picture", "data-ride": "carousel" }
+                      },
+                      [
+                        _vm._l(_vm.photos, function(photo, index) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass:
+                                "carousel-item animated fadeIn duration-1s",
+                              class: { active: index == 0 }
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "slide",
+                                style: {
+                                  backgroundImage:
+                                    "url(/img/" + photo.path + ")"
+                                }
+                              })
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ],
+                      2
+                    )
                   ])
                 : _vm._e()
             ])
@@ -39159,6 +39249,46 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-12" }, [
       _c("h6", { staticClass: "text-dark" }, [_vm._v("Menu Photo (4)")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-prev",
+        attrs: { href: "#menu_picture", role: "button", "data-slide": "prev" }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-next",
+        attrs: { href: "#menu_picture", role: "button", "data-slide": "next" }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
   }
 ]
 render._withStripped = true

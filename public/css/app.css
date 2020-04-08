@@ -10954,6 +10954,7 @@ a.text-dark:focus {
   background-size: cover;
   border: 0px;
   border-radius: 10px;
+  background-color: gainsboro;
 }
 
 /* Sidebar  */
@@ -10985,6 +10986,25 @@ a.text-dark:focus {
           animation-duration: 1s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
+}
+
+/* Carousel */
+
+.carousel a {
+  margin-top: 30%;
+}
+
+.carousel .slide {
+  height: 55vh;
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* modal */
+
+.modal_top {
+  top: 10%;
 }
 
 body {

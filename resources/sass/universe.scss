@@ -24,3 +24,21 @@
   animation-duration: 1s;
   animation-fill-mode: both;
 }
+
+/* Carousel */
+.carousel{
+    a{
+        margin-top: 30%;
+    }
+    .slide{
+        height: 55vh;
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+    }
+}
+
+/* modal */
+.modal_top{
+    top:10%;
+}
