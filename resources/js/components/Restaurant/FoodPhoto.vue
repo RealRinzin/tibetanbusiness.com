@@ -2,11 +2,10 @@
     <div>
         <div class="row p-3">
             <div class="col-md-12">
-                <h6 class="text-dark">Menu Photo ({{total_photos}})</h6>
+                <h6 class="text-dark">Food Photo ({{total_photos}})</h6>
             </div>
-            <!-- Single photos -->
-            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-for="(menu_photo,index) in photos" v-if="index < 7">
-                <div @click="photo_modal(index)" class="photo" v-bind:style='{ backgroundImage: `url(/img/${menu_photo.path})`}'></div>
+            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-for="(food_photo,index) in photos" v-if="index < 7">
+                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/img/${food_photo.path})`}'></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-if="total_photos >7">
@@ -17,7 +16,7 @@
             </div>
         </div>
         <!-- More Photo Modal -->
-        <div class="modal fade" id="more_menu_photo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="more_food_photo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal_top" role="document">
                 <div class="modal-content">
                     <div class="modal-body" v-if="modal_status">
@@ -42,7 +41,7 @@
             </div>
         </div>
         <!-- Single Photo Modal -->
-        <div class="modal fade" id="menu_photo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="food_photo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal_top" role="document">
                 <div class="modal-content">
                     <div class="modal-body carousel" v-if="modal_status">
@@ -51,46 +50,47 @@
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 <script>
 export default {
-    props:['menu_photos'],
+    props:['food_photos'],
+    /**
+     * Data / Object
+     *  */ 
     data(){
         return {
-            photos:{}, // photos object
-            total_photos:0, // total photo count
-            single_photo:{}, // single 
-            // Modal status Off
+            photos:{},// photos object
+            total_photos:0, //Total photos
+            single_photo:{}, //single photo
             modal_status: false, //modal status
+
         }
     },
+    /**
+     * Methods / Functions
+     * Modals
+     *  */ 
     methods:{
-        /* Photos */
+        // Load food photos
         loadPhotos(){
-            this.photos = this.menu_photos;
-            this.total_photos = this.photos.length;
+            this.photos = this.food_photos; // assign to object
+            this.total_photos = this.food_photos.length;
         },
-        /* Photo Modal */
+        // Load Single Photo
         photo_modal($id){
-            // Modal status On
-            $("#menu_photo_modal").modal("show");
-            this.modal_status = true;
-            this.single_photo = this.photos[$id]; // Assigning single photos
-
+            $("#food_photo_modal").modal("show");//show modal by click
+            this.modal_status = true; // modal status
+            this.single_photo = this.food_photos[$id]; // assigning object
         },
-        /* More Photo modal */
+        // More photo modal
         more_photo_modal(){
-            $("#more_menu_photo_modal").modal("show");
+            $("#more_food_photo_modal").modal("show");
             this.modal_status = true;
         }
     },
     mounted(){
-        // Loading methods
         this.loadPhotos();
-        
     }
-    
 }
 </script>

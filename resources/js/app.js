@@ -53,6 +53,7 @@ Vue.component('restaurant-show', require('./components/Restaurant/Show.vue').def
 Vue.component('restaurant-sidebar', require('./components/Restaurant/SideBar.vue').default);
 Vue.component('geo-map', require('./components/Restaurant/Map.vue').default);
 Vue.component('menu-photo', require('./components/Restaurant/MenuPhoto.vue').default);
+Vue.component('food-photo', require('./components/Restaurant/FoodPhoto.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

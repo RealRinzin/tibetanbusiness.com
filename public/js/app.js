@@ -2163,6 +2163,120 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['food_photos'],
+
+  /**
+   * Data / Object
+   *  */
+  data: function data() {
+    return {
+      photos: {},
+      // photos object
+      total_photos: 0,
+      //Total photos
+      single_photo: {},
+      //single photo
+      modal_status: false //modal status
+
+    };
+  },
+
+  /**
+   * Methods / Functions
+   * Modals
+   *  */
+  methods: {
+    // Load food photos
+    loadPhotos: function loadPhotos() {
+      this.photos = this.food_photos; // assign to object
+
+      this.total_photos = this.food_photos.length;
+    },
+    // Load Single Photo
+    photo_modal: function photo_modal($id) {
+      $("#food_photo_modal").modal("show"); //show modal by click
+
+      this.modal_status = true; // modal status
+
+      this.single_photo = this.food_photos[$id]; // assigning object
+    },
+    // More photo modal
+    more_photo_modal: function more_photo_modal() {
+      $("#more_food_photo_modal").modal("show");
+      this.modal_status = true;
+    }
+  },
+  mounted: function mounted() {
+    this.loadPhotos();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Map.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/Map.vue?vue&type=script&lang=js& ***!
@@ -2250,6 +2364,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['menu_photos'],
   data: function data() {
@@ -2277,12 +2401,13 @@ __webpack_require__.r(__webpack_exports__);
       // Modal status On
       $("#menu_photo_modal").modal("show");
       this.modal_status = true;
-      this.single_photo = this.photos[$id];
+      this.single_photo = this.photos[$id]; // Assigning single photos
     },
 
     /* More Photo modal */
     more_photo_modal: function more_photo_modal() {
-      console.log("More");
+      $("#more_menu_photo_modal").modal("show");
+      this.modal_status = true;
     }
   },
   mounted: function mounted() {
@@ -2318,14 +2443,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -39076,6 +39193,244 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "row p-3" },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h6", { staticClass: "text-dark" }, [
+            _vm._v("Food Photo (" + _vm._s(_vm.total_photos) + ")")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.photos, function(food_photo, index) {
+          return index < 7
+            ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+                _c("div", {
+                  staticClass: "photo",
+                  style: {
+                    backgroundImage: "url(/img/" + food_photo.path + ")"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.photo_modal(index)
+                    }
+                  }
+                })
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _vm.total_photos > 7
+          ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "photo text-center p-3",
+                  on: {
+                    click: function($event) {
+                      return _vm.more_photo_modal()
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-images fa-2x text-muted py-2"
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(" " + _vm._s(_vm.total_photos - 7) + " Photos More")
+                  ])
+                ]
+              )
+            ])
+          : _vm._e()
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "more_food_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "carousel slide",
+                        attrs: {
+                          id: "carouselExampleControls",
+                          "data-ride": "carousel"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "carousel-inner" },
+                          _vm._l(_vm.photos, function(photo, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "carousel-item animated fadeIn duration-1s",
+                                class: { active: index == 0 }
+                              },
+                              [
+                                _c("div", {
+                                  staticClass: "slide",
+                                  style: {
+                                    backgroundImage:
+                                      "url(/img/" + photo.path + ")"
+                                  }
+                                })
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "food_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body carousel" }, [
+                    _c("div", {
+                      staticClass: "slide",
+                      style: {
+                        backgroundImage:
+                          "url(/img/" + _vm.single_photo.path + ")"
+                      }
+                    })
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-prev",
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "prev"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-next",
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "next"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Map.vue?vue&type=template&id=6984d4d6&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/Map.vue?vue&type=template&id=6984d4d6& ***!
@@ -39133,7 +39488,11 @@ var render = function() {
       "div",
       { staticClass: "row p-3" },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h6", { staticClass: "text-dark" }, [
+            _vm._v("Menu Photo (" + _vm._s(_vm.total_photos) + ")")
+          ])
+        ]),
         _vm._v(" "),
         _vm._l(_vm.photos, function(menu_photo, index) {
           return index < 7
@@ -39153,26 +39512,30 @@ var render = function() {
             : _vm._e()
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
-          _c(
-            "div",
-            {
-              staticClass: "photo text-center p-3",
-              on: {
-                click: function($event) {
-                  return _vm.photo_modal()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "far fa-images fa-2x text-muted py-2" }),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(" " + _vm._s(_vm.total_photos - 7) + " Photos More")
-              ])
-            ]
-          )
-        ])
+        _vm.total_photos > 7
+          ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "photo text-center p-3",
+                  on: {
+                    click: function($event) {
+                      return _vm.more_photo_modal()
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-images fa-2x text-muted py-2"
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(" " + _vm._s(_vm.total_photos - 7) + " Photos More")
+                  ])
+                ]
+              )
+            ])
+          : _vm._e()
       ],
       2
     ),
@@ -39182,7 +39545,7 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "menu_photo_modal",
+          id: "more_menu_photo_modal",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "exampleModalLabel",
@@ -39235,11 +39598,49 @@ var render = function() {
                           0
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ]
                     )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "menu_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body carousel" }, [
+                    _c("div", {
+                      staticClass: "slide",
+                      style: {
+                        backgroundImage:
+                          "url(/img/" + _vm.single_photo.path + ")"
+                      }
+                    })
                   ])
                 : _vm._e()
             ])
@@ -39250,14 +39651,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("h6", { staticClass: "text-dark" }, [_vm._v("Menu Photo (4)")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39456,198 +39849,210 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _vm.restaurant.operation[0].monday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Mon")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Mon")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].tuesday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Tues")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Tues")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].wednesday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Wed")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Wed")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].thursday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Thurs")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Thurs")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].friday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Fri")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Fri")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].saturday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Sat")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Sat")]
-                                  ),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0].sunday == "1"
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-success btn btn-outline-success"
-                                    },
-                                    [_vm._v("Sun")]
-                                  )
-                                : _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "text-danger btn btn-outline-danger"
-                                    },
-                                    [_vm._v("Sun")]
-                                  )
-                            ])
+                            _vm.restaurant.operation[0]
+                              ? _c("h6", { staticClass: "text-muted" }, [
+                                  _vm.restaurant.operation[0].monday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Mon")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Mon")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].tuesday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Tues")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Tues")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].wednesday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Wed")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Wed")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].thursday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Thurs")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Thurs")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].friday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Fri")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Fri")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].saturday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Sat")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Sat")]
+                                      ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.operation[0].sunday == "1"
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-success btn btn-outline-success"
+                                        },
+                                        [_vm._v("Sun")]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "text-danger btn btn-outline-danger"
+                                        },
+                                        [_vm._v("Sun")]
+                                      )
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-3 col-sm-6 facility" },
-                            [
-                              _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                _vm._v("Facilities")
-                              ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].home_delivery === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-truck mr-1"
-                                    }),
-                                    _vm._v(" Home Delivery")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-truck mr-1"
-                                    }),
-                                    _vm._v(" Home Delivery")
+                          _vm.restaurant.facility[0]
+                            ? _c(
+                                "div",
+                                { staticClass: "col-md-3 col-sm-6 facility" },
+                                [
+                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
+                                    _vm._v("Facilities")
                                   ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].wifi === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-wifi mr-1"
-                                    }),
-                                    _vm._v(" Wifi")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-wifi mr-1"
-                                    }),
-                                    _vm._v(" Wifi")
-                                  ]),
-                              _vm._v(" "),
-                              _vm._m(0),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].party_booking === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-glass-cheers mr-1"
-                                    }),
-                                    _vm._v("Party Booking")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-glass-cheers mr-1"
-                                    }),
-                                    _vm._v("Party Booking")
-                                  ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].ac === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", { staticClass: "fas fa-fan mr-1" }),
-                                    _vm._v("AC")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", { staticClass: "fas fa-fan mr-1" }),
-                                    _vm._v("AC")
-                                  ])
-                            ]
-                          ),
+                                  _vm._v(" "),
+                                  _vm.restaurant.facility[0].home_delivery ===
+                                  "1"
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-truck mr-1"
+                                        }),
+                                        _vm._v(" Home Delivery")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-truck mr-1"
+                                        }),
+                                        _vm._v(" Home Delivery")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.restaurant.facility[0].wifi === "1"
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-wifi mr-1"
+                                        }),
+                                        _vm._v(" Wifi")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-wifi mr-1"
+                                        }),
+                                        _vm._v(" Wifi")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm._m(0),
+                                  _vm._v(" "),
+                                  _vm.restaurant.facility[0].party_booking ===
+                                  "1"
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-glass-cheers mr-1"
+                                        }),
+                                        _vm._v("Party Booking")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-glass-cheers mr-1"
+                                        }),
+                                        _vm._v("Party Booking")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.restaurant.facility[0].ac === "1"
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-fan mr-1"
+                                        }),
+                                        _vm._v("AC")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-fan mr-1"
+                                        }),
+                                        _vm._v("AC")
+                                      ])
+                                ]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -39754,9 +40159,18 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c(
+                    "div",
+                    { staticClass: "card" },
+                    [
+                      _c("food-photo", {
+                        attrs: { food_photos: _vm.restaurant.food_photos }
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "card p-3" }, [
                     _c(
@@ -39927,46 +40341,6 @@ var staticRenderFns = [
         _vm._v(
           "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim."
         )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "row p-3" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("h6", { staticClass: "text-dark" }, [_vm._v("Food Photo (3)")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            staticClass: "img-fluid img-thumbnail",
-            attrs: { src: "/img/background.jpg", alt: "" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            staticClass: "img-fluid img-thumbnail",
-            attrs: { src: "/img/background1.jpg", alt: "" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            staticClass: "img-fluid img-thumbnail",
-            attrs: { src: "/img/background2.jpg", alt: "" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("img", {
-            staticClass: "img-fluid img-thumbnail",
-            attrs: { src: "/img/background.jpg", alt: "" }
-          })
-        ])
       ])
     ])
   },
@@ -54056,6 +54430,7 @@ Vue.component('restaurant-show', __webpack_require__(/*! ./components/Restaurant
 Vue.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaurant/SideBar.vue */ "./resources/js/components/Restaurant/SideBar.vue")["default"]);
 Vue.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
 Vue.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
+Vue.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54315,6 +54690,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HomeFeatured_vue_vue_type_template_id_5d7e6822___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HomeFeatured_vue_vue_type_template_id_5d7e6822___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/FoodPhoto.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Restaurant/FoodPhoto.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FoodPhoto.vue?vue&type=template&id=3d7e1826& */ "./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826&");
+/* harmony import */ var _FoodPhoto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FoodPhoto.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FoodPhoto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurant/FoodPhoto.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FoodPhoto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FoodPhoto.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FoodPhoto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FoodPhoto.vue?vue&type=template&id=3d7e1826& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FoodPhoto_vue_vue_type_template_id_3d7e1826___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

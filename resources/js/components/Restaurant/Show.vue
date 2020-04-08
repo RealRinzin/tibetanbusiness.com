@@ -30,7 +30,7 @@
                                                 <h6 class="pt-3 text-muted">{{restaurant.mobile_no}}</h6>
                                                 <h6 class="text-muted">{{restaurant.location}}</h6>
                                                 <h6 class="text-muted">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
-                                                <h6 class="text-muted">
+                                                <h6 class="text-muted" v-if="restaurant.operation[0]">
                                                     <span v-if="restaurant.operation[0].monday == '1'" class="text-success btn btn-outline-success" >Mon</span>
                                                     <span v-else class="text-danger btn btn-outline-danger">Mon</span>
                                                     <span v-if="restaurant.operation[0].tuesday == '1'" class="text-success btn btn-outline-success" >Tues</span>
@@ -47,7 +47,7 @@
                                                     <span v-else class="text-danger btn btn-outline-danger">Sun</span>
                                                 </h6>
                                             </div>
-                                            <div class="col-md-3 col-sm-6 facility">
+                                            <div class="col-md-3 col-sm-6 facility" v-if="restaurant.facility[0]">
                                                 <h6 class="mb-3 text-muted">Facilities</h6>
                                                 <p class="text-success" v-if="restaurant.facility[0].home_delivery === '1'"> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
                                                 <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
@@ -94,15 +94,7 @@
                             </div>
                             <!-- Food Photo -->
                             <div class="card">
-                                <div class="row p-3">
-                                    <div class="col-md-12">
-                                        <h6 class="text-dark">Food Photo (3)</h6>
-                                    </div>
-                                    <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background1.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background2.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-md-3"><img src="/img/background.jpg" alt="" class="img-fluid img-thumbnail"></div>
-                                </div>
+                                <food-photo v-bind:food_photos="restaurant.food_photos"></food-photo>
                             </div>
                             <!-- comments -->
                             <div class="card">
