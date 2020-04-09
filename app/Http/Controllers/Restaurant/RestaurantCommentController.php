@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant\RestaurantComment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RestaurantCommentController extends Controller
@@ -52,6 +53,17 @@ class RestaurantCommentController extends Controller
     public function store(Request $request)
     {
         //
+        // $comments = RestaurantComment::create($request->all());
+
+        $comments = RestaurantComment::create([
+            'user_id' => Auth::user()->id,
+            'restaurant_basic_info_id' => $request->restaurant_basic_info_id,
+            'rate' => $request->rate,
+            'comment' => $request->comment,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $comments;
     }
 
     /**

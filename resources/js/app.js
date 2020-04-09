@@ -54,6 +54,7 @@ Vue.component('restaurant-sidebar', require('./components/Restaurant/SideBar.vue
 Vue.component('geo-map', require('./components/Restaurant/Map.vue').default);
 Vue.component('menu-photo', require('./components/Restaurant/MenuPhoto.vue').default);
 Vue.component('food-photo', require('./components/Restaurant/FoodPhoto.vue').default);
+Vue.component('restaurant-comment', require('./components/Restaurant/Comments.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -63,4 +64,49 @@ Vue.component('food-photo', require('./components/Restaurant/FoodPhoto.vue').def
 
 const app = new Vue({
     el: '#app',
+    // Data
+    data() {
+        return {
+            // token
+            token: '',
+        }
+    },
+    // Methods
+    methods:{
+        /**
+         * Login Status
+         * Check
+         *  */
+        login_status() {
+            axios.get('login_status').then(response => {
+                const data = {
+                    name: 'Token Name',
+                    scopes: []
+                };
+                /**
+                 * Creating
+                 * Personal 
+                 * Token
+                 *  */
+
+                if (response.data.status === true) {
+                    axios.post('/oauth/personal-access-tokens', data)
+                        .then(response => {
+                            this.token = "Bearer " + response.data.accessToken;
+                            localStorage.setItem("token", this.token);
+                        })
+                        .catch(response => {
+                            // List errors on response...
+                        });
+                } else {
+                    console.log("not true");
+
+                }
+            });
+        }
+    },
+    // Mounted
+    mounted(){
+        this.login_status();   
+    }
 });

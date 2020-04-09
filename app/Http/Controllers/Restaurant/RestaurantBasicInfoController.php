@@ -9,6 +9,7 @@ use App\Http\Resources\Restaurant\RestaurantBasicInfoResourceCollection;
 use Illuminate\Support\Facades\DB;
 use App\Restaurant\RestaurantBasicInfo;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantBasicInfoController extends Controller
 {

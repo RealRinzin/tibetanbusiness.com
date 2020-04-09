@@ -44,7 +44,7 @@
             return{
                 load:false,
                 isLoading : false,//Lazy loading
-                restaurants:[],
+                restaurants:{},
             }
         },
         /**
@@ -52,6 +52,7 @@
          * Methods
          *  */
         methods:{
+            // Featured business
             featured_restaurant(){
                 this.isLoading = true; //Loading true
                 axios.get('api/restaurant').then(response=>{
@@ -77,7 +78,7 @@
                         }
                     }
                 })
-            }
+            },
         },
         /**
          * 
@@ -88,7 +89,14 @@
          * Mounted
          *  */ 
         mounted() {
+            // Featured Restaurant
             this.featured_restaurant();
+            // check
+            axios.get('/api/restaurant_comments',{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    }).then(response=>{
+                console.log(response);
+            })
         },
     }
 </script>

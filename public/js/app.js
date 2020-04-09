@@ -2102,7 +2102,7 @@ __webpack_require__.r(__webpack_exports__);
       load: false,
       isLoading: false,
       //Lazy loading
-      restaurants: []
+      restaurants: {}
     };
   },
 
@@ -2111,6 +2111,7 @@ __webpack_require__.r(__webpack_exports__);
    * Methods
    *  */
   methods: {
+    // Featured business
     featured_restaurant: function featured_restaurant() {
       var _this = this;
 
@@ -2157,7 +2158,213 @@ __webpack_require__.r(__webpack_exports__);
    * Mounted
    *  */
   mounted: function mounted() {
-    this.featured_restaurant();
+    // Featured Restaurant
+    this.featured_restaurant(); // check
+
+    axios.get('/api/restaurant_comments', {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['restaurant'],
+  data: function data() {
+    return {
+      rest_id: this.restaurant,
+      // Post comment
+      review: {
+        restaurant_basic_info_id: this.restaurant,
+        rate: '5.4',
+        comment: '',
+        avatar: 'rinzin',
+        name: 'Rinzin'
+      },
+
+      /**
+       * Comments
+       * Current Page 
+       * pagination
+       * last page
+       *  */
+      comments: {},
+      nextPage: 2,
+      load_more_button: true,
+      total_comments: 0,
+      comments_lazy_load: false
+    };
+  },
+
+  /**
+   * Methods
+   *  */
+  methods: {
+    comment: function comment() {
+      var _this = this;
+
+      /**
+       * 
+       * Comments
+       * API 
+       * Comments
+       *  */
+      axios.get('/api/restaurant_comments/comment/' + this.rest_id).then(function (response) {
+        _this.comments = response.data.data;
+        _this.total_comments = response.data.total;
+        /**
+         * Rating background
+         * Danger, Warning, Info, Success
+         *  0-3 , 3-5, 5-7 , 7-3
+         *  */
+
+        for (var index = 0; index < _this.comments.length; index++) {
+          if (_this.comments[index].rate >= 0.0 && _this.comments[index].rate <= 3.5) {
+            _this.comments[index].rate_color = 'bg-danger';
+          } else if (_this.comments[index].rate >= 3.6 && _this.comments[index].rate <= 5.5) {
+            _this.comments[index].rate_color = 'bg-warning';
+          } else if (_this.comments[index].rate >= 5.6 && _this.comments[index].rate <= 7.0) {
+            _this.comments[index].rate_color = 'bg-info';
+          } else if (_this.comments[index].rate >= 7.1 && _this.comments[index].rate <= 10.0) {
+            _this.comments[index].rate_color = 'bg-success';
+          } else {
+            _this.comments[index].rate_color = 'bg-secondary';
+          }
+        }
+      });
+    },
+
+    /**
+     * 
+     * Load Comments
+     * Pagination
+     *  */
+    load_comments: function load_comments(nextPage) {
+      var _this2 = this;
+
+      axios.get('/api/restaurant_comments/comment/' + this.rest_id + '/?page=' + this.nextPage).then(function (response) {
+        if (response.data.current_page <= response.data.last_page) {
+          _this2.nextPage = response.data.current_page + 1;
+          _this2.load_more_button = true; // this.comments = response.data.data;
+
+          /**
+           * Comments 
+           * data Distribution
+           *  */
+
+          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data));
+          /**
+           * Comment 
+           * Load rate background
+           * RGB
+           *  */
+
+          for (var index = 0; index < _this2.comments.length; index++) {
+            if (_this2.comments[index].rate >= 0.0 && _this2.comments[index].rate <= 3.5) {
+              _this2.comments[index].rate_color = 'bg-danger';
+            } else if (_this2.comments[index].rate >= 3.6 && _this2.comments[index].rate <= 5.5) {
+              _this2.comments[index].rate_color = 'bg-warning';
+            } else if (_this2.comments[index].rate >= 5.6 && _this2.comments[index].rate <= 7.0) {
+              _this2.comments[index].rate_color = 'bg-info';
+            } else if (_this2.comments[index].rate >= 7.1 && _this2.comments[index].rate <= 10.0) {
+              _this2.comments[index].rate_color = 'bg-success';
+            } else {
+              _this2.comments[index].rate_color = 'bg-secondary';
+            }
+          }
+        } else {
+          _this2.load_more_button = false;
+        }
+      });
+    },
+
+    /**
+     * Post Comment
+     *  */
+    post_comment: function post_comment($id) {
+      var _this3 = this;
+
+      axios.post('/api/restaurant_comments', this.review, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        // refresh comment
+        _this3.comment();
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.comment();
   }
 });
 
@@ -2430,56 +2637,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2648,80 +2805,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this.isLoading = false; //Loading true
 
         _this.loading = true;
-        /**
-         * 
-         * Comments
-         * API 
-         * Comments
-         *  */
-
-        axios.get('/api/restaurant_comments/comment/' + _this.restaurant.id).then(function (response) {
-          _this.comments = response.data.data;
-          _this.total_comments = response.data.total;
-          /**
-           * Rating background
-           * Danger, Warning, Info, Success
-           *  0-3 , 3-5, 5-7 , 7-3
-           *  */
-
-          for (var index = 0; index < _this.comments.length; index++) {
-            if (_this.comments[index].rate >= 0.0 && _this.comments[index].rate <= 3.5) {
-              _this.comments[index].rate_color = 'bg-danger';
-            } else if (_this.comments[index].rate >= 3.6 && _this.comments[index].rate <= 5.5) {
-              _this.comments[index].rate_color = 'bg-warning';
-            } else if (_this.comments[index].rate >= 5.6 && _this.comments[index].rate <= 7.0) {
-              _this.comments[index].rate_color = 'bg-info';
-            } else if (_this.comments[index].rate >= 7.1 && _this.comments[index].rate <= 10.0) {
-              _this.comments[index].rate_color = 'bg-success';
-            } else {
-              _this.comments[index].rate_color = 'bg-secondary';
-            }
-          }
-        });
-      });
-    },
-
-    /**
-     * 
-     * Load Comments
-     * Pagination
-     *  */
-    load_comments: function load_comments(nextPage) {
-      var _this2 = this;
-
-      axios.get('/api/restaurant_comments/comment/' + this.restaurant.id + '/?page=' + this.nextPage).then(function (response) {
-        if (response.data.current_page <= response.data.last_page) {
-          _this2.nextPage = response.data.current_page + 1;
-          _this2.load_more_button = true; // this.comments = response.data.data;
-
-          /**
-           * Comments 
-           * data Distribution
-           *  */
-
-          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data));
-          /**
-           * Comment 
-           * Load rate background
-           * RGB
-           *  */
-
-          for (var index = 0; index < _this2.comments.length; index++) {
-            if (_this2.comments[index].rate >= 0.0 && _this2.comments[index].rate <= 3.5) {
-              _this2.comments[index].rate_color = 'bg-danger';
-            } else if (_this2.comments[index].rate >= 3.6 && _this2.comments[index].rate <= 5.5) {
-              _this2.comments[index].rate_color = 'bg-warning';
-            } else if (_this2.comments[index].rate >= 5.6 && _this2.comments[index].rate <= 7.0) {
-              _this2.comments[index].rate_color = 'bg-info';
-            } else if (_this2.comments[index].rate >= 7.1 && _this2.comments[index].rate <= 10.0) {
-              _this2.comments[index].rate_color = 'bg-success';
-            } else {
-              _this2.comments[index].rate_color = 'bg-secondary';
-            }
-          }
-        } else {
-          _this2.load_more_button = false;
-        }
       });
     }
   },
@@ -39192,6 +39275,188 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h5", [_vm._v("Write Reviews")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group input-group-sm" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.review.comment,
+                  expression: "review.comment"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.review.comment },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.review, "comment", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "input-group-append" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-flat",
+                  attrs: { type: "button", placeholder: "Write your comment" },
+                  on: {
+                    click: function($event) {
+                      return _vm.post_comment()
+                    }
+                  }
+                },
+                [_vm._v("Post")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card p-3" }, [
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c("h5", { staticClass: "text-dark" }, [
+            _vm._v("Reviews"),
+            _c(
+              "span",
+              {
+                staticClass: "text-muted ml-2",
+                staticStyle: { "font-size": "14px" }
+              },
+              [_vm._v("(" + _vm._s(_vm.total_comments) + ")")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.comments_lazy_load
+            ? _c(
+                "div",
+                [
+                  _c("loading", {
+                    attrs: { active: _vm.comments_lazy_load },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.comments_lazy_load = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.comments, function(comments, index) {
+            return _c("div", { staticClass: "col-md-12 p-3" }, [
+              _c("div", { staticClass: "media animated fadeIn duration-1s" }, [
+                _c("img", {
+                  staticClass: "mr-2 img-circle",
+                  staticStyle: { height: "50px", width: "50px" },
+                  attrs: {
+                    src:
+                      "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
+                    alt: "Generic placeholder image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h6", { staticClass: "mt-0" }, [
+                    _vm._v(
+                      _vm._s(comments.name) + "\n                            "
+                    ),
+                    _c("small", [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "p-1 rounded",
+                          class: comments.rate_color
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-star pr-1" }),
+                          _vm._v(_vm._s(comments.rate))
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "text-muted",
+                      staticStyle: { "font-size": "12px" }
+                    },
+                    [
+                      _c("timeago", {
+                        attrs: { datetime: comments.created_at }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(comments.comment))
+                  ])
+                ])
+              ])
+            ])
+          }),
+          _vm._v(" "),
+          _vm.load_more_button
+            ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.load_comments()
+                      }
+                    }
+                  },
+                  [_vm._v("Load more")]
+                )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Restaurant/FoodPhoto.vue?vue&type=template&id=3d7e1826& ***!
@@ -39742,561 +40007,476 @@ var render = function() {
         : _c("div", [
             _c("div", { staticClass: "container py-4" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8 col-sm-12" }, [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "banner",
-                            style: {
-                              backgroundImage:
-                                "url(/img/" + _vm.restaurant.banner + ")"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "overlay" }, [
-                              _c(
-                                "h6",
-                                {
-                                  staticClass:
-                                    "position-absolute btn btn-warning"
-                                },
-                                [_vm._v(_vm._s(_vm.restaurant.name))]
-                              ),
-                              _vm._v(" "),
-                              _c("ul", [
-                                _vm.restaurant.facebook !== ""
-                                  ? _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href: _vm.restaurant.facebook
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fab fa-facebook-square fa-2x btn-primary btn"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.restaurant.website !== ""
-                                  ? _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href: _vm.restaurant.website
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fab fa-internet-explorer fa-2x btn-secondary btn"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.restaurant.instagram !== ""
-                                  ? _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href: _vm.restaurant.instagram
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fab fa-instagram fa-2x btn-danger btn"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e()
-                              ])
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "row p-3 overview" }, [
-                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                            _c("h6", { staticClass: "pt-3 text-muted" }, [
-                              _vm._v(_vm._s(_vm.restaurant.mobile_no))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _vm._v(_vm._s(_vm.restaurant.location))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _vm._v(
-                                _vm._s(_vm.restaurant.opening_hour) +
-                                  " - " +
-                                  _vm._s(_vm.restaurant.closing_hour)
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm.restaurant.operation[0]
-                              ? _c("h6", { staticClass: "text-muted" }, [
-                                  _vm.restaurant.operation[0].monday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Mon")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Mon")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].tuesday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Tues")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Tues")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].wednesday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Wed")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Wed")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].thursday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Thurs")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Thurs")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].friday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Fri")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Fri")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].saturday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Sat")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Sat")]
-                                      ),
-                                  _vm._v(" "),
-                                  _vm.restaurant.operation[0].sunday == "1"
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-success btn btn-outline-success"
-                                        },
-                                        [_vm._v("Sun")]
-                                      )
-                                    : _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "text-danger btn btn-outline-danger"
-                                        },
-                                        [_vm._v("Sun")]
-                                      )
-                                ])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _vm.restaurant.facility[0]
-                            ? _c(
-                                "div",
-                                { staticClass: "col-md-3 col-sm-6 facility" },
-                                [
-                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                    _vm._v("Facilities")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.restaurant.facility[0].home_delivery ===
-                                  "1"
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-truck mr-1"
-                                        }),
-                                        _vm._v(" Home Delivery")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-truck mr-1"
-                                        }),
-                                        _vm._v(" Home Delivery")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.restaurant.facility[0].wifi === "1"
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-wifi mr-1"
-                                        }),
-                                        _vm._v(" Wifi")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-wifi mr-1"
-                                        }),
-                                        _vm._v(" Wifi")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm._m(0),
-                                  _vm._v(" "),
-                                  _vm.restaurant.facility[0].party_booking ===
-                                  "1"
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-glass-cheers mr-1"
-                                        }),
-                                        _vm._v("Party Booking")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-glass-cheers mr-1"
-                                        }),
-                                        _vm._v("Party Booking")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.restaurant.facility[0].ac === "1"
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-fan mr-1"
-                                        }),
-                                        _vm._v("AC")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-fan mr-1"
-                                        }),
-                                        _vm._v("AC")
-                                      ])
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-8 col-sm-12" },
+                  [
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
-                            { staticClass: "col-md-3 col-sm-6 facility" },
-                            [
-                              _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                _vm._v("More")
-                              ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].roof_top === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-building mr-1"
-                                    }),
-                                    _vm._v("Roof Top")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-building mr-1"
-                                    }),
-                                    _vm._v("Roof Top")
-                                  ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].veg === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "far fa-stop-circle mr-1"
-                                    }),
-                                    _vm._v("Veg")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "far fa-stop-circle mr-1"
-                                    }),
-                                    _vm._v("Veg")
-                                  ]),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].none_veg === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "far fa-stop-circle mr-1"
-                                    }),
-                                    _vm._v("Non Veg")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "far fa-stop-circle mr-1"
-                                    }),
-                                    _vm._v("Non Veg")
-                                  ]),
-                              _vm._v(" "),
-                              _vm._m(1),
-                              _vm._v(" "),
-                              _vm.restaurant.facility[0].beverage === "1"
-                                ? _c("p", { staticClass: "text-success" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-beer mr-1"
-                                    }),
-                                    _vm._v("Beverage")
-                                  ])
-                                : _c("p", { staticClass: "text-danger" }, [
-                                    _c("i", {
-                                      staticClass: "fas fa-beer mr-1"
-                                    }),
-                                    _vm._v("Beverage")
-                                  ])
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "row p-3" }, [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-6" },
-                        [
-                          _c("h6", [_vm._v("Location")]),
-                          _vm._v(" "),
-                          _c("geo-map", {
-                            attrs: {
-                              longitude: _vm.restaurant.longitude,
-                              latitude: _vm.restaurant.latitude
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "card" },
-                    [
-                      _c("menu-photo", {
-                        attrs: { menu_photos: _vm.restaurant.menu_photos }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "card" },
-                    [
-                      _c("food-photo", {
-                        attrs: { food_photos: _vm.restaurant.food_photos }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card p-3" }, [
-                    _c(
-                      "div",
-                      { staticClass: "row" },
-                      [
-                        _c("h5", { staticClass: "text-dark" }, [
-                          _vm._v("Reviews"),
-                          _c(
-                            "span",
                             {
-                              staticClass: "text-muted ml-2",
-                              staticStyle: { "font-size": "14px" }
+                              staticClass: "banner",
+                              style: {
+                                backgroundImage:
+                                  "url(/img/" + _vm.restaurant.banner + ")"
+                              }
                             },
-                            [_vm._v("(" + _vm._s(_vm.total_comments) + ")")]
+                            [
+                              _c("div", { staticClass: "overlay" }, [
+                                _c(
+                                  "h6",
+                                  {
+                                    staticClass:
+                                      "position-absolute btn btn-warning"
+                                  },
+                                  [_vm._v(_vm._s(_vm.restaurant.name))]
+                                ),
+                                _vm._v(" "),
+                                _c("ul", [
+                                  _vm.restaurant.facebook !== ""
+                                    ? _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: _vm.restaurant.facebook
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fab fa-facebook-square fa-2x btn-primary btn"
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.restaurant.website !== ""
+                                    ? _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: _vm.restaurant.website
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fab fa-internet-explorer fa-2x btn-secondary btn"
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.restaurant.instagram !== ""
+                                    ? _c("li", [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: {
+                                              href: _vm.restaurant.instagram
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fab fa-instagram fa-2x btn-danger btn"
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    : _vm._e()
+                                ])
+                              ])
+                            ]
                           )
                         ]),
                         _vm._v(" "),
-                        _vm.comments_lazy_load
-                          ? _c(
-                              "div",
-                              [
-                                _c("loading", {
-                                  attrs: { active: _vm.comments_lazy_load },
-                                  on: {
-                                    "update:active": function($event) {
-                                      _vm.comments_lazy_load = $event
-                                    }
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(_vm.comments, function(comments, index) {
-                          return _c("div", { staticClass: "col-md-12 p-3" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "row p-3 overview" }, [
+                            _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                              _c("h6", { staticClass: "pt-3 text-muted" }, [
+                                _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                              ]),
+                              _vm._v(" "),
+                              _c("h6", { staticClass: "text-muted" }, [
+                                _vm._v(_vm._s(_vm.restaurant.location))
+                              ]),
+                              _vm._v(" "),
+                              _c("h6", { staticClass: "text-muted" }, [
+                                _vm._v(
+                                  _vm._s(_vm.restaurant.opening_hour) +
+                                    " - " +
+                                    _vm._s(_vm.restaurant.closing_hour)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.restaurant.operation[0]
+                                ? _c("h6", { staticClass: "text-muted" }, [
+                                    _vm.restaurant.operation[0].monday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Mon")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Mon")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].tuesday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Tues")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Tues")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].wednesday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Wed")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Wed")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].thursday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Thurs")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Thurs")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].friday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Fri")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Fri")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].saturday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Sat")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Sat")]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0].sunday == "1"
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-success btn btn-outline-success"
+                                          },
+                                          [_vm._v("Sun")]
+                                        )
+                                      : _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-danger btn btn-outline-danger"
+                                          },
+                                          [_vm._v("Sun")]
+                                        )
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _vm.restaurant.facility[0]
+                              ? _c(
+                                  "div",
+                                  { staticClass: "col-md-3 col-sm-6 facility" },
+                                  [
+                                    _c(
+                                      "h6",
+                                      { staticClass: "mb-3 text-muted" },
+                                      [_vm._v("Facilities")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].home_delivery ===
+                                    "1"
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-truck mr-1"
+                                            }),
+                                            _vm._v(" Home Delivery")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-truck mr-1"
+                                            }),
+                                            _vm._v(" Home Delivery")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].wifi === "1"
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-wifi mr-1"
+                                            }),
+                                            _vm._v(" Wifi")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-wifi mr-1"
+                                            }),
+                                            _vm._v(" Wifi")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm._m(0),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].party_booking ===
+                                    "1"
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fas fa-glass-cheers mr-1"
+                                            }),
+                                            _vm._v("Party Booking")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fas fa-glass-cheers mr-1"
+                                            }),
+                                            _vm._v("Party Booking")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].ac === "1"
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-fan mr-1"
+                                            }),
+                                            _vm._v("AC")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-fan mr-1"
+                                            }),
+                                            _vm._v("AC")
+                                          ]
+                                        )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
                             _c(
                               "div",
-                              {
-                                staticClass: "media animated fadeIn duration-1s"
-                              },
+                              { staticClass: "col-md-3 col-sm-6 facility" },
                               [
-                                _c("img", {
-                                  staticClass: "mr-2 img-circle",
-                                  staticStyle: {
-                                    height: "50px",
-                                    width: "50px"
-                                  },
-                                  attrs: {
-                                    src:
-                                      "https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg",
-                                    alt: "Generic placeholder image"
-                                  }
-                                }),
+                                _c("h6", { staticClass: "mb-3 text-muted" }, [
+                                  _vm._v("More")
+                                ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "media-body" }, [
-                                  _c("h6", { staticClass: "mt-0" }, [
-                                    _vm._v(
-                                      _vm._s(comments.name) +
-                                        "\n                                                "
-                                    ),
-                                    _c("small", [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "p-1 rounded",
-                                          class: comments.rate_color
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-star pr-1"
-                                          }),
-                                          _vm._v(_vm._s(comments.rate))
-                                        ]
-                                      )
+                                _vm.restaurant.facility[0].roof_top === "1"
+                                  ? _c("p", { staticClass: "text-success" }, [
+                                      _c("i", {
+                                        staticClass: "fas fa-building mr-1"
+                                      }),
+                                      _vm._v("Roof Top")
                                     ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    {
-                                      staticClass: "text-muted",
-                                      staticStyle: { "font-size": "12px" }
-                                    },
-                                    [
-                                      _c("timeago", {
-                                        attrs: { datetime: comments.created_at }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "text-muted" }, [
-                                    _vm._v(_vm._s(comments.comment))
-                                  ])
-                                ])
+                                  : _c("p", { staticClass: "text-danger" }, [
+                                      _c("i", {
+                                        staticClass: "fas fa-building mr-1"
+                                      }),
+                                      _vm._v("Roof Top")
+                                    ]),
+                                _vm._v(" "),
+                                _vm.restaurant.facility[0].veg === "1"
+                                  ? _c("p", { staticClass: "text-success" }, [
+                                      _c("i", {
+                                        staticClass: "far fa-stop-circle mr-1"
+                                      }),
+                                      _vm._v("Veg")
+                                    ])
+                                  : _c("p", { staticClass: "text-danger" }, [
+                                      _c("i", {
+                                        staticClass: "far fa-stop-circle mr-1"
+                                      }),
+                                      _vm._v("Veg")
+                                    ]),
+                                _vm._v(" "),
+                                _vm.restaurant.facility[0].none_veg === "1"
+                                  ? _c("p", { staticClass: "text-success" }, [
+                                      _c("i", {
+                                        staticClass: "far fa-stop-circle mr-1"
+                                      }),
+                                      _vm._v("Non Veg")
+                                    ])
+                                  : _c("p", { staticClass: "text-danger" }, [
+                                      _c("i", {
+                                        staticClass: "far fa-stop-circle mr-1"
+                                      }),
+                                      _vm._v("Non Veg")
+                                    ]),
+                                _vm._v(" "),
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _vm.restaurant.facility[0].beverage === "1"
+                                  ? _c("p", { staticClass: "text-success" }, [
+                                      _c("i", {
+                                        staticClass: "fas fa-beer mr-1"
+                                      }),
+                                      _vm._v("Beverage")
+                                    ])
+                                  : _c("p", { staticClass: "text-danger" }, [
+                                      _c("i", {
+                                        staticClass: "fas fa-beer mr-1"
+                                      }),
+                                      _vm._v("Beverage")
+                                    ])
                               ]
                             )
                           ])
-                        }),
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "row p-3" }, [
+                        _vm._m(2),
                         _vm._v(" "),
-                        _vm.load_more_button
-                          ? _c(
-                              "div",
-                              { staticClass: "col-md-12 text-center" },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.load_comments()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Load more")]
-                                )
-                              ]
-                            )
-                          : _vm._e()
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c("h6", [_vm._v("Location")]),
+                            _vm._v(" "),
+                            _c("geo-map", {
+                              attrs: {
+                                longitude: _vm.restaurant.longitude,
+                                latitude: _vm.restaurant.latitude
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "card" },
+                      [
+                        _c("menu-photo", {
+                          attrs: { menu_photos: _vm.restaurant.menu_photos }
+                        })
                       ],
-                      2
-                    )
-                  ])
-                ]),
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "card" },
+                      [
+                        _c("food-photo", {
+                          attrs: { food_photos: _vm.restaurant.food_photos }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("restaurant-comment", {
+                      attrs: { restaurant: _vm.restaurant.id }
+                    })
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -40340,36 +40520,6 @@ var staticRenderFns = [
         _vm._v(
           "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim."
         )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "row p-3" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("h5", [_vm._v("Write Reviews")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group input-group-sm" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text" }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "input-group-append" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger btn-flat",
-                  attrs: { type: "button", placeholder: "Write your comment" }
-                },
-                [_vm._v("Post")]
-              )
-            ])
-          ])
-        ])
       ])
     ])
   }
@@ -54430,6 +54580,7 @@ Vue.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaur
 Vue.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
 Vue.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
 Vue.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
+Vue.component('restaurant-comment', __webpack_require__(/*! ./components/Restaurant/Comments.vue */ "./resources/js/components/Restaurant/Comments.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54437,7 +54588,50 @@ Vue.component('food-photo', __webpack_require__(/*! ./components/Restaurant/Food
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  // Data
+  data: function data() {
+    return {
+      // token
+      token: ''
+    };
+  },
+  // Methods
+  methods: {
+    /**
+     * Login Status
+     * Check
+     *  */
+    login_status: function login_status() {
+      var _this = this;
+
+      axios.get('login_status').then(function (response) {
+        var data = {
+          name: 'Token Name',
+          scopes: []
+        };
+        /**
+         * Creating
+         * Personal 
+         * Token
+         *  */
+
+        if (response.data.status === true) {
+          axios.post('/oauth/personal-access-tokens', data).then(function (response) {
+            _this.token = "Bearer " + response.data.accessToken;
+            localStorage.setItem("token", _this.token);
+          })["catch"](function (response) {// List errors on response...
+          });
+        } else {
+          console.log("not true");
+        }
+      });
+    }
+  },
+  // Mounted
+  mounted: function mounted() {
+    this.login_status();
+  }
 });
 
 /***/ }),
@@ -54629,14 +54823,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************!*\
   !*** ./resources/js/components/Home/HomeFeatured.vue ***!
   \*******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HomeFeatured_vue_vue_type_template_id_5d7e6822___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeFeatured.vue?vue&type=template&id=5d7e6822& */ "./resources/js/components/Home/HomeFeatured.vue?vue&type=template&id=5d7e6822&");
 /* harmony import */ var _HomeFeatured_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HomeFeatured.vue?vue&type=script&lang=js& */ "./resources/js/components/Home/HomeFeatured.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HomeFeatured_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HomeFeatured_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -54666,7 +54861,7 @@ component.options.__file = "resources/js/components/Home/HomeFeatured.vue"
 /*!********************************************************************************!*\
   !*** ./resources/js/components/Home/HomeFeatured.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54689,6 +54884,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HomeFeatured_vue_vue_type_template_id_5d7e6822___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HomeFeatured_vue_vue_type_template_id_5d7e6822___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/Comments.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Restaurant/Comments.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Comments.vue?vue&type=template&id=328a478b& */ "./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b&");
+/* harmony import */ var _Comments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Comments.vue?vue&type=script&lang=js& */ "./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Comments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Restaurant/Comments.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Comments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Comments.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Comments.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Comments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Comments.vue?vue&type=template&id=328a478b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Restaurant/Comments.vue?vue&type=template&id=328a478b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Comments_vue_vue_type_template_id_328a478b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
