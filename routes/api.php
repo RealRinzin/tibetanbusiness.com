@@ -16,9 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::group(['prefix' => 'auth'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
+    //
+});
 // Restaurant API
 Route::apiResource('restaurant', 'Restaurant\RestaurantBasicInfoController');
-Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
 Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityController');
 Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
 Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
