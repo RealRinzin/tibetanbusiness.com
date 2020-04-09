@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantFacilityController extends Controller
 {
@@ -12,10 +14,17 @@ class RestaurantFacilityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         //
-        return "Restaurant facilities";
+        $user = Auth::user();
+
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+        return $id;
+        // return response()->json(array('response' => 'success', 'status' => $user));
+
+        // return "Restaurant facilities";
     }
 
     /**

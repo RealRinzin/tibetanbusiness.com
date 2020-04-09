@@ -91,12 +91,6 @@
         mounted() {
             // Featured Restaurant
             this.featured_restaurant();
-            // check
-            axios.get('/api/restaurant_comments',{
-                    headers : { Authorization : localStorage.getItem("token")}
-                    }).then(response=>{
-                console.log(response);
-            })
         },
     }
 </script>

@@ -2159,15 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   mounted: function mounted() {
     // Featured Restaurant
-    this.featured_restaurant(); // check
-
-    axios.get('/api/restaurant_comments', {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    }).then(function (response) {
-      console.log(response);
-    });
+    this.featured_restaurant();
   }
 });
 
