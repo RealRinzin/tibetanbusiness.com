@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     //
 });
 // Route::group(['middleware' => 'web'], function () {
+//     Route::get('login_status', 'Auth\LoginController@login_status');
 //     // Route::get('login_status', 'Auth\LoginController@login_status');
 //     Route::group(['middleware' => 'auth:api'], function () {
 //         Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
@@ -37,5 +38,3 @@ Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoCont
 Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController');
 // Getting comment for restaurant paginate
 Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
-/* Login status check */
-Route::get('login_status', 'Auth\LoginController@login_status');

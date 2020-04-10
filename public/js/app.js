@@ -2429,16 +2429,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           Authorization: localStorage.getItem("token")
         }
       }).then(function (response) {
-        // refresh comment
+        _this3.review.comment = '';
+        _this3.review.rate = ''; // refresh comment
+
         _this3.comment();
       });
     }
   },
   mounted: function mounted() {
+    var _this4 = this;
+
     // Comments load
-    this.comment(); // axios.get('/api/login_status').then(response => {
-    //     console.log(response.data);
-    // })
+    this.comment();
+    axios.get('/login_status').then(function (response) {
+      if (response.data.status === true) {
+        _this4.is_logged = true;
+      }
+    });
   }
 });
 
@@ -54740,7 +54747,6 @@ var app = new Vue({
       var _this = this;
 
       axios.get('login_status').then(function (response) {
-        console.log(response);
         var data = {
           name: 'Token Name',
           scopes: []

@@ -88,8 +88,6 @@ const app = new Vue({
          *  */
         login_status() {
             axios.get('login_status').then(response => {
-                console.log(response);
-                
                 const data = {
                     name: 'Token Name',
                     scopes: []
@@ -101,6 +99,7 @@ const app = new Vue({
                  *  */
 
                 if (response.data.status === true) {
+                    
                     // User Local Storage
                     localStorage.setItem("user_name",response.data.user.name);
                     // user avatar storage

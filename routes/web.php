@@ -16,10 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Check User status
+Route::get('login_status', 'HomeController@login_status');
 // Socialite
 Route::get('login/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{service}/callback', 'Auth\LoginController@handleProviderCallback');
-Route::get('login_status', 'HomeController@login_status');
 
 // Other route
 Route::get('/home', 'HomeController@index')->name('home');

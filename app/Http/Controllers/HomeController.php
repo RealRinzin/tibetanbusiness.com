@@ -29,6 +29,8 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $isUserLogged = true;
+        }else{
+            $user = "";
         }
         return response()->json(array('response' => 'success', 'status' =>$isUserLogged,'user' => $user));
         // return redirect($this->redirectTo);

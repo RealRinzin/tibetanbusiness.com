@@ -188,8 +188,10 @@ export default {
          *  */ 
         post_comment($id){
             axios.post('/api/restaurant_comments',this.review,{
-                headers : { Authorization : localStorage.getItem("token"),}
+                headers : { Authorization : localStorage.getItem("token")}
             }).then(response=>{
+                this.review.comment = '';
+                this.review.rate ='';
                 // refresh comment
                 this.comment();
             })
@@ -199,9 +201,11 @@ export default {
     mounted(){
         // Comments load
         this.comment();
-            // axios.get('/api/login_status').then(response => {
-            //     console.log(response.data);
-            // })
+            axios.get('/login_status').then(response => {
+                if(response.data.status === true){
+                    this.is_logged = true
+                }
+            })
     }
 }
 </script>
