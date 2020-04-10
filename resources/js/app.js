@@ -70,6 +70,9 @@ const app = new Vue({
         return {
             // token
             token: '',
+            // User object
+            user_name:'',
+            user_avatar:'',
         }
     },
     // Methods
@@ -91,11 +94,15 @@ const app = new Vue({
                  *  */
 
                 if (response.data.status === true) {
+                    // User Local Storage
+                    localStorage.setItem("user_name",response.data.user.name);
+                    // user avatar storage
+                    localStorage.setItem("user_avatar", response.data.user.avatar);
+                    // Create Personal Token
                     axios.post('/oauth/personal-access-tokens', data)
                         .then(response => {
                             this.token = "Bearer " + response.data.accessToken;
                             localStorage.setItem("token", this.token);
-
                         })
                         .catch(response => {
                             // List errors on response...

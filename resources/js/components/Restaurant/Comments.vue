@@ -47,13 +47,14 @@ export default {
     data(){
         return{
             rest_id:this.restaurant,
+            // user: localStorage.getItem('user'),
             // Post comment
             review:{
                 restaurant_basic_info_id:this.restaurant,
-                rate:'5.4',
+                rate:'34.2',
                 comment:'',
-                avatar:'rinzin',
-                name:'Rinzin'
+                avatar:localStorage.getItem('user_avatar'),
+                name:localStorage.getItem('user_name'),
             },
             /**
              * Comments
@@ -159,7 +160,7 @@ export default {
         }
     },
     mounted(){
-
+        // Comments load
         this.comment();
     }
 }

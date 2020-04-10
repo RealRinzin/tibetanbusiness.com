@@ -18,7 +18,10 @@ export default {
         logout(){
             axios.post('/logout').then(response=>{
                 location.reload();
+                // Remove Token
                 localStorage.removeItem('token');
+                // Remove User Object
+                localStorage.removeItem('user');
             })
         }
     },
