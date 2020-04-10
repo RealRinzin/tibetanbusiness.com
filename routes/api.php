@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -36,3 +37,5 @@ Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoCont
 Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController');
 // Getting comment for restaurant paginate
 Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
+/* Login status check */
+// Route::get('login_status', 'HomeController@login_status');

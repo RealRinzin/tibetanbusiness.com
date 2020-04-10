@@ -13,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * 
      * Login Status
@@ -24,13 +24,13 @@ class HomeController extends Controller
      *  */
     public function login_status()
     {
-
         // return "hellow";
         $isUserLogged = false;
         if (Auth::check()) {
+            $user = Auth::user();
             $isUserLogged = true;
         }
-        return response()->json(array('response' => 'success', 'status' =>$isUserLogged));
+        return response()->json(array('response' => 'success', 'status' =>$isUserLogged,'user' => $user));
         // return redirect($this->redirectTo);
     }
     /**

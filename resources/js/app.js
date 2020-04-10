@@ -44,6 +44,7 @@ Vue.component('test-vue', require('./components/TestVue.vue').default);
  * */
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
+Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 
 /**
  * 
@@ -94,6 +95,7 @@ const app = new Vue({
                         .then(response => {
                             this.token = "Bearer " + response.data.accessToken;
                             localStorage.setItem("token", this.token);
+
                         })
                         .catch(response => {
                             // List errors on response...
