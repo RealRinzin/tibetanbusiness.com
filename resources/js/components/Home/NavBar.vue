@@ -1,7 +1,6 @@
 <template>
     <div>
     <a class="dropdown-item" @click="logout()" href="#">logout</a>
-
     </div>
 </template>
 <script>
@@ -21,7 +20,8 @@ export default {
                 // Remove Token
                 localStorage.removeItem('token');
                 // Remove User Object
-                localStorage.removeItem('user');
+                localStorage.removeItem('user_name');
+                localStorage.removeItem('user_avatar');
             })
         }
     },

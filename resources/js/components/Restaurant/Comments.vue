@@ -4,12 +4,24 @@
             <div class="row p-3">
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
-                    <div class="input-group input-group-sm">
-                        <input type="text" v-model="review.comment" class="form-control">
-                        <span class="input-group-append">
-                            <button type="button" @click="post_comment()" class="btn btn-danger btn-flat" placeholder="Write your comment">Post</button>
-                        </span>
-                    </div>
+                        <p>
+                            <star-rating v-model="review.rate"
+                                        v-bind:fixed-points="1"
+                                        v-bind:rating="0"
+                                        v-bind:increment="0.3"
+                                        v-bind:max-rating="5"
+                                        border-color="#33373a"
+                                        inactive-color="#dcdcdc"
+                                        active-color="#f9c132"
+                                        v-bind:star-size="25"
+                            ></star-rating>
+                        </p>
+                        <div class="input-group input-group-sm">
+                            <input type="text" v-model="review.comment" class="form-control">
+                            <span class="input-group-append">
+                                <button type="button" @click="post_comment()" class="btn btn-danger btn-flat" placeholder="Write your comment">Post</button>
+                            </span>
+                        </div>
                 </div>
             </div>
         </div>
@@ -22,7 +34,7 @@
                 </div>
                     <div class="col-md-12 p-3" v-for="(comments,index) in comments">
                         <div class="media animated fadeIn duration-1s">
-                        <img class="mr-2 img-circle" src="https://lh3.googleusercontent.com/a-/AOh14Gi5f6dIu2Z7FCNpcwS2Pe5sGKiQz7pZDtvL5wFGWg" alt="Generic placeholder image" style="height:50px;width:50px">
+                        <img class="mr-2 img-circle" :src="comments.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body">
                             <h6 class="mt-0">{{comments.name}}
                                 <small>
@@ -42,16 +54,20 @@
     </div>
 </template>
 <script>
+// initialize with defaults
 export default {
     props:['restaurant'],
     data(){
         return{
+            // Restaurant id
             rest_id:this.restaurant,
+            // Start rating
+            rating: 0,
             // user: localStorage.getItem('user'),
             // Post comment
             review:{
                 restaurant_basic_info_id:this.restaurant,
-                rate:'34.2',
+                rate:'',
                 comment:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),
@@ -89,13 +105,13 @@ export default {
                  *  0-3 , 3-5, 5-7 , 7-3
                  *  */ 
                 for (let index = 0; index < this.comments.length; index++) {
-                    if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                    if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 1.0){
                         this.comments[index].rate_color = 'bg-danger';
-                    }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                    }else if(this.comments[index].rate >= 1.1 && this.comments[index].rate <= 2.0 ){
                         this.comments[index].rate_color = 'bg-warning';
-                    }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                    }else if(this.comments[index].rate >= 2.1 && this.comments[index].rate <= 3.0 ){
                         this.comments[index].rate_color = 'bg-info';
-                    }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                    }else if(this.comments[index].rate >= 3.1 && this.comments[index].rate <= 5.0 ){
                         this.comments[index].rate_color = 'bg-success';
                     }else{
                         this.comments[index].rate_color = 'bg-secondary';
@@ -128,18 +144,31 @@ export default {
                      * RGB
                      *  */ 
                     for (let index = 0; index < this.comments.length; index++) {
-                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                        if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 1.0){
                             this.comments[index].rate_color = 'bg-danger';
-                        }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                        }else if(this.comments[index].rate >= 1.1 && this.comments[index].rate <= 2.0 ){
                             this.comments[index].rate_color = 'bg-warning';
-                        }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                        }else if(this.comments[index].rate >= 2.1 && this.comments[index].rate <= 3.0 ){
                             this.comments[index].rate_color = 'bg-info';
-                        }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                        }else if(this.comments[index].rate >= 3.1 && this.comments[index].rate <= 5.0 ){
                             this.comments[index].rate_color = 'bg-success';
                         }else{
                             this.comments[index].rate_color = 'bg-secondary';
                         }
                     }
+                    // for (let index = 0; index < this.comments.length; index++) {
+                    //     if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+                    //         this.comments[index].rate_color = 'bg-danger';
+                    //     }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+                    //         this.comments[index].rate_color = 'bg-warning';
+                    //     }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+                    //         this.comments[index].rate_color = 'bg-info';
+                    //     }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+                    //         this.comments[index].rate_color = 'bg-success';
+                    //     }else{
+                    //         this.comments[index].rate_color = 'bg-secondary';
+                    //     }
+                    // }
                     
                 }else{
                     this.load_more_button = false;

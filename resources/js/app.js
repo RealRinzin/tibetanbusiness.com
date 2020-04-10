@@ -24,7 +24,11 @@ Vue.use(VueTimeago, {
     //     ja: require("date-fns/locale/ja")
     // }
 });
-
+/**
+ * Star Rating
+ *  */
+import StarRating from "vue-star-rating";
+Vue.component("star-rating", StarRating);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -19,11 +19,10 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- rating star -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- google map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 </head>
 
 <body>
@@ -242,6 +241,8 @@
         </div>
     </div>
     </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 </body>
 
