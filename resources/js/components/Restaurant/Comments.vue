@@ -4,23 +4,27 @@
             <div class="row p-3">
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
-                        <p>
-                            <star-rating v-model="review.rate"
-                                        v-bind:fixed-points="1"
-                                        v-bind:rating="0"
-                                        v-bind:increment="0.3"
-                                        v-bind:max-rating="5"
-                                        border-color="#33373a"
-                                        inactive-color="#dcdcdc"
-                                        active-color="#f9c132"
-                                        v-bind:star-size="25"
-                            ></star-rating>
-                        </p>
-                        <div class="input-group input-group-sm">
-                            <input type="text" v-model="review.comment" class="form-control">
-                            <span class="input-group-append">
-                                <button type="button" @click="post_comment()" class="btn btn-danger btn-flat" placeholder="Write your comment">Post</button>
-                            </span>
+                        <div v-if="is_logged">
+                            <p><star-rating v-model="review.rate"
+                                            v-bind:fixed-points="1"
+                                            v-bind:rating="0"
+                                            v-bind:increment="0.3"
+                                            v-bind:max-rating="5"
+                                            border-color="#33373a"
+                                            inactive-color="#dcdcdc"
+                                            active-color="#f9c132"
+                                            v-bind:star-size="25"
+                                ></star-rating></p>
+                            <div class="input-group input-group-sm">
+                                <input type="text" v-model="review.comment" class="form-control">
+                                <span class="input-group-append">
+                                    <button type="button" @click="post_comment()" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <p class="pt-3">Please login to leave comment</p>
+                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
             </div>
@@ -83,6 +87,10 @@ export default {
             load_more_button : true,
             total_comments:0,
             comments_lazy_load:false,
+            /**
+             * Check Login status
+             *  */ 
+            is_logged:false,
         }
     },
     /**
@@ -191,6 +199,9 @@ export default {
     mounted(){
         // Comments load
         this.comment();
+            // axios.get('/api/login_status').then(response => {
+            //     console.log(response.data);
+            // })
     }
 }
 </script>

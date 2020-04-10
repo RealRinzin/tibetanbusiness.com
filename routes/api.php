@@ -38,4 +38,4 @@ Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationD
 // Getting comment for restaurant paginate
 Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
 /* Login status check */
-// Route::get('login_status', 'HomeController@login_status');
+Route::get('login_status', 'Auth\LoginController@login_status');

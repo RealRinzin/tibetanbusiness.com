@@ -29,6 +29,7 @@ Vue.use(VueTimeago, {
  *  */
 import StarRating from "vue-star-rating";
 Vue.component("star-rating", StarRating);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -87,6 +88,8 @@ const app = new Vue({
          *  */
         login_status() {
             axios.get('login_status').then(response => {
+                console.log(response);
+                
                 const data = {
                     name: 'Token Name',
                     scopes: []

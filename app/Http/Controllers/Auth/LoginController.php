@@ -74,4 +74,15 @@ class LoginController extends Controller
         Auth::login($user,true);
         return redirect($this->redirectTo);
     }
+/* login status */
+    public function login_status(User $user)
+    {
+        // return "hellow";
+        $isUserLogged = false;
+        if (Auth::check()) {
+            $isUserLogged = true;
+        }
+        return response()->json(array('response' => 'success', 'status' => $isUserLogged));
+        // return redirect($this->redirectTo);
+    }
 }

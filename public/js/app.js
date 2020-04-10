@@ -2281,6 +2281,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 // initialize with defaults
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['restaurant'],
@@ -2310,7 +2314,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       nextPage: 2,
       load_more_button: true,
       total_comments: 0,
-      comments_lazy_load: false
+      comments_lazy_load: false,
+
+      /**
+       * Check Login status
+       *  */
+      is_logged: false
     };
   },
 
@@ -2427,7 +2436,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     // Comments load
-    this.comment();
+    this.comment(); // axios.get('/api/login_status').then(response => {
+    //     console.log(response.data);
+    // })
   }
 });
 
@@ -39385,71 +39396,84 @@ var render = function() {
         _c("div", { staticClass: "col-md-12" }, [
           _c("h5", [_vm._v("Write Reviews")]),
           _vm._v(" "),
-          _c(
-            "p",
-            [
-              _c("star-rating", {
-                attrs: {
-                  "fixed-points": 1,
-                  rating: 0,
-                  increment: 0.3,
-                  "max-rating": 5,
-                  "border-color": "#33373a",
-                  "inactive-color": "#dcdcdc",
-                  "active-color": "#f9c132",
-                  "star-size": 25
-                },
-                model: {
-                  value: _vm.review.rate,
-                  callback: function($$v) {
-                    _vm.$set(_vm.review, "rate", $$v)
-                  },
-                  expression: "review.rate"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "input-group input-group-sm" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.review.comment,
-                  expression: "review.comment"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.review.comment },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.review, "comment", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "input-group-append" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger btn-flat",
-                  attrs: { type: "button", placeholder: "Write your comment" },
-                  on: {
-                    click: function($event) {
-                      return _vm.post_comment()
+          _vm.is_logged
+            ? _c("div", [
+                _c(
+                  "p",
+                  [
+                    _c("star-rating", {
+                      attrs: {
+                        "fixed-points": 1,
+                        rating: 0,
+                        increment: 0.3,
+                        "max-rating": 5,
+                        "border-color": "#33373a",
+                        "inactive-color": "#dcdcdc",
+                        "active-color": "#f9c132",
+                        "star-size": 25
+                      },
+                      model: {
+                        value: _vm.review.rate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.review, "rate", $$v)
+                        },
+                        expression: "review.rate"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group input-group-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.review.comment,
+                        expression: "review.comment"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.review.comment },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.review, "comment", $event.target.value)
+                      }
                     }
-                  }
-                },
-                [_vm._v("Post")]
-              )
-            ])
-          ])
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "input-group-append" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-flat btn-lg",
+                        attrs: {
+                          type: "button",
+                          placeholder: "Write your comment"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.post_comment()
+                          }
+                        }
+                      },
+                      [_vm._v("Post")]
+                    )
+                  ])
+                ])
+              ])
+            : _c("div", [
+                _c("p", { staticClass: "pt-3" }, [
+                  _vm._v("Please login to leave comment")
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
         ])
       ])
     ]),
@@ -39564,7 +39588,23 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger btn-md",
+          attrs: { href: "#", "data-toggle": "modal", "data-target": "#login" }
+        },
+        [_vm._v("Login ")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -54700,6 +54740,7 @@ var app = new Vue({
       var _this = this;
 
       axios.get('login_status').then(function (response) {
+        console.log(response);
         var data = {
           name: 'Token Name',
           scopes: []
