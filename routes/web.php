@@ -21,7 +21,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard',function(){
         return view('dashboard');
     });
+    /*  */
+    /**
+     * 
+     * Dashboard 
+     * Route Grouping
+     *  */
+    Route::prefix('dashboard')->group(function () {
+        Route::get('restaurant', function () {
+            // Matches The "/admin/users" URL
+            return view('dashboard.restaurant');
+
+        });
+    });
 });
+
 // Check User status
 Route::get('login_status', 'HomeController@login_status');
 // Socialite

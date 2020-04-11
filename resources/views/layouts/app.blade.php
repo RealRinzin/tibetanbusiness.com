@@ -32,7 +32,7 @@
             <nav id="navbar" class="navbar navbar-expand navbar-light">
                 <div class="container">
                     <a href="" class="navbar-brand">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="AdminLTE Logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
+                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                     </a>
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">

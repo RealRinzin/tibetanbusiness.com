@@ -11046,12 +11046,12 @@ body {
   border: 0px !important;
 }
 
-#navbar #avatar .nav-item:hover {
+#navbar #avatar .nav-item:hover a {
   background-color: white;
   transition: 0.6s;
 }
 
-#navbar #avatar .nav-item:hover a {
+#navbar #avatar .nav-item:hover a a {
   color: #941c18 !important;
 }
 

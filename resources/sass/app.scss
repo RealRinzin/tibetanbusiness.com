@@ -48,7 +48,7 @@ body{
         .nav-item{
             border:0px !important;
         }
-        .nav-item:hover{
+        .nav-item:hover a {
             background-color: white;
             transition: .6s;
             a{
