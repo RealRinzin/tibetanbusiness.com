@@ -74,7 +74,7 @@ export default {
             // Restaurant id
             rest_id:this.restaurant,
             // Start rating
-            rating: 0,
+            // rating: 0,
             // user: localStorage.getItem('user'),
             // Post comment
             review:{
@@ -201,12 +201,12 @@ export default {
                     axios.post('/api/restaurant_comments',this.review,{
                         headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
-                        this.review.comment = '';
-                        this.review.rate ='';
+                        // this.review.comment = '';
+                        // this.review.rate ='';
                         // refresh comment
                         this.comment();
                         // Reset form
-                        this.review = [];
+                        // this.review = [];
                         toast.fire({
                             icon:'success',
                             title:'Comment Posted',

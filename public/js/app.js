@@ -2179,6 +2179,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * Data
@@ -2302,7 +2303,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // Restaurant id
       rest_id: this.restaurant,
       // Start rating
-      rating: 0,
+      // rating: 0,
       // user: localStorage.getItem('user'),
       // Post comment
       review: {
@@ -2441,13 +2442,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               Authorization: localStorage.getItem("token")
             }
           }).then(function (response) {
-            _this3.review.comment = '';
-            _this3.review.rate = ''; // refresh comment
-
+            // this.review.comment = '';
+            // this.review.rate ='';
+            // refresh comment
             _this3.comment(); // Reset form
+            // this.review = [];
 
 
-            _this3.review = [];
             toast.fire({
               icon: 'success',
               title: 'Comment Posted'
@@ -2860,6 +2861,7 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   data: function data() {
     return {
+      rating: 0,
       // Loading
       loading: false,
       isLoading: false,
@@ -53575,6 +53577,20 @@ var render = function() {
       "a",
       {
         staticClass: "dropdown-item",
+        attrs: { href: "/dashboard" },
+        on: {
+          click: function($event) {
+            return _vm.logout()
+          }
+        }
+      },
+      [_vm._v("Dashboard")]
+    ),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "dropdown-item",
         attrs: { href: "#" },
         on: {
           click: function($event) {
@@ -54890,7 +54906,7 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "col-md-4 col-sm-12" },
-                  [_c("restaurant-sidebar")],
+                  [_c("restaurant-sidebar", { attrs: { rating: _vm.rating } })],
                   1
                 )
               ])

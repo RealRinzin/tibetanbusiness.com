@@ -11036,6 +11036,25 @@ body {
   color: #941c18 !important;
 }
 
+#navbar #avatar img {
+  height: 45px !important;
+  width: 45px !important;
+  border: solid 1px #ffffff;
+}
+
+#navbar #avatar .nav-item {
+  border: 0px !important;
+}
+
+#navbar #avatar .nav-item:hover {
+  background-color: white;
+  transition: 0.6s;
+}
+
+#navbar #avatar .nav-item:hover a {
+  color: #941c18 !important;
+}
+
 #home_search {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/hd-background.jpg?a22d96858eb413fd551e37bdddb9f00c);
   background-position: center center;

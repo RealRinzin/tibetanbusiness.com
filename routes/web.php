@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Middleware Auth
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard',function(){
+        return view('dashboard');
+    });
+});
 // Check User status
 Route::get('login_status', 'HomeController@login_status');
 // Socialite

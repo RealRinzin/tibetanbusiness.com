@@ -38,6 +38,24 @@ body{
         }
     }
 
+    // avatar
+    #avatar{
+        img{
+            height:45px !important;
+            width: 45px !important;
+            border:solid 1px #ffffff;
+        }
+        .nav-item{
+            border:0px !important;
+        }
+        .nav-item:hover{
+            background-color: white;
+            transition: .6s;
+            a{
+                color: #941c18 !important;
+            }
+        }
+    }
 }
 // Home Search
 #home_search{

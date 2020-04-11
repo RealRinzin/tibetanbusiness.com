@@ -101,7 +101,7 @@
                         </div>
                     <!-- Sidebar -->
                         <div class="col-md-4 col-sm-12">
-                            <restaurant-sidebar></restaurant-sidebar>
+                            <restaurant-sidebar v-bind:rating="rating"></restaurant-sidebar>
                         </div>
                 </div>
             </div>
@@ -120,6 +120,7 @@
          *  */ 
         data(){
             return{
+                rating:0,
                 // Loading
                 loading:false,
                 isLoading : false,//Lazy loading

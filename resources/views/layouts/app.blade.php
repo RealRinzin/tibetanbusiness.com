@@ -63,18 +63,21 @@
                             <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
                         </li>
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                        <div id="avatar">
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle" style="height:35;width:35px">
+                                    <!-- {{ Auth::user()->name }} <span class="caret"></span> -->
+                                </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <nav-bar></nav-bar>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <nav-bar></nav-bar>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        </div>
                         @endguest
                         <!-- <li class="nav-item d-none d-sm-inline-block">
                             <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
