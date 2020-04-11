@@ -5,22 +5,28 @@
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
                         <div v-if="is_logged">
-                            <p><star-rating v-model="review.rate"
-                                            v-bind:fixed-points="1"
-                                            v-bind:rating="0"
-                                            v-bind:increment="0.3"
-                                            v-bind:max-rating="5"
-                                            border-color="#33373a"
-                                            inactive-color="#dcdcdc"
-                                            active-color="#f9c132"
-                                            v-bind:star-size="25"
-                                ></star-rating></p>
-                            <div class="input-group input-group-sm">
-                                <input type="text" v-model="review.comment" class="form-control">
-                                <span class="input-group-append">
-                                    <button type="button" @click="post_comment()" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
-                                </span>
-                            </div>
+                            <form @submit.prevent="post_comment()">
+                                <p><star-rating v-model="review.rate"
+                                                v-bind:fixed-points="1"
+                                                v-bind:rating="0"
+                                                v-bind:increment="0.3"
+                                                v-bind:max-rating="5"
+                                                border-color="#33373a"
+                                                inactive-color="#dcdcdc"
+                                                active-color="#f9c132"
+                                                v-bind:star-size="25"
+                                    ></star-rating></p>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" v-validate="'required|min:1|max:255|'" v-model="review.comment" class="form-control" name="comment" data-vv-scope="valid_comment_form">
+                                    <span class="input-group-append">
+                                        <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
+                                    </span>
+                                    <div class="valid-feedback"></div>
+                                    <div v-if="errors.has('valid_comment_form.comment')" class="invalid-feedback">
+                                        <span v-for="error in errors.collect('valid_comment_form.comment')">{{ error }}</span>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div v-else>
                             <p class="pt-3">Please login to leave comment</p>
@@ -59,10 +65,12 @@
 </template>
 <script>
 // initialize with defaults
+import { Validator } from 'vee-validate';
 export default {
-    props:['restaurant'],
+    props:['restaurant','rating'],
     data(){
         return{
+            value:'',
             // Restaurant id
             rest_id:this.restaurant,
             // Start rating
@@ -187,15 +195,25 @@ export default {
          * Post Comment
          *  */ 
         post_comment($id){
-            axios.post('/api/restaurant_comments',this.review,{
-                headers : { Authorization : localStorage.getItem("token")}
-            }).then(response=>{
-                this.review.comment = '';
-                this.review.rate ='';
-                // refresh comment
-                this.comment();
+            /* Valid for post */
+            this.$validator.validateAll('valid_comment_form').then((result) => {
+                if(result){
+                    axios.post('/api/restaurant_comments',this.review,{
+                        headers : { Authorization : localStorage.getItem("token")}
+                    }).then(response=>{
+                        this.review.comment = '';
+                        this.review.rate ='';
+                        // refresh comment
+                        this.comment();
+                        // Reset form
+                        this.review = [];
+                        toast.fire({
+                            icon:'success',
+                            title:'Comment Posted',
+                        });
+                    })
+                }
             })
-
         }
     },
     mounted(){

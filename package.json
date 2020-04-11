@@ -28,6 +28,8 @@
         "admin-lte": "^3.0.2",
         "date-fns": "^2.11.1",
         "leaflet": "^1.6.0",
+        "sweetalert2": "^9.10.10",
+        "vee-validate": "^2.2.15",
         "vue-better-google-places-autocomplete": "^1.1.0",
         "vue-lazy-images": "^1.4.6",
         "vue-loading-overlay": "^3.3.2",

@@ -31,6 +31,31 @@ import StarRating from "vue-star-rating";
 Vue.component("star-rating", StarRating);
 
 /**
+ * Vee Vildate
+ * Form Validation
+ *  */ 
+import VeeValidate from "vee-validate";
+Vue.use(VeeValidate, {
+    classes: true,
+    classNames: {
+        valid: "is-valid",
+        invalid: "is-invalid"
+    }
+});
+
+/**
+ * 
+ * Sweet Alert Toast
+ * 
+ *  */ 
+ import swal from "sweetalert2";
+ window.swal = swal;
+ const toast = swal.mixin({
+     showConfirmButton: false,
+     timer: 1000
+ });
+ window.toast = toast;
+/**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
