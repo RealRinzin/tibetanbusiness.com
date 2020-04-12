@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.Restaurant.index');
         })->name('dashboard.restaurant');
     });
+
+    // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
+
 });
 
 // Check User status

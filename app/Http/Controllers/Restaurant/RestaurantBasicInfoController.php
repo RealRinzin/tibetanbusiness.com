@@ -25,6 +25,20 @@ class RestaurantBasicInfoController extends Controller
         return $restaurants->toArray($restaurants);
     }
     /**
+     *  Restaurant 
+     *  Retrieve only the logged / ower's restaurant
+     *  */ 
+    public function user_restaurant(User $user)
+    {
+
+        // return Auth::user()->id;
+        // $restaurants = RestaurantBasicInfo::where('user_id', '=', 'f22ce163604241e9bd43c66f0ecc7264')
+        //     ->orderBy('created_at', 'desc')->paginate(3);
+        $restaurants = Auth::user()->restaurant_basic_infos;
+        return $restaurants->toArray($restaurants);
+
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

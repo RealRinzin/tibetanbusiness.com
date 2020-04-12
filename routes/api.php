@@ -20,16 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
-    //
+    // Getting the logged user restuarant
+    Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
 });
-// Route::group(['middleware' => 'web'], function () {
-//     Route::get('login_status', 'Auth\LoginController@login_status');
-//     // Route::get('login_status', 'Auth\LoginController@login_status');
-//     Route::group(['middleware' => 'auth:api'], function () {
-//         Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
-//         //
-//     });
-// });
+
 // Restaurant API
 Route::apiResource('restaurant', 'Restaurant\RestaurantBasicInfoController');
 Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityController');

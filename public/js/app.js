@@ -1953,9 +1953,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log("this is index");
+    axios.get('/api/user/restaurants', {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    }).then(function (response) {
+      console.log(response.data);
+    });
   }
 });
 
@@ -53334,12 +53341,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12 mx-auto" }, [
+        _c("div", { staticClass: "col-md-10 mx-auto" }, [
           _c("button", { staticClass: "btn btn-info btn-md my-3" }, [
             _vm._v("Add New Restaurant")
           ]),
           _vm._v(" "),
-          _c("table", { staticClass: "table table-striped" }, [
+          _c("table", { staticClass: "table table-striped table-responsive" }, [
             _c("thead", { staticClass: "thead-dark" }, [
               _c("tr", [
                 _c("th", { attrs: { scope: "col" } }, [_vm._v("S.No")]),
@@ -53372,27 +53379,48 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("td", [_vm._v("Otto")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("@mdo")])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+                _c("td", [_vm._v("@mdo")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Jacob")]),
+                _c("td", [_vm._v("@mdo")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Thornton")]),
+                _c("td", [_vm._v("@mdo")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("@fat")])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+                _c("td", [_vm._v("@mdo")]),
                 _vm._v(" "),
-                _c("td", [_vm._v("Larry")]),
+                _c("td", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
+                      },
+                      [
+                        _c("input", {
+                          staticClass: "custom-control-input",
+                          attrs: { type: "checkbox", id: "customSwitch3" }
+                        }),
+                        _vm._v(" "),
+                        _c("label", {
+                          staticClass: "custom-control-label",
+                          attrs: { for: "customSwitch3" }
+                        })
+                      ]
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("the Bird")]),
+                _c("td", [
+                  _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+                    _c("i", { staticClass: "fas fa-trash-alt  px-1" })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v("@twitter")])
+                _c("td", [
+                  _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+                    _c("i", { staticClass: "fas fa-trash-alt  px-1" })
+                  ])
+                ])
               ])
             ])
           ])

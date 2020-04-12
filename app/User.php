@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Restaurant\RestaurantBasicInfo;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
