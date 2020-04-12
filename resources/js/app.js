@@ -87,6 +87,19 @@ Vue.component('menu-photo', require('./components/Restaurant/MenuPhoto.vue').def
 Vue.component('food-photo', require('./components/Restaurant/FoodPhoto.vue').default);
 Vue.component('restaurant-comment', require('./components/Restaurant/Comments.vue').default);
 
+
+
+
+/**
+ *     DASHBOARD COMPONENTS
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+// Restaurant Dashboard
+Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -124,7 +137,6 @@ const app = new Vue({
                  *  */
 
                 if (response.data.status === true) {
-                    
                     // User Local Storage
                     localStorage.setItem("user_name",response.data.user.name);
                     // user avatar storage

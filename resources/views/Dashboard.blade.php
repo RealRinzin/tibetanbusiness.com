@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -15,10 +18,11 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- rating star -->
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -151,6 +155,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 
 </html>

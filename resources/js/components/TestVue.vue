@@ -1,6 +1,6 @@
 <template>
 <div>
-  sdfasd
+  Rinzin
 </div>
 </template>
 
