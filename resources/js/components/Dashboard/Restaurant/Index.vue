@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-10 mx-auto">
+        <div v-if="!loading">
+            <loading :active.sync="isLoading"></loading>
+        </div>
+        <div class="row" v-else>
+            <div class="col-md-12 mx-auto">
                 <button class="btn btn-info btn-md my-3">Add New Restaurant</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
@@ -13,30 +16,32 @@
                             <th scope="col">Location</th>
                             <th scope="col">Email</th>
                             <th scope="col">Mobile</th>
+                            <th scope="col">Added on</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                        <tr v-for="(restaurant,index) in restaurants">
+                            <th scope="row">{{index +1}}</th>
+                            <td><a v-if="restaurant.banner !==''" :href="'/restaurant/'+restaurant.id"><img :src="'/img/'+restaurant.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td>{{restaurant.name}}</td>
+                            <td>{{restaurant.address}}</td>
+                            <td>{{restaurant.location}}</td>
+                            <td>{{restaurant.email}}</td>
+                            <td>{{restaurant.mobile_no}}</td>
+                            <td><timeago :datetime="restaurant.created_at" /></td>
                             <td>
                                 <div class="form-group">
                                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                                    <label class="custom-control-label" for="customSwitch3"></label>
+                                    <input type="checkbox" class="custom-control-input" :id="`${index}`">
+                                    <label class="custom-control-label" :for="`${index}`"></label>
                                     </div>
                                 </div>
                             </td>
-                            <td><button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt  px-1"></i></button></td>
-                            <td><button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt  px-1"></i></button></td>
+                            <td><button class="btn btn-sm btn-info" @click="edit(restaurant.id)"><i class="fas fa-pencil-alt "></i></button></td>
+                            <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,15 +50,63 @@
     </div>
 </template>
 <script>
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
-    
+    data(){
+        return{
+            restaurants:{}, //restaurant object
+            // loading:false, //loading
+            isLoading : false,//Lazy loading
+            loading:false,
 
+        }
+    },
+    methods:{
+        // Load restaurants
+        load_restaurant(){
+            this.isLoading = true,//Lazy loading
+            axios.get('/api/user/restaurants',{
+                headers : { Authorization : localStorage.getItem("token")}
+            }).then(response => {
+                this.isLoading = false;//Lazy loading
+                this.loading = true;
+                this.restaurants = response.data
+            })
+        },
+        /**
+         * EDIT
+         * Edit the restaurant
+         * with ID
+         *  */ 
+        edit($id){
+            console.log($id);
+        },
+        /**
+         * DELETE
+         * Delete the
+         * Restaurant with id
+         *  */ 
+        destory(id,index){
+            let confirmBox = confirm('Are you sure want to Delete!!!');
+            if(confirmBox == true){
+                axios.delete('/api/restaurant/'+id,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    this.load_restaurant();
+                    this.$delete(this.restaurants,index);
+                })
+            }
+        }
+    },
+    /**
+     * Components
+     *  */ 
+    components:{Loading},
     mounted(){
-        axios.get('/api/user/restaurants'
-        ,{headers : { Authorization : localStorage.getItem("token")}
-        }).then(response => {
-            console.log(response.data);
-        })
+        this.load_restaurant();
     }
 }
 </script>

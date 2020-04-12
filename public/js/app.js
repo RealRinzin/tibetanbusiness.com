@@ -1908,6 +1908,10 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1954,15 +1958,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+// Import component
+ // Import stylesheet
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    axios.get('/api/user/restaurants', {
-      headers: {
-        Authorization: localStorage.getItem("token")
+  data: function data() {
+    return {
+      restaurants: {},
+      //restaurant object
+      // loading:false, //loading
+      isLoading: false,
+      //Lazy loading
+      loading: false
+    };
+  },
+  methods: {
+    // Load restaurants
+    load_restaurant: function load_restaurant() {
+      var _this = this;
+
+      this.isLoading = true, //Lazy loading
+      axios.get('/api/user/restaurants', {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        _this.isLoading = false; //Lazy loading
+
+        _this.loading = true;
+        _this.restaurants = response.data;
+      });
+    },
+
+    /**
+     * EDIT
+     * Edit the restaurant
+     * with ID
+     *  */
+    edit: function edit($id) {
+      console.log($id);
+    },
+
+    /**
+     * DELETE
+     * Delete the
+     * Restaurant with id
+     *  */
+    destory: function destory(id, index) {
+      var _this2 = this;
+
+      var confirmBox = confirm('Are you sure want to Delete!!!');
+
+      if (confirmBox == true) {
+        axios["delete"]('/api/restaurant/' + id, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }).then(function (response) {
+          _this2.load_restaurant();
+
+          _this2.$delete(_this2.restaurants, index);
+        });
       }
-    }).then(function (response) {
-      console.log(response.data);
-    });
+    }
+  },
+
+  /**
+   * Components
+   *  */
+  components: {
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  mounted: function mounted() {
+    this.load_restaurant();
   }
 });
 
@@ -53332,99 +53406,176 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    !_vm.loading
+      ? _c(
+          "div",
+          [
+            _c("loading", {
+              attrs: { active: _vm.isLoading },
+              on: {
+                "update:active": function($event) {
+                  _vm.isLoading = $event
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 mx-auto" }, [
+            _c("button", { staticClass: "btn btn-info btn-md my-3" }, [
+              _vm._v("Add New Restaurant")
+            ]),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-striped table-responsive" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.restaurants, function(restaurant, index) {
+                    return _c("tr", [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        restaurant.banner !== ""
+                          ? _c(
+                              "a",
+                              {
+                                attrs: { href: "/restaurant/" + restaurant.id }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "img-circle",
+                                  staticStyle: {
+                                    height: "50px",
+                                    width: "50px"
+                                  },
+                                  attrs: {
+                                    src: "/img/" + restaurant.banner,
+                                    alt: ""
+                                  }
+                                })
+                              ]
+                            )
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(restaurant.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(restaurant.address))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(restaurant.location))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(restaurant.email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(restaurant.mobile_no))]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c("timeago", {
+                            attrs: { datetime: restaurant.created_at }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "custom-control-input",
+                                attrs: { type: "checkbox", id: "" + index }
+                              }),
+                              _vm._v(" "),
+                              _c("label", {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "" + index }
+                              })
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-info",
+                            on: {
+                              click: function($event) {
+                                return _vm.edit(restaurant.id)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-pencil-alt " })]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.destory(restaurant.id, index)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-trash-alt " })]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ])
+        ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-10 mx-auto" }, [
-          _c("button", { staticClass: "btn btn-info btn-md my-3" }, [
-            _vm._v("Add New Restaurant")
-          ]),
-          _vm._v(" "),
-          _c("table", { staticClass: "table table-striped table-responsive" }, [
-            _c("thead", { staticClass: "thead-dark" }, [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("S.No")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Banner")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Address")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Location")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Mobile")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Mark")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Otto")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
-                      },
-                      [
-                        _c("input", {
-                          staticClass: "custom-control-input",
-                          attrs: { type: "checkbox", id: "customSwitch3" }
-                        }),
-                        _vm._v(" "),
-                        _c("label", {
-                          staticClass: "custom-control-label",
-                          attrs: { for: "customSwitch3" }
-                        })
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("button", { staticClass: "btn btn-sm btn-danger" }, [
-                    _c("i", { staticClass: "fas fa-trash-alt  px-1" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("button", { staticClass: "btn btn-sm btn-danger" }, [
-                    _c("i", { staticClass: "fas fa-trash-alt  px-1" })
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("S.No")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Banner")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Address")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Mobile")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Added on")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
       ])
     ])
   }

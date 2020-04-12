@@ -128,6 +128,8 @@ class RestaurantBasicInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+                   $restaurant = RestaurantBasicInfo::find($id);
+        // $user->parents()->detach(); 
+        $restaurant->delete();
     }
 }
