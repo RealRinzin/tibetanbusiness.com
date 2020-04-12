@@ -20,7 +20,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard',function(){
         return view('dashboard');
-    });
+    })->name('dashboard');
     /*  */
     /**
      * 
@@ -30,9 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('restaurant', function () {
             // Matches The "/admin/users" URL
-            return view('dashboard.restaurant');
-
-        });
+            return view('dashboard.Restaurant.index');
+        })->name('dashboard.restaurant');
     });
 });
 

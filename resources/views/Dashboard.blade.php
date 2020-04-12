@@ -41,7 +41,7 @@
                         <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle" style="height:35;width:35px">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a href="logout" class="dropdown-item">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -50,7 +50,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link text-center">
+            <a href="/" class="brand-link text-center">
                 <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                 <p class="brand-text font-weight-light">Tibetanbusiness.com</p>
             </a>
@@ -71,7 +71,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{ route('dashboard.restaurant') }}" class="nav-link">
                                 <i class="fa fa-calendar-alt mr-2"></i>
                                 <p>Events<span class="right badge badge-danger">New</span></p>
                             </a>
