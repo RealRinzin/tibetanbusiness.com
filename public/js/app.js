@@ -53744,8 +53744,8 @@ var render = function() {
           _c("ul", [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Monday")
                   ]),
                   _vm._v(" "),
@@ -53801,8 +53801,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Tuesday")
                   ]),
                   _vm._v(" "),
@@ -53858,8 +53858,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Wednesday")
                   ]),
                   _vm._v(" "),
@@ -53915,8 +53915,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Thursday")
                   ]),
                   _vm._v(" "),
@@ -53972,8 +53972,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Friday")
                   ]),
                   _vm._v(" "),
@@ -54029,8 +54029,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Saturday")
                   ]),
                   _vm._v(" "),
@@ -54086,8 +54086,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-6" }, [
-                _c("li", [
-                  _c("span", { staticClass: "text-dark h6" }, [
+                _c("li", { staticClass: "d-flex" }, [
+                  _c("span", { staticClass: "text-dark h6 flex-grow-1" }, [
                     _vm._v("Sunday")
                   ]),
                   _vm._v(" "),
@@ -54151,7 +54151,7 @@ var render = function() {
           _c("ul", [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(7),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54206,7 +54206,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(8),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54261,7 +54261,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(9),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54316,7 +54316,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(10),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54371,7 +54371,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(11),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54426,7 +54426,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(12),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54481,7 +54481,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(13),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54536,7 +54536,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(14),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54591,7 +54591,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(15),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54646,7 +54646,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                _c("li", [
+                _c("li", { staticClass: "d-flex" }, [
                   _vm._m(16),
                   _vm._v(" "),
                   _c("label", { staticClass: "switch" }, [
@@ -54795,7 +54795,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-motorcycle fa-1x text-secondary mr-2" }),
       _vm._v(" Home Delivery ")
     ])
@@ -54804,7 +54804,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-wifi fa-1x text-secondary mr-2" }),
       _vm._v(" WiFi ")
     ])
@@ -54813,7 +54813,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fab fa-cc-visa mr-1 fa-1x text-secondary mr-2" }),
       _vm._v(" Card Payment ")
     ])
@@ -54822,7 +54822,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fa fa-fan mr-1 fa-1x text-secondary mr-2" }),
       _vm._v(" AC ")
     ])
@@ -54831,7 +54831,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-glass-cheers text-secondary mr-2" }),
       _vm._v(" Party Booking ")
     ])
@@ -54840,7 +54840,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "far fa-stop-circle text-secondary mr-2" }),
       _vm._v(" Veg ")
     ])
@@ -54849,7 +54849,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "far fa-stop-circle text-secondary mr-2" }),
       _vm._v(" Non-Veg ")
     ])
@@ -54858,7 +54858,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-car text-secondary mr-2" }),
       _vm._v(" Parking")
     ])
@@ -54867,7 +54867,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-building text-secondary mr-2" }),
       _vm._v(" Roof Top")
     ])
@@ -54876,7 +54876,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "text-dark" }, [
+    return _c("span", { staticClass: "text-dark flex-grow-1" }, [
       _c("i", { staticClass: "fas fa-beer text-secondary mr-2" }),
       _vm._v("Beverage")
     ])
