@@ -125,7 +125,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.wednesday">
+                                <input type="checkbox" v-model="facilities.home_delivery">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -134,7 +134,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fas fa-wifi fa-1x text-secondary mr-2"></i> WiFi </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.saturday">
+                                <input type="checkbox" v-model="facilities.wifi">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -143,7 +143,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fab fa-cc-visa mr-1 fa-1x text-secondary mr-2"></i> Card Payment </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.sunday">
+                                <input type="checkbox" v-model="facilities.card_payment">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -152,7 +152,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fa fa-fan mr-1 fa-1x text-secondary mr-2"></i> AC </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.monday">
+                                <input type="checkbox" v-model="facilities.ac">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -161,7 +161,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fas fa-glass-cheers text-secondary mr-2"></i> Party Booking </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.monday">
+                                <input type="checkbox" v-model="facilities.party_booking">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -170,7 +170,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Veg </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.wednesday">
+                                <input type="checkbox" v-model="facilities.veg">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -179,16 +179,16 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Non-Veg </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.wednesday">
+                                <input type="checkbox" v-model="facilities.none_veg">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <li class="d-flex">
-                                <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking</span>
+                                <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking </span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.wednesday">
+                                <input type="checkbox" v-model="facilities.parking_lot">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -197,7 +197,7 @@
                             <li class="d-flex">
                                 <span class="text-dark flex-grow-1"><i class="fas fa-building text-secondary mr-2"></i> Roof Top</span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="operation.saturday">
+                                <input type="checkbox" v-model="facilities.roof_top">
                                 <span class="slider round"></span>
                                 </label>
                             </li>
@@ -231,6 +231,7 @@ export default {
             id:this.rest_id.id,//Restaurant ID
             // Restaurant Object
             restaurant:{}, 
+            // operatin
             operation: {
                 monday:false,
                 tuesday:true,
@@ -240,6 +241,19 @@ export default {
                 saturday:true,
                 sunday:true
             },
+            //facilities
+            facilities:{
+                wifi:true,
+                home_delivery:true,
+                party_booking:false,
+                roof_top:true,
+                ac:false,
+                veg:false,
+                none_veg:true,
+                beverage:false,
+                card_payment:false,
+                parking_lot:false,
+            }
         }
     },
     //methods
