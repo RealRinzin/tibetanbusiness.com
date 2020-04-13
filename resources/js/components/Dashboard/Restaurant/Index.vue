@@ -34,11 +34,7 @@
                             <td><timeago :datetime="restaurant.created_at" /></td>
                             <td>
                                 <div class="form-group">
-                                    <div v-if="restaurant.status" class="custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
-                                    <input type="checkbox" class="custom-control-input" :id="`${index}`">
-                                    <label class="custom-control-label" :for="`${index}`"></label>
-                                    </div>
-                                    <div v-else class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <div @click="status_update()" class="custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
                                     <input type="checkbox" class="custom-control-input" :id="`${index}`">
                                     <label class="custom-control-label" :for="`${index}`"></label>
                                     </div>
@@ -97,6 +93,14 @@ export default {
             console.log($id);
         },
         /**
+         * STATUS
+         * update
+         *  */ 
+        status_update(){
+            console.log("update");
+            
+        },
+        /**
          * DELETE
          * Delete the
          * Restaurant with id
@@ -119,12 +123,6 @@ export default {
     components:{Loading},
     mounted(){
         this.load_restaurant();
-        axios.get('/dashboard/restaurant/edit/id=alsdfjlasf',{
-                    headers : { Authorization : localStorage.getItem("token")}
-        })
-        .then(response=>{
-            console.log(response);
-        })
     }
 }
 </script>

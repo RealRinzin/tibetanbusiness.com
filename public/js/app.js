@@ -1935,6 +1935,204 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['rest_id'],
   data: function data() {
@@ -1942,7 +2140,16 @@ __webpack_require__.r(__webpack_exports__);
       id: this.rest_id.id,
       //Restaurant ID
       // Restaurant Object
-      restaurant: {}
+      restaurant: {},
+      operation: {
+        monday: false,
+        tuesday: true,
+        wednesday: false,
+        thursday: false,
+        friday: true,
+        saturday: true,
+        sunday: true
+      }
     };
   },
   //methods
@@ -1956,7 +2163,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         // Assigning Restaurant object
-        _this.restaurant = response.data.data;
+        _this.restaurant = response.data.data; // Operation Day
+        // this.operation = this.restaurant.operation;                
       });
     }
   },
@@ -1980,10 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
-//
 //
 //
 //
@@ -2086,6 +2290,14 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /**
+     * STATUS
+     * update
+     *  */
+    status_update: function status_update() {
+      console.log("update");
+    },
+
+    /**
      * DELETE
      * Delete the
      * Restaurant with id
@@ -2117,13 +2329,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.load_restaurant();
-    axios.get('/dashboard/restaurant/edit/id=alsdfjlasf', {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    }).then(function (response) {
-      console.log(response);
-    });
   }
 });
 
@@ -53509,10 +53714,997 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body table-responsive p-0" }, [
+            _c("table", { staticClass: "table table-hover text-nowrap" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.restaurant.location))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.restaurant.address))]),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card facility p-3" }, [
+          _vm._m(5),
+          _vm._v(" "),
+          _c("ul", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Monday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.monday,
+                          expression: "operation.monday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.monday)
+                          ? _vm._i(_vm.operation.monday, null) > -1
+                          : _vm.operation.monday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.monday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "monday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Tuesday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.tuesday,
+                          expression: "operation.tuesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.tuesday)
+                          ? _vm._i(_vm.operation.tuesday, null) > -1
+                          : _vm.operation.tuesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.tuesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "tuesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "tuesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "tuesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Wednesday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.wednesday,
+                          expression: "operation.wednesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.wednesday)
+                          ? _vm._i(_vm.operation.wednesday, null) > -1
+                          : _vm.operation.wednesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.wednesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "wednesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Thursday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.thursday,
+                          expression: "operation.thursday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.thursday)
+                          ? _vm._i(_vm.operation.thursday, null) > -1
+                          : _vm.operation.thursday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.thursday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "thursday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "thursday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "thursday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Friday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.friday,
+                          expression: "operation.friday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.friday)
+                          ? _vm._i(_vm.operation.friday, null) > -1
+                          : _vm.operation.friday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.friday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "friday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "friday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "friday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Saturday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.saturday,
+                          expression: "operation.saturday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.saturday)
+                          ? _vm._i(_vm.operation.saturday, null) > -1
+                          : _vm.operation.saturday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.saturday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "saturday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                _c("li", [
+                  _c("span", { staticClass: "text-dark h6" }, [
+                    _vm._v("Sunday")
+                  ]),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.sunday,
+                          expression: "operation.sunday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.sunday)
+                          ? _vm._i(_vm.operation.sunday, null) > -1
+                          : _vm.operation.sunday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.sunday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "sunday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "sunday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "sunday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card facility p-3" }, [
+          _vm._m(6),
+          _vm._v(" "),
+          _c("ul", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.wednesday,
+                          expression: "operation.wednesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.wednesday)
+                          ? _vm._i(_vm.operation.wednesday, null) > -1
+                          : _vm.operation.wednesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.wednesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "wednesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.saturday,
+                          expression: "operation.saturday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.saturday)
+                          ? _vm._i(_vm.operation.saturday, null) > -1
+                          : _vm.operation.saturday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.saturday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "saturday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(9),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.sunday,
+                          expression: "operation.sunday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.sunday)
+                          ? _vm._i(_vm.operation.sunday, null) > -1
+                          : _vm.operation.sunday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.sunday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "sunday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "sunday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "sunday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.monday,
+                          expression: "operation.monday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.monday)
+                          ? _vm._i(_vm.operation.monday, null) > -1
+                          : _vm.operation.monday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.monday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "monday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(11),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.monday,
+                          expression: "operation.monday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.monday)
+                          ? _vm._i(_vm.operation.monday, null) > -1
+                          : _vm.operation.monday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.monday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "monday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "monday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(12),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.wednesday,
+                          expression: "operation.wednesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.wednesday)
+                          ? _vm._i(_vm.operation.wednesday, null) > -1
+                          : _vm.operation.wednesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.wednesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "wednesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(13),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.wednesday,
+                          expression: "operation.wednesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.wednesday)
+                          ? _vm._i(_vm.operation.wednesday, null) > -1
+                          : _vm.operation.wednesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.wednesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "wednesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.wednesday,
+                          expression: "operation.wednesday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.wednesday)
+                          ? _vm._i(_vm.operation.wednesday, null) > -1
+                          : _vm.operation.wednesday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.wednesday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "wednesday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "wednesday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(15),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.saturday,
+                          expression: "operation.saturday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.saturday)
+                          ? _vm._i(_vm.operation.saturday, null) > -1
+                          : _vm.operation.saturday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.saturday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "saturday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("li", [
+                  _vm._m(16),
+                  _vm._v(" "),
+                  _c("label", { staticClass: "switch" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.operation.saturday,
+                          expression: "operation.saturday"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(_vm.operation.saturday)
+                          ? _vm._i(_vm.operation.saturday, null) > -1
+                          : _vm.operation.saturday
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.operation.saturday,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.operation,
+                                  "saturday",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.operation, "saturday", $$c)
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "slider round" })
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(17)
     ])
   ])
 }
@@ -53535,8 +54727,158 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("h5", { staticClass: "btn btn-info" }, [_vm._v("Basic Information")])
+    return _c("div", { staticClass: "py-2" }, [
+      _c("button", { staticClass: "btn btn-info btn-sm" }, [
+        _vm._v("Basic Information")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Address")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-sm btn-info" }, [
+        _c("i", { staticClass: "fas fa-pencil-alt " })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-sm btn-danger" }, [
+        _c("i", { staticClass: "fas fa-trash-alt " })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "py-2" }, [
+      _c("button", { staticClass: "btn btn-dark btn-md" }, [
+        _vm._v("Operating Days")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "py-2" }, [
+      _c("button", { staticClass: "btn btn-dark btn-md" }, [
+        _vm._v("Facilities")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-motorcycle fa-1x text-secondary mr-2" }),
+      _vm._v(" Home Delivery ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-wifi fa-1x text-secondary mr-2" }),
+      _vm._v(" WiFi ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fab fa-cc-visa mr-1 fa-1x text-secondary mr-2" }),
+      _vm._v(" Card Payment ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fa fa-fan mr-1 fa-1x text-secondary mr-2" }),
+      _vm._v(" AC ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-glass-cheers text-secondary mr-2" }),
+      _vm._v(" Party Booking ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "far fa-stop-circle text-secondary mr-2" }),
+      _vm._v(" Veg ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "far fa-stop-circle text-secondary mr-2" }),
+      _vm._v(" Non-Veg ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-car text-secondary mr-2" }),
+      _vm._v(" Parking")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-building text-secondary mr-2" }),
+      _vm._v(" Roof Top")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-dark" }, [
+      _c("i", { staticClass: "fas fa-beer text-secondary mr-2" }),
+      _vm._v("Beverage")
     ])
   },
   function() {
@@ -53653,43 +54995,29 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _c("div", { staticClass: "form-group" }, [
-                          restaurant.status
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "custom-control custom-switch custom-switch-off-success custom-switch-on-danger"
-                                },
-                                [
-                                  _c("input", {
-                                    staticClass: "custom-control-input",
-                                    attrs: { type: "checkbox", id: "" + index }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("label", {
-                                    staticClass: "custom-control-label",
-                                    attrs: { for: "" + index }
-                                  })
-                                ]
-                              )
-                            : _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
-                                },
-                                [
-                                  _c("input", {
-                                    staticClass: "custom-control-input",
-                                    attrs: { type: "checkbox", id: "" + index }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("label", {
-                                    staticClass: "custom-control-label",
-                                    attrs: { for: "" + index }
-                                  })
-                                ]
-                              )
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "custom-control custom-switch custom-switch-off-success custom-switch-on-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.status_update()
+                                }
+                              }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "custom-control-input",
+                                attrs: { type: "checkbox", id: "" + index }
+                              }),
+                              _vm._v(" "),
+                              _c("label", {
+                                staticClass: "custom-control-label",
+                                attrs: { for: "" + index }
+                              })
+                            ]
+                          )
                         ])
                       ]),
                       _vm._v(" "),
