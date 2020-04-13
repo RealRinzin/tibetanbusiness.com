@@ -34,13 +34,17 @@
                             <td><timeago :datetime="restaurant.created_at" /></td>
                             <td>
                                 <div class="form-group">
-                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <div v-if="restaurant.status" class="custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
+                                    <input type="checkbox" class="custom-control-input" :id="`${index}`">
+                                    <label class="custom-control-label" :for="`${index}`"></label>
+                                    </div>
+                                    <div v-else class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                     <input type="checkbox" class="custom-control-input" :id="`${index}`">
                                     <label class="custom-control-label" :for="`${index}`"></label>
                                     </div>
                                 </div>
                             </td>
-                            <td><button class="btn btn-sm btn-info" @click="edit(restaurant.id)"><i class="fas fa-pencil-alt "></i></button></td>
+                            <td><a @click="edit(restaurant.id)" :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>
                         </tr>
                     </tbody>
@@ -73,7 +77,15 @@ export default {
             }).then(response => {
                 this.isLoading = false;//Lazy loading
                 this.loading = true;
-                this.restaurants = response.data
+                // Import restaurant object
+                this.restaurants = response.data;
+                console.log(response.data.length);
+                
+                for (let index = 0; index < response.data.length; index++) {
+                    if (this.restaurants[index].status == '1') {
+                        console.log(this.restaurants);   
+                    }
+                }
             })
         },
         /**
@@ -107,6 +119,12 @@ export default {
     components:{Loading},
     mounted(){
         this.load_restaurant();
+        axios.get('/dashboard/restaurant/edit/id=alsdfjlasf',{
+                    headers : { Authorization : localStorage.getItem("token")}
+        })
+        .then(response=>{
+            console.log(response);
+        })
     }
 }
 </script>

@@ -28,10 +28,13 @@ Route::group(['middleware' => ['auth']], function () {
      * Route Grouping
      *  */
     Route::prefix('dashboard')->group(function () {
+        // RESTAURANT
         Route::get('restaurant', function () {
             // Matches The "/admin/users" URL
             return view('dashboard.Restaurant.index');
         })->name('dashboard.restaurant');
+        // EVENTS
+        Route::get('restaurant/edit/id={id}','Restaurant\RestaurantBasicInfoController@restaurant_edit');
     });
 
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');

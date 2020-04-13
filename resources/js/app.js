@@ -98,6 +98,7 @@ Vue.component('restaurant-comment', require('./components/Restaurant/Comments.vu
  */
 // Restaurant Dashboard
 Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
+Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
 
 
 /**

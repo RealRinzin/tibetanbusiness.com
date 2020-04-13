@@ -48,6 +48,14 @@ class RestaurantBasicInfoController extends Controller
         return view('restaurant.show');
     }
     /**
+     * 
+     * Restaurant Edit
+     *  */
+    public function restaurant_edit($id){
+        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
+        return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -106,6 +114,7 @@ class RestaurantBasicInfoController extends Controller
     public function edit($id)
     {
         //
+        return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     }
 
     /**
@@ -128,7 +137,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function destroy($id)
     {
-                   $restaurant = RestaurantBasicInfo::find($id);
+        $restaurant = RestaurantBasicInfo::find($id);
         // $user->parents()->detach(); 
         $restaurant->delete();
     }
