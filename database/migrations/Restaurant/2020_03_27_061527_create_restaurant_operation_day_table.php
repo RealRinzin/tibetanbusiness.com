@@ -16,13 +16,13 @@ class CreateRestaurantOperationDayTable extends Migration
         Schema::connection('restaurant')->create('restaurant_operation_days', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('restaurant_basic_info_id');
-            $table->enum('monday', ['0', '1']);
-            $table->enum('tuesday', ['0', '1']);
-            $table->enum('wednesday', ['0', '1']);
-            $table->enum('thursday', ['0', '1']);
-            $table->enum('friday', ['0', '1']);
-            $table->enum('saturday', ['0', '1']);
-            $table->enum('sunday', ['0', '1']);
+            $table->boolean('monday');
+            $table->boolean('tuesday');
+            $table->boolean('wednesday');
+            $table->boolean('thursday');
+            $table->boolean('friday');
+            $table->boolean('saturday');
+            $table->boolean('sunday');
             $table->timestamps();
         });
     }

@@ -8,16 +8,16 @@ use Faker\Generator as Faker;
 
 $factory->define(RestaurantFacility::class, function (Faker $faker) {
     return [
-        'home_delivery' => $faker->randomElement(['1', '0']),
-        'wifi' => $faker->randomElement(['1', '0']),
-        'party_booking' => $faker->randomElement(['1', '0']),
-        'roof_top' => $faker->randomElement(['1', '0']),
-        'ac' => $faker->randomElement(['1', '0']),
-        'veg' => $faker->randomElement(['1', '0']),
-        'none_veg' => $faker->randomElement(['1', '0']),
-        'beverage' => $faker->randomElement(['1', '0']),
-        // 'parking_lot' => $faker->randomElement(['1', '0']),
-        // 'card_payment' => $faker->randomElement(['1', '0']),
+        'home_delivery' => $faker->boolean(),
+        'wifi' => $faker->boolean(),
+        'party_booking' => $faker->boolean(),
+        'roof_top' => $faker->boolean(),
+        'ac' => $faker->boolean(),
+        'veg' => $faker->boolean(),
+        'none_veg' => $faker->boolean(),
+        'beverage' => $faker->boolean(),
+        'parking_lot' => $faker->boolean(),
+        'card_payment' => $faker->boolean(),
         'restaurant_basic_info_id' => function () {
             // return User::all()->random();
             return RestaurantBasicInfo::all()->random();

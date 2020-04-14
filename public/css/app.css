@@ -11066,6 +11066,33 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+#nav-tab .nav-tabs .nav-item {
+  padding: 0px 10px !important;
+  transition: 0.5s ease;
+}
+
+#nav-tab .nav-tabs .nav-item:first-child {
+  padding-left: 0px !important;
+  text-align: center;
+}
+
+#nav-tab .nav-tabs a {
+  color: #6c757d !important;
+  font-weight: bold;
+}
+
+#nav-tab .nav-tabs .nav-item.show .nav-link,
+#nav-tab .nav-tabs .nav-link.active {
+  background-color: transparent !important;
+  border-bottom: solid 2px #dc3545 !important;
+  color: #343a40 !important;
+  font-weight: bold;
+}
+
+#nav-tab .nav-tabs .nav-link {
+  border: none !important;
+}
+
 #dashboard {
   /*Facility  */
 }

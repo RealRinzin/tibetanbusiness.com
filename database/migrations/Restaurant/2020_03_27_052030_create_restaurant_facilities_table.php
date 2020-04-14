@@ -16,16 +16,16 @@ class CreateRestaurantFacilitiesTable extends Migration
         Schema::connection('restaurant')->create('restaurant_facilities', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('restaurant_basic_info_id');
-            $table->enum('home_delivery', ['0', '1']);
-            $table->enum('wifi', ['0', '1']);
-            $table->enum('party_booking', ['0', '1']);
-            $table->enum('roof_top', ['0', '1']);
-            $table->enum('ac', ['0', '1']);
-            $table->enum('veg', ['0', '1']);
-            $table->enum('none_veg', ['0', '1']);
-            $table->enum('beverage', ['0', '1']);
-            $table->enum('parking_lot', ['0', '1']);
-            $table->enum('card_payment', ['0', '1']);
+            $table->boolean('home_delivery');
+            $table->boolean('wifi');
+            $table->boolean('party_booking');
+            $table->boolean('roof_top');
+            $table->boolean('ac');
+            $table->boolean('veg');
+            $table->boolean('none_veg');
+            $table->boolean('beverage');
+            $table->boolean('parking_lot');
+            $table->boolean('card_payment');
             $table->timestamps();
         });
     }

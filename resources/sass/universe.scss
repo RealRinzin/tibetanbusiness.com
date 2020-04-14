@@ -104,3 +104,32 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+#nav-tab{
+  .nav-tabs{
+    .nav-item{
+      padding: 0px 10px !important;
+      // background-color: red;
+      transition: .5s ease;
+    }
+ .nav-item:first-child{
+   padding-left: 0px !important;
+   text-align: center;
+    }
+    a{
+      color:#6c757d!important;
+      font-weight: bold;
+    }
+    .nav-item.show .nav-link,.nav-link.active{
+      background-color: transparent !important;
+      border-bottom: solid 2px#dc3545!important;
+      color:#343a40!important;
+      font-weight: bold;
+    }
+    .nav-link{
+      border: none !important;
+    }
+  } 
+
+}
