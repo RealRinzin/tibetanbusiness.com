@@ -31,7 +31,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('instagram',100);
             $table->string('facebook',100);
             $table->string('website',100);
-            $table->enum('status',['0','1']);
+            $table->boolean('status');
             $table->text('description',225);
             $table->timestamps();
         });

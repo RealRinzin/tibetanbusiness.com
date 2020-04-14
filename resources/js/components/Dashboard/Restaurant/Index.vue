@@ -33,12 +33,10 @@
                             <td>{{restaurant.mobile_no}}</td>
                             <td><timeago :datetime="restaurant.created_at" /></td>
                             <td>
-                                <div class="form-group">
-                                    <div @click="status_update()" class="custom-control custom-switch custom-switch-off-success custom-switch-on-danger">
-                                    <input type="checkbox" class="custom-control-input" :id="`${index}`">
-                                    <label class="custom-control-label" :for="`${index}`"></label>
-                                    </div>
-                                </div>
+                                <label class="switch">
+                                <input type="checkbox" v-model="restaurant.status">
+                                <span class="slider round"></span>
+                                </label>
                             </td>
                             <td><a @click="edit(restaurant.id)" :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>

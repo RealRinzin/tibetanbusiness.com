@@ -24,7 +24,7 @@ $factory->define(RestaurantBasicInfo::class, function (Faker $faker) {
         'instagram' => $faker->text(100),
         'facebook' => $faker->text(100),
         'website' => $faker->text(100),
-        'status' => $faker->randomElement(['1','0']),
+        'status' => $faker->boolean(),
         'description' => $faker->sentence(),
         'user_id' => function () {
             // return User::all()->random();
