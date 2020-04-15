@@ -51,24 +51,67 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- Basic information -->
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="py-2">
                                                 <button class="btn btn-info btn-sm">Basic Information</button>
                                                 </div>
                                                 <div class="card">
-                                                    <div class="card-body table-responsive">
+                                                    <div class="card-body">
                                                         <div class="row">
-                                                            <div class="col-md-6 col-sm-3 col-xs-12 font-weight-bold p-3">
-                                                                <div class="d-flex">
-                                                                    <h6 class="text-dark flex-grow-1">Name:</h6>
-                                                                    <h6 class="text-muted">{{restaurant.name}}</h6>
-                                                                </div>
-                                                                <div class="d-flex">
-                                                                    <h6 class="text-dark flex-grow-1">Name:</h6>
-                                                                    <h6 class="text-muted">{{restaurant.location}}</h6>
-                                                                </div>
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Name:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.name}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Location:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.location}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Mobile:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.mobile_no}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Email:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.email}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Website:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.website}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">Instagram:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.instagram}}</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-sm-4">
+                                                                <h6 class="text-dark">facebook:</h6>
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-8">
+                                                                <h6 class="text-muted">{{restaurant.facebook}}</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -246,7 +289,7 @@
                                                             <li class="d-flex">
                                                                 <span class="text-dark flex-grow-1"><i class="fas fa-beer text-secondary mr-2"></i>Beverage</span>
                                                                 <label class="switch">
-                                                                <input type="checkbox" v-model="operation.saturday">
+                                                                <input type="checkbox" v-model="facilities.beverage">
                                                                 <span class="slider round"></span>
                                                                 </label>
                                                             </li>
@@ -264,12 +307,15 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                                <dashboard-restaurant-menu-photo v-bind:menu_photo="operation"></dashboard-restaurant-menu-photo>
                                 Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. 
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+                                <dashboard-restaurant-food-photo></dashboard-restaurant-food-photo>
                                 Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna. 
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
+                                <dashboard-restaurant-comment></dashboard-restaurant-comment>
                                 Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. 
                             </div>
                         </div>
@@ -303,6 +349,8 @@ export default {
             .then(response=>{
                 // Assigning Restaurant object
                 this.restaurant = response.data.data;
+                console.log(this.restaurant);
+                
                 // Operation Day
                 this.operation = this.restaurant.operation[0];  
                 this.facilities = this.restaurant.facility[0];             
