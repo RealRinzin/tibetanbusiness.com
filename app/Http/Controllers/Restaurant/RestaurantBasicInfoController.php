@@ -127,6 +127,11 @@ class RestaurantBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // return $request;
+        $restaurantOperationDay = RestaurantBasicInfo::find($id);
+        // update
+        // return $request;
+        $restaurantOperationDay->update($request->all());
     }
 
     /**
@@ -140,5 +145,15 @@ class RestaurantBasicInfoController extends Controller
         $restaurant = RestaurantBasicInfo::find($id);
         // $user->parents()->detach(); 
         $restaurant->delete();
+    }
+
+    /**
+     * Showing restaurant without relationship
+     *  */ 
+    public function show_individual($id)
+    {
+        $restaurant = RestaurantBasicInfo::find($id);
+        return $restaurant;
+
     }
 }

@@ -5,10 +5,10 @@
 </template>
 <script>
 export default {
-    props:['menu_photo'],
+    props:['overview'],
     data () {
     return {
-        counter :this.menu_photo
+        counter :this.overview
         }
     },
     mounted(){

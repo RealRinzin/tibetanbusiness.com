@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantOperationDay;
+use Illuminate\Support\Facades\DB;
+
 
 class RestaurantOperationDayController extends Controller
 {
@@ -71,6 +74,11 @@ class RestaurantOperationDayController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // return $request;
+        $restaurantOperationDay = RestaurantOperationDay::find($id);
+        // update
+        // return $request;
+        $restaurantOperationDay->update($request->all());
     }
 
     /**

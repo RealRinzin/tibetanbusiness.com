@@ -10,12 +10,12 @@ $factory->define(RestaurantOperationDay::class, function (Faker $faker) {
     return [
         //
         'monday' => $faker->boolean([true, false]),
-        'tuesday' => $faker->boolean(),
-        'wednesday' => $faker->boolean(),
-        'thursday' => $faker->boolean(),
-        'friday' => $faker->boolean(),
-        'saturday' => $faker->boolean(),
-        'sunday' => $faker->boolean(),
+        'tuesday' => $faker->boolean([true,false]),
+        'wednesday' => $faker->boolean([true, false]),
+        'thursday' => $faker->boolean([true, false]),
+        'friday' => $faker->boolean([true, false]),
+        'saturday' => $faker->boolean([true, false]),
+        'sunday' => $faker->boolean([true, false]),
         'restaurant_basic_info_id' => function () {
             // return User::all()->random();
             return RestaurantBasicInfo::all()->random();

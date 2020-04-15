@@ -67,7 +67,7 @@ Vue.use(VeeValidate, {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('test-vue', require('./components/TestVue.vue').default);
+// Vue.component('test-vue', require('./components/TestVue.vue').default);
 /**
  * 
  * Front Page Component 
@@ -97,12 +97,13 @@ Vue.component('restaurant-comment', require('./components/Restaurant/Comments.vu
  * building robust, powerful web applications using Vue and Laravel.
  */
 // Restaurant Dashboard
+Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
+Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
 Vue.component('dashboard-restaurant-overview', require('./components/Dashboard/Restaurant/Overview.vue').default);
 Vue.component('dashboard-restaurant-menu-photo', require('./components/Dashboard/Restaurant/MenuPhoto.vue').default);
 Vue.component('dashboard-restaurant-food-photo', require('./components/Dashboard/Restaurant/FoodPhoto.vue').default);
 Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Restaurant/Comment.vue').default);
-Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
-Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
+// Vue.component('test-vue', require('./components/TestVue.vue').default);
 
 
 /**
