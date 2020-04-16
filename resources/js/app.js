@@ -9,6 +9,19 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
+ * Lazy loading 
+ * plugin
+ * 
+ * */ 
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
+// Init plugin
+Vue.use(Loading);
+
+
+/**
  * 
  * Vuejs time ago
  *  */ 

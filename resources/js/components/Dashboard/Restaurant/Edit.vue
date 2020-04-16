@@ -1,5 +1,6 @@
 <template>
     <div id="restaurant">
+            <loading :active.sync="isLoading"></loading>
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <div class="row">
@@ -27,7 +28,7 @@
                             <button class="btn btn-secondary btn-md"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{restaurant.rate}}</button>
                             <span>
                                 <label class="switch">
-                                <input type="checkbox" v-model="facilities.home_delivery">
+                                <input type="checkbox" v-model="restaurant.status">
                                 <span class="slider round"></span>
                                 </label>
                             </span>
@@ -71,10 +72,17 @@
     </div>
 </template>
 <script>
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
     props:['rest_id'],
     data(){
         return{
+            // Lazy loading
+            isLoading : false,//Lazy loading
+            // restaurant ID
             id:this.rest_id.id,//Restaurant ID
             // Restaurant Object
             restaurant:{}, 
@@ -90,6 +98,7 @@ export default {
     methods:{
         // loading Restaurant
         load(){
+            this.isLoading = true;
             axios.get('/api/restaurant/'+this.id,{
                 headers : { Authorization : localStorage.getItem("token")}
             })
@@ -99,7 +108,9 @@ export default {
                 // Operation Day
                 this.operation = this.restaurant.operation[0];  
                 // facitilies
-                this.facilities = this.restaurant.facility[0];             
+                this.facilities = this.restaurant.facility[0]; 
+            //Lazy loading            
+                this.isLoading= false;
             })  
             /**
              * Retrieveing Overview
@@ -109,7 +120,6 @@ export default {
             })
             .then(response=>{
                 this.overview = response.data;
-                console.log(this.overview);
             })
         },
         /**
@@ -128,6 +138,7 @@ export default {
             
         }
     },
+    components:{Loading},
     mounted(){
         this.load();
     }

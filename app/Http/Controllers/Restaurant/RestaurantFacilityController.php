@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Restaurant\RestaurantFacility;
 
 class RestaurantFacilityController extends Controller
 {
@@ -80,6 +81,10 @@ class RestaurantFacilityController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // fetch ID
+        $facilities = RestaurantFacility::find($id);
+        // udpate function
+        $facilities->update($request->all());
     }
 
     /**

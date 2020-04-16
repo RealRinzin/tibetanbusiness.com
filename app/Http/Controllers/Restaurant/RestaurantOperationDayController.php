@@ -73,11 +73,9 @@ class RestaurantOperationDayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // return $request;
+        // fetch ID
         $restaurantOperationDay = RestaurantOperationDay::find($id);
-        // update
-        // return $request;
+        // udpate function
         $restaurantOperationDay->update($request->all());
     }
 

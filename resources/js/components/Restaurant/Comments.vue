@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
                         <div v-if="is_logged">
-                            <form @submit.prevent="post_comment()">
+                            <form @submit.prevent="post_comment()" data-vv-scope="valid_comment_form">
                                 <p><star-rating v-model="review.rate"
                                                 v-bind:fixed-points="1"
                                                 v-bind:rating="0"
@@ -17,7 +17,7 @@
                                                 v-bind:star-size="25"
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255|'" v-model="review.comment" class="form-control" name="comment" data-vv-scope="valid_comment_form">
+                                    <input type="text" v-validate="'required|min:1|max:255|'" v-model="review.comment" class="form-control" name="comment">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
