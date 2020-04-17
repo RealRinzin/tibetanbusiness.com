@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
@@ -335,13 +336,33 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Opening Hour</label>
-                                                <input type="text" v-model="restaurant.opening_hour" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                                                    <VueCtkDateTimePicker id="opening"
+                                                    v-model="restaurant.opening_hour"
+                                                    :color="'coral'"
+                                                    :label="'Select Time'"
+                                                    :only-time="true"
+                                                    :format ="'hh:mm a'"
+                                                    :formatted="'hh:mm a'"
+                                                    >
+                                                   </VueCtkDateTimePicker>
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_update_form.closing_hour')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_update_form.closing_hour')">{{ error }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Closing Hour</label>
-                                                <input type="text" v-model="restaurant.closing_hour" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                                                    <VueCtkDateTimePicker v-validate="'required'" name="closing_hour" id="closing_hour"
+                                                    v-model="restaurant.closing_hour"
+                                                    :color="'coral'"
+                                                    :label="'Select Time'"
+                                                    :only-time="true"
+                                                    :format ="'hh:mm a'"
+                                                    :formatted="'hh:mm a'"
+                                                    >
+                                                   </VueCtkDateTimePicker>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -387,6 +408,7 @@
         </div>
     </div>
 </template>
+
 <script>
 // Form validation
 import { Validator } from 'vee-validate';
@@ -407,20 +429,24 @@ export default {
         },
         // Overview update
         update_overview(id){
-            this.$validator.validateAll('validate_update_form').then((result) => {
-                if (result) {
-                    axios.patch('/api/restaurant/'+id,this.restaurant)
-                    .then(response=>{
-                        // Close Modal
-                        $("#overview_update_modal").modal("hide");  
-                        //  Flash Message  
-                        toast.fire({
-                            icon:'success',
-                            title:'Updated',
-                        });
-                    })
-                }
-            })
+            if(this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null){
+                alert("Please enter the opening or closing hour")
+            }else{
+                this.$validator.validateAll('validate_update_form').then((result) => {
+                    if (result) {
+                        axios.patch('/api/restaurant/'+id,this.restaurant)
+                        .then(response=>{
+                            // Close Modal
+                            $("#overview_update_modal").modal("hide");  
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Updated',
+                            });
+                        })
+                    }
+                })
+            }
         },
         // update_operation_days
         update_operation_days(id){
@@ -440,11 +466,11 @@ export default {
             axios.patch('/api/restaurant_facilities/'+id,this.facilities,{
                 headers : { Authorization : localStorage.getItem("token")}
             }).then(response=>{
-                        //  Flash Message  
-                        toast.fire({
-                            icon:'success',
-                            title:'Facilities Updated',
-                        });
+                //  Flash Message  
+                toast.fire({
+                    icon:'success',
+                    title:'Facilities Updated',
+                });
             })
         }
     },

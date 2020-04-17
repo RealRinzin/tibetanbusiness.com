@@ -28,9 +28,9 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('email',100);
             $table->string('opening_hour',10);
             $table->string('closing_hour',10);
-            $table->string('instagram',100);
-            $table->string('facebook',100);
-            $table->string('website',100);
+            $table->string('instagram',100)->nullable();
+            $table->string('facebook',100)->nullable();
+            $table->string('website',100)->nullable();
             $table->boolean('status');
             $table->text('description',225);
             $table->timestamps();

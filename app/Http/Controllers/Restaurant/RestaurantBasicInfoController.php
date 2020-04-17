@@ -156,4 +156,31 @@ class RestaurantBasicInfoController extends Controller
         return $restaurant;
 
     }
+    /**
+     * 
+     *  Updating Star rating
+     * Restaurant
+     * Star Rate
+     * 
+     *  */
+    public function update_rate(Request $request, $id){
+        // return $request;
+        // return $request;
+        $rate = RestaurantBasicInfo::find($id);
+        // update
+        // return $request;
+        $rate->update($request->all());
+    }
+    /**
+     * 
+     * Status update 
+     * On and off
+     * 
+     *  */
+    public function status_update(Request $request,$id){
+        //
+        $status = RestaurantBasicInfo::find($id);
+        // update
+        $status->update($request->all());
+    }
 }

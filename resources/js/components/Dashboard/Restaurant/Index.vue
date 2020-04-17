@@ -33,12 +33,12 @@
                             <td>{{restaurant.mobile_no}}</td>
                             <td><timeago :datetime="restaurant.created_at" /></td>
                             <td>
-                                <label class="switch">
+                                <label class="switch" @click="status_update(restaurant.id,index)">
                                 <input type="checkbox" v-model="restaurant.status">
                                 <span class="slider round"></span>
                                 </label>
                             </td>
-                            <td><a @click="edit(restaurant.id)" :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
+                            <td><a  :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>
                         </tr>
                     </tbody>
@@ -59,6 +59,7 @@ export default {
             // loading:false, //loading
             isLoading : false,//Lazy loading
             loading:false,
+            status:'',
 
         }
     },
@@ -73,30 +74,24 @@ export default {
                 this.loading = true;
                 // Import restaurant object
                 this.restaurants = response.data;
-                console.log(response.data.length);
-                
-                for (let index = 0; index < response.data.length; index++) {
-                    if (this.restaurants[index].status == '1') {
-                        console.log(this.restaurants);   
-                    }
-                }
             })
-        },
-        /**
-         * EDIT
-         * Edit the restaurant
-         * with ID
-         *  */ 
-        edit($id){
-            console.log($id);
         },
         /**
          * STATUS
          * update
          *  */ 
-        status_update(){
-            console.log("update");
-            
+        
+        status_update(id,index){
+            // Status toggle true false
+            this.status =! this.restaurants[index].status;
+            // Axios update
+                axios({
+                method: 'patch',
+                url: '/api/restaurant/status_update/'+id,
+                data: {status: this.status},
+                headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                });
         },
         /**
          * DELETE

@@ -9,6 +9,16 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
+ * 
+ * Datetime picker
+ * 
+ *  */ 
+import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
+import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
+
+Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
+
+/**
  * Lazy loading 
  * plugin
  * 
@@ -144,7 +154,7 @@ const app = new Vue({
          * Check
          *  */
         login_status() {
-            axios.get('login_status').then(response => {
+            axios.get('/login_status').then(response => {
                 const data = {
                     name: 'Token Name',
                     scopes: []

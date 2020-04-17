@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
                         <div v-if="is_logged">
-                            <form @submit.prevent="post_comment()" data-vv-scope="valid_comment_form">
+                            <form @submit.prevent="post_comment(review.restaurant_basic_info_id)" data-vv-scope="valid_comment_form">
                                 <p><star-rating v-model="review.rate"
                                                 v-bind:fixed-points="1"
                                                 v-bind:rating="0"
@@ -17,7 +17,7 @@
                                                 v-bind:star-size="25"
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255|'" v-model="review.comment" class="form-control" name="comment">
+                                    <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="review.comment" class="form-control" name="comment">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
@@ -99,6 +99,9 @@ export default {
              * Check Login status
              *  */ 
             is_logged:false,
+            // count comment
+            count_rate : 0,
+            average_rate:0,
         }
     },
     /**
@@ -132,8 +135,18 @@ export default {
                     }else{
                         this.comments[index].rate_color = 'bg-secondary';
                     }
+                    /**
+                     * 
+                     * Update the star rate
+                     *  */ 
+                    this.count_rate = parseFloat(this.count_rate) + parseFloat(this.comments[index].rate);
                 }
+                // aggregating rating
+                this.average_rate = (this.count_rate / this.total_comments).toFixed(1);
+                
             })
+            
+            
         },
         /**
          * 
@@ -194,7 +207,7 @@ export default {
         /**
          * Post Comment
          *  */ 
-        post_comment($id){
+        post_comment(id){
             /* Valid for post */
             this.$validator.validateAll('valid_comment_form').then((result) => {
                 if(result){
@@ -214,6 +227,19 @@ export default {
                     })
                 }
             })
+            /**
+             * 
+             * Update rate
+             *  */ 
+               axios({
+                method: 'patch',
+                url: '/api/restaurant/rating/'+id,
+                data: {rate: this.average_rate},
+                headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    console.log(response);
+                    
+                });
         }
     },
     mounted(){
