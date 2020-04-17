@@ -14,7 +14,7 @@
                                     <div class="col-md-12">
                                         <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'>
                                         <div class="overlay">
-                                            <h6 class="position-absolute btn btn-warning">{{restaurant.name}}</h6>
+                                            <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
                                             <ul>
                                                 <li><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rate}}</a></li>
                                                 <li v-if="restaurant.facebook !== ''"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>

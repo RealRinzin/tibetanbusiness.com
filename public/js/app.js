@@ -1913,7 +1913,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['comments'],
+  data: function data() {
+    return {
+      comment: this.comments
+    };
+  },
+  methods: {
+    load_comments: function load_comments() {}
+  },
+  mounted: function mounted() {
+    console.log(this.comment);
+  }
+});
 
 /***/ }),
 
@@ -1930,7 +1968,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
-//
 //
 //
 //
@@ -2024,7 +2061,9 @@ __webpack_require__.r(__webpack_exports__);
       // operatin
       operation: {},
       //facilities
-      facilities: {}
+      facilities: {},
+      // comments
+      comments: {}
     };
   },
   //methods
@@ -2046,7 +2085,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.facilities = _this.restaurant.facility[0]; //Lazy loading            
 
-        _this.isLoading = false;
+        _this.isLoading = false; // comments
+
+        _this.comments = _this.restaurant.comments;
       });
       /**
        * Retrieveing Overview
@@ -2297,7 +2338,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-//
 //
 //
 //
@@ -79026,9 +79066,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Comments Photos\n")])
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "table",
+          { staticClass: "table table-md table-striped table-hover " },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.comments, function(comment, index) {
+                return _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(index + 1))
+                  ]),
+                  _vm._v(" "),
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _c("img", {
+                      staticClass: "img-circle",
+                      staticStyle: { height: "35px", width: "35px" },
+                      attrs: { src: comment.avatar, alt: "" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(comment.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(comment.comment))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(comment.rate))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("timeago", { attrs: { datetime: comment.created_at } })
+                    ],
+                    1
+                  )
+                ])
+              }),
+              0
+            )
+          ]
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("S.No")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Profile")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Rate")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -79152,7 +79259,39 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(2),
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-tabs mt-3",
+                  attrs: { id: "custom-content-below-tab", role: "tablist" }
+                },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          href: "custom-content-below-settings-tab",
+                          id: "custom-content-below-settings-tab",
+                          "data-toggle": "pill",
+                          href: "#custom-content-below-settings",
+                          role: "tab",
+                          "aria-controls": "custom-content-below-settings",
+                          "aria-selected": "false"
+                        }
+                      },
+                      [_vm._v("Comments")]
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -79234,10 +79373,9 @@ var render = function() {
                       }
                     },
                     [
-                      _c("dashboard-restaurant-comment"),
-                      _vm._v(
-                        "\n                            Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis. \n                        "
-                      )
+                      _c("dashboard-restaurant-comment", {
+                        attrs: { comments: _vm.comments }
+                      })
                     ],
                     1
                   )
@@ -79280,86 +79418,67 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      {
-        staticClass: "nav nav-tabs mt-3",
-        attrs: { id: "custom-content-below-tab", role: "tablist" }
-      },
-      [
-        _c("li", { staticClass: "nav-item pl-0" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active pl-0",
-              attrs: {
-                id: "custom-content-below-overview-tab",
-                "data-toggle": "pill",
-                href: "#custom-content-below-overview",
-                role: "tab",
-                "aria-controls": "custom-content-below-overview",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Overview")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "custom-content-below-profile-tab",
-                "data-toggle": "pill",
-                href: "#custom-content-below-profile",
-                role: "tab",
-                "aria-controls": "custom-content-below-profile",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Menu Photos")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "custom-content-below-messages-tab",
-                "data-toggle": "pill",
-                href: "#custom-content-below-messages",
-                role: "tab",
-                "aria-controls": "custom-content-below-messages",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Food Photos")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                id: "custom-content-below-settings-tab",
-                "data-toggle": "pill",
-                href: "#custom-content-below-settings",
-                role: "tab",
-                "aria-controls": "custom-content-below-settings",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Comments")]
-          )
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "nav-item pl-0" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active pl-0",
+          attrs: {
+            id: "custom-content-below-overview-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-overview",
+            role: "tab",
+            "aria-controls": "custom-content-below-overview",
+            "aria-selected": "true"
+          }
+        },
+        [_vm._v("Overview")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            id: "custom-content-below-profile-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-profile",
+            role: "tab",
+            "aria-controls": "custom-content-below-profile",
+            "aria-selected": "false"
+          }
+        },
+        [_vm._v("Menu Photos")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            id: "custom-content-below-messages-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-messages",
+            role: "tab",
+            "aria-controls": "custom-content-below-messages",
+            "aria-selected": "false"
+          }
+        },
+        [_vm._v("Food Photos")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -82924,7 +83043,7 @@ var render = function() {
                                   "h6",
                                   {
                                     staticClass:
-                                      "position-absolute btn btn-warning"
+                                      "font-weight-bold position-absolute btn btn-danger"
                                   },
                                   [_vm._v(_vm._s(_vm.restaurant.name))]
                                 ),
