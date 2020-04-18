@@ -1,0 +1,190 @@
+<template>
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="restaurant_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Restaurant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <form @submit.prevent="create_restaurant()"  data-vv-scope="validate_add_form">
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Name<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="restaurant.name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.name')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.name')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="location">Location<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required'" v-model="restaurant.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.location')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.location')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required|max:10|digits:10'" v-model="restaurant.mobile_no" name="mobile" class="form-control" id="mobile" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.mobile')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.mobile')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required|max:45|email'" v-model="restaurant.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.email')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.email')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Opening Hour<span class="text-danger p-1">*</span></label>
+                                                    <VueCtkDateTimePicker id="opening"
+                                                    v-model="restaurant.opening_hour"
+                                                    :color="'coral'"
+                                                    :label="'Select Time'"
+                                                    :only-time="true"
+                                                    :format ="'hh:mm a'"
+                                                    :formatted="'hh:mm a'"
+                                                    >
+                                                   </VueCtkDateTimePicker>
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.closing_hour')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.closing_hour')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Closing Hour<span class="text-danger p-1">*</span></label>
+                                                    <VueCtkDateTimePicker v-validate="'required'" name="closing_hour" id="closing_hour"
+                                                    v-model="restaurant.closing_hour"
+                                                    :color="'coral'"
+                                                    :label="'Select Time'"
+                                                    :only-time="true"
+                                                    :format ="'hh:mm a'"
+                                                    :formatted="'hh:mm a'"
+                                                    >
+                                                   </VueCtkDateTimePicker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="instagram">Instagram <small class="text-muted">(optional)</small></label>
+                                                <input type="text" v-validate="'max:50|url'" v-model="restaurant.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram Page">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.instagram')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.instagram')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" >
+                                            <div class="form-group">
+                                                <label for="facebook">Facebook <small class="text-muted">(optional)</small></label>
+                                                <input type="text" v-validate="'max:50|url'" v-model="restaurant.facebook" name="facebook" class="form-control" id="facebook" aria-describedby="emailHelp" placeholder="Facebook Link">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.facebook')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.facebook')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" >
+                                            <div class="form-group">
+                                                <label for="website">Website <small class="text-muted">(optional)</small></label>
+                                                <input type="text" v-validate="'max:50|url'" v-model="restaurant.website" name="website" class="form-control" id="website" aria-describedby="emailHelp" placeholder="Website Address">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.website')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.website')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6" >
+                                            <div class="form-group">
+                                                <label for="website">Address <small class="text-muted">(optional)</small></label>
+                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="restaurant.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Enter Address | less than 250 word" ></textarea>
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.address')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.address')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" >
+                                            <div class="form-group">
+                                                <label for="website">Description <small class="text-muted">(optional)</small></label>
+                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="restaurant.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_add_form.description')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_add_form.description')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger btn-md" placeholder="Write your comment">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+// Veevalidate
+import { Validator } from 'vee-validate';
+
+export default {
+    data(){
+        return {
+            // Restaurant Object
+            restaurant:{},
+
+        }
+    },
+    /**
+     * Methods
+     * Create
+     *  */ 
+    methods:{
+        // Create Restauratn
+        create_restaurant(){
+            if(this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null){
+                alert("Please enter the opening or closing hour")
+            }else{
+                this.$validator.validateAll('validate_add_form').then((result) => {
+                    // post
+                    axios.post('/api/restaurant',this.restaurant,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                        console.log(response);
+                    })
+                })
+            }
+        }
+    },
+    mounted(){
+    }
+}
+</script>

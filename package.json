@@ -32,6 +32,7 @@
         "vee-validate": "^2.2.15",
         "vue-better-google-places-autocomplete": "^1.1.0",
         "vue-ctk-date-time-picker": "^2.4.0",
+        "vue-headful": "^2.1.0",
         "vue-lazy-images": "^1.4.6",
         "vue-loading-overlay": "^3.3.2",
         "vue-progressive-image": "^3.2.0",

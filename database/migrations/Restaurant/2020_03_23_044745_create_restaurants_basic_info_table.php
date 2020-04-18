@@ -20,7 +20,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('banner',80);
             $table->decimal('rate',5,1);
             $table->string('rate_color', 15)->nullable();
-            $table->decimal('address',5,1);
+            $table->string('address',250)->nullable();
             $table->decimal('longitude',10,6);
             $table->decimal('latitude',10,6);
             $table->text('location',30);
@@ -32,7 +32,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('facebook',100)->nullable();
             $table->string('website',100)->nullable();
             $table->boolean('status');
-            $table->text('description',225);
+            $table->text('description',225)->nullable();
             $table->timestamps();
         });
     }

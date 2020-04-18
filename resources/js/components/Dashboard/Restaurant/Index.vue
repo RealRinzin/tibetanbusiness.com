@@ -5,7 +5,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
-                <button class="btn btn-info btn-md my-3">Add New Restaurant</button>
+                <button class="btn btn-info btn-md my-3" @click="add_restaurant()">Add New Restaurant</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -44,6 +44,7 @@
                     </tbody>
                 </table>
             </div>
+            <dashboard-restaurant-add></dashboard-restaurant-add>
         </div>
     </div>
 </template>
@@ -92,6 +93,15 @@ export default {
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
                 });
+        },
+        /**
+         * ADD
+         * Restaurant
+         *  */ 
+        add_restaurant(){
+            $("#restaurant_add_modal").modal("show");  
+            console.log("add");
+                      
         },
         /**
          * DELETE

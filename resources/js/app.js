@@ -7,6 +7,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+/**
+ * 
+ * Social Sharing
+ *  */  
+var SocialSharing = require("vue-social-sharing");
+Vue.use(SocialSharing);
 
 /**
  * 
@@ -15,8 +21,17 @@ window.Vue = require('vue');
  *  */ 
 import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
 import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
-
 Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
+
+/**
+ * 
+ * Meta Description
+ * 
+ *  */ 
+import Vue from "vue";
+import vueHeadful from "vue-headful";
+Vue.component("vue-headful", vueHeadful);
+
 
 /**
  * Lazy loading 
@@ -126,6 +141,7 @@ Vue.component('dashboard-restaurant-overview', require('./components/Dashboard/R
 Vue.component('dashboard-restaurant-menu-photo', require('./components/Dashboard/Restaurant/MenuPhoto.vue').default);
 Vue.component('dashboard-restaurant-food-photo', require('./components/Dashboard/Restaurant/FoodPhoto.vue').default);
 Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Restaurant/Comment.vue').default);
+Vue.component('dashboard-restaurant-add', require('./components/Dashboard/Restaurant/AddNew.vue').default);
 // Vue.component('test-vue', require('./components/TestVue.vue').default);
 
 

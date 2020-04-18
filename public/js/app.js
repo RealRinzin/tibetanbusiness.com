@@ -1899,6 +1899,208 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// Veevalidate
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      // Restaurant Object
+      restaurant: {}
+    };
+  },
+
+  /**
+   * Methods
+   * Create
+   *  */
+  methods: {
+    // Create Restauratn
+    create_restaurant: function create_restaurant() {
+      var _this = this;
+
+      if (this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null) {
+        alert("Please enter the opening or closing hour");
+      } else {
+        this.$validator.validateAll('validate_add_form').then(function (result) {
+          // post
+          axios.post('/api/restaurant', _this.restaurant, {
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+          }).then(function (response) {
+            console.log(response);
+          });
+        });
+      }
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/Comment.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Restaurant/Comment.vue?vue&type=script&lang=js& ***!
@@ -2208,6 +2410,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Import component
  // Import stylesheet
 
@@ -2261,6 +2464,15 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: localStorage.getItem("token")
         }
       }).then(function (response) {});
+    },
+
+    /**
+     * ADD
+     * Restaurant
+     *  */
+    add_restaurant: function add_restaurant() {
+      $("#restaurant_add_modal").modal("show");
+      console.log("add");
     },
 
     /**
@@ -3803,6 +4015,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Import component
  // Import stylesheet
 
@@ -3814,6 +4037,7 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   data: function data() {
     return {
+      title: 'Tenzin rinzin',
       rating: 0,
       // Loading
       loading: false,
@@ -8659,6 +8883,149 @@ function toComment(sourceMap) {
 	return '/*# ' + data + ' */';
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/headful/dist/headful.js":
+/*!**********************************************!*\
+  !*** ./node_modules/headful/dist/headful.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = headful;
+
+
+var conf = {
+    debug: false
+};
+
+var propertySetters = {
+    html: function html(obj) {
+        obj && Object.keys(obj).forEach(function (selector) {
+            return setRootElementAttributes(selector, obj[selector]);
+        });
+    },
+    head: function head(obj) {
+        obj && Object.keys(obj).forEach(function (selector) {
+            return setHeadElementAttributes(selector, obj[selector]);
+        });
+    },
+    title: function title(val) {
+        document.title = isRemoveValue(val) ? '' : val;
+        setMetaContent('itemprop="name"', val);
+        setMetaContent('property="og:title"', val);
+        setMetaContent('name="twitter:title"', val);
+    },
+    description: function description(val) {
+        setMetaContent('name="description"', val);
+        setMetaContent('itemprop="description"', val);
+        setMetaContent('property="og:description"', val);
+        setMetaContent('name="twitter:description"', val);
+    },
+    keywords: function keywords(val) {
+        setMetaContent('name="keywords"', Array.isArray(val) ? val.join(', ') : val);
+    },
+    image: function image(val) {
+        setMetaContent('itemprop="image"', val);
+        setMetaContent('property="og:image"', val);
+        setMetaContent('name="twitter:image"', val);
+    },
+    lang: function lang(val, props) {
+        setRootElementAttributes('html', { lang: val });
+        noProp(props, this.ogLocale) && setOgLocaleIfValid(val);
+    },
+    ogLocale: function ogLocale(val) {
+        setMetaContent('property="og:locale"', val);
+    },
+    url: function url(val) {
+        setHeadElementAttributes('link[rel="canonical"]', { href: val });
+        setMetaContent('property="og:url"', val);
+        setMetaContent('name="twitter:url"', val);
+    }
+};
+
+function headful(props, userConf) {
+    Object.assign(conf, userConf);
+    Object.keys(props).forEach(function (prop) {
+        if (!propertySetters.hasOwnProperty(prop)) {
+            throw new Error('Headful: Property \'' + prop + '\' is unknown.');
+        }
+        propertySetters[prop](props[prop], props);
+    });
+}
+
+headful.props = propertySetters;
+
+/**
+ * Tests whether the given `props` object contains a property with the name of `propNameOrFunction`.
+ */
+function noProp(props, propNameOrFunction) {
+    if (!props) {
+        throw new Error('Headful: You must pass all declared props when you use headful.props.x() calls.');
+    }
+    var propName = typeof propNameOrFunction === 'function' ? propNameOrFunction.name : propNameOrFunction;
+    return !props.hasOwnProperty(propName);
+}
+
+function setMetaContent(attr, val) {
+    setHeadElementAttributes('meta[' + attr + ']', { content: val });
+}
+
+function setRootElementAttributes(selector, attributes) {
+    setElementAttributes(getElement(document, selector), attributes);
+}
+
+function setHeadElementAttributes(selector, attributes) {
+    setElementAttributes(getElement(document.head, selector), attributes);
+}
+
+function setElementAttributes(element, attributes) {
+    if (element) {
+        Object.keys(attributes).forEach(function (attrName) {
+            if (isRemoveValue(attributes[attrName])) {
+                element.removeAttribute(attrName);
+            } else {
+                element.setAttribute(attrName, attributes[attrName]);
+            }
+        });
+    }
+}
+
+function getElement(parent, selector) {
+    var element = parent.querySelector(selector);
+    if (!element && conf.debug) {
+        console.error('Headful: Element \'' + selector + '\' was not found.');
+    }
+    return element;
+}
+
+function setOgLocaleIfValid(locale) {
+    if (isRemoveValue(locale)) {
+        propertySetters.ogLocale(locale);
+    } else if (locale.match(/^[a-z]{2}-[a-z]{2}$/i)) {
+        var _locale$split = locale.split('-'),
+            _locale$split2 = _slicedToArray(_locale$split, 2),
+            language = _locale$split2[0],
+            region = _locale$split2[1];
+
+        var ogLocale = language + '_' + region.toUpperCase();
+        propertySetters.ogLocale(ogLocale);
+    }
+}
+
+function isRemoveValue(val) {
+    return val === undefined || val === null;
+}
 
 /***/ }),
 
@@ -79051,6 +79418,935 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-headful/dist/vue-headful.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-headful/dist/vue-headful.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _headful = __webpack_require__(/*! headful */ "./node_modules/headful/dist/headful.js");
+
+var _headful2 = _interopRequireDefault(_headful);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var handler = function handler(props) {
+    return (0, _headful2.default)(getPassedProps(props));
+};
+
+exports.default = {
+    name: 'vue-headful',
+    props: Object.keys(_headful2.default.props),
+    watch: {
+        '$props': {
+            handler: handler,
+            deep: true,
+            immediate: true
+        }
+    },
+    activated: function activated() {
+        // required for keep-alive components https://vuejs.org/v2/api/#keep-alive
+        handler(this.$props);
+    },
+    render: function render() {}
+};
+
+
+function getPassedProps(props) {
+    return Object.keys(props).reduce(function (passedProps, propKey) {
+        if (props[propKey] !== undefined) {
+            passedProps[propKey] = props[propKey];
+        }
+        return passedProps;
+    }, {});
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "restaurant_add_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLongTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-md", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { "data-vv-scope": "validate_add_form" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.create_restaurant()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "container-fluid" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.name,
+                                  expression: "restaurant.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                id: "name",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.restaurant.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.name")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.name"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(2),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required",
+                                  expression: "'required'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.location,
+                                  expression: "restaurant.location"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "location",
+                                id: "location",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Location"
+                              },
+                              domProps: { value: _vm.restaurant.location },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "location",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.location")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.location"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|max:10|digits:10",
+                                  expression: "'required|max:10|digits:10'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.mobile_no,
+                                  expression: "restaurant.mobile_no"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "mobile",
+                                id: "mobile",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Mobile No"
+                              },
+                              domProps: { value: _vm.restaurant.mobile_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "mobile_no",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.mobile")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.mobile"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|max:45|email",
+                                  expression: "'required|max:45|email'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.email,
+                                  expression: "restaurant.email"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "email",
+                                id: "email",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Email"
+                              },
+                              domProps: { value: _vm.restaurant.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.email")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.email"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _c("VueCtkDateTimePicker", {
+                                attrs: {
+                                  id: "opening",
+                                  color: "coral",
+                                  label: "Select Time",
+                                  "only-time": true,
+                                  format: "hh:mm a",
+                                  formatted: "hh:mm a"
+                                },
+                                model: {
+                                  value: _vm.restaurant.opening_hour,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.restaurant,
+                                      "opening_hour",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "restaurant.opening_hour"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "valid-feedback" }),
+                              _vm._v(" "),
+                              _vm.errors.has("validate_add_form.closing_hour")
+                                ? _c(
+                                    "div",
+                                    { staticClass: "invalid-feedback" },
+                                    _vm._l(
+                                      _vm.errors.collect(
+                                        "validate_add_form.closing_hour"
+                                      ),
+                                      function(error) {
+                                        return _c("span", [
+                                          _vm._v(_vm._s(error))
+                                        ])
+                                      }
+                                    ),
+                                    0
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _vm._m(6),
+                              _vm._v(" "),
+                              _c("VueCtkDateTimePicker", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
+                                attrs: {
+                                  name: "closing_hour",
+                                  id: "closing_hour",
+                                  color: "coral",
+                                  label: "Select Time",
+                                  "only-time": true,
+                                  format: "hh:mm a",
+                                  formatted: "hh:mm a"
+                                },
+                                model: {
+                                  value: _vm.restaurant.closing_hour,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.restaurant,
+                                      "closing_hour",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "restaurant.closing_hour"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(7),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.instagram,
+                                  expression: "restaurant.instagram"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "instagram",
+                                id: "instagram",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Instagram Page"
+                              },
+                              domProps: { value: _vm.restaurant.instagram },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "instagram",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.instagram")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.instagram"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(8),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.facebook,
+                                  expression: "restaurant.facebook"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "facebook",
+                                id: "facebook",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Facebook Link"
+                              },
+                              domProps: { value: _vm.restaurant.facebook },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "facebook",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.facebook")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.facebook"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(9),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.website,
+                                  expression: "restaurant.website"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "website",
+                                id: "website",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Website Address"
+                              },
+                              domProps: { value: _vm.restaurant.website },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "website",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.website")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.website"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(10),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:150",
+                                  expression: "'max:150'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.address,
+                                  expression: "restaurant.address"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "4",
+                                cols: "50",
+                                name: "address",
+                                id: "address",
+                                "aria-describedby": "emailHelp",
+                                placeholder:
+                                  "Enter Address | less than 250 word"
+                              },
+                              domProps: { value: _vm.restaurant.address },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "address",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.address")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.address"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(11),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:150",
+                                  expression: "'max:150'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.restaurant.description,
+                                  expression: "restaurant.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "4",
+                                cols: "50",
+                                name: "description",
+                                id: "description",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Description | less than 250 word"
+                              },
+                              domProps: { value: _vm.restaurant.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.restaurant,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("validate_add_form.description")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "validate_add_form.description"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(12)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Add Restaurant")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "name" } }, [
+      _vm._v("Name"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "location" } }, [
+      _vm._v("Location"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "mobile" } }, [
+      _vm._v("Mobile No"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+      _vm._v("Email"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+      _vm._v("Opening Hour"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+      _vm._v("Closing Hour"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "instagram" } }, [
+      _vm._v("Instagram "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "facebook" } }, [
+      _vm._v("Facebook "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "website" } }, [
+      _vm._v("Website "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "website" } }, [
+      _vm._v("Address "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "website" } }, [
+      _vm._v("Description "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-md",
+          attrs: { type: "submit", placeholder: "Write your comment" }
+        },
+        [_vm._v("Post")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/Comment.vue?vue&type=template&id=4990a25a&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Restaurant/Comment.vue?vue&type=template&id=4990a25a& ***!
@@ -79542,170 +80838,189 @@ var render = function() {
           ],
           1
         )
-      : _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12 mx-auto" }, [
-            _c("button", { staticClass: "btn btn-info btn-md my-3" }, [
-              _vm._v("Add New Restaurant")
+      : _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c("div", { staticClass: "col-md-12 mx-auto" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info btn-md my-3",
+                  on: {
+                    click: function($event) {
+                      return _vm.add_restaurant()
+                    }
+                  }
+                },
+                [_vm._v("Add New Restaurant")]
+              ),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-striped table-responsive" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.restaurants, function(restaurant, index) {
+                      return _c("tr", [
+                        _c("th", { attrs: { scope: "row" } }, [
+                          _vm._v(_vm._s(index + 1))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          restaurant.banner !== ""
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "/restaurant/" + restaurant.id
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass: "img-circle",
+                                    staticStyle: {
+                                      height: "50px",
+                                      width: "50px"
+                                    },
+                                    attrs: {
+                                      src: "/img/" + restaurant.banner,
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              )
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(restaurant.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(restaurant.address))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(restaurant.location))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(restaurant.email))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(restaurant.mobile_no))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c("timeago", {
+                              attrs: { datetime: restaurant.created_at }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "switch",
+                              on: {
+                                click: function($event) {
+                                  return _vm.status_update(restaurant.id, index)
+                                }
+                              }
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: restaurant.status,
+                                    expression: "restaurant.status"
+                                  }
+                                ],
+                                attrs: { type: "checkbox" },
+                                domProps: {
+                                  checked: Array.isArray(restaurant.status)
+                                    ? _vm._i(restaurant.status, null) > -1
+                                    : restaurant.status
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = restaurant.status,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            restaurant,
+                                            "status",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            restaurant,
+                                            "status",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(restaurant, "status", $$c)
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "slider round" })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-info",
+                              attrs: {
+                                href:
+                                  "/dashboard/restaurant/edit/id=" +
+                                  restaurant.id
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-pencil-alt " })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.destory(restaurant.id, index)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-trash-alt " })]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table table-striped table-responsive" },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.restaurants, function(restaurant, index) {
-                    return _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [
-                        _vm._v(_vm._s(index + 1))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        restaurant.banner !== ""
-                          ? _c(
-                              "a",
-                              {
-                                attrs: { href: "/restaurant/" + restaurant.id }
-                              },
-                              [
-                                _c("img", {
-                                  staticClass: "img-circle",
-                                  staticStyle: {
-                                    height: "50px",
-                                    width: "50px"
-                                  },
-                                  attrs: {
-                                    src: "/img/" + restaurant.banner,
-                                    alt: ""
-                                  }
-                                })
-                              ]
-                            )
-                          : _vm._e()
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(restaurant.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(restaurant.address))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(restaurant.location))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(restaurant.email))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(restaurant.mobile_no))]),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c("timeago", {
-                            attrs: { datetime: restaurant.created_at }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "switch",
-                            on: {
-                              click: function($event) {
-                                return _vm.status_update(restaurant.id, index)
-                              }
-                            }
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: restaurant.status,
-                                  expression: "restaurant.status"
-                                }
-                              ],
-                              attrs: { type: "checkbox" },
-                              domProps: {
-                                checked: Array.isArray(restaurant.status)
-                                  ? _vm._i(restaurant.status, null) > -1
-                                  : restaurant.status
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = restaurant.status,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          restaurant,
-                                          "status",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          restaurant,
-                                          "status",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(restaurant, "status", $$c)
-                                  }
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "slider round" })
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "btn btn-sm btn-info",
-                            attrs: {
-                              href:
-                                "/dashboard/restaurant/edit/id=" + restaurant.id
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-pencil-alt " })]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.destory(restaurant.id, index)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-trash-alt " })]
-                        )
-                      ])
-                    ])
-                  }),
-                  0
-                )
-              ]
-            )
-          ])
-        ])
+            _c("dashboard-restaurant-add")
+          ],
+          1
+        )
   ])
 }
 var staticRenderFns = [
@@ -83001,370 +84316,468 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticStyle: { "min-height": "80vh" }, attrs: { id: "restaurant" } },
     [
-      !_vm.loading
-        ? _c(
-            "div",
-            [
-              _c("loading", {
-                attrs: { active: _vm.isLoading },
-                on: {
-                  "update:active": function($event) {
-                    _vm.isLoading = $event
-                  }
-                }
-              })
-            ],
-            1
-          )
-        : _c("div", [
-            _c("div", { staticClass: "container py-4" }, [
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-8 col-sm-12" },
-                  [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "banner",
-                              style: {
-                                backgroundImage:
-                                  "url(/img/" + _vm.restaurant.banner + ")"
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "overlay" }, [
-                                _c(
-                                  "h6",
-                                  {
-                                    staticClass:
-                                      "font-weight-bold position-absolute btn btn-danger"
-                                  },
-                                  [_vm._v(_vm._s(_vm.restaurant.name))]
-                                ),
-                                _vm._v(" "),
-                                _c("ul", [
-                                  _c("li", [
+      _c("vue-headful", {
+        attrs: {
+          title: _vm.restaurant.name,
+          description: _vm.restaurant.location,
+          keywords: "keyword",
+          image: _vm.restaurant.banner,
+          lang: "langauge",
+          ogLocale: "",
+          url: "tibetanbusiness.com"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticStyle: { "min-height": "80vh" }, attrs: { id: "restaurant" } },
+        [
+          !_vm.loading
+            ? _c(
+                "div",
+                [
+                  _c("loading", {
+                    attrs: { active: _vm.isLoading },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isLoading = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            : _c("div", [
+                _c("div", { staticClass: "container py-4" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-8 col-sm-12" },
+                      [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "banner",
+                                  style: {
+                                    backgroundImage:
+                                      "url(/img/" + _vm.restaurant.banner + ")"
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "overlay" }, [
                                     _c(
-                                      "a",
+                                      "h6",
                                       {
                                         staticClass:
-                                          "btn-secondary btn text-white"
+                                          "font-weight-bold position-absolute btn btn-danger"
                                       },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-star pr-1 text-warning"
-                                        }),
-                                        _vm._v(_vm._s(_vm.restaurant.rate))
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.restaurant.facebook !== ""
-                                    ? _c("li", [
+                                      [_vm._v(_vm._s(_vm.restaurant.name))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("ul", [
+                                      _c("li", [
                                         _c(
                                           "a",
                                           {
-                                            attrs: {
-                                              href: _vm.restaurant.facebook
-                                            }
+                                            staticClass:
+                                              "btn-secondary btn text-white"
                                           },
                                           [
                                             _c("i", {
                                               staticClass:
-                                                "fab fa-facebook-square fa-2x btn-primary btn"
-                                            })
+                                                "fas fa-star pr-1 text-warning"
+                                            }),
+                                            _vm._v(_vm._s(_vm.restaurant.rate))
                                           ]
                                         )
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.restaurant.website !== ""
-                                    ? _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: {
-                                              href: _vm.restaurant.website
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "fab fa-internet-explorer fa-2x btn-secondary btn"
-                                            })
-                                          ]
-                                        )
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.restaurant.instagram !== ""
-                                    ? _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: {
-                                              href: _vm.restaurant.instagram
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "fab fa-instagram fa-2x btn-danger btn"
-                                            })
-                                          ]
-                                        )
-                                      ])
-                                    : _vm._e()
-                                ])
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("div", { staticClass: "row p-3 overview" }, [
-                            _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                              _c("h6", { staticClass: "text-muted py-1" }, [
-                                _vm._v(
-                                  _vm._s(_vm.restaurant.opening_hour) +
-                                    " - " +
-                                    _vm._s(_vm.restaurant.closing_hour)
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h6", { staticClass: "text-muted py-1" }, [
-                                _vm._v(_vm._s(_vm.restaurant.mobile_no))
-                              ]),
-                              _vm._v(" "),
-                              _c("h6", { staticClass: "text-muted" }, [
-                                _vm._v(_vm._s(_vm.restaurant.location))
-                              ]),
-                              _vm._v(" "),
-                              _vm.restaurant.operation[0]
-                                ? _c("h6", { staticClass: "text-muted pt-1" }, [
-                                    _vm.restaurant.operation[0].monday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Mon")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Mon")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].tuesday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Tues")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Tues")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].wednesday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Wed")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Wed")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].thursday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Thurs")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Thurs")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].friday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Fri")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Fri")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].saturday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Sat")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Sat")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.operation[0].sunday
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-success btn btn-outline-success"
-                                          },
-                                          [_vm._v("Sun")]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "text-danger btn btn-outline-danger"
-                                          },
-                                          [_vm._v("Sun")]
-                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm.restaurant.facebook !== ""
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                attrs: {
+                                                  href: _vm.restaurant.facebook
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fab fa-facebook-square fa-2x btn-primary btn"
+                                                })
+                                              ]
+                                            )
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.restaurant.website !== ""
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                attrs: {
+                                                  href: _vm.restaurant.website
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fab fa-internet-explorer fa-2x btn-secondary btn"
+                                                })
+                                              ]
+                                            )
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.restaurant.instagram !== ""
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                attrs: {
+                                                  href: _vm.restaurant.instagram
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fab fa-instagram fa-2x btn-danger btn"
+                                                })
+                                              ]
+                                            )
+                                          ])
+                                        : _vm._e()
+                                    ])
                                   ])
-                                : _vm._e()
+                                ]
+                              )
                             ]),
                             _vm._v(" "),
-                            _vm.restaurant.facility[0]
-                              ? _c(
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c("div", { staticClass: "row p-3 overview" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-6 col-sm-6" },
+                                  [
+                                    _c(
+                                      "h6",
+                                      { staticClass: "text-muted py-1" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.restaurant.opening_hour) +
+                                            " - " +
+                                            _vm._s(_vm.restaurant.closing_hour)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "h6",
+                                      { staticClass: "text-muted py-1" },
+                                      [_vm._v(_vm._s(_vm.restaurant.mobile_no))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("h6", { staticClass: "text-muted" }, [
+                                      _vm._v(_vm._s(_vm.restaurant.location))
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm.restaurant.operation[0]
+                                      ? _c(
+                                          "h6",
+                                          { staticClass: "text-muted pt-1" },
+                                          [
+                                            _vm.restaurant.operation[0].monday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Mon")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Mon")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0].tuesday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Tues")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Tues")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0]
+                                              .wednesday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Wed")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Wed")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0].thursday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Thurs")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Thurs")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0].friday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Fri")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Fri")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0].saturday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Sat")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Sat")]
+                                                ),
+                                            _vm._v(" "),
+                                            _vm.restaurant.operation[0].sunday
+                                              ? _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-success btn btn-outline-success"
+                                                  },
+                                                  [_vm._v("Sun")]
+                                                )
+                                              : _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "text-danger btn btn-outline-danger"
+                                                  },
+                                                  [_vm._v("Sun")]
+                                                )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.restaurant.facility[0]
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "col-md-3 col-sm-6 facility"
+                                      },
+                                      [
+                                        _c(
+                                          "h6",
+                                          { staticClass: "mb-3 text-muted" },
+                                          [_vm._v("Facilities")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.restaurant.facility[0].home_delivery
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-truck mr-1"
+                                                }),
+                                                _vm._v(" Home Delivery")
+                                              ]
+                                            )
+                                          : _c(
+                                              "p",
+                                              { staticClass: "text-danger" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-truck mr-1"
+                                                }),
+                                                _vm._v(" Home Delivery")
+                                              ]
+                                            ),
+                                        _vm._v(" "),
+                                        _vm.restaurant.facility[0].wifi
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-wifi mr-1"
+                                                }),
+                                                _vm._v(" Wifi")
+                                              ]
+                                            )
+                                          : _c(
+                                              "p",
+                                              { staticClass: "text-danger" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-wifi mr-1"
+                                                }),
+                                                _vm._v(" Wifi")
+                                              ]
+                                            ),
+                                        _vm._v(" "),
+                                        _vm.restaurant.facility[0].card_payment
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fab fa-cc-visa mr-1"
+                                                }),
+                                                _vm._v("Card Payment")
+                                              ]
+                                            )
+                                          : _c(
+                                              "p",
+                                              { staticClass: "text-danger" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fab fa-cc-visa mr-1"
+                                                }),
+                                                _vm._v("Card Payment")
+                                              ]
+                                            ),
+                                        _vm._v(" "),
+                                        _vm.restaurant.facility[0].party_booking
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-glass-cheers mr-1"
+                                                }),
+                                                _vm._v("Party Booking")
+                                              ]
+                                            )
+                                          : _c(
+                                              "p",
+                                              { staticClass: "text-danger" },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-glass-cheers mr-1"
+                                                }),
+                                                _vm._v("Party Booking")
+                                              ]
+                                            ),
+                                        _vm._v(" "),
+                                        _vm.restaurant.facility[0].ac
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-fan mr-1"
+                                                }),
+                                                _vm._v("AC")
+                                              ]
+                                            )
+                                          : _c(
+                                              "p",
+                                              { staticClass: "text-danger" },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-fan mr-1"
+                                                }),
+                                                _vm._v("AC")
+                                              ]
+                                            )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
                                   "div",
                                   { staticClass: "col-md-3 col-sm-6 facility" },
                                   [
                                     _c(
                                       "h6",
                                       { staticClass: "mb-3 text-muted" },
-                                      [_vm._v("Facilities")]
+                                      [_vm._v("More")]
                                     ),
                                     _vm._v(" "),
-                                    _vm.restaurant.facility[0].home_delivery
-                                      ? _c(
-                                          "p",
-                                          { staticClass: "text-success" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-truck mr-1"
-                                            }),
-                                            _vm._v(" Home Delivery")
-                                          ]
-                                        )
-                                      : _c(
-                                          "p",
-                                          { staticClass: "text-danger" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-truck mr-1"
-                                            }),
-                                            _vm._v(" Home Delivery")
-                                          ]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.facility[0].wifi
-                                      ? _c(
-                                          "p",
-                                          { staticClass: "text-success" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-wifi mr-1"
-                                            }),
-                                            _vm._v(" Wifi")
-                                          ]
-                                        )
-                                      : _c(
-                                          "p",
-                                          { staticClass: "text-danger" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-wifi mr-1"
-                                            }),
-                                            _vm._v(" Wifi")
-                                          ]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.facility[0].card_payment
-                                      ? _c(
-                                          "p",
-                                          { staticClass: "text-success" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fab fa-cc-visa mr-1"
-                                            }),
-                                            _vm._v("Card Payment")
-                                          ]
-                                        )
-                                      : _c(
-                                          "p",
-                                          { staticClass: "text-danger" },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fab fa-cc-visa mr-1"
-                                            }),
-                                            _vm._v("Card Payment")
-                                          ]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.restaurant.facility[0].party_booking
+                                    _vm.restaurant.facility[0].roof_top
                                       ? _c(
                                           "p",
                                           { staticClass: "text-success" },
                                           [
                                             _c("i", {
                                               staticClass:
-                                                "fas fa-glass-cheers mr-1"
+                                                "fas fa-building mr-1"
                                             }),
-                                            _vm._v("Party Booking")
+                                            _vm._v("Roof Top")
                                           ]
                                         )
                                       : _c(
@@ -83373,21 +84786,22 @@ var render = function() {
                                           [
                                             _c("i", {
                                               staticClass:
-                                                "fas fa-glass-cheers mr-1"
+                                                "fas fa-building mr-1"
                                             }),
-                                            _vm._v("Party Booking")
+                                            _vm._v("Roof Top")
                                           ]
                                         ),
                                     _vm._v(" "),
-                                    _vm.restaurant.facility[0].ac
+                                    _vm.restaurant.facility[0].veg
                                       ? _c(
                                           "p",
                                           { staticClass: "text-success" },
                                           [
                                             _c("i", {
-                                              staticClass: "fas fa-fan mr-1"
+                                              staticClass:
+                                                "far fa-stop-circle mr-1"
                                             }),
-                                            _vm._v("AC")
+                                            _vm._v("Veg")
                                           ]
                                         )
                                       : _c(
@@ -83395,127 +84809,133 @@ var render = function() {
                                           { staticClass: "text-danger" },
                                           [
                                             _c("i", {
-                                              staticClass: "fas fa-fan mr-1"
+                                              staticClass:
+                                                "far fa-stop-circle mr-1"
                                             }),
-                                            _vm._v("AC")
+                                            _vm._v("Veg")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].none_veg
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "far fa-stop-circle mr-1"
+                                            }),
+                                            _vm._v("Non Veg")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "far fa-stop-circle mr-1"
+                                            }),
+                                            _vm._v("Non Veg")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].parking_lot
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-car mr-1"
+                                            }),
+                                            _vm._v("Parking Lot")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-car mr-1"
+                                            }),
+                                            _vm._v("Parking Lot")
+                                          ]
+                                        ),
+                                    _vm._v(" "),
+                                    _vm.restaurant.facility[0].beverage
+                                      ? _c(
+                                          "p",
+                                          { staticClass: "text-success" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-beer mr-1"
+                                            }),
+                                            _vm._v("Beverage")
+                                          ]
+                                        )
+                                      : _c(
+                                          "p",
+                                          { staticClass: "text-danger" },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-beer mr-1"
+                                            }),
+                                            _vm._v("Beverage")
                                           ]
                                         )
                                   ]
                                 )
-                              : _vm._e(),
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "row p-3" }, [
+                            _vm._m(0),
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "col-md-3 col-sm-6 facility" },
+                              { staticClass: "col-md-6" },
                               [
-                                _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                  _vm._v("More")
-                                ]),
+                                _c("h6", [_vm._v("Location")]),
                                 _vm._v(" "),
-                                _vm.restaurant.facility[0].roof_top
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-building mr-1"
-                                      }),
-                                      _vm._v("Roof Top")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-building mr-1"
-                                      }),
-                                      _vm._v("Roof Top")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.restaurant.facility[0].veg
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Veg")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Veg")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.restaurant.facility[0].none_veg
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Non Veg")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Non Veg")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.restaurant.facility[0].parking_lot
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-car mr-1"
-                                      }),
-                                      _vm._v("Parking Lot")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-car mr-1"
-                                      }),
-                                      _vm._v("Parking Lot")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.restaurant.facility[0].beverage
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-beer mr-1"
-                                      }),
-                                      _vm._v("Beverage")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-beer mr-1"
-                                      }),
-                                      _vm._v("Beverage")
-                                    ])
-                              ]
+                                _c("geo-map", {
+                                  attrs: {
+                                    longitude: _vm.restaurant.longitude,
+                                    latitude: _vm.restaurant.latitude
+                                  }
+                                })
+                              ],
+                              1
                             )
                           ])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "row p-3" }, [
-                        _vm._m(0),
+                        ]),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col-md-6" },
+                          { staticClass: "card" },
                           [
-                            _c("h6", [_vm._v("Location")]),
-                            _vm._v(" "),
-                            _c("geo-map", {
-                              attrs: {
-                                longitude: _vm.restaurant.longitude,
-                                latitude: _vm.restaurant.latitude
-                              }
+                            _c("menu-photo", {
+                              attrs: { menu_photos: _vm.restaurant.menu_photos }
                             })
                           ],
                           1
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "card" },
-                      [
-                        _c("menu-photo", {
-                          attrs: { menu_photos: _vm.restaurant.menu_photos }
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "card" },
+                          [
+                            _c("food-photo", {
+                              attrs: { food_photos: _vm.restaurant.food_photos }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("restaurant-comment", {
+                          attrs: { restaurant: _vm.restaurant.id }
                         })
                       ],
                       1
@@ -83523,32 +84943,21 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: "card" },
+                      { staticClass: "col-md-4 col-sm-12" },
                       [
-                        _c("food-photo", {
-                          attrs: { food_photos: _vm.restaurant.food_photos }
+                        _c("restaurant-sidebar", {
+                          attrs: { rating: _vm.rating }
                         })
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("restaurant-comment", {
-                      attrs: { restaurant: _vm.restaurant.id }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-4 col-sm-12" },
-                  [_c("restaurant-sidebar", { attrs: { rating: _vm.rating } })],
-                  1
-                )
+                    )
+                  ])
+                ])
               ])
-            ])
-          ])
-    ]
+        ]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -83986,6 +85395,419 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(t,e){ true?module.exports=e():undefined}("undefined"!=typeof self?self:this,(function(){return function(t){var e={};function i(n){if(e[n])return e[n].exports;var r=e[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,i),r.l=!0,r.exports}return i.m=t,i.c=e,i.d=function(t,e,n){i.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},i.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},i.t=function(t,e){if(1&e&&(t=i(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(i.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)i.d(n,r,function(e){return t[e]}.bind(null,r));return n},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},i.p="",i(i.s=1)}([function(t,e,i){},function(t,e,i){"use strict";i.r(e);var n="undefined"!=typeof window?window.HTMLElement:Object,r={mounted:function(){document.addEventListener("focusin",this.focusIn)},methods:{focusIn:function(t){if(this.isActive&&t.target!==this.$el&&!this.$el.contains(t.target)){var e=this.container?this.container:this.isFullPage?null:this.$el.parentElement;(this.isFullPage||e&&e.contains(t.target))&&(t.preventDefault(),this.$el.focus())}}},beforeDestroy:function(){document.removeEventListener("focusin",this.focusIn)}};function a(t,e,i,n,r,a,o,s){var u,l="function"==typeof t?t.options:t;if(e&&(l.render=e,l.staticRenderFns=i,l._compiled=!0),n&&(l.functional=!0),a&&(l._scopeId="data-v-"+a),o?(u=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),r&&r.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(o)},l._ssrRegister=u):r&&(u=s?function(){r.call(this,this.$root.$options.shadowRoot)}:r),u)if(l.functional){l._injectStyles=u;var c=l.render;l.render=function(t,e){return u.call(e),c(t,e)}}else{var d=l.beforeCreate;l.beforeCreate=d?[].concat(d,u):[u]}return{exports:t,options:l}}var o=a({name:"spinner",props:{color:{type:String,default:"#000"},height:{type:Number,default:64},width:{type:Number,default:64}}},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{viewBox:"0 0 38 38",xmlns:"http://www.w3.org/2000/svg",width:this.width,height:this.height,stroke:this.color}},[e("g",{attrs:{fill:"none","fill-rule":"evenodd"}},[e("g",{attrs:{transform:"translate(1 1)","stroke-width":"2"}},[e("circle",{attrs:{"stroke-opacity":".25",cx:"18",cy:"18",r:"18"}}),e("path",{attrs:{d:"M36 18c0-9.94-8.06-18-18-18"}},[e("animateTransform",{attrs:{attributeName:"transform",type:"rotate",from:"0 18 18",to:"360 18 18",dur:"0.8s",repeatCount:"indefinite"}})],1)])])])}),[],!1,null,null,null).exports,s=a({name:"dots",props:{color:{type:String,default:"#000"},height:{type:Number,default:240},width:{type:Number,default:60}}},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{viewBox:"0 0 120 30",xmlns:"http://www.w3.org/2000/svg",fill:this.color,width:this.width,height:this.height}},[e("circle",{attrs:{cx:"15",cy:"15",r:"15"}},[e("animate",{attrs:{attributeName:"r",from:"15",to:"15",begin:"0s",dur:"0.8s",values:"15;9;15",calcMode:"linear",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"fill-opacity",from:"1",to:"1",begin:"0s",dur:"0.8s",values:"1;.5;1",calcMode:"linear",repeatCount:"indefinite"}})]),e("circle",{attrs:{cx:"60",cy:"15",r:"9","fill-opacity":"0.3"}},[e("animate",{attrs:{attributeName:"r",from:"9",to:"9",begin:"0s",dur:"0.8s",values:"9;15;9",calcMode:"linear",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"fill-opacity",from:"0.5",to:"0.5",begin:"0s",dur:"0.8s",values:".5;1;.5",calcMode:"linear",repeatCount:"indefinite"}})]),e("circle",{attrs:{cx:"105",cy:"15",r:"15"}},[e("animate",{attrs:{attributeName:"r",from:"15",to:"15",begin:"0s",dur:"0.8s",values:"15;9;15",calcMode:"linear",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"fill-opacity",from:"1",to:"1",begin:"0s",dur:"0.8s",values:"1;.5;1",calcMode:"linear",repeatCount:"indefinite"}})])])}),[],!1,null,null,null).exports,u=a({name:"bars",props:{color:{type:String,default:"#000"},height:{type:Number,default:40},width:{type:Number,default:40}}},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 30 30",height:this.height,width:this.width,fill:this.color}},[e("rect",{attrs:{x:"0",y:"13",width:"4",height:"5"}},[e("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0s",dur:"0.6s",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0s",dur:"0.6s",repeatCount:"indefinite"}})]),e("rect",{attrs:{x:"10",y:"13",width:"4",height:"5"}},[e("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0.15s",dur:"0.6s",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0.15s",dur:"0.6s",repeatCount:"indefinite"}})]),e("rect",{attrs:{x:"20",y:"13",width:"4",height:"5"}},[e("animate",{attrs:{attributeName:"height",attributeType:"XML",values:"5;21;5",begin:"0.3s",dur:"0.6s",repeatCount:"indefinite"}}),e("animate",{attrs:{attributeName:"y",attributeType:"XML",values:"13; 5; 13",begin:"0.3s",dur:"0.6s",repeatCount:"indefinite"}})])])}),[],!1,null,null,null).exports,l=a({name:"vue-loading",mixins:[r],props:{active:Boolean,programmatic:Boolean,container:[Object,Function,n],isFullPage:{type:Boolean,default:!0},transition:{type:String,default:"fade"},canCancel:Boolean,onCancel:{type:Function,default:function(){}},color:String,backgroundColor:String,opacity:Number,width:Number,height:Number,zIndex:Number,loader:{type:String,default:"spinner"}},data:function(){return{isActive:this.active}},components:{Spinner:o,Dots:s,Bars:u},beforeMount:function(){this.programmatic&&(this.container?(this.isFullPage=!1,this.container.appendChild(this.$el)):document.body.appendChild(this.$el))},mounted:function(){this.programmatic&&(this.isActive=!0),document.addEventListener("keyup",this.keyPress)},methods:{cancel:function(){this.canCancel&&this.isActive&&(this.hide(),this.onCancel.apply(null,arguments))},hide:function(){var t=this;this.$emit("hide"),this.$emit("update:active",!1),this.programmatic&&(this.isActive=!1,setTimeout((function(){var e;t.$destroy(),void 0!==(e=t.$el).remove?e.remove():e.parentNode.removeChild(e)}),150))},keyPress:function(t){27===t.keyCode&&this.cancel()}},watch:{active:function(t){this.isActive=t}},beforeDestroy:function(){document.removeEventListener("keyup",this.keyPress)}},(function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("transition",{attrs:{name:t.transition}},[i("div",{directives:[{name:"show",rawName:"v-show",value:t.isActive,expression:"isActive"}],staticClass:"vld-overlay is-active",class:{"is-full-page":t.isFullPage},style:{zIndex:t.zIndex},attrs:{tabindex:"0","aria-busy":t.isActive,"aria-label":"Loading"}},[i("div",{staticClass:"vld-background",style:{background:t.backgroundColor,opacity:t.opacity},on:{click:function(e){return e.preventDefault(),t.cancel(e)}}}),i("div",{staticClass:"vld-icon"},[t._t("before"),t._t("default",[i(t.loader,{tag:"component",attrs:{color:t.color,width:t.width,height:t.height}})]),t._t("after")],2)])])}),[],!1,null,null,null).exports,c=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};return{show:function(){var n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:e,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:i,a={programmatic:!0},o=Object.assign({},e,n,a),s=new(t.extend(l))({el:document.createElement("div"),propsData:o}),u=Object.assign({},i,r);return Object.keys(u).map((function(t){s.$slots[t]=u[t]})),s}}};i(0);l.install=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=c(t,e,i);t.$loading=n,t.prototype.$loading=n};e.default=l}]).default}));
+
+/***/ }),
+
+/***/ "./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * vue-social-sharing v2.4.7 
+ * (c) 2019 nicolasbeauvais
+ * Released under the MIT License.
+ */
+
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var Vue = _interopDefault(__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"));
+
+var SocialSharingNetwork = {
+  functional: true,
+
+  props: {
+    network: {
+      type: String,
+      default: ''
+    }
+  },
+
+  render: function (createElement, context) {
+    var network = context.parent._data.baseNetworks[context.props.network];
+
+    if (!network) {
+      return console.warn(("Network " + (context.props.network) + " does not exist"));
+    }
+
+    return createElement(context.parent.networkTag, {
+      staticClass: context.data.staticClass || null,
+      staticStyle: context.data.staticStyle || null,
+      class: context.data.class || null,
+      style: context.data.style || null,
+      attrs: {
+        id: context.data.attrs.id || null,
+        tabindex: context.data.attrs.tabindex || 0,
+        'data-link': network.type === 'popup'
+          ? '#share-' + context.props.network
+          : context.parent.createSharingUrl(context.props.network),
+        'data-action': network.type === 'popup' ? null : network.action
+      },
+      on: {
+        click: network.type === 'popup' ? function () {
+          context.parent.share(context.props.network);
+        } : function () {
+          context.parent.touch(context.props.network);
+        }
+      }
+    }, context.children);
+  }
+};
+
+var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
+var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote&hashtag=@hashtags","type":"popup"};
+var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
+var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
+var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
+var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
+var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
+var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
+var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
+var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
+var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
+var viber = {"sharer":"viber://forward?text=@url @description","type":"direct"};
+var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
+var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
+var whatsapp = {"sharer":"https://api.whatsapp.com/send?text=@description%0D%0A@url","type":"popup","action":"share/whatsapp/share"};
+var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
+var sms_ios = {"sharer":"sms:;body=@url%20@description","type":"direct"};
+var BaseNetworks = {
+	email: email,
+	facebook: facebook,
+	googleplus: googleplus,
+	line: line,
+	linkedin: linkedin,
+	odnoklassniki: odnoklassniki,
+	pinterest: pinterest,
+	reddit: reddit,
+	skype: skype,
+	telegram: telegram,
+	twitter: twitter,
+	viber: viber,
+	vk: vk,
+	weibo: weibo,
+	whatsapp: whatsapp,
+	sms: sms,
+	sms_ios: sms_ios
+};
+
+var inBrowser = typeof window !== 'undefined';
+var $window = inBrowser ? window : null;
+
+var SocialSharing = {
+  props: {
+    /**
+     * URL to share.
+     * @var string
+     */
+    url: {
+      type: String,
+      default: inBrowser ? window.location.href : ''
+    },
+
+    /**
+     * Sharing title, if available by network.
+     * @var string
+     */
+    title: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Sharing description, if available by network.
+     * @var string
+     */
+    description: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Facebook quote
+     * @var string
+     */
+    quote: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter hashtags
+     * @var string
+     */
+    hashtags: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter user.
+     * @var string
+     */
+    twitterUser: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Flag that indicates if counts should be retrieved.
+     * - NOT WORKING IN CURRENT VERSION
+     * @var mixed
+     */
+    withCounts: {
+      type: [String, Boolean],
+      default: false
+    },
+
+    /**
+     * Google plus key.
+     * @var string
+     */
+    googleKey: {
+      type: String,
+      default: undefined
+    },
+
+    /**
+     * Pinterest Media URL.
+     * Specifies the image/media to be used.
+     */
+    media: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Network sub component tag.
+     * Default to span tag
+     */
+    networkTag: {
+      type: String,
+      default: 'span'
+    },
+
+    /**
+     * Additional or overridden networks.
+     * Default to BaseNetworks
+     */
+    networks: {
+      type: Object,
+      default: function () {
+        return {};
+      }
+    }
+  },
+
+  data: function data () {
+    return {
+      /**
+       * Available sharing networks.
+       * @param object
+       */
+      baseNetworks: BaseNetworks,
+
+      /**
+       * Popup settings.
+       * @param object
+       */
+      popup: {
+        status: false,
+        resizable: true,
+        toolbar: false,
+        menubar: false,
+        scrollbars: false,
+        location: false,
+        directories: false,
+        width: 626,
+        height: 436,
+        top: 0,
+        left: 0,
+        window: undefined,
+        interval: null
+      }
+    };
+  },
+
+  methods: {
+    /**
+     * Returns generated sharer url.
+     *
+     * @param network Social network key.
+     */
+    createSharingUrl: function createSharingUrl (network) {
+      var ua = navigator.userAgent.toLowerCase();
+
+      /**
+       * On IOS, SMS sharing link need a special formating
+       * Source: https://weblog.west-wind.com/posts/2013/Oct/09/Prefilling-an-SMS-on-Mobile-Devices-with-the-sms-Uri-Scheme#Body-only
+        */
+      if (network === 'sms' && (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1)) {
+        network += '_ios';
+      }
+
+      var url = this.baseNetworks[network].sharer;
+
+      /**
+       * On IOS, Twitter sharing shouldn't include a hashtag parameter if the hashtag value is empty
+       * Source: https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
+        */
+      if (network === 'twitter' && this.hashtags.length === 0) {
+        url = url.replace('&hashtags=@hashtags', '');
+      }
+
+      return url
+        .replace(/@url/g, encodeURIComponent(this.url))
+        .replace(/@title/g, encodeURIComponent(this.title))
+        .replace(/@description/g, encodeURIComponent(this.description))
+        .replace(/@quote/g, encodeURIComponent(this.quote))
+        .replace(/@hashtags/g, this.generateHashtags(network, this.hashtags))
+        .replace(/@media/g, this.media)
+        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
+    },
+    /**
+     * Encode hashtags for the specified social network.
+     *
+     * @param  network Social network key
+     * @param  hashtags All hashtags specified
+     */
+    generateHashtags: function generateHashtags (network, hashtags) {
+      if (network === 'facebook' && hashtags.length > 0) {
+        return '%23' + hashtags.split(',')[0];
+      }
+
+      return hashtags;
+    },
+    /**
+     * Shares URL in specified network.
+     *
+     * @param network Social network key.
+     */
+    share: function share (network) {
+      this.openSharer(network, this.createSharingUrl(network));
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Touches network and emits click event.
+     *
+     * @param network Social network key.
+     */
+    touch: function touch (network) {
+      window.open(this.createSharingUrl(network), '_self');
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Opens sharer popup.
+     *
+     * @param network Social network key
+     * @param url Url to share.
+     */
+    openSharer: function openSharer (network, url) {
+      var this$1 = this;
+
+      // If a popup window already exist it will be replaced, trigger a close event.
+      var popupWindow = null;
+      if (popupWindow && this.popup.interval) {
+        clearInterval(this.popup.interval);
+
+        popupWindow.close();// Force close (for Facebook)
+
+        this.$root.$emit('social_shares_change', network, this.url);
+        this.$emit('change', network, this.url);
+      }
+
+      popupWindow = window.open(
+        url,
+        'sharer',
+        'status=' + (this.popup.status ? 'yes' : 'no') +
+        ',height=' + this.popup.height +
+        ',width=' + this.popup.width +
+        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
+        ',left=' + this.popup.left +
+        ',top=' + this.popup.top +
+        ',screenX=' + this.popup.left +
+        ',screenY=' + this.popup.top +
+        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
+        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
+        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
+        ',location=' + (this.popup.location ? 'yes' : 'no') +
+        ',directories=' + (this.popup.directories ? 'yes' : 'no')
+      );
+
+      popupWindow.focus();
+
+      // Create an interval to detect popup closing event
+      this.popup.interval = setInterval(function () {
+        if (!popupWindow || popupWindow.closed) {
+          clearInterval(this$1.popup.interval);
+
+          popupWindow = undefined;
+
+          this$1.$root.$emit('social_shares_close', network, this$1.url);
+          this$1.$emit('close', network, this$1.url);
+        }
+      }, 500);
+    }
+  },
+
+  /**
+   * Merge base networks list with user's list
+   */
+  beforeMount: function beforeMount () {
+    this.baseNetworks = Vue.util.extend(this.baseNetworks, this.networks);
+  },
+
+  /**
+   * Sets popup default dimensions.
+   */
+  mounted: function mounted () {
+    if (!inBrowser) {
+      return;
+    }
+
+    /**
+     * Center the popup on dual screens
+     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+     */
+    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
+    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
+
+    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
+    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
+
+    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
+    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
+  },
+
+  /**
+   * Set component aliases for buttons and links.
+   */
+  components: {
+    'network': SocialSharingNetwork
+  }
+};
+
+SocialSharing.version = '2.4.7';
+
+SocialSharing.install = function (Vue) {
+  Vue.component('social-sharing', SocialSharing);
+};
+
+if (typeof window !== 'undefined') {
+  window.SocialSharing = SocialSharing;
+}
+
+module.exports = SocialSharing;
 
 /***/ }),
 
@@ -97515,16 +99337,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css");
 /* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_timeago__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-timeago */ "./node_modules/vue-timeago/dist/vue-timeago.es.js");
-/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/star-rating.min.js");
-/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue_timeago__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-timeago */ "./node_modules/vue-timeago/dist/vue-timeago.es.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -97535,13 +99361,30 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * 
+ * Social Sharing
+ *  */
+
+var SocialSharing = __webpack_require__(/*! vue-social-sharing */ "./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js");
+
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(SocialSharing);
+/**
+ * 
  * Datetime picker
  * 
  *  */
 
 
 
-Vue.component("VueCtkDateTimePicker", vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0___default.a);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("VueCtkDateTimePicker", vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0___default.a);
+/**
+ * 
+ * Meta Description
+ * 
+ *  */
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("vue-headful", vue_headful__WEBPACK_IMPORTED_MODULE_3___default.a);
 /**
  * Lazy loading 
  * plugin
@@ -97553,14 +99396,14 @@ Vue.component("VueCtkDateTimePicker", vue_ctk_date_time_picker__WEBPACK_IMPORTED
 
  // Init plugin
 
-Vue.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4___default.a);
 /**
  * 
  * Vuejs time ago
  *  */
 
 
-Vue.use(vue_timeago__WEBPACK_IMPORTED_MODULE_4__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_timeago__WEBPACK_IMPORTED_MODULE_6__["default"], {
   name: "Timeago",
   // Component name, `Timeago` by default
   locale: "en" // Default locale
@@ -97577,14 +99420,14 @@ Vue.use(vue_timeago__WEBPACK_IMPORTED_MODULE_4__["default"], {
  *  */
 
 
-Vue.component("star-rating", vue_star_rating__WEBPACK_IMPORTED_MODULE_5___default.a);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("star-rating", vue_star_rating__WEBPACK_IMPORTED_MODULE_7___default.a);
 /**
  * Vee Vildate
  * Form Validation
  *  */
 
 
-Vue.use(vee_validate__WEBPACK_IMPORTED_MODULE_6__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_8__["default"], {
   classes: true,
   classNames: {
     valid: "is-valid",
@@ -97598,8 +99441,8 @@ Vue.use(vee_validate__WEBPACK_IMPORTED_MODULE_6__["default"], {
  *  */
 
 
-window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a;
-var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.mixin({
+window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a;
+var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.mixin({
   showConfirmButton: false,
   timer: 1000
 });
@@ -97614,27 +99457,27 @@ window.toast = toast;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
 
 /**
  * 
  * Front Page Component 
  * */
 
-Vue.component('home-featured', __webpack_require__(/*! ./components/Home/HomeFeatured.vue */ "./resources/js/components/Home/HomeFeatured.vue")["default"]);
-Vue.component('business-list', __webpack_require__(/*! ./components/Home/BusinessList.vue */ "./resources/js/components/Home/BusinessList.vue")["default"]);
-Vue.component('nav-bar', __webpack_require__(/*! ./components/Home/NavBar.vue */ "./resources/js/components/Home/NavBar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('home-featured', __webpack_require__(/*! ./components/Home/HomeFeatured.vue */ "./resources/js/components/Home/HomeFeatured.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('business-list', __webpack_require__(/*! ./components/Home/BusinessList.vue */ "./resources/js/components/Home/BusinessList.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('nav-bar', __webpack_require__(/*! ./components/Home/NavBar.vue */ "./resources/js/components/Home/NavBar.vue")["default"]);
 /**
  * 
  * Restaurant Components
  * */
 
-Vue.component('restaurant-show', __webpack_require__(/*! ./components/Restaurant/Show.vue */ "./resources/js/components/Restaurant/Show.vue")["default"]);
-Vue.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaurant/SideBar.vue */ "./resources/js/components/Restaurant/SideBar.vue")["default"]);
-Vue.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
-Vue.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
-Vue.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
-Vue.component('restaurant-comment', __webpack_require__(/*! ./components/Restaurant/Comments.vue */ "./resources/js/components/Restaurant/Comments.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-show', __webpack_require__(/*! ./components/Restaurant/Show.vue */ "./resources/js/components/Restaurant/Show.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaurant/SideBar.vue */ "./resources/js/components/Restaurant/SideBar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-comment', __webpack_require__(/*! ./components/Restaurant/Comments.vue */ "./resources/js/components/Restaurant/Comments.vue")["default"]);
 /**
  *     DASHBOARD COMPONENTS
  * First we will load all of this project's JavaScript dependencies which
@@ -97643,12 +99486,13 @@ Vue.component('restaurant-comment', __webpack_require__(/*! ./components/Restaur
  */
 // Restaurant Dashboard
 
-Vue.component('dashboard-restaurant-index', __webpack_require__(/*! ./components/Dashboard/Restaurant/Index.vue */ "./resources/js/components/Dashboard/Restaurant/Index.vue")["default"]);
-Vue.component('dashboard-restaurant-edit', __webpack_require__(/*! ./components/Dashboard/Restaurant/Edit.vue */ "./resources/js/components/Dashboard/Restaurant/Edit.vue")["default"]);
-Vue.component('dashboard-restaurant-overview', __webpack_require__(/*! ./components/Dashboard/Restaurant/Overview.vue */ "./resources/js/components/Dashboard/Restaurant/Overview.vue")["default"]);
-Vue.component('dashboard-restaurant-menu-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/MenuPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/MenuPhoto.vue")["default"]);
-Vue.component('dashboard-restaurant-food-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/FoodPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/FoodPhoto.vue")["default"]);
-Vue.component('dashboard-restaurant-comment', __webpack_require__(/*! ./components/Dashboard/Restaurant/Comment.vue */ "./resources/js/components/Dashboard/Restaurant/Comment.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-index', __webpack_require__(/*! ./components/Dashboard/Restaurant/Index.vue */ "./resources/js/components/Dashboard/Restaurant/Index.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-edit', __webpack_require__(/*! ./components/Dashboard/Restaurant/Edit.vue */ "./resources/js/components/Dashboard/Restaurant/Edit.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-overview', __webpack_require__(/*! ./components/Dashboard/Restaurant/Overview.vue */ "./resources/js/components/Dashboard/Restaurant/Overview.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-menu-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/MenuPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/MenuPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-food-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/FoodPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/FoodPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-comment', __webpack_require__(/*! ./components/Dashboard/Restaurant/Comment.vue */ "./resources/js/components/Dashboard/Restaurant/Comment.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-add', __webpack_require__(/*! ./components/Dashboard/Restaurant/AddNew.vue */ "./resources/js/components/Dashboard/Restaurant/AddNew.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -97656,7 +99500,7 @@ Vue.component('dashboard-restaurant-comment', __webpack_require__(/*! ./componen
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
+var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
   el: '#app',
   // Data
   data: function data() {
@@ -97755,6 +99599,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Restaurant/AddNew.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Restaurant/AddNew.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddNew.vue?vue&type=template&id=6f12737b& */ "./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b&");
+/* harmony import */ var _AddNew_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddNew.vue?vue&type=script&lang=js& */ "./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddNew_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Dashboard/Restaurant/AddNew.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNew_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddNew.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNew_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddNew.vue?vue&type=template&id=6f12737b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Restaurant/AddNew.vue?vue&type=template&id=6f12737b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNew_vue_vue_type_template_id_6f12737b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

@@ -4,7 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="twitter:title">
+    <meta name="description" />
+    <meta itemprop="description">
+    <meta property="og:description">
+    <meta property="fb:app_id" content="123456789">
+    <meta property="og:url" content="https://tibetanbusiness.com:8890">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="title">
+    <meta property="og:image" content="image">
+    <meta property="og:image:alt" content="description">
+    <meta property="og:description" content="description">
+    <meta property="og:site_name" content="https://tibetanushiness.com">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:author" content="Rinzin">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -246,7 +259,19 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <!-- facebook share -->
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 
 </html>

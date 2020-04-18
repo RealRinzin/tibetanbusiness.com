@@ -76,6 +76,7 @@ class RestaurantBasicInfoController extends Controller
     public function create()
     {
         //
+        return "this is create";
     }
 
     /**
@@ -87,6 +88,26 @@ class RestaurantBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+        $restaurant = RestaurantBasicInfo::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'mobile_no' => $request->mobile_no,
+            'location' => $request->location,
+            'email' => $request->email,
+            'banner' => 'food5.jpg',
+            'rate' => '4.5',
+            'address' => '3.5',
+            'longitude' => '4.5',
+            'latitude' => '3.1',
+            'status' => true,
+            'description' => 'THis is new sone',
+            'opening_hour' => $request->opening_hour,
+            'closing_hour' => $request->closing_hour,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'website' => $request->website,
+        ]);
+        return $restaurant;
     }
 
     /**
