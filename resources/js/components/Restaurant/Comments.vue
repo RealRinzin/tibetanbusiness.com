@@ -233,7 +233,7 @@ export default {
              *  */ 
                axios({
                 method: 'patch',
-                url: '/api/restaurant/rating/'+id,
+                url: '/api/restaurants/rating/'+id,
                 data: {rate: this.average_rate},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{

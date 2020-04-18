@@ -8,53 +8,13 @@ use App\Http\Resources\Restaurant\RestaurantBasicInfoResource;
 use App\Http\Resources\Restaurant\RestaurantBasicInfoResourceCollection;
 use Illuminate\Support\Facades\DB;
 use App\Restaurant\RestaurantBasicInfo;
+use App\Restaurant\RestaurantFacility;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantBasicInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function all(){
-        return "message";
     
-        $restaurants =  RestaurantBasicInfo::all();
-        return $restaurants->toArray($restaurants);
-    }
-    /**
-     *  Restaurant 
-     *  Retrieve only the logged / ower's restaurant
-     *  */ 
-    public function user_restaurant(User $user)
-    {
-
-        // return Auth::user()->id;
-        // $restaurants = RestaurantBasicInfo::where('user_id', '=', 'f22ce163604241e9bd43c66f0ecc7264')
-        //     ->orderBy('created_at', 'desc')->paginate(3);
-        $restaurants = Auth::user()->restaurant_basic_infos;
-        return $restaurants->toArray($restaurants);
-
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function restaurant()
-    {
-        return view('restaurant.show');
-    }
-    /**
-     * 
-     * Restaurant Edit
-     *  */
-    public function restaurant_edit($id){
-        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
-        return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -96,11 +56,11 @@ class RestaurantBasicInfoController extends Controller
             'email' => $request->email,
             'banner' => 'food5.jpg',
             'rate' => '4.5',
-            'address' => '3.5',
+            'address' => $request->address,
             'longitude' => '4.5',
             'latitude' => '3.1',
             'status' => true,
-            'description' => 'THis is new sone',
+            'description' => $request->description,
             'opening_hour' => $request->opening_hour,
             'closing_hour' => $request->closing_hour,
             'facebook' => $request->facebook,
@@ -120,6 +80,7 @@ class RestaurantBasicInfoController extends Controller
     // {
     //     return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     // }
+    // public function show($id)
     public function show($id)
     {
         // return specific user;
@@ -154,7 +115,6 @@ class RestaurantBasicInfoController extends Controller
         // return $request;
         $restaurantOperationDay->update($request->all());
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -166,6 +126,59 @@ class RestaurantBasicInfoController extends Controller
         $restaurant = RestaurantBasicInfo::find($id);
         // $user->parents()->detach(); 
         $restaurant->delete();
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        $restaurants =  RestaurantBasicInfo::all();
+        return $restaurants->toArray($restaurants);
+    }
+    /**
+     * 
+     * View or showing
+     * Individual Restaurant
+     * without api auth
+     * 
+     *  */
+    public function view($id)
+    {
+        // return specific user;
+        return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
+    }
+    /**
+     *  Restaurant 
+     *  Retrieve only the logged / ower's restaurant
+     *  */
+    public function user_restaurant(User $user)
+    {
+
+        // return Auth::user()->id;
+        // $restaurants = RestaurantBasicInfo::where('user_id', '=', 'f22ce163604241e9bd43c66f0ecc7264')
+        //     ->orderBy('created_at', 'desc')->paginate(3);
+        $restaurants = Auth::user()->restaurant_basic_infos;
+        return $restaurants->toArray($restaurants);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function restaurant()
+    {
+        return view('restaurant.show');
+    }
+    /**
+     * 
+     * Restaurant Edit
+     *  */
+    public function restaurant_edit($id)
+    {
+        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
+        return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
     }
 
     /**

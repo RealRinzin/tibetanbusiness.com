@@ -40,6 +40,8 @@ class RestaurantOperationDayController extends Controller
     public function store(Request $request)
     {
         //
+        $operation_days = RestaurantOperationDay::create($request->all());
+
     }
 
     /**

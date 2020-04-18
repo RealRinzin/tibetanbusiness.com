@@ -53,4 +53,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Restaurant Route
  *  */ 
-Route::get('restaurant/{id}','Restaurant\RestaurantBasicInfoController@restaurant');
+Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@restaurant');
+Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
+Route::get('restaurants/list/', 'Restaurant\RestaurantBasicInfoController@all');

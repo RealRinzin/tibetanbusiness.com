@@ -84,7 +84,7 @@ export default {
      *  */ 
     methods:{
         restaurants(){
-            axios.get('/api/restaurant').then(response=>{
+            axios.get('/restaurants/list').then(response=>{
                 this.restaurant = response.data
                 /**
                  * Rate background color

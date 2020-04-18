@@ -167,11 +167,12 @@
         methods:{
             show(){  
                 this.isLoading = true; //Loading true
-                axios.get('/api'+window.location.pathname).then(response=>{
+                axios.get('/view'+window.location.pathname).then(response=>{
                     this.restaurant = response.data.data;
                     // loading
                     this.isLoading = false; //Loading true
                     this.loading = true;
+
                 })
             }
     },

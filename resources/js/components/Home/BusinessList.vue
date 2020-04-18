@@ -69,7 +69,7 @@ export default {
         // restaurants
         restaurant_list(){
                 this.isLoading = true; //Loading true
-            axios.get('api/restaurant').then(response=>{
+            axios.get('restaurants/list').then(response=>{
                 this.restaurants = response.data;
                 // loading
                 this.isLoading = false; //Loading true

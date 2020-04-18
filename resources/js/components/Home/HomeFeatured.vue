@@ -55,7 +55,7 @@
             // Featured business
             featured_restaurant(){
                 this.isLoading = true; //Loading true
-                axios.get('api/restaurant').then(response=>{
+                axios.get('restaurants/list').then(response=>{
                     response.data.forEach(element => {
                         this.restaurants = response.data; //data
                         this.isLoading = false; //Loading true
