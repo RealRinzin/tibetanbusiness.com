@@ -1,33 +1,34 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-2" v-for="(photo,index) in photos">
-        <img :src="'/img/'+photo.path" alt="" class="img-responsive ">
+      <div class="col-md-2 py-2" v-for="(photo,index) in photos">
+        <img :src="'/img/'+photo.path" alt="" class="img-fluid">
       </div>
     </div>
   </div>
 </template>
 <script>
-  import VueGallery from 'vue-gallery';
   export default {
     props:['food_photos'],
     // data
-    data: function () {
+    data() {
       return {
         // Photos array object
         photos:{},
       };
     },
-    // watching the data props
+    /**
+     * Watch the 
+     * Props Data
+     *  */ 
       watch: {
-        food_photos: function(newVal) { 
-           this.photos = newVal
+        food_photos: function(data) { 
+           this.photos = data
         }
       },
     // mounted
     mounted(){
 
     }
-
   }
 </script> 

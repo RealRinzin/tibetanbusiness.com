@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(comment,index) in comments">
+                    <tr v-for="(comment,index) in comment">
                         <th scope="row">{{index + 1}}</th>
                         <th scope="row"><img :src="comment.avatar" class="img-circle" alt="" style="height:35px;width:35px"></th>
                         <td>{{comment.name}}</td>
@@ -33,16 +33,25 @@ export default {
     props:['comments'],
     data(){
         return{
-            comment:this.comments,
+            comment:{},
         }
     },
     methods:{
         load_comments(){
         }
     },
-
+    /**
+     * Watch the props
+     * data
+     *  */ 
+    watch:{
+        comments:function(data){
+            this.comment = this.comments
+        }
+    },
+    // mounted
     mounted(){
-        console.log(this.comment);
+        this.load_comments();
         
     }
 }

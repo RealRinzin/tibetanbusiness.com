@@ -1,47 +1,38 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-12">
-        <LightGallery
-          :images="images"
-          :index="index"
-          :disable-scroll="true"
-          @close="index = null"
-        />
-        <ul>
-          <li
-            v-for="(thumb, thumbIndex) in [
-              '/img/food1.jpg',
-              '/img/food2.jpg',
-            ]"
-            :key="thumbIndex"
-            @click="index = thumbIndex"
-          >
-            <img :src="thumb">
-          </li>
-        </ul>
-
+      <div class="col-md-2" v-for="(photo,index) in photos">
+        <img :src="'/img/'+photo.path" alt="" class="img-fluid">
       </div>
     </div>
   </div>
 </template>
  
 <script>
-  import Vue from 'vue';
-  import { LightGallery } from 'vue-light-gallery';
- 
   export default {
-    components: {
-      LightGallery,
-    },
+    props:['menu_photos'],
     data() {
       return {
-        images: [
-          { title:'img 1', url: '/img/food1.jpg' },
-          { title:'img 2', url: '/img/food2.jpg' },
-        ],
-        index: null,
+        photos:{},
       };
     },
+    // Methods
+    methods:{
+
+    },
+    /**
+     * 
+     * Watch
+     *  */ 
+    watch:{
+        menu_photos(data){
+          this.photos = data
+        }
+    },
+    // mounted
+    mounted(){
+      console.log("Menu Photo");
+      
+    }
   };
 </script> 
