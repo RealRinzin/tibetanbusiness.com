@@ -2342,7 +2342,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         // Assigning Restaurant object
-        _this.restaurant = response.data.data; // Operation Day
+        _this.restaurant = response.data.data;
+        console.log(_this.restaurant); // Operation Day
 
         _this.operation = _this.restaurant.operation[0]; // facitilies
 
@@ -2400,12 +2401,36 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_gallery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-gallery */ "./node_modules/vue-gallery/dist/js/vue-gallery.js");
+/* harmony import */ var vue_gallery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_gallery__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['food_photos'],
+  // data
+  data: function data() {
+    return {
+      // Photos array object
+      photos: {}
+    };
+  },
+  // watching the data props
+  watch: {
+    food_photos: function food_photos(newVal) {
+      this.photos = newVal;
+    }
+  },
+  // mounted
+  mounted: function mounted() {}
+});
 
 /***/ }),
 
@@ -2582,20 +2607,54 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_light_gallery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-light-gallery */ "./node_modules/vue-light-gallery/dist/vue-light-gallery.esm.js");
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['overview'],
+  components: {
+    LightGallery: vue_light_gallery__WEBPACK_IMPORTED_MODULE_1__["LightGallery"]
+  },
   data: function data() {
     return {
-      counter: this.overview
+      images: [{
+        title: 'img 1',
+        url: '/img/food1.jpg'
+      }, {
+        title: 'img 2',
+        url: '/img/food2.jpg'
+      }],
+      index: null
     };
-  },
-  mounted: function mounted() {
-    console.log(this.counter); // this.load();
   }
 });
 
@@ -4127,6 +4186,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Import component
  // Import stylesheet
 
@@ -4355,6 +4415,2313 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   mounted: function mounted() {}
 });
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/css/blueimp-gallery.min.css":
+/*!******************************************************************!*\
+  !*** ./node_modules/blueimp-gallery/css/blueimp-gallery.min.css ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./blueimp-gallery.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/blueimp-gallery/css/blueimp-gallery.min.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/error.png":
+/*!****************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/error.png ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/error.png?90901890fbf9b379405f47a23313e63b";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/error.svg":
+/*!****************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/error.svg ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/error.svg?19ee6b7e6642d75d6144b0c8209c93d6";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/loading.gif":
+/*!******************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/loading.gif ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/loading.gif?05992d3434d3589b38a3a5431842d38f";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/play-pause.png":
+/*!*********************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/play-pause.png ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/play-pause.png?a012413b54276e2eefd145c7aec60f93";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/play-pause.svg":
+/*!*********************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/play-pause.svg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/play-pause.svg?21dfa3149b274acb9c1819d342a6a169";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/video-play.png":
+/*!*********************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/video-play.png ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/video-play.png?288308b2037f409d293916c7a3913f20";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/img/video-play.svg":
+/*!*********************************************************!*\
+  !*** ./node_modules/blueimp-gallery/img/video-play.svg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/blueimp-gallery/video-play.svg?9b737958b1644b46b23904e53afcac50";
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/js/blueimp-gallery-fullscreen.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/blueimp-gallery/js/blueimp-gallery-fullscreen.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * blueimp Gallery Fullscreen JS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+/* global define */
+
+;(function (factory) {
+  'use strict'
+  if (true) {
+    // Register as an anonymous AMD module:
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./blueimp-helper */ "./node_modules/blueimp-gallery/js/blueimp-helper.js"), __webpack_require__(/*! ./blueimp-gallery */ "./node_modules/blueimp-gallery/js/blueimp-gallery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  } else {}
+})(function ($, Gallery) {
+  'use strict'
+
+  $.extend(Gallery.prototype.options, {
+    // Defines if the gallery should open in fullscreen mode:
+    fullScreen: false
+  })
+
+  var initialize = Gallery.prototype.initialize
+  var close = Gallery.prototype.close
+
+  $.extend(Gallery.prototype, {
+    getFullScreenElement: function () {
+      return (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+      )
+    },
+
+    requestFullScreen: function (element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen()
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen()
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen()
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen()
+      }
+    },
+
+    exitFullScreen: function () {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen()
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen()
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen()
+      }
+    },
+
+    initialize: function () {
+      initialize.call(this)
+      if (this.options.fullScreen && !this.getFullScreenElement()) {
+        this.requestFullScreen(this.container[0])
+      }
+    },
+
+    close: function () {
+      if (this.getFullScreenElement() === this.container[0]) {
+        this.exitFullScreen()
+      }
+      close.call(this)
+    }
+  })
+
+  return Gallery
+})
+
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/js/blueimp-gallery-video.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/blueimp-gallery/js/blueimp-gallery-video.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * blueimp Gallery Video Factory JS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+/* global define */
+
+;(function (factory) {
+  'use strict'
+  if (true) {
+    // Register as an anonymous AMD module:
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./blueimp-helper */ "./node_modules/blueimp-gallery/js/blueimp-helper.js"), __webpack_require__(/*! ./blueimp-gallery */ "./node_modules/blueimp-gallery/js/blueimp-gallery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  } else {}
+})(function ($, Gallery) {
+  'use strict'
+
+  $.extend(Gallery.prototype.options, {
+    // The class for video content elements:
+    videoContentClass: 'video-content',
+    // The class for video when it is loading:
+    videoLoadingClass: 'video-loading',
+    // The class for video when it is playing:
+    videoPlayingClass: 'video-playing',
+    // The list object property (or data attribute) for the video poster URL:
+    videoPosterProperty: 'poster',
+    // The list object property (or data attribute) for the video sources array:
+    videoSourcesProperty: 'sources'
+  })
+
+  var handleSlide = Gallery.prototype.handleSlide
+
+  $.extend(Gallery.prototype, {
+    handleSlide: function (index) {
+      handleSlide.call(this, index)
+      if (this.playingVideo) {
+        this.playingVideo.pause()
+      }
+    },
+
+    videoFactory: function (obj, callback, videoInterface) {
+      var that = this
+      var options = this.options
+      var videoContainerNode = this.elementPrototype.cloneNode(false)
+      var videoContainer = $(videoContainerNode)
+      var errorArgs = [
+        {
+          type: 'error',
+          target: videoContainerNode
+        }
+      ]
+      var video = videoInterface || document.createElement('video')
+      var url = this.getItemProperty(obj, options.urlProperty)
+      var type = this.getItemProperty(obj, options.typeProperty)
+      var title = this.getItemProperty(obj, options.titleProperty)
+      var altText =
+        this.getItemProperty(obj, this.options.altTextProperty) || title
+      var posterUrl = this.getItemProperty(obj, options.videoPosterProperty)
+      var posterImage
+      var sources = this.getItemProperty(obj, options.videoSourcesProperty)
+      var source
+      var playMediaControl
+      var isLoading
+      var hasControls
+      videoContainer.addClass(options.videoContentClass)
+      if (title) {
+        videoContainerNode.title = title
+      }
+      if (video.canPlayType) {
+        if (url && type && video.canPlayType(type)) {
+          video.src = url
+        } else if (sources) {
+          while (sources.length) {
+            source = sources.shift()
+            url = this.getItemProperty(source, options.urlProperty)
+            type = this.getItemProperty(source, options.typeProperty)
+            if (url && type && video.canPlayType(type)) {
+              video.src = url
+              break
+            }
+          }
+        }
+      }
+      if (posterUrl) {
+        video.poster = posterUrl
+        posterImage = this.imagePrototype.cloneNode(false)
+        $(posterImage).addClass(options.toggleClass)
+        posterImage.src = posterUrl
+        posterImage.draggable = false
+        posterImage.alt = altText
+        videoContainerNode.appendChild(posterImage)
+      }
+      playMediaControl = document.createElement('a')
+      playMediaControl.setAttribute('target', '_blank')
+      if (!videoInterface) {
+        playMediaControl.setAttribute('download', title)
+      }
+      playMediaControl.href = url
+      if (video.src) {
+        video.controls = true
+        ;(videoInterface || $(video))
+          .on('error', function () {
+            that.setTimeout(callback, errorArgs)
+          })
+          .on('pause', function () {
+            if (video.seeking) return
+            isLoading = false
+            videoContainer
+              .removeClass(that.options.videoLoadingClass)
+              .removeClass(that.options.videoPlayingClass)
+            if (hasControls) {
+              that.container.addClass(that.options.controlsClass)
+            }
+            delete that.playingVideo
+            if (that.interval) {
+              that.play()
+            }
+          })
+          .on('playing', function () {
+            isLoading = false
+            videoContainer
+              .removeClass(that.options.videoLoadingClass)
+              .addClass(that.options.videoPlayingClass)
+            if (that.container.hasClass(that.options.controlsClass)) {
+              hasControls = true
+              that.container.removeClass(that.options.controlsClass)
+            } else {
+              hasControls = false
+            }
+          })
+          .on('play', function () {
+            window.clearTimeout(that.timeout)
+            isLoading = true
+            videoContainer.addClass(that.options.videoLoadingClass)
+            that.playingVideo = video
+          })
+        $(playMediaControl).on('click', function (event) {
+          that.preventDefault(event)
+          if (isLoading) {
+            video.pause()
+          } else {
+            video.play()
+          }
+        })
+        videoContainerNode.appendChild(
+          (videoInterface && videoInterface.element) || video
+        )
+      }
+      videoContainerNode.appendChild(playMediaControl)
+      this.setTimeout(callback, [
+        {
+          type: 'load',
+          target: videoContainerNode
+        }
+      ])
+      return videoContainerNode
+    }
+  })
+
+  return Gallery
+})
+
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/js/blueimp-gallery-youtube.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/blueimp-gallery/js/blueimp-gallery-youtube.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * blueimp Gallery YouTube Video Factory JS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+/* global define, YT */
+
+;(function (factory) {
+  'use strict'
+  if (true) {
+    // Register as an anonymous AMD module:
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./blueimp-helper */ "./node_modules/blueimp-gallery/js/blueimp-helper.js"), __webpack_require__(/*! ./blueimp-gallery-video */ "./node_modules/blueimp-gallery/js/blueimp-gallery-video.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  } else {}
+})(function ($, Gallery) {
+  'use strict'
+
+  if (!window.postMessage) {
+    return Gallery
+  }
+
+  $.extend(Gallery.prototype.options, {
+    // The list object property (or data attribute) with the YouTube video id:
+    youTubeVideoIdProperty: 'youtube',
+    // Optional object with parameters passed to the YouTube video player:
+    // https://developers.google.com/youtube/player_parameters
+    youTubePlayerVars: {
+      wmode: 'transparent'
+    },
+    // Require a click on the native YouTube player for the initial playback:
+    youTubeClickToPlay: true
+  })
+
+  var textFactory =
+    Gallery.prototype.textFactory || Gallery.prototype.imageFactory
+  var YouTubePlayer = function (videoId, playerVars, clickToPlay) {
+    this.videoId = videoId
+    this.playerVars = playerVars
+    this.clickToPlay = clickToPlay
+    this.element = document.createElement('div')
+    this.listeners = {}
+  }
+
+  $.extend(YouTubePlayer.prototype, {
+    canPlayType: function () {
+      return true
+    },
+
+    on: function (type, func) {
+      this.listeners[type] = func
+      return this
+    },
+
+    loadAPI: function () {
+      var that = this
+      var onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady
+      var apiUrl = '//www.youtube.com/iframe_api'
+      var scriptTags = document.getElementsByTagName('script')
+      var i = scriptTags.length
+      var scriptTag
+      window.onYouTubeIframeAPIReady = function () {
+        if (onYouTubeIframeAPIReady) {
+          onYouTubeIframeAPIReady.apply(this)
+        }
+        if (that.playOnReady) {
+          that.play()
+        }
+      }
+      while (i) {
+        i -= 1
+        if (scriptTags[i].src === apiUrl) {
+          return
+        }
+      }
+      scriptTag = document.createElement('script')
+      scriptTag.src = apiUrl
+      scriptTags[0].parentNode.insertBefore(scriptTag, scriptTags[0])
+    },
+
+    onReady: function () {
+      this.ready = true
+      if (this.playOnReady) {
+        this.play()
+      }
+    },
+
+    onPlaying: function () {
+      if (this.playStatus < 2) {
+        this.listeners.playing()
+        this.playStatus = 2
+      }
+    },
+
+    onPause: function () {
+      Gallery.prototype.setTimeout.call(this, this.checkSeek, null, 2000)
+    },
+
+    checkSeek: function () {
+      if (
+        this.stateChange === YT.PlayerState.PAUSED ||
+        this.stateChange === YT.PlayerState.ENDED
+      ) {
+        // check if current state change is actually paused
+        this.listeners.pause()
+        delete this.playStatus
+      }
+    },
+
+    onStateChange: function (event) {
+      switch (event.data) {
+        case YT.PlayerState.PLAYING:
+          this.hasPlayed = true
+          this.onPlaying()
+          break
+        case YT.PlayerState.PAUSED:
+        case YT.PlayerState.ENDED:
+          this.onPause()
+          break
+      }
+      // Save most recent state change to this.stateChange
+      this.stateChange = event.data
+    },
+
+    onError: function (event) {
+      this.listeners.error(event)
+    },
+
+    play: function () {
+      var that = this
+      if (!this.playStatus) {
+        this.listeners.play()
+        this.playStatus = 1
+      }
+      if (this.ready) {
+        if (
+          !this.hasPlayed &&
+          (this.clickToPlay ||
+            (window.navigator &&
+              /iP(hone|od|ad)/.test(window.navigator.platform)))
+        ) {
+          // Manually trigger the playing callback if clickToPlay
+          // is enabled and to workaround a limitation in iOS,
+          // which requires synchronous user interaction to start
+          // the video playback:
+          this.onPlaying()
+        } else {
+          this.player.playVideo()
+        }
+      } else {
+        this.playOnReady = true
+        if (!(window.YT && YT.Player)) {
+          this.loadAPI()
+        } else if (!this.player) {
+          this.player = new YT.Player(this.element, {
+            videoId: this.videoId,
+            playerVars: this.playerVars,
+            events: {
+              onReady: function () {
+                that.onReady()
+              },
+              onStateChange: function (event) {
+                that.onStateChange(event)
+              },
+              onError: function (event) {
+                that.onError(event)
+              }
+            }
+          })
+        }
+      }
+    },
+
+    pause: function () {
+      if (this.ready) {
+        this.player.pauseVideo()
+      } else if (this.playStatus) {
+        delete this.playOnReady
+        this.listeners.pause()
+        delete this.playStatus
+      }
+    }
+  })
+
+  $.extend(Gallery.prototype, {
+    YouTubePlayer: YouTubePlayer,
+
+    textFactory: function (obj, callback) {
+      var options = this.options
+      var videoId = this.getItemProperty(obj, options.youTubeVideoIdProperty)
+      if (videoId) {
+        if (this.getItemProperty(obj, options.urlProperty) === undefined) {
+          obj[options.urlProperty] = '//www.youtube.com/watch?v=' + videoId
+        }
+        if (
+          this.getItemProperty(obj, options.videoPosterProperty) === undefined
+        ) {
+          obj[options.videoPosterProperty] =
+            '//img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'
+        }
+        return this.videoFactory(
+          obj,
+          callback,
+          new YouTubePlayer(
+            videoId,
+            options.youTubePlayerVars,
+            options.youTubeClickToPlay
+          )
+        )
+      }
+      return textFactory.call(this, obj, callback)
+    }
+  })
+
+  return Gallery
+})
+
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/js/blueimp-gallery.js":
+/*!************************************************************!*\
+  !*** ./node_modules/blueimp-gallery/js/blueimp-gallery.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * blueimp Gallery JS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Swipe implementation based on
+ * https://github.com/bradbirdsall/Swipe
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+/* global define, DocumentTouch */
+
+/* eslint-disable no-param-reassign */
+
+;(function (factory) {
+  'use strict'
+  if (true) {
+    // Register as an anonymous AMD module:
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./blueimp-helper */ "./node_modules/blueimp-gallery/js/blueimp-helper.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  } else {}
+})(function ($) {
+  'use strict'
+
+  /**
+   * Gallery constructor
+   *
+   * @class
+   * @param {Array|NodeList} list Gallery content
+   * @param {object} [options] Gallery options
+   * @returns {object} Gallery object
+   */
+  function Gallery(list, options) {
+    if (document.body.style.maxHeight === undefined) {
+      // document.body.style.maxHeight is undefined on IE6 and lower
+      return null
+    }
+    if (!this || this.options !== Gallery.prototype.options) {
+      // Called as function instead of as constructor,
+      // so we simply return a new instance:
+      return new Gallery(list, options)
+    }
+    if (!list || !list.length) {
+      this.console.log(
+        'blueimp Gallery: No or empty list provided as first argument.',
+        list
+      )
+      return
+    }
+    this.list = list
+    this.num = list.length
+    this.initOptions(options)
+    this.initialize()
+  }
+
+  $.extend(Gallery.prototype, {
+    options: {
+      // The Id, element or querySelector of the gallery widget:
+      container: '#blueimp-gallery',
+      // The tag name, Id, element or querySelector of the slides container:
+      slidesContainer: 'div',
+      // The tag name, Id, element or querySelector of the title element:
+      titleElement: 'h3',
+      // The class to add when the gallery is visible:
+      displayClass: 'blueimp-gallery-display',
+      // The class to add when the gallery controls are visible:
+      controlsClass: 'blueimp-gallery-controls',
+      // The class to add when the gallery only displays one element:
+      singleClass: 'blueimp-gallery-single',
+      // The class to add when the left edge has been reached:
+      leftEdgeClass: 'blueimp-gallery-left',
+      // The class to add when the right edge has been reached:
+      rightEdgeClass: 'blueimp-gallery-right',
+      // The class to add when the automatic slideshow is active:
+      playingClass: 'blueimp-gallery-playing',
+      // The class for all slides:
+      slideClass: 'slide',
+      // The slide class for loading elements:
+      slideLoadingClass: 'slide-loading',
+      // The slide class for elements that failed to load:
+      slideErrorClass: 'slide-error',
+      // The class for the content element loaded into each slide:
+      slideContentClass: 'slide-content',
+      // The class for the "toggle" control:
+      toggleClass: 'toggle',
+      // The class for the "prev" control:
+      prevClass: 'prev',
+      // The class for the "next" control:
+      nextClass: 'next',
+      // The class for the "close" control:
+      closeClass: 'close',
+      // The class for the "play-pause" toggle control:
+      playPauseClass: 'play-pause',
+      // The list object property (or data attribute) with the object type:
+      typeProperty: 'type',
+      // The list object property (or data attribute) with the object title:
+      titleProperty: 'title',
+      // The list object property (or data attribute) with the object alt text:
+      altTextProperty: 'alt',
+      // The list object property (or data attribute) with the object URL:
+      urlProperty: 'href',
+      // The list object property (or data attribute) with the object srcset URL(s):
+      srcsetProperty: 'urlset',
+      // The gallery listens for transitionend events before triggering the
+      // opened and closed events, unless the following option is set to false:
+      displayTransition: true,
+      // Defines if the gallery slides are cleared from the gallery modal,
+      // or reused for the next gallery initialization:
+      clearSlides: true,
+      // Defines if images should be stretched to fill the available space,
+      // while maintaining their aspect ratio (will only be enabled for browsers
+      // supporting background-size="contain", which excludes IE < 9).
+      // Set to "cover", to make images cover all available space (requires
+      // support for background-size="cover", which excludes IE < 9):
+      stretchImages: false,
+      // Toggle the controls on pressing the Return key:
+      toggleControlsOnReturn: true,
+      // Toggle the controls on slide click:
+      toggleControlsOnSlideClick: true,
+      // Toggle the automatic slideshow interval on pressing the Space key:
+      toggleSlideshowOnSpace: true,
+      // Navigate the gallery by pressing left and right on the keyboard:
+      enableKeyboardNavigation: true,
+      // Close the gallery on pressing the Esc key:
+      closeOnEscape: true,
+      // Close the gallery when clicking on an empty slide area:
+      closeOnSlideClick: true,
+      // Close the gallery by swiping up or down:
+      closeOnSwipeUpOrDown: true,
+      // Emulate touch events on mouse-pointer devices such as desktop browsers:
+      emulateTouchEvents: true,
+      // Stop touch events from bubbling up to ancestor elements of the Gallery:
+      stopTouchEventsPropagation: false,
+      // Hide the page scrollbars:
+      hidePageScrollbars: true,
+      // Stops any touches on the container from scrolling the page:
+      disableScroll: true,
+      // Carousel mode (shortcut for carousel specific options):
+      carousel: false,
+      // Allow continuous navigation, moving from last to first
+      // and from first to last slide:
+      continuous: true,
+      // Remove elements outside of the preload range from the DOM:
+      unloadElements: true,
+      // Start with the automatic slideshow:
+      startSlideshow: false,
+      // Delay in milliseconds between slides for the automatic slideshow:
+      slideshowInterval: 5000,
+      // The direction the slides are moving: ltr=LeftToRight or rtl=RightToLeft
+      slideshowDirection: 'ltr',
+      // The starting index as integer.
+      // Can also be an object of the given list,
+      // or an equal object with the same url property:
+      index: 0,
+      // The number of elements to load around the current index:
+      preloadRange: 2,
+      // The transition speed between slide changes in milliseconds:
+      transitionSpeed: 400,
+      // The transition speed for automatic slide changes, set to an integer
+      // greater 0 to override the default transition speed:
+      slideshowTransitionSpeed: undefined,
+      // The event object for which the default action will be canceled
+      // on Gallery initialization (e.g. the click event to open the Gallery):
+      event: undefined,
+      // Callback function executed when the Gallery is initialized.
+      // Is called with the gallery instance as "this" object:
+      onopen: undefined,
+      // Callback function executed when the Gallery has been initialized
+      // and the initialization transition has been completed.
+      // Is called with the gallery instance as "this" object:
+      onopened: undefined,
+      // Callback function executed on slide change.
+      // Is called with the gallery instance as "this" object and the
+      // current index and slide as arguments:
+      onslide: undefined,
+      // Callback function executed after the slide change transition.
+      // Is called with the gallery instance as "this" object and the
+      // current index and slide as arguments:
+      onslideend: undefined,
+      // Callback function executed on slide content load.
+      // Is called with the gallery instance as "this" object and the
+      // slide index and slide element as arguments:
+      onslidecomplete: undefined,
+      // Callback function executed when the Gallery is about to be closed.
+      // Is called with the gallery instance as "this" object:
+      onclose: undefined,
+      // Callback function executed when the Gallery has been closed
+      // and the closing transition has been completed.
+      // Is called with the gallery instance as "this" object:
+      onclosed: undefined
+    },
+
+    carouselOptions: {
+      hidePageScrollbars: false,
+      toggleControlsOnReturn: false,
+      toggleSlideshowOnSpace: false,
+      enableKeyboardNavigation: false,
+      closeOnEscape: false,
+      closeOnSlideClick: false,
+      closeOnSwipeUpOrDown: false,
+      disableScroll: false,
+      startSlideshow: true
+    },
+
+    console:
+      window.console && typeof window.console.log === 'function'
+        ? window.console
+        : { log: function () {} },
+
+    // Detect touch, transition, transform and background-size support:
+    support: (function (element) {
+      var support = {
+        touch:
+          window.ontouchstart !== undefined ||
+          (window.DocumentTouch && document instanceof DocumentTouch)
+      }
+      var transitions = {
+        webkitTransition: {
+          end: 'webkitTransitionEnd',
+          prefix: '-webkit-'
+        },
+        MozTransition: {
+          end: 'transitionend',
+          prefix: '-moz-'
+        },
+        OTransition: {
+          end: 'otransitionend',
+          prefix: '-o-'
+        },
+        transition: {
+          end: 'transitionend',
+          prefix: ''
+        }
+      }
+      var prop
+      for (prop in transitions) {
+        if (
+          Object.prototype.hasOwnProperty.call(transitions, prop) &&
+          element.style[prop] !== undefined
+        ) {
+          support.transition = transitions[prop]
+          support.transition.name = prop
+          break
+        }
+      }
+      /**
+       * Tests browser support
+       */
+      function elementTests() {
+        var transition = support.transition
+        var prop
+        var translateZ
+        document.body.appendChild(element)
+        if (transition) {
+          prop = transition.name.slice(0, -9) + 'ransform'
+          if (element.style[prop] !== undefined) {
+            element.style[prop] = 'translateZ(0)'
+            translateZ = window
+              .getComputedStyle(element)
+              .getPropertyValue(transition.prefix + 'transform')
+            support.transform = {
+              prefix: transition.prefix,
+              name: prop,
+              translate: true,
+              translateZ: !!translateZ && translateZ !== 'none'
+            }
+          }
+        }
+        if (element.style.backgroundSize !== undefined) {
+          support.backgroundSize = {}
+          element.style.backgroundSize = 'contain'
+          support.backgroundSize.contain =
+            window
+              .getComputedStyle(element)
+              .getPropertyValue('background-size') === 'contain'
+          element.style.backgroundSize = 'cover'
+          support.backgroundSize.cover =
+            window
+              .getComputedStyle(element)
+              .getPropertyValue('background-size') === 'cover'
+        }
+        document.body.removeChild(element)
+      }
+      if (document.body) {
+        elementTests()
+      } else {
+        $(document).on('DOMContentLoaded', elementTests)
+      }
+      return support
+      // Test element, has to be standard HTML and must not be hidden
+      // for the CSS3 tests using window.getComputedStyle to be applicable:
+    })(document.createElement('div')),
+
+    requestAnimationFrame:
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame,
+
+    cancelAnimationFrame:
+      window.cancelAnimationFrame ||
+      window.webkitCancelRequestAnimationFrame ||
+      window.webkitCancelAnimationFrame ||
+      window.mozCancelAnimationFrame,
+
+    initialize: function () {
+      this.initStartIndex()
+      if (this.initWidget() === false) {
+        return false
+      }
+      this.initEventListeners()
+      // Load the slide at the given index:
+      this.onslide(this.index)
+      // Manually trigger the slideend event for the initial slide:
+      this.ontransitionend()
+      // Start the automatic slideshow if applicable:
+      if (this.options.startSlideshow) {
+        this.play()
+      }
+    },
+
+    slide: function (to, speed) {
+      window.clearTimeout(this.timeout)
+      var index = this.index
+      var direction
+      var naturalDirection
+      var diff
+      if (index === to || this.num === 1) {
+        return
+      }
+      if (!speed) {
+        speed = this.options.transitionSpeed
+      }
+      if (this.support.transform) {
+        if (!this.options.continuous) {
+          to = this.circle(to)
+        }
+        // 1: backward, -1: forward:
+        direction = Math.abs(index - to) / (index - to)
+        // Get the actual position of the slide:
+        if (this.options.continuous) {
+          naturalDirection = direction
+          direction = -this.positions[this.circle(to)] / this.slideWidth
+          // If going forward but to < index, use to = slides.length + to
+          // If going backward but to > index, use to = -slides.length + to
+          if (direction !== naturalDirection) {
+            to = -direction * this.num + to
+          }
+        }
+        diff = Math.abs(index - to) - 1
+        // Move all the slides between index and to in the right direction:
+        while (diff) {
+          diff -= 1
+          this.move(
+            this.circle((to > index ? to : index) - diff - 1),
+            this.slideWidth * direction,
+            0
+          )
+        }
+        to = this.circle(to)
+        this.move(index, this.slideWidth * direction, speed)
+        this.move(to, 0, speed)
+        if (this.options.continuous) {
+          this.move(
+            this.circle(to - direction),
+            -(this.slideWidth * direction),
+            0
+          )
+        }
+      } else {
+        to = this.circle(to)
+        this.animate(index * -this.slideWidth, to * -this.slideWidth, speed)
+      }
+      this.onslide(to)
+    },
+
+    getIndex: function () {
+      return this.index
+    },
+
+    getNumber: function () {
+      return this.num
+    },
+
+    prev: function () {
+      if (this.options.continuous || this.index) {
+        this.slide(this.index - 1)
+      }
+    },
+
+    next: function () {
+      if (this.options.continuous || this.index < this.num - 1) {
+        this.slide(this.index + 1)
+      }
+    },
+
+    play: function (time) {
+      var that = this
+      var nextIndex =
+        this.index + (this.options.slideshowDirection === 'rtl' ? -1 : 1)
+      window.clearTimeout(this.timeout)
+      this.interval = time || this.options.slideshowInterval
+      if (this.elements[this.index] > 1) {
+        this.timeout = this.setTimeout(
+          (!this.requestAnimationFrame && this.slide) ||
+            function (to, speed) {
+              that.animationFrameId = that.requestAnimationFrame.call(
+                window,
+                function () {
+                  that.slide(to, speed)
+                }
+              )
+            },
+          [nextIndex, this.options.slideshowTransitionSpeed],
+          this.interval
+        )
+      }
+      this.container.addClass(this.options.playingClass)
+    },
+
+    pause: function () {
+      window.clearTimeout(this.timeout)
+      this.interval = null
+      if (this.cancelAnimationFrame) {
+        this.cancelAnimationFrame.call(window, this.animationFrameId)
+        this.animationFrameId = null
+      }
+      this.container.removeClass(this.options.playingClass)
+    },
+
+    add: function (list) {
+      var i
+      if (!list.concat) {
+        // Make a real array out of the list to add:
+        list = Array.prototype.slice.call(list)
+      }
+      if (!this.list.concat) {
+        // Make a real array out of the Gallery list:
+        this.list = Array.prototype.slice.call(this.list)
+      }
+      this.list = this.list.concat(list)
+      this.num = this.list.length
+      if (this.num > 2 && this.options.continuous === null) {
+        this.options.continuous = true
+        this.container.removeClass(this.options.leftEdgeClass)
+      }
+      this.container
+        .removeClass(this.options.rightEdgeClass)
+        .removeClass(this.options.singleClass)
+      for (i = this.num - list.length; i < this.num; i += 1) {
+        this.addSlide(i)
+        this.positionSlide(i)
+      }
+      this.positions.length = this.num
+      this.initSlides(true)
+    },
+
+    resetSlides: function () {
+      this.slidesContainer.empty()
+      this.unloadAllSlides()
+      this.slides = []
+    },
+
+    handleClose: function () {
+      var options = this.options
+      this.destroyEventListeners()
+      // Cancel the slideshow:
+      this.pause()
+      this.container[0].style.display = 'none'
+      this.container
+        .removeClass(options.displayClass)
+        .removeClass(options.singleClass)
+        .removeClass(options.leftEdgeClass)
+        .removeClass(options.rightEdgeClass)
+      if (options.hidePageScrollbars) {
+        document.body.style.overflow = this.bodyOverflowStyle
+      }
+      if (this.options.clearSlides) {
+        this.resetSlides()
+      }
+      if (this.options.onclosed) {
+        this.options.onclosed.call(this)
+      }
+    },
+
+    close: function () {
+      var that = this
+      /**
+       * Close handler
+       *
+       * @param {event} event Close event
+       */
+      function closeHandler(event) {
+        if (event.target === that.container[0]) {
+          that.container.off(that.support.transition.end, closeHandler)
+          that.handleClose()
+        }
+      }
+      if (this.options.onclose) {
+        this.options.onclose.call(this)
+      }
+      if (this.support.transition && this.options.displayTransition) {
+        this.container.on(this.support.transition.end, closeHandler)
+        this.container.removeClass(this.options.displayClass)
+      } else {
+        this.handleClose()
+      }
+    },
+
+    circle: function (index) {
+      // Always return a number inside of the slides index range:
+      return (this.num + (index % this.num)) % this.num
+    },
+
+    move: function (index, dist, speed) {
+      this.translateX(index, dist, speed)
+      this.positions[index] = dist
+    },
+
+    translate: function (index, x, y, speed) {
+      if (!this.slides[index]) return
+      var style = this.slides[index].style
+      var transition = this.support.transition
+      var transform = this.support.transform
+      style[transition.name + 'Duration'] = speed + 'ms'
+      style[transform.name] =
+        'translate(' +
+        x +
+        'px, ' +
+        y +
+        'px)' +
+        (transform.translateZ ? ' translateZ(0)' : '')
+    },
+
+    translateX: function (index, x, speed) {
+      this.translate(index, x, 0, speed)
+    },
+
+    translateY: function (index, y, speed) {
+      this.translate(index, 0, y, speed)
+    },
+
+    animate: function (from, to, speed) {
+      if (!speed) {
+        this.slidesContainer[0].style.left = to + 'px'
+        return
+      }
+      var that = this
+      var start = new Date().getTime()
+      var timer = window.setInterval(function () {
+        var timeElap = new Date().getTime() - start
+        if (timeElap > speed) {
+          that.slidesContainer[0].style.left = to + 'px'
+          that.ontransitionend()
+          window.clearInterval(timer)
+          return
+        }
+        that.slidesContainer[0].style.left =
+          (to - from) * (Math.floor((timeElap / speed) * 100) / 100) +
+          from +
+          'px'
+      }, 4)
+    },
+
+    preventDefault: function (event) {
+      if (event.preventDefault) {
+        event.preventDefault()
+      } else {
+        event.returnValue = false
+      }
+    },
+
+    stopPropagation: function (event) {
+      if (event.stopPropagation) {
+        event.stopPropagation()
+      } else {
+        event.cancelBubble = true
+      }
+    },
+
+    onresize: function () {
+      this.initSlides(true)
+    },
+
+    onmousedown: function (event) {
+      // Trigger on clicks of the left mouse button only
+      // and exclude video & audio elements:
+      if (
+        event.which &&
+        event.which === 1 &&
+        event.target.nodeName !== 'VIDEO' &&
+        event.target.nodeName !== 'AUDIO'
+      ) {
+        // Preventing the default mousedown action is required
+        // to make touch emulation work with Firefox:
+        event.preventDefault()
+        ;(event.originalEvent || event).touches = [
+          {
+            pageX: event.pageX,
+            pageY: event.pageY
+          }
+        ]
+        this.ontouchstart(event)
+      }
+    },
+
+    onmousemove: function (event) {
+      if (this.touchStart) {
+        ;(event.originalEvent || event).touches = [
+          {
+            pageX: event.pageX,
+            pageY: event.pageY
+          }
+        ]
+        this.ontouchmove(event)
+      }
+    },
+
+    onmouseup: function (event) {
+      if (this.touchStart) {
+        this.ontouchend(event)
+        delete this.touchStart
+      }
+    },
+
+    onmouseout: function (event) {
+      if (this.touchStart) {
+        var target = event.target
+        var related = event.relatedTarget
+        if (!related || (related !== target && !$.contains(target, related))) {
+          this.onmouseup(event)
+        }
+      }
+    },
+
+    ontouchstart: function (event) {
+      if (this.options.stopTouchEventsPropagation) {
+        this.stopPropagation(event)
+      }
+      // jQuery doesn't copy touch event properties by default,
+      // so we have to access the originalEvent object:
+      var touches = (event.originalEvent || event).touches[0]
+      this.touchStart = {
+        // Remember the initial touch coordinates:
+        x: touches.pageX,
+        y: touches.pageY,
+        // Store the time to determine touch duration:
+        time: Date.now()
+      }
+      // Helper variable to detect scroll movement:
+      this.isScrolling = undefined
+      // Reset delta values:
+      this.touchDelta = {}
+    },
+
+    ontouchmove: function (event) {
+      if (this.options.stopTouchEventsPropagation) {
+        this.stopPropagation(event)
+      }
+      // jQuery doesn't copy touch event properties by default,
+      // so we have to access the originalEvent object:
+      var touches = (event.originalEvent || event).touches[0]
+      var scale = (event.originalEvent || event).scale
+      var index = this.index
+      var touchDeltaX
+      var indices
+      // Ensure this is a one touch swipe and not, e.g. a pinch:
+      if (touches.length > 1 || (scale && scale !== 1)) {
+        return
+      }
+      if (this.options.disableScroll) {
+        event.preventDefault()
+      }
+      // Measure change in x and y coordinates:
+      this.touchDelta = {
+        x: touches.pageX - this.touchStart.x,
+        y: touches.pageY - this.touchStart.y
+      }
+      touchDeltaX = this.touchDelta.x
+      // Detect if this is a vertical scroll movement (run only once per touch):
+      if (this.isScrolling === undefined) {
+        this.isScrolling =
+          this.isScrolling ||
+          Math.abs(touchDeltaX) < Math.abs(this.touchDelta.y)
+      }
+      if (!this.isScrolling) {
+        // Always prevent horizontal scroll:
+        event.preventDefault()
+        // Stop the slideshow:
+        window.clearTimeout(this.timeout)
+        if (this.options.continuous) {
+          indices = [this.circle(index + 1), index, this.circle(index - 1)]
+        } else {
+          // Increase resistance if first slide and sliding left
+          // or last slide and sliding right:
+          this.touchDelta.x = touchDeltaX =
+            touchDeltaX /
+            ((!index && touchDeltaX > 0) ||
+            (index === this.num - 1 && touchDeltaX < 0)
+              ? Math.abs(touchDeltaX) / this.slideWidth + 1
+              : 1)
+          indices = [index]
+          if (index) {
+            indices.push(index - 1)
+          }
+          if (index < this.num - 1) {
+            indices.unshift(index + 1)
+          }
+        }
+        while (indices.length) {
+          index = indices.pop()
+          this.translateX(index, touchDeltaX + this.positions[index], 0)
+        }
+      } else {
+        this.translateY(index, this.touchDelta.y + this.positions[index], 0)
+      }
+    },
+
+    ontouchend: function (event) {
+      if (this.options.stopTouchEventsPropagation) {
+        this.stopPropagation(event)
+      }
+      var index = this.index
+      var speed = this.options.transitionSpeed
+      var slideWidth = this.slideWidth
+      var isShortDuration = Number(Date.now() - this.touchStart.time) < 250
+      // Determine if slide attempt triggers next/prev slide:
+      var isValidSlide =
+        (isShortDuration && Math.abs(this.touchDelta.x) > 20) ||
+        Math.abs(this.touchDelta.x) > slideWidth / 2
+      // Determine if slide attempt is past start or end:
+      var isPastBounds =
+        (!index && this.touchDelta.x > 0) ||
+        (index === this.num - 1 && this.touchDelta.x < 0)
+      var isValidClose =
+        !isValidSlide &&
+        this.options.closeOnSwipeUpOrDown &&
+        ((isShortDuration && Math.abs(this.touchDelta.y) > 20) ||
+          Math.abs(this.touchDelta.y) > this.slideHeight / 2)
+      var direction
+      var indexForward
+      var indexBackward
+      var distanceForward
+      var distanceBackward
+      if (this.options.continuous) {
+        isPastBounds = false
+      }
+      // Determine direction of swipe (true: right, false: left):
+      direction = this.touchDelta.x < 0 ? -1 : 1
+      if (!this.isScrolling) {
+        if (isValidSlide && !isPastBounds) {
+          indexForward = index + direction
+          indexBackward = index - direction
+          distanceForward = slideWidth * direction
+          distanceBackward = -slideWidth * direction
+          if (this.options.continuous) {
+            this.move(this.circle(indexForward), distanceForward, 0)
+            this.move(this.circle(index - 2 * direction), distanceBackward, 0)
+          } else if (indexForward >= 0 && indexForward < this.num) {
+            this.move(indexForward, distanceForward, 0)
+          }
+          this.move(index, this.positions[index] + distanceForward, speed)
+          this.move(
+            this.circle(indexBackward),
+            this.positions[this.circle(indexBackward)] + distanceForward,
+            speed
+          )
+          index = this.circle(indexBackward)
+          this.onslide(index)
+        } else {
+          // Move back into position
+          if (this.options.continuous) {
+            this.move(this.circle(index - 1), -slideWidth, speed)
+            this.move(index, 0, speed)
+            this.move(this.circle(index + 1), slideWidth, speed)
+          } else {
+            if (index) {
+              this.move(index - 1, -slideWidth, speed)
+            }
+            this.move(index, 0, speed)
+            if (index < this.num - 1) {
+              this.move(index + 1, slideWidth, speed)
+            }
+          }
+        }
+      } else {
+        if (isValidClose) {
+          this.close()
+        } else {
+          // Move back into position
+          this.translateY(index, 0, speed)
+        }
+      }
+    },
+
+    ontouchcancel: function (event) {
+      if (this.touchStart) {
+        this.ontouchend(event)
+        delete this.touchStart
+      }
+    },
+
+    ontransitionend: function (event) {
+      var slide = this.slides[this.index]
+      if (!event || slide === event.target) {
+        if (this.interval) {
+          this.play()
+        }
+        this.setTimeout(this.options.onslideend, [this.index, slide])
+      }
+    },
+
+    oncomplete: function (event) {
+      var target = event.target || event.srcElement
+      var parent = target && target.parentNode
+      var index
+      if (!target || !parent) {
+        return
+      }
+      index = this.getNodeIndex(parent)
+      $(parent).removeClass(this.options.slideLoadingClass)
+      if (event.type === 'error') {
+        $(parent).addClass(this.options.slideErrorClass)
+        this.elements[index] = 3 // Fail
+      } else {
+        this.elements[index] = 2 // Done
+      }
+      // Fix for IE7's lack of support for percentage max-height:
+      if (target.clientHeight > this.container[0].clientHeight) {
+        target.style.maxHeight = this.container[0].clientHeight
+      }
+      if (this.interval && this.slides[this.index] === parent) {
+        this.play()
+      }
+      this.setTimeout(this.options.onslidecomplete, [index, parent])
+    },
+
+    onload: function (event) {
+      this.oncomplete(event)
+    },
+
+    onerror: function (event) {
+      this.oncomplete(event)
+    },
+
+    onkeydown: function (event) {
+      switch (event.which || event.keyCode) {
+        case 13: // Return
+          if (this.options.toggleControlsOnReturn) {
+            this.preventDefault(event)
+            this.toggleControls()
+          }
+          break
+        case 27: // Esc
+          if (this.options.closeOnEscape) {
+            this.close()
+            // prevent Esc from closing other things
+            event.stopImmediatePropagation()
+          }
+          break
+        case 32: // Space
+          if (this.options.toggleSlideshowOnSpace) {
+            this.preventDefault(event)
+            this.toggleSlideshow()
+          }
+          break
+        case 37: // Left
+          if (this.options.enableKeyboardNavigation) {
+            this.preventDefault(event)
+            this.prev()
+          }
+          break
+        case 39: // Right
+          if (this.options.enableKeyboardNavigation) {
+            this.preventDefault(event)
+            this.next()
+          }
+          break
+      }
+    },
+
+    handleClick: function (event) {
+      var options = this.options
+      var target = event.target || event.srcElement
+      var parent = target.parentNode
+      /**
+       * Checks if the target from the close has the given class
+       *
+       * @param {string} className Class name
+       * @returns {boolean} Returns true if the target has the class name
+       */
+      function isTarget(className) {
+        return $(target).hasClass(className) || $(parent).hasClass(className)
+      }
+      if (isTarget(options.toggleClass)) {
+        // Click on "toggle" control
+        this.preventDefault(event)
+        this.toggleControls()
+      } else if (isTarget(options.prevClass)) {
+        // Click on "prev" control
+        this.preventDefault(event)
+        this.prev()
+      } else if (isTarget(options.nextClass)) {
+        // Click on "next" control
+        this.preventDefault(event)
+        this.next()
+      } else if (isTarget(options.closeClass)) {
+        // Click on "close" control
+        this.preventDefault(event)
+        this.close()
+      } else if (isTarget(options.playPauseClass)) {
+        // Click on "play-pause" control
+        this.preventDefault(event)
+        this.toggleSlideshow()
+      } else if (parent === this.slidesContainer[0]) {
+        // Click on slide background
+        if (options.closeOnSlideClick) {
+          this.preventDefault(event)
+          this.close()
+        } else if (options.toggleControlsOnSlideClick) {
+          this.preventDefault(event)
+          this.toggleControls()
+        }
+      } else if (
+        parent.parentNode &&
+        parent.parentNode === this.slidesContainer[0]
+      ) {
+        // Click on displayed element
+        if (options.toggleControlsOnSlideClick) {
+          this.preventDefault(event)
+          this.toggleControls()
+        }
+      }
+    },
+
+    onclick: function (event) {
+      if (
+        this.options.emulateTouchEvents &&
+        this.touchDelta &&
+        (Math.abs(this.touchDelta.x) > 20 || Math.abs(this.touchDelta.y) > 20)
+      ) {
+        delete this.touchDelta
+        return
+      }
+      return this.handleClick(event)
+    },
+
+    updateEdgeClasses: function (index) {
+      if (!index) {
+        this.container.addClass(this.options.leftEdgeClass)
+      } else {
+        this.container.removeClass(this.options.leftEdgeClass)
+      }
+      if (index === this.num - 1) {
+        this.container.addClass(this.options.rightEdgeClass)
+      } else {
+        this.container.removeClass(this.options.rightEdgeClass)
+      }
+    },
+
+    handleSlide: function (index) {
+      if (!this.options.continuous) {
+        this.updateEdgeClasses(index)
+      }
+      this.loadElements(index)
+      if (this.options.unloadElements) {
+        this.unloadElements(index)
+      }
+      this.setTitle(index)
+    },
+
+    onslide: function (index) {
+      this.index = index
+      this.handleSlide(index)
+      this.setTimeout(this.options.onslide, [index, this.slides[index]])
+    },
+
+    setTitle: function (index) {
+      var firstChild = this.slides[index].firstChild
+      var text = firstChild.title || firstChild.alt
+      var titleElement = this.titleElement
+      if (titleElement.length) {
+        this.titleElement.empty()
+        if (text) {
+          titleElement[0].appendChild(document.createTextNode(text))
+        }
+      }
+    },
+
+    setTimeout: function (func, args, wait) {
+      var that = this
+      return (
+        func &&
+        window.setTimeout(function () {
+          func.apply(that, args || [])
+        }, wait || 0)
+      )
+    },
+
+    imageFactory: function (obj, callback) {
+      var that = this
+      var img = this.imagePrototype.cloneNode(false)
+      var url = obj
+      var backgroundSize = this.options.stretchImages
+      var called
+      var element
+      var title
+      var altText
+      /**
+       * Wraps the callback function for the load/error event
+       *
+       * @param {event} event load/error event
+       * @returns {number} timeout ID
+       */
+      function callbackWrapper(event) {
+        if (!called) {
+          event = {
+            type: event.type,
+            target: element
+          }
+          if (!element.parentNode) {
+            // Fix for IE7 firing the load event for
+            // cached images before the element could
+            // be added to the DOM:
+            return that.setTimeout(callbackWrapper, [event])
+          }
+          called = true
+          $(img).off('load error', callbackWrapper)
+          if (backgroundSize) {
+            if (event.type === 'load') {
+              element.style.background = 'url("' + url + '") center no-repeat'
+              element.style.backgroundSize = backgroundSize
+            }
+          }
+          callback(event)
+        }
+      }
+      if (typeof url !== 'string') {
+        url = this.getItemProperty(obj, this.options.urlProperty)
+        title = this.getItemProperty(obj, this.options.titleProperty)
+        altText =
+          this.getItemProperty(obj, this.options.altTextProperty) || title
+      }
+      if (backgroundSize === true) {
+        backgroundSize = 'contain'
+      }
+      backgroundSize =
+        this.support.backgroundSize &&
+        this.support.backgroundSize[backgroundSize] &&
+        backgroundSize
+      if (backgroundSize) {
+        element = this.elementPrototype.cloneNode(false)
+      } else {
+        element = img
+        img.draggable = false
+      }
+      if (title) {
+        element.title = title
+      }
+      if (altText) {
+        element.alt = altText
+      }
+      $(img).on('load error', callbackWrapper)
+      img.src = url
+      return element
+    },
+
+    createElement: function (obj, callback) {
+      var type = obj && this.getItemProperty(obj, this.options.typeProperty)
+      var factory =
+        (type && this[type.split('/')[0] + 'Factory']) || this.imageFactory
+      var element = obj && factory.call(this, obj, callback)
+      var srcset = this.getItemProperty(obj, this.options.srcsetProperty)
+      if (!element) {
+        element = this.elementPrototype.cloneNode(false)
+        this.setTimeout(callback, [
+          {
+            type: 'error',
+            target: element
+          }
+        ])
+      }
+      if (srcset) {
+        element.setAttribute('srcset', srcset)
+      }
+      $(element).addClass(this.options.slideContentClass)
+      return element
+    },
+
+    loadElement: function (index) {
+      if (!this.elements[index]) {
+        if (this.slides[index].firstChild) {
+          this.elements[index] = $(this.slides[index]).hasClass(
+            this.options.slideErrorClass
+          )
+            ? 3
+            : 2
+        } else {
+          this.elements[index] = 1 // Loading
+          $(this.slides[index]).addClass(this.options.slideLoadingClass)
+          this.slides[index].appendChild(
+            this.createElement(this.list[index], this.proxyListener)
+          )
+        }
+      }
+    },
+
+    loadElements: function (index) {
+      var limit = Math.min(this.num, this.options.preloadRange * 2 + 1)
+      var j = index
+      var i
+      for (i = 0; i < limit; i += 1) {
+        // First load the current slide element (0),
+        // then the next one (+1),
+        // then the previous one (-2),
+        // then the next after next (+2), etc.:
+        j += i * (i % 2 === 0 ? -1 : 1)
+        // Connect the ends of the list to load slide elements for
+        // continuous navigation:
+        j = this.circle(j)
+        this.loadElement(j)
+      }
+    },
+
+    unloadElements: function (index) {
+      var i, diff
+      for (i in this.elements) {
+        if (Object.prototype.hasOwnProperty.call(this.elements, i)) {
+          diff = Math.abs(index - i)
+          if (
+            diff > this.options.preloadRange &&
+            diff + this.options.preloadRange < this.num
+          ) {
+            this.unloadSlide(i)
+            delete this.elements[i]
+          }
+        }
+      }
+    },
+
+    addSlide: function (index) {
+      var slide = this.slidePrototype.cloneNode(false)
+      slide.setAttribute('data-index', index)
+      this.slidesContainer[0].appendChild(slide)
+      this.slides.push(slide)
+    },
+
+    positionSlide: function (index) {
+      var slide = this.slides[index]
+      slide.style.width = this.slideWidth + 'px'
+      if (this.support.transform) {
+        slide.style.left = index * -this.slideWidth + 'px'
+        this.move(
+          index,
+          this.index > index
+            ? -this.slideWidth
+            : this.index < index
+            ? this.slideWidth
+            : 0,
+          0
+        )
+      }
+    },
+
+    initSlides: function (reload) {
+      var clearSlides, i
+      if (!reload) {
+        this.positions = []
+        this.positions.length = this.num
+        this.elements = {}
+        this.imagePrototype = document.createElement('img')
+        this.elementPrototype = document.createElement('div')
+        this.slidePrototype = document.createElement('div')
+        $(this.slidePrototype).addClass(this.options.slideClass)
+        this.slides = this.slidesContainer[0].children
+        clearSlides =
+          this.options.clearSlides || this.slides.length !== this.num
+      }
+      this.slideWidth = this.container[0].clientWidth
+      this.slideHeight = this.container[0].clientHeight
+      this.slidesContainer[0].style.width = this.num * this.slideWidth + 'px'
+      if (clearSlides) {
+        this.resetSlides()
+      }
+      for (i = 0; i < this.num; i += 1) {
+        if (clearSlides) {
+          this.addSlide(i)
+        }
+        this.positionSlide(i)
+      }
+      // Reposition the slides before and after the given index:
+      if (this.options.continuous && this.support.transform) {
+        this.move(this.circle(this.index - 1), -this.slideWidth, 0)
+        this.move(this.circle(this.index + 1), this.slideWidth, 0)
+      }
+      if (!this.support.transform) {
+        this.slidesContainer[0].style.left =
+          this.index * -this.slideWidth + 'px'
+      }
+    },
+
+    unloadSlide: function (index) {
+      var slide, firstChild
+      slide = this.slides[index]
+      firstChild = slide.firstChild
+      if (firstChild !== null) {
+        slide.removeChild(firstChild)
+      }
+    },
+
+    unloadAllSlides: function () {
+      var i, len
+      for (i = 0, len = this.slides.length; i < len; i++) {
+        this.unloadSlide(i)
+      }
+    },
+
+    toggleControls: function () {
+      var controlsClass = this.options.controlsClass
+      if (this.container.hasClass(controlsClass)) {
+        this.container.removeClass(controlsClass)
+      } else {
+        this.container.addClass(controlsClass)
+      }
+    },
+
+    toggleSlideshow: function () {
+      if (!this.interval) {
+        this.play()
+      } else {
+        this.pause()
+      }
+    },
+
+    getNodeIndex: function (element) {
+      return parseInt(element.getAttribute('data-index'), 10)
+    },
+
+    getNestedProperty: function (obj, property) {
+      property.replace(
+        // Matches native JavaScript notation in a String,
+        // e.g. '["doubleQuoteProp"].dotProp[2]'
+        // eslint-disable-next-line no-useless-escape
+        /\[(?:'([^']+)'|"([^"]+)"|(\d+))\]|(?:(?:^|\.)([^\.\[]+))/g,
+        function (str, singleQuoteProp, doubleQuoteProp, arrayIndex, dotProp) {
+          var prop =
+            dotProp ||
+            singleQuoteProp ||
+            doubleQuoteProp ||
+            (arrayIndex && parseInt(arrayIndex, 10))
+          if (str && obj) {
+            obj = obj[prop]
+          }
+        }
+      )
+      return obj
+    },
+
+    getDataProperty: function (obj, property) {
+      var key
+      var prop
+      if (obj.dataset) {
+        key = property.replace(/-([a-z])/g, function (_, b) {
+          return b.toUpperCase()
+        })
+        prop = obj.dataset[key]
+      } else if (obj.getAttribute) {
+        prop = obj.getAttribute(
+          'data-' + property.replace(/([A-Z])/g, '-$1').toLowerCase()
+        )
+      }
+      if (typeof prop === 'string') {
+        // eslint-disable-next-line no-useless-escape
+        if (
+          /^(true|false|null|-?\d+(\.\d+)?|\{[\s\S]*\}|\[[\s\S]*\])$/.test(prop)
+        ) {
+          try {
+            return $.parseJSON(prop)
+          } catch (ignore) {
+            // ignore JSON parsing errors
+          }
+        }
+        return prop
+      }
+    },
+
+    getItemProperty: function (obj, property) {
+      var prop = this.getDataProperty(obj, property)
+      if (prop === undefined) {
+        prop = obj[property]
+      }
+      if (prop === undefined) {
+        prop = this.getNestedProperty(obj, property)
+      }
+      return prop
+    },
+
+    initStartIndex: function () {
+      var index = this.options.index
+      var urlProperty = this.options.urlProperty
+      var i
+      // Check if the index is given as a list object:
+      if (index && typeof index !== 'number') {
+        for (i = 0; i < this.num; i += 1) {
+          if (
+            this.list[i] === index ||
+            this.getItemProperty(this.list[i], urlProperty) ===
+              this.getItemProperty(index, urlProperty)
+          ) {
+            index = i
+            break
+          }
+        }
+      }
+      // Make sure the index is in the list range:
+      this.index = this.circle(parseInt(index, 10) || 0)
+    },
+
+    initEventListeners: function () {
+      var that = this
+      var slidesContainer = this.slidesContainer
+      /**
+       * Proxy listener
+       *
+       * @param {event} event original event
+       */
+      function proxyListener(event) {
+        var type =
+          that.support.transition && that.support.transition.end === event.type
+            ? 'transitionend'
+            : event.type
+        that['on' + type](event)
+      }
+      $(window).on('resize', proxyListener)
+      $(document.body).on('keydown', proxyListener)
+      this.container.on('click', proxyListener)
+      if (this.support.touch) {
+        slidesContainer.on(
+          'touchstart touchmove touchend touchcancel',
+          proxyListener
+        )
+      } else if (this.options.emulateTouchEvents && this.support.transition) {
+        slidesContainer.on(
+          'mousedown mousemove mouseup mouseout',
+          proxyListener
+        )
+      }
+      if (this.support.transition) {
+        slidesContainer.on(this.support.transition.end, proxyListener)
+      }
+      this.proxyListener = proxyListener
+    },
+
+    destroyEventListeners: function () {
+      var slidesContainer = this.slidesContainer
+      var proxyListener = this.proxyListener
+      $(window).off('resize', proxyListener)
+      $(document.body).off('keydown', proxyListener)
+      this.container.off('click', proxyListener)
+      if (this.support.touch) {
+        slidesContainer.off(
+          'touchstart touchmove touchend touchcancel',
+          proxyListener
+        )
+      } else if (this.options.emulateTouchEvents && this.support.transition) {
+        slidesContainer.off(
+          'mousedown mousemove mouseup mouseout',
+          proxyListener
+        )
+      }
+      if (this.support.transition) {
+        slidesContainer.off(this.support.transition.end, proxyListener)
+      }
+    },
+
+    handleOpen: function () {
+      if (this.options.onopened) {
+        this.options.onopened.call(this)
+      }
+    },
+
+    initWidget: function () {
+      var that = this
+      /**
+       * Open handler
+       *
+       * @param {event} event Gallery open event
+       */
+      function openHandler(event) {
+        if (event.target === that.container[0]) {
+          that.container.off(that.support.transition.end, openHandler)
+          that.handleOpen()
+        }
+      }
+      this.container = $(this.options.container)
+      if (!this.container.length) {
+        this.console.log(
+          'blueimp Gallery: Widget container not found.',
+          this.options.container
+        )
+        return false
+      }
+      this.slidesContainer = this.container
+        .find(this.options.slidesContainer)
+        .first()
+      if (!this.slidesContainer.length) {
+        this.console.log(
+          'blueimp Gallery: Slides container not found.',
+          this.options.slidesContainer
+        )
+        return false
+      }
+      this.titleElement = this.container.find(this.options.titleElement).first()
+      if (this.num === 1) {
+        this.container.addClass(this.options.singleClass)
+      }
+      if (this.options.onopen) {
+        this.options.onopen.call(this)
+      }
+      if (this.support.transition && this.options.displayTransition) {
+        this.container.on(this.support.transition.end, openHandler)
+      } else {
+        this.handleOpen()
+      }
+      if (this.options.hidePageScrollbars) {
+        // Hide the page scrollbars:
+        this.bodyOverflowStyle = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+      }
+      this.container[0].style.display = 'block'
+      this.initSlides()
+      this.container.addClass(this.options.displayClass)
+    },
+
+    initOptions: function (options) {
+      // Create a copy of the prototype options:
+      this.options = $.extend({}, this.options)
+      // Check if carousel mode is enabled:
+      if (
+        (options && options.carousel) ||
+        (this.options.carousel && (!options || options.carousel !== false))
+      ) {
+        $.extend(this.options, this.carouselOptions)
+      }
+      // Override any given options:
+      $.extend(this.options, options)
+      if (this.num < 3) {
+        // 1 or 2 slides cannot be displayed continuous,
+        // remember the original option by setting to null instead of false:
+        this.options.continuous = this.options.continuous ? null : false
+      }
+      if (!this.support.transition) {
+        this.options.emulateTouchEvents = false
+      }
+      if (this.options.event) {
+        this.preventDefault(this.options.event)
+      }
+    }
+  })
+
+  return Gallery
+})
+
+
+/***/ }),
+
+/***/ "./node_modules/blueimp-gallery/js/blueimp-helper.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/blueimp-gallery/js/blueimp-helper.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/*
+ * blueimp helper JS
+ * https://github.com/blueimp/Gallery
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ */
+
+/* global define */
+
+/* eslint-disable no-param-reassign */
+
+;(function () {
+  'use strict'
+
+  /**
+   * Object.assign polyfill
+   *
+   * @param {object} obj1 First object
+   * @param {object} obj2 Second object
+   * @returns {object} Merged object
+   */
+  function extend(obj1, obj2) {
+    var prop
+    for (prop in obj2) {
+      if (Object.prototype.hasOwnProperty.call(obj2, prop)) {
+        obj1[prop] = obj2[prop]
+      }
+    }
+    return obj1
+  }
+  /**
+   * Helper constructor
+   *
+   * @class
+   * @param {*} query jQuery type query argument
+   */
+  function Helper(query) {
+    if (!this || this.find !== Helper.prototype.find) {
+      // Called as function instead of as constructor,
+      // so we simply return a new instance:
+      return new Helper(query)
+    }
+    this.length = 0
+    if (query) {
+      if (typeof query === 'string') {
+        query = this.find(query)
+      }
+      if (query.nodeType || query === query.window) {
+        // Single HTML element
+        this.length = 1
+        this[0] = query
+      } else {
+        // HTML element collection
+        var i = query.length
+        this.length = i
+        while (i) {
+          i -= 1
+          this[i] = query[i]
+        }
+      }
+    }
+  }
+
+  Helper.extend = extend
+
+  Helper.contains = function (container, element) {
+    do {
+      element = element.parentNode
+      if (element === container) {
+        return true
+      }
+    } while (element)
+    return false
+  }
+
+  Helper.parseJSON = function (string) {
+    return window.JSON && JSON.parse(string)
+  }
+
+  extend(Helper.prototype, {
+    find: function (query) {
+      var container = this[0] || document
+      if (typeof query === 'string') {
+        if (container.querySelectorAll) {
+          query = container.querySelectorAll(query)
+        } else if (query.charAt(0) === '#') {
+          query = container.getElementById(query.slice(1))
+        } else {
+          query = container.getElementsByTagName(query)
+        }
+      }
+      return new Helper(query)
+    },
+
+    hasClass: function (className) {
+      if (!this[0]) {
+        return false
+      }
+      return new RegExp('(^|\\s+)' + className + '(\\s+|$)').test(
+        this[0].className
+      )
+    },
+
+    addClass: function (className) {
+      var i = this.length
+      var element
+      while (i) {
+        i -= 1
+        element = this[i]
+        if (!element.className) {
+          element.className = className
+          return this
+        }
+        if (this.hasClass(className)) {
+          return this
+        }
+        element.className += ' ' + className
+      }
+      return this
+    },
+
+    removeClass: function (className) {
+      var regexp = new RegExp('(^|\\s+)' + className + '(\\s+|$)')
+      var i = this.length
+      var element
+      while (i) {
+        i -= 1
+        element = this[i]
+        element.className = element.className.replace(regexp, ' ')
+      }
+      return this
+    },
+
+    on: function (eventName, handler) {
+      var eventNames = eventName.split(/\s+/)
+      var i
+      var element
+      while (eventNames.length) {
+        eventName = eventNames.shift()
+        i = this.length
+        while (i) {
+          i -= 1
+          element = this[i]
+          if (element.addEventListener) {
+            element.addEventListener(eventName, handler, false)
+          } else if (element.attachEvent) {
+            element.attachEvent('on' + eventName, handler)
+          }
+        }
+      }
+      return this
+    },
+
+    off: function (eventName, handler) {
+      var eventNames = eventName.split(/\s+/)
+      var i
+      var element
+      while (eventNames.length) {
+        eventName = eventNames.shift()
+        i = this.length
+        while (i) {
+          i -= 1
+          element = this[i]
+          if (element.removeEventListener) {
+            element.removeEventListener(eventName, handler, false)
+          } else if (element.detachEvent) {
+            element.detachEvent('on' + eventName, handler)
+          }
+        }
+      }
+      return this
+    },
+
+    empty: function () {
+      var i = this.length
+      var element
+      while (i) {
+        i -= 1
+        element = this[i]
+        while (element.hasChildNodes()) {
+          element.removeChild(element.lastChild)
+        }
+      }
+      return this
+    },
+
+    first: function () {
+      return new Helper(this[0])
+    }
+  })
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+      return Helper
+    }).call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))
+  } else {}
+})()
+
 
 /***/ }),
 
@@ -8889,6 +11256,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/blueimp-gallery/css/blueimp-gallery.min.css":
+/*!**************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/blueimp-gallery/css/blueimp-gallery.min.css ***!
+  \**************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(/*! ../../css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";.blueimp-gallery,.blueimp-gallery>.slides>.slide>.slide-content{position:absolute;top:0;right:0;bottom:0;left:0;transition:opacity .2s linear;-webkit-backface-visibility:hidden;backface-visibility:hidden;-moz-backface-visibility:hidden}.blueimp-gallery>.slides>.slide>.slide-content{margin:auto;width:auto;height:auto;max-width:100%;max-height:100%;opacity:1}.blueimp-gallery{position:fixed;z-index:999999;overflow:hidden;background:#000;background:rgba(0,0,0,.9);opacity:0;display:none;direction:ltr;touch-action:none}.blueimp-gallery-carousel{position:relative;z-index:auto;margin:1em auto;padding-bottom:56.25%;box-shadow:0 0 10px #000;touch-action:pan-y}.blueimp-gallery-display{display:block;opacity:1}.blueimp-gallery>.slides{position:relative;height:100%;overflow:hidden}.blueimp-gallery-carousel>.slides{position:absolute}.blueimp-gallery>.slides>.slide{position:relative;float:left;height:100%;text-align:center;transition-timing-function:cubic-bezier(.645,.045,.355,1)}.blueimp-gallery>.slides>.slide-loading{background:url(" + escape(__webpack_require__(/*! ../img/loading.gif */ "./node_modules/blueimp-gallery/img/loading.gif")) + ") center no-repeat;background-size:64px 64px}.blueimp-gallery>.slides>.slide-loading>.slide-content{opacity:0}.blueimp-gallery>.slides>.slide-error{background:url(" + escape(__webpack_require__(/*! ../img/error.png */ "./node_modules/blueimp-gallery/img/error.png")) + ") center no-repeat}.blueimp-gallery>.slides>.slide-error>.slide-content{display:none}.blueimp-gallery>.next,.blueimp-gallery>.prev{position:absolute;top:50%;left:15px;width:40px;height:40px;margin-top:-23px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:60px;font-weight:100;line-height:30px;color:#fff;text-decoration:none;text-shadow:0 0 2px #000;text-align:center;background:#222;background:rgba(0,0,0,.5);box-sizing:content-box;border:3px solid #fff;border-radius:23px;opacity:.5;cursor:pointer;display:none}.blueimp-gallery>.next{left:auto;right:15px}.blueimp-gallery>.close,.blueimp-gallery>.title{position:absolute;top:15px;left:15px;margin:0 40px 0 0;font-size:20px;line-height:30px;color:#fff;text-shadow:0 0 2px #000;opacity:.8;display:none}.blueimp-gallery>.close{padding:15px;right:15px;left:auto;margin:-15px;font-size:30px;text-decoration:none;cursor:pointer}.blueimp-gallery>.play-pause{position:absolute;right:15px;bottom:15px;width:15px;height:15px;background:url(" + escape(__webpack_require__(/*! ../img/play-pause.png */ "./node_modules/blueimp-gallery/img/play-pause.png")) + ") 0 0 no-repeat;cursor:pointer;opacity:.5;display:none}.blueimp-gallery-playing>.play-pause{background-position:-15px 0}.blueimp-gallery-controls>.close,.blueimp-gallery-controls>.next,.blueimp-gallery-controls>.play-pause,.blueimp-gallery-controls>.prev,.blueimp-gallery-controls>.title{display:block;transform:translateZ(0)}.blueimp-gallery-left>.prev,.blueimp-gallery-right>.next,.blueimp-gallery-single>.next,.blueimp-gallery-single>.play-pause,.blueimp-gallery-single>.prev{display:none}.blueimp-gallery>.close,.blueimp-gallery>.next,.blueimp-gallery>.play-pause,.blueimp-gallery>.prev,.blueimp-gallery>.slides>.slide>.slide-content{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.blueimp-gallery>.close:hover,.blueimp-gallery>.next:hover,.blueimp-gallery>.play-pause:hover,.blueimp-gallery>.prev:hover,.blueimp-gallery>.title:hover{color:#fff;opacity:1}body:last-child .blueimp-gallery>.slides>.slide-error{background-image:url(" + escape(__webpack_require__(/*! ../img/error.svg */ "./node_modules/blueimp-gallery/img/error.svg")) + ")}body:last-child .blueimp-gallery>.play-pause{width:20px;height:20px;background-size:40px 20px;background-image:url(" + escape(__webpack_require__(/*! ../img/play-pause.svg */ "./node_modules/blueimp-gallery/img/play-pause.svg")) + ")}body:last-child .blueimp-gallery-playing>.play-pause{background-position:-20px 0}*+html .blueimp-gallery>.slides>.slide{min-height:300px}*+html .blueimp-gallery>.slides>.slide>.slide-content{position:relative}.blueimp-gallery>.indicator{position:absolute;top:auto;right:15px;bottom:15px;left:15px;margin:0 40px;padding:0;list-style:none;text-align:center;line-height:10px;display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.blueimp-gallery>.indicator>li{display:inline-block;width:9px;height:9px;margin:6px 3px 0 3px;box-sizing:content-box;border:1px solid transparent;background:#ccc;background:rgba(255,255,255,.25) center no-repeat;border-radius:5px;box-shadow:0 0 2px #000;opacity:.5;cursor:pointer}*+html .blueimp-gallery>.indicator>li{display:inline}.blueimp-gallery>.indicator>.active,.blueimp-gallery>.indicator>li:hover{background-color:#fff;border-color:#fff;opacity:1}.blueimp-gallery>.indicator>li:after{opacity:0;display:block;position:absolute;content:'';top:-5em;width:75px;height:75px;transition:transform .6s ease-out,opacity .4s ease-out;transform:translateX(-50%) translateY(0) translateZ(0);pointer-events:none}.blueimp-gallery>.indicator>li:hover:after{opacity:1;border-radius:50%;background:inherit;transform:translateX(-50%) translateY(-5px) translateZ(0)}.blueimp-gallery>.indicator>.active:after{display:none}.blueimp-gallery-controls>.indicator{display:block;transform:translateZ(0)}.blueimp-gallery-single>.indicator{display:none}.blueimp-gallery>.slides>.slide>.video-content>img{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:auto;height:auto;max-width:100%;max-height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;-moz-backface-visibility:hidden}.blueimp-gallery>.slides>.slide>.video-content>video{position:absolute;top:0;left:0;width:100%;height:100%;display:none}.blueimp-gallery>.slides>.slide>.video-content>iframe{position:absolute;top:100%;left:0;width:100%;height:100%;border:none}.blueimp-gallery>.slides>.slide>.video-playing>iframe{top:0}.blueimp-gallery>.slides>.slide>.video-content>a{position:absolute;top:50%;right:0;left:0;margin:-64px auto 0;width:128px;height:128px;background:url(" + escape(__webpack_require__(/*! ../img/video-play.png */ "./node_modules/blueimp-gallery/img/video-play.png")) + ") center no-repeat;opacity:.8;cursor:pointer}.blueimp-gallery>.slides>.slide>.video-playing>a,.blueimp-gallery>.slides>.slide>.video-playing>img{display:none}.blueimp-gallery>.slides>.slide>.video-playing>video{display:block}.blueimp-gallery>.slides>.slide>.video-loading>a{background:url(" + escape(__webpack_require__(/*! ../img/loading.gif */ "./node_modules/blueimp-gallery/img/loading.gif")) + ") center no-repeat;background-size:64px 64px}*+html .blueimp-gallery>.slides>.slide>.video-content{height:100%}*+html .blueimp-gallery>.slides>.slide>.video-content>a{left:50%;margin-left:-64px}.blueimp-gallery>.slides>.slide>.video-content>a:hover{opacity:1}body:last-child .blueimp-gallery>.slides>.slide>.video-content:not(.video-loading)>a{background-image:url(" + escape(__webpack_require__(/*! ../img/video-play.svg */ "./node_modules/blueimp-gallery/img/video-play.svg")) + ")}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css ***!
@@ -9009,6 +11396,33 @@ function toComment(sourceMap) {
 	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
 
 	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/url/escape.js":
+/*!***************************************************!*\
+  !*** ./node_modules/css-loader/lib/url/escape.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    if (typeof url !== 'string') {
+        return url
+    }
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
 }
 
 
@@ -79546,6 +81960,325 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-gallery/dist/js/vue-gallery.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/vue-gallery/dist/js/vue-gallery.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? module.exports = factory(__webpack_require__(/*! blueimp-gallery/css/blueimp-gallery.min.css */ "./node_modules/blueimp-gallery/css/blueimp-gallery.min.css"), __webpack_require__(/*! blueimp-gallery/js/blueimp-gallery-fullscreen.js */ "./node_modules/blueimp-gallery/js/blueimp-gallery-fullscreen.js"), __webpack_require__(/*! blueimp-gallery/js/blueimp-gallery-video.js */ "./node_modules/blueimp-gallery/js/blueimp-gallery-video.js"), __webpack_require__(/*! blueimp-gallery/js/blueimp-gallery-youtube.js */ "./node_modules/blueimp-gallery/js/blueimp-gallery-youtube.js"), __webpack_require__(/*! blueimp-gallery/js/blueimp-gallery.js */ "./node_modules/blueimp-gallery/js/blueimp-gallery.js")) :
+  undefined;
+}(this, function (blueimpGallery_min_css, blueimpGalleryFullscreen_js, blueimpGalleryVideo_js, blueimpGalleryYoutube_js, blueimp) { 'use strict';
+
+  blueimp = blueimp && blueimp.hasOwnProperty('default') ? blueimp['default'] : blueimp;
+
+  //
+  var script = {
+    props: {
+      images: {
+        type: Array,
+        default: function _default() {
+          return [];
+        }
+      },
+      options: {
+        type: Object,
+        default: function _default() {
+          return {};
+        }
+      },
+      carousel: {
+        type: Boolean,
+        default: false
+      },
+      index: {
+        type: Number
+      },
+      id: {
+        type: String,
+        default: 'blueimp-gallery'
+      }
+    },
+    data: function data() {
+      return {
+        instance: null
+      };
+    },
+    watch: {
+      index: function index(value) {
+        if (this.carousel) {
+          return;
+        }
+
+        if (value !== null) {
+          this.open(value);
+        } else {
+          if (this.instance) {
+            this.instance.close();
+          }
+
+          this.$emit('close');
+        }
+      }
+    },
+    mounted: function mounted() {
+      if (this.carousel) {
+        this.open();
+      }
+    },
+    destroyed: function destroyed() {
+      if (this.instance !== null) {
+        this.instance.destroyEventListeners();
+        this.instance.close();
+        this.instance = null;
+      }
+    },
+    methods: {
+      open: function open() {
+        var _this = this;
+
+        var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+        var instance = typeof blueimp.Gallery !== 'undefined' ? blueimp.Gallery : blueimp;
+        var options = Object.assign({
+          toggleControlsOnReturn: false,
+          toggleControlsOnSlideClick: false,
+          closeOnSlideClick: false,
+          carousel: this.carousel,
+          container: "#".concat(this.id),
+          index: index,
+          onopen: function onopen() {
+            return _this.$emit('onopen');
+          },
+          onopened: function onopened() {
+            return _this.$emit('onopened');
+          },
+          onslide: this.onSlideCustom,
+          onslideend: function onslideend(index, slide) {
+            return _this.$emit('onslideend', {
+              index: index,
+              slide: slide
+            });
+          },
+          onslidecomplete: function onslidecomplete(index, slide) {
+            return _this.$emit('onslidecomplete', {
+              index: index,
+              slide: slide
+            });
+          },
+          onclose: function onclose() {
+            return _this.$emit('close');
+          },
+          onclosed: function onclosed() {
+            return _this.$emit('onclosed');
+          }
+        }, this.options);
+
+        if (this.carousel) {
+          options.container = this.$el;
+        }
+
+        this.instance = instance(this.images, options);
+      },
+      onSlideCustom: function onSlideCustom(index, slide) {
+        this.$emit('onslide', {
+          index: index,
+          slide: slide
+        });
+        var image = this.images[index];
+
+        if (image !== undefined) {
+          var text = image.description;
+          var node = this.instance.container.find('.description');
+
+          if (text) {
+            node.empty();
+            node[0].appendChild(document.createTextNode(text));
+          }
+        }
+      }
+    }
+  };
+
+  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
+  /* server only */
+  , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+    if (typeof shadowMode !== 'boolean') {
+      createInjectorSSR = createInjector;
+      createInjector = shadowMode;
+      shadowMode = false;
+    } // Vue.extend constructor export interop.
+
+
+    var options = typeof script === 'function' ? script.options : script; // render functions
+
+    if (template && template.render) {
+      options.render = template.render;
+      options.staticRenderFns = template.staticRenderFns;
+      options._compiled = true; // functional template
+
+      if (isFunctionalTemplate) {
+        options.functional = true;
+      }
+    } // scopedId
+
+
+    if (scopeId) {
+      options._scopeId = scopeId;
+    }
+
+    var hook;
+
+    if (moduleIdentifier) {
+      // server build
+      hook = function hook(context) {
+        // 2.3 injection
+        context = context || // cached call
+        this.$vnode && this.$vnode.ssrContext || // stateful
+        this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
+        // 2.2 with runInNewContext: true
+
+        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+          context = __VUE_SSR_CONTEXT__;
+        } // inject component styles
+
+
+        if (style) {
+          style.call(this, createInjectorSSR(context));
+        } // register component module identifier for async chunk inference
+
+
+        if (context && context._registeredComponents) {
+          context._registeredComponents.add(moduleIdentifier);
+        }
+      }; // used by ssr in case component is cached and beforeCreate
+      // never gets called
+
+
+      options._ssrRegister = hook;
+    } else if (style) {
+      hook = shadowMode ? function () {
+        style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+      } : function (context) {
+        style.call(this, createInjector(context));
+      };
+    }
+
+    if (hook) {
+      if (options.functional) {
+        // register for functional component in vue file
+        var originalRender = options.render;
+
+        options.render = function renderWithStyleInjection(h, context) {
+          hook.call(context);
+          return originalRender(h, context);
+        };
+      } else {
+        // inject component registration as beforeCreate hook
+        var existing = options.beforeCreate;
+        options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+      }
+    }
+
+    return script;
+  }
+
+  var normalizeComponent_1 = normalizeComponent;
+
+  var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
+
+  function createInjector(context) {
+    return function (id, style) {
+      return addStyle(id, style);
+    };
+  }
+
+  var HEAD = document.head || document.getElementsByTagName('head')[0];
+  var styles = {};
+
+  function addStyle(id, css) {
+    var group = isOldIE ? css.media || 'default' : id;
+    var style = styles[group] || (styles[group] = {
+      ids: new Set(),
+      styles: []
+    });
+
+    if (!style.ids.has(id)) {
+      style.ids.add(id);
+      var code = css.source;
+
+      if (css.map) {
+        // https://developer.chrome.com/devtools/docs/javascript-debugging
+        // this makes source maps inside style tags work properly in Chrome
+        code += '\n/*# sourceURL=' + css.map.sources[0] + ' */'; // http://stackoverflow.com/a/26603875
+
+        code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
+      }
+
+      if (!style.element) {
+        style.element = document.createElement('style');
+        style.element.type = 'text/css';
+        if (css.media) style.element.setAttribute('media', css.media);
+        HEAD.appendChild(style.element);
+      }
+
+      if ('styleSheet' in style.element) {
+        style.styles.push(code);
+        style.element.styleSheet.cssText = style.styles.filter(Boolean).join('\n');
+      } else {
+        var index = style.ids.size - 1;
+        var textNode = document.createTextNode(code);
+        var nodes = style.element.childNodes;
+        if (nodes[index]) style.element.removeChild(nodes[index]);
+        if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
+      }
+    }
+  }
+
+  var browser = createInjector;
+
+  /* script */
+  const __vue_script__ = script;
+
+  /* template */
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"blueimp-gallery blueimp-gallery-controls",class:{'blueimp-gallery-carousel': _vm.carousel},attrs:{"id":_vm.id}},[_c('div',{staticClass:"slides"}),_vm._v(" "),_c('h3',{staticClass:"title"}),_vm._v(" "),_c('p',{staticClass:"description"}),_vm._v(" "),_c('a',{staticClass:"prev"},[_vm._t("prev",[_vm._v("‹")])],2),_vm._v(" "),_c('a',{staticClass:"next"},[_vm._t("next",[_vm._v("›")])],2),_vm._v(" "),(!_vm.carousel)?_c('a',{staticClass:"close"},[_vm._t("close",[_vm._v("×")])],2):_vm._e(),_vm._v(" "),(!_vm.carousel)?_c('ol',{staticClass:"indicator"}):_vm._e(),_vm._v(" "),(_vm.carousel)?_c('a',{staticClass:"play-pause"}):_vm._e()])};
+  var __vue_staticRenderFns__ = [];
+
+    /* style */
+    const __vue_inject_styles__ = function (inject) {
+      if (!inject) return
+      inject("data-v-6d2033ba_0", { source: ".blueimp-gallery>.description{position:absolute;top:30px;left:15px;color:#fff;display:none}.blueimp-gallery-controls>.description{display:block}", map: undefined, media: undefined });
+
+    };
+    /* scoped */
+    const __vue_scope_id__ = undefined;
+    /* module identifier */
+    const __vue_module_identifier__ = undefined;
+    /* functional template */
+    const __vue_is_functional_template__ = false;
+    /* style inject SSR */
+    
+
+    
+    var VueGallery = normalizeComponent_1(
+      { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+      __vue_inject_styles__,
+      __vue_script__,
+      __vue_scope_id__,
+      __vue_is_functional_template__,
+      __vue_module_identifier__,
+      browser,
+      undefined
+    );
+
+  return VueGallery;
+
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-headful/dist/vue-headful.js":
 /*!******************************************************!*\
   !*** ./node_modules/vue-headful/dist/vue-headful.js ***!
@@ -79596,6 +82329,2383 @@ function getPassedProps(props) {
         return passedProps;
     }, {});
 }
+
+/***/ }),
+
+/***/ "./node_modules/vue-lazyload/vue-lazyload.esm.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/vue-lazyload/vue-lazyload.esm.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * Vue-Lazyload.js v1.3.3
+ * (c) 2019 Awe <hilongjw@gmail.com>
+ * Released under the MIT License.
+ */
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+/*!
+ * is-primitive <https://github.com/jonschlinkert/is-primitive>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+// see http://jsperf.com/testing-value-is-primitive/7
+
+var isPrimitive = function isPrimitive(value) {
+  return value == null || typeof value !== 'function' && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object';
+};
+
+/*!
+ * assign-symbols <https://github.com/jonschlinkert/assign-symbols>
+ *
+ * Copyright (c) 2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+var assignSymbols = function assignSymbols(receiver, objects) {
+  if (receiver === null || typeof receiver === 'undefined') {
+    throw new TypeError('expected first argument to be an object.');
+  }
+
+  if (typeof objects === 'undefined' || typeof Symbol === 'undefined') {
+    return receiver;
+  }
+
+  if (typeof Object.getOwnPropertySymbols !== 'function') {
+    return receiver;
+  }
+
+  var isEnumerable = Object.prototype.propertyIsEnumerable;
+  var target = Object(receiver);
+  var len = arguments.length,
+      i = 0;
+
+  while (++i < len) {
+    var provider = Object(arguments[i]);
+    var names = Object.getOwnPropertySymbols(provider);
+
+    for (var j = 0; j < names.length; j++) {
+      var key = names[j];
+
+      if (isEnumerable.call(provider, key)) {
+        target[key] = provider[key];
+      }
+    }
+  }
+  return target;
+};
+
+var toString = Object.prototype.toString;
+
+/**
+ * Get the native `typeof` a value.
+ *
+ * @param  {*} `val`
+ * @return {*} Native javascript type
+ */
+
+var kindOf = function kindOf(val) {
+  var type = typeof val === 'undefined' ? 'undefined' : _typeof(val);
+
+  // primitivies
+  if (type === 'undefined') {
+    return 'undefined';
+  }
+  if (val === null) {
+    return 'null';
+  }
+  if (val === true || val === false || val instanceof Boolean) {
+    return 'boolean';
+  }
+  if (type === 'string' || val instanceof String) {
+    return 'string';
+  }
+  if (type === 'number' || val instanceof Number) {
+    return 'number';
+  }
+
+  // functions
+  if (type === 'function' || val instanceof Function) {
+    if (typeof val.constructor.name !== 'undefined' && val.constructor.name.slice(0, 9) === 'Generator') {
+      return 'generatorfunction';
+    }
+    return 'function';
+  }
+
+  // array
+  if (typeof Array.isArray !== 'undefined' && Array.isArray(val)) {
+    return 'array';
+  }
+
+  // check for instances of RegExp and Date before calling `toString`
+  if (val instanceof RegExp) {
+    return 'regexp';
+  }
+  if (val instanceof Date) {
+    return 'date';
+  }
+
+  // other objects
+  type = toString.call(val);
+
+  if (type === '[object RegExp]') {
+    return 'regexp';
+  }
+  if (type === '[object Date]') {
+    return 'date';
+  }
+  if (type === '[object Arguments]') {
+    return 'arguments';
+  }
+  if (type === '[object Error]') {
+    return 'error';
+  }
+  if (type === '[object Promise]') {
+    return 'promise';
+  }
+
+  // buffer
+  if (isBuffer(val)) {
+    return 'buffer';
+  }
+
+  // es6: Map, WeakMap, Set, WeakSet
+  if (type === '[object Set]') {
+    return 'set';
+  }
+  if (type === '[object WeakSet]') {
+    return 'weakset';
+  }
+  if (type === '[object Map]') {
+    return 'map';
+  }
+  if (type === '[object WeakMap]') {
+    return 'weakmap';
+  }
+  if (type === '[object Symbol]') {
+    return 'symbol';
+  }
+
+  if (type === '[object Map Iterator]') {
+    return 'mapiterator';
+  }
+  if (type === '[object Set Iterator]') {
+    return 'setiterator';
+  }
+  if (type === '[object String Iterator]') {
+    return 'stringiterator';
+  }
+  if (type === '[object Array Iterator]') {
+    return 'arrayiterator';
+  }
+
+  // typed arrays
+  if (type === '[object Int8Array]') {
+    return 'int8array';
+  }
+  if (type === '[object Uint8Array]') {
+    return 'uint8array';
+  }
+  if (type === '[object Uint8ClampedArray]') {
+    return 'uint8clampedarray';
+  }
+  if (type === '[object Int16Array]') {
+    return 'int16array';
+  }
+  if (type === '[object Uint16Array]') {
+    return 'uint16array';
+  }
+  if (type === '[object Int32Array]') {
+    return 'int32array';
+  }
+  if (type === '[object Uint32Array]') {
+    return 'uint32array';
+  }
+  if (type === '[object Float32Array]') {
+    return 'float32array';
+  }
+  if (type === '[object Float64Array]') {
+    return 'float64array';
+  }
+
+  // must be a plain object
+  return 'object';
+};
+
+/**
+ * If you need to support Safari 5-7 (8-10 yr-old browser),
+ * take a look at https://github.com/feross/is-buffer
+ */
+
+function isBuffer(val) {
+  return val.constructor && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
+}
+
+function assign(target /*, objects*/) {
+  target = target || {};
+  var len = arguments.length,
+      i = 0;
+  if (len === 1) {
+    return target;
+  }
+  while (++i < len) {
+    var val = arguments[i];
+    if (isPrimitive(target)) {
+      target = val;
+    }
+    if (isObject$1(val)) {
+      extend(target, val);
+    }
+  }
+  return target;
+}
+
+/**
+ * Shallow extend
+ */
+
+function extend(target, obj) {
+  assignSymbols(target, obj);
+
+  for (var key in obj) {
+    if (key !== '__proto__' && hasOwn(obj, key)) {
+      var val = obj[key];
+      if (isObject$1(val)) {
+        if (kindOf(target[key]) === 'undefined' && kindOf(val) === 'function') {
+          target[key] = val;
+        }
+        target[key] = assign(target[key] || {}, val);
+      } else {
+        target[key] = val;
+      }
+    }
+  }
+  return target;
+}
+
+/**
+ * Returns true if the object is a plain object or a function.
+ */
+
+function isObject$1(obj) {
+  return kindOf(obj) === 'object' || kindOf(obj) === 'function';
+}
+
+/**
+ * Returns true if the given `key` is an own property of `obj`.
+ */
+
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+/**
+ * Expose `assign`
+ */
+
+var assignDeep = assign;
+
+var inBrowser = typeof window !== 'undefined';
+var hasIntersectionObserver = checkIntersectionObserver();
+
+function checkIntersectionObserver() {
+  if (inBrowser && 'IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    // Minimal polyfill for Edge 15's lack of `isIntersecting`
+    // See: https://github.com/w3c/IntersectionObserver/issues/211
+    if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+      Object.defineProperty(window.IntersectionObserverEntry.prototype, 'isIntersecting', {
+        get: function get$$1() {
+          return this.intersectionRatio > 0;
+        }
+      });
+    }
+    return true;
+  }
+  return false;
+}
+
+var modeType = {
+  event: 'event',
+  observer: 'observer'
+
+  // CustomEvent polyfill
+};var CustomEvent = function () {
+  if (!inBrowser) return;
+  if (typeof window.CustomEvent === 'function') return window.CustomEvent;
+  function CustomEvent(event, params) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  }
+  CustomEvent.prototype = window.Event.prototype;
+  return CustomEvent;
+}();
+
+function remove(arr, item) {
+  if (!arr.length) return;
+  var index = arr.indexOf(item);
+  if (index > -1) return arr.splice(index, 1);
+}
+
+function some(arr, fn) {
+  var has = false;
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (fn(arr[i])) {
+      has = true;
+      break;
+    }
+  }
+  return has;
+}
+
+function getBestSelectionFromSrcset(el, scale) {
+  if (el.tagName !== 'IMG' || !el.getAttribute('data-srcset')) return;
+
+  var options = el.getAttribute('data-srcset');
+  var result = [];
+  var container = el.parentNode;
+  var containerWidth = container.offsetWidth * scale;
+
+  var spaceIndex = void 0;
+  var tmpSrc = void 0;
+  var tmpWidth = void 0;
+
+  options = options.trim().split(',');
+
+  options.map(function (item) {
+    item = item.trim();
+    spaceIndex = item.lastIndexOf(' ');
+    if (spaceIndex === -1) {
+      tmpSrc = item;
+      tmpWidth = 999998;
+    } else {
+      tmpSrc = item.substr(0, spaceIndex);
+      tmpWidth = parseInt(item.substr(spaceIndex + 1, item.length - spaceIndex - 2), 10);
+    }
+    result.push([tmpWidth, tmpSrc]);
+  });
+
+  result.sort(function (a, b) {
+    if (a[0] < b[0]) {
+      return 1;
+    }
+    if (a[0] > b[0]) {
+      return -1;
+    }
+    if (a[0] === b[0]) {
+      if (b[1].indexOf('.webp', b[1].length - 5) !== -1) {
+        return 1;
+      }
+      if (a[1].indexOf('.webp', a[1].length - 5) !== -1) {
+        return -1;
+      }
+    }
+    return 0;
+  });
+  var bestSelectedSrc = '';
+  var tmpOption = void 0;
+
+  for (var i = 0; i < result.length; i++) {
+    tmpOption = result[i];
+    bestSelectedSrc = tmpOption[1];
+    var next = result[i + 1];
+    if (next && next[0] < containerWidth) {
+      bestSelectedSrc = tmpOption[1];
+      break;
+    } else if (!next) {
+      bestSelectedSrc = tmpOption[1];
+      break;
+    }
+  }
+
+  return bestSelectedSrc;
+}
+
+function find(arr, fn) {
+  var item = void 0;
+  for (var i = 0, len = arr.length; i < len; i++) {
+    if (fn(arr[i])) {
+      item = arr[i];
+      break;
+    }
+  }
+  return item;
+}
+
+var getDPR = function getDPR() {
+  var scale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+  return inBrowser ? window.devicePixelRatio || scale : scale;
+};
+
+function supportWebp() {
+  if (!inBrowser) return false;
+
+  var support = true;
+  var d = document;
+
+  try {
+    var el = d.createElement('object');
+    el.type = 'image/webp';
+    el.style.visibility = 'hidden';
+    el.innerHTML = '!';
+    d.body.appendChild(el);
+    support = !el.offsetWidth;
+    d.body.removeChild(el);
+  } catch (err) {
+    support = false;
+  }
+
+  return support;
+}
+
+function throttle(action, delay) {
+  var timeout = null;
+  var lastRun = 0;
+  return function () {
+    if (timeout) {
+      return;
+    }
+    var elapsed = Date.now() - lastRun;
+    var context = this;
+    var args = arguments;
+    var runCallback = function runCallback() {
+      lastRun = Date.now();
+      timeout = false;
+      action.apply(context, args);
+    };
+    if (elapsed >= delay) {
+      runCallback();
+    } else {
+      timeout = setTimeout(runCallback, delay);
+    }
+  };
+}
+
+function testSupportsPassive() {
+  if (!inBrowser) return;
+  var support = false;
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function get$$1() {
+        support = true;
+      }
+    });
+    window.addEventListener('test', null, opts);
+  } catch (e) {}
+  return support;
+}
+
+var supportsPassive = testSupportsPassive();
+
+var _ = {
+  on: function on(el, type, func) {
+    var capture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    if (supportsPassive) {
+      el.addEventListener(type, func, {
+        capture: capture,
+        passive: true
+      });
+    } else {
+      el.addEventListener(type, func, capture);
+    }
+  },
+  off: function off(el, type, func) {
+    var capture = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+    el.removeEventListener(type, func, capture);
+  }
+};
+
+var loadImageAsync = function loadImageAsync(item, resolve, reject) {
+  var image = new Image();
+  if (!item || !item.src) {
+    var err = new Error('image src is required');
+    return reject(err);
+  }
+
+  image.src = item.src;
+
+  image.onload = function () {
+    resolve({
+      naturalHeight: image.naturalHeight,
+      naturalWidth: image.naturalWidth,
+      src: image.src
+    });
+  };
+
+  image.onerror = function (e) {
+    reject(e);
+  };
+};
+
+var style = function style(el, prop) {
+  return typeof getComputedStyle !== 'undefined' ? getComputedStyle(el, null).getPropertyValue(prop) : el.style[prop];
+};
+
+var overflow = function overflow(el) {
+  return style(el, 'overflow') + style(el, 'overflow-y') + style(el, 'overflow-x');
+};
+
+var scrollParent = function scrollParent(el) {
+  if (!inBrowser) return;
+  if (!(el instanceof HTMLElement)) {
+    return window;
+  }
+
+  var parent = el;
+
+  while (parent) {
+    if (parent === document.body || parent === document.documentElement) {
+      break;
+    }
+
+    if (!parent.parentNode) {
+      break;
+    }
+
+    if (/(scroll|auto)/.test(overflow(parent))) {
+      return parent;
+    }
+
+    parent = parent.parentNode;
+  }
+
+  return window;
+};
+
+function isObject(obj) {
+  return obj !== null && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object';
+}
+
+function ObjectKeys(obj) {
+  if (!(obj instanceof Object)) return [];
+  if (Object.keys) {
+    return Object.keys(obj);
+  } else {
+    var keys = [];
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        keys.push(key);
+      }
+    }
+    return keys;
+  }
+}
+
+function ArrayFrom(arrLike) {
+  var len = arrLike.length;
+  var list = [];
+  for (var i = 0; i < len; i++) {
+    list.push(arrLike[i]);
+  }
+  return list;
+}
+
+function noop() {}
+
+var ImageCache = function () {
+  function ImageCache(_ref) {
+    var max = _ref.max;
+    classCallCheck(this, ImageCache);
+
+    this.options = {
+      max: max || 100
+    };
+    this._caches = [];
+  }
+
+  createClass(ImageCache, [{
+    key: 'has',
+    value: function has(key) {
+      return this._caches.indexOf(key) > -1;
+    }
+  }, {
+    key: 'add',
+    value: function add(key) {
+      if (this.has(key)) return;
+      this._caches.push(key);
+      if (this._caches.length > this.options.max) {
+        this.free();
+      }
+    }
+  }, {
+    key: 'free',
+    value: function free() {
+      this._caches.shift();
+    }
+  }]);
+  return ImageCache;
+}();
+
+// el: {
+//     state,
+//     src,
+//     error,
+//     loading
+// }
+
+var ReactiveListener = function () {
+  function ReactiveListener(_ref) {
+    var el = _ref.el,
+        src = _ref.src,
+        error = _ref.error,
+        loading = _ref.loading,
+        bindType = _ref.bindType,
+        $parent = _ref.$parent,
+        options = _ref.options,
+        elRenderer = _ref.elRenderer,
+        imageCache = _ref.imageCache;
+    classCallCheck(this, ReactiveListener);
+
+    this.el = el;
+    this.src = src;
+    this.error = error;
+    this.loading = loading;
+    this.bindType = bindType;
+    this.attempt = 0;
+
+    this.naturalHeight = 0;
+    this.naturalWidth = 0;
+
+    this.options = options;
+
+    this.rect = null;
+
+    this.$parent = $parent;
+    this.elRenderer = elRenderer;
+    this._imageCache = imageCache;
+    this.performanceData = {
+      init: Date.now(),
+      loadStart: 0,
+      loadEnd: 0
+    };
+
+    this.filter();
+    this.initState();
+    this.render('loading', false);
+  }
+
+  /*
+   * init listener state
+   * @return
+   */
+
+
+  createClass(ReactiveListener, [{
+    key: 'initState',
+    value: function initState() {
+      if ('dataset' in this.el) {
+        this.el.dataset.src = this.src;
+      } else {
+        this.el.setAttribute('data-src', this.src);
+      }
+
+      this.state = {
+        loading: false,
+        error: false,
+        loaded: false,
+        rendered: false
+      };
+    }
+
+    /*
+     * record performance
+     * @return
+     */
+
+  }, {
+    key: 'record',
+    value: function record(event) {
+      this.performanceData[event] = Date.now();
+    }
+
+    /*
+     * update image listener data
+     * @param  {String} image uri
+     * @param  {String} loading image uri
+     * @param  {String} error image uri
+     * @return
+     */
+
+  }, {
+    key: 'update',
+    value: function update(_ref2) {
+      var src = _ref2.src,
+          loading = _ref2.loading,
+          error = _ref2.error;
+
+      var oldSrc = this.src;
+      this.src = src;
+      this.loading = loading;
+      this.error = error;
+      this.filter();
+      if (oldSrc !== this.src) {
+        this.attempt = 0;
+        this.initState();
+      }
+    }
+
+    /*
+     * get el node rect
+     * @return
+     */
+
+  }, {
+    key: 'getRect',
+    value: function getRect() {
+      this.rect = this.el.getBoundingClientRect();
+    }
+
+    /*
+     *  check el is in view
+     * @return {Boolean} el is in view
+     */
+
+  }, {
+    key: 'checkInView',
+    value: function checkInView() {
+      this.getRect();
+      return this.rect.top < window.innerHeight * this.options.preLoad && this.rect.bottom > this.options.preLoadTop && this.rect.left < window.innerWidth * this.options.preLoad && this.rect.right > 0;
+    }
+
+    /*
+     * listener filter
+     */
+
+  }, {
+    key: 'filter',
+    value: function filter() {
+      var _this = this;
+
+      ObjectKeys(this.options.filter).map(function (key) {
+        _this.options.filter[key](_this, _this.options);
+      });
+    }
+
+    /*
+     * render loading first
+     * @params cb:Function
+     * @return
+     */
+
+  }, {
+    key: 'renderLoading',
+    value: function renderLoading(cb) {
+      var _this2 = this;
+
+      this.state.loading = true;
+      loadImageAsync({
+        src: this.loading
+      }, function (data) {
+        _this2.render('loading', false);
+        _this2.state.loading = false;
+        cb();
+      }, function () {
+        // handler `loading image` load failed
+        cb();
+        _this2.state.loading = false;
+        if (!_this2.options.silent) console.warn('VueLazyload log: load failed with loading image(' + _this2.loading + ')');
+      });
+    }
+
+    /*
+     * try load image and  render it
+     * @return
+     */
+
+  }, {
+    key: 'load',
+    value: function load() {
+      var _this3 = this;
+
+      var onFinish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : noop;
+
+      if (this.attempt > this.options.attempt - 1 && this.state.error) {
+        if (!this.options.silent) console.log('VueLazyload log: ' + this.src + ' tried too more than ' + this.options.attempt + ' times');
+        onFinish();
+        return;
+      }
+      if (this.state.rendered && this.state.loaded) return;
+      if (this._imageCache.has(this.src)) {
+        this.state.loaded = true;
+        this.render('loaded', true);
+        this.state.rendered = true;
+        return onFinish();
+      }
+
+      this.renderLoading(function () {
+        _this3.attempt++;
+
+        _this3.options.adapter['beforeLoad'] && _this3.options.adapter['beforeLoad'](_this3, _this3.options);
+        _this3.record('loadStart');
+
+        loadImageAsync({
+          src: _this3.src
+        }, function (data) {
+          _this3.naturalHeight = data.naturalHeight;
+          _this3.naturalWidth = data.naturalWidth;
+          _this3.state.loaded = true;
+          _this3.state.error = false;
+          _this3.record('loadEnd');
+          _this3.render('loaded', false);
+          _this3.state.rendered = true;
+          _this3._imageCache.add(_this3.src);
+          onFinish();
+        }, function (err) {
+          !_this3.options.silent && console.error(err);
+          _this3.state.error = true;
+          _this3.state.loaded = false;
+          _this3.render('error', false);
+        });
+      });
+    }
+
+    /*
+     * render image
+     * @param  {String} state to render // ['loading', 'src', 'error']
+     * @param  {String} is form cache
+     * @return
+     */
+
+  }, {
+    key: 'render',
+    value: function render(state, cache) {
+      this.elRenderer(this, state, cache);
+    }
+
+    /*
+     * output performance data
+     * @return {Object} performance data
+     */
+
+  }, {
+    key: 'performance',
+    value: function performance() {
+      var state = 'loading';
+      var time = 0;
+
+      if (this.state.loaded) {
+        state = 'loaded';
+        time = (this.performanceData.loadEnd - this.performanceData.loadStart) / 1000;
+      }
+
+      if (this.state.error) state = 'error';
+
+      return {
+        src: this.src,
+        state: state,
+        time: time
+      };
+    }
+
+    /*
+     * $destroy
+     * @return
+     */
+
+  }, {
+    key: '$destroy',
+    value: function $destroy() {
+      this.el = null;
+      this.src = null;
+      this.error = null;
+      this.loading = null;
+      this.bindType = null;
+      this.attempt = 0;
+    }
+  }]);
+  return ReactiveListener;
+}();
+
+var DEFAULT_URL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+var DEFAULT_EVENTS = ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend', 'touchmove'];
+var DEFAULT_OBSERVER_OPTIONS = {
+  rootMargin: '0px',
+  threshold: 0
+};
+
+var Lazy = function (Vue) {
+  return function () {
+    function Lazy(_ref) {
+      var preLoad = _ref.preLoad,
+          error = _ref.error,
+          throttleWait = _ref.throttleWait,
+          preLoadTop = _ref.preLoadTop,
+          dispatchEvent = _ref.dispatchEvent,
+          loading = _ref.loading,
+          attempt = _ref.attempt,
+          _ref$silent = _ref.silent,
+          silent = _ref$silent === undefined ? true : _ref$silent,
+          scale = _ref.scale,
+          listenEvents = _ref.listenEvents,
+          hasbind = _ref.hasbind,
+          filter = _ref.filter,
+          adapter = _ref.adapter,
+          observer = _ref.observer,
+          observerOptions = _ref.observerOptions;
+      classCallCheck(this, Lazy);
+
+      this.version = '1.3.3';
+      this.mode = modeType.event;
+      this.ListenerQueue = [];
+      this.TargetIndex = 0;
+      this.TargetQueue = [];
+      this.options = {
+        silent: silent,
+        dispatchEvent: !!dispatchEvent,
+        throttleWait: throttleWait || 200,
+        preLoad: preLoad || 1.3,
+        preLoadTop: preLoadTop || 0,
+        error: error || DEFAULT_URL,
+        loading: loading || DEFAULT_URL,
+        attempt: attempt || 3,
+        scale: scale || getDPR(scale),
+        ListenEvents: listenEvents || DEFAULT_EVENTS,
+        hasbind: false,
+        supportWebp: supportWebp(),
+        filter: filter || {},
+        adapter: adapter || {},
+        observer: !!observer,
+        observerOptions: observerOptions || DEFAULT_OBSERVER_OPTIONS
+      };
+      this._initEvent();
+      this._imageCache = new ImageCache({ max: 200 });
+      this.lazyLoadHandler = throttle(this._lazyLoadHandler.bind(this), this.options.throttleWait);
+
+      this.setMode(this.options.observer ? modeType.observer : modeType.event);
+    }
+
+    /**
+     * update config
+     * @param  {Object} config params
+     * @return
+     */
+
+
+    createClass(Lazy, [{
+      key: 'config',
+      value: function config() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        assignDeep(this.options, options);
+      }
+
+      /**
+       * output listener's load performance
+       * @return {Array}
+       */
+
+    }, {
+      key: 'performance',
+      value: function performance() {
+        var list = [];
+
+        this.ListenerQueue.map(function (item) {
+          list.push(item.performance());
+        });
+
+        return list;
+      }
+
+      /*
+       * add lazy component to queue
+       * @param  {Vue} vm lazy component instance
+       * @return
+       */
+
+    }, {
+      key: 'addLazyBox',
+      value: function addLazyBox(vm) {
+        this.ListenerQueue.push(vm);
+        if (inBrowser) {
+          this._addListenerTarget(window);
+          this._observer && this._observer.observe(vm.el);
+          if (vm.$el && vm.$el.parentNode) {
+            this._addListenerTarget(vm.$el.parentNode);
+          }
+        }
+      }
+
+      /*
+       * add image listener to queue
+       * @param  {DOM} el
+       * @param  {object} binding vue directive binding
+       * @param  {vnode} vnode vue directive vnode
+       * @return
+       */
+
+    }, {
+      key: 'add',
+      value: function add(el, binding, vnode) {
+        var _this = this;
+
+        if (some(this.ListenerQueue, function (item) {
+          return item.el === el;
+        })) {
+          this.update(el, binding);
+          return Vue.nextTick(this.lazyLoadHandler);
+        }
+
+        var _valueFormatter2 = this._valueFormatter(binding.value),
+            src = _valueFormatter2.src,
+            loading = _valueFormatter2.loading,
+            error = _valueFormatter2.error;
+
+        Vue.nextTick(function () {
+          src = getBestSelectionFromSrcset(el, _this.options.scale) || src;
+          _this._observer && _this._observer.observe(el);
+
+          var container = Object.keys(binding.modifiers)[0];
+          var $parent = void 0;
+
+          if (container) {
+            $parent = vnode.context.$refs[container];
+            // if there is container passed in, try ref first, then fallback to getElementById to support the original usage
+            $parent = $parent ? $parent.$el || $parent : document.getElementById(container);
+          }
+
+          if (!$parent) {
+            $parent = scrollParent(el);
+          }
+
+          var newListener = new ReactiveListener({
+            bindType: binding.arg,
+            $parent: $parent,
+            el: el,
+            loading: loading,
+            error: error,
+            src: src,
+            elRenderer: _this._elRenderer.bind(_this),
+            options: _this.options,
+            imageCache: _this._imageCache
+          });
+
+          _this.ListenerQueue.push(newListener);
+
+          if (inBrowser) {
+            _this._addListenerTarget(window);
+            _this._addListenerTarget($parent);
+          }
+
+          _this.lazyLoadHandler();
+          Vue.nextTick(function () {
+            return _this.lazyLoadHandler();
+          });
+        });
+      }
+
+      /**
+      * update image src
+      * @param  {DOM} el
+      * @param  {object} vue directive binding
+      * @return
+      */
+
+    }, {
+      key: 'update',
+      value: function update(el, binding, vnode) {
+        var _this2 = this;
+
+        var _valueFormatter3 = this._valueFormatter(binding.value),
+            src = _valueFormatter3.src,
+            loading = _valueFormatter3.loading,
+            error = _valueFormatter3.error;
+
+        src = getBestSelectionFromSrcset(el, this.options.scale) || src;
+
+        var exist = find(this.ListenerQueue, function (item) {
+          return item.el === el;
+        });
+        if (!exist) {
+          this.add(el, binding, vnode);
+        } else {
+          exist.update({
+            src: src,
+            loading: loading,
+            error: error
+          });
+        }
+        if (this._observer) {
+          this._observer.unobserve(el);
+          this._observer.observe(el);
+        }
+        this.lazyLoadHandler();
+        Vue.nextTick(function () {
+          return _this2.lazyLoadHandler();
+        });
+      }
+
+      /**
+      * remove listener form list
+      * @param  {DOM} el
+      * @return
+      */
+
+    }, {
+      key: 'remove',
+      value: function remove$$1(el) {
+        if (!el) return;
+        this._observer && this._observer.unobserve(el);
+        var existItem = find(this.ListenerQueue, function (item) {
+          return item.el === el;
+        });
+        if (existItem) {
+          this._removeListenerTarget(existItem.$parent);
+          this._removeListenerTarget(window);
+          remove(this.ListenerQueue, existItem);
+          existItem.$destroy();
+        }
+      }
+
+      /*
+       * remove lazy components form list
+       * @param  {Vue} vm Vue instance
+       * @return
+       */
+
+    }, {
+      key: 'removeComponent',
+      value: function removeComponent(vm) {
+        if (!vm) return;
+        remove(this.ListenerQueue, vm);
+        this._observer && this._observer.unobserve(vm.el);
+        if (vm.$parent && vm.$el.parentNode) {
+          this._removeListenerTarget(vm.$el.parentNode);
+        }
+        this._removeListenerTarget(window);
+      }
+    }, {
+      key: 'setMode',
+      value: function setMode(mode) {
+        var _this3 = this;
+
+        if (!hasIntersectionObserver && mode === modeType.observer) {
+          mode = modeType.event;
+        }
+
+        this.mode = mode; // event or observer
+
+        if (mode === modeType.event) {
+          if (this._observer) {
+            this.ListenerQueue.forEach(function (listener) {
+              _this3._observer.unobserve(listener.el);
+            });
+            this._observer = null;
+          }
+
+          this.TargetQueue.forEach(function (target) {
+            _this3._initListen(target.el, true);
+          });
+        } else {
+          this.TargetQueue.forEach(function (target) {
+            _this3._initListen(target.el, false);
+          });
+          this._initIntersectionObserver();
+        }
+      }
+
+      /*
+      *** Private functions ***
+      */
+
+      /*
+       * add listener target
+       * @param  {DOM} el listener target
+       * @return
+       */
+
+    }, {
+      key: '_addListenerTarget',
+      value: function _addListenerTarget(el) {
+        if (!el) return;
+        var target = find(this.TargetQueue, function (target) {
+          return target.el === el;
+        });
+        if (!target) {
+          target = {
+            el: el,
+            id: ++this.TargetIndex,
+            childrenCount: 1,
+            listened: true
+          };
+          this.mode === modeType.event && this._initListen(target.el, true);
+          this.TargetQueue.push(target);
+        } else {
+          target.childrenCount++;
+        }
+        return this.TargetIndex;
+      }
+
+      /*
+       * remove listener target or reduce target childrenCount
+       * @param  {DOM} el or window
+       * @return
+       */
+
+    }, {
+      key: '_removeListenerTarget',
+      value: function _removeListenerTarget(el) {
+        var _this4 = this;
+
+        this.TargetQueue.forEach(function (target, index) {
+          if (target.el === el) {
+            target.childrenCount--;
+            if (!target.childrenCount) {
+              _this4._initListen(target.el, false);
+              _this4.TargetQueue.splice(index, 1);
+              target = null;
+            }
+          }
+        });
+      }
+
+      /*
+       * add or remove eventlistener
+       * @param  {DOM} el DOM or Window
+       * @param  {boolean} start flag
+       * @return
+       */
+
+    }, {
+      key: '_initListen',
+      value: function _initListen(el, start) {
+        var _this5 = this;
+
+        this.options.ListenEvents.forEach(function (evt) {
+          return _[start ? 'on' : 'off'](el, evt, _this5.lazyLoadHandler);
+        });
+      }
+    }, {
+      key: '_initEvent',
+      value: function _initEvent() {
+        var _this6 = this;
+
+        this.Event = {
+          listeners: {
+            loading: [],
+            loaded: [],
+            error: []
+          }
+        };
+
+        this.$on = function (event, func) {
+          if (!_this6.Event.listeners[event]) _this6.Event.listeners[event] = [];
+          _this6.Event.listeners[event].push(func);
+        };
+
+        this.$once = function (event, func) {
+          var vm = _this6;
+          function on() {
+            vm.$off(event, on);
+            func.apply(vm, arguments);
+          }
+          _this6.$on(event, on);
+        };
+
+        this.$off = function (event, func) {
+          if (!func) {
+            if (!_this6.Event.listeners[event]) return;
+            _this6.Event.listeners[event].length = 0;
+            return;
+          }
+          remove(_this6.Event.listeners[event], func);
+        };
+
+        this.$emit = function (event, context, inCache) {
+          if (!_this6.Event.listeners[event]) return;
+          _this6.Event.listeners[event].forEach(function (func) {
+            return func(context, inCache);
+          });
+        };
+      }
+
+      /**
+       * find nodes which in viewport and trigger load
+       * @return
+       */
+
+    }, {
+      key: '_lazyLoadHandler',
+      value: function _lazyLoadHandler() {
+        var _this7 = this;
+
+        var freeList = [];
+        this.ListenerQueue.forEach(function (listener, index) {
+          if (!listener.el || !listener.el.parentNode) {
+            freeList.push(listener);
+          }
+          var catIn = listener.checkInView();
+          if (!catIn) return;
+          listener.load();
+        });
+        freeList.forEach(function (item) {
+          remove(_this7.ListenerQueue, item);
+          item.$destroy();
+        });
+      }
+      /**
+      * init IntersectionObserver
+      * set mode to observer
+      * @return
+      */
+
+    }, {
+      key: '_initIntersectionObserver',
+      value: function _initIntersectionObserver() {
+        var _this8 = this;
+
+        if (!hasIntersectionObserver) return;
+        this._observer = new IntersectionObserver(this._observerHandler.bind(this), this.options.observerOptions);
+        if (this.ListenerQueue.length) {
+          this.ListenerQueue.forEach(function (listener) {
+            _this8._observer.observe(listener.el);
+          });
+        }
+      }
+
+      /**
+      * init IntersectionObserver
+      * @return
+      */
+
+    }, {
+      key: '_observerHandler',
+      value: function _observerHandler(entries, observer) {
+        var _this9 = this;
+
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            _this9.ListenerQueue.forEach(function (listener) {
+              if (listener.el === entry.target) {
+                if (listener.state.loaded) return _this9._observer.unobserve(listener.el);
+                listener.load();
+              }
+            });
+          }
+        });
+      }
+
+      /**
+      * set element attribute with image'url and state
+      * @param  {object} lazyload listener object
+      * @param  {string} state will be rendered
+      * @param  {bool} inCache  is rendered from cache
+      * @return
+      */
+
+    }, {
+      key: '_elRenderer',
+      value: function _elRenderer(listener, state, cache) {
+        if (!listener.el) return;
+        var el = listener.el,
+            bindType = listener.bindType;
+
+
+        var src = void 0;
+        switch (state) {
+          case 'loading':
+            src = listener.loading;
+            break;
+          case 'error':
+            src = listener.error;
+            break;
+          default:
+            src = listener.src;
+            break;
+        }
+
+        if (bindType) {
+          el.style[bindType] = 'url("' + src + '")';
+        } else if (el.getAttribute('src') !== src) {
+          el.setAttribute('src', src);
+        }
+
+        el.setAttribute('lazy', state);
+
+        this.$emit(state, listener, cache);
+        this.options.adapter[state] && this.options.adapter[state](listener, this.options);
+
+        if (this.options.dispatchEvent) {
+          var event = new CustomEvent(state, {
+            detail: listener
+          });
+          el.dispatchEvent(event);
+        }
+      }
+
+      /**
+      * generate loading loaded error image url
+      * @param {string} image's src
+      * @return {object} image's loading, loaded, error url
+      */
+
+    }, {
+      key: '_valueFormatter',
+      value: function _valueFormatter(value) {
+        var src = value;
+        var loading = this.options.loading;
+        var error = this.options.error;
+
+        // value is object
+        if (isObject(value)) {
+          if (!value.src && !this.options.silent) console.error('Vue Lazyload warning: miss src with ' + value);
+          src = value.src;
+          loading = value.loading || this.options.loading;
+          error = value.error || this.options.error;
+        }
+        return {
+          src: src,
+          loading: loading,
+          error: error
+        };
+      }
+    }]);
+    return Lazy;
+  }();
+};
+
+var LazyComponent = (function (lazy) {
+  return {
+    props: {
+      tag: {
+        type: String,
+        default: 'div'
+      }
+    },
+    render: function render(h) {
+      if (this.show === false) {
+        return h(this.tag);
+      }
+      return h(this.tag, null, this.$slots.default);
+    },
+    data: function data() {
+      return {
+        el: null,
+        state: {
+          loaded: false
+        },
+        rect: {},
+        show: false
+      };
+    },
+    mounted: function mounted() {
+      this.el = this.$el;
+      lazy.addLazyBox(this);
+      lazy.lazyLoadHandler();
+    },
+    beforeDestroy: function beforeDestroy() {
+      lazy.removeComponent(this);
+    },
+
+    methods: {
+      getRect: function getRect() {
+        this.rect = this.$el.getBoundingClientRect();
+      },
+      checkInView: function checkInView() {
+        this.getRect();
+        return inBrowser && this.rect.top < window.innerHeight * lazy.options.preLoad && this.rect.bottom > 0 && this.rect.left < window.innerWidth * lazy.options.preLoad && this.rect.right > 0;
+      },
+      load: function load() {
+        this.show = true;
+        this.state.loaded = true;
+        this.$emit('show', this);
+      },
+      destroy: function destroy() {
+        return this.$destroy;
+      }
+    }
+  };
+});
+
+var LazyContainerMananger = function () {
+  function LazyContainerMananger(_ref) {
+    var lazy = _ref.lazy;
+    classCallCheck(this, LazyContainerMananger);
+
+    this.lazy = lazy;
+    lazy.lazyContainerMananger = this;
+    this._queue = [];
+  }
+
+  createClass(LazyContainerMananger, [{
+    key: 'bind',
+    value: function bind(el, binding, vnode) {
+      var container = new LazyContainer$1({ el: el, binding: binding, vnode: vnode, lazy: this.lazy });
+      this._queue.push(container);
+    }
+  }, {
+    key: 'update',
+    value: function update(el, binding, vnode) {
+      var container = find(this._queue, function (item) {
+        return item.el === el;
+      });
+      if (!container) return;
+      container.update({ el: el, binding: binding, vnode: vnode });
+    }
+  }, {
+    key: 'unbind',
+    value: function unbind(el, binding, vnode) {
+      var container = find(this._queue, function (item) {
+        return item.el === el;
+      });
+      if (!container) return;
+      container.clear();
+      remove(this._queue, container);
+    }
+  }]);
+  return LazyContainerMananger;
+}();
+
+var defaultOptions = {
+  selector: 'img'
+};
+
+var LazyContainer$1 = function () {
+  function LazyContainer(_ref2) {
+    var el = _ref2.el,
+        binding = _ref2.binding,
+        vnode = _ref2.vnode,
+        lazy = _ref2.lazy;
+    classCallCheck(this, LazyContainer);
+
+    this.el = null;
+    this.vnode = vnode;
+    this.binding = binding;
+    this.options = {};
+    this.lazy = lazy;
+
+    this._queue = [];
+    this.update({ el: el, binding: binding });
+  }
+
+  createClass(LazyContainer, [{
+    key: 'update',
+    value: function update(_ref3) {
+      var _this = this;
+
+      var el = _ref3.el,
+          binding = _ref3.binding;
+
+      this.el = el;
+      this.options = assignDeep({}, defaultOptions, binding.value);
+
+      var imgs = this.getImgs();
+      imgs.forEach(function (el) {
+        _this.lazy.add(el, assignDeep({}, _this.binding, {
+          value: {
+            src: 'dataset' in el ? el.dataset.src : el.getAttribute('data-src'),
+            error: ('dataset' in el ? el.dataset.error : el.getAttribute('data-error')) || _this.options.error,
+            loading: ('dataset' in el ? el.dataset.loading : el.getAttribute('data-loading')) || _this.options.loading
+          }
+        }), _this.vnode);
+      });
+    }
+  }, {
+    key: 'getImgs',
+    value: function getImgs() {
+      return ArrayFrom(this.el.querySelectorAll(this.options.selector));
+    }
+  }, {
+    key: 'clear',
+    value: function clear() {
+      var _this2 = this;
+
+      var imgs = this.getImgs();
+      imgs.forEach(function (el) {
+        return _this2.lazy.remove(el);
+      });
+
+      this.vnode = null;
+      this.binding = null;
+      this.lazy = null;
+    }
+  }]);
+  return LazyContainer;
+}();
+
+var LazyImage = (function (lazyManager) {
+  return {
+    props: {
+      src: [String, Object],
+      tag: {
+        type: String,
+        default: 'img'
+      }
+    },
+    render: function render(h) {
+      return h(this.tag, {
+        attrs: {
+          src: this.renderSrc
+        }
+      }, this.$slots.default);
+    },
+    data: function data() {
+      return {
+        el: null,
+        options: {
+          src: '',
+          error: '',
+          loading: '',
+          attempt: lazyManager.options.attempt
+        },
+        state: {
+          loaded: false,
+          error: false,
+          attempt: 0
+        },
+        rect: {},
+        renderSrc: ''
+      };
+    },
+
+    watch: {
+      src: function src() {
+        this.init();
+        lazyManager.addLazyBox(this);
+        lazyManager.lazyLoadHandler();
+      }
+    },
+    created: function created() {
+      this.init();
+      this.renderSrc = this.options.loading;
+    },
+    mounted: function mounted() {
+      this.el = this.$el;
+      lazyManager.addLazyBox(this);
+      lazyManager.lazyLoadHandler();
+    },
+    beforeDestroy: function beforeDestroy() {
+      lazyManager.removeComponent(this);
+    },
+
+    methods: {
+      init: function init() {
+        var _lazyManager$_valueFo = lazyManager._valueFormatter(this.src),
+            src = _lazyManager$_valueFo.src,
+            loading = _lazyManager$_valueFo.loading,
+            error = _lazyManager$_valueFo.error;
+
+        this.state.loaded = false;
+        this.options.src = src;
+        this.options.error = error;
+        this.options.loading = loading;
+        this.renderSrc = this.options.loading;
+      },
+      getRect: function getRect() {
+        this.rect = this.$el.getBoundingClientRect();
+      },
+      checkInView: function checkInView() {
+        this.getRect();
+        return inBrowser && this.rect.top < window.innerHeight * lazyManager.options.preLoad && this.rect.bottom > 0 && this.rect.left < window.innerWidth * lazyManager.options.preLoad && this.rect.right > 0;
+      },
+      load: function load() {
+        var _this = this;
+
+        var onFinish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : noop;
+
+        if (this.state.attempt > this.options.attempt - 1 && this.state.error) {
+          if (!lazyManager.options.silent) console.log('VueLazyload log: ' + this.options.src + ' tried too more than ' + this.options.attempt + ' times');
+          onFinish();
+          return;
+        }
+        var src = this.options.src;
+        loadImageAsync({ src: src }, function (_ref) {
+          var src = _ref.src;
+
+          _this.renderSrc = src;
+          _this.state.loaded = true;
+        }, function (e) {
+          _this.state.attempt++;
+          _this.renderSrc = _this.options.error;
+          _this.state.error = true;
+        });
+      }
+    }
+  };
+});
+
+var index = {
+  /*
+  * install function
+  * @param  {Vue} Vue
+  * @param  {object} options  lazyload options
+  */
+  install: function install(Vue) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var LazyClass = Lazy(Vue);
+    var lazy = new LazyClass(options);
+    var lazyContainer = new LazyContainerMananger({ lazy: lazy });
+
+    var isVue2 = Vue.version.split('.')[0] === '2';
+
+    Vue.prototype.$Lazyload = lazy;
+
+    if (options.lazyComponent) {
+      Vue.component('lazy-component', LazyComponent(lazy));
+    }
+
+    if (options.lazyImage) {
+      Vue.component('lazy-image', LazyImage(lazy));
+    }
+
+    if (isVue2) {
+      Vue.directive('lazy', {
+        bind: lazy.add.bind(lazy),
+        update: lazy.update.bind(lazy),
+        componentUpdated: lazy.lazyLoadHandler.bind(lazy),
+        unbind: lazy.remove.bind(lazy)
+      });
+      Vue.directive('lazy-container', {
+        bind: lazyContainer.bind.bind(lazyContainer),
+        componentUpdated: lazyContainer.update.bind(lazyContainer),
+        unbind: lazyContainer.unbind.bind(lazyContainer)
+      });
+    } else {
+      Vue.directive('lazy', {
+        bind: lazy.lazyLoadHandler.bind(lazy),
+        update: function update(newValue, oldValue) {
+          assignDeep(this.vm.$refs, this.vm.$els);
+          lazy.add(this.el, {
+            modifiers: this.modifiers || {},
+            arg: this.arg,
+            value: newValue,
+            oldValue: oldValue
+          }, {
+            context: this.vm
+          });
+        },
+        unbind: function unbind() {
+          lazy.remove(this.el);
+        }
+      });
+
+      Vue.directive('lazy-container', {
+        update: function update(newValue, oldValue) {
+          lazyContainer.update(this.el, {
+            modifiers: this.modifiers || {},
+            arg: this.arg,
+            value: newValue,
+            oldValue: oldValue
+          }, {
+            context: this.vm
+          });
+        },
+        unbind: function unbind() {
+          lazyContainer.unbind(this.el);
+        }
+      });
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-light-gallery/dist/vue-light-gallery.esm.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/vue-light-gallery/dist/vue-light-gallery.esm.js ***!
+  \**********************************************************************/
+/*! exports provided: default, install, LightGallery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LightGallery", function() { return LightGallery; });
+var keyMap = {
+  LEFT: 37,
+  RIGHT: 39,
+  ESC: 27,
+};
+var script = {
+  props: {
+    images: {
+      type: Array,
+      default: function () { return []; },
+    },
+    index: {
+      type: Number,
+      default: 1,
+    },
+    disableScroll: {
+      type: Boolean,
+      default: false,
+    },
+    background: {
+      type: String,
+      default: 'rgba(0, 0, 0, 0.8)',
+    },
+    interfaceColor: {
+      type: String,
+      default: 'rgba(255, 255, 255, 0.8)',
+    },
+  },
+  data: function data() {
+    return {
+      currentIndex: this.index,
+      isImageLoaded: false,
+      bodyOverflowStyle: '',
+      touch: {
+        count: 0,
+        x: 0,
+        y: 0,
+        multitouch: false,
+        flag: false,
+      },
+    };
+  },
+  computed: {
+    formattedImages: function formattedImages() {
+      return this.images.map(function (image) { return (typeof image === 'string'
+        ? { url: image } : image
+      ); });
+    },
+  },
+  watch: {
+    index: function index(val) {
+      if (!document) { return; }
+      this.currentIndex = val;
+      if (this.disableScroll && typeof val === 'number') {
+        document.body.style.overflow = 'hidden';
+      } else if (this.disableScroll && !val) {
+        document.body.style.overflow = this.bodyOverflowStyle;
+      }
+    },
+    currentIndex: function currentIndex(val) {
+      this.setImageLoaded(val);
+    },
+  },
+  mounted: function mounted() {
+    if (!document) { return; }
+    this.bodyOverflowStyle = document.body.style.overflow;
+    this.bindEvents();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (!document) { return; }
+    if (this.disableScroll) {
+      document.body.style.overflow = this.bodyOverflowStyle;
+    }
+    this.unbindEvents();
+  },
+  methods: {
+    close: function close() {
+      this.$emit('close');
+    },
+    prev: function prev() {
+      if (this.currentIndex === 0) { return; }
+      this.currentIndex -= 1;
+      this.$emit('slide', { index: this.currentIndex });
+    },
+    next: function next() {
+      if (this.currentIndex === this.images.length - 1) { return; }
+      this.currentIndex += 1;
+      this.$emit('slide', { index: this.currentIndex });
+    },
+    imageLoaded: function imageLoaded($event, imageIndex) {
+      var target = $event.target;
+      target.classList.add('loaded');
+      if (imageIndex === this.currentIndex) {
+        this.setImageLoaded(imageIndex);
+      }
+    },
+    getImageElByIndex: function getImageElByIndex(index) {
+      var elements = this.$refs[("lg-img-" + index)] || [];
+      return elements[0];
+    },
+    setImageLoaded: function setImageLoaded(index) {
+      var el = this.getImageElByIndex(index);
+      this.isImageLoaded = !el ? false : el.classList.contains('loaded');
+    },
+    shouldPreload: function shouldPreload(index) {
+      var el = this.getImageElByIndex(index) || {};
+      var src = el.src;
+      return !!src
+       || index === this.currentIndex
+       || index === this.currentIndex - 1
+       || index === this.currentIndex + 1;
+    },
+    bindEvents: function bindEvents() {
+      document.addEventListener('keydown', this.keyDownHandler, false);
+    },
+    unbindEvents: function unbindEvents() {
+      document.removeEventListener('keydown', this.keyDownHandler, false);
+    },
+    touchstartHandler: function touchstartHandler(event) {
+      this.touch.count += 1;
+      if (this.touch.count > 1) {
+        this.touch.multitouch = true;
+      }
+      this.touch.x = event.changedTouches[0].pageX;
+      this.touch.y = event.changedTouches[0].pageY;
+    },
+    touchmoveHandler: function touchmoveHandler(event) {
+      if (this.touch.flag || this.touch.multitouch) { return; }
+      var touchEvent = event.touches[0] || event.changedTouches[0];
+      if (touchEvent.pageX - this.touch.x > 40) {
+        this.touch.flag = true;
+        this.prev();
+      } else if (touchEvent.pageX - this.touch.x < -40) {
+        this.touch.flag = true;
+        this.next();
+      }
+    },
+    touchendHandler: function touchendHandler() {
+      this.touch.count -= 1;
+      if (this.touch.count <= 0) {
+        this.touch.multitouch = false;
+      }
+      this.touch.flag = false;
+    },
+    keyDownHandler: function keyDownHandler(event) {
+      switch (event.keyCode) {
+        case keyMap.LEFT:
+          this.prev();
+          break;
+        case keyMap.RIGHT:
+          this.next();
+          break;
+        case keyMap.ESC:
+          this.close();
+          break;
+        default:
+          break;
+      }
+    },
+  },
+};
+
+function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
+, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+  if (typeof shadowMode !== 'boolean') {
+    createInjectorSSR = createInjector;
+    createInjector = shadowMode;
+    shadowMode = false;
+  }
+  var options = typeof script === 'function' ? script.options : script;
+  if (template && template.render) {
+    options.render = template.render;
+    options.staticRenderFns = template.staticRenderFns;
+    options._compiled = true;
+    if (isFunctionalTemplate) {
+      options.functional = true;
+    }
+  }
+  if (scopeId) {
+    options._scopeId = scopeId;
+  }
+  var hook;
+  if (moduleIdentifier) {
+    hook = function hook(context) {
+      context = context ||
+      this.$vnode && this.$vnode.ssrContext ||
+      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext;
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+      }
+      if (style) {
+        style.call(this, createInjectorSSR(context));
+      }
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier);
+      }
+    };
+    options._ssrRegister = hook;
+  } else if (style) {
+    hook = shadowMode ? function () {
+      style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+    } : function (context) {
+      style.call(this, createInjector(context));
+    };
+  }
+  if (hook) {
+    if (options.functional) {
+      var originalRender = options.render;
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context);
+        return originalRender(h, context);
+      };
+    } else {
+      var existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+    }
+  }
+  return script;
+}
+var normalizeComponent_1 = normalizeComponent;
+
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
+function createInjector(context) {
+  return function (id, style) {
+    return addStyle(id, style);
+  };
+}
+var HEAD = document.head || document.getElementsByTagName('head')[0];
+var styles = {};
+function addStyle(id, css) {
+  var group = isOldIE ? css.media || 'default' : id;
+  var style = styles[group] || (styles[group] = {
+    ids: new Set(),
+    styles: []
+  });
+  if (!style.ids.has(id)) {
+    style.ids.add(id);
+    var code = css.source;
+    if (css.map) {
+      code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
+      code += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) + ' */';
+    }
+    if (!style.element) {
+      style.element = document.createElement('style');
+      style.element.type = 'text/css';
+      if (css.media) { style.element.setAttribute('media', css.media); }
+      HEAD.appendChild(style.element);
+    }
+    if ('styleSheet' in style.element) {
+      style.styles.push(code);
+      style.element.styleSheet.cssText = style.styles.filter(Boolean).join('\n');
+    } else {
+      var index = style.ids.size - 1;
+      var textNode = document.createTextNode(code);
+      var nodes = style.element.childNodes;
+      if (nodes[index]) { style.element.removeChild(nodes[index]); }
+      if (nodes.length) { style.element.insertBefore(textNode, nodes[index]); }else { style.element.appendChild(textNode); }
+    }
+  }
+}
+var browser = createInjector;
+
+/* script */
+var __vue_script__ = script;
+
+/* template */
+var __vue_render__ = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("transition", { attrs: { name: "fade" } }, [
+    typeof _vm.index === "number"
+      ? _c(
+          "div",
+          {
+            staticClass: "light-gallery",
+            on: {
+              touchstart: _vm.touchstartHandler,
+              touchmove: _vm.touchmoveHandler,
+              touchend: _vm.touchendHandler
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "light-gallery__modal",
+                style: "background: " + _vm.background
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    class: [
+                      "light-gallery__spinner",
+                      !_vm.isImageLoaded || "hide"
+                    ]
+                  },
+                  [
+                    _c("div", {
+                      staticClass: "light-gallery__dot",
+                      style: "border-color: " + _vm.interfaceColor
+                    }),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "light-gallery__dot",
+                      style: "border-color: " + _vm.interfaceColor
+                    }),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "light-gallery__dot",
+                      style: "border-color: " + _vm.interfaceColor
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "light-gallery__container" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "light-gallery__content" },
+                    _vm._l(_vm.formattedImages, function(image, imageIndex) {
+                      return _c(
+                        "li",
+                        {
+                          key: imageIndex,
+                          staticClass: "light-gallery__image-container",
+                          style:
+                            "transform: translate3d(" +
+                            _vm.currentIndex * -100 +
+                            "%, 0px, 0px);"
+                        },
+                        [
+                          _c("div", { staticClass: "light-gallery__image" }, [
+                            _c(
+                              "div",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: image.title && _vm.isImageLoaded,
+                                    expression: "image.title && isImageLoaded"
+                                  }
+                                ],
+                                staticClass: "light-gallery__text",
+                                style:
+                                  "background: " +
+                                  _vm.background +
+                                  "; color: " +
+                                  _vm.interfaceColor
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(image.title) +
+                                    "\n              "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("img", {
+                              ref: "lg-img-" + imageIndex,
+                              refInFor: true,
+                              attrs: {
+                                src: _vm.shouldPreload(imageIndex)
+                                  ? image.url
+                                  : false
+                              },
+                              on: {
+                                load: function($event) {
+                                  return _vm.imageLoaded($event, imageIndex)
+                                }
+                              }
+                            })
+                          ])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.currentIndex > 0
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "light-gallery__prev",
+                        style: "background: " + _vm.background,
+                        on: {
+                          click: function($event) {
+                            return _vm.prev()
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            attrs: {
+                              width: "25",
+                              height: "40",
+                              viewBox: "0 0 25 40"
+                            }
+                          },
+                          [
+                            _c("polyline", {
+                              attrs: {
+                                points: "19 5 5 20 19 35",
+                                "stroke-width": "3",
+                                "stroke-linecap": "butt",
+                                fill: "none",
+                                "stroke-linejoin": "round",
+                                stroke: _vm.interfaceColor
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.currentIndex + 1 < _vm.images.length
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "light-gallery__next",
+                        style: "background: " + _vm.background,
+                        on: {
+                          click: function($event) {
+                            return _vm.next()
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            attrs: {
+                              width: "25",
+                              height: "40",
+                              viewBox: "0 0 25 40"
+                            }
+                          },
+                          [
+                            _c("polyline", {
+                              attrs: {
+                                points: "6 5 20 20 6 35",
+                                "stroke-width": "3",
+                                "stroke-linecap": "butt",
+                                fill: "none",
+                                "stroke-linejoin": "round",
+                                stroke: _vm.interfaceColor
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "light-gallery__close",
+                    style: "background: " + _vm.background,
+                    on: {
+                      click: function($event) {
+                        return _vm.close()
+                      }
+                    }
+                  },
+                  [
+                    _c("svg", { attrs: { width: "30", height: "30" } }, [
+                      _c(
+                        "g",
+                        {
+                          attrs: {
+                            "stroke-width": "3",
+                            stroke: _vm.interfaceColor
+                          }
+                        },
+                        [
+                          _c("line", {
+                            attrs: { x1: "5", y1: "5", x2: "25", y2: "25" }
+                          }),
+                          _vm._v(" "),
+                          _c("line", {
+                            attrs: { x1: "5", y1: "25", x2: "25", y2: "5" }
+                          })
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
+};
+var __vue_staticRenderFns__ = [];
+__vue_render__._withStripped = true;
+
+  /* style */
+  var __vue_inject_styles__ = function (inject) {
+    if (!inject) { return }
+    inject("data-v-2951e615_0", { source: ".light-gallery__modal[data-v-2951e615] {\n  position: fixed;\n  display: block;\n  z-index: 1001;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.light-gallery__content[data-v-2951e615] {\n  height: 100%;\n  width: 100%;\n  white-space: nowrap;\n  padding: 0;\n  margin: 0;\n}\n.light-gallery__container[data-v-2951e615] {\n  position: absolute;\n  z-index: 1002;\n  display: block;\n  width: 100%;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n}\n.light-gallery__image-container[data-v-2951e615] {\n  display: inline-table;\n  vertical-align: middle;\n  position: relative;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;\n}\n.light-gallery__image[data-v-2951e615] {\n  display: inline-block;\n  position: relative;\n  margin: 0 auto;\n  max-width: 100%;\n  max-height: 100vh;\n}\n.light-gallery__image img[data-v-2951e615] {\n  max-width: 100%;\n  max-height: 100vh;\n  opacity: 0;\n  transition: opacity .2s;\n}\n.light-gallery__image img.loaded[data-v-2951e615] {\n  opacity: 1;\n}\n.light-gallery__text[data-v-2951e615] {\n  position: absolute;\n  z-index: 1000;\n  bottom: 0;\n  display: block;\n  margin: 0 auto;\n  padding: 12px 30px;\n  width: 100%;\n  box-sizing: border-box;\n}\n.light-gallery__next[data-v-2951e615], .light-gallery__prev[data-v-2951e615], .light-gallery__close[data-v-2951e615] {\n  position: absolute;\n  z-index: 1002;\n  display: block;\n  background: transparent;\n  border: 0;\n  line-height: 0;\n  outline: none;\n  padding: 7px;\n  cursor: pointer;\n}\n.light-gallery__next[data-v-2951e615] {\n  top: 50%;\n  transform: translate(0, -50%);\n  right: 1.5%;\n  vertical-align: middle;\n}\n.light-gallery__prev[data-v-2951e615] {\n  top: 50%;\n  transform: translate(0, -50%);\n  left: 1.5%;\n}\n.light-gallery__close[data-v-2951e615] {\n  right: 0;\n  padding: 12px;\n}\n.light-gallery__spinner[data-v-2951e615] {\n  position: absolute;\n  z-index: 1003;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  margin: 0 auto;\n  display: block;\n  height: 15px;\n  width: auto;\n  box-sizing: border-box;\n  text-align: center;\n}\n.light-gallery__spinner.hide[data-v-2951e615] {\n  display: none;\n}\n.light-gallery__dot[data-v-2951e615] {\n  float: left;\n  margin: 0 calc(15px / 2);\n  width: 15px;\n  height: 15px;\n  border: calc(15px / 5) solid rgba(255, 255, 255, 0.8);\n  border-radius: 50%;\n  transform: scale(0);\n  box-sizing: border-box;\n  animation: spinner-animation-data-v-2951e615 1000ms ease infinite 0ms;\n}\n.light-gallery__dot[data-v-2951e615]:nth-child(1) {\n  animation-delay: calc(300ms * 1);\n}\n.light-gallery__dot[data-v-2951e615]:nth-child(2) {\n  animation-delay: calc(300ms * 2);\n}\n.light-gallery__dot[data-v-2951e615]:nth-child(3) {\n  animation-delay: calc(300ms * 3);\n}\n.fade-enter-active[data-v-2951e615], .fade-leave-active[data-v-2951e615] {\n  position: fixed;\n  z-index: 1000;\n  transition: opacity .2s;\n}\n.fade-enter[data-v-2951e615], .fade-leave-to[data-v-2951e615] {\n  position: fixed;\n  opacity: 0;\n  z-index: 1000;\n}\n@keyframes spinner-animation-data-v-2951e615 {\n50% {\n    transform: scale(1);\n    opacity: 1;\n}\n100% {\n    opacity: 0;\n}\n}\n\n/*# sourceMappingURL=light-gallery.vue.map */", map: {"version":3,"sources":["/home/pere.monfort/code/vue-light-gallery/src/light-gallery.vue","light-gallery.vue"],"names":[],"mappings":"AAgTA;EACA,eAAA;EACA,cAAA;EACA,aAAA;EACA,MAAA;EACA,OAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;AAAA;AAGA;EACA,YAAA;EACA,WAAA;EACA,mBAAA;EACA,UAAA;EACA,SAAA;AAAA;AAGA;EACA,kBAAA;EACA,aAAA;EACA,cAAA;EACA,WAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,kBAAA;AAAA;AAGA;EACA,qBAAA;EACA,sBAAA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,yEAAA;AAAA;AAGA;EAEA,qBAAA;EACA,kBAAA;EACA,cAAA;EACA,eAAA;EACA,iBAAA;AAAA;AANA;EAYA,eAAA;EACA,iBAAA;EACA,UAAA;EACA,uBAAA;AAAA;AAfA;EAmBA,UAAA;AAAA;AAMA;EACA,kBAAA;EACA,aAAA;EACA,SAAA;EACA,cAAA;EACA,cAAA;EACA,kBAAA;EACA,WAAA;EACA,sBAAA;AAAA;AAGA;EAGA,kBAAA;EACA,aAAA;EACA,cAAA;EACA,uBAAA;EACA,SAAA;EACA,cAAA;EACA,aAAA;EACA,YAAA;EACA,eAAA;AAAA;AAGA;EACA,QAAA;EACA,6BAAA;EACA,WAAA;EACA,sBAAA;AAAA;AAGA;EACA,QAAA;EACA,6BAAA;EACA,UAAA;AAAA;AAGA;EACA,QAAA;EACA,aAAA;AAAA;AAGA;EAEA,kBAAA;EACA,aAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,cAAA;EACA,cAAA;EACA,YAAA;EACA,WAAA;EACA,sBAAA;EACA,kBAAA;AAAA;AAZA;EAgBA,aAAA;AAAA;AAIA;EAEA,WAAA;EACA,wBAAA;EACA,WAAA;EACA,YAAA;EACA,qDAAA;EACA,kBAAA;EACA,mBAAA;EACA,sBAAA;EACA,qEAAA;AAAA;AAVA;EAcA,gCAAA;AAAA;AAdA;EAkBA,gCAAA;AAAA;AAlBA;EAsBA,gCAAA;AAAA;AAKA;EACA,eAAA;EACA,aAAA;EACA,uBAAA;AAAA;AAGA;EACA,eAAA;EACA,UAAA;EACA,aAAA;AAAA;AAGA;AACA;IACA,mBAAA;IACA,UAAA;AAAA;AAEA;IACA,UAAA;AAAA;AAAA;;AChVA,4CAA4C","file":"light-gallery.vue","sourcesContent":["<template>\n  <transition name=\"fade\">\n    <div\n      v-if=\"typeof index === 'number'\"\n      class=\"light-gallery\"\n      @touchstart=\"touchstartHandler\"\n      @touchmove=\"touchmoveHandler\"\n      @touchend=\"touchendHandler\"\n    >\n      <div\n        class=\"light-gallery__modal\"\n        :style=\"`background: ${background}`\"\n      >\n        <div\n          :class=\"['light-gallery__spinner', !isImageLoaded || 'hide']\"\n        >\n          <div\n            class=\"light-gallery__dot\"\n            :style=\"`border-color: ${interfaceColor}`\"\n          />\n          <div\n            class=\"light-gallery__dot\"\n            :style=\"`border-color: ${interfaceColor}`\"\n          />\n          <div\n            class=\"light-gallery__dot\"\n            :style=\"`border-color: ${interfaceColor}`\"\n          />\n        </div>\n        <div class=\"light-gallery__container\">\n          <ul class=\"light-gallery__content\">\n            <li\n              v-for=\"(image, imageIndex) in formattedImages\"\n              :key=\"imageIndex\"\n              :style=\"`transform: translate3d(${currentIndex * -100}%, 0px, 0px);`\"\n              class=\"light-gallery__image-container\"\n            >\n              <div class=\"light-gallery__image\">\n                <div\n                  v-show=\"image.title && isImageLoaded\"\n                  class=\"light-gallery__text\"\n                  :style=\"`background: ${background}; color: ${interfaceColor}`\"\n                >\n                  {{ image.title }}\n                </div>\n                <img\n                  :ref=\"`lg-img-${imageIndex}`\"\n                  :src=\"shouldPreload(imageIndex) ? image.url : false\"\n                  @load=\"imageLoaded($event, imageIndex)\"\n                >\n              </div>\n            </li>\n          </ul>\n        </div>\n        <button\n          v-if=\"currentIndex > 0\"\n          class=\"light-gallery__prev\"\n          :style=\"`background: ${background}`\"\n          @click=\"prev()\"\n        >\n          <svg\n            width=\"25\"\n            height=\"40\"\n            viewBox=\"0 0 25 40\"\n          >\n            <polyline\n              points=\"19 5 5 20 19 35\"\n              stroke-width=\"3\"\n              stroke-linecap=\"butt\"\n              fill=\"none\"\n              stroke-linejoin=\"round\"\n              :stroke=\"interfaceColor\"\n            />\n          </svg>\n        </button>\n        <button\n          v-if=\"currentIndex + 1 < images.length\"\n          class=\"light-gallery__next\"\n          :style=\"`background: ${background}`\"\n          @click=\"next()\"\n        >\n          <svg\n            width=\"25\"\n            height=\"40\"\n            viewBox=\"0 0 25 40\"\n          >\n            <polyline\n              points=\"6 5 20 20 6 35\"\n              stroke-width=\"3\"\n              stroke-linecap=\"butt\"\n              fill=\"none\"\n              stroke-linejoin=\"round\"\n              :stroke=\"interfaceColor\"\n            />\n          </svg>\n        </button>\n        <button\n          class=\"light-gallery__close\"\n          :style=\"`background: ${background}`\"\n          @click=\"close()\"\n        >\n          <svg\n            width=\"30\"\n            height=\"30\"\n          >\n            <g\n              stroke-width=\"3\"\n              :stroke=\"interfaceColor\"\n            >\n              <line\n                x1=\"5\"\n                y1=\"5\"\n                x2=\"25\"\n                y2=\"25\"\n              />\n              <line\n                x1=\"5\"\n                y1=\"25\"\n                x2=\"25\"\n                y2=\"5\"\n              />\n            </g>\n          </svg>\n        </button>\n      </div>\n    </div>\n  </transition>\n</template>\n\n<script>\nconst keyMap = {\n  LEFT: 37,\n  RIGHT: 39,\n  ESC: 27,\n};\n\nexport default {\n  props: {\n    images: {\n      type: Array,\n      default: () => [],\n    },\n    index: {\n      type: Number,\n      default: 1,\n    },\n    disableScroll: {\n      type: Boolean,\n      default: false,\n    },\n    background: {\n      type: String,\n      default: 'rgba(0, 0, 0, 0.8)',\n    },\n    interfaceColor: {\n      type: String,\n      default: 'rgba(255, 255, 255, 0.8)',\n    },\n  },\n  data() {\n    return {\n      currentIndex: this.index,\n      isImageLoaded: false,\n      bodyOverflowStyle: '',\n      touch: {\n        count: 0,\n        x: 0,\n        y: 0,\n        multitouch: false,\n        flag: false,\n      },\n    };\n  },\n  computed: {\n    formattedImages() {\n      return this.images.map(image => (typeof image === 'string'\n        ? { url: image } : image\n      ));\n    },\n  },\n  watch: {\n    index(val) {\n      if (!document) return;\n\n      this.currentIndex = val;\n\n      if (this.disableScroll && typeof val === 'number') {\n        document.body.style.overflow = 'hidden';\n      } else if (this.disableScroll && !val) {\n        document.body.style.overflow = this.bodyOverflowStyle;\n      }\n    },\n    currentIndex(val) {\n      this.setImageLoaded(val);\n    },\n  },\n  mounted() {\n    if (!document) return;\n\n    this.bodyOverflowStyle = document.body.style.overflow;\n    this.bindEvents();\n  },\n  beforeDestroy() {\n    if (!document) return;\n\n    if (this.disableScroll) {\n      document.body.style.overflow = this.bodyOverflowStyle;\n    }\n    this.unbindEvents();\n  },\n  methods: {\n    close() {\n      this.$emit('close');\n    },\n    prev() {\n      if (this.currentIndex === 0) return;\n      this.currentIndex -= 1;\n      this.$emit('slide', { index: this.currentIndex });\n    },\n    next() {\n      if (this.currentIndex === this.images.length - 1) return;\n      this.currentIndex += 1;\n      this.$emit('slide', { index: this.currentIndex });\n    },\n    imageLoaded($event, imageIndex) {\n      const { target } = $event;\n      target.classList.add('loaded');\n\n      if (imageIndex === this.currentIndex) {\n        this.setImageLoaded(imageIndex);\n      }\n    },\n    getImageElByIndex(index) {\n      const elements = this.$refs[`lg-img-${index}`] || [];\n      return elements[0];\n    },\n    setImageLoaded(index) {\n      const el = this.getImageElByIndex(index);\n      this.isImageLoaded = !el ? false : el.classList.contains('loaded');\n    },\n    shouldPreload(index) {\n      const el = this.getImageElByIndex(index) || {};\n      const { src } = el;\n\n      return !!src\n       || index === this.currentIndex\n       || index === this.currentIndex - 1\n       || index === this.currentIndex + 1;\n    },\n    bindEvents() {\n      document.addEventListener('keydown', this.keyDownHandler, false);\n    },\n    unbindEvents() {\n      document.removeEventListener('keydown', this.keyDownHandler, false);\n    },\n    touchstartHandler(event) {\n      this.touch.count += 1;\n      if (this.touch.count > 1) {\n        this.touch.multitouch = true;\n      }\n      this.touch.x = event.changedTouches[0].pageX;\n      this.touch.y = event.changedTouches[0].pageY;\n    },\n    touchmoveHandler(event) {\n      if (this.touch.flag || this.touch.multitouch) return;\n\n      const touchEvent = event.touches[0] || event.changedTouches[0];\n\n      if (touchEvent.pageX - this.touch.x > 40) {\n        this.touch.flag = true;\n        this.prev();\n      } else if (touchEvent.pageX - this.touch.x < -40) {\n        this.touch.flag = true;\n        this.next();\n      }\n    },\n    touchendHandler() {\n      this.touch.count -= 1;\n      if (this.touch.count <= 0) {\n        this.touch.multitouch = false;\n      }\n      this.touch.flag = false;\n    },\n    keyDownHandler(event) {\n      switch (event.keyCode) {\n        case keyMap.LEFT:\n          this.prev();\n          break;\n        case keyMap.RIGHT:\n          this.next();\n          break;\n        case keyMap.ESC:\n          this.close();\n          break;\n        default:\n          break;\n      }\n    },\n  },\n};\n</script>\n\n<style lang=\"scss\" scoped>\n.light-gallery {\n  &__modal {\n    position: fixed;\n    display: block;\n    z-index: 1001;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n  }\n\n  &__content {\n    height: 100%;\n    width: 100%;\n    white-space: nowrap;\n    padding: 0;\n    margin: 0;\n  }\n\n  &__container {\n    position: absolute;\n    z-index: 1002;\n    display: block;\n    width: 100%;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    text-align: center;\n  }\n\n  &__image-container {\n    display: inline-table;\n    vertical-align: middle;\n    position: relative;\n    width: 100%;\n    height: 100%;\n    text-align: center;\n    transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease;\n  }\n\n  &__image {\n    & {\n      display: inline-block;\n      position: relative;\n      margin: 0 auto;\n      max-width: 100%;\n      max-height: 100vh;\n      // opacity: 0;\n    }\n\n    & img {\n      & {\n        max-width: 100%;\n        max-height: 100vh;\n        opacity: 0;\n        transition: opacity .2s;\n      }\n\n      &.loaded{\n        opacity: 1;\n      }\n    }\n\n  }\n\n  &__text {\n    position: absolute;\n    z-index: 1000;\n    bottom: 0;\n    display: block;\n    margin: 0 auto;\n    padding: 12px 30px;\n    width: 100%;\n    box-sizing: border-box;\n  }\n\n  &__next,\n  &__prev,\n  &__close {\n    position: absolute;\n    z-index: 1002;\n    display: block;\n    background: transparent;\n    border: 0;\n    line-height: 0;\n    outline: none;\n    padding: 7px;\n    cursor: pointer;\n  }\n\n  &__next {\n    top: 50%;\n    transform: translate(0, -50%);\n    right: 1.5%;\n    vertical-align: middle;\n  }\n\n  &__prev {\n    top: 50%;\n    transform: translate(0, -50%);\n    left: 1.5%;\n  }\n\n  &__close {\n    right: 0;\n    padding: 12px;\n  }\n\n  &__spinner {\n    & {\n      position: absolute;\n      z-index: 1003;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%);\n      margin: 0 auto;\n      display: block;\n      height: 15px;\n      width: auto;\n      box-sizing: border-box;\n      text-align: center;\n    }\n\n    &.hide {\n      display: none;\n    }\n  }\n\n  &__dot {\n    & {\n      float: left;\n      margin: 0 calc(15px / 2);\n      width: 15px;\n      height: 15px;\n      border: calc(15px / 5) solid rgba(255, 255, 255, 0.8);\n      border-radius: 50%;\n      transform: scale(0);\n      box-sizing: border-box;\n      animation: spinner-animation 1000ms ease infinite 0ms;\n    }\n\n    &:nth-child(1) {\n      animation-delay: calc(300ms * 1);\n    }\n\n    &:nth-child(2) {\n      animation-delay: calc(300ms * 2);\n    }\n\n    &:nth-child(3) {\n      animation-delay: calc(300ms * 3);\n    }\n  }\n}\n\n.fade-enter-active, .fade-leave-active {\n  position: fixed;\n  z-index: 1000;\n  transition: opacity .2s;\n}\n\n.fade-enter, .fade-leave-to {\n  position: fixed;\n  opacity: 0;\n  z-index: 1000;\n}\n\n@keyframes spinner-animation {\n  50% {\n    transform: scale(1);\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n</style>\n",".light-gallery__modal {\n  position: fixed;\n  display: block;\n  z-index: 1001;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.light-gallery__content {\n  height: 100%;\n  width: 100%;\n  white-space: nowrap;\n  padding: 0;\n  margin: 0; }\n\n.light-gallery__container {\n  position: absolute;\n  z-index: 1002;\n  display: block;\n  width: 100%;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center; }\n\n.light-gallery__image-container {\n  display: inline-table;\n  vertical-align: middle;\n  position: relative;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease; }\n\n.light-gallery__image {\n  display: inline-block;\n  position: relative;\n  margin: 0 auto;\n  max-width: 100%;\n  max-height: 100vh; }\n\n.light-gallery__image img {\n  max-width: 100%;\n  max-height: 100vh;\n  opacity: 0;\n  transition: opacity .2s; }\n\n.light-gallery__image img.loaded {\n  opacity: 1; }\n\n.light-gallery__text {\n  position: absolute;\n  z-index: 1000;\n  bottom: 0;\n  display: block;\n  margin: 0 auto;\n  padding: 12px 30px;\n  width: 100%;\n  box-sizing: border-box; }\n\n.light-gallery__next, .light-gallery__prev, .light-gallery__close {\n  position: absolute;\n  z-index: 1002;\n  display: block;\n  background: transparent;\n  border: 0;\n  line-height: 0;\n  outline: none;\n  padding: 7px;\n  cursor: pointer; }\n\n.light-gallery__next {\n  top: 50%;\n  transform: translate(0, -50%);\n  right: 1.5%;\n  vertical-align: middle; }\n\n.light-gallery__prev {\n  top: 50%;\n  transform: translate(0, -50%);\n  left: 1.5%; }\n\n.light-gallery__close {\n  right: 0;\n  padding: 12px; }\n\n.light-gallery__spinner {\n  position: absolute;\n  z-index: 1003;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  margin: 0 auto;\n  display: block;\n  height: 15px;\n  width: auto;\n  box-sizing: border-box;\n  text-align: center; }\n\n.light-gallery__spinner.hide {\n  display: none; }\n\n.light-gallery__dot {\n  float: left;\n  margin: 0 calc(15px / 2);\n  width: 15px;\n  height: 15px;\n  border: calc(15px / 5) solid rgba(255, 255, 255, 0.8);\n  border-radius: 50%;\n  transform: scale(0);\n  box-sizing: border-box;\n  animation: spinner-animation 1000ms ease infinite 0ms; }\n\n.light-gallery__dot:nth-child(1) {\n  animation-delay: calc(300ms * 1); }\n\n.light-gallery__dot:nth-child(2) {\n  animation-delay: calc(300ms * 2); }\n\n.light-gallery__dot:nth-child(3) {\n  animation-delay: calc(300ms * 3); }\n\n.fade-enter-active, .fade-leave-active {\n  position: fixed;\n  z-index: 1000;\n  transition: opacity .2s; }\n\n.fade-enter, .fade-leave-to {\n  position: fixed;\n  opacity: 0;\n  z-index: 1000; }\n\n@keyframes spinner-animation {\n  50% {\n    transform: scale(1);\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n/*# sourceMappingURL=light-gallery.vue.map */"]}, media: undefined });
+
+  };
+  /* scoped */
+  var __vue_scope_id__ = "data-v-2951e615";
+  /* module identifier */
+  var __vue_module_identifier__ = undefined;
+  /* functional template */
+  var __vue_is_functional_template__ = false;
+  /* style inject SSR */
+  
+
+  
+  var LightGallery = normalizeComponent_1(
+    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+    __vue_inject_styles__,
+    __vue_script__,
+    __vue_scope_id__,
+    __vue_is_functional_template__,
+    __vue_module_identifier__,
+    browser,
+    undefined
+  );
+
+function install(Vue, options) {
+	if ( options === void 0 ) options = {};
+	if (install.installed) { return; }
+	install.installed = true;
+	var componentId = options.componentId; if ( componentId === void 0 ) componentId = 'LightGallery';
+	Vue.component(componentId, LightGallery);
+}
+var wrapper = {
+	install: install,
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (wrapper);
+
+
 
 /***/ }),
 
@@ -80839,7 +85949,9 @@ var render = function() {
                       }
                     },
                     [
-                      _c("dashboard-restaurant-food-photo"),
+                      _c("dashboard-restaurant-food-photo", {
+                        attrs: { food_photos: _vm.restaurant.food_photos }
+                      }),
                       _vm._v(
                         "\n                            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna. \n                        "
                       )
@@ -80987,7 +86099,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Food Photos\n")])
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.photos, function(photo, index) {
+        return _c("div", { staticClass: "col-md-2" }, [
+          _c("img", {
+            staticClass: "img-responsive ",
+            attrs: { src: "/img/" + photo.path, alt: "" }
+          })
+        ])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -81265,7 +86391,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Menu Photos\n")])
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12" },
+        [
+          _c("LightGallery", {
+            attrs: {
+              images: _vm.images,
+              index: _vm.index,
+              "disable-scroll": true
+            },
+            on: {
+              close: function($event) {
+                _vm.index = null
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(["/img/food1.jpg", "/img/food2.jpg"], function(
+              thumb,
+              thumbIndex
+            ) {
+              return _c(
+                "li",
+                {
+                  key: thumbIndex,
+                  on: {
+                    click: function($event) {
+                      _vm.index = thumbIndex
+                    }
+                  }
+                },
+                [_c("img", { attrs: { src: thumb } })]
+              )
+            }),
+            0
+          )
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -99798,24 +104968,25 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css");
-/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
-/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vue_timeago__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-timeago */ "./node_modules/vue-timeago/dist/vue-timeago.es.js");
-/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/star-rating.min.js");
-/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var vue_lazyload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-lazyload */ "./node_modules/vue-lazyload/vue-lazyload.esm.js");
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css");
+/* harmony import */ var vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker_dist_vue_ctk_date_time_picker_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_timeago__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-timeago */ "./node_modules/vue-timeago/dist/vue-timeago.es.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/star-rating.min.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_10__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -99831,7 +105002,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 var SocialSharing = __webpack_require__(/*! vue-social-sharing */ "./node_modules/vue-social-sharing/dist/vue-social-sharing.common.js");
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(SocialSharing);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(SocialSharing);
+/**
+ * 
+ * Vuejs Light Box
+ * 
+ *  */
+
+
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /**
  * 
  * Datetime picker
@@ -99840,7 +105019,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(SocialSharing);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("VueCtkDateTimePicker", vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_0___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component("VueCtkDateTimePicker", vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_1___default.a);
 /**
  * 
  * Meta Description
@@ -99849,7 +105028,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("VueCtkDateTimePicker", vue
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("vue-headful", vue_headful__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component("vue-headful", vue_headful__WEBPACK_IMPORTED_MODULE_4___default.a);
 /**
  * Lazy loading 
  * plugin
@@ -99861,14 +105040,14 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("vue-headful", vue_headful_
 
  // Init plugin
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_5___default.a);
 /**
  * 
  * Vuejs time ago
  *  */
 
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_timeago__WEBPACK_IMPORTED_MODULE_6__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_timeago__WEBPACK_IMPORTED_MODULE_7__["default"], {
   name: "Timeago",
   // Component name, `Timeago` by default
   locale: "en" // Default locale
@@ -99885,14 +105064,14 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_timeago__WEBPACK_IMPORTED_MOD
  *  */
 
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component("star-rating", vue_star_rating__WEBPACK_IMPORTED_MODULE_7___default.a);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component("star-rating", vue_star_rating__WEBPACK_IMPORTED_MODULE_8___default.a);
 /**
  * Vee Vildate
  * Form Validation
  *  */
 
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_8__["default"], {
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_9__["default"], {
   classes: true,
   classNames: {
     valid: "is-valid",
@@ -99906,8 +105085,8 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vee_validate__WEBPACK_IMPORTED_MO
  *  */
 
 
-window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a;
-var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.mixin({
+window.swal = sweetalert2__WEBPACK_IMPORTED_MODULE_10___default.a;
+var toast = sweetalert2__WEBPACK_IMPORTED_MODULE_10___default.a.mixin({
   showConfirmButton: false,
   timer: 1000
 });
@@ -99922,27 +105101,27 @@ window.toast = toast;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('test-vue', __webpack_require__(/*! ./components/TestVue.vue */ "./resources/js/components/TestVue.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('test-vue', __webpack_require__(/*! ./components/TestVue.vue */ "./resources/js/components/TestVue.vue")["default"]);
 /**
  * 
  * Front Page Component 
  * */
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('home-featured', __webpack_require__(/*! ./components/Home/HomeFeatured.vue */ "./resources/js/components/Home/HomeFeatured.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('business-list', __webpack_require__(/*! ./components/Home/BusinessList.vue */ "./resources/js/components/Home/BusinessList.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('nav-bar', __webpack_require__(/*! ./components/Home/NavBar.vue */ "./resources/js/components/Home/NavBar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('home-featured', __webpack_require__(/*! ./components/Home/HomeFeatured.vue */ "./resources/js/components/Home/HomeFeatured.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('business-list', __webpack_require__(/*! ./components/Home/BusinessList.vue */ "./resources/js/components/Home/BusinessList.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('nav-bar', __webpack_require__(/*! ./components/Home/NavBar.vue */ "./resources/js/components/Home/NavBar.vue")["default"]);
 /**
  * 
  * Restaurant Components
  * */
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-show', __webpack_require__(/*! ./components/Restaurant/Show.vue */ "./resources/js/components/Restaurant/Show.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaurant/SideBar.vue */ "./resources/js/components/Restaurant/SideBar.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-comment', __webpack_require__(/*! ./components/Restaurant/Comments.vue */ "./resources/js/components/Restaurant/Comments.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('restaurant-show', __webpack_require__(/*! ./components/Restaurant/Show.vue */ "./resources/js/components/Restaurant/Show.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('restaurant-sidebar', __webpack_require__(/*! ./components/Restaurant/SideBar.vue */ "./resources/js/components/Restaurant/SideBar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('geo-map', __webpack_require__(/*! ./components/Restaurant/Map.vue */ "./resources/js/components/Restaurant/Map.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('menu-photo', __webpack_require__(/*! ./components/Restaurant/MenuPhoto.vue */ "./resources/js/components/Restaurant/MenuPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('food-photo', __webpack_require__(/*! ./components/Restaurant/FoodPhoto.vue */ "./resources/js/components/Restaurant/FoodPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('restaurant-comment', __webpack_require__(/*! ./components/Restaurant/Comments.vue */ "./resources/js/components/Restaurant/Comments.vue")["default"]);
 /**
  *     DASHBOARD COMPONENTS
  * First we will load all of this project's JavaScript dependencies which
@@ -99951,13 +105130,13 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('restaurant-comment', __web
  */
 // Restaurant Dashboard
 
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-index', __webpack_require__(/*! ./components/Dashboard/Restaurant/Index.vue */ "./resources/js/components/Dashboard/Restaurant/Index.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-edit', __webpack_require__(/*! ./components/Dashboard/Restaurant/Edit.vue */ "./resources/js/components/Dashboard/Restaurant/Edit.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-overview', __webpack_require__(/*! ./components/Dashboard/Restaurant/Overview.vue */ "./resources/js/components/Dashboard/Restaurant/Overview.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-menu-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/MenuPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/MenuPhoto.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-food-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/FoodPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/FoodPhoto.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-comment', __webpack_require__(/*! ./components/Dashboard/Restaurant/Comment.vue */ "./resources/js/components/Dashboard/Restaurant/Comment.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-add', __webpack_require__(/*! ./components/Dashboard/Restaurant/AddNew.vue */ "./resources/js/components/Dashboard/Restaurant/AddNew.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-index', __webpack_require__(/*! ./components/Dashboard/Restaurant/Index.vue */ "./resources/js/components/Dashboard/Restaurant/Index.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-edit', __webpack_require__(/*! ./components/Dashboard/Restaurant/Edit.vue */ "./resources/js/components/Dashboard/Restaurant/Edit.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-overview', __webpack_require__(/*! ./components/Dashboard/Restaurant/Overview.vue */ "./resources/js/components/Dashboard/Restaurant/Overview.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-menu-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/MenuPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/MenuPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-food-photo', __webpack_require__(/*! ./components/Dashboard/Restaurant/FoodPhoto.vue */ "./resources/js/components/Dashboard/Restaurant/FoodPhoto.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-comment', __webpack_require__(/*! ./components/Dashboard/Restaurant/Comment.vue */ "./resources/js/components/Dashboard/Restaurant/Comment.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('dashboard-restaurant-add', __webpack_require__(/*! ./components/Dashboard/Restaurant/AddNew.vue */ "./resources/js/components/Dashboard/Restaurant/AddNew.vue")["default"]); // Vue.component('test-vue', require('./components/TestVue.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -99965,7 +105144,7 @@ vue__WEBPACK_IMPORTED_MODULE_2___default.a.component('dashboard-restaurant-add',
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
+var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '#app',
   // Data
   data: function data() {

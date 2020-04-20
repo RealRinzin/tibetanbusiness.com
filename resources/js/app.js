@@ -16,6 +16,14 @@ Vue.use(SocialSharing);
 
 /**
  * 
+ * Vuejs Light Box
+ * 
+ *  */ 
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad)
+
+/**
+ * 
  * Datetime picker
  * 
  *  */ 

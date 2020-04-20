@@ -23,6 +23,7 @@
 
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
     <!-- File upload script -->
     <!-- <link rel="stylesheet" href="{{asset('css/jquery.fileuploader.min.css')}}"> -->
 
@@ -164,8 +165,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
     <!-- File upload script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.js"></script>
     <!-- Custom components vue -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>
