@@ -19,10 +19,13 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <link rel="icon" sizes="72x72" href="{{asset('/tibetanbusiness.png')}}">
+
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-    <!-- Switchery -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css"> -->
+    <!-- File upload script -->
+    <!-- <link rel="stylesheet" href="{{asset('css/jquery.fileuploader.min.css')}}"> -->
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -54,6 +57,7 @@
                 </li>
             </ul>
         </nav>
+
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -154,15 +158,14 @@
             </div>
         </footer>
     </div>
-
     <!-- REQUIRED SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
-    <!-- <script src="{{ asset('js/datetimepicker.min.js') }}" defer></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <!-- File upload script -->
+    <!-- Custom components vue -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@
     <meta property="article:author" content="Rinzin">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" sizes="72x72" href="{{asset('tibetanbusiness.png')}}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -258,20 +258,8 @@
     </div>
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- facebook share -->
-    <!-- Load Facebook SDK for JavaScript -->
-    <div id="fb-root"></div>
-    <script>
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>
