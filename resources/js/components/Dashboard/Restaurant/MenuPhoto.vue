@@ -2,16 +2,19 @@
   <div>
     <div class="row">
       <div class="col-md-12 py-3">
-        <button class="btn btn-danger">Upload New photos</button>
-        <h6 class="text-muted font-weight-bold">Total photos (5)</h6>
+        <div class="d-flex flex-row">
+          <div class="p-2"><button class="btn btn-outline-danger d-flex">Upload New photos</button></div>
+          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
+        </div>
       </div>
     </div>
+    <!-- Photo iterations -->
     <div class="row">
-      <div class="col-md-3 col-sm-4 col-xs-6" v-for="(photo,index) in photos" data-toggle="modal" data-target="#exampleModal">
-        <div class="card gallery_view" @click="photo_view(index)" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'>
+      <div class="col-md-3 col-sm-4 col-xs-6" v-for="(photo,index) in photos">
+        <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#exampleModal" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'>
               <div class="overlay">
                 <div class="d-flex mt-auto ml-auto p-2">
-                <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
+                  <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
                 </div>
               </div>
         </div>
@@ -94,7 +97,7 @@
      *  */ 
     watch:{
         menu_photos(data){
-          this.photos = data
+          this.photos = data;
         }
     },
     // mounted

@@ -11152,12 +11152,13 @@ Restaurants /events / rents /hotels etc
 }
 
 #dashboard .gallery_view {
-  height: 160px;
+  height: 140px;
   width: 100%;
   position: relative;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  background-image: url("/img/placeholder.gif");
   cursor: pointer;
 }
 

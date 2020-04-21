@@ -36,6 +36,8 @@ class RestaurantBasicInfoResource extends JsonResource
             'facebook' => $this->facebook,
             'website' => $this->website,
             'status' => $this->status,
+            // counting the review stars
+            'rating' => $this->restaurant_comments->count() > 0 ?round($this->restaurant_comments->sum('rate') / $this->restaurant_comments->count(),1):null,
             'facility' => RestaurantFacilityResource::collection($this->restaurant_facilities),
             'comments' => RestaurantCommentResource::collection($this->restaurant_comments),
             'operation' => RestaurantOperationDayResource::collection($this->restaurant_operation_days),

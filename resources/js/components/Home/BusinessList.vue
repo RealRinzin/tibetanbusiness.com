@@ -70,7 +70,7 @@ export default {
         restaurant_list(){
                 this.isLoading = true; //Loading true
             axios.get('restaurants/list').then(response=>{
-                this.restaurants = response.data;
+                this.restaurants = response.data.data;
                 // loading
                 this.isLoading = false; //Loading true
                 this.loading = true;

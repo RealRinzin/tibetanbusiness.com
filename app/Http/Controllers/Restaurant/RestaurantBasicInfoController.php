@@ -134,8 +134,9 @@ class RestaurantBasicInfoController extends Controller
      */
     public function all()
     {
-        $restaurants =  RestaurantBasicInfo::all();
-        return $restaurants->toArray($restaurants);
+        return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::get());
+        // $restaurants =  RestaurantBasicInfo::all();
+        // return $restaurants->toArray($restaurants);
     }
     /**
      * 

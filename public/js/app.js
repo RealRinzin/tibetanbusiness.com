@@ -2311,9 +2311,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 // Import component
  // Import stylesheet
 
@@ -2625,6 +2622,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3388,7 +3388,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true; //Loading true
 
       axios.get('restaurants/list').then(function (response) {
-        _this.restaurants = response.data; // loading
+        _this.restaurants = response.data.data; // loading
 
         _this.isLoading = false; //Loading true
 
@@ -3486,8 +3486,8 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true; //Loading true
 
       axios.get('restaurants/list').then(function (response) {
-        response.data.forEach(function (element) {
-          _this.restaurants = response.data; //data
+        response.data.data.forEach(function (element) {
+          _this.restaurants = response.data.data; //data
 
           _this.isLoading = false; //Loading true
 
@@ -4437,7 +4437,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/restaurants/list').then(function (response) {
-        _this.restaurant = response.data;
+        _this.restaurant = response.data.data;
         /**
          * Rate background color
          *  */
@@ -82774,10 +82774,7 @@ var render = function() {
                     [
                       _c("dashboard-restaurant-menu-photo", {
                         attrs: { menu_photos: _vm.restaurant.menu_photos }
-                      }),
-                      _vm._v(
-                        "\n                            Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. \n                        "
-                      )
+                      })
                     ],
                     1
                   ),
@@ -82795,10 +82792,7 @@ var render = function() {
                     [
                       _c("dashboard-restaurant-food-photo", {
                         attrs: { food_photos: _vm.restaurant.food_photos }
-                      }),
-                      _vm._v(
-                        "\n                            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna. \n                        "
-                      )
+                      })
                     ],
                     1
                   ),
@@ -83236,51 +83230,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 py-3" }, [
+        _c("div", { staticClass: "d-flex flex-row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "pt-3 px-2" }, [
+            _c("h6", { staticClass: "text-muted" }, [
+              _vm._v("Total Photos (" + _vm._s(_vm.photos.length) + ")")
+            ])
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "row" },
       _vm._l(_vm.photos, function(photo, index) {
-        return _c(
-          "div",
-          {
-            staticClass: "col-md-3 col-sm-4 col-xs-6",
-            attrs: { "data-toggle": "modal", "data-target": "#exampleModal" }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "card gallery_view",
-                style: { backgroundImage: "url(/img/" + photo.path + ")" },
-                on: {
-                  click: function($event) {
-                    return _vm.photo_view(index)
-                  }
+        return _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card gallery_view",
+              style: { backgroundImage: "url(/img/" + photo.path + ")" },
+              attrs: { "data-toggle": "modal", "data-target": "#exampleModal" },
+              on: {
+                click: function($event) {
+                  return _vm.photo_view(index)
                 }
-              },
-              [
-                _c("div", { staticClass: "overlay" }, [
-                  _c("div", { staticClass: "d-flex mt-auto ml-auto p-2" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function($event) {
-                            return _vm.remove(photo.id, index)
-                          }
+              }
+            },
+            [
+              _c("div", { staticClass: "overlay" }, [
+                _c("div", { staticClass: "d-flex mt-auto ml-auto p-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.remove(photo.id, index)
                         }
-                      },
-                      [_c("i", { staticClass: "fas fa-trash-alt " })]
-                    )
-                  ])
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-trash-alt " })]
+                  )
                 ])
-              ]
-            )
-          ]
-        )
+              ])
+            ]
+          )
+        ])
       }),
       0
     ),
@@ -83362,15 +83362,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 py-3" }, [
-        _c("button", { staticClass: "btn btn-danger" }, [
-          _vm._v("Upload New photos")
-        ]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "text-muted font-weight-bold" }, [
-          _vm._v("Total photos (5)")
-        ])
+    return _c("div", { staticClass: "p-2" }, [
+      _c("button", { staticClass: "btn btn-outline-danger d-flex" }, [
+        _vm._v("Upload New photos")
       ])
     ])
   },
@@ -85988,22 +85982,24 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "likes" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass: "btn",
-                                class: restaurants.rate_color
-                              },
-                              [
-                                _c("i", {
-                                  staticClass:
-                                    "fas fa-star text-white fa-1x mr-1"
-                                }),
-                                _vm._v(_vm._s(restaurants.rate))
-                              ]
-                            )
-                          ]),
+                          restaurants.rating != null
+                            ? _c("div", { staticClass: "likes" }, [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "btn",
+                                    class: restaurants.rate_color
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass:
+                                        "fas fa-star text-white fa-1x mr-1"
+                                    }),
+                                    _vm._v(_vm._s(restaurants.rating))
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _vm._m(0, true),
                           _vm._v(" "),
@@ -86968,22 +86964,26 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c("ul", [
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass:
-                                              "btn-secondary btn text-white"
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "fas fa-star pr-1 text-warning"
-                                            }),
-                                            _vm._v(_vm._s(_vm.restaurant.rate))
-                                          ]
-                                        )
-                                      ]),
+                                      _vm.restaurant.rating != null
+                                        ? _c("li", [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass:
+                                                  "btn-secondary btn text-white"
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "fas fa-star pr-1 text-warning"
+                                                }),
+                                                _vm._v(
+                                                  _vm._s(_vm.restaurant.rating)
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        : _vm._e(),
                                       _vm._v(" "),
                                       _vm.restaurant.facebook !== ""
                                         ? _c("li", [
@@ -87075,7 +87075,7 @@ var render = function() {
                                       _vm._v(_vm._s(_vm.restaurant.location))
                                     ]),
                                     _vm._v(" "),
-                                    _vm.restaurant.operation[0]
+                                    _vm.restaurant.operation[0] != null
                                       ? _c(
                                           "h6",
                                           { staticClass: "text-muted pt-1" },
@@ -87212,7 +87212,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.restaurant.facility[0]
+                                _vm.restaurant.facility[0] != null
                                   ? _c(
                                       "div",
                                       {
@@ -87605,13 +87605,18 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "rate" }, [
-                      _c(
-                        "span",
-                        { staticClass: "btn", class: restaurant.rate_color },
-                        [_vm._v(_vm._s(restaurant.rate))]
-                      )
-                    ])
+                    restaurant.rating != null
+                      ? _c("div", { staticClass: "rate" }, [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "btn",
+                              class: restaurant.rate_color
+                            },
+                            [_vm._v(_vm._s(restaurant.rating))]
+                          )
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("h6", { staticClass: "text-dark pt-3" }, [

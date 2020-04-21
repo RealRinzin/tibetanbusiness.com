@@ -10,8 +10,8 @@
                     <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurants.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
-                            <div class="likes">
-                                <p v-bind:class="restaurants.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurants.rate}}</p>
+                            <div class="likes" v-if="restaurants.rating != null">
+                                <p v-bind:class="restaurants.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurants.rating}}</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
@@ -56,8 +56,8 @@
             featured_restaurant(){
                 this.isLoading = true; //Loading true
                 axios.get('restaurants/list').then(response=>{
-                    response.data.forEach(element => {
-                        this.restaurants = response.data; //data
+                    response.data.data.forEach(element => {
+                        this.restaurants = response.data.data; //data
                         this.isLoading = false; //Loading true
                         this.load = true;
                     });

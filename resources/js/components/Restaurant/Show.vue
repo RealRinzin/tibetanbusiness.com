@@ -27,7 +27,7 @@
                                             <div class="overlay">
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
                                                 <ul>
-                                                    <li><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rate}}</a></li>
+                                                    <li v-if="restaurant.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
                                                     <li v-if="restaurant.facebook !== ''"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
                                                     <li v-if="restaurant.website !== ''"><a :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
                                                     <li v-if="restaurant.instagram !==''"><a :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
@@ -42,7 +42,7 @@
                                                     <h6 class="text-muted py-1">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
                                                     <h6 class="text-muted py-1">{{restaurant.mobile_no}}</h6>
                                                     <h6 class="text-muted">{{restaurant.location}}</h6>
-                                                    <h6 class="text-muted pt-1" v-if="restaurant.operation[0]">
+                                                    <h6 class="text-muted pt-1" v-if="restaurant.operation[0] != null">
                                                         <span v-if="restaurant.operation[0].monday" class="text-success btn btn-outline-success" >Mon</span>
                                                         <span v-else class="text-danger btn btn-outline-danger">Mon</span>
                                                         <span v-if="restaurant.operation[0].tuesday" class="text-success btn btn-outline-success" >Tues</span>
@@ -59,7 +59,7 @@
                                                         <span v-else class="text-danger btn btn-outline-danger">Sun</span>
                                                     </h6>
                                                 </div>
-                                                <div class="col-md-3 col-sm-6 facility" v-if="restaurant.facility[0]">
+                                                <div class="col-md-3 col-sm-6 facility" v-if="restaurant.facility[0] !=null">
                                                     <h6 class="mb-3 text-muted">Facilities</h6>
                                                     <p class="text-success" v-if="restaurant.facility[0].home_delivery"> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
