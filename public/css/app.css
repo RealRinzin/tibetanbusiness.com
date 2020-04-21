@@ -10882,7 +10882,10 @@ a.text-dark:focus {
   }
 }
 
-/* Restaurant scss */
+/* 
+Resteaurant show
+View individual show CSS
+*/
 
 #restaurant .banner {
   height: 250px;
@@ -11066,6 +11069,13 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* 
+  Dashboard navtabs
+  Overview
+  Photos
+  Comments etc
+  */
+
 #nav-tab .nav-tabs .nav-item {
   padding: 0px 10px !important;
   transition: 0.5s ease;
@@ -11093,8 +11103,17 @@ input:checked + .slider:before {
   border: none !important;
 }
 
+/* 
+Dashboard Photo
+Gallery View
+Restaurants /events / rents /hotels etc
+ */
+
 #dashboard {
   /*Facility  */
+  /* Dashboard Gallery View
+  Restaurant / Event / Rent/ Events
+   */
 }
 
 #dashboard #restaurant .banner {
@@ -11130,6 +11149,31 @@ input:checked + .slider:before {
 #dashboard .facility ul li {
   text-decoration: none;
   padding: 4px 0px;
+}
+
+#dashboard .gallery_view {
+  height: 160px;
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+#dashboard .gallery_view .overlay {
+  display: none;
+}
+
+#dashboard .gallery_view:hover .overlay {
+  position: absolute;
+  transition: 1s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 body {

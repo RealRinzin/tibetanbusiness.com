@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         factory(RestaurantFacility::class, 2)->create();
         factory(RestaurantOperationDay::class, 2)->create();
         factory(RestaurantFoodPhoto::class, 2)->create();
-        factory(RestaurantMenuPhoto::class, 2)->create();
+        factory(RestaurantMenuPhoto::class, 10)->create();
         factory(RestaurantComment::class, 2)->create();
     }
 }

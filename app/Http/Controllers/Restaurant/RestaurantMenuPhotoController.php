@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantMenuPhoto;
 
 class RestaurantMenuPhotoController extends Controller
 {
@@ -81,6 +82,11 @@ class RestaurantMenuPhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //        
+        $photos = RestaurantMenuPhoto::find($id);
+        $photos->delete();
+        // Deleting the file too
+        unlink('img/'.$photos->path);
+        // return $photos;
     }
 }

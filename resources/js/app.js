@@ -22,6 +22,7 @@ Vue.use(SocialSharing);
 import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad)
 
+
 /**
  * 
  * Datetime picker

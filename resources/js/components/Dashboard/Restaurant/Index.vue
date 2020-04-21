@@ -115,6 +115,11 @@ export default {
                     headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
                     this.load_restaurant();
+                    //  Flash Message  
+                    toast.fire({
+                        icon:'success',
+                        title:'Successfully Deleted',
+                    });
                     this.$delete(this.restaurants,index);
                 })
             }
