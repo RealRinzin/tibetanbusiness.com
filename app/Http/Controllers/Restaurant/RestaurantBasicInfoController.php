@@ -121,11 +121,19 @@ class RestaurantBasicInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,RestaurantBasicInfo $restaurantBasicInfo)
     {
         $restaurant = RestaurantBasicInfo::find($id);
-        // $user->parents()->detach(); 
         $restaurant->delete();
+        $restaurant->restaurant_comments()->delete();
+        $restaurant->restaurant_facilities()->delete();
+        $restaurant->restaurant_food_photos()->delete();
+        $restaurant->restaurant_menu_photos()->delete();
+        $restaurant->restaurant_operation_days()->delete();
+        // if(auth()->user()->can('delete', $restaurantBasicInfo)){
+        //     $$restaurantBasicInfo->delete();
+        // }
+
     }
     /**
      * Display a listing of the resource.
@@ -134,7 +142,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function all()
     {
-        return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::get());
+        return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::all());
         // $restaurants =  RestaurantBasicInfo::all();
         // return $restaurants->toArray($restaurants);
     }
@@ -154,13 +162,13 @@ class RestaurantBasicInfoController extends Controller
      *  Restaurant 
      *  Retrieve only the logged / ower's restaurant
      *  */
-    public function user_restaurant(User $user)
+    public function user_restaurant(User $user,RestaurantBasicInfo $restaurantBasicInfo)
     {
+        // Getting only auth resources
+        // $restaurants = Auth::user()->restaurant_basic_infos;
+        // return $restaurants->toArray($restaurants);
 
-        // return Auth::user()->id;
-        // $restaurants = RestaurantBasicInfo::where('user_id', '=', 'f22ce163604241e9bd43c66f0ecc7264')
-        //     ->orderBy('created_at', 'desc')->paginate(3);
-        $restaurants = Auth::user()->restaurant_basic_infos;
+        $restaurants =  RestaurantBasicInfo::all();
         return $restaurants->toArray($restaurants);
     }
     /**
@@ -178,8 +186,12 @@ class RestaurantBasicInfoController extends Controller
      *  */
     public function restaurant_edit($id)
     {
+        // $this->authorize('view', $restaurantBasicInfo);
+        // $this->authorize('restaurant_edit', $restaurantBasicInfo);
+
         // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
         return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
+
     }
 
     /**

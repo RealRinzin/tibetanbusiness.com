@@ -2418,14 +2418,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['food_photos'],
   // data
   data: function data() {
     return {
       // Photos array object
-      photos: {}
+      photos: {},
+      modal_status: false,
+      //modal status
+      active: 0
     };
+  },
+
+  /**
+   * Methods
+   *  */
+  methods: {
+    // photo index
+    photo_view: function photo_view(index) {
+      // status
+      this.modal_status = true; // active class
+
+      this.active = index;
+    },
+
+    /**
+     * Removing Photo
+     *  */
+    remove: function remove(id, index) {
+      var _this = this;
+
+      var confirmBox = confirm('Are you sure want to Delete!!!');
+
+      if (confirmBox == true) {
+        axios["delete"]('/api/restaurant_food_photos/' + id, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }).then(function (response) {
+          //  Flash Message  
+          toast.fire({
+            icon: 'success',
+            title: 'Deleted Successfully'
+          });
+
+          _this.$delete(_this.photos, index);
+        });
+      }
+    }
   },
 
   /**
@@ -82938,22 +83018,196 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 py-3" }, [
+        _c("div", { staticClass: "d-flex flex-row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "pt-3 px-2" }, [
+            _c("h6", { staticClass: "text-muted" }, [
+              _vm._v("Total Photos (" + _vm._s(_vm.photos.length) + ")")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row" },
       _vm._l(_vm.photos, function(photo, index) {
-        return _c("div", { staticClass: "col-md-2 py-2" }, [
-          _c("img", {
-            staticClass: "img-fluid",
-            attrs: { src: "/img/" + photo.path, alt: "" }
-          })
+        return _c("div", { staticClass: "col-md-2 col-sm-4 col-xs-6" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card gallery_view",
+              style: { backgroundImage: "url(/img/" + photo.path + ")" },
+              attrs: {
+                "data-toggle": "modal",
+                "data-target": "#food_photo_modal"
+              },
+              on: {
+                click: function($event) {
+                  return _vm.photo_view(index)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "overlay" }, [
+                _c("div", { staticClass: "d-flex mt-auto ml-auto p-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.remove(photo.id, index)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-trash-alt " })]
+                  )
+                ])
+              ])
+            ]
+          )
         ])
       }),
       0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "food_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "carousel slide",
+                        attrs: {
+                          id: "carouselExampleControls",
+                          "data-ride": "carousel"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "carousel-inner" },
+                          _vm._l(_vm.photos, function(photo, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "carousel-item animated fadeIn duration-1s",
+                                class: { active: index == _vm.active }
+                              },
+                              [
+                                _c("div", {
+                                  staticClass: "slide",
+                                  style: {
+                                    backgroundImage:
+                                      "url(/img/" + photo.path + ")"
+                                  }
+                                })
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-2" }, [
+      _c("button", { staticClass: "btn btn-outline-danger d-flex" }, [
+        _vm._v("Upload New photos")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-prev",
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "prev"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-next",
+        attrs: {
+          href: "#carouselExampleControls",
+          role: "button",
+          "data-slide": "next"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -83248,7 +83502,7 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.photos, function(photo, index) {
-        return _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6" }, [
+        return _c("div", { staticClass: "col-md-2 col-sm-4 col-xs-6" }, [
           _c(
             "div",
             {
@@ -87057,6 +87311,9 @@ var render = function() {
                                       "h6",
                                       { staticClass: "text-muted py-1" },
                                       [
+                                        _c("i", {
+                                          staticClass: "fas fa-clock mr-2"
+                                        }),
                                         _vm._v(
                                           _vm._s(_vm.restaurant.opening_hour) +
                                             " - " +
@@ -87068,10 +87325,20 @@ var render = function() {
                                     _c(
                                       "h6",
                                       { staticClass: "text-muted py-1" },
-                                      [_vm._v(_vm._s(_vm.restaurant.mobile_no))]
+                                      [
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-phone-square-alt pr-2"
+                                        }),
+                                        _vm._v(_vm._s(_vm.restaurant.mobile_no))
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c("h6", { staticClass: "text-muted" }, [
+                                      _c("i", {
+                                        staticClass:
+                                          "fas fa-map-marker-alt mr-2"
+                                      }),
                                       _vm._v(_vm._s(_vm.restaurant.location))
                                     ]),
                                     _vm._v(" "),

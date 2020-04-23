@@ -39,9 +39,9 @@
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
                                                 <div class="col-md-6 col-sm-6">
-                                                    <h6 class="text-muted py-1">{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
-                                                    <h6 class="text-muted py-1">{{restaurant.mobile_no}}</h6>
-                                                    <h6 class="text-muted">{{restaurant.location}}</h6>
+                                                    <h6 class="text-muted py-1"><i class="fas fa-clock mr-2"></i>{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
+                                                    <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{restaurant.mobile_no}}</h6>
+                                                    <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{restaurant.location}}</h6>
                                                     <h6 class="text-muted pt-1" v-if="restaurant.operation[0] != null">
                                                         <span v-if="restaurant.operation[0].monday" class="text-success btn btn-outline-success" >Mon</span>
                                                         <span v-else class="text-danger btn btn-outline-danger">Mon</span>
