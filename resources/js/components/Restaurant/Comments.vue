@@ -8,7 +8,6 @@
                             <form @submit.prevent="post_comment(review.restaurant_basic_info_id)" data-vv-scope="valid_comment_form">
                                 <p><star-rating v-model="review.rate"
                                                 v-bind:fixed-points="1"
-                                                v-bind:rating="0"
                                                 v-bind:increment="0.3"
                                                 v-bind:max-rating="5"
                                                 border-color="#33373a"

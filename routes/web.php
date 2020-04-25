@@ -61,3 +61,11 @@ Route::get('restaurants/list/', 'Restaurant\RestaurantBasicInfoController@all');
 
 // Route::resource('post', 'PostController')->middleware('can:isOwner');
 Route::get('all','PostController@all')->middleware('can:viewAny,App\Post');
+
+
+/**
+ * 
+ * Testing the image upload
+ *  */ 
+Route::post('upload','HomeController@upload');
+// Route::get('upload','HomeController@upload');

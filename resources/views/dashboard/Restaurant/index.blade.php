@@ -1,5 +1,5 @@
 @extends('dashboard')
 @section('content')
-
-    <dashboard-restaurant-index></dashboard-restaurant-index>
+<test-vue></test-vue>
+    <!-- <dashboard-restaurant-index></dashboard-restaurant-index> -->
 @endsection

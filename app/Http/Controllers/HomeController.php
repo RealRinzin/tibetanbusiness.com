@@ -44,4 +44,43 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    // photo pupload
+    public function upload(Request $request){
+
+        // return count($request);
+        // return $request;
+        // return sizeof($request['data']);
+        foreach ($request['data'] as $image) {
+            if ($image) {
+                $name = time() . '.'
+                    . explode('/', explode(
+                        ':',
+                        substr(
+                            $image,
+                            0,
+                            strpos($image, ';')
+                        )
+                    )[1])[1];
+                \Image::make($image)->save(public_path('/test_image/') . $name);
+        }
+    }
+        // $name = '';
+        // for ($i=0; $i < sizeof($request['data']) ; $i++) {
+        //     // Image upload script in php
+        //     if ($request['data'][$i]) {
+        //         $name = time() . '.'
+        //             . explode('/', explode(
+        //                 ':',
+        //                 substr(
+        //                     $request['data'][$i],
+        //                     0,
+        //                     strpos($request['data'][$i], ';')
+        //                 )
+        //             )[1])[1];
+        //         \Image::make($request['data'][$i])->save(public_path('/test_image/') . $name);
+
+        //     }
+        //     # code...
+        // }
+    }
 }

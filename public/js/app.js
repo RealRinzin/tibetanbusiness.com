@@ -4581,7 +4581,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // using import
 
 
@@ -4648,6 +4647,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //  fileReader.readAsDataURL(event);
     status: function status() {
+      console.log(this.upload.cachedFileArray);
       console.log(this.test);
       axios.post('/upload', this.test).then(function (response) {
         // console.log(this.photos);

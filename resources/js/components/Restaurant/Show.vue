@@ -3,11 +3,9 @@
         <vue-headful
         :title="restaurant.name"
         :description="restaurant.location"
-        keywords="keyword"
         :image="restaurant.banner"
         lang="langauge"
-        ogLocale=""
-        url="tibetanbusiness.com"
+        url="https://tibetanbusiness.com"
         />
         <div id="restaurant" style="min-height:80vh">
             
@@ -130,14 +128,15 @@
     import 'vue-loading-overlay/dist/vue-loading.css';
         // Map
     export default {
+        props:['rating'],
 
         /**
          * Data
          *  */ 
         data(){
             return{
-                title:'Tenzin rinzin',
-                rating:0,
+                // title:'Tenzin rinzin',
+                rate:0,
                 // Loading
                 loading:false,
                 isLoading : false,//Lazy loading
