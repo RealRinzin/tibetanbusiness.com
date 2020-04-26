@@ -27,6 +27,21 @@ class RestaurantFoodPhotoController extends Controller
     public function create()
     {
         //
+        // if (count($request->images)) {
+        //     foreach ($request->images as $image) {
+        //         $restaurant = RestaurantFoodPhoto::create([
+        //             'restaurant_basic_info_id' => 'rinzintestin',
+        //             'path' => $image->store(''),
+        //             'user_id' => Auth::user()->id,
+        //         ]);
+        //         $image->store('public\images');
+        //     }
+        // }
+        // return $restaurant;
+
+        // return response()->json([
+        //     "message" => "Done"
+        // ]);
     }
 
     /**

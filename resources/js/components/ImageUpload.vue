@@ -6,8 +6,8 @@
         @drop="onDrop"
         :class="{ dragging: isDragging }">
         <div class="upload-control" v-show="images.length">
-            <label for="file">Select a file</label>
-            <button @click="upload">Upload</button>
+            <label for="file" class="btn btn-primary btn-md">Select a file</label>
+            <button class="btn btn-warning btn-md" @click="upload">Upload</button>
         </div>
 
 
@@ -25,7 +25,7 @@
             <div class="img-wrapper" v-for="(image, index) in images" :key="index">
                 <img :src="image" :alt="`Image Uplaoder ${index}`">
                 <div style="position: absolute;margin-top: -10px;margin-left: -10px;">
-                <i @click="remove(index)" class="fas fa-times-circle bg-danger p-2" style="font-size: 20px;border-radius: 4px;"></i>
+                        <i @click="remove(index)" class="fas fa-times-circle bg-danger p-2" style="font-size: 20px;border-radius: 4px;"></i>
                 </div>
                 <div class="details">
                     <span class="name" v-text="files[index].name"></span>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { Validator } from 'vee-validate';
 export default {
     data: () => ({
         isDragging: false,
@@ -59,6 +60,8 @@ export default {
                 this.isDragging = false;
         },
         onInputChange(e) {
+            console.log(e);
+            
             const files = e.target.files;
             Array.from(files).forEach(file => this.addImage(file));
         },
@@ -71,7 +74,7 @@ export default {
         },
         addImage(file) {
             if (!file.type.match('image.*')) {
-                this.$toastr.e(`${file.name} is not an image`);
+                alert("Please Upload Only Images")
                 return;
             }
             this.files.push(file);
@@ -100,7 +103,6 @@ export default {
         },
         // Upload the file
         upload() {
-
             const formData = new FormData();
             this.files.forEach(file => {
                 formData.append('images[]', file, file.name);
@@ -128,7 +130,7 @@ export default {
     padding: 40px 15px;
     text-align: center;
     border-radius: 10px;
-    border: 3px dashed #fff;
+    border: 2px dotted #fff;
     font-size: 20px;
     position: relative;
     &.dragging {
@@ -208,14 +210,14 @@ export default {
         padding: 10px;
         padding-bottom: 4px;
         text-align: right;
-        button, label {
-            background: #2196F3;
-            border: 2px solid #03A9F4;
-            border-radius: 3px;
-            color: #fff;
-            font-size: 15px;
-            cursor: pointer;
-        }
+        // button, label {
+        //     background: #2196F3;
+        //     border: 2px solid #03A9F4;
+        //     border-radius: 3px;
+        //     color: #fff;
+        //     font-size: 15px;
+        //     cursor: pointer;
+        // }
         label {
             padding: 2px 5px;
             margin-right: 10px;

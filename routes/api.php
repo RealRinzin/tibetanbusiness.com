@@ -48,4 +48,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  *  */
 Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
 
-// Route::apiResource('post', 'PostController');

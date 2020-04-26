@@ -111,9 +111,3 @@ import 'file-upload-with-preview/dist/file-upload-with-preview.min.css'
       }
     } 
 </script>
-    <style>
-      img{
-        padding:10px;
-        border-radius:10%;
-      }
-    </style>

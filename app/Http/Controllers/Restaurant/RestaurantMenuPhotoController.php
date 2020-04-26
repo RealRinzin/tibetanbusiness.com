@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant\RestaurantMenuPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantMenuPhotoController extends Controller
 {
@@ -38,6 +39,22 @@ class RestaurantMenuPhotoController extends Controller
     public function store(Request $request)
     {
         //
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $restaurant = RestaurantMenuPhoto::create([
+                    'restaurant_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Restaurant\Menu-Pictures');
+
+            }
+        }
+        return $restaurant;
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**
@@ -87,7 +104,7 @@ class RestaurantMenuPhotoController extends Controller
         $photos->delete();
         // Deleting the file too
         if ($photos->path) {
-            unlink('img/' . $photos->path);
+            unlink('storage/Restaurant/Menu-Pictures' . $photos->path);
         }
         // unlink('img/'.$photos->path);
         // return $photos;

@@ -52,9 +52,9 @@ class HomeController extends Controller
                 $restaurant = RestaurantFoodPhoto::create([
                     'restaurant_basic_info_id' => 'rinzintestin',
                     'path' => $image->store(''),
-                    'user_id' => 'asdfsdfsadfsdafsd',
+                    'user_id' => Auth::user()->id,
                 ]);
-                $image->store('public\images');
+                $image->store('public\Restaurant\Menu-Pictures');
             }
         }
         return $restaurant;
