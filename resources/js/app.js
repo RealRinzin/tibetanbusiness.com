@@ -115,6 +115,7 @@ Vue.use(VeeValidate, {
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('test-vue', require('./components/TestVue.vue').default);
+Vue.component('image-upload', require('./components/ImageUpload.vue').default);
 /**
  * 
  * Front Page Component 

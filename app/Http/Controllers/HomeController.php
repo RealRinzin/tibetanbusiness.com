@@ -44,6 +44,18 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function images_upload(Request $request){
+        // return $request;
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $image->store('public\images');
+            }
+        }
+return $request->id;
+        return response()->json([
+            "message" => "Done"
+        ]);
+    }
     // photo pupload
     public function upload(Request $request){
 
@@ -51,7 +63,7 @@ class HomeController extends Controller
         // return $request;
         // return sizeof($request['data']);
         foreach ($request['data'] as $image) {
-            if ($image) {
+            // if ($image) {
                 $name = time() . '.'
                     . explode('/', explode(
                         ':',
@@ -62,7 +74,8 @@ class HomeController extends Controller
                         )
                     )[1])[1];
                 \Image::make($image)->save(public_path('/test_image/') . $name);
-        }
+                echo $name;
+        // }
     }
         // $name = '';
         // for ($i=0; $i < sizeof($request['data']) ; $i++) {

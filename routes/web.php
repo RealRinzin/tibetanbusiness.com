@@ -67,5 +67,6 @@ Route::get('all','PostController@all')->middleware('can:viewAny,App\Post');
  * 
  * Testing the image upload
  *  */ 
-Route::post('upload','HomeController@upload');
+Route::post('images_upload','HomeController@images_upload');
+// Route::post('upload', 'HomeController@upload');
 // Route::get('upload','HomeController@upload');
