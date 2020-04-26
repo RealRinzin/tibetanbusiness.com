@@ -3698,6 +3698,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3756,6 +3759,8 @@ __webpack_require__.r(__webpack_exports__);
 
       reader.readAsDataURL(file);
     },
+
+    /* Check the size of image */
     getFileSize: function getFileSize(size) {
       var fSExt = ['Bytes', 'KB', 'MB', 'GB'];
       var i = 0;
@@ -3767,15 +3772,24 @@ __webpack_require__.r(__webpack_exports__);
 
       return "".concat(Math.round(size * 100) / 100, " ").concat(fSExt[i]);
     },
+
+    /* Remove image */
+    remove: function remove(index) {
+      // Removing image
+      this.$delete(this.images, index); // Removing the image files
+
+      this.$delete(this.files, index);
+    },
     // Upload the file
-    upload: function upload(event) {
+    upload: function upload() {
       var _this4 = this;
 
       var formData = new FormData();
       this.files.forEach(function (file) {
         formData.append('images[]', file, file.name);
-      });
-      formData.append('id', 'asdfdsa');
+        formData.append('id', 'asdfdsa');
+      }); // Append the ID of restaurant
+
       axios.post('/images_upload', formData) // axios.post('/images_upload', this.files)
       .then(function (response) {
         // this.$toastr.s('All images uplaoded successfully');
@@ -88147,6 +88161,28 @@ var render = function() {
             _c("img", {
               attrs: { src: image, alt: "Image Uplaoder " + index }
             }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticStyle: {
+                  position: "absolute",
+                  "margin-top": "-10px",
+                  "margin-left": "-10px"
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fas fa-times-circle bg-danger p-2",
+                  staticStyle: { "font-size": "20px", "border-radius": "4px" },
+                  on: {
+                    click: function($event) {
+                      return _vm.remove(index)
+                    }
+                  }
+                })
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "details" }, [
               _c("span", {

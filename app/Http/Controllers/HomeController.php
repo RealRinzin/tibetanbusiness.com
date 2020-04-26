@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Restaurant\RestaurantFoodPhoto;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,18 +45,29 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
     public function images_upload(Request $request){
-        // return $request;
         if (count($request->images)) {
             foreach ($request->images as $image) {
+                $restaurant = RestaurantFoodPhoto::create([
+                    'restaurant_basic_info_id' => 'rinzintestin',
+                    'path' => $image->store(''),
+                    'user_id' => 'asdfsdfsadfsdafsd',
+                ]);
                 $image->store('public\images');
             }
         }
-return $request->id;
+        return $restaurant;
+
         return response()->json([
             "message" => "Done"
         ]);
     }
+
+
+
+
+
     // photo pupload
     public function upload(Request $request){
 

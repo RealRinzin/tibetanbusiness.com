@@ -24,6 +24,9 @@
         <div class="images-preview" v-show="images.length">
             <div class="img-wrapper" v-for="(image, index) in images" :key="index">
                 <img :src="image" :alt="`Image Uplaoder ${index}`">
+                <div style="position: absolute;margin-top: -10px;margin-left: -10px;">
+                <i @click="remove(index)" class="fas fa-times-circle bg-danger p-2" style="font-size: 20px;border-radius: 4px;"></i>
+                </div>
                 <div class="details">
                     <span class="name" v-text="files[index].name"></span>
                     <span class="size" v-text="getFileSize(files[index].size)"></span>
@@ -77,6 +80,7 @@ export default {
             reader.onload = (e) => this.images.push(e.target.result);
             reader.readAsDataURL(file);
         },
+        /* Check the size of image */
         getFileSize(size) {
             const fSExt = ['Bytes', 'KB', 'MB', 'GB'];
             let i = 0;
@@ -87,14 +91,23 @@ export default {
             }
             return `${(Math.round(size * 100) / 100)} ${fSExt[i]}`;
         },
-
+        /* Remove image */
+        remove(index){
+            // Removing image
+            this.$delete(this.images,index);
+            // Removing the image files
+            this.$delete(this.files,index);
+        },
         // Upload the file
-        upload(event) {
+        upload() {
+
             const formData = new FormData();
             this.files.forEach(file => {
                 formData.append('images[]', file, file.name);
-            });
                 formData.append('id', 'asdfdsa');
+            });
+            // Append the ID of restaurant
+
             axios.post('/images_upload', formData)
             // axios.post('/images_upload', this.files)
                 .then(response => {
