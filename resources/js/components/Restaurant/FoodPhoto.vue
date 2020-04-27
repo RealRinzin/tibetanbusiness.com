@@ -5,7 +5,7 @@
                 <h6 class="text-dark">Food Photo ({{total_photos}})</h6>
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-for="(food_photo,index) in photos" v-if="index < 7">
-                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/img/${food_photo.path})`}'></div>
+                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${food_photo.path})`}'></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-if="total_photos >7">
@@ -23,7 +23,7 @@
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                                    <div class="slide" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'></div>
+                                    <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
                                     <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
             <div class="modal-dialog modal-lg modal_top" role="document">
                 <div class="modal-content">
                     <div class="modal-body carousel" v-if="modal_status">
-                        <div class="slide" v-bind:style='{ backgroundImage: `url(/img/${single_photo.path})`}'></div>
+                        <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${single_photo.path})`}'></div>
                     </div>
                 </div>
             </div>

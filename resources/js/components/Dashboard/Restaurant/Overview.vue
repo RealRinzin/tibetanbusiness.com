@@ -460,7 +460,7 @@ export default {
     methods:{
         // Overview edit
         edit(){
-            $("#overview_update_modal").modal("show");            
+            $("#overview_update_modal").modal("show");           
         },
         // Overview update
         update_overview(id){

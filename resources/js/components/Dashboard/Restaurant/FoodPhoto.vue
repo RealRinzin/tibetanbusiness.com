@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
-          <div class="p-2"><button class="btn btn-outline-danger d-flex">Upload New photos</button></div>
+          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="foodModalOpen()">Upload New photos</button></div>
           <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
         </div>
       </div>
@@ -11,7 +11,7 @@
     <!-- Photo iterations -->
     <div class="row">
       <div class="col-md-2 col-sm-4 col-xs-6" v-for="(photo,index) in photos">
-          <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'>
+          <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'>
                 <div class="overlay">
                   <div class="d-flex mt-auto ml-auto p-2">
                     <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
@@ -28,7 +28,7 @@
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
-                                <div class="slide" v-bind:style='{ backgroundImage: `url(/img/${photo.path})`}'></div>
+                                <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -44,11 +44,64 @@
             </div>
         </div>
     </div>
+    <!-- Modal Food Upload -->
+    <div class="modal fade" id="upload_food_photos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upload_menu_photos_modal">Upload Food Photos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="image_upload"
+                @dragenter="fp_OnDragEnter"
+                @dragleave="fp_OnDragLeave"
+                @dragover.prevent
+                @drop="fp_onDrop"
+                :class="{ dragging: fp_isDragging }">
+                <div class="upload-control" v-show="fp_images.length">
+                    <label for="file" class="btn btn-primary btn-md">Select a file</label>
+                    <button class="btn btn-warning btn-md" @click="fp_upload(id)">Upload</button>
+                </div>
+
+                <div v-show="!fp_images.length">
+                    <i class="fa fa-cloud-upload"></i>
+                    <p>Drag your images here</p>
+                    <div>OR</div>
+                    <div class="file-input">
+                        <label for="food_photo">Select a file</label>
+                        <input type="file" id="food_photo" @change="fp_onInputChange" multiple>
+                    </div>
+                </div>
+
+                <div class="images-preview" v-show="fp_images.length">
+                    <div class="img-wrapper" v-for="(image, index) in fp_images" :key="index">
+                        <img :src="image" :alt="`Image Uplaoder ${index}`">
+                        <div class="remove_item">
+                                <i @click="fp_destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
+                        </div>
+                        <div class="details">
+                            <span class="name" v-text="fp_files[index].name"></span>
+                            <span class="size" v-text="fp_getFileSize(fp_files[index].size)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
   export default {
-    props:['food_photos'],
+    props:['food_photos','id'],
     // data
     data() {
       return {
@@ -56,6 +109,13 @@
         photos:{},
         modal_status: false, //modal status
         active:0,
+        // Image Upload datas
+        fp_isDragging: false,
+        fp_dragCount: 0,
+        fp_files: [],
+        fp_total_image:0,
+        fp_images: [],
+        // End
       };
     },
     /**
@@ -87,7 +147,101 @@
             this.$delete(this.photos,index);
           })
         }
-      }
+      },
+      /**
+       * Modal Open
+       *  */ 
+      foodModalOpen(){
+            $("#upload_food_photos_modal").modal("show");           
+      },
+      /**
+       * Image Upload 
+       * Methods
+       * Function
+       *  */ 
+        fp_OnDragEnter(e) {
+            e.preventDefault();
+            this.fp_dragCount++;
+            this.fp_isDragging = true;
+            return false;
+        },
+        fp_OnDragLeave(e) {
+            e.preventDefault();
+            this.fp_dragCount--;
+            if (this.fp_dragCount <= 0)
+                this.fp_isDragging = false;
+        },
+        fp_onInputChange(e) {
+            // Total Selected Image 
+            this.fp_total_image = e.target.files.length;
+              const files = e.target.files;
+              if (this.fp_total_image <=5) {
+                    Array.from(files).forEach(file => this.addImage(file));
+              }else{
+                alert("select less than 5 photos");
+              }
+        },
+        fp_onDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.isDragging = false;
+            const files = e.dataTransfer.files;
+            Array.from(files).forEach(file => this.addImage(file));
+        },
+        // Add Images
+        addImage(file) {
+            if (!file.type.match('image.*')) {
+                alert("Please Upload Only Images")
+                return;
+            }
+            this.fp_files.push(file);
+            const img = new Image(),
+            reader = new FileReader();
+            reader.onload = (e) => this.fp_images.push(e.target.result);
+            reader.readAsDataURL(file);
+        },
+        /* Check the size of image */
+        fp_getFileSize(size) {
+            const fSExt = ['Bytes', 'KB', 'MB', 'GB'];
+            let i = 0;
+            while(size > 900) {
+                size /= 1024;
+                i++;
+            }
+            return `${(Math.round(size * 100) / 100)} ${fSExt[i]}`;
+        },
+        /* Remove image */
+        fp_destory(index){
+            // Removing image
+            this.$delete(this.images,index);
+            // Removing the image files
+            this.$delete(this.files,index);
+        },
+        // Upload photos
+        fp_upload(id) {
+            const formData = new FormData();
+            this.fp_files.forEach(file => {
+                formData.append('images[]', file, file.name);
+            // Append the ID of restaurant
+                formData.append('id',id);
+            });
+            axios.post('/api/restaurant_food_photos', formData,{
+              headers : { Authorization : localStorage.getItem("token")}
+            })
+              .then(response => {
+                console.log(response);
+                
+                //  Flash Message  
+                  toast.fire({
+                    icon:'success',
+                      title:'Updated',
+                  });
+                  this.fp_images = [];
+                  this.fp_files = [];
+                  $("#upload_food_photos_modal").modal("hide");  
+              })
+        }
+
     },
     /**
      * Watch the 

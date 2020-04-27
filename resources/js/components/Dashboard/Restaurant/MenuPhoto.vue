@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
-          <div class="p-2"><button class="btn btn-outline-danger d-flex" data-toggle="modal" data-target="#upload_menu_photos_modal">Upload New photos</button></div>
+          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="menuModal()">Upload New photos</button></div>
           <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
         </div>
       </div>
@@ -23,14 +23,15 @@
 <!-- Carousel and Modal -->
     <!-- More Photo Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal_top" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-body" v-if="modal_status">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
-                                <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${photo.path})`}'></div>
-                                <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
+                                <div class="slide">
+                                  <img :src="'/storage/Restaurant/Menu-Pictures/'+photo.path" alt="" class="w-100">
+                                </div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -48,58 +49,54 @@
     </div>
 
 <!-- Photo upload modal -->
-  <div class="modal fade" id="upload_menu_photos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="image_upload"
-              @dragenter="OnDragEnter"
-              @dragleave="OnDragLeave"
-              @dragover.prevent
-              @drop="onDrop"
-              :class="{ dragging: isDragging }">
-              <div class="upload-control" v-show="images.length">
-                  <label for="file" class="btn btn-primary btn-md">Select a file</label>
-                  <button class="btn btn-warning btn-md" @click="upload(id)">Upload</button>
-              </div>
-
-              <div v-show="!images.length">
-                  <i class="fa fa-cloud-upload"></i>
-                  <p>Drag your images here</p>
-                  <div>OR</div>
-                  <div class="file-input">
-                      <label for="file">Select a file</label>
-                      <input type="file" id="file" @change="onInputChange" multiple>
-                  </div>
-              </div>
-
-              <div class="images-preview" v-show="images.length">
-                  <div class="img-wrapper" v-for="(image, index) in images" :key="index">
-                      <img :src="image" :alt="`Image Uplaoder ${index}`">
-                      <div style="position: absolute;margin-top: -10px;margin-left: -10px;">
-                              <i @click="destory(index)" class="fas fa-times-circle bg-danger p-2" style="font-size: 20px;border-radius: 4px;"></i>
-                      </div>
-                      <div class="details">
-                          <span class="name" v-text="files[index].name"></span>
-                          <span class="size" v-text="getFileSize(files[index].size)"></span>
-                      </div>
-                  </div>
-              </div>
+    <div class="modal fade" id="upload_menu_photos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Menu Photos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-body">
+            <div id="image_upload"
+                @dragenter="OnDragEnter"
+                @dragleave="OnDragLeave"
+                @dragover.prevent
+                @drop="onDrop"
+                :class="{ dragging: isDragging }">
+                <div class="upload-control" v-show="images.length">
+                    <label for="file" class="btn btn-primary btn-md">Select a file</label>
+                    <button class="btn btn-warning btn-md" @click="upload(id)">Upload</button>
+                </div>
+
+                <div v-show="!images.length">
+                    <i class="fa fa-cloud-upload"></i>
+                    <p>Drag your images here</p>
+                    <div>OR</div>
+                    <div class="file-input">
+                        <label for="file">Select a file</label>
+                        <input type="file" id="file" @change="onInputChange" multiple>
+                    </div>
+                </div>
+
+                <div class="images-preview" v-show="images.length">
+                    <div class="img-wrapper" v-for="(image, index) in images" :key="index">
+                        <img :src="image" :alt="`Image Uplaoder ${index}`">
+                        <div class="remove_item">
+                                <i @click="destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
+                        </div>
+                        <div class="details">
+                            <span class="name" v-text="files[index].name"></span>
+                            <span class="size" v-text="getFileSize(files[index].size)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
  
@@ -115,7 +112,8 @@
         isDragging: false,
         dragCount: 0,
         files: [],
-        images: []
+        total_image:0,
+        images: [],
         // End
       };
     },
@@ -128,7 +126,7 @@
       photo_view(index){
             this.modal_status = true;
             // active class
-            this.active = index;
+            this.active = index;   
       },
       /**
        * Removing Photo
@@ -149,6 +147,10 @@
           })
         }
       },
+      // Menu modal
+      menuModal(){
+            $("#upload_menu_photos_modal").modal("show");           
+      },
       /**
        * Image Upload 
        * Methods
@@ -156,7 +158,6 @@
        *  */ 
         OnDragEnter(e) {
             e.preventDefault();
-            
             this.dragCount++;
             this.isDragging = true;
             return false;
@@ -168,10 +169,14 @@
                 this.isDragging = false;
         },
         onInputChange(e) {
-            console.log(e);
-            
-            const files = e.target.files;
-            Array.from(files).forEach(file => this.addImage(file));
+            // Total Selected Image 
+            this.total_image = e.target.files.length;
+              const files = e.target.files;
+              if (this.total_image <=5) {
+                    Array.from(files).forEach(file => this.addImage(file));
+              }else{
+                alert("select less than 5 photos");
+              }
         },
         onDrop(e) {
             e.preventDefault();
@@ -180,6 +185,7 @@
             const files = e.dataTransfer.files;
             Array.from(files).forEach(file => this.addImage(file));
         },
+        // Add Images
         addImage(file) {
             if (!file.type.match('image.*')) {
                 alert("Please Upload Only Images")
@@ -187,7 +193,7 @@
             }
             this.files.push(file);
             const img = new Image(),
-                reader = new FileReader();
+            reader = new FileReader();
             reader.onload = (e) => this.images.push(e.target.result);
             reader.readAsDataURL(file);
         },
@@ -195,7 +201,6 @@
         getFileSize(size) {
             const fSExt = ['Bytes', 'KB', 'MB', 'GB'];
             let i = 0;
-            
             while(size > 900) {
                 size /= 1024;
                 i++;
@@ -214,20 +219,22 @@
             const formData = new FormData();
             this.files.forEach(file => {
                 formData.append('images[]', file, file.name);
+            // Append the ID of restaurant
                 formData.append('id',id);
             });
-            
-            // Append the ID of restaurant
-
             axios.post('/api/restaurant_menu_photos', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
-            // axios.post('/images_upload', this.files)
-                .then(response => {
-                    // this.$toastr.s('All images uplaoded successfully');
-                    this.images = [];
-                    this.files = [];
-                })
+              .then(response => {
+                //  Flash Message  
+                  toast.fire({
+                    icon:'success',
+                      title:'Updated',
+                  });
+                  this.images = [];
+                  this.files = [];
+                  $("#upload_menu_photos_modal").modal("hide");  
+              })
         }
         
     },

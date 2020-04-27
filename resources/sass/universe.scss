@@ -31,7 +31,7 @@
         margin-top: 6%;
     }
     .slide{
-        height: 55vh;
+        // height: 55vh;
         width: 100%;
         background-position: center center;
         background-size: cover;
@@ -207,6 +207,15 @@ CSS style
             box-shadow: 5px 5px 20px #3e3737;
             img {
                 max-height: 105px;
+            }
+            .remove_item{
+              position: absolute;
+              margin-top: -10px;
+              margin-left: -10px;
+              i{
+              font-size: 20px;
+              border-radius: 4px;
+              }
             }
         }
         .details {

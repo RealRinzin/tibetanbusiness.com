@@ -10957,7 +10957,7 @@ View individual show CSS
   background-size: cover;
   border: 0px;
   border-radius: 10px;
-  background-color: gainsboro;
+  background-image: url("/img/placeholder.gif");
 }
 
 /* Sidebar  */
@@ -10998,7 +10998,6 @@ View individual show CSS
 }
 
 .carousel .slide {
-  height: 55vh;
   width: 100%;
   background-position: center center;
   background-size: cover;
@@ -11183,6 +11182,17 @@ CSS style
 
 #image_upload .images-preview .img-wrapper img {
   max-height: 105px;
+}
+
+#image_upload .images-preview .img-wrapper .remove_item {
+  position: absolute;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+#image_upload .images-preview .img-wrapper .remove_item i {
+  font-size: 20px;
+  border-radius: 4px;
 }
 
 #image_upload .images-preview .details {

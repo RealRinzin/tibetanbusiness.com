@@ -103,9 +103,9 @@ class RestaurantMenuPhotoController extends Controller
         $photos = RestaurantMenuPhoto::find($id);
         $photos->delete();
         // Deleting the file too
-        if ($photos->path) {
-            unlink('storage/Restaurant/Menu-Pictures' . $photos->path);
-        }
+        // if ($photos->path) {
+        //     unlink('storage/Restaurant/Menu-Pictures' . $photos->path);
+        // }
         // unlink('img/'.$photos->path);
         // return $photos;
     }

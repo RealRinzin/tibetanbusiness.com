@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant\RestaurantFoodPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantFoodPhotoController extends Controller
 {
@@ -53,6 +54,21 @@ class RestaurantFoodPhotoController extends Controller
     public function store(Request $request)
     {
         //
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $restaurant = RestaurantFoodPhoto::create([
+                    'restaurant_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Restaurant\Food-Pictures');
+            }
+        }
+        return $restaurant;
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**

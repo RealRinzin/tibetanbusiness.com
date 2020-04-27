@@ -2457,8 +2457,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['food_photos'],
+  props: ['food_photos', 'id'],
   // data
   data: function data() {
     return {
@@ -2466,7 +2519,14 @@ __webpack_require__.r(__webpack_exports__);
       photos: {},
       modal_status: false,
       //modal status
-      active: 0
+      active: 0,
+      // Image Upload datas
+      fp_isDragging: false,
+      fp_dragCount: 0,
+      fp_files: [],
+      fp_total_image: 0,
+      fp_images: [] // End
+
     };
   },
 
@@ -2505,6 +2565,122 @@ __webpack_require__.r(__webpack_exports__);
           _this.$delete(_this.photos, index);
         });
       }
+    },
+
+    /**
+     * Modal Open
+     *  */
+    foodModalOpen: function foodModalOpen() {
+      $("#upload_food_photos_modal").modal("show");
+    },
+
+    /**
+     * Image Upload 
+     * Methods
+     * Function
+     *  */
+    fp_OnDragEnter: function fp_OnDragEnter(e) {
+      e.preventDefault();
+      this.fp_dragCount++;
+      this.fp_isDragging = true;
+      return false;
+    },
+    fp_OnDragLeave: function fp_OnDragLeave(e) {
+      e.preventDefault();
+      this.fp_dragCount--;
+      if (this.fp_dragCount <= 0) this.fp_isDragging = false;
+    },
+    fp_onInputChange: function fp_onInputChange(e) {
+      var _this2 = this;
+
+      // Total Selected Image 
+      this.fp_total_image = e.target.files.length;
+      var files = e.target.files;
+
+      if (this.fp_total_image <= 5) {
+        Array.from(files).forEach(function (file) {
+          return _this2.addImage(file);
+        });
+      } else {
+        alert("select less than 5 photos");
+      }
+    },
+    fp_onDrop: function fp_onDrop(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      e.stopPropagation();
+      this.isDragging = false;
+      var files = e.dataTransfer.files;
+      Array.from(files).forEach(function (file) {
+        return _this3.addImage(file);
+      });
+    },
+    // Add Images
+    addImage: function addImage(file) {
+      var _this4 = this;
+
+      if (!file.type.match('image.*')) {
+        alert("Please Upload Only Images");
+        return;
+      }
+
+      this.fp_files.push(file);
+      var img = new Image(),
+          reader = new FileReader();
+
+      reader.onload = function (e) {
+        return _this4.fp_images.push(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    },
+
+    /* Check the size of image */
+    fp_getFileSize: function fp_getFileSize(size) {
+      var fSExt = ['Bytes', 'KB', 'MB', 'GB'];
+      var i = 0;
+
+      while (size > 900) {
+        size /= 1024;
+        i++;
+      }
+
+      return "".concat(Math.round(size * 100) / 100, " ").concat(fSExt[i]);
+    },
+
+    /* Remove image */
+    fp_destory: function fp_destory(index) {
+      // Removing image
+      this.$delete(this.images, index); // Removing the image files
+
+      this.$delete(this.files, index);
+    },
+    // Upload photos
+    fp_upload: function fp_upload(id) {
+      var _this5 = this;
+
+      var formData = new FormData();
+      this.fp_files.forEach(function (file) {
+        formData.append('images[]', file, file.name); // Append the ID of restaurant
+
+        formData.append('id', id);
+      });
+      axios.post('/api/restaurant_food_photos', formData, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        console.log(response); //  Flash Message  
+
+        toast.fire({
+          icon: 'success',
+          title: 'Updated'
+        });
+        _this5.fp_images = [];
+        _this5.fp_files = [];
+        $("#upload_food_photos_modal").modal("hide");
+      });
     }
   },
 
@@ -2804,9 +2980,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['menu_photos', 'id'],
   data: function data() {
@@ -2819,6 +2992,7 @@ __webpack_require__.r(__webpack_exports__);
       isDragging: false,
       dragCount: 0,
       files: [],
+      total_image: 0,
       images: [] // End
 
     };
@@ -2859,6 +3033,10 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    // Menu modal
+    menuModal: function menuModal() {
+      $("#upload_menu_photos_modal").modal("show");
+    },
 
     /**
      * Image Upload 
@@ -2879,11 +3057,17 @@ __webpack_require__.r(__webpack_exports__);
     onInputChange: function onInputChange(e) {
       var _this2 = this;
 
-      console.log(e);
+      // Total Selected Image 
+      this.total_image = e.target.files.length;
       var files = e.target.files;
-      Array.from(files).forEach(function (file) {
-        return _this2.addImage(file);
-      });
+
+      if (this.total_image <= 5) {
+        Array.from(files).forEach(function (file) {
+          return _this2.addImage(file);
+        });
+      } else {
+        alert("select less than 5 photos");
+      }
     },
     onDrop: function onDrop(e) {
       var _this3 = this;
@@ -2896,6 +3080,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this3.addImage(file);
       });
     },
+    // Add Images
     addImage: function addImage(file) {
       var _this4 = this;
 
@@ -2941,19 +3126,23 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       this.files.forEach(function (file) {
-        formData.append('images[]', file, file.name);
-        formData.append('id', id);
-      }); // Append the ID of restaurant
+        formData.append('images[]', file, file.name); // Append the ID of restaurant
 
+        formData.append('id', id);
+      });
       axios.post('/api/restaurant_menu_photos', formData, {
         headers: {
           Authorization: localStorage.getItem("token")
         }
-      }) // axios.post('/images_upload', this.files)
-      .then(function (response) {
-        // this.$toastr.s('All images uplaoded successfully');
+      }).then(function (response) {
+        //  Flash Message  
+        toast.fire({
+          icon: 'success',
+          title: 'Updated'
+        });
         _this5.images = [];
         _this5.files = [];
+        $("#upload_menu_photos_modal").modal("hide");
       });
     }
   },
@@ -84848,7 +85037,20 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 py-3" }, [
         _c("div", { staticClass: "d-flex flex-row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "p-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-danger d-flex",
+                on: {
+                  click: function($event) {
+                    return _vm.foodModalOpen()
+                  }
+                }
+              },
+              [_vm._v("Upload New photos")]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "pt-3 px-2" }, [
             _c("h6", { staticClass: "text-muted" }, [
@@ -84868,7 +85070,10 @@ var render = function() {
             "div",
             {
               staticClass: "card gallery_view",
-              style: { backgroundImage: "url(/img/" + photo.path + ")" },
+              style: {
+                backgroundImage:
+                  "url(/storage/Restaurant/Food-Pictures/" + photo.path + ")"
+              },
               attrs: {
                 "data-toggle": "modal",
                 "data-target": "#food_photo_modal"
@@ -84952,7 +85157,9 @@ var render = function() {
                                   staticClass: "slide",
                                   style: {
                                     backgroundImage:
-                                      "url(/img/" + photo.path + ")"
+                                      "url(/storage/Restaurant/Food-Pictures/" +
+                                      photo.path +
+                                      ")"
                                   }
                                 })
                               ]
@@ -84961,9 +85168,9 @@ var render = function() {
                           0
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ]
                     )
                   ])
@@ -84972,20 +85179,190 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "upload_food_photos_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  {
+                    class: { dragging: _vm.fp_isDragging },
+                    attrs: { id: "image_upload" },
+                    on: {
+                      dragenter: _vm.fp_OnDragEnter,
+                      dragleave: _vm.fp_OnDragLeave,
+                      dragover: function($event) {
+                        $event.preventDefault()
+                      },
+                      drop: _vm.fp_onDrop
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.fp_images.length,
+                            expression: "fp_images.length"
+                          }
+                        ],
+                        staticClass: "upload-control"
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "btn btn-primary btn-md",
+                            attrs: { for: "file" }
+                          },
+                          [_vm._v("Select a file")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning btn-md",
+                            on: {
+                              click: function($event) {
+                                return _vm.fp_upload(_vm.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Upload")]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.fp_images.length,
+                            expression: "!fp_images.length"
+                          }
+                        ]
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-cloud-upload" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Drag your images here")]),
+                        _vm._v(" "),
+                        _c("div", [_vm._v("OR")]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "file-input" }, [
+                          _c("label", { attrs: { for: "food_photo" } }, [
+                            _vm._v("Select a file")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: {
+                              type: "file",
+                              id: "food_photo",
+                              multiple: ""
+                            },
+                            on: { change: _vm.fp_onInputChange }
+                          })
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.fp_images.length,
+                            expression: "fp_images.length"
+                          }
+                        ],
+                        staticClass: "images-preview"
+                      },
+                      _vm._l(_vm.fp_images, function(image, index) {
+                        return _c(
+                          "div",
+                          { key: index, staticClass: "img-wrapper" },
+                          [
+                            _c("img", {
+                              attrs: {
+                                src: image,
+                                alt: "Image Uplaoder " + index
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "remove_item" }, [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-times-circle bg-danger p-2",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.fp_destory(index)
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "details" }, [
+                              _c("span", {
+                                staticClass: "name",
+                                domProps: {
+                                  textContent: _vm._s(_vm.fp_files[index].name)
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", {
+                                staticClass: "size",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.fp_getFileSize(_vm.fp_files[index].size)
+                                  )
+                                }
+                              })
+                            ])
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(3)
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-2" }, [
-      _c("button", { staticClass: "btn btn-outline-danger d-flex" }, [
-        _vm._v("Upload New photos")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -85033,6 +85410,55 @@ var staticRenderFns = [
         _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "upload_menu_photos_modal" }
+        },
+        [_vm._v("Upload Food Photos")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -85314,7 +85740,20 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12 py-3" }, [
         _c("div", { staticClass: "d-flex flex-row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "p-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-danger d-flex",
+                on: {
+                  click: function($event) {
+                    return _vm.menuModal()
+                  }
+                }
+              },
+              [_vm._v("Upload New photos")]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "pt-3 px-2" }, [
             _c("h6", { staticClass: "text-muted" }, [
@@ -85384,10 +85823,7 @@ var render = function() {
       [
         _c(
           "div",
-          {
-            staticClass: "modal-dialog modal-lg modal_top",
-            attrs: { role: "document" }
-          },
+          { staticClass: "modal-dialog modal-md", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _vm.modal_status
@@ -85414,24 +85850,26 @@ var render = function() {
                                 class: { active: index == _vm.active }
                               },
                               [
-                                _c("div", {
-                                  staticClass: "slide",
-                                  style: {
-                                    backgroundImage:
-                                      "url(/storage/Restaurant/Menu-Pictures/" +
-                                      photo.path +
-                                      ")"
-                                  }
-                                })
+                                _c("div", { staticClass: "slide" }, [
+                                  _c("img", {
+                                    staticClass: "w-100",
+                                    attrs: {
+                                      src:
+                                        "/storage/Restaurant/Menu-Pictures/" +
+                                        photo.path,
+                                      alt: ""
+                                    }
+                                  })
+                                ])
                               ]
                             )
                           }),
                           0
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ]
                     )
                   ])
@@ -85460,7 +85898,7 @@ var render = function() {
           { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -85573,31 +86011,17 @@ var render = function() {
                               }
                             }),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticStyle: {
-                                  position: "absolute",
-                                  "margin-top": "-10px",
-                                  "margin-left": "-10px"
-                                }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass:
-                                    "fas fa-times-circle bg-danger p-2",
-                                  staticStyle: {
-                                    "font-size": "20px",
-                                    "border-radius": "4px"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.destory(index)
-                                    }
+                            _c("div", { staticClass: "remove_item" }, [
+                              _c("i", {
+                                staticClass:
+                                  "fas fa-times-circle bg-danger p-2",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.destory(index)
                                   }
-                                })
-                              ]
-                            ),
+                                }
+                              })
+                            ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "details" }, [
                               _c("span", {
@@ -85623,9 +86047,7 @@ var render = function() {
                     )
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _vm._m(4)
+              ])
             ])
           ]
         )
@@ -85634,24 +86056,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-2" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-danger d-flex",
-          attrs: {
-            "data-toggle": "modal",
-            "data-target": "#upload_menu_photos_modal"
-          }
-        },
-        [_vm._v("Upload New photos")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -85708,7 +86112,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Modal title")]
+        [_vm._v("Add Menu Photos")]
       ),
       _vm._v(" "),
       _c(
@@ -85722,27 +86126,6 @@ var staticRenderFns = [
           }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
       )
     ])
   }
@@ -88891,7 +89274,10 @@ var render = function() {
                 _c("div", {
                   staticClass: "photo",
                   style: {
-                    backgroundImage: "url(/img/" + food_photo.path + ")"
+                    backgroundImage:
+                      "url(/storage/Restaurant/Food-Pictures/" +
+                      food_photo.path +
+                      ")"
                   },
                   on: {
                     click: function($event) {
@@ -88980,7 +89366,9 @@ var render = function() {
                                   staticClass: "slide",
                                   style: {
                                     backgroundImage:
-                                      "url(/img/" + photo.path + ")"
+                                      "url(/storage/Restaurant/Food-Pictures/" +
+                                      photo.path +
+                                      ")"
                                   }
                                 })
                               ]
@@ -89029,7 +89417,9 @@ var render = function() {
                       staticClass: "slide",
                       style: {
                         backgroundImage:
-                          "url(/img/" + _vm.single_photo.path + ")"
+                          "url(/storage/Restaurant/Food-Pictures/" +
+                          _vm.single_photo.path +
+                          ")"
                       }
                     })
                   ])
