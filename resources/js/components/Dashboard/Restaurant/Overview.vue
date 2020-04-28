@@ -473,6 +473,7 @@ export default {
                             headers : { Authorization : localStorage.getItem("token")}
                         })
                         .then(response=>{
+                            this.$Progress.start();
                             // Close Modal
                             $("#overview_update_modal").modal("hide");  
                             //  Flash Message  
@@ -480,6 +481,8 @@ export default {
                                 icon:'success',
                                 title:'Updated',
                             });
+                            this.$Progress.finish();
+
                         })
                     }
                 })

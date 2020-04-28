@@ -258,7 +258,6 @@ export default {
                             headers : { Authorization : localStorage.getItem("token")}
                             })
                             .then(response=>{
-                                console.log(response);
                             })
                     })
                 })

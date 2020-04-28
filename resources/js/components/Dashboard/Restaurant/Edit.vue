@@ -123,7 +123,6 @@ export default {
             .then(response=>{
                 // Assigning Restaurant object
                 this.restaurant = response.data.data;
-                console.log(this.restaurant);
                 // Operation Day
                 this.operation = this.restaurant.operation[0];  
                 // facitilies
@@ -147,13 +146,24 @@ export default {
          * Update Banner
          *  */
         banner_event(event){
-            let fileReader = new FileReader();
-            fileReader.onload = (event) =>{
-                this.bannerPreview = event.target.result
-                // this.restaurant.banner = event.target.result
-            },
-            // base64 data
-            fileReader.readAsDataURL(event.target.files[0]);
+            const extension = event.target.files[0].type;
+            const size = event.target.files[0].size;
+            // Check extension
+            if(extension === 'image/jpeg' || extension === 'image/png' || extension === 'image/gif'){
+                if(size < 1000000){
+                    let fileReader = new FileReader();
+                    fileReader.onload = (event) =>{
+                        this.bannerPreview = event.target.result
+                        // this.restaurant.banner = event.target.result
+                    },
+                    // base64 data
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }else{
+                    alert("Upload less than 1MB ")
+                }
+            }else{
+                alert("Please Upload Only Image")
+            }
         },
         /**
          * Update
@@ -166,7 +176,13 @@ export default {
                 data: {banner: this.bannerPreview},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
-                    console.log(response);
+                            location.reload();
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Successfully Uploaded!!',
+                            });
+                    // Reload
                 });
         },
         /**

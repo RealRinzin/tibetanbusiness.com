@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="media">
-                        <img class="mr-3" :src="view_comment.avatar" alt="Generic placeholder image">
+                        <img class="mr-3 w-25" :src="view_comment.avatar" alt="Generic placeholder image">
                         <div class="media-body p-1">
                             <h5 class="text-muted">{{view_comment.name}}</h5>
                             <h6 class="text-muted"><timeago  :datetime="view_comment.created_at" /></h6>

@@ -265,6 +265,5 @@ class RestaurantBasicInfoController extends Controller
         // upate
         $banner = RestaurantBasicInfo::find($id);
         $banner->update(['banner' => $name]);
-
     }
 }

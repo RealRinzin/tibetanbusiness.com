@@ -15,6 +15,23 @@ var SocialSharing = require("vue-social-sharing");
 Vue.use(SocialSharing);
 
 /**
+ * Vue Progress bar
+ * 
+ */
+// Progress bar
+import VueProgressBar from 'vue-progressbar';
+Vue.use(VueProgressBar, {
+    color: "rgb(220, 66, 1)",
+    failedColor: "red",
+    height: "10px",
+    thickness: "6px",
+    transition: {
+        speed: '0.2s',
+        opacity: '0.6s',
+        termination: 300
+    },
+});
+/**
  * 
  * Vuejs Light Box
  * 
