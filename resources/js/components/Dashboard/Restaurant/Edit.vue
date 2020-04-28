@@ -6,12 +6,30 @@
                 <div class="row">
                     <div class="col-md-6">
                         <!-- banner -->
-                        <div class="card">
-                            <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'>
+                        <div class="card text-center">
+                            <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'>
                                 <div class="overlay">
-                                    <i class="fas fa-camera fa-5x text-white"></i>
-                                    <div class="break"></div>
-                                    <h5 class="text-white ml-2 mt-3">Update Banner Photo</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fas fa-camera fa-5x text-white"></i>
+                                        </div>
+                                        <div class="col-md-12 py-4">
+                                            <label  for="file" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
+                                            <input type="file"  id="file" name="banner" class="upload_browser" @change="banner_event">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else class="banner" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
+                                <div class="overlay">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-info btn-md" @click="update_banner(restaurant.id)">
+                                                <h5><i class="fas fa-cloud-upload-alt mr-2"></i></h5>
+                                                <p>Upload</p>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,6 +108,8 @@ export default {
             facilities:{},
             // comments
             comments:{},
+            // Banner
+            bannerPreview:null,
         }
     },
     //methods
@@ -124,20 +144,39 @@ export default {
             })
         },
         /**
+         * Update Banner
+         *  */
+        banner_event(event){
+            let fileReader = new FileReader();
+            fileReader.onload = (event) =>{
+                this.bannerPreview = event.target.result
+                // this.restaurant.banner = event.target.result
+            },
+            // base64 data
+            fileReader.readAsDataURL(event.target.files[0]);
+        },
+        /**
          * Update
          * Operations
          *  */ 
-        update_operation_days(id){
-            console.log(id);
+        update_banner(id){
+            axios({
+                method: 'patch',
+                url: '/api/restaurant/banner_update/'+id,
+                data: {banner: this.bannerPreview},
+                headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    console.log(response);
+                });
         },
         /**
          * Update
          * Facilities
          *  */  
-        update_facility(id){
-            console.log(id);
+        // update_facility(id){
+        //     console.log(id);
             
-        }
+        // }
     },
     components:{Loading},
     mounted(){

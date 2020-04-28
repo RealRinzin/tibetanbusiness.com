@@ -66,7 +66,7 @@
 // initialize with defaults
 import { Validator } from 'vee-validate';
 export default {
-    props:['restaurant','rating'],
+    props:['restaurant','avg_rate'],
     data(){
         return{
             value:'',
@@ -208,37 +208,42 @@ export default {
          *  */ 
         post_comment(id){
             /* Valid for post */
-            this.$validator.validateAll('valid_comment_form').then((result) => {
-                if(result){
-                    axios.post('/api/restaurant_comments',this.review,{
-                        headers : { Authorization : localStorage.getItem("token")}
-                    }).then(response=>{
-                        // this.review.comment = '';
-                        // this.review.rate ='';
-                        // refresh comment
-                        this.comment();
-                        // Reset form
-                        // this.review = [];
-                        toast.fire({
-                            icon:'success',
-                            title:'Comment Posted',
-                        });
-                    })
-                }
-            })
-            /**
-             * 
-             * Update rate
-             *  */ 
-               axios({
-                method: 'patch',
-                url: '/api/restaurants/rating/'+id,
-                data: {rate: this.average_rate},
-                headers : { Authorization : localStorage.getItem("token")}
-                }).then(response=>{
-                    console.log(response);
-                    
-                });
+            if(this.review.rate){
+                this.$validator.validateAll('valid_comment_form').then((result) => {
+                    if(result){
+                        axios.post('/api/restaurant_comments',this.review,{
+                            headers : { Authorization : localStorage.getItem("token")}
+                        }).then(response=>{
+                            // this.review.comment = '';
+                            // this.review.rate ='';
+                            // refresh comment
+                            this.comment();
+                            // Reset form
+                            // this.review = [];
+                            toast.fire({
+                                icon:'success',
+                                title:'Comment Posted',
+                            });
+                        })
+                        /**
+                         * 
+                         * Update rate
+                         *  */ 
+                        axios({
+                            method: 'patch',
+                            url: '/api/restaurants/rating/'+id,
+                            data: {rate: this.avg_rate},
+                            headers : { Authorization : localStorage.getItem("token")}
+                            }).then(response=>{
+                                console.log(response);
+                                
+                            });
+                    }
+                })
+            }else{
+                alert('Please give your rating ***')
+            }
+
         }
     },
     mounted(){

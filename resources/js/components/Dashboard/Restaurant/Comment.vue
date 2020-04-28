@@ -19,7 +19,7 @@
                         <th scope="row">{{index + 1}}</th>
                         <th scope="row"><img :src="comment.avatar" class="img-circle" alt="" style="height:35px;width:35px"></th>
                         <td>{{comment.name}}</td>
-                        <td>{{comment.comment}}</td>
+                        <td>{{comment.comment | trim}}</td>
                         <td><button class="btn btn-sm btn-primary" @mouseover="view(index)"><i class="fas fa-eye"></i></button></td>
                         <td>{{comment.rate}}</td>
                         <td><timeago :datetime="comment.created_at" /></td>
@@ -30,7 +30,7 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="comment_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -44,7 +44,7 @@
                         <img class="mr-3" :src="view_comment.avatar" alt="Generic placeholder image">
                         <div class="media-body p-1">
                             <h5 class="text-muted">{{view_comment.name}}</h5>
-                            <h6 class="text-muted"><timeago   :converterOptions="{ includeSeconds: true }" :datetime="view_comment.created_at" /></h6>
+                            <h6 class="text-muted"><timeago  :datetime="view_comment.created_at" /></h6>
                         </div>
                         </div>
                         <div class="py-2">
@@ -63,6 +63,7 @@
     </div>
 </template>
 <script>
+
 export default {
     props:['comments'],
     data(){
@@ -77,6 +78,13 @@ export default {
         view(index){
             $("#comment_modal").modal("show");
             this.view_comment = this.comment[index];        
+        }
+    },
+    // Filter
+    filters:{
+        // Trim or Slice the text
+        trim(str){
+            return str.slice(0, 50) + "..."
         }
     },
     /**

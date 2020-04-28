@@ -14,6 +14,9 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row">
+                                    <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 300px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
+                                        <!-- <img :src="bannerPreview" alt="" class="img-fluid"> -->
+                                    </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="name">Name<span class="text-danger p-1">*</span></label>
@@ -37,7 +40,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|max:10|digits:10'" v-model="restaurant.mobile_no" name="mobile" class="form-control" id="mobile" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <input type="text" maxlength="10" v-validate="'required|max:10|digits:10'" v-model="restaurant.mobile_no" name="mobile" class="form-control" id="mobile" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_add_form.mobile')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_add_form.mobile')">{{ error }}</span>
@@ -89,7 +92,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
-                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:10'" name="banner" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
+                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:10000'" name="banner" @change="banner" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_add_form.banner')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_add_form.banner')">{{ error }}</span>
@@ -166,6 +169,7 @@ import { Validator } from 'vee-validate';
 export default {
     data(){
         return {
+            // restaurant Id
             id:'',
             // Restaurant Object
             restaurant:{},
@@ -173,6 +177,8 @@ export default {
             operation_days:{},
             // ADD facilities 
             facilities:{},
+            // Banner Preview
+            bannerPreview:'',
 
 
         }
@@ -182,20 +188,32 @@ export default {
      * Create
      *  */ 
     methods:{
+        /**
+         * Banner Image 
+         * File
+         *  */ 
+        banner(event){
+            let fileReader = new FileReader();
+            fileReader.onload = (event) =>{
+                this.bannerPreview = event.target.result
+                this.restaurant.banner = event.target.result
+            },
+            // base64 data
+            fileReader.readAsDataURL(event.target.files[0]);
+        },
         // Create Restauratn
         create_restaurant(){
             if(this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null){
                 alert("Please enter the opening or closing hour")
             }else{
                 this.$validator.validateAll('validate_add_form').then((result) => {
-                    // post
+                    // post api
                     axios.post('/api/restaurant',this.restaurant,{
                     headers : { Authorization : localStorage.getItem("token")}
                     })
                     .then(response=>{
                         // assign id
                         this.id = response.data.id;
-
                         // closing modal
                             $("#restaurant_add_modal").modal("hide");  
                             //  Flash Message  

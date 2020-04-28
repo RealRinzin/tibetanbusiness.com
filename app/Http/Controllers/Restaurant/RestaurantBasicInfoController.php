@@ -47,15 +47,28 @@ class RestaurantBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        // Store
         $restaurant = RestaurantBasicInfo::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'mobile_no' => $request->mobile_no,
             'location' => $request->location,
             'email' => $request->email,
-            'banner' => 'food5.jpg',
-            'rate' => '4.5',
+            'banner' => $name,
             'address' => $request->address,
             'longitude' => '4.5',
             'latitude' => '3.1',
@@ -229,5 +242,29 @@ class RestaurantBasicInfoController extends Controller
         $status = RestaurantBasicInfo::find($id);
         // update
         $status->update($request->all());
+    }
+    /**
+     * Banner update
+     * 
+     *  */ 
+    public function banner_update(Request $request,$id){
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        // upate
+        $banner = RestaurantBasicInfo::find($id);
+        $banner->update(['banner' => $name]);
+
     }
 }

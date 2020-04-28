@@ -2070,18 +2070,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 // Veevalidate
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      // restaurant Id
       id: '',
       // Restaurant Object
       restaurant: {},
       // operational days
       operation_days: {},
       // ADD facilities 
-      facilities: {}
+      facilities: {},
+      // Banner Preview
+      bannerPreview: ''
     };
   },
 
@@ -2090,22 +2096,36 @@ __webpack_require__.r(__webpack_exports__);
    * Create
    *  */
   methods: {
+    /**
+     * Banner Image 
+     * File
+     *  */
+    banner: function banner(event) {
+      var _this = this;
+
+      var fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        _this.bannerPreview = event.target.result;
+        _this.restaurant.banner = event.target.result;
+      }, // base64 data
+      fileReader.readAsDataURL(event.target.files[0]);
+    },
     // Create Restauratn
     create_restaurant: function create_restaurant() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null) {
         alert("Please enter the opening or closing hour");
       } else {
         this.$validator.validateAll('validate_add_form').then(function (result) {
-          // post
-          axios.post('/api/restaurant', _this.restaurant, {
+          // post api
+          axios.post('/api/restaurant', _this2.restaurant, {
             headers: {
               Authorization: localStorage.getItem("token")
             }
           }).then(function (response) {
             // assign id
-            _this.id = response.data.id; // closing modal
+            _this2.id = response.data.id; // closing modal
 
             $("#restaurant_add_modal").modal("hide"); //  Flash Message  
 
@@ -2114,7 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
               title: 'Updated'
             }); // operations day assign
 
-            _this.operation_days = {
+            _this2.operation_days = {
               monday: true,
               tuesday: true,
               wednesday: false,
@@ -2122,10 +2142,10 @@ __webpack_require__.r(__webpack_exports__);
               friday: false,
               saturday: false,
               sunday: true,
-              restaurant_basic_info_id: _this.id
+              restaurant_basic_info_id: _this2.id
             }; // Facilities
 
-            _this.facilities = {
+            _this2.facilities = {
               home_delivery: false,
               wifi: true,
               party_booking: false,
@@ -2136,16 +2156,16 @@ __webpack_require__.r(__webpack_exports__);
               beverage: true,
               parking_lot: false,
               card_payment: true,
-              restaurant_basic_info_id: _this.id
+              restaurant_basic_info_id: _this2.id
             }; // Create Operation day
 
-            axios.post('/api/restaurant_operation_days', _this.operation_days, {
+            axios.post('/api/restaurant_operation_days', _this2.operation_days, {
               headers: {
                 Authorization: localStorage.getItem("token")
               }
             }).then(function (response) {}); // Create facilities
 
-            axios.post('/api/restaurant_facilities', _this.facilities, {
+            axios.post('/api/restaurant_facilities', _this2.facilities, {
               headers: {
                 Authorization: localStorage.getItem("token")
               }
@@ -2250,6 +2270,13 @@ __webpack_require__.r(__webpack_exports__);
       this.view_comment = this.comment[index];
     }
   },
+  // Filter
+  filters: {
+    // Trim or Slice the text
+    trim: function trim(str) {
+      return str.slice(0, 50) + "...";
+    }
+  },
 
   /**
    * Watch the props
@@ -2350,6 +2377,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Import component
  // Import stylesheet
 
@@ -2373,7 +2418,9 @@ __webpack_require__.r(__webpack_exports__);
       //facilities
       facilities: {},
       // comments
-      comments: {}
+      comments: {},
+      // Banner
+      bannerPreview: null
     };
   },
   //methods
@@ -2414,20 +2461,44 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /**
-     * Update
-     * Operations
+     * Update Banner
      *  */
-    update_operation_days: function update_operation_days(id) {
-      console.log(id);
+    banner_event: function banner_event(event) {
+      var _this2 = this;
+
+      var fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        _this2.bannerPreview = event.target.result; // this.restaurant.banner = event.target.result
+      }, // base64 data
+      fileReader.readAsDataURL(event.target.files[0]);
     },
 
     /**
      * Update
+     * Operations
+     *  */
+    update_banner: function update_banner(id) {
+      axios({
+        method: 'patch',
+        url: '/api/restaurant/banner_update/' + id,
+        data: {
+          banner: this.bannerPreview
+        },
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
+    /**
+     * Update
      * Facilities
      *  */
-    update_facility: function update_facility(id) {
-      console.log(id);
-    }
+    // update_facility(id){
+    //     console.log(id);
+    // }
+
   },
   components: {
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
@@ -4279,7 +4350,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // initialize with defaults
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['restaurant', 'rating'],
+  props: ['restaurant', 'avg_rate'],
   data: function data() {
     return {
       value: '',
@@ -4431,44 +4502,48 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this3 = this;
 
       /* Valid for post */
-      this.$validator.validateAll('valid_comment_form').then(function (result) {
-        if (result) {
-          axios.post('/api/restaurant_comments', _this3.review, {
-            headers: {
-              Authorization: localStorage.getItem("token")
-            }
-          }).then(function (response) {
-            // this.review.comment = '';
-            // this.review.rate ='';
-            // refresh comment
-            _this3.comment(); // Reset form
-            // this.review = [];
+      if (this.review.rate) {
+        this.$validator.validateAll('valid_comment_form').then(function (result) {
+          if (result) {
+            axios.post('/api/restaurant_comments', _this3.review, {
+              headers: {
+                Authorization: localStorage.getItem("token")
+              }
+            }).then(function (response) {
+              // this.review.comment = '';
+              // this.review.rate ='';
+              // refresh comment
+              _this3.comment(); // Reset form
+              // this.review = [];
 
 
-            toast.fire({
-              icon: 'success',
-              title: 'Comment Posted'
+              toast.fire({
+                icon: 'success',
+                title: 'Comment Posted'
+              });
             });
-          });
-        }
-      });
-      /**
-       * 
-       * Update rate
-       *  */
+            /**
+             * 
+             * Update rate
+             *  */
 
-      axios({
-        method: 'patch',
-        url: '/api/restaurants/rating/' + id,
-        data: {
-          rate: this.average_rate
-        },
-        headers: {
-          Authorization: localStorage.getItem("token")
-        }
-      }).then(function (response) {
-        console.log(response);
-      });
+            axios({
+              method: 'patch',
+              url: '/api/restaurants/rating/' + id,
+              data: {
+                rate: _this3.avg_rate
+              },
+              headers: {
+                Authorization: localStorage.getItem("token")
+              }
+            }).then(function (response) {
+              console.log(response);
+            });
+          }
+        });
+      } else {
+        alert('Please give your rating ***');
+      }
     }
   },
   mounted: function mounted() {
@@ -83736,6 +83811,21 @@ var render = function() {
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "container-fluid" }, [
                       _c("div", { staticClass: "row" }, [
+                        _vm.bannerPreview
+                          ? _c("div", {
+                              staticClass: "col-md-12",
+                              staticStyle: {
+                                "background-size": "cover",
+                                height: "300px",
+                                "background-position": "center"
+                              },
+                              style: {
+                                backgroundImage:
+                                  "url(" + _vm.bannerPreview + ")"
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c("div", { staticClass: "col-md-4 col-sm-6" }, [
                           _c("div", { staticClass: "form-group" }, [
                             _vm._m(1),
@@ -83882,6 +83972,7 @@ var render = function() {
                               staticClass: "form-control",
                               attrs: {
                                 type: "text",
+                                maxlength: "10",
                                 name: "mobile",
                                 id: "mobile",
                                 "aria-describedby": "emailHelp",
@@ -84089,9 +84180,9 @@ var render = function() {
                                   name: "validate",
                                   rawName: "v-validate",
                                   value:
-                                    "required|image|ext:jpeg,jpg,png,gif|size:10",
+                                    "required|image|ext:jpeg,jpg,png,gif|size:10000",
                                   expression:
-                                    "'required|image|ext:jpeg,jpg,png,gif|size:10'"
+                                    "'required|image|ext:jpeg,jpg,png,gif|size:10000'"
                                 }
                               ],
                               staticClass: "form-control",
@@ -84101,7 +84192,8 @@ var render = function() {
                                 id: "banner",
                                 "aria-describedby": "emailHelp",
                                 placeholder: "Website Address"
-                              }
+                              },
+                              on: { change: _vm.banner }
                             }),
                             _vm._v(" "),
                             _c("div", { staticClass: "valid-feedback" }),
@@ -84664,7 +84756,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(comment.name))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(comment.comment))]),
+                  _c("td", [_vm._v(_vm._s(_vm._f("trim")(comment.comment)))]),
                   _vm._v(" "),
                   _c("td", [
                     _c(
@@ -84714,7 +84806,7 @@ var render = function() {
       [
         _c(
           "div",
-          { staticClass: "modal-dialog modal-sm", attrs: { role: "document" } },
+          { staticClass: "modal-dialog modal-md", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(1),
@@ -84741,10 +84833,7 @@ var render = function() {
                           { staticClass: "text-muted" },
                           [
                             _c("timeago", {
-                              attrs: {
-                                converterOptions: { includeSeconds: true },
-                                datetime: _vm.view_comment.created_at
-                              }
+                              attrs: { datetime: _vm.view_comment.created_at }
                             })
                           ],
                           1
@@ -84882,21 +84971,78 @@ var render = function() {
         _c("div", { staticClass: "col-md-10 mx-auto" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-6" }, [
-              _c("div", { staticClass: "card" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "banner",
-                    style: {
-                      backgroundImage: "url(/img/" + _vm.restaurant.banner + ")"
-                    }
-                  },
-                  [_vm._m(0)]
-                )
+              _c("div", { staticClass: "card text-center" }, [
+                _vm.bannerPreview == null
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "banner",
+                        style: {
+                          backgroundImage:
+                            "url(/img/" + _vm.restaurant.banner + ")"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "overlay" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _vm._m(0),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-12 py-4" }, [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "upload_browser",
+                                attrs: {
+                                  type: "file",
+                                  id: "file",
+                                  name: "banner"
+                                },
+                                on: { change: _vm.banner_event }
+                              })
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  : _c(
+                      "div",
+                      {
+                        staticClass: "banner",
+                        style: {
+                          backgroundImage: "url(" + _vm.bannerPreview + ")"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "overlay" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-info btn-md",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.update_banner(
+                                        _vm.restaurant.id
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c("p", [_vm._v("Upload")])
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(3)
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -84974,11 +85120,11 @@ var render = function() {
                   attrs: { id: "custom-content-below-tab", role: "tablist" }
                 },
                 [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
                   _vm._m(4),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item" }, [
                     _c(
@@ -85104,15 +85250,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "overlay" }, [
-      _c("i", { staticClass: "fas fa-camera fa-5x text-white" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "break" }),
-      _vm._v(" "),
-      _c("h5", { staticClass: "text-white ml-2 mt-3" }, [
-        _vm._v("Update Banner Photo")
-      ])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("i", { staticClass: "fas fa-camera fa-5x text-white" })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "text-center btn btn-danger btn-md",
+        attrs: { for: "file" }
+      },
+      [
+        _c("i", { staticClass: "fas fa-cloud-upload-alt mr-2" }),
+        _vm._v("Upload Image")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("i", { staticClass: "fas fa-cloud-upload-alt mr-2" })])
   },
   function() {
     var _vm = this
@@ -90051,7 +90213,7 @@ var render = function() {
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _vm.restaurant.facebook !== ""
+                                      _vm.restaurant.facebook != null
                                         ? _c("li", [
                                             _c(
                                               "a",
@@ -90070,7 +90232,7 @@ var render = function() {
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _vm.restaurant.website !== ""
+                                      _vm.restaurant.website != null
                                         ? _c("li", [
                                             _c(
                                               "a",
@@ -90089,7 +90251,7 @@ var render = function() {
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _vm.restaurant.instagram !== ""
+                                      _vm.restaurant.instagram != null
                                         ? _c("li", [
                                             _c(
                                               "a",
@@ -90603,7 +90765,10 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c("restaurant-comment", {
-                          attrs: { restaurant: _vm.restaurant.id }
+                          attrs: {
+                            restaurant: _vm.restaurant.id,
+                            avg_rate: _vm.restaurant.rating
+                          }
                         })
                       ],
                       1

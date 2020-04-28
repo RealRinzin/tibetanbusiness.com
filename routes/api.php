@@ -37,6 +37,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         Route::patch('restaurants/rating/{id}', 'Restaurant\RestaurantBasicInfoController@update_rate');
      // Restaurant status update
         Route::patch('restaurant/status_update/{id}', 'Restaurant\RestaurantBasicInfoController@status_update');
+        // Restaurant banner update
+        Route::patch('restaurant/banner_update/{id}', 'Restaurant\RestaurantBasicInfoController@banner_update');
         /**
          * Getting the API of Ower Restaurant
          *  */ 

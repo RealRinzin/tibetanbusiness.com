@@ -18,7 +18,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->uuid('user_id');
             $table->string('name',30);
             $table->string('banner',80);
-            $table->decimal('rate',5,1);
+            $table->decimal('rate',5,1)->nullable();
             $table->string('rate_color', 15)->nullable();
             $table->string('address',250)->nullable();
             $table->decimal('longitude',10,6);

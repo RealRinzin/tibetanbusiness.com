@@ -26,9 +26,9 @@
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
                                                 <ul>
                                                     <li v-if="restaurant.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
-                                                    <li v-if="restaurant.facebook !== ''"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                    <li v-if="restaurant.website !== ''"><a :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
-                                                    <li v-if="restaurant.instagram !==''"><a :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                    <li v-if="restaurant.facebook != null"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                    <li v-if="restaurant.website != null"><a :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                    <li v-if="restaurant.instagram != null"><a :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -109,7 +109,7 @@
                                     <food-photo v-bind:food_photos="restaurant.food_photos"></food-photo>
                                 </div>
                                 <!-- comments -->
-                                    <restaurant-comment v-bind:restaurant="restaurant.id"></restaurant-comment>
+                                    <restaurant-comment v-bind:restaurant="restaurant.id" :avg_rate="restaurant.rating"></restaurant-comment>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
