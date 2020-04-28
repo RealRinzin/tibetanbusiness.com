@@ -62,22 +62,26 @@
                 axios.get('restaurants/list').then(response=>{
                     response.data.data.forEach(element => {
                         if (element['status'] === 1) {
-                            this.random_count = this.random_count + 1;
                             this.restaurants.push(element);
+                            this.random_count = this.random_count + 1;
+                            this.live_restaurant = this.restaurants[Math.floor(Math.random() * this.random_count)];
                         }else{
                             this.random_count = this.random_count + 1;
                             this.restaurants.push(element);
+                            this.live_restaurant = this.restaurants[Math.floor(Math.random() * this.random_count)];
                         }
                         this.isLoading = false; //Loading true
                         this.load = true;
-                        
-                        
                     });
-                    // Listing the random restaurant
-
-                    // console.log(Math.floor(Math.random() * this.random_count));
+                    // console.log(this.random_count);
+                    console.log(this.live_restaurant);
                     
-                    this.live_restaurant = this.restaurants[Math.floor(Math.random() * this.random_count)];
+                    
+                    /**
+                     * Listing only 
+                     * Random Resetaurants
+                     * Status true
+                     *  */ 
                     // console.log(this.live_restaurant);
 
                     /**

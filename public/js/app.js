@@ -4045,22 +4045,30 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('restaurants/list').then(function (response) {
         response.data.data.forEach(function (element) {
           if (element['status'] === 1) {
-            _this.random_count = _this.random_count + 1;
-
             _this.restaurants.push(element);
+
+            _this.random_count = _this.random_count + 1;
+            _this.live_restaurant = _this.restaurants[Math.floor(Math.random() * _this.random_count)];
           } else {
             _this.random_count = _this.random_count + 1;
 
             _this.restaurants.push(element);
+
+            _this.live_restaurant = _this.restaurants[Math.floor(Math.random() * _this.random_count)];
           }
 
           _this.isLoading = false; //Loading true
 
           _this.load = true;
-        }); // Listing the random restaurant
-        // console.log(Math.floor(Math.random() * this.random_count));
+        }); // console.log(this.random_count);
 
-        _this.live_restaurant = _this.restaurants[Math.floor(Math.random() * _this.random_count)]; // console.log(this.live_restaurant);
+        console.log(_this.live_restaurant);
+        /**
+         * Listing only 
+         * Random Resetaurants
+         * Status true
+         *  */
+        // console.log(this.live_restaurant);
 
         /**
          * Rate background color
