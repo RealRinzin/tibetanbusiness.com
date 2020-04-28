@@ -10994,7 +10994,7 @@ View individual show CSS
 /* Carousel */
 
 .carousel a {
-  margin-top: 6%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .carousel .slide {

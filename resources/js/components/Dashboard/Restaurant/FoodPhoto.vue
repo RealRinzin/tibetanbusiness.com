@@ -25,17 +25,17 @@
         <div class="modal-dialog modal-lg modal_top" role="document">
             <div class="modal-content">
                 <div class="modal-body" v-if="modal_status">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div id="food_photo_carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
-                                <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
+                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==food_active }">
+                                <div style="height:55vh" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#food_photo_carousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#food_photo_carousel" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -108,7 +108,7 @@
         // Photos array object
         photos:{},
         modal_status: false, //modal status
-        active:0,
+        food_active:0,
         // Image Upload datas
         fp_isDragging: false,
         fp_dragCount: 0,
@@ -127,7 +127,7 @@
         // status
             this.modal_status = true;
             // active class
-            this.active = index;
+            this.food_active = index;
       },
       /**
        * Removing Photo

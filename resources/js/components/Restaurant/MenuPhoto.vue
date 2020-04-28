@@ -21,18 +21,19 @@
             <div class="modal-dialog modal-lg modal_top" role="document">
                 <div class="modal-content">
                     <div class="modal-body" v-if="modal_status">
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div id="show_menu_photo_carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                                    <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${photo.path})`}'></div>
+                                    <!-- <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${photo.path})`}'></div> -->
                                     <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
+                                    <img :src="'/storage/Restaurant/Menu-Pictures/'+photo.path" alt="" class="w-100">
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <a class="carousel-control-prev" href="#show_menu_photo_carousel" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <a class="carousel-control-next" href="#show_menu_photo_carousel" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
@@ -46,7 +47,9 @@
             <div class="modal-dialog modal-lg modal_top" role="document">
                 <div class="modal-content">
                     <div class="modal-body carousel" v-if="modal_status">
-                        <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${single_photo.path})`}'></div>
+                        <div class="slide">
+                                <img :src="'/storage/Restaurant/Menu-Pictures/'+single_photo.path" alt="" class="w-100">
+                        </div>
                     </div>
                 </div>
             </div>

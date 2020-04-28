@@ -2201,15 +2201,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comments'],
   data: function data() {
     return {
-      comment: {}
+      comment: {},
+      view_comment: {}
     };
   },
   methods: {
-    load_comments: function load_comments() {}
+    load_comments: function load_comments() {},
+    view: function view(index) {
+      $("#comment_modal").modal("show");
+      this.view_comment = this.comment[index];
+    }
   },
 
   /**
@@ -2519,7 +2558,7 @@ __webpack_require__.r(__webpack_exports__);
       photos: {},
       modal_status: false,
       //modal status
-      active: 0,
+      food_active: 0,
       // Image Upload datas
       fp_isDragging: false,
       fp_dragCount: 0,
@@ -2539,7 +2578,7 @@ __webpack_require__.r(__webpack_exports__);
       // status
       this.modal_status = true; // active class
 
-      this.active = index;
+      this.food_active = index;
     },
 
     /**
@@ -4602,6 +4641,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -84624,6 +84666,21 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(comment.comment))]),
                   _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-primary",
+                        on: {
+                          mouseover: function($event) {
+                            return _vm.view(index)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-eye" })]
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(comment.rate))]),
                   _vm._v(" "),
                   _c(
@@ -84640,7 +84697,93 @@ var render = function() {
           ]
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "comment_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-sm", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "mr-3",
+                        attrs: {
+                          src: _vm.view_comment.avatar,
+                          alt: "Generic placeholder image"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body p-1" }, [
+                        _c("h5", { staticClass: "text-muted" }, [
+                          _vm._v(_vm._s(_vm.view_comment.name))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "h6",
+                          { staticClass: "text-muted" },
+                          [
+                            _c("timeago", {
+                              attrs: {
+                                converterOptions: { includeSeconds: true },
+                                datetime: _vm.view_comment.created_at
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "py-2" }, [
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-secondary btn-xs" },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _vm._v(_vm._s(_vm.view_comment.rate))
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "py-3" }, [
+                        _vm._v(_vm._s(_vm.view_comment.comment))
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -84658,10 +84801,46 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("View")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Rate")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
     ])
   }
 ]
@@ -85136,7 +85315,7 @@ var render = function() {
                       {
                         staticClass: "carousel slide",
                         attrs: {
-                          id: "carouselExampleControls",
+                          id: "food_photo_carousel",
                           "data-ride": "carousel"
                         }
                       },
@@ -85150,11 +85329,11 @@ var render = function() {
                               {
                                 staticClass:
                                   "carousel-item animated fadeIn duration-1s",
-                                class: { active: index == _vm.active }
+                                class: { active: index == _vm.food_active }
                               },
                               [
                                 _c("div", {
-                                  staticClass: "slide",
+                                  staticStyle: { height: "55vh" },
                                   style: {
                                     backgroundImage:
                                       "url(/storage/Restaurant/Food-Pictures/" +
@@ -85372,7 +85551,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-prev",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#food_photo_carousel",
           role: "button",
           "data-slide": "prev"
         }
@@ -85396,7 +85575,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-next",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#food_photo_carousel",
           role: "button",
           "data-slide": "next"
         }
@@ -85823,7 +86002,7 @@ var render = function() {
       [
         _c(
           "div",
-          { staticClass: "modal-dialog modal-md", attrs: { role: "document" } },
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
               _vm.modal_status
@@ -89345,7 +89524,7 @@ var render = function() {
                       {
                         staticClass: "carousel slide",
                         attrs: {
-                          id: "carouselExampleControls",
+                          id: "show_food_photo_carousel",
                           "data-ride": "carousel"
                         }
                       },
@@ -89364,6 +89543,7 @@ var render = function() {
                               [
                                 _c("div", {
                                   staticClass: "slide",
+                                  staticStyle: { height: "55vh" },
                                   style: {
                                     backgroundImage:
                                       "url(/storage/Restaurant/Food-Pictures/" +
@@ -89415,6 +89595,7 @@ var render = function() {
                 ? _c("div", { staticClass: "modal-body carousel" }, [
                     _c("div", {
                       staticClass: "slide",
+                      staticStyle: { height: "55vh" },
                       style: {
                         backgroundImage:
                           "url(/storage/Restaurant/Food-Pictures/" +
@@ -89441,7 +89622,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-prev",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#show_food_photo_carousel",
           role: "button",
           "data-slide": "prev"
         }
@@ -89465,7 +89646,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-next",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#show_food_photo_carousel",
           role: "button",
           "data-slide": "next"
         }
@@ -89627,7 +89808,7 @@ var render = function() {
                       {
                         staticClass: "carousel slide",
                         attrs: {
-                          id: "carouselExampleControls",
+                          id: "show_menu_photo_carousel",
                           "data-ride": "carousel"
                         }
                       },
@@ -89644,13 +89825,13 @@ var render = function() {
                                 class: { active: index == 0 }
                               },
                               [
-                                _c("div", {
-                                  staticClass: "slide",
-                                  style: {
-                                    backgroundImage:
-                                      "url(/storage/Restaurant/Menu-Pictures/" +
-                                      photo.path +
-                                      ")"
+                                _c("img", {
+                                  staticClass: "w-100",
+                                  attrs: {
+                                    src:
+                                      "/storage/Restaurant/Menu-Pictures/" +
+                                      photo.path,
+                                    alt: ""
                                   }
                                 })
                               ]
@@ -89695,15 +89876,17 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm.modal_status
                 ? _c("div", { staticClass: "modal-body carousel" }, [
-                    _c("div", {
-                      staticClass: "slide",
-                      style: {
-                        backgroundImage:
-                          "url(/storage/Restaurant/Menu-Pictures/" +
-                          _vm.single_photo.path +
-                          ")"
-                      }
-                    })
+                    _c("div", { staticClass: "slide" }, [
+                      _c("img", {
+                        staticClass: "w-100",
+                        attrs: {
+                          src:
+                            "/storage/Restaurant/Menu-Pictures/" +
+                            _vm.single_photo.path,
+                          alt: ""
+                        }
+                      })
+                    ])
                   ])
                 : _vm._e()
             ])
@@ -89723,7 +89906,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-prev",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#show_menu_photo_carousel",
           role: "button",
           "data-slide": "prev"
         }
@@ -89747,7 +89930,7 @@ var staticRenderFns = [
       {
         staticClass: "carousel-control-next",
         attrs: {
-          href: "#carouselExampleControls",
+          href: "#show_menu_photo_carousel",
           role: "button",
           "data-slide": "next"
         }

@@ -47,7 +47,7 @@ class RestaurantMenuPhotoController extends Controller
                     'user_id' => Auth::user()->id,
                 ]);
                 // $image->store('public\images');
-                $image->store('public\Restaurant\Menu-Pictures');
+                $image->store('\public\Restaurant\Menu-Pictures');
 
             }
         }
