@@ -25,11 +25,13 @@ $factory->define(RestaurantBasicInfo::class, function (Faker $faker) {
         'facebook' => $faker->text(100),
         'website' => $faker->text(100),
         'status' => $faker->boolean(),
+        'featured_ad' => $faker->boolean(),
+        'home_ad' => $faker->boolean(),
+        'sidebar_ad' => $faker->boolean(),
         'description' => $faker->sentence(),
         'user_id' => function () {
             // return User::all()->random();
             return User::all()->random();
-
         }
     ];
 });

@@ -4010,6 +4010,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // Import component
  // Import stylesheet
 
@@ -4024,8 +4025,10 @@ __webpack_require__.r(__webpack_exports__);
       load: false,
       isLoading: false,
       //Lazy loading
-      restaurants: [],
-      random_count: 0,
+      restaurant: {},
+      featured_restaurant: [],
+      featured_count: 0,
+      ad_count: 0,
       // random test
       live_restaurant: []
     };
@@ -4037,56 +4040,45 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   methods: {
     // Featured business
-    featured_restaurant: function featured_restaurant() {
+    load_restaurant: function load_restaurant() {
       var _this = this;
 
       this.isLoading = true; //Loading true
+      // Featured restaurant
 
-      axios.get('restaurants/list').then(function (response) {
-        response.data.data.forEach(function (element) {
-          if (element['status'] === 1) {
-            _this.restaurants.push(element);
+      axios.get('/api/restaurant/list/featured_ad').then(function (response) {
+        if (response.data.length > 0) {
+          // Assign Featured restaurant
+          _this.restaurant = response.data[Math.floor(Math.random() * response.data.length)];
+          /**
+           * Rating Background
+           * Color
+           *  */
 
-            _this.random_count = _this.random_count + 1;
-            _this.live_restaurant = _this.restaurants[Math.floor(Math.random() * _this.random_count)];
+          if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 3.5) {
+            _this.restaurant.rate_color = 'bg-danger';
+          } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 5.5) {
+            _this.restaurant.rate_color = 'bg-warning';
+          } else if (_this.restaurant.rate >= 5.6 && _this.restaurant.rate <= 7.0) {
+            _this.restaurant.rate_color = 'bg-info';
+          } else if (_this.restaurant.rate >= 7.1 && _this.restaurant.rate <= 10.0) {
+            _this.restaurant.rate_color = 'bg-success';
           } else {
-            _this.random_count = _this.random_count + 1;
-
-            _this.restaurants.push(element);
-
-            _this.live_restaurant = _this.restaurants[Math.floor(Math.random() * _this.random_count)];
+            _this.restaurant.rate_color = 'bg-secondary';
           }
 
-          _this.isLoading = false; //Loading true
+          console.log(_this.restaurant);
+        } else {
+          axios.get('restaurants/list').then(function (response) {
+            // Assign normal live status
+            _this.restaurant = response.data.data[Math.floor(Math.random() * response.data.data.length)];
+          });
+        } // loading success
 
-          _this.load = true;
-        }); // console.log(this.random_count);
 
-        console.log(_this.live_restaurant);
-        /**
-         * Listing only 
-         * Random Resetaurants
-         * Status true
-         *  */
-        // console.log(this.live_restaurant);
+        _this.isLoading = false; //Loading true
 
-        /**
-         * Rate background color
-         *  */
-
-        for (var index = 0; index < _this.restaurants.length; index++) {
-          if (_this.restaurants[index].rate >= 0.0 && _this.restaurants[index].rate <= 3.5) {
-            _this.restaurants[index].rate_color = 'bg-danger';
-          } else if (_this.restaurants[index].rate >= 3.6 && _this.restaurants[index].rate <= 5.5) {
-            _this.restaurants[index].rate_color = 'bg-warning';
-          } else if (_this.restaurants[index].rate >= 5.6 && _this.restaurants[index].rate <= 7.0) {
-            _this.restaurants[index].rate_color = 'bg-info';
-          } else if (_this.restaurants[index].rate >= 7.1 && _this.restaurants[index].rate <= 10.0) {
-            _this.restaurants[index].rate_color = 'bg-success';
-          } else {
-            _this.restaurant.comments[index].rate_color = 'bg-secondary';
-          }
-        }
+        _this.load = true;
       });
     }
   },
@@ -4104,7 +4096,7 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   mounted: function mounted() {
     // Featured Restaurant
-    this.featured_restaurant();
+    this.load_restaurant();
   }
 });
 
@@ -89061,33 +89053,31 @@ var render = function() {
                   _c("div", { staticClass: "card" }, [
                     _c(
                       "a",
-                      {
-                        attrs: { href: "restaurant/" + _vm.live_restaurant.id }
-                      },
+                      { attrs: { href: "restaurant/" + _vm.restaurant.id } },
                       [
                         _c("div", {
                           staticClass: "list",
                           style: {
                             backgroundImage:
-                              "url(img/" + _vm.live_restaurant.banner + ")"
+                              "url(img/" + _vm.restaurant.banner + ")"
                           }
                         })
                       ]
                     ),
                     _vm._v(" "),
-                    _vm.live_restaurant.rating != null
+                    _vm.restaurant.rate != null
                       ? _c("div", { staticClass: "likes" }, [
                           _c(
                             "p",
                             {
                               staticClass: "btn",
-                              class: _vm.live_restaurant.rate_color
+                              class: _vm.restaurant.rate_color
                             },
                             [
                               _c("i", {
                                 staticClass: "fas fa-star text-white fa-1x mr-1"
                               }),
-                              _vm._v(_vm._s(_vm.live_restaurant.rating))
+                              _vm._v(_vm._s(_vm.restaurant.rate))
                             ]
                           )
                         ])
@@ -89096,11 +89086,11 @@ var render = function() {
                     _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-body text-truncate" }, [
-                      _c("h5", [_vm._v(_vm._s(_vm.live_restaurant.name))]),
+                      _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
                       _vm._v(" "),
-                      _c("h6", [_vm._v(_vm._s(_vm.live_restaurant.mobile_no))]),
+                      _c("h6", [_vm._v(_vm._s(_vm.restaurant.mobile_no))]),
                       _vm._v(" "),
-                      _c("h6", [_vm._v(_vm._s(_vm.live_restaurant.location))])
+                      _c("h6", [_vm._v(_vm._s(_vm.restaurant.location))])
                     ])
                   ])
                 ])

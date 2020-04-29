@@ -181,8 +181,8 @@ class RestaurantBasicInfoController extends Controller
         $restaurants = Auth::user()->restaurant_basic_infos;
         return $restaurants->toArray($restaurants);
 
-        $restaurants =  RestaurantBasicInfo::all();
-        return $restaurants->toArray($restaurants);
+        // $restaurants =  RestaurantBasicInfo::all();
+        // return $restaurants->toArray($restaurants);
     }
     /**
      * Display a listing of the resource.
@@ -265,5 +265,35 @@ class RestaurantBasicInfoController extends Controller
         // upate
         $banner = RestaurantBasicInfo::find($id);
         $banner->update(['banner' => $name]);
+    }
+
+    /**
+     * 
+     * Restaurant Advertisment
+     * Home Featured
+     * Sidebar
+     * Banner etc
+     *  */ 
+    public function featured_ad(){
+
+        $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
+        ->orderBy('created_at','desc')->get();
+        return $restaurants->toArray($restaurants);
+        // $comments = RestaurantComment::where('restaurant_basic_info_id', '=', "$id")
+        //     ->orderBy('created_at', 'desc')->paginate(3);
+        // return $comments->toArray($comments);
+    }
+    // Front
+    public function home_ad(){
+        $restaurants =  RestaurantBasicInfo::where('home_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
+    // Sidebar
+    public function sidebar_ad(){
+        $restaurants =  RestaurantBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+
     }
 }

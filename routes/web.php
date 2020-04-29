@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     /*  */
     /**
-     * 
+     * Authentications
      * Dashboard 
      * Route Grouping
      *  */
@@ -37,9 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
         // EVENTS
         Route::get('restaurant/edit/id={id}','Restaurant\RestaurantBasicInfoController@restaurant_edit');
     });
-
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
-
 });
 
 // Check User status
@@ -57,11 +55,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@restaurant');
 Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
 Route::get('restaurants/list/', 'Restaurant\RestaurantBasicInfoController@all');
-
-
-// Route::resource('post', 'PostController')->middleware('can:isOwner');
-// Route::get('all','PostController@all')->middleware('can:viewAny,App\Post');
-
 
 /**
  * 

@@ -32,6 +32,9 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('facebook',100)->nullable();
             $table->string('website',100)->nullable();
             $table->boolean('status');
+            $table->boolean('featured_ad')->nullable();
+            $table->boolean('home_ad')->nullable();
+            $table->boolean('sidebar_ad')->nullable();
             $table->text('description',225)->nullable();
             $table->timestamps();
         });
