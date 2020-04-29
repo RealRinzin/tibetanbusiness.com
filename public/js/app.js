@@ -3900,25 +3900,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Import component
  // Import stylesheet
 
@@ -3939,13 +3920,30 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isLoading = true; //Loading true
+      // home advertisment
 
-      axios.get('restaurants/list').then(function (response) {
-        _this.restaurants = response.data.data; // loading
+      axios.get('api/restaurant/list/home_ad').then(function (response) {
+        if (response.data.length > 0) {
+          for (var index = 0; index < response.data.length; index++) {
+            _this.restaurants[index] = response.data[Math.floor(Math.random() * response.data.length)];
+          } // loading
 
-        _this.isLoading = false; //Loading true
 
-        _this.loading = true;
+          _this.isLoading = false; //Loading true
+
+          _this.loading = true;
+        } else {
+          axios.get('restaurants/list').then(function (response) {
+            for (var _index = 0; _index < response.data.data.length; _index++) {
+              _this.restaurants[_index] = response.data.data[Math.floor(Math.random() * response.data.data.length)];
+            } // loading
+
+
+            _this.isLoading = false; //Loading true
+
+            _this.loading = true;
+          });
+        }
       });
     }
   },
@@ -88942,87 +88940,50 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "row" },
-                  _vm._l(_vm.restaurants.slice(0, 4), function(
-                    restaurants,
-                    index
-                  ) {
-                    return _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "card" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("div", {
-                                staticClass: "banner",
-                                style: {
-                                  backgroundImage:
-                                    "url(img/" + restaurants.banner + ")"
-                                }
-                              })
+                  _vm._l(_vm.restaurants, function(restaurants, index) {
+                    return index <= 1
+                      ? _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "card" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "restaurant/" + restaurants.id
+                                    }
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass: "banner",
+                                      style: {
+                                        backgroundImage:
+                                          "url(img/" + restaurants.banner + ")"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-6 col-sm-6 p-3 info" },
+                                [
+                                  _c("h5", [_vm._v(_vm._s(restaurants.name))]),
+                                  _vm._v(" "),
+                                  _c("h6", { staticClass: "pt-1" }, [
+                                    _vm._v(_vm._s(restaurants.mobile_no))
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h6", [
+                                    _vm._v(_vm._s(restaurants.location))
+                                  ])
+                                ]
+                              )
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 col-sm-6 p-3 info" },
-                            [
-                              _c("h5", [_vm._v(_vm._s(restaurants.name))]),
-                              _vm._v(" "),
-                              _c("h6", { staticClass: "pt-1" }, [
-                                _vm._v(_vm._s(restaurants.mobile_no))
-                              ]),
-                              _vm._v(" "),
-                              _c("h6", [_vm._v(_vm._s(restaurants.location))])
-                            ]
-                          )
+                          ])
                         ])
-                      ])
-                    ])
-                  }),
-                  0
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-8 mx-auto" }, [
-                _c("h6", { staticClass: "bg-danger btn" }, [
-                  _vm._v("Upcoming Events")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row" },
-                  _vm._l(_vm.restaurants.slice(2, 6), function(
-                    restaurants,
-                    index
-                  ) {
-                    return _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "card" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: { href: "restaurant/" + restaurants.id }
-                              },
-                              [_c("div", { staticClass: "banner" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 col-sm-6 p-3 info" },
-                            [
-                              _c("h5", [_vm._v(_vm._s(restaurants.name))]),
-                              _vm._v(" "),
-                              _c("h6", { staticClass: "pt-1" }, [
-                                _vm._v(_vm._s(restaurants.mobile_no))
-                              ]),
-                              _vm._v(" "),
-                              _c("h6", [_vm._v(_vm._s(restaurants.location))])
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
+                      : _vm._e()
                   }),
                   0
                 )

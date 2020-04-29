@@ -6,35 +6,16 @@
         <div v-else>
             <div class="container">
                 <div class="row">
-                    <!-- Event -->
+                    <!-- Restaurant -->
                     <div class="col-md-8 mx-auto">
                         <h6 class="bg-danger btn">Upcoming Events</h6>
                         <div class="row">
-                            <div class="col-md-6" v-for="(restaurants,index) in restaurants.slice(0,4)">
+                            <div class="col-md-6" v-for="(restaurants,index) in restaurants" v-if="index <= 1">
+                            <!-- <div class="col-md-6"> -->
                                 <div class="card">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
-                                            <a href="#"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 p-3 info">
-                                            <h5>{{restaurants.name}}</h5>
-                                            <h6 class="pt-1">{{restaurants.mobile_no}}</h6>
-                                            <h6>{{restaurants.location}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rent -->
-                    <div class="col-md-8 mx-auto">
-                        <h6 class="bg-danger btn">Upcoming Events</h6>
-                        <div class="row">
-                            <div class="col-md-6" v-for="(restaurants,index) in restaurants.slice(2,6)">
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <a v-bind:href="'restaurant/'+restaurants.id"><div class="banner"></div></a>
+                                            <a v-bind:href="'restaurant/'+restaurants.id"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${restaurants.banner})`}'></div></a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 p-3 info">
                                             <h5>{{restaurants.name}}</h5>
@@ -68,12 +49,27 @@ export default {
     methods:{
         // restaurants
         restaurant_list(){
-                this.isLoading = true; //Loading true
-            axios.get('restaurants/list').then(response=>{
-                this.restaurants = response.data.data;
-                // loading
-                this.isLoading = false; //Loading true
-                this.loading = true;
+            this.isLoading = true; //Loading true
+            // home advertisment
+            axios.get('api/restaurant/list/home_ad')
+            .then(response=>{
+                if(response.data.length > 0){
+                    for (let index = 0; index < response.data.length; index++) {
+                        this.restaurants[index] = response.data[Math.floor(Math.random() *response.data.length)]
+                    }
+                    // loading
+                    this.isLoading = false; //Loading true
+                    this.loading = true;
+                }else{
+                    axios.get('restaurants/list').then(response=>{
+                        for (let index = 0; index < response.data.data.length; index++) {
+                            this.restaurants[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                        }
+                        // loading
+                        this.isLoading = false; //Loading true
+                        this.loading = true;
+                    })
+                }
             })
         }
     },
