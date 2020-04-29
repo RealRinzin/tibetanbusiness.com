@@ -4025,8 +4025,9 @@ __webpack_require__.r(__webpack_exports__);
       load: false,
       isLoading: false,
       //Lazy loading
-      restaurant: {} // random test
-
+      restaurant: {},
+      // random test
+      online_restaurant: []
     };
   },
 
@@ -4051,48 +4052,63 @@ __webpack_require__.r(__webpack_exports__);
            * Color
            *  */
 
-          if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 3.5) {
+          if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 2.5) {
             _this.restaurant.rate_color = 'bg-danger';
-          } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 5.5) {
+          } else if (_this.restaurant.rate >= 2.6 && _this.restaurant.rate <= 3.5) {
             _this.restaurant.rate_color = 'bg-warning';
-          } else if (_this.restaurant.rate >= 5.6 && _this.restaurant.rate <= 7.0) {
+          } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 4.0) {
             _this.restaurant.rate_color = 'bg-info';
-          } else if (_this.restaurant.rate >= 7.1 && _this.restaurant.rate <= 10.0) {
+          } else if (_this.restaurant.rate >= 4.1 && _this.restaurant.rate <= 5.0) {
             _this.restaurant.rate_color = 'bg-success';
           } else {
             _this.restaurant.rate_color = 'bg-secondary';
-          } // Else Part
+          } // loading success
 
+
+          _this.isLoading = false; //Loading true
+
+          _this.load = true;
         } else {
           axios.get('restaurants/list').then(function (response) {
             // Assign normal live status
-            response.data.dat.forEach(function (element) {
-              // if (element['status'] === 1) {
-              _this.restaurant = response.data.data[Math.floor(Math.random() * response.data.data.length)]; // } 
+            response.data.data.forEach(function (element) {
+              if (element['status'] === 1) {
+                _this.online_restaurant.push(element);
+              }
             });
+
+            if (_this.online_restaurant.length > 0) {
+              _this.restaurant = _this.online_restaurant[Math.floor(Math.random() * _this.online_restaurant.length)];
+            } else {
+              _this.restaurant = '';
+            } // console.log(this.test);
+
             /**
              * Rating Background
              * Color
              *  */
 
-            if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 3.5) {
-              _this.restaurant.rate_color = 'bg-danger';
-            } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 5.5) {
-              _this.restaurant.rate_color = 'bg-warning';
-            } else if (_this.restaurant.rate >= 5.6 && _this.restaurant.rate <= 7.0) {
-              _this.restaurant.rate_color = 'bg-info';
-            } else if (_this.restaurant.rate >= 7.1 && _this.restaurant.rate <= 10.0) {
-              _this.restaurant.rate_color = 'bg-success';
-            } else {
-              _this.restaurant.rate_color = 'bg-secondary';
-            }
+
+            if (_this.restaurant) {
+              if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 2.5) {
+                _this.restaurant.rate_color = 'bg-danger';
+              } else if (_this.restaurant.rate >= 2.6 && _this.restaurant.rate <= 3.5) {
+                _this.restaurant.rate_color = 'bg-warning';
+              } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 4.0) {
+                _this.restaurant.rate_color = 'bg-info';
+              } else if (_this.restaurant.rate >= 4.1 && _this.restaurant.rate <= 5.0) {
+                _this.restaurant.rate_color = 'bg-success';
+              } else {
+                _this.restaurant.rate_color = 'bg-secondary';
+              }
+            } // loading success
+
+
+            _this.isLoading = false; //Loading true
+
+            _this.load = true;
           });
-        } // loading success
-
-
-        _this.isLoading = false; //Loading true
-
-        _this.load = true;
+        }
       });
     }
   },
@@ -89063,51 +89079,58 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row py-3" }, [
-                _c("div", { staticClass: "col-md-4 py-1" }, [
-                  _c("div", { staticClass: "card" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: "restaurant/" + _vm.restaurant.id } },
-                      [
-                        _c("div", {
-                          staticClass: "list",
-                          style: {
-                            backgroundImage:
-                              "url(img/" + _vm.restaurant.banner + ")"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm.restaurant.rate != null
-                      ? _c("div", { staticClass: "likes" }, [
-                          _c(
-                            "p",
-                            {
-                              staticClass: "btn",
-                              class: _vm.restaurant.rate_color
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fas fa-star text-white fa-1x mr-1"
-                              }),
-                              _vm._v(_vm._s(_vm.restaurant.rate))
-                            ]
-                          )
+                _vm.restaurant
+                  ? _c("div", { staticClass: "col-md-4 py-1" }, [
+                      _c("div", { staticClass: "card" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "restaurant/" + _vm.restaurant.id }
+                          },
+                          [
+                            _c("div", {
+                              staticClass: "list",
+                              style: {
+                                backgroundImage:
+                                  "url(img/" + _vm.restaurant.banner + ")"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.restaurant.rate != null
+                          ? _c("div", { staticClass: "likes" }, [
+                              _vm.restaurant
+                                ? _c(
+                                    "p",
+                                    {
+                                      staticClass: "btn",
+                                      class: _vm.restaurant.rate_color
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "fas fa-star text-white fa-1x mr-1"
+                                      }),
+                                      _vm._v(_vm._s(_vm.restaurant.rate))
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-body text-truncate" }, [
+                          _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                          _vm._v(" "),
+                          _c("h6", [_vm._v(_vm._s(_vm.restaurant.mobile_no))]),
+                          _vm._v(" "),
+                          _c("h6", [_vm._v(_vm._s(_vm.restaurant.location))])
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body text-truncate" }, [
-                      _c("h5", [_vm._v(_vm._s(_vm.restaurant.name))]),
-                      _vm._v(" "),
-                      _c("h6", [_vm._v(_vm._s(_vm.restaurant.mobile_no))]),
-                      _vm._v(" "),
-                      _c("h6", [_vm._v(_vm._s(_vm.restaurant.location))])
+                      ])
                     ])
-                  ])
-                ])
+                  : _vm._e()
               ])
             ])
           ]),

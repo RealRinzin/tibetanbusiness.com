@@ -9,11 +9,11 @@
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
                     <!-- <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5"> -->
-                    <div class="col-md-4 py-1">
+                    <div class="col-md-4 py-1" v-if="restaurant">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurant.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurant.banner})`}'></div></a>
                             <div class="likes" v-if="restaurant.rate != null">
-                                <p v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
+                                <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
@@ -48,6 +48,7 @@
                 isLoading : false,//Lazy loading
                 restaurant:{},
                 // random test
+                online_restaurant:[],
             }
         },
         /**
@@ -68,47 +69,59 @@
                          * Rating Background
                          * Color
                          *  */  
-                        if(this.restaurant.rate >= 0.0 && this.restaurant.rate <= 3.5){
+                        if(this.restaurant.rate >= 0.0 && this.restaurant.rate <= 2.5){
                             this.restaurant.rate_color = 'bg-danger';
-                        }else if(this.restaurant.rate >= 3.6 && this.restaurant.rate <= 5.5 ){
+                        }else if(this.restaurant.rate >= 2.6 && this.restaurant.rate <= 3.5 ){
                             this.restaurant.rate_color = 'bg-warning';
-                        }else if(this.restaurant.rate >= 5.6 && this.restaurant.rate <= 7.0 ){
+                        }else if(this.restaurant.rate >= 3.6 && this.restaurant.rate <= 4.0 ){
                             this.restaurant.rate_color = 'bg-info';
-                        }else if(this.restaurant.rate >= 7.1 && this.restaurant.rate <= 10.0 ){
+                        }else if(this.restaurant.rate >= 4.1 && this.restaurant.rate <= 5.0 ){
                             this.restaurant.rate_color = 'bg-success';
                         }else{
                             this.restaurant.rate_color = 'bg-secondary';
                         }
-                    // Else Part
+                        // loading success
+                        this.isLoading = false; //Loading true
+                        this.load = true;
                     }else{
                         axios.get('restaurants/list')
                         .then(response=>{
                             // Assign normal live status
-                            response.data.dat.forEach(element => {
-                                // if (element['status'] === 1) {
-                                    this.restaurant = response.data.data[Math.floor(Math.random() *response.data.data.length)]
-                                // } 
+                            response.data.data.forEach(element => {
+                                if (element['status'] === 1) {
+                                    this.online_restaurant.push(element);
+                                }
                             });
+                            if(this.online_restaurant.length > 0){
+                                this.restaurant = this.online_restaurant[Math.floor(Math.random() * this.online_restaurant.length)];
+                            }else{
+                                this.restaurant = '';
+                            }
+                            
+                            // console.log(this.test);
                             /**
                              * Rating Background
                              * Color
                              *  */  
-                            if(this.restaurant.rate >= 0.0 && this.restaurant.rate <= 3.5){
-                                this.restaurant.rate_color = 'bg-danger';
-                            }else if(this.restaurant.rate >= 3.6 && this.restaurant.rate <= 5.5 ){
-                                this.restaurant.rate_color = 'bg-warning';
-                            }else if(this.restaurant.rate >= 5.6 && this.restaurant.rate <= 7.0 ){
-                                this.restaurant.rate_color = 'bg-info';
-                            }else if(this.restaurant.rate >= 7.1 && this.restaurant.rate <= 10.0 ){
-                                this.restaurant.rate_color = 'bg-success';
-                            }else{
-                                this.restaurant.rate_color = 'bg-secondary';
+                            if(this.restaurant){
+                                if(this.restaurant.rate >= 0.0 && this.restaurant.rate <= 2.5){
+                                    this.restaurant.rate_color = 'bg-danger';
+                                }else if(this.restaurant.rate >= 2.6 && this.restaurant.rate <= 3.5 ){
+                                    this.restaurant.rate_color = 'bg-warning';
+                                }else if(this.restaurant.rate >= 3.6 && this.restaurant.rate <= 4.0 ){
+                                    this.restaurant.rate_color = 'bg-info';
+                                }else if(this.restaurant.rate >= 4.1 && this.restaurant.rate <= 5.0 ){
+                                    this.restaurant.rate_color = 'bg-success';
+                                }else{
+                                    this.restaurant.rate_color = 'bg-secondary';
+                                }
                             }
+                        // loading success
+                        this.isLoading = false; //Loading true
+                        this.load = true;
                         })
                     }
-                    // loading success
-                    this.isLoading = false; //Loading true
-                    this.load = true;
+
                 })
             },
         },

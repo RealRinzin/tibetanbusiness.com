@@ -199,21 +199,13 @@ class RestaurantBasicInfoController extends Controller
      *  */
     public function restaurant_edit(RestaurantBasicInfo $restaurantBasicInfo, $id)
     {
-        // return Auth::user()->id;
 
-        // $user_id = RestaurantBasicInfo::find($id)->user_id;
-        // return $user_id;
-        // return Auth::user()->id;
         if(Auth::user()->id === RestaurantBasicInfo::find($id)->user_id){
             return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
         }else{
-        $this->authorize('view', $restaurantBasicInfo);
+            $this->authorize('restaurant_edit', $restaurantBasicInfo);
+            // return redirect('/');
         }
-        // $this->authorize('view', $restaurantBasicInfo);
-        // $this->authorize('restaurant_edit', $restaurantBasicInfo);
-        // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
-        // return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
-
     }
 
     /**
