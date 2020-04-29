@@ -47,11 +47,7 @@
                 load:false,
                 isLoading : false,//Lazy loading
                 restaurant:{},
-                featured_restaurant:[],
-                featured_count:0,
-                ad_count:0,
                 // random test
-                live_restaurant:[],
             }
         },
         /**
@@ -83,13 +79,31 @@
                         }else{
                             this.restaurant.rate_color = 'bg-secondary';
                         }
-                        console.log(this.restaurant);
-                        
+                    // Else Part
                     }else{
                         axios.get('restaurants/list')
                         .then(response=>{
                             // Assign normal live status
-                            this.restaurant = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                            response.data.dat.forEach(element => {
+                                // if (element['status'] === 1) {
+                                    this.restaurant = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                                // } 
+                            });
+                            /**
+                             * Rating Background
+                             * Color
+                             *  */  
+                            if(this.restaurant.rate >= 0.0 && this.restaurant.rate <= 3.5){
+                                this.restaurant.rate_color = 'bg-danger';
+                            }else if(this.restaurant.rate >= 3.6 && this.restaurant.rate <= 5.5 ){
+                                this.restaurant.rate_color = 'bg-warning';
+                            }else if(this.restaurant.rate >= 5.6 && this.restaurant.rate <= 7.0 ){
+                                this.restaurant.rate_color = 'bg-info';
+                            }else if(this.restaurant.rate >= 7.1 && this.restaurant.rate <= 10.0 ){
+                                this.restaurant.rate_color = 'bg-success';
+                            }else{
+                                this.restaurant.rate_color = 'bg-secondary';
+                            }
                         })
                     }
                     // loading success

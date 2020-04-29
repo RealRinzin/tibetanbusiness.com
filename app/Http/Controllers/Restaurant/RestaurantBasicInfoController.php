@@ -178,11 +178,11 @@ class RestaurantBasicInfoController extends Controller
     public function user_restaurant(User $user,RestaurantBasicInfo $restaurantBasicInfo)
     {
         // Getting only auth resources
-        $restaurants = Auth::user()->restaurant_basic_infos;
-        return $restaurants->toArray($restaurants);
-
-        // $restaurants =  RestaurantBasicInfo::all();
+        // $restaurants = Auth::user()->restaurant_basic_infos;
         // return $restaurants->toArray($restaurants);
+
+        $restaurants =  RestaurantBasicInfo::all();
+        return $restaurants->toArray($restaurants);
     }
     /**
      * Display a listing of the resource.
@@ -197,13 +197,22 @@ class RestaurantBasicInfoController extends Controller
      * 
      * Restaurant Edit
      *  */
-    public function restaurant_edit($id)
+    public function restaurant_edit(RestaurantBasicInfo $restaurantBasicInfo, $id)
     {
+        // return Auth::user()->id;
+
+        // $user_id = RestaurantBasicInfo::find($id)->user_id;
+        // return $user_id;
+        // return Auth::user()->id;
+        if(Auth::user()->id === RestaurantBasicInfo::find($id)->user_id){
+            return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
+        }else{
+        $this->authorize('view', $restaurantBasicInfo);
+        }
         // $this->authorize('view', $restaurantBasicInfo);
         // $this->authorize('restaurant_edit', $restaurantBasicInfo);
-
         // return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
-        return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
+        // return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
 
     }
 

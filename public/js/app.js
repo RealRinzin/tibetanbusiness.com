@@ -4025,12 +4025,8 @@ __webpack_require__.r(__webpack_exports__);
       load: false,
       isLoading: false,
       //Lazy loading
-      restaurant: {},
-      featured_restaurant: [],
-      featured_count: 0,
-      ad_count: 0,
-      // random test
-      live_restaurant: []
+      restaurant: {} // random test
+
     };
   },
 
@@ -4065,13 +4061,31 @@ __webpack_require__.r(__webpack_exports__);
             _this.restaurant.rate_color = 'bg-success';
           } else {
             _this.restaurant.rate_color = 'bg-secondary';
-          }
+          } // Else Part
 
-          console.log(_this.restaurant);
         } else {
           axios.get('restaurants/list').then(function (response) {
             // Assign normal live status
-            _this.restaurant = response.data.data[Math.floor(Math.random() * response.data.data.length)];
+            response.data.dat.forEach(function (element) {
+              // if (element['status'] === 1) {
+              _this.restaurant = response.data.data[Math.floor(Math.random() * response.data.data.length)]; // } 
+            });
+            /**
+             * Rating Background
+             * Color
+             *  */
+
+            if (_this.restaurant.rate >= 0.0 && _this.restaurant.rate <= 3.5) {
+              _this.restaurant.rate_color = 'bg-danger';
+            } else if (_this.restaurant.rate >= 3.6 && _this.restaurant.rate <= 5.5) {
+              _this.restaurant.rate_color = 'bg-warning';
+            } else if (_this.restaurant.rate >= 5.6 && _this.restaurant.rate <= 7.0) {
+              _this.restaurant.rate_color = 'bg-info';
+            } else if (_this.restaurant.rate >= 7.1 && _this.restaurant.rate <= 10.0) {
+              _this.restaurant.rate_color = 'bg-success';
+            } else {
+              _this.restaurant.rate_color = 'bg-secondary';
+            }
           });
         } // loading success
 
