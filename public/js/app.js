@@ -3896,10 +3896,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 // Import component
  // Import stylesheet
 
@@ -3908,8 +3904,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: false,
-      isLoading: false,
-      //Lazy loading
       restaurants: []
     };
   },
@@ -3919,17 +3913,12 @@ __webpack_require__.r(__webpack_exports__);
     restaurant_list: function restaurant_list() {
       var _this = this;
 
-      this.isLoading = true; //Loading true
       // home advertisment
-
       axios.get('api/restaurant/list/home_ad').then(function (response) {
         if (response.data.length > 0) {
           for (var index = 0; index < response.data.length; index++) {
             _this.restaurants[index] = response.data[Math.floor(Math.random() * response.data.length)];
-          } // loading
-
-
-          _this.isLoading = false; //Loading true
+          }
 
           _this.loading = true;
         } else {
@@ -3939,21 +3928,11 @@ __webpack_require__.r(__webpack_exports__);
             } // loading
 
 
-            _this.isLoading = false; //Loading true
-
             _this.loading = true;
           });
         }
       });
     }
-  },
-
-  /**
-   * 
-   * Components
-   *  */
-  components: {
-    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   mounted: function mounted() {
     this.restaurant_list(); // Restaurant
@@ -5097,6 +5076,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -5120,59 +5103,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// Import component
+ // Import stylesheet
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   // Data
   data: function data() {
     return {
-      restaurant: {},
+      loading: false,
+      restaurant: [],
       // Restaurants Object
-      event: {},
+      restaurant_active: [],
+      event: [],
       //Events object
       sale: {},
       //Sales Object
@@ -5187,35 +5130,76 @@ __webpack_require__.r(__webpack_exports__);
    *  Methods
    *  */
   methods: {
-    restaurants: function restaurants() {
+    sidebar_restaurants: function sidebar_restaurants() {
       var _this = this;
 
-      axios.get('/restaurants/list').then(function (response) {
-        _this.restaurant = response.data.data;
-        /**
-         * Rate background color
-         *  */
+      /**
+       * Restaurant Sidebar AD
+       *  */
+      axios.get('/api/restaurant/list/sidebar_ad').then(function (response) {
+        _this.isLoading = true; //Loading true
 
-        for (var index = 0; index < _this.restaurant.length; index++) {
-          if (_this.restaurant[index].rate >= 0.0 && _this.restaurant[index].rate <= 3.5) {
-            _this.restaurant[index].rate_color = 'bg-danger';
-          } else if (_this.restaurant[index].rate >= 3.6 && _this.restaurant[index].rate <= 5.5) {
-            _this.restaurant[index].rate_color = 'bg-warning';
-          } else if (_this.restaurant[index].rate >= 5.6 && _this.restaurant[index].rate <= 7.0) {
-            _this.restaurant[index].rate_color = 'bg-info';
-          } else if (_this.restaurant[index].rate >= 7.1 && _this.restaurant[index].rate <= 10.0) {
-            _this.restaurant[index].rate_color = 'bg-success';
-          } else {
-            _this.restaurant.comments[index].rate_color = 'bg-secondary';
-          }
+        if (response.data.length > 0) {
+          for (var x = 0; x < response.data.length; x++) {
+            _this.restaurant_active[x] = response.data[Math.floor(Math.random() * response.data.length)];
+            /**
+             * Rating Background
+             * Color
+             *  */
+
+            if (_this.restaurant_active[x].rate >= 0.0 && _this.restaurant_active[x].rate <= 2.5) {
+              _this.restaurant_active[x].rate_color = 'bg-danger';
+            } else if (_this.restaurant_active[x].rate >= 2.6 && _this.restaurant_active[x].rate <= 3.5) {
+              _this.restaurant_active[x].rate_color = 'bg-warning';
+            } else if (_this.restaurant_active[x].rate >= 3.6 && _this.restaurant_active[x].rate <= 4.0) {
+              _this.restaurant_active[x].rate_color = 'bg-info';
+            } else if (_this.restaurant_active[x].rate >= 4.1 && _this.restaurant_active[x].rate <= 5.0) {
+              _this.restaurant_active[x].rate_color = 'bg-success';
+            } else {
+              _this.restaurant_active[x].rate_color = 'bg-secondary';
+            } // Assign to restarant
+
+
+            _this.restaurant = _this.restaurant_active; // loading
+
+            _this.loading = true;
+          } // this.restaurant = this.event;
+
+        } else {
+          axios.get('/restaurants/list').then(function (response) {
+            for (var _x = 0; _x < response.data.data.length; _x++) {
+              _this.restaurant_active[_x] = response.data.data[Math.floor(Math.random() * response.data.data.length)];
+              /**
+               * Rating Background
+               * Color
+               *  */
+
+              if (_this.restaurant_active[_x].rate >= 0.0 && _this.restaurant_active[_x].rate <= 2.5) {
+                _this.restaurant_active[_x].rate_color = 'bg-danger';
+              } else if (_this.restaurant_active[_x].rate >= 2.6 && _this.restaurant_active[_x].rate <= 3.5) {
+                _this.restaurant_active[_x].rate_color = 'bg-warning';
+              } else if (_this.restaurant_active[_x].rate >= 3.6 && _this.restaurant_active[_x].rate <= 4.0) {
+                _this.restaurant_active[_x].rate_color = 'bg-info';
+              } else if (_this.restaurant_active[_x].rate >= 4.1 && _this.restaurant_active[_x].rate <= 5.0) {
+                _this.restaurant_active[_x].rate_color = 'bg-success';
+              } else {
+                _this.restaurant_active[_x].rate_color = 'bg-secondary';
+              } // Assigning to restaurant
+
+
+              _this.restaurant = _this.restaurant_active; // loading
+
+              _this.loading = true;
+            }
+          });
         }
       });
     }
   },
+  // Components
   // Mounted
   mounted: function mounted() {
-    this.restaurants();
-    console.log("Sidebar");
+    this.sidebar_restaurants();
   }
 });
 
@@ -88914,83 +88898,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "business_list" } }, [
-    !_vm.loading
-      ? _c(
-          "div",
-          [
-            _c("loading", {
-              attrs: { active: _vm.isLoading },
-              on: {
-                "update:active": function($event) {
-                  _vm.isLoading = $event
-                }
-              }
-            })
-          ],
-          1
-        )
-      : _c("div", [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8 mx-auto" }, [
-                _c("h6", { staticClass: "bg-danger btn" }, [
-                  _vm._v("Upcoming Events")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row" },
-                  _vm._l(_vm.restaurants, function(restaurants, index) {
-                    return index <= 1
-                      ? _c("div", { staticClass: "col-md-6" }, [
-                          _c("div", { staticClass: "card" }, [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: {
-                                      href: "restaurant/" + restaurants.id
-                                    }
-                                  },
-                                  [
-                                    _c("div", {
-                                      staticClass: "banner",
-                                      style: {
-                                        backgroundImage:
-                                          "url(img/" + restaurants.banner + ")"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        !_vm.loading
+          ? _c("div", { staticClass: "col-md-12 loading" })
+          : _c("div", { staticClass: "col-md-8 mx-auto" }, [
+              _c("h6", { staticClass: "bg-danger btn" }, [
+                _vm._v("Upcoming Events")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.restaurants, function(restaurants, index) {
+                  return index <= 1
+                    ? _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6 col-sm-6" }, [
                               _c(
-                                "div",
-                                { staticClass: "col-md-6 col-sm-6 p-3 info" },
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "restaurant/" + restaurants.id
+                                  }
+                                },
                                 [
-                                  _c("h5", [_vm._v(_vm._s(restaurants.name))]),
-                                  _vm._v(" "),
-                                  _c("h6", { staticClass: "pt-1" }, [
-                                    _vm._v(_vm._s(restaurants.mobile_no))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("h6", [
-                                    _vm._v(_vm._s(restaurants.location))
-                                  ])
+                                  _c("div", {
+                                    staticClass: "banner",
+                                    style: {
+                                      backgroundImage:
+                                        "url(img/" + restaurants.banner + ")"
+                                    }
+                                  })
                                 ]
                               )
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-6 col-sm-6 p-3 info" },
+                              [
+                                _c("h5", [_vm._v(_vm._s(restaurants.name))]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "pt-1" }, [
+                                  _vm._v(_vm._s(restaurants.mobile_no))
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", [_vm._v(_vm._s(restaurants.location))])
+                              ]
+                            )
                           ])
                         ])
-                      : _vm._e()
-                  }),
-                  0
-                )
-              ])
+                      ])
+                    : _vm._e()
+                }),
+                0
+              )
             ])
-          ])
-        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -90854,194 +90821,57 @@ var render = function() {
       _c("div", { staticClass: "card p-3" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.restaurant, function(restaurant, index) {
-            return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-12" }, [
-                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                    _c("div", {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage: "url(/img/" + restaurant.banner + ")"
-                      }
-                    }),
-                    _vm._v(" "),
-                    restaurant.rating != null
-                      ? _c("div", { staticClass: "rate" }, [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "btn",
-                              class: restaurant.rate_color
-                            },
-                            [_vm._v(_vm._s(restaurant.rating))]
-                          )
-                        ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-dark pt-3" }, [
-                    _vm._v(_vm._s(restaurant.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.location))
-                  ])
-                ])
-              : _vm._e()
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card p-3" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.restaurant, function(restaurant, index) {
-            return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                    _c("div", {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage: "url(/img/" + restaurant.banner + ")"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-dark pt-3" }, [
-                    _vm._v(_vm._s(restaurant.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.location))
-                  ])
-                ])
-              : _vm._e()
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card p-3" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.restaurant, function(restaurant, index) {
-            return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                    _c("div", {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage: "url(/img/" + restaurant.banner + ")"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-dark pt-3" }, [
-                    _vm._v(_vm._s(restaurant.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.location))
-                  ])
-                ])
-              : _vm._e()
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card p-3" }, [
-        _vm._m(3),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.restaurant, function(restaurant, index) {
-            return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                    _c("div", {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage: "url(/img/" + restaurant.banner + ")"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-dark pt-3" }, [
-                    _vm._v(_vm._s(restaurant.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.location))
-                  ])
-                ])
-              : _vm._e()
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card p-3" }, [
-        _vm._m(4),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          _vm._l(_vm.restaurant, function(restaurant, index) {
-            return index <= 1
-              ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-6" }, [
-                  _c("a", { attrs: { href: "/restaurant/" + restaurant.id } }, [
-                    _c("div", {
-                      staticClass: "banner",
-                      style: {
-                        backgroundImage: "url(/img/" + restaurant.banner + ")"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "text-dark pt-3" }, [
-                    _vm._v(_vm._s(restaurant.name))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.mobile_no))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted my-0" }, [
-                    _vm._v(_vm._s(restaurant.location))
-                  ])
-                ])
-              : _vm._e()
-          }),
-          0
-        )
+        !_vm.loading
+          ? _c("div", { staticClass: "loading" })
+          : _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.restaurant, function(restaurant, index) {
+                return index <= 1
+                  ? _c("div", { staticClass: "col-md-6 col-sm-6 col-xs-12" }, [
+                      _c(
+                        "a",
+                        { attrs: { href: "/restaurant/" + restaurant.id } },
+                        [
+                          _c("div", {
+                            staticClass: "banner",
+                            style: {
+                              backgroundImage:
+                                "url(/img/" + restaurant.banner + ")"
+                            }
+                          }),
+                          _vm._v(" "),
+                          restaurant.rate != null
+                            ? _c("div", { staticClass: "rate" }, [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "btn",
+                                    class: restaurant.rate_color
+                                  },
+                                  [_vm._v(_vm._s(restaurant.rate))]
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("h6", { staticClass: "text-dark pt-3" }, [
+                        _vm._v(_vm._s(restaurant.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-muted my-0" }, [
+                        _vm._v(_vm._s(restaurant.mobile_no))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-muted my-0" }, [
+                        _vm._v(_vm._s(restaurant.location))
+                      ])
+                    ])
+                  : _vm._e()
+              }),
+              0
+            )
       ])
     ])
   ])
@@ -91056,48 +90886,6 @@ var staticRenderFns = [
         _c("i", { staticClass: "fas fa-utensils mr-2 text-danger" })
       ]),
       _vm._v(" Restaurant")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "py-2" }, [
-      _c("span", [
-        _c("i", { staticClass: "far fa-calendar-alt mr-2 text-info" })
-      ]),
-      _vm._v(" Events")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "py-2" }, [
-      _c("span", [
-        _c("i", { staticClass: "fas fa-utensils mr-2 text-warning" })
-      ]),
-      _vm._v(" Sales")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "py-2" }, [
-      _c("span", [
-        _c("i", { staticClass: "fas fa-hotel mr-2 text-secondary" })
-      ]),
-      _vm._v(" Hotels")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", { staticClass: "py-2" }, [
-      _c("span", [_c("i", { staticClass: "fas fa-home mr-2 text-primary" })]),
-      _vm._v(" Rents")
     ])
   }
 ]

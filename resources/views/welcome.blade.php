@@ -38,7 +38,7 @@
         </div>
     </div>
 </div>
-<div id="home_featured" class="py-4">
+<div id="home_featured" class="py-4" style="min-height: 100vh">
     <home-featured></home-featured>
 </div>
 @endsection

@@ -11228,6 +11228,18 @@ CSS style
   margin-right: 10px;
 }
 
+/**
+Loading ....
+Background resource loading
+  */
+
+.loading {
+  background-image: url("/img/spinner-loading.gif");
+  background-position: center center;
+  background-size: cover;
+  height: 120px;
+}
+
 #dashboard {
   /*Facility  */
   /** Upload Browser Css  */
