@@ -54,12 +54,9 @@ Route::get('/home', 'HomeController@index')->name('home');
  *  */ 
 Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@restaurant');
 Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
-Route::get('restaurants/list/', 'Restaurant\RestaurantBasicInfoController@all');
 
 /**
  * 
  * Testing the image upload
  *  */ 
 Route::post('images_upload','HomeController@images_upload');
-// Route::post('upload', 'HomeController@upload');
-// Route::get('upload','HomeController@upload');

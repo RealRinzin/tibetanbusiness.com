@@ -25,18 +25,6 @@ class RestaurantBasicInfoController extends Controller
         // return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::get());
         $restaurants =  RestaurantBasicInfo::all();
         return $restaurants->toArray($restaurants);
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return "this is create";
     }
 
     /**
@@ -90,10 +78,6 @@ class RestaurantBasicInfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function show($id)
-    // {
-    //     return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
-    // }
-    // public function show($id)
     public function show($id)
     {
         // return specific user;
@@ -108,7 +92,6 @@ class RestaurantBasicInfoController extends Controller
      */
     public function edit($id)
     {
-        //
         return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     }
 
@@ -121,11 +104,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // return $request;
         $restaurantOperationDay = RestaurantBasicInfo::find($id);
-        // update
-        // return $request;
         $restaurantOperationDay->update($request->all());
     }
     /**
@@ -178,11 +157,11 @@ class RestaurantBasicInfoController extends Controller
     public function user_restaurant(User $user,RestaurantBasicInfo $restaurantBasicInfo)
     {
         // Getting only auth resources
-        // $restaurants = Auth::user()->restaurant_basic_infos;
-        // return $restaurants->toArray($restaurants);
-
-        $restaurants =  RestaurantBasicInfo::all();
+        $restaurants = Auth::user()->restaurant_basic_infos;
         return $restaurants->toArray($restaurants);
+
+        // $restaurants =  RestaurantBasicInfo::all();
+        // return $restaurants->toArray($restaurants);
     }
     /**
      * Display a listing of the resource.
@@ -199,7 +178,6 @@ class RestaurantBasicInfoController extends Controller
      *  */
     public function restaurant_edit(RestaurantBasicInfo $restaurantBasicInfo, $id)
     {
-
         if(Auth::user()->id === RestaurantBasicInfo::find($id)->user_id){
             return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
         }else{
@@ -215,21 +193,15 @@ class RestaurantBasicInfoController extends Controller
     {
         $restaurant = RestaurantBasicInfo::find($id);
         return $restaurant;
-
     }
     /**
-     * 
      *  Updating Star rating
      * Restaurant
      * Star Rate
      * 
      *  */
     public function update_rate(Request $request, $id){
-        // return $request;
-        // return $request;
         $rate = RestaurantBasicInfo::find($id);
-        // update
-        // return $request;
         $rate->update($request->all());
     }
     /**
@@ -239,7 +211,6 @@ class RestaurantBasicInfoController extends Controller
      * 
      *  */
     public function status_update(Request $request,$id){
-        //
         $status = RestaurantBasicInfo::find($id);
         // update
         $status->update($request->all());
@@ -276,13 +247,9 @@ class RestaurantBasicInfoController extends Controller
      * Banner etc
      *  */ 
     public function featured_ad(){
-
         $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
         ->orderBy('created_at','desc')->get();
         return $restaurants->toArray($restaurants);
-        // $comments = RestaurantComment::where('restaurant_basic_info_id', '=', "$id")
-        //     ->orderBy('created_at', 'desc')->paginate(3);
-        // return $comments->toArray($comments);
     }
     // Front
     public function home_ad(){

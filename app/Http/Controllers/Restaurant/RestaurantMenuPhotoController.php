@@ -51,7 +51,6 @@ class RestaurantMenuPhotoController extends Controller
 
             }
         }
-        return $restaurant;
         return response()->json([
             "message" => "Done"
         ]);

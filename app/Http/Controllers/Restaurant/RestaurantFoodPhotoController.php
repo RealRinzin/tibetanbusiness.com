@@ -65,7 +65,6 @@ class RestaurantFoodPhotoController extends Controller
                 $image->store('public\Restaurant\Food-Pictures');
             }
         }
-        return $restaurant;
         return response()->json([
             "message" => "Done"
         ]);

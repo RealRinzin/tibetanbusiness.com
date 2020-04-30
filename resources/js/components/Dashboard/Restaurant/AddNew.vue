@@ -167,6 +167,12 @@
 import { Validator } from 'vee-validate';
 
 export default {
+    props: {
+      callback: {
+        type: Function,
+        name: 'load_restaurant',
+      }
+    },
     data(){
         return {
             // restaurant Id
@@ -259,6 +265,8 @@ export default {
                             })
                             .then(response=>{
                             })
+                            this.$emit('load_restaurant');
+
                     })
                 })
             }

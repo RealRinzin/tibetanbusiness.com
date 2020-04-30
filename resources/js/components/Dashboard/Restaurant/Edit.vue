@@ -70,10 +70,10 @@
                                 <dashboard-restaurant-overview :restaurant="overview" :operation="operation" :facilities="facilities"></dashboard-restaurant-overview>
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                <dashboard-restaurant-menu-photo v-bind:menu_photos="restaurant.menu_photos" :id="restaurant.id"></dashboard-restaurant-menu-photo>
+                                <dashboard-restaurant-menu-photo v-bind:menu_photos="restaurant.menu_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-menu-photo>
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-                                <dashboard-restaurant-food-photo v-bind:food_photos="restaurant.food_photos" :id="restaurant.id"></dashboard-restaurant-food-photo>
+                                <dashboard-restaurant-food-photo v-bind:food_photos="restaurant.food_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-food-photo>
                             </div>
                             <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                                 <dashboard-restaurant-comment v-bind:comments="comments"></dashboard-restaurant-comment>

@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <div v-if="!load">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -84,7 +83,7 @@
                         this.isLoading = false; //Loading true
                         this.load = true;
                     }else{
-                        axios.get('restaurants/list')
+                        axios.get('/api/restaurant/list/all')
                         .then(response=>{
                             // Assign normal live status
                             response.data.data.forEach(element => {

@@ -102,7 +102,7 @@
  
 <script>
   export default {
-    props:['menu_photos','id'],
+    props:['menu_photos','id','load'],
     data() {
       return {
         photos:{},
@@ -233,7 +233,10 @@
                   });
                   this.images = [];
                   this.files = [];
-                  $("#upload_menu_photos_modal").modal("hide");  
+                  $("#upload_menu_photos_modal").modal("hide"); 
+
+                // callback function
+                  this.$emit('load');
               })
         }
         

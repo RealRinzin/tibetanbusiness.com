@@ -1,10 +1,9 @@
 <template>
     <div id="business_list">
+        <loading :active.sync="isLoading"></loading>
         <div class="container">
             <div class="row">
-                <!-- Restaurant -->
-                <div v-if="!loading" class="col-md-12 loading"></div>
-                <div v-else  class="col-md-8 mx-auto">
+                <div class="col-md-8 mx-auto">
                     <h6 class="bg-danger btn">Upcoming Events</h6>
                     <div class="row">
                         <div class="col-md-6" v-for="(restaurants,index) in restaurants" v-if="index <= 1">
@@ -36,7 +35,8 @@
 export default {
     data(){
         return{
-            loading:false,
+            // loading:false,
+            isLoading : false,//Lazy loading
             restaurants:[],
         }
     },
@@ -47,23 +47,29 @@ export default {
             // home advertisment
             axios.get('api/restaurant/list/home_ad')
             .then(response=>{
+                this.isLoading = true; //Loading true
                 if(response.data.length > 0){
                     for (let index = 0; index < response.data.length; index++) {
                         this.restaurants[index] = response.data[Math.floor(Math.random() *response.data.length)]
                     }
-                    this.loading = true;
+                    this.isLoading = false; //Loading true
                 }else{
-                    axios.get('restaurants/list').then(response=>{
+                    axios.get('/api/restaurant/list/all').then(response=>{
+                        this.isLoading = true; //Loading true
                         for (let index = 0; index < response.data.data.length; index++) {
                             this.restaurants[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
                         }
-                        // loading
-                        this.loading = true;
+                        this.isLoading = false; //Loading true
                     })
                 }
             })
         }
     },
+    /**
+     * 
+     * Components
+     *  */  
+    components:{Loading},
     mounted(){
         this.restaurant_list(); // Restaurant
     }

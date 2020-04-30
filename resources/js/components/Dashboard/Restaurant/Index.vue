@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            <dashboard-restaurant-add></dashboard-restaurant-add>
+            <dashboard-restaurant-add @load_restaurant="load_restaurant"></dashboard-restaurant-add>
         </div>
     </div>
 </template>

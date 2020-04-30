@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 */
 
 // 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 /**
  * Resources Authorization
  * Token base API
@@ -59,3 +59,4 @@ Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentContr
 Route::get('restaurant/list/featured_ad/', 'Restaurant\RestaurantBasicInfoController@featured_ad');
 Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
 Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
+Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');

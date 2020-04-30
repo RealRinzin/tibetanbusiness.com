@@ -28,7 +28,7 @@
                     <div id="food_photo_carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==food_active }">
-                                <div style="height:55vh" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
+                                <div style="height:55vh" class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#food_photo_carousel" role="button" data-slide="prev">
@@ -101,7 +101,7 @@
 </template>
 <script>
   export default {
-    props:['food_photos','id'],
+    props:['food_photos','id','load'],
     // data
     data() {
       return {
@@ -239,6 +239,8 @@
                   this.fp_images = [];
                   this.fp_files = [];
                   $("#upload_food_photos_modal").modal("hide");  
+                  // callback
+                  this.$emit('load');
               })
         }
 
