@@ -21,4 +21,9 @@ class RentRoomPhoto extends Model
     }
     // mass fill
     protected $guarded = [];
+    // Relationship
+    public function rent_basic_infos()
+    {
+        return $this->belongsTo(RentBasicInfo::class);
+    }
 }

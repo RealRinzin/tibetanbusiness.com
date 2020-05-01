@@ -1,5 +1,10 @@
 <?php
 
+use App\Rent\RentBasicInfo;
+use App\Rent\RentComment;
+use App\Rent\RentFacility;
+use App\Rent\RentRoomPhoto;
+use App\Rent\RentViewPhoto;
 use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantComment;
 use App\Restaurant\RestaurantFacility;
@@ -18,12 +23,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 2)->create();
-        // Restaurant Factories
-        factory(RestaurantBasicInfo::class, 2)->create();
-        factory(RestaurantFacility::class, 2)->create();
-        factory(RestaurantOperationDay::class, 2)->create();
-        factory(RestaurantFoodPhoto::class, 2)->create();
-        factory(RestaurantMenuPhoto::class, 10)->create();
-        factory(RestaurantComment::class, 2)->create();
+        // Restaurant DB Seed
+        // factory(RestaurantBasicInfo::class, 2)->create();
+        // factory(RestaurantFacility::class, 2)->create();
+        // factory(RestaurantOperationDay::class, 2)->create();
+        // factory(RestaurantFoodPhoto::class, 2)->create();
+        // factory(RestaurantMenuPhoto::class, 10)->create();
+        // factory(RestaurantComment::class, 2)->create();
+        // Rent DB Seed
+        factory(RentBasicInfo::class, 2)->create();
+        factory(RentComment::class, 2)->create();
+        factory(RentRoomPhoto::class, 2)->create();
+        factory(RentViewPhoto::class, 2)->create();
+        factory(RentFacility::class, 2)->create();
     }
 }
