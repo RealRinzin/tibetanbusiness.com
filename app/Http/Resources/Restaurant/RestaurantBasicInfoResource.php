@@ -43,6 +43,7 @@ class RestaurantBasicInfoResource extends JsonResource
             'operation' => RestaurantOperationDayResource::collection($this->restaurant_operation_days),
             'food_photos' => RestaurantFoodPhotoResource::collection($this->restaurant_food_photos),
             'menu_photos' => RestaurantMenuPhotoResource::collection($this->restaurant_menu_photos),
+            // 'posts' => RestaurantMenuPhotoResource::collection($this->whenLoaded('restaurant_menu_photos')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

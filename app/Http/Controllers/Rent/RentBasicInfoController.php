@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Restaurant\RestaurantFoodPhoto;
-use Illuminate\Support\Facades\Auth;
 
-class RestaurantFoodPhotoController extends Controller
+class RentBasicInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,18 @@ class RestaurantFoodPhotoController extends Controller
     public function index()
     {
         //
-        return "Restaurant Food Photos";
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,20 +36,6 @@ class RestaurantFoodPhotoController extends Controller
     public function store(Request $request)
     {
         //
-        if (count($request->images)) {
-            foreach ($request->images as $image) {
-                $restaurant = RestaurantFoodPhoto::create([
-                    'restaurant_basic_info_id' => $request->id,
-                    'path' => $image->store(''),
-                    'user_id' => Auth::user()->id,
-                ]);
-                // $image->store('public\images');
-                $image->store('public\Restaurant\Food-Pictures');
-            }
-        }
-        return response()->json([
-            "message" => "Done"
-        ]);
     }
 
     /**
@@ -87,11 +81,5 @@ class RestaurantFoodPhotoController extends Controller
     public function destroy($id)
     {
         //
-        $photos = RestaurantFoodPhoto::find($id);
-        $photos->delete();
-        // Deleting the file too
-        if($photos->path){
-            unlink('img/' . $photos->path);
-        }
     }
 }
