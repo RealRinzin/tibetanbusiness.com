@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Rent\RentBasicInfoResource;
+use App\Rent\RentBasicInfo;
 
 class RentBasicInfoController extends Controller
 {
@@ -14,7 +16,11 @@ class RentBasicInfoController extends Controller
      */
     public function index()
     {
-        //
+        return RentBasicInfoResource::collection(RentBasicInfo::all());
+        // return RentBasicInfoResource::collection(RentBasicInfoResource::get());
+
+        $rents =  RentBasicInfo::all();
+        return $rents->toArray($rents);
     }
 
     /**

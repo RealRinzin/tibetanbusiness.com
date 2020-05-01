@@ -48,9 +48,9 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
-        Route::apiResource('rent','Rent\RentBasicInfoController');
-});
-/**
+    });
+    Route::apiResource('rent','Rent\RentBasicInfoController');
+    /**
  * RESTAURANT API (DEAUTH)
  * Restaurannt
  * Access the resource Without authorization
