@@ -5,8 +5,9 @@ namespace App\Rent;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class RentBasicInfo extends Model
+class RentComment extends Model
 {
+    //
     //Rent connection
     protected $connection = 'rent';
     // Increment

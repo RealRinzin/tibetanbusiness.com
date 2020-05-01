@@ -9,9 +9,7 @@ use App\User;
 class RestaurantBasicInfo extends Model
 {
     protected $connection = 'restaurant';
-    // protected $table = 'restaurant_basic_infos';
-    // protected $table = 'restaurants'; 
-    // uuid
+
     public $incrementing = false;
     protected static function boot()
     {
