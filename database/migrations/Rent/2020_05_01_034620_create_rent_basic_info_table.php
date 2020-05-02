@@ -20,11 +20,12 @@ class CreateRentBasicInfoTable extends Migration
             $table->string('banner', 80);
             $table->decimal('fare', 10, 0);
             $table->decimal('rate', 5, 1)->nullable();
-            $table->string('rate_color', 15)->nullable();
+            $table->string('rate_color', 100)->nullable();
             $table->string('address', 250)->nullable();
             $table->text('location', 30);
             $table->string('mobile_no', 12);
             $table->string('email', 100);
+            $table->string('accomodation_size',2);
             $table->string('instagram', 100)->nullable();
             $table->string('facebook', 100)->nullable();
             $table->boolean('status');

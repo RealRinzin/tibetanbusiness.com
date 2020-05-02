@@ -140,6 +140,7 @@ Vue.component('image-upload', require('./components/ImageUpload.vue').default);
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
+Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
 
 /**
  * 
@@ -152,7 +153,11 @@ Vue.component('menu-photo', require('./components/Restaurant/MenuPhoto.vue').def
 Vue.component('food-photo', require('./components/Restaurant/FoodPhoto.vue').default);
 Vue.component('restaurant-comment', require('./components/Restaurant/Comments.vue').default);
 
-
+// Rent Components
+Vue.component('rent-show', require('./components/Rent/Show.vue').default);
+Vue.component('rent-room-photo', require('./components/Rent/RentRoomPhoto.vue').default);
+Vue.component('rent-view-photo', require('./components/Rent/RentViewPhoto.vue').default);
+Vue.component('rent-comment', require('./components/Rent/RentComment.vue').default);
 
 
 /**

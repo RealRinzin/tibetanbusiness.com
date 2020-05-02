@@ -8,7 +8,6 @@
         url="https://tibetanbusiness.com"
         />
         <div id="restaurant" style="min-height:80vh">
-            
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>

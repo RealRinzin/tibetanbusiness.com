@@ -27,6 +27,7 @@ class CreateRentFacilitiesTable extends Migration
             $table->boolean('pet_allowed');
             $table->boolean('gym');
             $table->boolean('garden');
+            $table->boolean('parking_space');
             $table->timestamps();
         });
     }

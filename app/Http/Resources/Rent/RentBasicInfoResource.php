@@ -22,7 +22,9 @@ class RentBasicInfoResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'user_id' => $this->user_id,
+            'fare' => $this->fare,
             'rate' => $this->rate,
+            'rate_color' => $this->rate_color,
             'banner' => $this->banner,
             'address' => $this->address,
             'location' => $this->location,
@@ -31,6 +33,8 @@ class RentBasicInfoResource extends JsonResource
             'instagram' => $this->instagram,
             'facebook' => $this->facebook,
             'status' => $this->status,
+            'accomodation_size' => $this->accomodation_size,
+            'description' => $this->description,
             // counting the review stars
             'rating' => $this->rent_comments->count() > 0 ? round($this->rent_comments->sum('rate') / $this->rent_comments->count(), 1) : null,
             'facility' => RentFacilityResource::collection($this->rent_facilities),

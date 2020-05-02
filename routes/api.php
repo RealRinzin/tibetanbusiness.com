@@ -48,8 +48,8 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
+        Route::apiResource('rent','Rent\RentBasicInfoController');
     });
-    Route::apiResource('rent','Rent\RentBasicInfoController');
     /**
  * RESTAURANT API (DEAUTH)
  * Restaurannt
@@ -58,8 +58,19 @@ use Illuminate\Http\Request;
  * Comments
  * Listing Advertisment
  *  */
-Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
-Route::get('restaurant/list/featured_ad/', 'Restaurant\RestaurantBasicInfoController@featured_ad');
-Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
-Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
-Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');
+    Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
+    Route::get('restaurant/list/featured_ad/', 'Restaurant\RestaurantBasicInfoController@featured_ad');
+    Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
+    Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
+    Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');
+
+/**
+ * RENT API 
+ * Custom 
+ * Deauthorized
+  */
+    Route::get('rent/list/all', 'Rent\RentBasicInfoController@all'); //all rents
+    Route::get('rent/view/{id}','Rent\RentBasicInfoController@display'); // show individual (no authorization)
+    Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
+    Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
+    Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');

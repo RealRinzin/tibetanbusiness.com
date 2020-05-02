@@ -59,4 +59,8 @@ Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@vie
  * 
  * Testing the image upload
  *  */ 
+/**
+ * Rent
+ *  */ 
+Route::get('rent/{id}','Rent\RentBasicInfoController@view');
 Route::post('images_upload','HomeController@images_upload');

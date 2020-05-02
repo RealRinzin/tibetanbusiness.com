@@ -24,6 +24,7 @@
                             </div>
                         </div>
                     </div>
+                    <featured-rent></featured-rent>
                 </div>
             </div>
         </div> 
@@ -46,8 +47,8 @@
                 load:false,
                 isLoading : false,//Lazy loading
                 restaurant:{},
-                // random test
                 online_restaurant:[],
+                // random test
             }
         },
         /**

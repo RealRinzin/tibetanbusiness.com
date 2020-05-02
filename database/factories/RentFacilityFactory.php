@@ -19,6 +19,7 @@ $factory->define(RentFacility::class, function (Faker $faker) {
         'pet_allowed' => $faker->boolean(),
         'gym' => $faker->boolean(),
         'garden' => $faker->boolean(),
+        'parking_space' => $faker->boolean(),
         'rent_basic_info_id' => function () {
             // return User::all()->random();
             return RentBasicInfo::all()->random();

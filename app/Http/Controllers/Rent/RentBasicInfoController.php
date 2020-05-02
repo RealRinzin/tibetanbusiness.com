@@ -88,4 +88,50 @@ class RentBasicInfoController extends Controller
     {
         //
     }
+
+    /**
+     * Get all Rent 
+     * without authorization
+     *  */
+    public function all(){
+        $rents =  RentBasicInfo::orderBy('created_at', 'desc')->get();
+        return $rents->toArray($rents);
+    }
+
+    public function view(RentBasicInfo $rentBasicInfo, $id)
+    {
+        return view('rent.show', ['id' => RentBasicInfo::find($id)]);
+
+    }
+    // Display the restaurant Show
+    public function display($id){
+        return new RentBasicInfoResource(RentBasicInfo::find($id));
+    }
+    /**
+     * 
+     * Restaurant Advertisment
+     * Home Featured
+     * Sidebar
+     * Banner etc
+     *  */
+    public function featured_ad()
+    {
+        $restaurants =  RentBasicInfo::where('featured_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
+    // Front
+    public function home_ad()
+    {
+        $restaurants =  RentBasicInfo::where('home_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
+    // Sidebar
+    public function sidebar_ad()
+    {
+        $restaurants =  RentBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
 }
