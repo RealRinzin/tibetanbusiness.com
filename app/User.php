@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Rent\RentBasicInfo;
 use App\Restaurant\RestaurantBasicInfo;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Notifications\Notifiable;
@@ -51,14 +52,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    // relationship
+    /**
+     * RELATIONSHIP 
+     * TABLES
+     *  */  
+    // RESTAURANT
     public function restaurant_basic_infos()
     {
         return $this->hasMany(RestaurantBasicInfo::class);
     }
-    // post 
-    public function posts()
+    // RENT
+    public function rent_basic_infos()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(RentBasicInfo::class);
     }
+
 }

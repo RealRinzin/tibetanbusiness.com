@@ -53,6 +53,9 @@ use Illuminate\Http\Request;
         Route::apiResource('rent_facilities', 'Rent\RentFacilityController');
         Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController');
         Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController');
+        Route::get('user/rents', 'Rent\RentBasicInfoController@user_rent');
+        Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
+    
     });
     /**
  * RESTAURANT API (DEAUTH)

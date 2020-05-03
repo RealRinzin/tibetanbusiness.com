@@ -33,10 +33,6 @@ export default {
             loading: false,
             restaurant:[], // Restaurants Object
             restaurant_active:[],
-            event:[],//Events object
-            sale:{},//Sales Object
-            hotel:{},//Hotels Object
-            rent:{},//Rents Object
         }
     },
     /**

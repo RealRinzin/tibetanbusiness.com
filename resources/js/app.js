@@ -141,6 +141,13 @@ Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').def
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
+/**
+ * Sidebar
+ * Check
+ *  */ 
+Vue.component('sidebar', require('./components/Home/Sidebar.vue').default);
+Vue.component('rent-sidebar', require('./components/Rent/Sidebar.vue').default);
+
 
 /**
  * 
@@ -174,7 +181,10 @@ Vue.component('dashboard-restaurant-menu-photo', require('./components/Dashboard
 Vue.component('dashboard-restaurant-food-photo', require('./components/Dashboard/Restaurant/FoodPhoto.vue').default);
 Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Restaurant/Comment.vue').default);
 Vue.component('dashboard-restaurant-add', require('./components/Dashboard/Restaurant/AddNew.vue').default);
-// Vue.component('test-vue', require('./components/TestVue.vue').default);
+
+// Rent Dashboard
+Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
+Vue.component('dashboard-rent-edit', require('./components/Dashboard/Rent/Edit.vue').default);
 
 
 /**

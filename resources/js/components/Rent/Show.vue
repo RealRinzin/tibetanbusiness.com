@@ -37,34 +37,36 @@
                                                     <div class="col-md-6 col-sm-6">
                                                         <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
-                                                        <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{rent.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{rent.location}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
                                                     </div>
                                                 <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">Facilities</h6>
-                                                    <p class="text-success" v-if="rent.facility[0].geyser"> <i class="fas fa-truck mr-1"></i> Geyser</p>
-                                                    <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i>Geyser</p>
+                                                    <p class="text-success" v-if="rent.facility[0].geyser"> <i class="fas fa-subway mr-1"></i> Geyser</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-subway mr-1"></i>Geyser</p>
                                                     <p class="text-success" v-if="rent.facility[0].wifi"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-wifi mr-1"></i> Wifi</p>
-                                                    <p class="text-success" v-if="rent.facility[0].ac"> <i class="fab fa-cc-visa mr-1"></i>AC</p>
-                                                    <p class="text-danger" v-else> <i class="fab fa-cc-visa mr-1"></i>AC</p>
-                                                    <p class="text-success" v-if="rent.facility[0].washing_machine"><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
-                                                    <p class="text-danger" v-else><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
-                                                    <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-fan mr-1"></i>Gym</p>
-                                                    <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>Gym</p>
+                                                    <p class="text-success" v-if="rent.facility[0].ac"> <i class="fas fa-fan mr-1"></i>AC</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>AC</p>
+                                                    <p class="text-success" v-if="rent.facility[0].washing_machine"><i class="fas fa-power-off mr-1"></i>Washing Machine</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-power-off mr-1"></i>Washing Machine</p>
+                                                    <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
+                                                    <p class="text-success" v-if="rent.facility[0].pet_allowed"> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-car mr-1"></i>Pet Allowed</p>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">More</h6>
-                                                    <p class="text-success" v-if="rent.facility[0].single_room "><i class="fas fa-building mr-1"></i>Single Room</p>
-                                                    <p class="text-danger" v-else><i class="fas fa-building mr-1"></i>Single Room</p>
-                                                    <p class="text-success" v-if="rent.facility[0].double_room "> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
-                                                    <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
-                                                    <p class="text-success" v-if="rent.facility[0].fridge "> <i class="far fa-stop-circle mr-1"></i> Fridge</p>
-                                                    <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Fridge</p>
-                                                    <p class="text-success" v-if="rent.facility[0].garden"><i class="fas fa-car mr-1"></i>Garden</p>
-                                                    <p class="text-danger" v-else><i class="fas fa-car mr-1"></i> Garden</p>
-                                                    <p class="text-success" v-if="rent.facility[0].parking_space"> <i class="fas fa-beer mr-1"></i>Parking Space</p>
-                                                    <p class="text-danger" v-else> <i class="fas fa-beer mr-1"></i>Parking Space</p>
+                                                    <p class="text-success" v-if="rent.facility[0].single_room "><i class="fas fa-bed mr-1"></i>Single Room</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-bed mr-1"></i>Single Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].double_room "> <i class="fas fa-bed mr-1"></i>Double Room</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-bed mr-1"></i>Double Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].fridge "> <i class="fas fa-box mr-1"></i> Fridge</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-box mr-1"></i>Fridge</p>
+                                                    <p class="text-success" v-if="rent.facility[0].garden"><i class="fas fa-tree mr-1"></i>Garden</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-tree mr-1"></i> Garden</p>
+                                                    <p class="text-success" v-if="rent.facility[0].parking_space"> <i class="fas fa-car mr-1"></i>Parking Space</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-car mr-1"></i>Parking Space</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,7 +83,7 @@
                                         </div>
                                         <div class="col-md-6"> 
                                             <h6>Location</h6>
-                                            <!-- <geo-map></geo-map> -->
+                                            <geo-map></geo-map>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +100,8 @@
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
-                                    <restaurant-sidebar v-bind:rating="rating"></restaurant-sidebar>
+                                <!-- sidebar -->
+                                <sidebar></sidebar>
                             </div>
                     </div>
                 </div>

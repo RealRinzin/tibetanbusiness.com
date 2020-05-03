@@ -34,8 +34,14 @@ Route::group(['middleware' => ['auth']], function () {
             // Matches The "/admin/users" URL
             return view('dashboard.Restaurant.index');
         })->name('dashboard.restaurant');
-        // EVENTS
         Route::get('restaurant/edit/id={id}','Restaurant\RestaurantBasicInfoController@restaurant_edit');
+
+        // RENT
+        Route::get('rent', function(){
+            return view('dashboard.Rent.index');
+        })->name('dashboard.rent');
+        Route::get('rent/edit/id={id}', 'Rent\RentBasicInfoController@rent_edit');
+
     });
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
 });
