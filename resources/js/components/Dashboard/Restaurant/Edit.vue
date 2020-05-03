@@ -14,8 +14,8 @@
                                             <i class="fas fa-camera fa-5x text-white"></i>
                                         </div>
                                         <div class="col-md-12 py-4">
-                                            <label  for="file" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
-                                            <input type="file"  id="file" name="banner" class="upload_browser" @change="banner_event">
+                                            <label  for="banner" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
+                                            <input type="file"  id="banner" name="banner" class="upload_browser" @change="banner_event">
                                         </div>
                                     </div>
                                 </div>

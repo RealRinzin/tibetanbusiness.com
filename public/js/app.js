@@ -4579,7 +4579,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     load_comments: function load_comments() {
       var _this = this;
 
-      axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa').then(function (response) {
+      console.log(this.rent_uuid);
+      axios.get('/api/rent_comments/comment/' + this.rent_uuid).then(function (response) {
         _this.comments = response.data.data;
         _this.total_comments = response.data.total;
         /**
@@ -4621,9 +4622,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     load_more_comments: function load_more_comments(nextPage) {
       var _this2 = this;
 
-      axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa/?page=' + this.nextPage).then(function (response) {
-        console.log(response);
-
+      axios.get('/api/rent_comments/comment/' + this.rent_uuid + '/?page=' + this.nextPage).then(function (response) {
         if (response.data.current_page <= response.data.last_page) {
           _this2.nextPage = response.data.current_page + 1;
           _this2.load_more_button = true; // this.comments = response.data.data;
@@ -4652,20 +4651,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             } else {
               _this2.comments[index].rate_color = 'bg-secondary';
             }
-          } // for (let index = 0; index < this.comments.length; index++) {
-          //     if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
-          //         this.comments[index].rate_color = 'bg-danger';
-          //     }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
-          //         this.comments[index].rate_color = 'bg-warning';
-          //     }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
-          //         this.comments[index].rate_color = 'bg-info';
-          //     }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
-          //         this.comments[index].rate_color = 'bg-success';
-          //     }else{
-          //         this.comments[index].rate_color = 'bg-secondary';
-          //     }
-          // }
-
+          }
         } else {
           _this2.load_more_button = false;
         }
@@ -4787,21 +4773,14 @@ __webpack_require__.r(__webpack_exports__);
   props: ['rent_room_photos'],
   data: function data() {
     return {
-      room_photos: {},
-      total_photos: 0,
+      room_photos: this.rent_room_photos,
+      total_photos: this.rent_room_photos.length,
       //Total photos
       single_photo: {},
       //single photo
       modal_status: false //modal status
 
     };
-  },
-  // watch 
-  watch: {
-    rent_room_photos: function rent_room_photos(data) {
-      this.room_photos = data;
-      this.total_photos = data.length;
-    }
   },
   methods: {
     // Load Single Photo
@@ -4892,8 +4871,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['rent_view_photos'],
   data: function data() {
     return {
-      view_photos: {},
-      total_photos: 0,
+      view_photos: this.rent_view_photos,
+      total_photos: this.rent_view_photos.length,
       //Total photos
       single_photo: {},
       //single photo
@@ -4915,13 +4894,6 @@ __webpack_require__.r(__webpack_exports__);
     more_view_photo_modal: function more_view_photo_modal() {
       $("#more_view_photo_modal").modal("show");
       this.modal_status = true;
-    }
-  },
-  // watch 
-  watch: {
-    rent_view_photos: function rent_view_photos(data) {
-      this.view_photos = data;
-      this.total_photos = data.length;
     }
   },
   mounted: function mounted() {
@@ -5048,6 +5020,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 // Import component
  // Import stylesheet
 
@@ -5060,7 +5036,9 @@ __webpack_require__.r(__webpack_exports__);
       //Rent Id
       rent: {},
       //rent objects
-      isLoading: false //Lazy loading
+      isLoading: false,
+      //Lazy loading
+      loading: false //loading
 
     };
   },
@@ -5072,6 +5050,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/rent/view/' + this.id).then(function (response) {
         _this.rent = response.data.data;
         _this.isLoading = false;
+        _this.loading = true;
       });
     }
   },
@@ -5801,22 +5780,20 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       //Lazy loading
       // Object
-      restaurant: {},
-      //individual show
-      restaurants: {},
-      // Restaurant objects
+      restaurant: {} //individual show
+      // restaurants:{}, // Restaurant objects
+      // /**
+      //  * Comments
+      //  * Current Page 
+      //  * pagination
+      //  * last page
+      //  *  */ 
+      // comments:{},
+      // nextPage:2,
+      // load_more_button : true,
+      // total_comments:0,
+      // comments_lazy_load:false,
 
-      /**
-       * Comments
-       * Current Page 
-       * pagination
-       * last page
-       *  */
-      comments: {},
-      nextPage: 2,
-      load_more_button: true,
-      total_comments: 0,
-      comments_lazy_load: false
     };
   },
 
@@ -85826,7 +85803,7 @@ var render = function() {
                                 staticClass: "upload_browser",
                                 attrs: {
                                   type: "file",
-                                  id: "file",
+                                  id: "banner",
                                   name: "banner"
                                 },
                                 on: { change: _vm.banner_event }
@@ -86096,7 +86073,7 @@ var staticRenderFns = [
       "label",
       {
         staticClass: "text-center btn btn-danger btn-md",
-        attrs: { for: "file" }
+        attrs: { for: "banner" }
       },
       [
         _c("i", { staticClass: "fas fa-cloud-upload-alt mr-2" }),
@@ -90991,356 +90968,475 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { id: "restaurant" } },
-        [
-          _c("loading", {
-            attrs: { active: _vm.isLoading },
-            on: {
-              "update:active": function($event) {
-                _vm.isLoading = $event
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "container py-4" }, [
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-8 col-sm-12" },
-                [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "banner",
-                            style: {
-                              backgroundImage:
-                                "url(/img/" + _vm.rent.banner + ")"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "overlay" }, [
-                              _c(
-                                "h6",
-                                {
-                                  staticClass:
-                                    "font-weight-bold position-absolute btn btn-danger"
-                                },
-                                [_vm._v("Rs: " + _vm._s(_vm.rent.fare) + " /-")]
-                              ),
+      _c("div", { attrs: { id: "restaurant" } }, [
+        !_vm.loading
+          ? _c(
+              "div",
+              [
+                _c("loading", {
+                  attrs: { active: _vm.isLoading },
+                  on: {
+                    "update:active": function($event) {
+                      _vm.isLoading = $event
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          : _c("div", [
+              _c("div", { staticClass: "container py-4" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8 col-sm-12" },
+                    [
+                      _c("div", { staticClass: "card" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "banner",
+                                style: {
+                                  backgroundImage:
+                                    "url(/img/" + _vm.rent.banner + ")"
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "overlay" }, [
+                                  _c(
+                                    "h6",
+                                    {
+                                      staticClass:
+                                        "font-weight-bold position-absolute btn btn-danger"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Rs: " + _vm._s(_vm.rent.fare) + " /-"
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("ul", [
+                                    _vm.rent.rating != null
+                                      ? _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn-secondary btn text-white"
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-star pr-1 text-warning"
+                                              }),
+                                              _vm._v(_vm._s(_vm.rent.rating))
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.rent.facebook != null
+                                      ? _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: { href: _vm.rent.facebook }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fab fa-facebook-square fa-2x btn-primary btn"
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.rent.instagram != null
+                                      ? _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: _vm.rent.instagram
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fab fa-instagram fa-2x btn-danger btn"
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "row p-3 overview" }, [
+                              _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                                _c("h6", { staticClass: "text-muted py-1" }, [
+                                  _c("i", { staticClass: "fas fa-home mr-2" }),
+                                  _vm._v(_vm._s(_vm.rent.name))
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "text-muted py-1" }, [
+                                  _c("i", {
+                                    staticClass: "fas fa-phone-square-alt pr-2"
+                                  }),
+                                  _vm._v(_vm._s(_vm.rent.mobile_no))
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "text-muted" }, [
+                                  _c("i", {
+                                    staticClass: "fas fa-map-marker-alt mr-2"
+                                  }),
+                                  _vm._v(_vm._s(_vm.rent.location))
+                                ]),
+                                _vm._v(" "),
+                                _c("h6", { staticClass: "text-muted" }, [
+                                  _c("i", { staticClass: "fas fa-users mr-2" }),
+                                  _vm._v(
+                                    _vm._s(_vm.rent.accomodation_size) +
+                                      " people"
+                                  )
+                                ])
+                              ]),
                               _vm._v(" "),
-                              _c("ul", [
-                                _vm.rent.rating != null
-                                  ? _c("li", [
+                              _vm.rent.facility != null
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-md-3 col-sm-6 facility"
+                                    },
+                                    [
                                       _c(
-                                        "a",
-                                        {
-                                          staticClass:
-                                            "btn-secondary btn text-white"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fas fa-star pr-1 text-warning"
-                                          }),
-                                          _vm._v(_vm._s(_vm.rent.rating))
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.rent.facebook != null
-                                  ? _c("li", [
+                                        "h6",
+                                        { staticClass: "mb-3 text-muted" },
+                                        [_vm._v("Facilities")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].geyser
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-truck mr-1"
+                                              }),
+                                              _vm._v(" Geyser")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-truck mr-1"
+                                              }),
+                                              _vm._v("Geyser")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].wifi
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-wifi mr-1"
+                                              }),
+                                              _vm._v(" Wifi")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-wifi mr-1"
+                                              }),
+                                              _vm._v(" Wifi")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].ac
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fab fa-cc-visa mr-1"
+                                              }),
+                                              _vm._v("AC")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fab fa-cc-visa mr-1"
+                                              }),
+                                              _vm._v("AC")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].washing_machine
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-glass-cheers mr-1"
+                                              }),
+                                              _vm._v("Washing Machine")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-glass-cheers mr-1"
+                                              }),
+                                              _vm._v("Washing Machine")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].gym
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-fan mr-1"
+                                              }),
+                                              _vm._v("Gym")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-fan mr-1"
+                                              }),
+                                              _vm._v("Gym")
+                                            ]
+                                          )
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.rent.facility != null
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-md-3 col-sm-6 facility"
+                                    },
+                                    [
                                       _c(
-                                        "a",
-                                        { attrs: { href: _vm.rent.facebook } },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fab fa-facebook-square fa-2x btn-primary btn"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.rent.instagram != null
-                                  ? _c("li", [
-                                      _c(
-                                        "a",
-                                        { attrs: { href: _vm.rent.instagram } },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fab fa-instagram fa-2x btn-danger btn"
-                                          })
-                                        ]
-                                      )
-                                    ])
-                                  : _vm._e()
-                              ])
+                                        "h6",
+                                        { staticClass: "mb-3 text-muted" },
+                                        [_vm._v("More")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].single_room
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-building mr-1"
+                                              }),
+                                              _vm._v("Single Room")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-building mr-1"
+                                              }),
+                                              _vm._v("Single Room")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].double_room
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "far fa-stop-circle mr-1"
+                                              }),
+                                              _vm._v("Double Room")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "far fa-stop-circle mr-1"
+                                              }),
+                                              _vm._v("Double Room")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].fridge
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "far fa-stop-circle mr-1"
+                                              }),
+                                              _vm._v(" Fridge")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "far fa-stop-circle mr-1"
+                                              }),
+                                              _vm._v("Fridge")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].garden
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-car mr-1"
+                                              }),
+                                              _vm._v("Garden")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-car mr-1"
+                                              }),
+                                              _vm._v(" Garden")
+                                            ]
+                                          ),
+                                      _vm._v(" "),
+                                      _vm.rent.facility[0].parking_space
+                                        ? _c(
+                                            "p",
+                                            { staticClass: "text-success" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-beer mr-1"
+                                              }),
+                                              _vm._v("Parking Space")
+                                            ]
+                                          )
+                                        : _c(
+                                            "p",
+                                            { staticClass: "text-danger" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-beer mr-1"
+                                              }),
+                                              _vm._v("Parking Space")
+                                            ]
+                                          )
+                                    ]
+                                  )
+                                : _vm._e()
                             ])
-                          ]
-                        )
+                          ])
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "row p-3 overview" }, [
-                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                            _c("h6", { staticClass: "text-muted py-1" }, [
-                              _c("i", { staticClass: "fas fa-home mr-2" }),
-                              _vm._v(_vm._s(_vm.rent.name))
+                      _c("div", { staticClass: "card" }, [
+                        _c("div", { staticClass: "row p-3" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("h5", { staticClass: "text-dark" }, [
+                              _vm._v("Brief")
                             ]),
                             _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted py-1" }, [
-                              _c("i", {
-                                staticClass: "fas fa-phone-square-alt pr-2"
-                              }),
-                              _vm._v(_vm._s(_vm.rent.mobile_no))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _c("i", {
-                                staticClass: "fas fa-map-marker-alt mr-2"
-                              }),
-                              _vm._v(_vm._s(_vm.rent.location))
-                            ]),
-                            _vm._v(" "),
-                            _c("h6", { staticClass: "text-muted" }, [
-                              _c("i", { staticClass: "fas fa-users mr-2" }),
+                            _c("p", { staticClass: "text-muted" }, [
                               _vm._v(
-                                _vm._s(_vm.rent.accomodation_size) + " people"
+                                "\n                                            " +
+                                  _vm._s(_vm.rent.description) +
+                                  "\n                                        "
                               )
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm.rent.facility != null
-                            ? _c(
-                                "div",
-                                { staticClass: "col-md-3 col-sm-6 facility" },
-                                [
-                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                    _vm._v("Facilities")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].geyser
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-truck mr-1"
-                                        }),
-                                        _vm._v(" Geyser")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-truck mr-1"
-                                        }),
-                                        _vm._v("Geyser")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].wifi
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-wifi mr-1"
-                                        }),
-                                        _vm._v(" Wifi")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-wifi mr-1"
-                                        }),
-                                        _vm._v(" Wifi")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].ac
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fab fa-cc-visa mr-1"
-                                        }),
-                                        _vm._v("AC")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fab fa-cc-visa mr-1"
-                                        }),
-                                        _vm._v("AC")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].washing_machine
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-glass-cheers mr-1"
-                                        }),
-                                        _vm._v("Washing Machine")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-glass-cheers mr-1"
-                                        }),
-                                        _vm._v("Washing Machine")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].gym
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-fan mr-1"
-                                        }),
-                                        _vm._v("Gym")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-fan mr-1"
-                                        }),
-                                        _vm._v("Gym")
-                                      ])
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.rent.facility != null
-                            ? _c(
-                                "div",
-                                { staticClass: "col-md-3 col-sm-6 facility" },
-                                [
-                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                    _vm._v("More")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].single_room
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-building mr-1"
-                                        }),
-                                        _vm._v("Single Room")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-building mr-1"
-                                        }),
-                                        _vm._v("Single Room")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].double_room
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "far fa-stop-circle mr-1"
-                                        }),
-                                        _vm._v("Double Room")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "far fa-stop-circle mr-1"
-                                        }),
-                                        _vm._v("Double Room")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].fridge
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "far fa-stop-circle mr-1"
-                                        }),
-                                        _vm._v(" Fridge")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "far fa-stop-circle mr-1"
-                                        }),
-                                        _vm._v("Fridge")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].garden
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-car mr-1"
-                                        }),
-                                        _vm._v("Garden")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-car mr-1"
-                                        }),
-                                        _vm._v(" Garden")
-                                      ]),
-                                  _vm._v(" "),
-                                  _vm.rent.facility[0].parking_space
-                                    ? _c("p", { staticClass: "text-success" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-beer mr-1"
-                                        }),
-                                        _vm._v("Parking Space")
-                                      ])
-                                    : _c("p", { staticClass: "text-danger" }, [
-                                        _c("i", {
-                                          staticClass: "fas fa-beer mr-1"
-                                        }),
-                                        _vm._v("Parking Space")
-                                      ])
-                                ]
-                              )
-                            : _vm._e()
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "row p-3" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("h5", { staticClass: "text-dark" }, [
-                          _vm._v("Brief")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-muted" }, [
-                          _vm._v(
-                            "\n                                        " +
-                              _vm._s(_vm.rent.description) +
-                              "\n                                    "
-                          )
+                          _vm._m(0)
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(0)
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "card" },
-                    [
-                      _c("rent-room-photo", {
-                        attrs: { rent_room_photos: _vm.rent.room_photos }
-                      })
+                      _c(
+                        "div",
+                        { staticClass: "card" },
+                        [
+                          _c("rent-room-photo", {
+                            attrs: { rent_room_photos: _vm.rent.room_photos }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "card" },
+                        [
+                          _c("rent-view-photo", {
+                            attrs: { rent_view_photos: _vm.rent.view_photos }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("rent-comment", { attrs: { rent_uuid: _vm.rent.id } })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "card" },
+                    { staticClass: "col-md-4 col-sm-12" },
                     [
-                      _c("rent-view-photo", {
-                        attrs: { rent_view_photos: _vm.rent.view_photos }
+                      _c("restaurant-sidebar", {
+                        attrs: { rating: _vm.rating }
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("rent-comment", { attrs: { rent_uuid: _vm.rent.id } })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4 col-sm-12" })
+                  )
+                ])
+              ])
             ])
-          ])
-        ],
-        1
-      )
+      ])
     ],
     1
   )

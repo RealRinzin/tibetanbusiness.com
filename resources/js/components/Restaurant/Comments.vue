@@ -241,7 +241,6 @@ export default {
             }else{
                 alert('Please give your rating ***')
             }
-
         }
     },
     mounted(){

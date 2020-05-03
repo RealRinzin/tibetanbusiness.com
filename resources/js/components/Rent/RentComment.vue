@@ -111,7 +111,9 @@ export default {
     methods:{
         // load Comments
         load_comments(){
-            axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa')
+            console.log(this.rent_uuid);
+            
+            axios.get('/api/rent_comments/comment/'+this.rent_uuid)
             .then(response=>{
                 this.comments = response.data.data;
                 this.total_comments = response.data.total;
@@ -147,10 +149,8 @@ export default {
          * Comments
          *  */ 
         load_more_comments(nextPage){
-            axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa/?page='+this.nextPage)
+            axios.get('/api/rent_comments/comment/'+this.rent_uuid+'/?page='+this.nextPage)
             .then(response=>{
-                console.log(response);
-                
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
                     this.load_more_button = true; 
@@ -181,19 +181,6 @@ export default {
                             this.comments[index].rate_color = 'bg-secondary';
                         }
                     }
-                    // for (let index = 0; index < this.comments.length; index++) {
-                    //     if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
-                    //         this.comments[index].rate_color = 'bg-danger';
-                    //     }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
-                    //         this.comments[index].rate_color = 'bg-warning';
-                    //     }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
-                    //         this.comments[index].rate_color = 'bg-info';
-                    //     }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
-                    //         this.comments[index].rate_color = 'bg-success';
-                    //     }else{
-                    //         this.comments[index].rate_color = 'bg-secondary';
-                    //     }
-                    // }
                     
                 }else{
                     this.load_more_button = false;

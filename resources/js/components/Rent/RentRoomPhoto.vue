@@ -58,17 +58,10 @@ export default {
     props:['rent_room_photos'],
     data(){
         return{
-            room_photos:{},
-            total_photos:0, //Total photos
+            room_photos:this.rent_room_photos,
+            total_photos:this.rent_room_photos.length, //Total photos
             single_photo:{}, //single photo
             modal_status: false, //modal status
-        }
-    },
-// watch 
-    watch: {
-        rent_room_photos: function(data) { 
-            this.room_photos = data;
-            this.total_photos = data.length;
         }
     },
     methods:{

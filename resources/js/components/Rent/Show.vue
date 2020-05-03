@@ -8,105 +8,109 @@
         url="https://tibetanbusiness.com"
         />
         <div id="restaurant">
-            <loading :active.sync="isLoading"></loading>
-            <div class="container py-4">
-                <div class="row">
-                        <div class="col-md-8 col-sm-12">
-                            <!-- basic -->
-                            <div class="card">
-                                <div class="row">
-                                    <!-- Banner -->
-                                    <div class="col-md-12">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${rent.banner})`}'>
-                                        <div class="overlay">
-                                            <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{rent.fare}} /-</h6>
-                                            <ul>
-                                                <li v-if="rent.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{rent.rating}}</a></li>
-                                                <li v-if="rent.facebook != null"><a :href="rent.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                <li v-if="rent.instagram != null"><a :href="rent.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
-                                            </ul>
+            <div v-if="!loading">
+                <loading :active.sync="isLoading"></loading>
+            </div>
+            <div v-else>
+                <div  class="container py-4">
+                    <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <!-- basic -->
+                                <div class="card">
+                                    <div class="row">
+                                        <!-- Banner -->
+                                        <div class="col-md-12">
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${rent.banner})`}'>
+                                            <div class="overlay">
+                                                <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{rent.fare}} /-</h6>
+                                                <ul>
+                                                    <li v-if="rent.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{rent.rating}}</a></li>
+                                                    <li v-if="rent.facebook != null"><a :href="rent.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                    <li v-if="rent.instagram != null"><a :href="rent.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            </div>                                
                                         </div>
-                                        </div>                                
-                                    </div>
-                                    <!-- Overview -->
-                                    <div class="col-md-12">
-                                        <div class="row p-3 overview">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
-                                                    <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
-                                                    <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{rent.location}}</h6>
-                                                    <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
+                                        <!-- Overview -->
+                                        <div class="col-md-12">
+                                            <div class="row p-3 overview">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
+                                                        <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{rent.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
+                                                    </div>
+                                                <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
+                                                    <h6 class="mb-3 text-muted">Facilities</h6>
+                                                    <p class="text-success" v-if="rent.facility[0].geyser"> <i class="fas fa-truck mr-1"></i> Geyser</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i>Geyser</p>
+                                                    <p class="text-success" v-if="rent.facility[0].wifi"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-wifi mr-1"></i> Wifi</p>
+                                                    <p class="text-success" v-if="rent.facility[0].ac"> <i class="fab fa-cc-visa mr-1"></i>AC</p>
+                                                    <p class="text-danger" v-else> <i class="fab fa-cc-visa mr-1"></i>AC</p>
+                                                    <p class="text-success" v-if="rent.facility[0].washing_machine"><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
+                                                    <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-fan mr-1"></i>Gym</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>Gym</p>
                                                 </div>
-                                            <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
-                                                <h6 class="mb-3 text-muted">Facilities</h6>
-                                                <p class="text-success" v-if="rent.facility[0].geyser"> <i class="fas fa-truck mr-1"></i> Geyser</p>
-                                                <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i>Geyser</p>
-                                                <p class="text-success" v-if="rent.facility[0].wifi"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
-                                                <p class="text-danger" v-else> <i class="fas fa-wifi mr-1"></i> Wifi</p>
-                                                <p class="text-success" v-if="rent.facility[0].ac"> <i class="fab fa-cc-visa mr-1"></i>AC</p>
-                                                <p class="text-danger" v-else> <i class="fab fa-cc-visa mr-1"></i>AC</p>
-                                                <p class="text-success" v-if="rent.facility[0].washing_machine"><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
-                                                <p class="text-danger" v-else><i class="fas fa-glass-cheers mr-1"></i>Washing Machine</p>
-                                                <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-fan mr-1"></i>Gym</p>
-                                                <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>Gym</p>
-                                            </div>
-                                            <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
-                                                <h6 class="mb-3 text-muted">More</h6>
-                                                <p class="text-success" v-if="rent.facility[0].single_room "><i class="fas fa-building mr-1"></i>Single Room</p>
-                                                <p class="text-danger" v-else><i class="fas fa-building mr-1"></i>Single Room</p>
-                                                <p class="text-success" v-if="rent.facility[0].double_room "> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
-                                                <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
-                                                <p class="text-success" v-if="rent.facility[0].fridge "> <i class="far fa-stop-circle mr-1"></i> Fridge</p>
-                                                <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Fridge</p>
-                                                <p class="text-success" v-if="rent.facility[0].garden"><i class="fas fa-car mr-1"></i>Garden</p>
-                                                <p class="text-danger" v-else><i class="fas fa-car mr-1"></i> Garden</p>
-                                                <p class="text-success" v-if="rent.facility[0].parking_space"> <i class="fas fa-beer mr-1"></i>Parking Space</p>
-                                                <p class="text-danger" v-else> <i class="fas fa-beer mr-1"></i>Parking Space</p>
+                                                <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
+                                                    <h6 class="mb-3 text-muted">More</h6>
+                                                    <p class="text-success" v-if="rent.facility[0].single_room "><i class="fas fa-building mr-1"></i>Single Room</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-building mr-1"></i>Single Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].double_room "> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
+                                                    <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Double Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].fridge "> <i class="far fa-stop-circle mr-1"></i> Fridge</p>
+                                                    <p class="text-danger" v-else> <i class="far fa-stop-circle mr-1"></i>Fridge</p>
+                                                    <p class="text-success" v-if="rent.facility[0].garden"><i class="fas fa-car mr-1"></i>Garden</p>
+                                                    <p class="text-danger" v-else><i class="fas fa-car mr-1"></i> Garden</p>
+                                                    <p class="text-success" v-if="rent.facility[0].parking_space"> <i class="fas fa-beer mr-1"></i>Parking Space</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-beer mr-1"></i>Parking Space</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Info -->
-                            <div class="card">
-                                <div class="row p-3">
-                                    <div class="col-md-6">
-                                        <h5 class="text-dark">Brief</h5>
-                                        <p class="text-muted">
-                                            {{rent.description}}
-                                        </p>
-                                    </div>
-                                    <div class="col-md-6"> 
-                                        <h6>Location</h6>
-                                        <!-- <geo-map></geo-map> -->
+                                <!-- Info -->
+                                <div class="card">
+                                    <div class="row p-3">
+                                        <div class="col-md-6">
+                                            <h5 class="text-dark">Brief</h5>
+                                            <p class="text-muted">
+                                                {{rent.description}}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6"> 
+                                            <h6>Location</h6>
+                                            <!-- <geo-map></geo-map> -->
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Room Photo -->
+                                <div class="card">
+                                    <rent-room-photo v-bind:rent_room_photos="rent.room_photos"></rent-room-photo>
+                                </div>
+                                <!-- Room Photo -->
+                                <div class="card">
+                                    <rent-view-photo v-bind:rent_view_photos="rent.view_photos"></rent-view-photo>
+                                </div>
+                                <!-- comments -->
+                                    <rent-comment v-bind:rent_uuid="rent.id"></rent-comment>
                             </div>
-                            <!-- Room Photo -->
-                            <div class="card">
-                                <rent-room-photo v-bind:rent_room_photos="rent.room_photos"></rent-room-photo>
+                        <!-- Sidebar -->
+                            <div class="col-md-4 col-sm-12">
+                                    <restaurant-sidebar v-bind:rating="rating"></restaurant-sidebar>
                             </div>
-                            <!-- Room Photo -->
-                            <div class="card">
-                                <rent-view-photo v-bind:rent_view_photos="rent.view_photos"></rent-view-photo>
-                            </div>
-                            <!-- comments -->
-                                <rent-comment v-bind:rent_uuid="rent.id"></rent-comment>
-                        </div>
-                    <!-- Sidebar -->
-                        <div class="col-md-4 col-sm-12">
-                            <!-- <rent-sidebar v-bind:rating="rating"></rent-sidebar> -->
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-    // Import component
-    import Loading from 'vue-loading-overlay';
-    // Import stylesheet
-    import 'vue-loading-overlay/dist/vue-loading.css';
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
     props:['rent_id'],
     data(){
@@ -114,7 +118,7 @@ export default {
             id:this.rent_id['id'], //Rent Id
             rent:{}, //rent objects
             isLoading : false,//Lazy loading
-
+            loading:false, //loading
         }
     },
     methods:{
@@ -124,14 +128,15 @@ export default {
             .then(response=>{
                 this.rent = response.data.data;
                 this.isLoading = false;
+                this.loading = true;
             })
         }
     },
-        /**
-         * 
-         * Components
-         *  */  
-        components:{Loading},
+    /**
+     * 
+     * Components
+     *  */  
+    components:{Loading},
     mounted(){
         this.load_rent();
     }

@@ -141,18 +141,18 @@
                 isLoading : false,//Lazy loading
                 // Object
                 restaurant:{}, //individual show
-                restaurants:{}, // Restaurant objects
-                /**
-                 * Comments
-                 * Current Page 
-                 * pagination
-                 * last page
-                 *  */ 
-                comments:{},
-                nextPage:2,
-                load_more_button : true,
-                total_comments:0,
-                comments_lazy_load:false,
+                // restaurants:{}, // Restaurant objects
+                // /**
+                //  * Comments
+                //  * Current Page 
+                //  * pagination
+                //  * last page
+                //  *  */ 
+                // comments:{},
+                // nextPage:2,
+                // load_more_button : true,
+                // total_comments:0,
+                // comments_lazy_load:false,
             }
         },
         /**

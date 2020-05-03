@@ -58,8 +58,8 @@ export default {
     props:['rent_view_photos'],
     data(){
         return{
-            view_photos:{},
-            total_photos:0, //Total photos
+            view_photos:this.rent_view_photos,
+            total_photos:this.rent_view_photos.length, //Total photos
             single_photo:{}, //single photo
             modal_status: false, //modal status
         }
@@ -77,13 +77,6 @@ export default {
             $("#more_view_photo_modal").modal("show");
             this.modal_status = true;
         },
-    },
-// watch 
-    watch: {
-        rent_view_photos: function(data) { 
-            this.view_photos = data;
-            this.total_photos = data.length;
-        }
     },
     mounted(){
         console.log("RentView");

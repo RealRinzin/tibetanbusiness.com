@@ -87,7 +87,7 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard.restaurant') }}" class="nav-link">
                                 <i class="fa fa-calendar-alt mr-2"></i>
-                                <p>Events<span class="right badge badge-danger">New</span></p>
+                                <p>Restaurant<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                         <li class="nav-item">
