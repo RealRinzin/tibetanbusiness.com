@@ -49,6 +49,10 @@ use Illuminate\Http\Request;
          * Authorization
          */
         Route::apiResource('rent','Rent\RentBasicInfoController');
+        Route::apiResource('rent_comments', 'Rent\RentCommentController');
+        Route::apiResource('rent_facilities', 'Rent\RentFacilityController');
+        Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController');
+        Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController');
     });
     /**
  * RESTAURANT API (DEAUTH)
@@ -70,6 +74,7 @@ use Illuminate\Http\Request;
  * Deauthorized
   */
     Route::get('rent/list/all', 'Rent\RentBasicInfoController@all'); //all rents
+    Route::get('rent_comments/comment/{id}', 'Rent\RentCommentController@comment');
     Route::get('rent/view/{id}','Rent\RentBasicInfoController@display'); // show individual (no authorization)
     Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');

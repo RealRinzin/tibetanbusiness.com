@@ -4450,13 +4450,270 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['rent_uuid'],
+  data: function data() {
+    return {
+      id: '',
+      // comments:{},
+
+      /**
+       * Review 
+       * Comments
+       * Object
+       *  */
+      review: {
+        rent_basic_info_id: '5f6fb7045dcb429bbb58c99332da4afa',
+        rate: '',
+        comment: '',
+        avatar: localStorage.getItem('user_avatar'),
+        name: localStorage.getItem('user_name')
+      },
+
+      /**
+       * Comments
+       * Current Page 
+       * pagination
+       * last page
+       *  */
+      comments: {},
+      nextPage: 2,
+      load_more_button: true,
+      total_comments: 0,
+      comments_lazy_load: false,
+
+      /**
+       * Check Login status
+       *  */
+      is_logged: false,
+      // count comment
+      count_rate: 0,
+      average_rate: 0
+    };
+  },
+  // watch
+  watch: {
+    rent_uuid: function rent_uuid(data) {
+      this.id = data;
+    }
+  },
+  // Methods
+  methods: {
+    // load Comments
+    load_comments: function load_comments() {
+      var _this = this;
+
+      axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa').then(function (response) {
+        _this.comments = response.data.data;
+        _this.total_comments = response.data.total;
+        /**
+         * Rating background
+         * Danger, Warning, Info, Success
+         *  0-3 , 3-5, 5-7 , 7-3
+         *  */
+
+        for (var index = 0; index < _this.comments.length; index++) {
+          if (_this.comments[index].rate >= 0.0 && _this.comments[index].rate <= 1.0) {
+            _this.comments[index].rate_color = 'bg-danger';
+          } else if (_this.comments[index].rate >= 1.1 && _this.comments[index].rate <= 2.0) {
+            _this.comments[index].rate_color = 'bg-warning';
+          } else if (_this.comments[index].rate >= 2.1 && _this.comments[index].rate <= 3.0) {
+            _this.comments[index].rate_color = 'bg-info';
+          } else if (_this.comments[index].rate >= 3.1 && _this.comments[index].rate <= 5.0) {
+            _this.comments[index].rate_color = 'bg-success';
+          } else {
+            _this.comments[index].rate_color = 'bg-secondary';
+          }
+          /**
+           * 
+           * Update the star rate
+           *  */
+
+
+          _this.count_rate = parseFloat(_this.count_rate) + parseFloat(_this.comments[index].rate);
+        } // aggregating rating
+
+
+        _this.average_rate = (_this.count_rate / _this.total_comments).toFixed(1);
+      });
+    },
+
+    /**
+     * Load More
+     * Comments
+     *  */
+    load_more_comments: function load_more_comments(nextPage) {
+      var _this2 = this;
+
+      axios.get('/api/rent_comments/comment/5f6fb7045dcb429bbb58c99332da4afa/?page=' + this.nextPage).then(function (response) {
+        console.log(response);
+
+        if (response.data.current_page <= response.data.last_page) {
+          _this2.nextPage = response.data.current_page + 1;
+          _this2.load_more_button = true; // this.comments = response.data.data;
+
+          /**
+           * Comments 
+           * data Distribution
+           *  */
+
+          _this2.comments = [].concat(_toConsumableArray(_this2.comments), _toConsumableArray(response.data.data));
+          /**
+           * Comment 
+           * Load rate background
+           * RGB
+           *  */
+
+          for (var index = 0; index < _this2.comments.length; index++) {
+            if (_this2.comments[index].rate >= 0.0 && _this2.comments[index].rate <= 1.0) {
+              _this2.comments[index].rate_color = 'bg-danger';
+            } else if (_this2.comments[index].rate >= 1.1 && _this2.comments[index].rate <= 2.0) {
+              _this2.comments[index].rate_color = 'bg-warning';
+            } else if (_this2.comments[index].rate >= 2.1 && _this2.comments[index].rate <= 3.0) {
+              _this2.comments[index].rate_color = 'bg-info';
+            } else if (_this2.comments[index].rate >= 3.1 && _this2.comments[index].rate <= 5.0) {
+              _this2.comments[index].rate_color = 'bg-success';
+            } else {
+              _this2.comments[index].rate_color = 'bg-secondary';
+            }
+          } // for (let index = 0; index < this.comments.length; index++) {
+          //     if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 3.5){
+          //         this.comments[index].rate_color = 'bg-danger';
+          //     }else if(this.comments[index].rate >= 3.6 && this.comments[index].rate <= 5.5 ){
+          //         this.comments[index].rate_color = 'bg-warning';
+          //     }else if(this.comments[index].rate >= 5.6 && this.comments[index].rate <= 7.0 ){
+          //         this.comments[index].rate_color = 'bg-info';
+          //     }else if(this.comments[index].rate >= 7.1 && this.comments[index].rate <= 10.0 ){
+          //         this.comments[index].rate_color = 'bg-success';
+          //     }else{
+          //         this.comments[index].rate_color = 'bg-secondary';
+          //     }
+          // }
+
+        } else {
+          _this2.load_more_button = false;
+        }
+      });
+    },
+
+    /**
+     * Post Comment
+     *  */
+    post_comment: function post_comment(id) {
+      var _this3 = this;
+
+      /* Valid for post */
+      if (this.review.rate) {
+        this.$validator.validateAll('rent_valid_comment_form').then(function (result) {
+          if (result) {
+            axios.post('/api/rent_comments', _this3.review, {
+              headers: {
+                Authorization: localStorage.getItem("token")
+              }
+            }).then(function (response) {
+              _this3.load_comments(); // Reset form
+              // this.review = [];
+
+
+              toast.fire({
+                icon: 'success',
+                title: 'Comment Posted'
+              });
+            });
+          }
+        });
+      } else {
+        alert('Please give your rating ***');
+      }
+    }
+  },
+  // Mounted
   mounted: function mounted() {
-    console.log("RentComment");
+    var _this4 = this;
+
+    this.load_comments(); // login stauts for comment
+
+    axios.get('/login_status').then(function (response) {
+      if (response.data.status === true) {
+        _this4.is_logged = true;
+      }
+    });
   }
 });
 
@@ -4580,7 +4837,93 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['rent_view_photos'],
+  data: function data() {
+    return {
+      view_photos: {},
+      total_photos: 0,
+      //Total photos
+      single_photo: {},
+      //single photo
+      modal_status: false //modal status
+
+    };
+  },
+  // methods
+  methods: {
+    // Load Single Photo
+    view_photo_modal: function view_photo_modal($id) {
+      $("#view_photo_modal").modal("show"); //show modal by click
+
+      this.modal_status = true; // modal status
+
+      this.single_photo = this.view_photos[$id]; // assigning object
+    },
+    // More photo modal
+    more_view_photo_modal: function more_view_photo_modal() {
+      $("#more_view_photo_modal").modal("show");
+      this.modal_status = true;
+    }
+  },
+  // watch 
+  watch: {
+    rent_view_photos: function rent_view_photos(data) {
+      this.view_photos = data;
+      this.total_photos = data.length;
+    }
+  },
   mounted: function mounted() {
     console.log("RentView");
   }
@@ -4601,8 +4944,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
 //
 //
 //
@@ -5024,9 +5365,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               headers: {
                 Authorization: localStorage.getItem("token")
               }
-            }).then(function (response) {
-              console.log(response);
-            });
+            }).then(function (response) {});
           }
         });
       } else {
@@ -5038,7 +5377,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var _this4 = this;
 
     // Comments load
-    this.comment();
+    this.comment(); // login stauts for
+
     axios.get('/login_status').then(function (response) {
       if (response.data.status === true) {
         _this4.is_logged = true;
@@ -89878,9 +90218,254 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "row p-3" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h5", [_vm._v("Write Reviews")]),
+          _vm._v(" "),
+          _vm.is_logged
+            ? _c("div", [
+                _c(
+                  "form",
+                  {
+                    attrs: { "data-vv-scope": "rent_valid_comment_form" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.post_comment(_vm.id)
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "p",
+                      [
+                        _c("star-rating", {
+                          attrs: {
+                            "fixed-points": 1,
+                            increment: 0.3,
+                            "max-rating": 5,
+                            "border-color": "#33373a",
+                            "inactive-color": "#dcdcdc",
+                            "active-color": "#f9c132",
+                            "star-size": 25
+                          },
+                          model: {
+                            value: _vm.review.rate,
+                            callback: function($$v) {
+                              _vm.$set(_vm.review, "rate", $$v)
+                            },
+                            expression: "review.rate"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group input-group-sm" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required|min:1|max:255|alpha_spaces",
+                            expression: "'required|min:1|max:255|alpha_spaces'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.review.comment,
+                            expression: "review.comment"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", name: "comment" },
+                        domProps: { value: _vm.review.comment },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.review, "comment", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "valid-feedback" }),
+                      _vm._v(" "),
+                      _vm.errors.has("rent_valid_comment_form.comment")
+                        ? _c(
+                            "div",
+                            { staticClass: "invalid-feedback" },
+                            _vm._l(
+                              _vm.errors.collect(
+                                "rent_valid_comment_form.comment"
+                              ),
+                              function(error) {
+                                return _c("span", [_vm._v(_vm._s(error))])
+                              }
+                            ),
+                            0
+                          )
+                        : _vm._e()
+                    ])
+                  ]
+                )
+              ])
+            : _c("div", [
+                _c("p", { staticClass: "pt-3" }, [
+                  _vm._v("Please login to leave comment")
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card p-3" }, [
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c("h5", { staticClass: "text-dark" }, [
+            _vm._v("Reviews"),
+            _c(
+              "span",
+              {
+                staticClass: "text-muted ml-2",
+                staticStyle: { "font-size": "14px" }
+              },
+              [_vm._v("(" + _vm._s(_vm.total_comments) + ")")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.comments_lazy_load
+            ? _c(
+                "div",
+                [
+                  _c("loading", {
+                    attrs: { active: _vm.comments_lazy_load },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.comments_lazy_load = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.comments, function(comment, index) {
+            return _c("div", { staticClass: "col-md-12 p-3" }, [
+              _c("div", { staticClass: "media animated fadeIn duration-1s" }, [
+                _c("img", {
+                  staticClass: "mr-2 img-circle",
+                  staticStyle: { height: "50px", width: "50px" },
+                  attrs: {
+                    src: comment.avatar,
+                    alt: "Generic placeholder image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h6", { staticClass: "mt-0" }, [
+                    _vm._v(
+                      _vm._s(comment.name) + "\n                            "
+                    ),
+                    _c("small", [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "p-1 rounded",
+                          class: comment.rate_color
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-star pr-1" }),
+                          _vm._v(_vm._s(comment.rate))
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "text-muted",
+                      staticStyle: { "font-size": "12px" }
+                    },
+                    [
+                      _c("timeago", { attrs: { datetime: comment.created_at } })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(comment.comment))
+                  ])
+                ])
+              ])
+            ])
+          }),
+          _vm._v(" "),
+          _vm.load_more_button
+            ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.load_more_comments()
+                      }
+                    }
+                  },
+                  [_vm._v("Load more")]
+                )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "input-group-append" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-flat btn-lg",
+          attrs: { type: "submit", placeholder: "Write your comment" }
+        },
+        [_vm._v("Post")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger btn-md",
+          attrs: { href: "#", "data-toggle": "modal", "data-target": "#login" }
+        },
+        [_vm._v("Login ")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -90147,9 +90732,230 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "row p-3" },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("h6", { staticClass: "text-dark" }, [
+            _vm._v("View Photos(" + _vm._s(_vm.total_photos) + ")")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.view_photos, function(view_photo, index) {
+          return index < 7
+            ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+                _c("div", {
+                  staticClass: "photo",
+                  style: {
+                    backgroundImage:
+                      "url(/storage/Rent/View-Photos/" + view_photo.path + ")"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.view_photo_modal(index)
+                    }
+                  }
+                })
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _vm.total_photos > 7
+          ? _c("div", { staticClass: "col-md-3 col-sm-4 col-xs-6 py-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "photo text-center p-3",
+                  on: {
+                    click: function($event) {
+                      return _vm.more_view_photo_modal()
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "far fa-images fa-2x text-muted py-2"
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(" " + _vm._s(_vm.total_photos - 7) + " Photos More")
+                  ])
+                ]
+              )
+            ])
+          : _vm._e()
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "more_view_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "carousel slide",
+                        attrs: {
+                          id: "show_food_photo_carousel",
+                          "data-ride": "carousel"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "carousel-inner" },
+                          _vm._l(_vm.view_photos, function(photo, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "carousel-item animated fadeIn duration-1s",
+                                class: { active: index == 0 }
+                              },
+                              [
+                                _c("div", {
+                                  staticClass: "slide",
+                                  staticStyle: { height: "55vh" },
+                                  style: {
+                                    backgroundImage:
+                                      "url(/storage/Rent/View-Photos/" +
+                                      photo.path +
+                                      ")"
+                                  }
+                                })
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "view_photo_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-lg modal_top",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm.modal_status
+                ? _c("div", { staticClass: "modal-body carousel" }, [
+                    _c("div", {
+                      staticClass: "slide",
+                      staticStyle: { height: "55vh" },
+                      style: {
+                        backgroundImage:
+                          "url(/storage/Rent/View-Photos/" +
+                          _vm.single_photo.path +
+                          ")"
+                      }
+                    })
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-prev",
+        attrs: {
+          href: "#show_food_photo_carousel",
+          role: "button",
+          "data-slide": "prev"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "carousel-control-next",
+        attrs: {
+          href: "#show_food_photo_carousel",
+          role: "button",
+          "data-slide": "next"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -90200,331 +91006,334 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "container py-4" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8 col-sm-12" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "banner",
-                          style: {
-                            backgroundImage: "url(/img/" + _vm.rent.banner + ")"
-                          }
-                        },
-                        [
-                          _c("div", { staticClass: "overlay" }, [
-                            _c(
-                              "h6",
-                              {
-                                staticClass:
-                                  "font-weight-bold position-absolute btn btn-danger"
-                              },
-                              [_vm._v("Rs: " + _vm._s(_vm.rent.fare) + " /-")]
-                            ),
-                            _vm._v(" "),
-                            _c("ul", [
-                              _vm.rent.rating != null
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "btn-secondary btn text-white"
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "fas fa-star pr-1 text-warning"
-                                        }),
-                                        _vm._v(_vm._s(_vm.rent.rating))
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e(),
+              _c(
+                "div",
+                { staticClass: "col-md-8 col-sm-12" },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "banner",
+                            style: {
+                              backgroundImage:
+                                "url(/img/" + _vm.rent.banner + ")"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "overlay" }, [
+                              _c(
+                                "h6",
+                                {
+                                  staticClass:
+                                    "font-weight-bold position-absolute btn btn-danger"
+                                },
+                                [_vm._v("Rs: " + _vm._s(_vm.rent.fare) + " /-")]
+                              ),
                               _vm._v(" "),
-                              _vm.rent.facebook != null
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      { attrs: { href: _vm.rent.facebook } },
-                                      [
-                                        _c("i", {
+                              _c("ul", [
+                                _vm.rent.rating != null
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        {
                                           staticClass:
-                                            "fab fa-facebook-square fa-2x btn-primary btn"
-                                        })
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.rent.instagram != null
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      { attrs: { href: _vm.rent.instagram } },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "fab fa-instagram fa-2x btn-danger btn"
-                                        })
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
+                                            "btn-secondary btn text-white"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-star pr-1 text-warning"
+                                          }),
+                                          _vm._v(_vm._s(_vm.rent.rating))
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.rent.facebook != null
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        { attrs: { href: _vm.rent.facebook } },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fab fa-facebook-square fa-2x btn-primary btn"
+                                          })
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.rent.instagram != null
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        { attrs: { href: _vm.rent.instagram } },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fab fa-instagram fa-2x btn-danger btn"
+                                          })
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
                             ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("div", { staticClass: "row p-3 overview" }, [
-                        _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                          _c("h6", { staticClass: "text-muted py-1" }, [
-                            _c("i", { staticClass: "fas fa-home mr-2" }),
-                            _vm._v(_vm._s(_vm.rent.name))
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "row p-3 overview" }, [
+                          _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                            _c("h6", { staticClass: "text-muted py-1" }, [
+                              _c("i", { staticClass: "fas fa-home mr-2" }),
+                              _vm._v(_vm._s(_vm.rent.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted py-1" }, [
+                              _c("i", {
+                                staticClass: "fas fa-phone-square-alt pr-2"
+                              }),
+                              _vm._v(_vm._s(_vm.rent.mobile_no))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _c("i", {
+                                staticClass: "fas fa-map-marker-alt mr-2"
+                              }),
+                              _vm._v(_vm._s(_vm.rent.location))
+                            ]),
+                            _vm._v(" "),
+                            _c("h6", { staticClass: "text-muted" }, [
+                              _c("i", { staticClass: "fas fa-users mr-2" }),
+                              _vm._v(
+                                _vm._s(_vm.rent.accomodation_size) + " people"
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted py-1" }, [
-                            _c("i", {
-                              staticClass: "fas fa-phone-square-alt pr-2"
-                            }),
-                            _vm._v(_vm._s(_vm.rent.mobile_no))
-                          ]),
+                          _vm.rent.facility != null
+                            ? _c(
+                                "div",
+                                { staticClass: "col-md-3 col-sm-6 facility" },
+                                [
+                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
+                                    _vm._v("Facilities")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].geyser
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-truck mr-1"
+                                        }),
+                                        _vm._v(" Geyser")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-truck mr-1"
+                                        }),
+                                        _vm._v("Geyser")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].wifi
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-wifi mr-1"
+                                        }),
+                                        _vm._v(" Wifi")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-wifi mr-1"
+                                        }),
+                                        _vm._v(" Wifi")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].ac
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fab fa-cc-visa mr-1"
+                                        }),
+                                        _vm._v("AC")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fab fa-cc-visa mr-1"
+                                        }),
+                                        _vm._v("AC")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].washing_machine
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-glass-cheers mr-1"
+                                        }),
+                                        _vm._v("Washing Machine")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-glass-cheers mr-1"
+                                        }),
+                                        _vm._v("Washing Machine")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].gym
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-fan mr-1"
+                                        }),
+                                        _vm._v("Gym")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-fan mr-1"
+                                        }),
+                                        _vm._v("Gym")
+                                      ])
+                                ]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted" }, [
-                            _c("i", {
-                              staticClass: "fas fa-map-marker-alt mr-2"
-                            }),
-                            _vm._v(_vm._s(_vm.rent.location))
-                          ]),
-                          _vm._v(" "),
-                          _c("h6", { staticClass: "text-muted" }, [
-                            _c("i", { staticClass: "fas fa-users mr-2" }),
-                            _vm._v(
-                              _vm._s(_vm.rent.accomodation_size) + " people"
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm.rent.facility != null
-                          ? _c(
-                              "div",
-                              { staticClass: "col-md-3 col-sm-6 facility" },
-                              [
-                                _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                  _vm._v("Facilities")
-                                ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].geyser
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-truck mr-1"
-                                      }),
-                                      _vm._v(" Geyser")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-truck mr-1"
-                                      }),
-                                      _vm._v("Geyser")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].wifi
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-wifi mr-1"
-                                      }),
-                                      _vm._v(" Wifi")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-wifi mr-1"
-                                      }),
-                                      _vm._v(" Wifi")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].ac
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fab fa-cc-visa mr-1"
-                                      }),
-                                      _vm._v("AC")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fab fa-cc-visa mr-1"
-                                      }),
-                                      _vm._v("AC")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].washing_machine
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-glass-cheers mr-1"
-                                      }),
-                                      _vm._v("Washing Machine")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-glass-cheers mr-1"
-                                      }),
-                                      _vm._v("Washing Machine")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].gym
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-fan mr-1"
-                                      }),
-                                      _vm._v("Gym")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-fan mr-1"
-                                      }),
-                                      _vm._v("Gym")
-                                    ])
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.rent.facility != null
-                          ? _c(
-                              "div",
-                              { staticClass: "col-md-3 col-sm-6 facility" },
-                              [
-                                _c("h6", { staticClass: "mb-3 text-muted" }, [
-                                  _vm._v("More")
-                                ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].single_room
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-building mr-1"
-                                      }),
-                                      _vm._v("Single Room")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-building mr-1"
-                                      }),
-                                      _vm._v("Single Room")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].double_room
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Double Room")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Double Room")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].fridge
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v(" Fridge")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "far fa-stop-circle mr-1"
-                                      }),
-                                      _vm._v("Fridge")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].garden
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-car mr-1"
-                                      }),
-                                      _vm._v("Garden")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-car mr-1"
-                                      }),
-                                      _vm._v(" Garden")
-                                    ]),
-                                _vm._v(" "),
-                                _vm.rent.facility[0].parking_space
-                                  ? _c("p", { staticClass: "text-success" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-beer mr-1"
-                                      }),
-                                      _vm._v("Parking Space")
-                                    ])
-                                  : _c("p", { staticClass: "text-danger" }, [
-                                      _c("i", {
-                                        staticClass: "fas fa-beer mr-1"
-                                      }),
-                                      _vm._v("Parking Space")
-                                    ])
-                              ]
-                            )
-                          : _vm._e()
+                          _vm.rent.facility != null
+                            ? _c(
+                                "div",
+                                { staticClass: "col-md-3 col-sm-6 facility" },
+                                [
+                                  _c("h6", { staticClass: "mb-3 text-muted" }, [
+                                    _vm._v("More")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].single_room
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-building mr-1"
+                                        }),
+                                        _vm._v("Single Room")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-building mr-1"
+                                        }),
+                                        _vm._v("Single Room")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].double_room
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "far fa-stop-circle mr-1"
+                                        }),
+                                        _vm._v("Double Room")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "far fa-stop-circle mr-1"
+                                        }),
+                                        _vm._v("Double Room")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].fridge
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "far fa-stop-circle mr-1"
+                                        }),
+                                        _vm._v(" Fridge")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "far fa-stop-circle mr-1"
+                                        }),
+                                        _vm._v("Fridge")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].garden
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-car mr-1"
+                                        }),
+                                        _vm._v("Garden")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-car mr-1"
+                                        }),
+                                        _vm._v(" Garden")
+                                      ]),
+                                  _vm._v(" "),
+                                  _vm.rent.facility[0].parking_space
+                                    ? _c("p", { staticClass: "text-success" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-beer mr-1"
+                                        }),
+                                        _vm._v("Parking Space")
+                                      ])
+                                    : _c("p", { staticClass: "text-danger" }, [
+                                        _c("i", {
+                                          staticClass: "fas fa-beer mr-1"
+                                        }),
+                                        _vm._v("Parking Space")
+                                      ])
+                                ]
+                              )
+                            : _vm._e()
+                        ])
                       ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "row p-3" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("h5", { staticClass: "text-dark" }, [_vm._v("Brief")]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text-muted" }, [
-                        _vm._v(
-                          "\n                                        " +
-                            _vm._s(_vm.rent.description) +
-                            "\n                                    "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-md-6" },
-                      [
-                        _c("h6", [_vm._v("Location")]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "row p-3" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c("h5", { staticClass: "text-dark" }, [
+                          _vm._v("Brief")
+                        ]),
                         _vm._v(" "),
-                        _c("geo-map")
-                      ],
-                      1
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "card" },
-                  [
-                    _c("rent-room-photo", {
-                      attrs: { rent_room_photos: _vm.rent.room_photos }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "card" },
-                  [
-                    _c("rent-view-photo", {
-                      attrs: { rent_view_photos: _vm.rent.view_photos }
-                    })
-                  ],
-                  1
-                )
-              ]),
+                        _c("p", { staticClass: "text-muted" }, [
+                          _vm._v(
+                            "\n                                        " +
+                              _vm._s(_vm.rent.description) +
+                              "\n                                    "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0)
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card" },
+                    [
+                      _c("rent-room-photo", {
+                        attrs: { rent_room_photos: _vm.rent.room_photos }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card" },
+                    [
+                      _c("rent-view-photo", {
+                        attrs: { rent_view_photos: _vm.rent.view_photos }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("rent-comment", { attrs: { rent_uuid: _vm.rent.id } })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 col-sm-12" })
             ])
@@ -90536,7 +91345,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("h6", [_vm._v("Location")])
+    ])
+  }
+]
 render._withStripped = true
 
 

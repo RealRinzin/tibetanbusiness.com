@@ -78,22 +78,20 @@
                                     </div>
                                     <div class="col-md-6"> 
                                         <h6>Location</h6>
-                                        <geo-map></geo-map>
+                                        <!-- <geo-map></geo-map> -->
                                     </div>
                                 </div>
                             </div>
-                            <!-- Menu Photo -->
+                            <!-- Room Photo -->
                             <div class="card">
-                                <!-- <menu-photo v-bind:menu_photos="rent.menu_photos"></menu-photo> -->
                                 <rent-room-photo v-bind:rent_room_photos="rent.room_photos"></rent-room-photo>
                             </div>
-                            <!-- Food Photo -->
+                            <!-- Room Photo -->
                             <div class="card">
-                                <!-- <food-photo v-bind:food_photos="rent.food_photos"></food-photo> -->
                                 <rent-view-photo v-bind:rent_view_photos="rent.view_photos"></rent-view-photo>
                             </div>
                             <!-- comments -->
-                                <!-- <rent-comment v-bind:rent="rent.id" :avg_rate="rent.rating"></rent-comment> -->
+                                <rent-comment v-bind:rent_uuid="rent.id"></rent-comment>
                         </div>
                     <!-- Sidebar -->
                         <div class="col-md-4 col-sm-12">

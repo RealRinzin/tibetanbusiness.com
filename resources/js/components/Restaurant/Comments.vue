@@ -235,8 +235,6 @@ export default {
                             data: {rate: this.avg_rate},
                             headers : { Authorization : localStorage.getItem("token")}
                             }).then(response=>{
-                                console.log(response);
-                                
                             });
                     }
                 })
@@ -249,11 +247,12 @@ export default {
     mounted(){
         // Comments load
         this.comment();
-            axios.get('/login_status').then(response => {
-                if(response.data.status === true){
-                    this.is_logged = true
-                }
-            })
+        // login stauts for
+        axios.get('/login_status').then(response => {
+            if(response.data.status === true){
+                this.is_logged = true
+            }
+        })
     }
 }
 </script>

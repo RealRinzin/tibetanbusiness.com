@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentComment;
+use Illuminate\Support\Facades\Auth;
 
 class RentCommentController extends Controller
 {
@@ -36,6 +38,16 @@ class RentCommentController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request;
+        $comments = RentComment::create([
+            'user_id' => Auth::user()->id,
+            'rent_basic_info_id' => $request->rent_basic_info_id,
+            'rate' => $request->rate,
+            'comment' => $request->comment,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $comments;
     }
 
     /**
@@ -82,4 +94,22 @@ class RentCommentController extends Controller
     {
         //
     }
+
+    /**
+     * 
+     * Custom
+     *  */
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function comment(Request $request, $id)
+    {
+        // $comments = RestaurantComment::all();
+        $comments = RentComment::where('rent_basic_info_id', '=', "$id")
+            ->orderBy('created_at', 'desc')->paginate(3);
+        return $comments->toArray($comments);
+    }
+
 }
