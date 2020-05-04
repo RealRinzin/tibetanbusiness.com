@@ -183,8 +183,9 @@ Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Re
 Vue.component('dashboard-restaurant-add', require('./components/Dashboard/Restaurant/AddNew.vue').default);
 
 // Rent Dashboard
-Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
+Vue.component('dashboard-rent-index', require('./components/Dashboard/Rent/Index.vue').default);
 Vue.component('dashboard-rent-edit', require('./components/Dashboard/Rent/Edit.vue').default);
+Vue.component('dashboard-rent-overview', require('./components/Dashboard/Rent/Overview.vue').default);
 
 
 /**

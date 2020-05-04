@@ -75,7 +75,7 @@ export default {
              * Object
              *  */ 
             review:{
-                rent_basic_info_id:'5f6fb7045dcb429bbb58c99332da4afa',
+                rent_basic_info_id:this.rent_uuid,
                 rate:'',
                 comment:'',
                 avatar:localStorage.getItem('user_avatar'),
@@ -198,6 +198,8 @@ export default {
                         axios.post('/api/rent_comments',this.review,{
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
+                            console.log(response);
+                            
                             this.load_comments();
                             // Reset form
                             // this.review = [];

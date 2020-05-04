@@ -5,7 +5,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
-                <button class="btn btn-info btn-md my-3" @click="add_restaurant()">Add New Restaurant</button>
+                <button class="btn btn-info btn-md my-3" @click="add_rent()">Add New Restaurant</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -66,7 +66,7 @@ export default {
     },
     methods:{
         // Load rents
-        load_restaurant(){
+        load_rent(){
             this.isLoading = true,//Lazy loading
             axios.get('/api/user/rents',{
                 headers : { Authorization : localStorage.getItem("token")}
@@ -98,10 +98,8 @@ export default {
          * ADD
          * Restaurant
          *  */ 
-        add_restaurant(){
+        add_rent(){
             $("#restaurant_add_modal").modal("show");  
-            console.log("add");
-                      
         },
         /**
          * DELETE
@@ -114,7 +112,7 @@ export default {
                 axios.delete('/api/rent/'+id,{
                     headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
-                    this.load_restaurant();
+                    this.load_rent();
                     //  Flash Message  
                     toast.fire({
                         icon:'success',
@@ -130,7 +128,7 @@ export default {
      *  */ 
     components:{Loading},
     mounted(){
-        this.load_restaurant();
+        this.load_rent();
     }
 }
 </script>

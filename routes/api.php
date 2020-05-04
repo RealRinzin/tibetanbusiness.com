@@ -55,6 +55,8 @@ use Illuminate\Http\Request;
         Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController');
         Route::get('user/rents', 'Rent\RentBasicInfoController@user_rent');
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
+        Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
+
     
     });
     /**

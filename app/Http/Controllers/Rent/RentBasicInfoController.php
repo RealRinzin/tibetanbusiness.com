@@ -55,6 +55,8 @@ class RentBasicInfoController extends Controller
     public function show($id)
     {
         //
+        return new RentBasicInfoResource(RentBasicInfo::find($id));
+
     }
 
     /**
@@ -66,6 +68,8 @@ class RentBasicInfoController extends Controller
     public function edit($id)
     {
         //
+        return new RentBasicInfoResource(RentBasicInfo::find($id));
+
     }
 
     /**
@@ -89,6 +93,12 @@ class RentBasicInfoController extends Controller
     public function destroy($id)
     {
         //
+        $rent = RentBasicInfo::find($id);
+        $rent->delete();
+        $rent->rent_comments()->delete();
+        $rent->rent_facilities()->delete();
+        $rent->rent_view_photos()->delete();
+        $rent->rent_room_photos()->delete();
     }
 
     /**
@@ -119,6 +129,14 @@ class RentBasicInfoController extends Controller
         $rents = Auth::user()->rent_basic_infos;
         return $rents->toArray($rents);
 
+    }
+    /**
+     * Showing restaurant without relationship
+     *  */
+    public function show_individual($id)
+    {
+        $rent = RentBasicInfo::find($id);
+        return $rent;
     }
     // Status update
     /**
