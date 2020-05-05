@@ -82,6 +82,8 @@ class RentBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $rent = RentBasicInfo::find($id);
+        $rent->update($request->all());
     }
 
     /**
@@ -163,6 +165,26 @@ class RentBasicInfoController extends Controller
             $this->authorize('rent_edit', $rentBasicInfo);
             // return redirect('/');
         }
+    }
+    public function banner_update(Request $request, $id)
+    {
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        // upate
+        $banner = RentBasicInfo::find($id);
+        $banner->update(['banner' => $name]);
     }
     /**
      * 

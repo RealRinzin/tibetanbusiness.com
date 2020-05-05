@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentFacility;
 
 class RentFacilityController extends Controller
 {
@@ -69,7 +70,11 @@ class RentFacilityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        // fetch ID
+        $facilities = RentFacility::find($id);
+        // udpate function
+        $facilities->update($request->all());
     }
 
     /**

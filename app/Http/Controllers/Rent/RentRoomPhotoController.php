@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentRoomPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class RentRoomPhotoController extends Controller
 {
@@ -35,7 +37,22 @@ class RentRoomPhotoController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         //
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $restaurant = RentRoomPhoto::create([
+                    'rent_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Rent\Room-Photos');
+            }
+        }
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**
@@ -81,5 +98,7 @@ class RentRoomPhotoController extends Controller
     public function destroy($id)
     {
         //
+        $photos = RentRoomPhoto::find($id);
+        $photos->delete();
     }
 }

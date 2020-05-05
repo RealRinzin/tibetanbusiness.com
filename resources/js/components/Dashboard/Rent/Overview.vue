@@ -22,6 +22,14 @@
                                 </div>
                                 <div class="row py-1">
                                     <div class="col-md-3 col-sm-4">
+                                        <h6 class="text-dark">Price:</h6>
+                                    </div>
+                                    <div class="col-md-9 col-sm-8">
+                                        <h6 class="text-muted font-weight-bold">Rs: {{rent.fare}} /-</h6>
+                                    </div>
+                                </div>
+                                <div class="row py-1">
+                                    <div class="col-md-3 col-sm-4">
                                         <h6 class="text-dark">Location:</h6>
                                     </div>
                                     <div class="col-md-9 col-sm-8">
@@ -34,6 +42,14 @@
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <h6 class="text-muted">{{rent.mobile_no}}</h6>
+                                    </div>
+                                </div>
+                                <div class="row py-1">
+                                    <div class="col-md-3 col-sm-4">
+                                        <h6 class="text-dark">Space:</h6>
+                                    </div>
+                                    <div class="col-md-9 col-sm-8">
+                                        <h6 class="text-muted">{{rent.accomodation_size}} People</h6>
                                     </div>
                                 </div>
                                 <div class="row py-1">
@@ -69,7 +85,6 @@
                                         </a>
                                     </div>
                                 </div>
-
                                 <div class="row py-1">
                                     <div class="col-md-3 col-sm-4">
                                         <h6 class="text-dark">Address:</h6>
@@ -84,14 +99,6 @@
                                     </div>
                                     <div class="col-md-9 col-sm-8">
                                         <h6 class="text-muted">{{rent.description}}</h6>
-                                    </div>
-                                </div>
-                                <div class="row py-1">
-                                    <div class="col-md-3 col-sm-4">
-                                        <h6 class="text-dark">Operating Hour:</h6>
-                                    </div>
-                                    <div class="col-md-9 col-sm-8">
-                                        <h6 class="text-muted">{{rent.opening_hour}} - {{rent.closing_hour}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -111,9 +118,9 @@
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-subway fa-1x text-secondary mr-2"></i> Geyser </span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.home_delivery">
+                                                    <input type="checkbox" v-model="facilities.geyser">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
@@ -129,16 +136,7 @@
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fab fa-cc-visa mr-1 fa-1x text-secondary mr-2"></i> Card Payment </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.card_payment">
-                                                    <span class="slider round"></span>
-                                                    </label>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fa fa-fan mr-1 fa-1x text-secondary mr-2"></i> AC </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-fan fa-1x text-secondary mr-2"></i> AC </span>
                                                     <label class="switch">
                                                     <input type="checkbox" v-model="facilities.ac">
                                                     <span class="slider round"></span>
@@ -147,54 +145,72 @@
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-glass-cheers text-secondary mr-2"></i> Party Booking </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-power-off text-secondary mr-2"></i> Washing Machine </span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.party_booking">
+                                                    <input type="checkbox" v-model="facilities.washing_machine">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Veg </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-dumbbell text-secondary mr-2"></i> Gym </span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.veg">
+                                                    <input type="checkbox" v-model="facilities.gym">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Non-Veg </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-dog text-secondary mr-2"></i> Pet Allowed </span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.none_veg">
+                                                    <input type="checkbox" v-model="facilities.pet_allowed">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking </span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-bed text-secondary mr-2"></i> Single Room </span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.parking_lot">
+                                                    <input type="checkbox" v-model="facilities.single_room">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-building text-secondary mr-2"></i> Roof Top</span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-bed text-secondary mr-2"></i> Double Room</span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.roof_top">
+                                                    <input type="checkbox" v-model="facilities.double_room">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-beer text-secondary mr-2"></i>Beverage</span>
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-box text-secondary mr-2"></i>Fridge</span>
                                                     <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.beverage">
+                                                    <input type="checkbox" v-model="facilities.fridge">
+                                                    <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <li class="d-flex">
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-tree text-secondary mr-2"></i>Garden</span>
+                                                    <label class="switch">
+                                                    <input type="checkbox" v-model="facilities.garden">
+                                                    <span class="slider round"></span>
+                                                    </label>
+                                                </li>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <li class="d-flex">
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i>Parking Space</span>
+                                                    <label class="switch">
+                                                    <input type="checkbox" v-model="facilities.parking_space">
                                                     <span class="slider round"></span>
                                                     </label>
                                                 </li>
@@ -214,7 +230,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="rent_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -223,7 +239,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                    <form @submit.prevent="update_overview(rent.id)"  data-vv-scope="validate_update_form">
+                    <form @submit.prevent="update_overview(rent.id)"  data-vv-scope="rent_validate_update_form">
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row">
@@ -232,8 +248,18 @@
                                                 <label for="name">Name<span class="text-danger p-1">*</span></label>
                                                 <input type="text" v-validate="'required|min:2|max:40'" v-model="rent.name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.name')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.name')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.name')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.name')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="fare">Price<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="name">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('rent_validate_update_form.fare')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.fare')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,18 +268,28 @@
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
                                                 <input type="text" v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.location')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.location')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.location')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.location')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|max:10|digits:10'" v-model="rent.mobile_no" name="mobile" class="form-control" id="mobile" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <input type="text" v-validate="'required|max:10|digits:10'" v-model="rent.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.mobile')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.mobile')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.mobile_no')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.mobile_no')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="accomodation_size">Accomodation Size<span class="text-danger p-1">*</span></label>
+                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('rent_validate_update_form.accomodation_size')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.accomodation_size')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,41 +298,9 @@
                                                 <label for="exampleInputEmail1">Email<span class="text-danger p-1">*</span></label>
                                                 <input type="text" v-validate="'required|max:45|email'" v-model="rent.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.email')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.email')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.email')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.email')">{{ error }}</span>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Opening Hour<span class="text-danger p-1">*</span></label>
-                                                    <VueCtkDateTimePicker id="opening"
-                                                    v-model="rent.opening_hour"
-                                                    :color="'coral'"
-                                                    :label="'Select Time'"
-                                                    :only-time="true"
-                                                    :format ="'hh:mm a'"
-                                                    :formatted="'hh:mm a'"
-                                                    >
-                                                   </VueCtkDateTimePicker>
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.closing_hour')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.closing_hour')">{{ error }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Closing Hour<span class="text-danger p-1">*</span></label>
-                                                    <VueCtkDateTimePicker v-validate="'required'" name="closing_hour" id="closing_hour"
-                                                    v-model="rent.closing_hour"
-                                                    :color="'coral'"
-                                                    :label="'Select Time'"
-                                                    :only-time="true"
-                                                    :format ="'hh:mm a'"
-                                                    :formatted="'hh:mm a'"
-                                                    >
-                                                   </VueCtkDateTimePicker>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-6">
@@ -304,8 +308,8 @@
                                                 <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
                                                 <input type="text" v-validate="'max:50|url'" v-model="rent.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.instagram')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.instagram')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.instagram')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.instagram')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -314,18 +318,8 @@
                                                 <label for="facebook">Facebook <small class="text-success">(optional)</small></label>
                                                 <input type="text" v-validate="'max:50|url'" v-model="rent.facebook" name="facebook" class="form-control" id="facebook" aria-describedby="emailHelp" placeholder="Facebook">
                                                 <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.facebook')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.facebook')">{{ error }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="website">Website <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="rent.website" name="website" class="form-control" id="website" aria-describedby="emailHelp" placeholder="website">
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.website')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.website')">{{ error }}</span>
+                                                <div v-if="errors.has('rent_validate_update_form.facebook')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('rent_validate_update_form.facebook')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -379,12 +373,13 @@ export default {
     methods:{
         // Overview edit
         edit(){
-            $("#overview_update_modal").modal("show");           
+            $("#rent_overview_update_modal").modal("show");           
         },
         // Overview update
         update_overview(id){
-
-                this.$validator.validateAll('validate_update_form').then((result) => {
+            console.log(this.rent);
+            
+                this.$validator.validateAll('rent_validate_update_form').then((result) => {
                     if (result) {
                         axios.patch('/api/rent/'+id,this.rent,{
                             headers : { Authorization : localStorage.getItem("token")}
@@ -392,7 +387,7 @@ export default {
                         .then(response=>{
                             this.$Progress.start();
                             // Close Modal
-                            $("#overview_update_modal").modal("hide");  
+                            $("#rent_overview_update_modal").modal("hide");  
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',
@@ -406,17 +401,17 @@ export default {
         },
 
         // update_facility
-        // update_facility(id){
-        //     axios.patch('/api/restaurant_facilities/'+id,this.facilities,{
-        //         headers : { Authorization : localStorage.getItem("token")}
-        //     }).then(response=>{
-        //         //  Flash Message  
-        //         toast.fire({
-        //             icon:'success',
-        //             title:'Facilities Updated',
-        //         });
-        //     })
-        // }
+        update_facility(id){
+            axios.patch('/api/rent_facilities/'+id,this.facilities,{
+                headers : { Authorization : localStorage.getItem("token")}
+            }).then(response=>{
+                //  Flash Message  
+                toast.fire({
+                    icon:'success',
+                    title:'Facilities Updated',
+                });
+            })
+        }
     },
     mounted(){
     }

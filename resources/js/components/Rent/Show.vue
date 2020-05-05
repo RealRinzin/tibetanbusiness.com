@@ -53,7 +53,7 @@
                                                     <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
                                                     <p class="text-success" v-if="rent.facility[0].pet_allowed"> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
-                                                    <p class="text-danger" v-else> <i class="fas fa-car mr-1"></i>Pet Allowed</p>
+                                                    <p class="text-danger" v-else> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">More</h6>
