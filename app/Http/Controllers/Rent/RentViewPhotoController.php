@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentViewPhoto;
+use Illuminate\Support\Facades\Auth;
 
 class RentViewPhotoController extends Controller
 {
@@ -36,6 +38,20 @@ class RentViewPhotoController extends Controller
     public function store(Request $request)
     {
         //
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $restaurant = RentViewPhoto::create([
+                    'rent_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Rent\View-Photos');
+            }
+        }
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**
@@ -81,5 +97,8 @@ class RentViewPhotoController extends Controller
     public function destroy($id)
     {
         //
+        //
+        $photos = RentViewPhoto::find($id);
+        $photos->delete();
     }
 }

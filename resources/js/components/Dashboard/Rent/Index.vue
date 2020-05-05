@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <dashboard-rent-add @load_restaurant="load_restaurant"></dashboard-rent-add> -->
+            <dashboard-rent-add @load_rent="load_rent"></dashboard-rent-add>
         </div>
     </div>
 </template>
@@ -99,7 +99,7 @@ export default {
          * Restaurant
          *  */ 
         add_rent(){
-            $("#restaurant_add_modal").modal("show");  
+            $("#rent_add_modal").modal("show");  
         },
         /**
          * DELETE

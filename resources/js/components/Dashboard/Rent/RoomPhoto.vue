@@ -28,7 +28,7 @@
                 <div class="modal-body" v-if="modal_status">
                     <div id="RentRoomPhoto" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==rent_room_active }">
+                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
                                 <div style="height:55vh" class="slide" v-bind:style='{ backgroundImage: `url(/storage/Rent/Room-Photos/${photo.path})`}'></div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
       return {
         photos:this.room_photos,
         modal_status: false, //modal status
-        rent_room_active:0,
+        active:0,
         // Image Upload datas
         isDragging: false,
         dragCount: 0,

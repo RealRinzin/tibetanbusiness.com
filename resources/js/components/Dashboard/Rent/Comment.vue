@@ -68,7 +68,7 @@ export default {
     props:['comments'],
     data(){
         return{
-            comment:{},
+            comment:this.comments,
             view_comment:{},
         }
     },
@@ -87,19 +87,10 @@ export default {
             return str.slice(0, 50) + "..."
         }
     },
-    /**
-     * Watch the props
-     * data
-     *  */ 
-    watch:{
-        comments:function(data){
-            this.comment = this.comments
-        }
-    },
+
     // mounted
     mounted(){
         this.load_comments();
-        
     }
 }
 </script>

@@ -28,7 +28,10 @@
                 </div>
             </div>
         </div> 
-        <business-list></business-list>
+
+        <!-- <business-list></business-list> -->
+        <home-restaurant></home-restaurant>
+        <home-rent></home-rent>
     </div>
 </template>
 

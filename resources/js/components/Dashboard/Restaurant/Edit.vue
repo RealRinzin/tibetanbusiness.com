@@ -1,6 +1,6 @@
 <template>
     <div id="restaurant">
-            <loading :active.sync="isLoading"></loading>
+        <loading :active.sync="isLoading"></loading>
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <div class="row">

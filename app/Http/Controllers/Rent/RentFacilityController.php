@@ -37,6 +37,8 @@ class RentFacilityController extends Controller
     public function store(Request $request)
     {
         //
+        $facilities = RentFacility::create($request->all());
+
     }
 
     /**

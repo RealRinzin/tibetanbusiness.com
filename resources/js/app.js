@@ -137,10 +137,12 @@ Vue.component('image-upload', require('./components/ImageUpload.vue').default);
  * 
  * Front Page Component 
  * */
+Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
-Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
+Vue.component('home-rent', require('./components/Home/List/Rent.vue').default);
+Vue.component('home-restaurant', require('./components/Home/List/Restaurant.vue').default);
 /**
  * Sidebar
  * Check
@@ -189,6 +191,7 @@ Vue.component('dashboard-rent-overview', require('./components/Dashboard/Rent/Ov
 Vue.component('dashboard-rent-room-photo', require('./components/Dashboard/Rent/RoomPhoto.vue').default);
 Vue.component('dashboard-rent-view-photo', require('./components/Dashboard/Rent/ViewPhoto.vue').default);
 Vue.component('dashboard-rent-comment', require('./components/Dashboard/Rent/Comment.vue').default);
+Vue.component('dashboard-rent-add', require('./components/Dashboard/Rent/AddNew.vue').default);
 
 
 /**

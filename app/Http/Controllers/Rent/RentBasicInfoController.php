@@ -44,6 +44,39 @@ class RentBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        $rent = RentBasicInfo::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'mobile_no' => $request->mobile_no,
+            'location' => $request->location,
+            'email' => $request->email,
+            'fare' => $request->fare,
+            'banner' => $name,
+            'accomodation_size' => $request->accomodation_size,
+            'address' => $request->address,
+            'status' => true,
+            'featured_ad' => false,
+            'sidebar_ad' => false,
+            'home_ad' => false,
+            'description' => $request->description,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+        ]);
+        return $rent;
     }
 
     /**

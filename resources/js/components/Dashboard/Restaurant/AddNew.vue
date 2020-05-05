@@ -213,61 +213,63 @@ export default {
                 alert("Please enter the opening or closing hour")
             }else{
                 this.$validator.validateAll('validate_add_form').then((result) => {
-                    // post api
-                    axios.post('/api/restaurant',this.restaurant,{
-                    headers : { Authorization : localStorage.getItem("token")}
-                    })
-                    .then(response=>{
-                        // assign id
-                        this.id = response.data.id;
-                        // closing modal
-                            $("#restaurant_add_modal").modal("hide");  
-                            //  Flash Message  
-                            toast.fire({
-                                icon:'success',
-                                title:'Updated',
-                            });
-                            // operations day assign
-                            this.operation_days ={
-                                monday : true,
-                                tuesday : true,
-                                wednesday : false,
-                                thursday : true,
-                                friday : false,
-                                saturday : false,
-                                sunday : true,
-                                restaurant_basic_info_id : this.id
-                            }
-                            // Facilities
-                            this.facilities = {
-                                home_delivery : false,
-                                wifi:true,
-                                party_booking:false,
-                                roof_top:false,
-                                ac:true,
-                                veg:true,
-                                none_veg:true,
-                                beverage:true,
-                                parking_lot:false,
-                                card_payment:true,
-                                restaurant_basic_info_id : this.id
-
-                            }
-                    // Create Operation day
-                        axios.post('/api/restaurant_operation_days',this.operation_days,{
-                            headers : { Authorization : localStorage.getItem("token")}
-                            })
-                            .then(response=>{
-                            })
-                    // Create facilities
-                        axios.post('/api/restaurant_facilities',this.facilities,{
-                            headers : { Authorization : localStorage.getItem("token")}
-                            })
-                            .then(response=>{
-                            })
-                            this.$emit('load_restaurant');
-
-                    })
+                    if(result){
+                        // post api
+                        axios.post('/api/restaurant',this.restaurant,{
+                        headers : { Authorization : localStorage.getItem("token")}
+                        })
+                        .then(response=>{
+                            // assign id
+                            this.id = response.data.id;
+                            // closing modal
+                                $("#restaurant_add_modal").modal("hide");  
+                                //  Flash Message  
+                                toast.fire({
+                                    icon:'success',
+                                    title:'Updated',
+                                });
+                                // operations day assign
+                                this.operation_days ={
+                                    monday : true,
+                                    tuesday : true,
+                                    wednesday : false,
+                                    thursday : true,
+                                    friday : false,
+                                    saturday : false,
+                                    sunday : true,
+                                    restaurant_basic_info_id : this.id
+                                }
+                                // Facilities
+                                this.facilities = {
+                                    home_delivery : false,
+                                    wifi:true,
+                                    party_booking:false,
+                                    roof_top:false,
+                                    ac:true,
+                                    veg:true,
+                                    none_veg:true,
+                                    beverage:true,
+                                    parking_lot:false,
+                                    card_payment:true,
+                                    restaurant_basic_info_id : this.id
+    
+                                }
+                        // Create Operation day
+                            axios.post('/api/restaurant_operation_days',this.operation_days,{
+                                headers : { Authorization : localStorage.getItem("token")}
+                                })
+                                .then(response=>{
+                                })
+                        // Create facilities
+                            axios.post('/api/restaurant_facilities',this.facilities,{
+                                headers : { Authorization : localStorage.getItem("token")}
+                                })
+                                .then(response=>{
+                                })
+                                this.$emit('load_restaurant');
+    
+                        })
+                    }
                 })
             }
         }
