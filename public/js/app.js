@@ -2387,7 +2387,7 @@ __webpack_require__.r(__webpack_exports__);
   //methods
   methods: {
     // loading Restaurant
-    load: function load() {
+    rent_load: function rent_load() {
       var _this = this;
 
       this.isLoading = true;
@@ -2396,15 +2396,15 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: localStorage.getItem("token")
         }
       }).then(function (response) {
-        // Assigning Restaurant object
+        //Lazy loading            
+        _this.isLoading = false;
+        _this.loading = true; // Assigning Restaurant object
+
         _this.rent = response.data.data; // facitilies
 
         _this.facilities = _this.rent.facility[0]; // comments
 
-        _this.comments = _this.rent.comments; //Lazy loading            
-
-        _this.isLoading = false;
-        _this.loading = true;
+        _this.comments = _this.rent.comments;
       });
       /**
        * Retrieveing Overview
@@ -2479,7 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   mounted: function mounted() {
-    this.load();
+    this.rent_load();
   }
 });
 
@@ -3357,6 +3357,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.images = [];
         _this5.files = [];
         $("#upload_rent_room_photos_modal").modal("hide"); // callback function
+        // this.$root.$emit(...)
 
         _this5.$emit('rent_load');
       });
@@ -6000,7 +6001,11 @@ __webpack_require__.r(__webpack_exports__);
    *  */
   mounted: function mounted() {
     // Featured Restaurant
-    this.load_restaurant();
+    this.load_restaurant(); // API
+
+    axios.get('https://indian-cities-api-nocbegfhqg.now.sh/cities').then(function (response) {
+      console.log(response);
+    });
   }
 });
 
@@ -87010,7 +87015,7 @@ var render = function() {
                                 name: "accomodation_size",
                                 id: "accomodation_size",
                                 "aria-describedby": "emailHelp",
-                                placeholder: "Mobile No"
+                                placeholder: "How many people can stay"
                               },
                               domProps: { value: _vm.rent.accomodation_size },
                               on: {
@@ -87433,7 +87438,7 @@ var staticRenderFns = [
           staticClass: "modal-title mx-auto",
           attrs: { id: "exampleModalLongTitle" }
         },
-        [_vm._v("Add New Restaurant")]
+        [_vm._v("Add New Rent")]
       ),
       _vm._v(" "),
       _c(
@@ -88078,7 +88083,7 @@ var render = function() {
                                 room_photos: _vm.rent.room_photos,
                                 id: _vm.rent.id
                               },
-                              on: { rent_load: _vm.load }
+                              on: { rent_load: _vm.rent_load }
                             })
                           ],
                           1
@@ -88101,7 +88106,7 @@ var render = function() {
                                 view_photos: _vm.rent.view_photos,
                                 id: _vm.rent.id
                               },
-                              on: { load: _vm.load }
+                              on: { rent_load: _vm.rent_load }
                             })
                           ],
                           1
@@ -99866,11 +99871,7 @@ var render = function() {
                     _c(
                       "div",
                       { staticClass: "col-md-4 col-sm-12" },
-                      [
-                        _c("restaurant-sidebar", {
-                          attrs: { rating: _vm.rating }
-                        })
-                      ],
+                      [_c("sidebar")],
                       1
                     )
                   ])

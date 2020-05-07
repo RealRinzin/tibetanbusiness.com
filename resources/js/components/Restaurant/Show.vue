@@ -112,7 +112,7 @@
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
-                                <restaurant-sidebar v-bind:rating="rating"></restaurant-sidebar>
+                                <sidebar></sidebar>
                             </div>
                     </div>
                 </div>

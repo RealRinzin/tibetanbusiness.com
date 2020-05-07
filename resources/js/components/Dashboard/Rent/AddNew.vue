@@ -5,7 +5,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Add New Restaurant</h5>
+                    <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Add New Rent</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -60,7 +60,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="accomodation_size">Accomodation Size<span class="text-danger p-1">*</span></label>
-                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="How many people can stay">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.accomodation_size')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.accomodation_size')">{{ error }}</span>

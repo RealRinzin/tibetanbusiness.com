@@ -195,7 +195,7 @@ class RentBasicInfoController extends Controller
         if (Auth::user()->id === RentBasicInfo::find($id)->user_id) {
             return view('dashboard.rent.edit', ['id' => RentBasicInfo::find($id)]);
         } else {
-            $this->authorize('rent_edit', $rentBasicInfo);
+            $this->authorize('rent_auth', $rentBasicInfo);
             // return redirect('/');
         }
     }

@@ -139,6 +139,14 @@
         mounted() {
             // Featured Restaurant
             this.load_restaurant();
+
+
+            // API
+            axios.get('https://indian-cities-api-nocbegfhqg.now.sh/cities')
+            .then(response=>{
+                console.log(response);
+                
+            })
         },
     }
 </script>

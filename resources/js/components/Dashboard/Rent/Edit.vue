@@ -73,10 +73,10 @@
                                     <dashboard-rent-overview :rent="overview"  :facilities="facilities"></dashboard-rent-overview>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                    <dashboard-rent-room-photo v-bind:room_photos="rent.room_photos" :id="rent.id" @rent_load="load"></dashboard-rent-room-photo>
+                                    <dashboard-rent-room-photo v-bind:room_photos="rent.room_photos" :id="rent.id" @rent_load="rent_load"></dashboard-rent-room-photo>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-                                    <dashboard-rent-view-photo v-bind:view_photos="rent.view_photos" :id="rent.id" @load="load"></dashboard-rent-view-photo>
+                                    <dashboard-rent-view-photo v-bind:view_photos="rent.view_photos" :id="rent.id" @rent_load="rent_load"></dashboard-rent-view-photo>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                                     <dashboard-rent-comment v-bind:comments="comments"></dashboard-rent-comment>
@@ -119,21 +119,21 @@ export default {
     //methods
     methods:{
         // loading Restaurant
-        load(){
+        rent_load(){
             this.isLoading = true;
             axios.get('/api/rent/'+this.id,{
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(response=>{
+                //Lazy loading            
+                this.isLoading= false;
+                this.loading = true;
                 // Assigning Restaurant object
                 this.rent = response.data.data;
                 // facitilies
                 this.facilities = this.rent.facility[0]; 
                 // comments
                 this.comments = this.rent.comments;
-                //Lazy loading            
-                this.isLoading= false;
-                this.loading = true;
 
             })  
             /**
@@ -200,7 +200,7 @@ export default {
     },
     components:{Loading},
     mounted(){
-        this.load();
+        this.rent_load();
     }
 }
 </script>

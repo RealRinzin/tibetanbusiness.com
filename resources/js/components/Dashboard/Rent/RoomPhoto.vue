@@ -233,6 +233,7 @@
                   this.files = [];
                   $("#upload_rent_room_photos_modal").modal("hide"); 
                 // callback function
+                // this.$root.$emit(...)
                   this.$emit('rent_load');
               })
         }
