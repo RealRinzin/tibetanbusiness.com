@@ -1,5 +1,9 @@
 <?php
 
+use App\Job\JobAnswer;
+use App\Job\JobApply;
+use App\Job\JobBasicInfo;
+use App\Job\JobQuestion;
 use App\Rent\RentBasicInfo;
 use App\Rent\RentComment;
 use App\Rent\RentFacility;
@@ -31,10 +35,16 @@ class DatabaseSeeder extends Seeder
         // factory(RestaurantMenuPhoto::class, 10)->create();
         // factory(RestaurantComment::class, 2)->create();
         // Rent DB Seed
-        factory(RentBasicInfo::class, 2)->create();
-        factory(RentComment::class, 2)->create();
-        factory(RentRoomPhoto::class, 2)->create();
-        factory(RentViewPhoto::class, 2)->create();
-        factory(RentFacility::class, 2)->create();
+        // factory(RentBasicInfo::class, 2)->create();
+        // factory(RentComment::class, 2)->create();
+        // factory(RentRoomPhoto::class, 2)->create();
+        // factory(RentViewPhoto::class, 2)->create();
+        // factory(RentFacility::class, 2)->create();
+
+        // Job DB Seed
+        factory(JobBasicInfo::class,2)->create();
+        factory(JobApply::class, 2)->create();
+        factory(JobQuestion::class, 2)->create();
+        factory(JobAnswer::class, 2)->create();
     }
 }
