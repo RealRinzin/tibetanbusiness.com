@@ -141,7 +141,8 @@ class RentBasicInfoController extends Controller
      * without authorization
      *  */
     public function all(){
-        $rents =  RentBasicInfo::orderBy('created_at', 'desc')->get();
+        $rents =  RentBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
 

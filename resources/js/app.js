@@ -141,14 +141,17 @@ Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
 Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
+Vue.component('featured-job', require('./components/Home/Featured/Job.vue').default);
 Vue.component('home-rent', require('./components/Home/List/Rent.vue').default);
 Vue.component('home-restaurant', require('./components/Home/List/Restaurant.vue').default);
+Vue.component('home-job', require('./components/Home/List/Job.vue').default);
 /**
  * Sidebar
  * Check
  *  */ 
 Vue.component('sidebar', require('./components/Home/Sidebar.vue').default);
 Vue.component('rent-sidebar', require('./components/Rent/Sidebar.vue').default);
+Vue.component('job-sidebar', require('./components/Job/Sidebar.vue').default);
 
 
 /**
@@ -167,6 +170,9 @@ Vue.component('rent-show', require('./components/Rent/Show.vue').default);
 Vue.component('rent-room-photo', require('./components/Rent/RentRoomPhoto.vue').default);
 Vue.component('rent-view-photo', require('./components/Rent/RentViewPhoto.vue').default);
 Vue.component('rent-comment', require('./components/Rent/RentComment.vue').default);
+
+
+// Job Component
 
 
 /**

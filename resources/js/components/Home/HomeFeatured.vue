@@ -25,6 +25,7 @@
                         </div>
                     </div>
                     <featured-rent></featured-rent>
+                    <featured-job></featured-job>
                 </div>
             </div>
         </div> 
@@ -32,6 +33,7 @@
         <!-- <business-list></business-list> -->
         <home-restaurant></home-restaurant>
         <home-rent></home-rent>
+        <home-job></home-job>
     </div>
 </template>
 
@@ -142,11 +144,11 @@
 
 
             // API
-            axios.get('https://indian-cities-api-nocbegfhqg.now.sh/cities')
-            .then(response=>{
-                console.log(response);
+            // axios.get('https://indian-cities-api-nocbegfhqg.now.sh/cities')
+            // .then(response=>{
+            //     console.log(response);
                 
-            })
+            // })
         },
     }
 </script>

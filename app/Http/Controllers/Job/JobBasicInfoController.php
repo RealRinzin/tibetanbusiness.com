@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Job\JobBasicInfo;
 
 class JobBasicInfoController extends Controller
 {
@@ -81,5 +82,50 @@ class JobBasicInfoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Get all Rent 
+     * without authorization
+     *  */
+    public function all()
+    {
+
+        $jobs =  JobBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
+    }
+
+    /**
+     * 
+     * Restaurant Advertisment
+     * Home Featured
+     * Sidebar
+     * Banner etc
+     *  */
+    // public function live()
+    // {
+    //     $jobs =  JobBasicInfo::where('status', '=', true)
+    //         ->orderBy('created_at', 'desc')->get();
+    //     return $jobs->toArray($jobs);
+    // }
+    public function featured_ad()
+    {
+        $jobs =  JobBasicInfo::where('featured_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
+    }
+    // Front
+    public function home_ad()
+    {
+        $jobs =  JobBasicInfo::where('home_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
+    }
+    // Sidebar
+    public function sidebar_ad()
+    {
+        $jobs =  JobBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
     }
 }

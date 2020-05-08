@@ -3,7 +3,7 @@
         <div v-if="!loading">
             <loading :active.sync="isLoading"></loading>
         </div>
-        <div v-else class="container">
+        <div v-else class="container py-3">
             <div class="row">
                 <div class="col-md-8 mx-auto">
                     <h6 class="bg-danger btn">Upcoming Events</h6>

@@ -7,19 +7,19 @@
         <div  v-else class="container py-3">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn">New Rents</h6>
+                    <h6 class="bg-danger btn bt-xs">New Rents</h6>
                     <div class="row">
-                        <div class="col-md-6" v-for="(rents,index) in rents" v-if="index <= 1">
+                        <div class="col-md-6" v-for="(jobs,index) in jobs" v-if="index <= 1">
                         <!-- <div class="col-md-6"> -->
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'rent/'+rents.id"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${rents.banner})`}'></div></a>
+                                        <a v-bind:href="'job/'+jobs.id"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${jobs.banner})`}'></div></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">
-                                        <h5>{{rents.name}}</h5>
-                                        <h6 class="pt-1">{{rents.mobile_no}}</h6>
-                                        <h6>{{rents.location}}</h6>
+                                        <h5>{{jobs.title}}</h5>
+                                        <h6 class="pt-1">{{jobs.mobile_no}}</h6>
+                                        <h6>{{jobs.location}}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -40,30 +40,30 @@ export default {
         return{
             // loading:false,
             isLoading : false,//Lazy loading
-            rents:[],
+            jobs:[],
             loading:false, //loading
 
         }
     },
     // methods / Functions
     methods:{
-        // rents
+        // jobs
         rent_list(){
             // home advertisment
-            axios.get('api/rent/list/home_ad')
+            axios.get('api/job/list/home_ad')
             .then(response=>{
                 this.isLoading = true; //Loading true
                 if(response.data.length > 0){
                     for (let index = 0; index < response.data.length; index++) {
-                        this.rents[index] = response.data[Math.floor(Math.random() *response.data.length)]
+                        this.jobs[index] = response.data[Math.floor(Math.random() *response.data.length)]
                     }
                     this.isLoading = false; //Loading true
                     this.loading = true;
                 }else{
-                    axios.get('/api/rent/list/all').then(response=>{
+                    axios.get('/api/job/list/all').then(response=>{
                         this.isLoading = true; //Loading true
                         for (let index = 0; index < response.data.data.length; index++) {
-                            this.rents[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                            this.jobs[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
                         }
                         this.isLoading = false; //Loading true
                         this.loading = true;

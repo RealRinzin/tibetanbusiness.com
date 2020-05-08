@@ -57,8 +57,15 @@ use Illuminate\Http\Request;
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
         Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
         Route::patch('rent/banner_update/{id}', 'Rent\RentBasicInfoController@banner_update');
-
-
+        // JOB API
+        /**
+         * Rent API
+         * Authorization
+         */
+        Route::apiResource('job','Job\JobBasicInfoController');
+        Route::apiResource('job_apply', 'Job\JobApplyController');
+        Route::apiResource('job_question', 'Job\JobQuestionController');
+        Route::apiResource('job_answer', 'Job\JobAnswerController');
     
     });
     /**
@@ -86,3 +93,14 @@ use Illuminate\Http\Request;
     Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
+
+/**
+ * JOB API 
+ * Custom 
+ * Deauthorized
+ */
+
+Route::get('job/list/all', 'Job\JobBasicInfoController@all');
+Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
+Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
+Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');
