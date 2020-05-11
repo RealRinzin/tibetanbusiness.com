@@ -18,9 +18,10 @@ class CreateJobBasicInfoTable extends Migration
             $table->uuid('user_id');
             $table->string('banner', 80);
             $table->string('title', 255);
+            $table->string('organization', 255);
             $table->string('profession', 100);
             $table->string('experience', 35);
-            $table->string('Nature', 100);
+            $table->string('nature', 100);
             $table->string('address', 100);
             $table->decimal('salary', 10, 0)->nullable();
             $table->string('location', 30);

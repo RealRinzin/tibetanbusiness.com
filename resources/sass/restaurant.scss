@@ -20,9 +20,22 @@ View individual show CSS
             width: 100%;
             height: inherit;
             background: rgba(0, 0, 0, 0.2);
+            .job{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                i{
+                    padding:1px 6px !important;
+                }
+            }
             h6{
                 bottom:10px;
                 left:5px;
+            }
+            h5{
+                // top:0px;
+                left:5px;
+                bottom: 50px;
             }
         }
         ul{

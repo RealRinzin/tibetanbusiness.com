@@ -68,6 +68,8 @@ use Illuminate\Http\Request;
         Route::apiResource('job_answer', 'Job\JobAnswerController');
     
     });
+
+    
     /**
  * RESTAURANT API (DEAUTH)
  * Restaurannt
@@ -89,7 +91,7 @@ use Illuminate\Http\Request;
   */
     Route::get('rent/list/all', 'Rent\RentBasicInfoController@all'); //all rents
     Route::get('rent_comments/comment/{id}', 'Rent\RentCommentController@comment');
-    Route::get('rent/view/{id}','Rent\RentBasicInfoController@display'); // show individual (no authorization)
+    Route::get('rent/view/{id}','Rent\RentBasicInfoController@display');
     Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
@@ -101,6 +103,7 @@ use Illuminate\Http\Request;
  */
 
 Route::get('job/list/all', 'Job\JobBasicInfoController@all');
+Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
 Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
 Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
 Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');

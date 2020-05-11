@@ -151,7 +151,7 @@ class RentBasicInfoController extends Controller
         return view('rent.show', ['id' => RentBasicInfo::find($id)]);
 
     }
-    // Display the restaurant Show
+    // Display the restaurant Showv
     public function display($id){
         return new RentBasicInfoResource(RentBasicInfo::find($id));
     }

@@ -10,6 +10,7 @@ $factory->define(JobBasicInfo::class, function (Faker $faker) {
     return [
         //
         'banner' => $faker->sentence(),
+        'organization' => $faker->sentence(1),
         'title' => $faker->sentence(1),
         'profession' => $faker->sentence(1),
         'experience' => $faker->sentence(1),

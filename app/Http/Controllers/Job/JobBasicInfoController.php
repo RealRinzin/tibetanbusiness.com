@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Job\JobBasicInfo;
 
 class JobBasicInfoController extends Controller
@@ -94,7 +95,17 @@ class JobBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
-
+    // 
+    public function view(JobBasicInfo $jobBasicInfo, $id)
+    {
+        return view('job.show', ['id' => JobBasicInfo::find($id)]);
+    }
+    // Display the restaurant Show
+    public function display($id)
+    {
+        // return $id;
+        return new JobBasicInfoResource(JobBasicInfo::find($id));
+    }
     /**
      * 
      * Restaurant Advertisment

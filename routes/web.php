@@ -62,11 +62,12 @@ Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@restaura
 Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
 
 /**
- * 
- * Testing the image upload
- *  */ 
-/**
- * Rent
+ * Rent View / Show
  *  */ 
 Route::get('rent/{id}','Rent\RentBasicInfoController@view');
-Route::post('images_upload','HomeController@images_upload');
+
+
+/**
+ * Job View / Show
+ *  */
+Route::get('job/{id}', 'Job\JobBasicInfoController@view');

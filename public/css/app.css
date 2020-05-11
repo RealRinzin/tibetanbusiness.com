@@ -10906,9 +10906,24 @@ View individual show CSS
   background: rgba(0, 0, 0, 0.2);
 }
 
+#restaurant .banner .overlay .job {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#restaurant .banner .overlay .job i {
+  padding: 1px 6px !important;
+}
+
 #restaurant .banner .overlay h6 {
   bottom: 10px;
   left: 5px;
+}
+
+#restaurant .banner .overlay h5 {
+  left: 5px;
+  bottom: 50px;
 }
 
 #restaurant .banner ul {
