@@ -39,37 +39,7 @@
                             <h6 class="mt-0">{{question.name}}</h6>
                             <p class="text-muted" style="font-size:12px"><timeago :datetime="question.created_at" /></p>
                             <p class="text-muted">{{question.question}}</p>
-                            <!-- Replies -->
-                                <div v-for="reply in question.replies">
-                                    <div class="media mt-3">
-                                        <a class="pr-3" href="#">
-                                            <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                                        </a>
-                                        <div class="media-body">
-                                            <h6 class="mt-0">{{reply.name}}</h6>
-                                            <p class="text-muted" style="font-size:12px"><timeago :datetime="reply.created_at" /></p>
-                                            <p class="text-muted">{{reply.question}}</p>
-                                        </div>
-                                    </div>
-                                    <div v-if="is_logged">
-                                        <form @submit.prevent="post_reply(id)" data-vv-scope="job_valid_reply_form">
-                                            <div class="input-group input-group-sm">
-                                                <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.question" class="form-control" name="question">
-                                                <span class="input-group-append">
-                                                    <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your Question">Reply</button>
-                                                </span>
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('job_valid_question_form.question')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('job_valid_question_form.question')">{{ error }}</span>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div v-else>
-                                        <p class="pt-3 text-muted">Please login to leave comment</p>
-                                        <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
-                                    </div>
-                                </div>
+                            <replies></replies>
                             </div>
                         </div>
                     </div>
@@ -81,6 +51,7 @@
     </div>
 </template>
 <script>
+import Replies from './Reply.vue'
 export default {
     props:['job_uuid'],
     data(){
@@ -189,6 +160,8 @@ export default {
             
         }
     },
+    // components
+    components:{Replies},
     // Mounted
     mounted(){
         this.load_questions();
