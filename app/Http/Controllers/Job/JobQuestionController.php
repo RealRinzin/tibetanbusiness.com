@@ -4,6 +4,14 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Job\JobAnswerResource;
+use App\Http\Resources\Job\JobBasicInfoResource;
+use App\Http\Resources\Job\JobQuestionResource;
+use App\Job\JobAnswer;
+use App\Job\JobBasicInfo;
+use App\Job\JobQuestion;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class JobQuestionController extends Controller
 {
@@ -12,9 +20,9 @@ class JobQuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(JobBasicInfo $jobBasicInfo)
     {
-        //
+        return $jobBasicInfo->job_questions()->paginate('1'); 
     }
 
     /**
@@ -35,7 +43,15 @@ class JobQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $question = JobQuestion::create([
+            'user_id' => Auth::user()->id,
+            'job_basic_info_id' => $request->job_basic_info_id,
+            'question' => $request->question,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $question;
     }
 
     /**
@@ -44,9 +60,10 @@ class JobQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(JobBasicInfo $jobBasicInfo)
     {
-        //
+        return $jobBasicInfo->job_questions()->paginate('2');
+
     }
 
     /**
@@ -71,7 +88,6 @@ class JobQuestionController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -81,5 +97,24 @@ class JobQuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // All comments
+    public function view(JobQuestion $jobQuestion,$id){
+        return $jobQuestion->replies;
+    }
+    // Questions
+    public function question(JobBasicInfo $jobBasicInfo){
+        return $jobBasicInfo->job_questions()->paginate('1'); 
+
+        // $questions = JobQuestion::where('job_basic_info_id', '=', "$id")
+        //     ->orderBy('created_at', 'desc')->paginate(3);
+        // return $questions->toArray($questions);
+    }
+
+    public function replies($id)
+    {
+        return new JobQuestionResource(JobQuestion::find($id));
+
     }
 }

@@ -12,6 +12,7 @@ $factory->define(JobAnswer::class, function (Faker $faker) {
     return [
         //
         'name' => $faker->sentence(1),
+        'avatar' => 'Profile picture',
         'answer' => $faker->sentence(),
         'user_id' => function () {
             return User::all()->random();

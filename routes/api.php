@@ -62,9 +62,10 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
-        Route::apiResource('job','Job\JobBasicInfoController');
+        Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','show','create']]);
         Route::apiResource('job_apply', 'Job\JobApplyController');
-        Route::apiResource('job_question', 'Job\JobQuestionController');
+        Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['show','index','create']]);
+        // Route::apiResource('job_question', 'Job\JobQuestionController');
         Route::apiResource('job_answer', 'Job\JobAnswerController');
     
     });
@@ -103,6 +104,9 @@ use Illuminate\Http\Request;
  */
 
 Route::get('job/list/all', 'Job\JobBasicInfoController@all');
+// Route::get('job_question/questions/{id}', 'Job\JobQuestionController@question');
+Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
+// Route::get('job_answer/replies/{id}', 'Job\JobQuestionController@replies');
 Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
 Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
 Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');

@@ -27,8 +27,17 @@ class JobQuestion extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function job_basic_infos()
+    {
+        return $this->belongsTo(JobBasicInfo::class);
+    }
+    
     public function job_answers()
     {
         return $this->hasMany(JobAnswer::class);
+    }
+    // Replies
+    public function replies(){
+        return $this->hasMany(JobQuestion::class,'job_question_id')->whereNotNull('job_question_id')->orderBy('created_at', 'desc');
     }
 }

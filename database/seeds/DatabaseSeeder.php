@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         // Job DB Seed
         factory(JobBasicInfo::class,2)->create();
         factory(JobApply::class, 2)->create();
-        factory(JobQuestion::class, 2)->create();
-        factory(JobAnswer::class, 2)->create();
+        factory(JobQuestion::class, 10)->create();
+        // factory(JobAnswer::class, 2)->create();
     }
 }

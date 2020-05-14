@@ -174,6 +174,7 @@ Vue.component('rent-comment', require('./components/Rent/RentComment.vue').defau
 
 // Job Component
 Vue.component('job-show', require('./components/Job/Show.vue').default);
+Vue.component('job-question', require('./components/Job/Question.vue').default);
 
 
 /**

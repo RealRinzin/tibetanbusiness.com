@@ -16,8 +16,10 @@ class CreateJobQuestionsTable extends Migration
         Schema::connection('job')->create('job_questions', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('user_id');
+            $table->uuid('job_question_id')->nullable();
             $table->uuid('job_basic_info_id');
             $table->string('name',50);
+            $table->string('avatar');
             $table->string('question',500);
             $table->timestamps();
         });

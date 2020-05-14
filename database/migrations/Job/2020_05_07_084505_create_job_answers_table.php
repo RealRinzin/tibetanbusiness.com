@@ -19,6 +19,7 @@ class CreateJobAnswersTable extends Migration
             $table->uuid('job_basic_info_id');
             $table->uuid('job_question_id');
             $table->string('name', 50);
+            $table->string('avatar');
             $table->string('answer', 500);
             $table->timestamps();
         });

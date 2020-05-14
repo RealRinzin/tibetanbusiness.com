@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Job\JobAnswerResource;
+use App\Job\JobAnswer;
 
 class JobAnswerController extends Controller
 {
@@ -81,5 +83,15 @@ class JobAnswerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function answer($id)
+    {
+        // $answers = JobAnswer::where('job_question_id', '=', "$id")
+        //     ->orderBy('created_at', 'desc')->paginate(3);
+        // return $answers->toArray($answers);
+        return new JobAnswerResource(JobAnswer::find($id));
+        // return new JobBasicInfoResource(JobBasicInfo::find($id));
+
     }
 }

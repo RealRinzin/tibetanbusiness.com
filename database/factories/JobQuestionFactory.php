@@ -11,6 +11,8 @@ $factory->define(JobQuestion::class, function (Faker $faker) {
     return [
         //
         'name' => $faker->sentence(1),
+        'avatar' => 'Profile picture',
+        'avatar' => 'Profile picture',
         'question' => $faker->sentence(),
         'user_id' => function () {
             return User::all()->random();
@@ -18,5 +20,9 @@ $factory->define(JobQuestion::class, function (Faker $faker) {
         'job_basic_info_id' => function () {
             return JobBasicInfo::all()->random();
         },
+        'job_question_id' => null,
+        // 'job_question_id' => function () {
+        //     return JobQuestion::all()->random();
+        // },
     ];
 });
