@@ -105,7 +105,7 @@ class JobQuestionController extends Controller
     }
     // Questions
     public function question(JobBasicInfo $jobBasicInfo){
-        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('2'); 
+        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('3'); 
         // $questions = JobQuestion::where('job_basic_info_id', '=', "$id")
         //     ->orderBy('created_at', 'desc')->paginate(3);
         // return $questions->toArray($questions);

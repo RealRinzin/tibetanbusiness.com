@@ -6852,19 +6852,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['questions'],
   data: function data() {
     return {
-      question_id: this.questions,
+      // question_id : this.questions,
       replies: {}
     };
   },
   // Methods
   methods: {
     load_replies: function load_replies() {
+      var _this = this;
+
       axios.get('/api/job/' + this.questions.id + '/replies').then(function (response) {
+        _this.replies = response.data.data;
         console.log(response);
       });
     }
@@ -98234,7 +98236,15 @@ var render = function() {
         return _c("div", { staticClass: "media mt-3" }, [
           _vm._m(0, true),
           _vm._v(" "),
-          _vm._m(1, true)
+          _c("div", { staticClass: "media-body" }, [
+            _c("h6", { staticClass: "mt-0" }, [_vm._v(_vm._s(reply.name))]),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-muted" }, [
+              _vm._v(
+                "\n                " + _vm._s(reply.question) + "\n            "
+              )
+            ])
+          ])
         ])
       }),
       _vm._v(" "),
@@ -98267,20 +98277,6 @@ var staticRenderFns = [
           alt: "Generic placeholder image"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media-body" }, [
-      _c("h6", { staticClass: "mt-0" }, [_vm._v("Rinzin")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "text-muted" }, [
-        _vm._v(
-          "\n                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices\n                posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel,\n            "
-        )
-      ])
     ])
   }
 ]
