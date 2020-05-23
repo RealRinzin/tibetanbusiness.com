@@ -105,16 +105,16 @@ class JobQuestionController extends Controller
     }
     // Questions
     public function question(JobBasicInfo $jobBasicInfo){
-        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('1'); 
-
+        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('2'); 
         // $questions = JobQuestion::where('job_basic_info_id', '=', "$id")
         //     ->orderBy('created_at', 'desc')->paginate(3);
         // return $questions->toArray($questions);
     }
 
-    public function replies($id)
+    public function replies(JobQuestion $jobQuestion)
     {
-        return new JobQuestionResource(JobQuestion::find($id));
+        // return $jobQuestion;
+        return $jobQuestion->replies()->orderBy('created_at', 'desc')->paginate('2'); 
 
     }
 }

@@ -12,6 +12,7 @@ class JobQuestion extends Model
     //
     //Rent connection
     protected $connection = 'job';
+    protected $appends = ['repliesCount'];
     // Increment
     public $incrementing = false;
     protected static function boot()
@@ -39,5 +40,9 @@ class JobQuestion extends Model
     // Replies
     public function replies(){
         return $this->hasMany(JobQuestion::class,'job_question_id')->whereNotNull('job_question_id')->orderBy('created_at', 'desc');
+    }
+    // Count the replies
+    public function getRepliesCountAttribute(){
+        return $this->replies->count();
     }
 }

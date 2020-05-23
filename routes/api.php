@@ -106,6 +106,7 @@ use Illuminate\Http\Request;
 Route::get('job/list/all', 'Job\JobBasicInfoController@all');
 // Route::get('job_question/questions/{id}', 'Job\JobQuestionController@question');
 Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
+Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
 // Route::get('job_answer/replies/{id}', 'Job\JobQuestionController@replies');
 Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
 Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');

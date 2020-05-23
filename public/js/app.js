@@ -6850,7 +6850,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['questions'],
+  data: function data() {
+    return {
+      question_id: this.questions,
+      replies: {}
+    };
+  },
+  // Methods
+  methods: {
+    load_replies: function load_replies() {
+      axios.get('/api/job/' + this.questions.id + '/replies').then(function (response) {
+        console.log(response);
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log("mounted"); // console.log(this.question_id);
+  }
+});
 
 /***/ }),
 
@@ -98041,7 +98063,7 @@ var render = function() {
               ])
             : _c("div", [
                 _c("p", { staticClass: "pt-3 text-muted" }, [
-                  _vm._v("Please login to leave comment")
+                  _vm._v("Please login to leave Questions.")
                 ]),
                 _vm._v(" "),
                 _vm._m(1)
@@ -98122,7 +98144,7 @@ var render = function() {
                       _vm._v(_vm._s(question.question))
                     ]),
                     _vm._v(" "),
-                    _c("replies")
+                    _c("replies", { attrs: { questions: question } })
                   ],
                   1
                 )
@@ -98205,36 +98227,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.replies, function(reply) {
+        return _c("div", { staticClass: "media mt-3" }, [
+          _vm._m(0, true),
+          _vm._v(" "),
+          _vm._m(1, true)
+        ])
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default btn-sm",
+            on: { click: _vm.load_replies }
+          },
+          [_vm._v("Load Replies")]
+        )
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "media mt-3" }, [
-        _c("a", { staticClass: "pr-3", attrs: { href: "#" } }, [
-          _c("img", {
-            staticClass: "mr-2 img-circle",
-            staticStyle: { height: "50px", width: "50px" },
-            attrs: {
-              src:
-                "https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal",
-              alt: "Generic placeholder image"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "media-body" }, [
-          _c("h6", { staticClass: "mt-0" }, [_vm._v("Rinzin")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-muted" }, [
-            _vm._v(
-              "\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices\n posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, \n            "
-            )
-          ])
-        ])
+    return _c("a", { staticClass: "pr-3", attrs: { href: "#" } }, [
+      _c("img", {
+        staticClass: "mr-2 img-circle",
+        staticStyle: { height: "50px", width: "50px" },
+        attrs: {
+          src:
+            "https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal",
+          alt: "Generic placeholder image"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body" }, [
+      _c("h6", { staticClass: "mt-0" }, [_vm._v("Rinzin")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-muted" }, [
+        _vm._v(
+          "\n                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices\n                posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel,\n            "
+        )
       ])
     ])
   }

@@ -19,7 +19,7 @@
                             </form>
                         </div>
                         <div v-else>
-                            <p class="pt-3 text-muted">Please login to leave comment</p>
+                            <p class="pt-3 text-muted">Please login to leave Questions.</p>
                             <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
@@ -39,7 +39,7 @@
                             <h6 class="mt-0">{{question.name}}</h6>
                             <p class="text-muted" style="font-size:12px"><timeago :datetime="question.created_at" /></p>
                             <p class="text-muted">{{question.question}}</p>
-                            <replies></replies>
+                            <replies :questions="question"></replies>
                             </div>
                         </div>
                     </div>
