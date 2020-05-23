@@ -7,8 +7,8 @@
         <div class="media-body">
             <h6 class="mt-0">Rinzin</h6>
             <p class="text-muted">
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
- posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, 
+[                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ]
             </p>
             
         </div>
