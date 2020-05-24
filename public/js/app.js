@@ -6711,7 +6711,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * last page
        *  */
       questions: {},
-      replies: {},
+      // replies:{},
       nextPage: 2,
       load_more_button: true,
       total_questions: 0,
@@ -6735,6 +6735,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       axios.get('/api/job/' + this.job_uuid + '/questions').then(function (response) {
         _this.questions = response.data.data;
         _this.total_questions = response.data.total;
+
+        if (_this.total_questions == 0) {
+          _this.load_more_button = false;
+        }
       });
     },
 
@@ -6832,6 +6836,39 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6856,8 +6893,12 @@ __webpack_require__.r(__webpack_exports__);
   props: ['questions'],
   data: function data() {
     return {
-      // question_id : this.questions,
-      replies: {}
+      question: {},
+      replies: {
+        data: [],
+        next_page_url: "/api/job/".concat(this.questions.id, "/replies")
+      } // nextPage:1,
+
     };
   },
   // Methods
@@ -6865,14 +6906,21 @@ __webpack_require__.r(__webpack_exports__);
     load_replies: function load_replies() {
       var _this = this;
 
-      axios.get('/api/job/' + this.questions.id + '/replies').then(function (response) {
-        _this.replies = response.data.data;
-        console.log(response);
+      // axios.get('/api/job/'+this.questions.id+'/replies/?page='+this.nextPage)
+      axios.get(this.replies.next_page_url).then(function (_ref) {
+        var data = _ref.data;
+        _this.replies = _objectSpread({}, data, {
+          data: [].concat(_toConsumableArray(_this.replies.data), _toConsumableArray(data.data))
+        });
       });
+    },
+    // Reply the question
+    reply: function reply(id) {
+      console.log(id);
     }
   },
-  mounted: function mounted() {
-    console.log("mounted"); // console.log(this.question_id);
+  mounted: function mounted() {// console.log("mounted");
+    // console.log(this.question_id);
   }
 });
 
@@ -98024,7 +98072,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", name: "question" },
+                        attrs: {
+                          type: "text",
+                          name: "question",
+                          placeholder: "Ask your Questions here !!!"
+                        },
                         domProps: { value: _vm.question.question },
                         on: {
                           input: function($event) {
@@ -98232,9 +98284,77 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.replies, function(reply) {
+      _c("div", { staticClass: "text-left w-75" }, [
+        _c(
+          "form",
+          {
+            attrs: { "data-vv-scope": "job_valid_reply_form" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.reply(_vm.id)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "input-group input-group-sm" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: "required|min:1|max:255|alpha_spaces",
+                    expression: "'required|min:1|max:255|alpha_spaces'"
+                  },
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.question.reply,
+                    expression: "question.reply"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "reply",
+                  placeholder: "Give your reply here!!!"
+                },
+                domProps: { value: _vm.question.reply },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.question, "reply", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "valid-feedback" }),
+              _vm._v(" "),
+              _vm.errors.has("job_valid_reply_form.question")
+                ? _c(
+                    "div",
+                    { staticClass: "invalid-feedback" },
+                    _vm._l(
+                      _vm.errors.collect("job_valid_reply_form.question"),
+                      function(error) {
+                        return _c("span", [_vm._v(_vm._s(error))])
+                      }
+                    ),
+                    0
+                  )
+                : _vm._e()
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.replies.data, function(reply) {
         return _c("div", { staticClass: "media mt-3" }, [
-          _vm._m(0, true),
+          _vm._m(1, true),
           _vm._v(" "),
           _c("div", { staticClass: "media-body" }, [
             _c("h6", { staticClass: "mt-0" }, [_vm._v(_vm._s(reply.name))]),
@@ -98248,21 +98368,38 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-default btn-sm",
-            on: { click: _vm.load_replies }
-          },
-          [_vm._v("Load Replies")]
-        )
-      ])
+      _vm.questions.repliesCount > 0 && _vm.replies.next_page_url
+        ? _c("div", { staticClass: "text-center mt-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary btn-sm",
+                on: { click: _vm.load_replies }
+              },
+              [_vm._v("Load Replies")]
+            )
+          ])
+        : _vm._e()
     ],
     2
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "input-group-append" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info btn-flat btn-lg",
+          attrs: { type: "submit", placeholder: "Write your Question" }
+        },
+        [_vm._v("Reply")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

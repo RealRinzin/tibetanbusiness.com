@@ -7,7 +7,7 @@
                         <div v-if="is_logged">
                             <form @submit.prevent="post_question(id)" data-vv-scope="job_valid_question_form">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.question" class="form-control" name="question">
+                                    <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.question" class="form-control" name="question" placeholder="Ask your Questions here !!!">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your Question">Post</button>
                                     </span>
@@ -76,7 +76,7 @@ export default {
              * last page
              *  */ 
             questions:{},
-            replies:{},
+            // replies:{},
             nextPage:2,
             load_more_button : true,
             total_questions:0,
@@ -98,6 +98,9 @@ export default {
             .then(response=>{ 
                 this.questions = response.data.data;
                 this.total_questions = response.data.total;
+                if(this.total_questions  == 0){
+                    this.load_more_button = false;
+                }
             })
         },
         /**
