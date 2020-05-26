@@ -97,9 +97,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{route('dashboard.job')}}" class="nav-link">
                                 <i class="fas fa-utensils mr-2"></i>
-                                <p>Restaurants<span class="right badge badge-danger">New</span></p>
+                                <p>job<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                         <li class="nav-item">

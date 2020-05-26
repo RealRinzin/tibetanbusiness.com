@@ -28,7 +28,7 @@
        <!-- Comment View -->
         <div class="card p-3">
             <div class="row">
-                <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_questions}})</span></h5>
+                <h5 class="text-dark">Questions<span class="text-muted ml-2" style="font-size:14px">({{total_questions}})</span></h5>
                 <div v-if="questions_lazy_load">
                     <loading :active.sync="questions_lazy_load"></loading>
                 </div>

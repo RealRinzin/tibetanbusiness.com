@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Job\JobBasicInfo;
+use Illuminate\Support\Facades\Auth;
 
 class JobBasicInfoController extends Controller
 {
@@ -83,6 +84,11 @@ class JobBasicInfoController extends Controller
     public function destroy($id)
     {
         //
+        $job = JobBasicInfo::find($id);
+        $job->delete();
+        $job->job_questions()->delete();
+        $job->job_applies()->delete();
+
     }
     /**
      * Get all Rent 
@@ -119,6 +125,13 @@ class JobBasicInfoController extends Controller
     //         ->orderBy('created_at', 'desc')->get();
     //     return $jobs->toArray($jobs);
     // }
+    public function status_update(Request $request, $id)
+    {
+        // return $id;
+        $status = JobBasicInfo::find($id);
+        // update
+        $status->update($request->all());
+    }
     public function featured_ad()
     {
         $jobs =  JobBasicInfo::where('featured_ad', '=', true)
@@ -137,6 +150,12 @@ class JobBasicInfoController extends Controller
     {
         $jobs =  JobBasicInfo::where('sidebar_ad', '=', true)
             ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
+    }
+    // User Job
+    public function user_job()
+    {
+        $jobs = Auth::user()->job_basic_infos;
         return $jobs->toArray($jobs);
     }
 }

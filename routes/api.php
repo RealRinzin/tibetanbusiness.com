@@ -66,6 +66,9 @@ use Illuminate\Http\Request;
         Route::apiResource('job_apply', 'Job\JobApplyController');
         Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['show','index','create']]);
         Route::post('job/question/reply','Job\JobQuestionController@reply_store');
+        Route::get('user/jobs', 'Job\JobBasicInfoController@user_job');
+        Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
+
         // Route::apiResource('job_question', 'Job\JobQuestionController');
         // Route::apiResource('job_answer', 'Job\JobAnswerController');
     

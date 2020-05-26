@@ -79,17 +79,6 @@ class JobQuestionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -124,6 +113,7 @@ class JobQuestionController extends Controller
     {
         // return $jobQuestion;
         return $jobQuestion->replies()->orderBy('created_at', 'desc')->paginate('2'); 
-
     }
+
+
 }

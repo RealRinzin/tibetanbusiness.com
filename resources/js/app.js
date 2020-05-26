@@ -201,6 +201,9 @@ Vue.component('dashboard-rent-view-photo', require('./components/Dashboard/Rent/
 Vue.component('dashboard-rent-comment', require('./components/Dashboard/Rent/Comment.vue').default);
 Vue.component('dashboard-rent-add', require('./components/Dashboard/Rent/AddNew.vue').default);
 
+// Job Dashboard
+Vue.component('dashboard-job-index', require('./components/Dashboard/Job/Index.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
