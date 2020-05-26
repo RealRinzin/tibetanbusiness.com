@@ -53,7 +53,19 @@ class JobQuestionController extends Controller
         ]);
         return $question;
     }
+    // reply
+    public function reply_store(Request $request){
 
+        $reply = JobQuestion::create([
+            'user_id' => Auth::user()->id,
+            'job_basic_info_id' => $request->job_basic_info_id,
+            'job_question_id' => $request->job_question_id,
+            'question' => $request->reply,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $reply;
+    }
     /**
      * Display the specified resource.
      *
@@ -105,10 +117,7 @@ class JobQuestionController extends Controller
     }
     // Questions
     public function question(JobBasicInfo $jobBasicInfo){
-        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('3'); 
-        // $questions = JobQuestion::where('job_basic_info_id', '=', "$id")
-        //     ->orderBy('created_at', 'desc')->paginate(3);
-        // return $questions->toArray($questions);
+        return $jobBasicInfo->job_questions()->orderBy('created_at', 'desc')->paginate('5'); 
     }
 
     public function replies(JobQuestion $jobQuestion)

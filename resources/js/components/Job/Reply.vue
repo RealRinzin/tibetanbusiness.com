@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-left w-75">
-            <form @submit.prevent="reply(id)" data-vv-scope="job_valid_reply_form">
+            <form @submit.prevent="reply()" data-vv-scope="job_valid_reply_form">
                 <div class="input-group input-group-sm">
                     <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                     <span class="input-group-append">
@@ -26,9 +26,9 @@
             </div>
         </div>
         <!-- {{questions}} -->
-        <div class="text-center mt-3" v-if="questions.repliesCount > 0 && replies.next_page_url">
+        <div class="text-center mt-3 p-2" v-if="questions.repliesCount > 0 && replies.next_page_url">
             <!-- {{questions}} -->
-            <button @click="load_replies" class="btn btn-secondary btn-sm">Load Replies</button>
+            <button @click="load_replies" class="btn btn-secondary btn-sm">Load Replies ({{questions.repliesCount}})</button>
         </div>
     </div>
     
@@ -38,7 +38,13 @@ export default {
     props:['questions'],
     data(){
         return{
-            question:{},
+            question:{
+                job_basic_info_id:this.questions.job_basic_info_id,
+                job_question_id:this.questions.id,
+                reply:'',
+                avatar:localStorage.getItem('user_avatar'),
+                name:localStorage.getItem('user_name'),
+            },
             replies:{
                 data:[],
                 next_page_url:`/api/job/${this.questions.id}/replies`,
@@ -63,8 +69,21 @@ export default {
             })
         },
         // Reply the question
-        reply(id){
-            console.log(id);
+        reply(){
+            /* Valid for post */
+            this.$validator.validateAll('job_valid_reply_form').then((result) => {
+                if(result){
+                    axios.post('/api/job/question/reply',this.question,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    }).then(response=>{
+                        this.load_replies();
+                        toast.fire({
+                            icon:'success',
+                            title:'Comment Posted',
+                        });
+                    })
+                }
+            })
         }
 
     },

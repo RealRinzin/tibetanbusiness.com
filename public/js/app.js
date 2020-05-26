@@ -6711,6 +6711,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * last page
        *  */
       questions: {},
+      queries: {
+        data: []
+      },
       // replies:{},
       nextPage: 2,
       load_more_button: true,
@@ -6739,12 +6742,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (_this.total_questions == 0) {
           _this.load_more_button = false;
         }
+      }); // Auto
+
+      axios.get("/api/job/".concat(this.job_uuid, "/questions")).then(function (_ref) {
+        var data = _ref.data;
+        _this.queries = data;
       });
     },
 
     /**
      * Load More
-     * Comments
+     * Comments 
      *  */
     load_more_questions: function load_more_questions(nextPage) {
       var _this2 = this;
@@ -6788,8 +6796,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               Authorization: localStorage.getItem("token")
             }
           }).then(function (response) {
-            console.log(response);
-
             _this3.load_questions(); // Reset form
             // this.review = [];
 
@@ -6801,10 +6807,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           });
         }
       });
-    },
-    // Reply
-    post_reply: function post_reply(id) {
-      console.log("this is fine");
     }
   },
   // components
@@ -6893,7 +6895,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ['questions'],
   data: function data() {
     return {
-      question: {},
+      question: {
+        job_basic_info_id: this.questions.job_basic_info_id,
+        job_question_id: this.questions.id,
+        reply: '',
+        avatar: localStorage.getItem('user_avatar'),
+        name: localStorage.getItem('user_name')
+      },
       replies: {
         data: [],
         next_page_url: "/api/job/".concat(this.questions.id, "/replies")
@@ -6915,8 +6923,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     // Reply the question
-    reply: function reply(id) {
-      console.log(id);
+    reply: function reply() {
+      var _this2 = this;
+
+      /* Valid for post */
+      this.$validator.validateAll('job_valid_reply_form').then(function (result) {
+        if (result) {
+          axios.post('/api/job/question/reply', _this2.question, {
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+          }).then(function (response) {
+            _this2.load_replies();
+
+            toast.fire({
+              icon: 'success',
+              title: 'Comment Posted'
+            });
+          });
+        }
+      });
     }
   },
   mounted: function mounted() {// console.log("mounted");
@@ -98292,7 +98318,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.reply(_vm.id)
+                return _vm.reply()
               }
             }
           },
@@ -98369,14 +98395,18 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.questions.repliesCount > 0 && _vm.replies.next_page_url
-        ? _c("div", { staticClass: "text-center mt-3" }, [
+        ? _c("div", { staticClass: "text-center mt-3 p-2" }, [
             _c(
               "button",
               {
                 staticClass: "btn btn-secondary btn-sm",
                 on: { click: _vm.load_replies }
               },
-              [_vm._v("Load Replies")]
+              [
+                _vm._v(
+                  "Load Replies (" + _vm._s(_vm.questions.repliesCount) + ")"
+                )
+              ]
             )
           ])
         : _vm._e()

@@ -76,6 +76,9 @@ export default {
              * last page
              *  */ 
             questions:{},
+            queries:{
+                data:[]
+            },
             // replies:{},
             nextPage:2,
             load_more_button : true,
@@ -102,10 +105,15 @@ export default {
                     this.load_more_button = false;
                 }
             })
+            // Auto
+            axios.get(`/api/job/${this.job_uuid}/questions`)
+            .then(({data})=>{
+                this.queries = data;
+            })
         },
         /**
          * Load More
-         * Comments
+         * Comments 
          *  */ 
         load_more_questions(nextPage){
             axios.get('/api/job/'+this.job_uuid+'/questions/?page='+this.nextPage)
@@ -144,8 +152,7 @@ export default {
                     axios.post('/api/job_question',this.question,{
                     headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
-                        console.log(response);
-                        
+
                         this.load_questions();
                         // Reset form
                         // this.review = [];
@@ -157,11 +164,6 @@ export default {
                 }
             })
         },
-        // Reply
-        post_reply(id){
-            console.log("this is fine");
-            
-        }
     },
     // components
     components:{Replies},
