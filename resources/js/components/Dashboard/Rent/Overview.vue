@@ -233,8 +233,8 @@
         <div class="modal fade" id="rent_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Update Restaurant</h5>
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Restaurant</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -377,8 +377,6 @@ export default {
         },
         // Overview update
         update_overview(id){
-            console.log(this.rent);
-            
                 this.$validator.validateAll('rent_validate_update_form').then((result) => {
                     if (result) {
                         axios.patch('/api/rent/'+id,this.rent,{

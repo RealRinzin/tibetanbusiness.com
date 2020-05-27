@@ -1899,6 +1899,236 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Overview_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Overview.vue */ "./resources/js/components/Dashboard/Job/Overview.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// Import component
+ // Import stylesheet
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['job_id'],
+  data: function data() {
+    return {
+      // Lazy loading
+      isLoading: false,
+      //Lazy loading
+      loading: false,
+      //loading
+      // restaurant ID
+      id: this.job_id.id,
+      //Restaurant ID
+      // Restaurant Object
+      job: {},
+      // Overview
+      overview: {},
+      // operatin
+      //facilities
+      // facilities:{},
+      // comments
+      comments: {},
+      // Banner
+      bannerPreview: null
+    };
+  },
+  //methods
+  methods: {
+    // loading Restaurant
+    job_load: function job_load() {
+      var _this = this;
+
+      this.isLoading = true;
+      axios.get('/api/job/' + this.id, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        //Lazy loading            
+        _this.isLoading = false;
+        _this.loading = true; // Assigning Restaurant object
+
+        _this.job = response.data.data; // comments
+        // this.comments = this.job.comments;
+      });
+      /**
+       * Retrieveing Overview
+       *  */
+
+      axios.get('/api/job/individual/' + this.id, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        _this.overview = response.data;
+      });
+    },
+
+    /**
+     * Update Banner
+     *  */
+    banner_event: function banner_event(event) {
+      var _this2 = this;
+
+      var extension = event.target.files[0].type;
+      var size = event.target.files[0].size; // Check extension
+
+      if (extension === 'image/jpeg' || extension === 'image/png' || extension === 'image/gif') {
+        if (size < 1000000) {
+          var fileReader = new FileReader();
+          fileReader.onload = function (event) {
+            _this2.bannerPreview = event.target.result; // this.restaurant.banner = event.target.result
+          }, // base64 data
+          fileReader.readAsDataURL(event.target.files[0]);
+        } else {
+          alert("Upload less than 1MB ");
+        }
+      } else {
+        alert("Please Upload Only Image");
+      }
+    },
+
+    /**
+     * Update
+     * Operations
+     *  */
+    update_banner: function update_banner(id) {
+      var _this3 = this;
+
+      axios({
+        method: 'patch',
+        url: '/api/job/banner_update/' + id,
+        data: {
+          banner: this.bannerPreview
+        },
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      }).then(function (response) {
+        _this3.job_load(); //  Flash Message  
+
+
+        toast.fire({
+          icon: 'success',
+          title: 'Successfully Uploaded!!'
+        }); // Reload
+      });
+    }
+  },
+  components: {
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a,
+    Overview: _Overview_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  mounted: function mounted() {
+    this.job_load();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Index.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Index.vue?vue&type=script&lang=js& ***!
@@ -2064,6 +2294,369 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.load_job();
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['job'],
+  data: function data() {
+    return {// job:{},
+    };
+  },
+  methods: {
+    // modal
+    edit: function edit() {
+      $("#job_overview_update_modal").modal("show");
+    },
+    // Update
+    update_overview: function update_overview(id) {
+      var _this = this;
+
+      this.$validator.validateAll('job_validate_update_form').then(function (result) {
+        if (result) {
+          axios.patch('/api/job/' + id, _this.job, {
+            headers: {
+              Authorization: localStorage.getItem("token")
+            }
+          }).then(function (response) {
+            _this.$Progress.start(); // Close Modal
+
+
+            $("#job_overview_update_modal").modal("hide"); //  Flash Message  
+
+            toast.fire({
+              icon: 'success',
+              title: 'Updated'
+            });
+
+            _this.$Progress.finish();
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -3211,7 +3804,6 @@ __webpack_require__.r(__webpack_exports__);
     update_overview: function update_overview(id) {
       var _this = this;
 
-      console.log(this.rent);
       this.$validator.validateAll('rent_validate_update_form').then(function (result) {
         if (result) {
           axios.patch('/api/rent/' + id, _this.rent, {
@@ -87689,6 +88281,404 @@ var index = {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "restaurant" } }, [
+    !_vm.loading
+      ? _c(
+          "div",
+          [
+            _c("loading", {
+              attrs: { active: _vm.isLoading },
+              on: {
+                "update:active": function($event) {
+                  _vm.isLoading = $event
+                }
+              }
+            })
+          ],
+          1
+        )
+      : _c("div", [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-10 mx-auto" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "card text-center" }, [
+                    _vm.bannerPreview == null
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "banner",
+                            style: {
+                              backgroundImage:
+                                "url(/img/" + _vm.job.banner + ")"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "overlay" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _vm._m(0),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12 py-4" }, [
+                                  _vm._m(1),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "upload_browser",
+                                    attrs: {
+                                      type: "file",
+                                      id: "rent_banner",
+                                      name: "rent_banner"
+                                    },
+                                    on: { change: _vm.banner_event }
+                                  })
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          {
+                            staticClass: "banner",
+                            style: {
+                              backgroundImage: "url(" + _vm.bannerPreview + ")"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "overlay" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-md-12" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-info btn-md",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.update_banner(_vm.job.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._m(2),
+                                      _vm._v(" "),
+                                      _c("p", [_vm._v("Upload")])
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-12", attrs: { id: "nav-tab" } },
+                  [
+                    _c("div", { staticClass: "width-25" }, [
+                      _c(
+                        "button",
+                        { staticClass: "btn btn-secondary btn-md" },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _c("i", {
+                            staticClass: "fas fa-star text-warning fa-1x mr-2"
+                          }),
+                          _vm._v(_vm._s(_vm.job.rate))
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", [
+                        _c("label", { staticClass: "switch" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.job.status,
+                                expression: "job.status"
+                              }
+                            ],
+                            attrs: { type: "checkbox" },
+                            domProps: {
+                              checked: Array.isArray(_vm.job.status)
+                                ? _vm._i(_vm.job.status, null) > -1
+                                : _vm.job.status
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.job.status,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.job,
+                                        "status",
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.job,
+                                        "status",
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(_vm.job, "status", $$c)
+                                }
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "slider round" })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "nav nav-tabs mt-3",
+                        attrs: {
+                          id: "custom-content-below-tab",
+                          role: "tablist"
+                        }
+                      },
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              attrs: {
+                                href: "custom-content-below-settings-tab",
+                                id: "custom-content-below-settings-tab",
+                                "data-toggle": "pill",
+                                href: "#custom-content-below-settings",
+                                role: "tab",
+                                "aria-controls":
+                                  "custom-content-below-settings",
+                                "aria-selected": "false"
+                              }
+                            },
+                            [_vm._v("Comments")]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "tab-content py-3",
+                        attrs: { id: "custom-content-below-tabContent" }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane fade show active",
+                            attrs: {
+                              id: "custom-content-below-overview",
+                              role: "tabpanel",
+                              "aria-labelledby":
+                                "custom-content-below-overview-tab"
+                            }
+                          },
+                          [_c("overview", { attrs: { job: _vm.overview } })],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "tab-pane fade",
+                          attrs: {
+                            id: "custom-content-below-profile",
+                            role: "tabpanel",
+                            "aria-labelledby":
+                              "custom-content-below-profile-tab"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "tab-pane fade",
+                          attrs: {
+                            id: "custom-content-below-messages",
+                            role: "tabpanel",
+                            "aria-labelledby":
+                              "custom-content-below-messages-tab"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "tab-pane fade",
+                          attrs: {
+                            id: "custom-content-below-settings",
+                            role: "tabpanel",
+                            "aria-labelledby":
+                              "custom-content-below-settings-tab"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("i", { staticClass: "fas fa-camera fa-5x text-white" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "text-center btn btn-danger btn-md",
+        attrs: { for: "rent_banner" }
+      },
+      [
+        _c("i", { staticClass: "fas fa-cloud-upload-alt mr-2" }),
+        _vm._v("Upload Image")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("i", { staticClass: "fas fa-cloud-upload-alt mr-2" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("img", { attrs: { src: "/img/map.jpeg", alt: "", height: "250" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item pl-0" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active pl-0",
+          attrs: {
+            id: "custom-content-below-overview-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-overview",
+            role: "tab",
+            "aria-controls": "custom-content-below-overview",
+            "aria-selected": "true"
+          }
+        },
+        [_vm._v("Overview")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            id: "custom-content-below-profile-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-profile",
+            role: "tab",
+            "aria-controls": "custom-content-below-profile",
+            "aria-selected": "false"
+          }
+        },
+        [_vm._v("Applicants")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            id: "custom-content-below-messages-tab",
+            "data-toggle": "pill",
+            href: "#custom-content-below-messages",
+            role: "tab",
+            "aria-controls": "custom-content-below-messages",
+            "aria-selected": "false"
+          }
+        },
+        [_vm._v("Questions")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Index.vue?vue&type=template&id=0062916a&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Index.vue?vue&type=template&id=0062916a& ***!
@@ -87908,6 +88898,1455 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
       ])
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 card py-3" }, [
+        _c("div", { staticClass: "p-2" }, [
+          _c("div", [
+            _c("button", { staticClass: "btn btn-info btn-sm " }, [
+              _vm._v("Basic Information")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "btn btn-warning btn-sm d-flex-justify-content-end",
+                on: {
+                  click: function($event) {
+                    return _vm.edit()
+                  }
+                }
+              },
+              [_vm._v("Edit")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.title))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.organization))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted font-weight-bold" }, [
+                    _vm._v("Rs: " + _vm._s(_vm.job.salary) + " /-")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.profession))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.nature))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.experience))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.deadline))
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.location))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(8),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.mobile_no))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(9),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.email) + " People")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.job.website
+                ? _c("div", { staticClass: "row py-1" }, [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                      _c("h6", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.job.website))
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.job.instagram
+                ? _c("div", { staticClass: "row py-1" }, [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                      _c("h6", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(_vm.job.instagram))
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.job.facebook
+                ? _c("div", { staticClass: "row py-1" }, [
+                    _vm._m(12),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-primary",
+                          attrs: { href: _vm.job.facebook }
+                        },
+                        [
+                          _c("h6", { staticClass: "text-muted" }, [
+                            _vm._v(_vm._s(_vm.job.facebook))
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(13),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.address))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row py-1" }, [
+                _vm._m(14),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(_vm.job.description))
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "job_overview_update_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLongTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(15),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { "data-vv-scope": "job_validate_update_form" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.update_overview(_vm.job.id)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "container-fluid" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(16),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.title,
+                                  expression: "job.title"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "title",
+                                id: "title",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.title")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.title"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(17),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.organization,
+                                  expression: "job.organization"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "organization",
+                                id: "organization",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.organization },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "organization",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has(
+                              "job_validate_update_form.organization"
+                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.organization"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(18),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.salary,
+                                  expression: "job.salary"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "salary",
+                                id: "salary",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.salary },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "salary",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.salary")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.salary"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(19),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.profession,
+                                  expression: "job.profession"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "profession",
+                                id: "profession",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.profession },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "profession",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has(
+                              "job_validate_update_form.profession"
+                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.profession"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(20),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.nature,
+                                  expression: "job.nature"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "nature",
+                                id: "nature",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.nature },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "nature",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.nature")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.nature"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(21),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.experience,
+                                  expression: "job.experience"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "experience",
+                                id: "experience",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.experience },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "experience",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has(
+                              "job_validate_update_form.experience"
+                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.experience"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(22),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.deadline,
+                                  expression: "job.deadline"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "date",
+                                name: "deadline",
+                                id: "deadline",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.deadline },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "deadline",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.deadline")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.deadline"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(23),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.location,
+                                  expression: "job.location"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "location",
+                                id: "location",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.location },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "location",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.location")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.location"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(24),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:10|max:40",
+                                  expression: "'required|min:10|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.mobile_no,
+                                  expression: "job.mobile_no"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "mobile_no",
+                                id: "mobile_no",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.mobile_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "mobile_no",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.mobile_no")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.mobile_no"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(25),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required|min:2|max:40",
+                                  expression: "'required|min:2|max:40'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.address,
+                                  expression: "job.address"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "address",
+                                id: "address",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.address },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "address",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.address")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.address"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(26),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.instagram,
+                                  expression: "job.instagram"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "instagram",
+                                id: "instagram",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "name"
+                              },
+                              domProps: { value: _vm.job.instagram },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "instagram",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.instagram")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.instagram"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(27),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.facebook,
+                                  expression: "job.facebook"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "facebook",
+                                id: "facebook",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Facebook"
+                              },
+                              domProps: { value: _vm.job.facebook },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "facebook",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.facebook")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.facebook"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(28),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:50|url",
+                                  expression: "'max:50|url'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.website,
+                                  expression: "job.website"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "website",
+                                id: "website",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Facebook"
+                              },
+                              domProps: { value: _vm.job.website },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "website",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has("job_validate_update_form.website")
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.website"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 col-sm-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _vm._m(29),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "max:150",
+                                  expression: "'max:150'"
+                                },
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.job.description,
+                                  expression: "job.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "4",
+                                cols: "50",
+                                name: "description",
+                                id: "description",
+                                "aria-describedby": "emailHelp",
+                                placeholder: "Description | less than 250 word"
+                              },
+                              domProps: { value: _vm.job.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.job,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "valid-feedback" }),
+                            _vm._v(" "),
+                            _vm.errors.has(
+                              "job_validate_update_form.description"
+                            )
+                              ? _c(
+                                  "div",
+                                  { staticClass: "invalid-feedback" },
+                                  _vm._l(
+                                    _vm.errors.collect(
+                                      "job_validate_update_form.description"
+                                    ),
+                                    function(error) {
+                                      return _c("span", [_vm._v(_vm._s(error))])
+                                    }
+                                  ),
+                                  0
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(30)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Title:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Organization:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Salary:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Profession:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Nature:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Experience:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Deadline:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Location:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Mobile:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Email:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Website:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Instagram:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("facebook:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Address:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-sm-4" }, [
+      _c("h6", { staticClass: "text-dark" }, [_vm._v("Description:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header bg-secondary text-white" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_vm._v("Update Job")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "title" } }, [
+      _vm._v("Title"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "organization" } }, [
+      _vm._v("Organization"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "salary" } }, [
+      _vm._v("Salary"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "profession" } }, [
+      _vm._v("Profession"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "nature" } }, [
+      _vm._v("Nature"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "experience" } }, [
+      _vm._v("Experience"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "deadline" } }, [
+      _vm._v("Deadline"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "location" } }, [
+      _vm._v("Location"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "deadline" } }, [
+      _vm._v("Mobile no"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "deadline" } }, [
+      _vm._v("Address"),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "instagram" } }, [
+      _vm._v("Instagram "),
+      _c("small", { staticClass: "text-success" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "facebook" } }, [
+      _vm._v("Facebook "),
+      _c("small", { staticClass: "text-success" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "website" } }, [
+      _vm._v("Website "),
+      _c("small", { staticClass: "text-success" }, [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "description" } }, [
+      _vm._v("Job Description "),
+      _c("span", { staticClass: "text-danger p-1" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "modal-footer d-flex justify-content-center" },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary w-25",
+            attrs: { type: "button", "data-dismiss": "modal" }
+          },
+          [_vm._v("Close")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-md w-25",
+            attrs: { type: "submit", placeholder: "Write your comment" }
+          },
+          [_vm._v("Update")]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -91474,13 +93913,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
+    return _c("div", { staticClass: "modal-header bg-secondary text-white" }, [
       _c(
         "h5",
-        {
-          staticClass: "modal-title mx-auto",
-          attrs: { id: "exampleModalLongTitle" }
-        },
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
         [_vm._v("Update Restaurant")]
       ),
       _vm._v(" "),
@@ -97320,13 +99756,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
+    return _c("div", { staticClass: "modal-header bg-secondary text-white" }, [
       _c(
         "h5",
-        {
-          staticClass: "modal-title mx-auto",
-          attrs: { id: "exampleModalLongTitle" }
-        },
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
         [_vm._v("Update Restaurant")]
       ),
       _vm._v(" "),
@@ -116676,6 +119109,7 @@ vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('dashboard-rent-comment', _
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('dashboard-rent-add', __webpack_require__(/*! ./components/Dashboard/Rent/AddNew.vue */ "./resources/js/components/Dashboard/Rent/AddNew.vue")["default"]); // Job Dashboard
 
 vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('dashboard-job-index', __webpack_require__(/*! ./components/Dashboard/Job/Index.vue */ "./resources/js/components/Dashboard/Job/Index.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.component('dashboard-job-edit', __webpack_require__(/*! ./components/Dashboard/Job/Edit.vue */ "./resources/js/components/Dashboard/Job/Edit.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -116784,6 +119218,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Dashboard/Job/Edit.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Edit.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=1eecbca2& */ "./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Dashboard/Job/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=1eecbca2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Edit.vue?vue&type=template&id=1eecbca2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_1eecbca2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Dashboard/Job/Index.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Dashboard/Job/Index.vue ***!
@@ -116848,6 +119351,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_0062916a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_0062916a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Job/Overview.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Overview.vue ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Overview.vue?vue&type=template&id=63da6c91& */ "./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91&");
+/* harmony import */ var _Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Overview.vue?vue&type=script&lang=js& */ "./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Dashboard/Job/Overview.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Overview.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Overview_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Overview.vue?vue&type=template&id=63da6c91& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dashboard/Job/Overview.vue?vue&type=template&id=63da6c91&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Overview_vue_vue_type_template_id_63da6c91___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

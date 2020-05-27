@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Job\JobApplyResource;
 use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Job\JobBasicInfo;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,12 @@ class JobBasicInfoController extends Controller
      */
     public function index()
     {
-        //
+        // return JobBasicInfoResource::collection(JobBasicInfo::all());
+
+        // return "asdfdas";
+        // //
+        // $jobs =  JobBasicInfo::all();
+        // return $jobs->toArray($jobs);
     }
 
     /**
@@ -50,6 +56,8 @@ class JobBasicInfoController extends Controller
     public function show($id)
     {
         //
+        return new JobBasicInfoResource(JobBasicInfo::find($id));
+
     }
 
     /**
@@ -73,6 +81,8 @@ class JobBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $job = JobBasicInfo::find($id);
+        $job->update($request->all());
     }
 
     /**
@@ -96,7 +106,6 @@ class JobBasicInfoController extends Controller
      *  */
     public function all()
     {
-
         $jobs =  JobBasicInfo::where('status', '=', true)
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
@@ -111,6 +120,45 @@ class JobBasicInfoController extends Controller
     {
         // return $id;
         return new JobBasicInfoResource(JobBasicInfo::find($id));
+    }
+    // Job
+    public function job_edit(JobBasicInfo $rentBasicInfo, $id)
+    {
+        if (Auth::user()->id === JobBasicInfo::find($id)->user_id) {
+            return view('dashboard.job.edit', ['id' => JobBasicInfo::find($id)]);
+        } else {
+            // $this->authorize('rent_auth', $rentBasicInfo);
+            // return redirect('/');
+        }
+    }
+    public function banner_update(Request $request, $id)
+    {
+        // return $request;
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        // upate
+        $banner = JobBasicInfo::find($id);
+        $banner->update(['banner' => $name]);
+    }
+    /**
+     * Showing restaurant without relationship
+     *  */
+    public function show_individual($id)
+    {
+        $job = JobBasicInfo::find($id);
+        return $job;
     }
     /**
      * 

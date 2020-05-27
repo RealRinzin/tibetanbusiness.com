@@ -203,6 +203,7 @@ Vue.component('dashboard-rent-add', require('./components/Dashboard/Rent/AddNew.
 
 // Job Dashboard
 Vue.component('dashboard-job-index', require('./components/Dashboard/Job/Index.vue').default);
+Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue').default);
 
 
 /**
