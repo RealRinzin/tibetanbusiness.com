@@ -43,6 +43,7 @@
                                     <h6 class="text-muted">{{job.profession}}</h6>
                                 </div>
                             </div>
+
                             <div class="row py-1">
                                 <div class="col-md-6 col-sm-4">
                                     <h6 class="text-dark">Nature:</h6>
@@ -193,6 +194,16 @@
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.profession')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.profession')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="profession">Email<span class="text-danger p-1">*</span></label>
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('job_validate_update_form.email')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('job_validate_update_form.email')">{{ error }}</span>
                                                 </div>
                                             </div>
                                         </div>

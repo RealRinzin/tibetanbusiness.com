@@ -136,13 +136,6 @@ export default {
             })
         },
         /**
-         * 
-         * Replies
-         *  */ 
-        // replies(){
-        //     axios.get('api/job/')
-        // },
-        /**
          * Post Comment
          *  */ 
         post_question(id){

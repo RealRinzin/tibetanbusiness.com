@@ -45,6 +45,44 @@ class JobBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/img/') . $name);
+        }
+        // return $name;
+        $job = JobBasicInfo::create([
+            'user_id' => Auth::user()->id,
+            'banner' => $name,
+            'title' => $request->title,
+            'organization' => $request->organization,
+            'salary' => $request->salary,
+            'profession' => $request->profession,
+            'nature' => $request->nature,
+            'experience' => $request->experience,
+            'deadline' => $request->deadline,
+            'location' => $request->location,
+            'mobile_no' => $request->mobile_no,
+            'email' => $request->email,
+            'address' => $request->address,
+            'status' => true,
+            'featured_ad' => false,
+            'sidebar_ad' => false,
+            'home_ad' => false,
+            'description' => $request->description,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+        ]);
+        return $job;
     }
 
     /**

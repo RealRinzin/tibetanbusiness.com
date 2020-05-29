@@ -88,9 +88,7 @@ export default {
 
     },
     mounted(){
-        
-        // console.log("mounted");
-        // console.log(this.question_id);
+
     }
     
 }

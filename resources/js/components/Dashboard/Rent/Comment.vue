@@ -30,35 +30,35 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="rent_comment_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="media">
-                        <img class="mr-3 w-25" :src="view_comment.avatar" alt="Generic placeholder image">
-                        <div class="media-body p-1">
-                            <h5 class="text-muted">{{view_comment.name}}</h5>
-                            <h6 class="text-muted"><timeago  :datetime="view_comment.created_at" /></h6>
-                        </div>
-                        </div>
-                        <div class="py-2">
-                            <button class="btn btn-secondary btn-xs"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{view_comment.rate}}</button>
-                            <p class="py-3">{{view_comment.comment}}</p>
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="media">
+                            <img class="mr-3 w-25" :src="view_comment.avatar" alt="Generic placeholder image">
+                            <div class="media-body p-1">
+                                <h5 class="text-muted">{{view_comment.name}}</h5>
+                                <h6 class="text-muted"><timeago  :datetime="view_comment.created_at" /></h6>
+                            </div>
+                            </div>
+                            <div class="py-2">
+                                <button class="btn btn-secondary btn-xs"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{view_comment.rate}}</button>
+                                <p class="py-3">{{view_comment.comment}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
 </template>

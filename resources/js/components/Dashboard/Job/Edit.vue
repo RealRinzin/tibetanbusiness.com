@@ -78,6 +78,8 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                                     <!-- <dashboard-job-view-photo v-bind:view_photos="job.view_photos" :id="job.id" @rent_load="rent_load"></dashboard-job-view-photo> -->
+                                    <question :questions="questions"></question>
+
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                                     <!-- <dashboard-job-comment v-bind:comments="comments"></dashboard-job-comment> -->
@@ -96,6 +98,7 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Overview from './Overview.vue';
+import Question from './Question.vue';
 
 export default {
     props:['job_id'],
@@ -114,8 +117,8 @@ export default {
             //facilities
             // facilities:{},
             // comments
-            comments:{},
-            // Banner
+            questions:{},
+            // Bannser
             bannerPreview:null,
         }
     },
@@ -133,9 +136,8 @@ export default {
                 this.loading = true;
                 // Assigning Restaurant object
                 this.job = response.data.data;
-                // comments
-                // this.comments = this.job.comments;
-
+                // questions
+                this.questions = this.job.questions;
             })  
             /**
              * Retrieveing Overview
@@ -192,7 +194,7 @@ export default {
         },
 
     },
-    components:{Loading,Overview},
+    components:{Loading,Overview,Question},
     mounted(){
         this.job_load();
     }

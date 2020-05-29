@@ -5,7 +5,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
-                <button class="btn btn-info btn-md my-3" @click="add_rent()">Announce New Job</button>
+                <button class="btn btn-info btn-md my-3" @click="add_job()">Announce New Job</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <dashboard-job-add @load_rent="load_rent"></dashboard-job-add> -->
+            <add-job @load_job="load_job"></add-job>
         </div>
     </div>
 </template>
@@ -53,6 +53,7 @@
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+import AddJob from './AddNew.vue';
 export default {
     data(){
         return{
@@ -98,9 +99,9 @@ export default {
          * ADD
          * Restaurant
          *  */ 
-        // add_rent(){
-        //     $("#rent_add_modal").modal("show");  
-        // },
+        add_job(){
+            $("#job_add_modal").modal("show");  
+        },
         /**
          * DELETE
          * Delete the
@@ -126,7 +127,7 @@ export default {
     /**
      * Components
      *  */ 
-    components:{Loading},
+    components:{Loading,AddJob},
     mounted(){
         this.load_job();
     }
