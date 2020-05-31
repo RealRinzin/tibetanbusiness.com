@@ -92,7 +92,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
-                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:10000'" name="banner" @change="banner" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
+                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="banner" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_add_form.banner')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_add_form.banner')">{{ error }}</span>
@@ -200,10 +200,15 @@ export default {
          *  */ 
         banner(event){
             let fileReader = new FileReader();
+            if(event.target.files[0].size < 1000000){
             fileReader.onload = (event) =>{
                 this.bannerPreview = event.target.result
                 this.restaurant.banner = event.target.result
-            },
+            }
+            }else{
+                alert("Image size should be less than 1MB")
+
+            }
             // base64 data
             fileReader.readAsDataURL(event.target.files[0]);
         },

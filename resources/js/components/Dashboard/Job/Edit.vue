@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                                     <!-- <dashboard-job-view-photo v-bind:view_photos="job.view_photos" :id="job.id" @rent_load="rent_load"></dashboard-job-view-photo> -->
-                                    <question :questions="questions"></question>
+                                    <question :job_id="id"></question>
 
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">

@@ -36,8 +36,7 @@
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body">
-                            <h6 class="mt-0">{{question.name}}</h6>
-                            <p class="text-muted" style="font-size:12px"><timeago :datetime="question.created_at" /></p>
+                            <h6 class="mt-0">{{question.name}} <small class="text-muted"><timeago :datetime="question.created_at" /></small></h6>
                             <p class="text-muted">{{question.question}}</p>
                             <replies :questions="question"></replies>
                             </div>

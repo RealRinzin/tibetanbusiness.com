@@ -19,7 +19,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
-                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:10000'" name="banner" @change="avatar" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
+                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="avatar" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.banner')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.banner')">{{ error }}</span>
@@ -49,7 +49,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="salary">Salary<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.salary')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.salary')">{{ error }}</span>
@@ -89,7 +89,8 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Deadline<span class="text-danger p-1">*</span></label>
-                                                <input type="date" v-validate="'required|min:2|max:40'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="date" v-validate="'required|after:afterTarget'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="name">
+                                                <input  name="after_field_target" ref="afterTarget" type="date">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.deadline')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.deadline')">{{ error }}</span>
@@ -109,7 +110,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Mobile no<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.mobile_no')">{{ error }}</span>
@@ -198,6 +199,7 @@ export default {
         return{
             job:{},
             bannerPreview:'',
+            // today : 
         }
     },
     methods:{
@@ -207,12 +209,15 @@ export default {
          *  */ 
         avatar(event){
             let fileReader = new FileReader();
-            fileReader.onload = (event) =>{
-                this.bannerPreview = event.target.result
-                this.job.banner = event.target.result
+            if(event.target.files[0].size < 1000000){
+                fileReader.onload = (event) =>{
+                    this.bannerPreview = event.target.result
+                    this.job.banner = event.target.result
+                }
                 
-            },
-            
+            }else{
+                alert("Image size should be less than 1MB")
+            }
             // base64 data
             fileReader.readAsDataURL(event.target.files[0]);
         },

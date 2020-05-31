@@ -180,7 +180,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="salary">Salary<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.salary')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.salary')">{{ error }}</span>
@@ -250,7 +250,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Mobile no<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.mobile_no')">{{ error }}</span>
