@@ -63,13 +63,13 @@ use Illuminate\Http\Request;
          * Authorization
          */
         Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create']]);
-        Route::apiResource('job_apply', 'Job\JobApplyController');
+        Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show']]);
         Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['show','index','create']]);
         Route::post('job/question/reply','Job\JobQuestionController@reply_store');
         Route::get('user/jobs', 'Job\JobBasicInfoController@user_job');
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
-    Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
+        Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
 
         // Route::apiResource('job_question', 'Job\JobQuestionController');
         // Route::apiResource('job_answer', 'Job\JobAnswerController');

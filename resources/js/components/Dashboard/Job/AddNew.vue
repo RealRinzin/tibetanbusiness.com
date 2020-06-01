@@ -89,8 +89,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Deadline<span class="text-danger p-1">*</span></label>
-                                                <input type="date" v-validate="'required|after:afterTarget'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="name">
-                                                <input  name="after_field_target" ref="afterTarget" type="date">
+                                                <input type="date" v-validate="'required|'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.deadline')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.deadline')">{{ error }}</span>

@@ -15,6 +15,9 @@
                 <div  class="container py-4">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
+                                <!-- <div class="d-flex justify-content-center">
+                                    <button data-toggle="modal" data-target="#apply_job" class="btn btn-info btn-md w-25 position-fixed btn-flat" style="z-index:1000;bottom:20px">APPLY JOB</button>
+                                </div> -->
                                 <!-- basic -->
                                 <div class="card">
                                     <div class="row">
@@ -93,6 +96,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Apply -->
+                                <div class="row pb-3">
+                                    <div class="col-md-12">
+                                        <button data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-md w-25">APPLY JOB</button>
+                                    </div>
+                                </div>
                                 <!-- Info -->
                                 <div class="card">
                                     <div class="row p-3">
@@ -120,6 +129,7 @@
                 </div>
             </div>
         </div>
+        <apply :job_id="id"></apply>
     </div>
 </template>
 <script>
@@ -127,6 +137,7 @@
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+import Apply from './Apply.vue';
 export default {
     props:['job_id'],
     data(){
@@ -146,13 +157,17 @@ export default {
                 this.isLoading = false;
                 this.loading = true;
             })
+        },
+        // open modal
+        open_modal(){
+            $("#job_apply").modal("show");
         }
     },
     /**
      * 
      * Components
      *  */  
-    components:{Loading},
+    components:{Loading,Apply},
     mounted(){
         this.load_rent();
     }
