@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Job;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Job\JobApply;
+use App\Job\JobBasicInfo;
 use Illuminate\Support\Facades\Auth;
 
 class JobApplyController extends Controller
@@ -46,7 +47,7 @@ class JobApplyController extends Controller
             $cv = explode(";base64,", $request->cv);
             $cv_base64 = base64_decode($cv[1]);
             $diir = uniqid() .'.'.$file_extension;
-            file_put_contents("img/" . $diir, $cv_base64);
+            file_put_contents("storage/Job/" . $diir, $cv_base64);
         }
         $apply = JobApply::create([
             'job_basic_info_id' => $request->job_basic_info_id,
@@ -103,5 +104,12 @@ class JobApplyController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function applicant(JobBasicInfo $jobBasicInfo){
+        // return $jobBasicInfo;
+        $application =  JobApply::where('job_basic_info_id', '=', $jobBasicInfo->id)
+        ->orderBy('created_at', 'desc')->get();
+        return $application->toArray($application);
+
     }
 }

@@ -162,7 +162,6 @@ export default {
     // Mounted
     mounted(){
         this.load_questions();
-
         // login stauts for comment
         axios.get('/login_status').then(response => {
             if(response.data.status === true){

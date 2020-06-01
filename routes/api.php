@@ -70,6 +70,7 @@ use Illuminate\Http\Request;
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
         Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
+        Route::get('job_apply/{job_basic_info}/applicant', 'Job\JobApplyController@applicant');
 
         // Route::apiResource('job_question', 'Job\JobQuestionController');
         // Route::apiResource('job_answer', 'Job\JobAnswerController');

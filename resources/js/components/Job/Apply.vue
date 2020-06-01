@@ -71,12 +71,14 @@
 <script>
 export default {
     // Job id
-    props:['job_id'],
+    props:['job_id','close_modal'],
     data(){
         return{
             apply:{},
-            file:{},
-            length:0,
+            /**
+             * Check Login status
+             *  */ 
+            is_logged:false,
         }
     },
     methods:{
@@ -103,8 +105,11 @@ export default {
                     axios.post('/api/job_apply',this.apply,{
                     headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
-                    console.log(response);
-
+                        toast.fire({
+                            icon:'success',
+                            title:'Successfully Applied',
+                        });
+                        location.reload();
                     })
                 }
 
@@ -112,7 +117,7 @@ export default {
         }
     },
     mounted(){
-        console.log("applications");
+
     }
 }
 </script>

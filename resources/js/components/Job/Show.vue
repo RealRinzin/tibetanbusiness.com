@@ -98,8 +98,11 @@
                                 </div>
                                 <!-- Apply -->
                                 <div class="row pb-3">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" v-if="is_logged">
                                         <button data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-md w-25">APPLY JOB</button>
+                                    </div>
+                                    <div class="col-md-12" v-else>
+                                    <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login to apply</a></p>
                                     </div>
                                 </div>
                                 <!-- Info -->
@@ -129,7 +132,7 @@
                 </div>
             </div>
         </div>
-        <apply :job_id="id"></apply>
+        <apply :job_id="id" @close_modal="close_modal"></apply>
     </div>
 </template>
 <script>
@@ -146,6 +149,7 @@ export default {
             job:{}, //job objects
             isLoading : false,//Lazy loading
             loading:false, //loading
+            is_logged:false,
         }
     },
     methods:{
@@ -161,6 +165,9 @@ export default {
         // open modal
         open_modal(){
             $("#job_apply").modal("show");
+        },
+        close_modal(){
+            $("#job_apply").modal("hide");
         }
     },
     /**
@@ -170,6 +177,11 @@ export default {
     components:{Loading,Apply},
     mounted(){
         this.load_rent();
+        axios.get('/login_status').then(response => {
+            if(response.data.status === true){
+                this.is_logged = true
+            }
+        })
     }
 }
 </script>
