@@ -18,8 +18,8 @@ class CreateJobAppliesTable extends Migration
             $table->uuid('user_id');
             $table->uuid('job_basic_info_id');
             $table->string('name',50);
-            $table->string('mobile_no', 12);
-            $table->string('email', 50);
+            $table->string('mobile_no', 12)->nullable();
+            $table->string('email', 50)->nullable();
             $table->string('document',50);
             $table->timestamps();
         });

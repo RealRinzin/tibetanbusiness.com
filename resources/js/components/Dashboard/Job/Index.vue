@@ -25,7 +25,7 @@
                     <tbody>
                         <tr v-for="(job,index) in jobs">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="job.banner !==''" :href="'/job/'+job.id"><img :src="'/img/'+job.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="job.banner !==''" :href="'/job/'+job.id"><img :src="'/storage/Job/Banner/'+job.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{job.title}}</td>
                             <td>{{job.address}}</td>
                             <td>{{job.location}}</td>

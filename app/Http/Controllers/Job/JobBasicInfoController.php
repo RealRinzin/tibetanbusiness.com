@@ -57,7 +57,7 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
         }
         // return $name;
         $job = JobBasicInfo::create([
@@ -133,6 +133,9 @@ class JobBasicInfoController extends Controller
     {
         //
         $job = JobBasicInfo::find($id);
+        // return $job->banner;
+        $unlink = public_path() . '/storage/Job/Banner/' . $job->banner;
+        unlink($unlink);
         $job->delete();
         $job->job_questions()->delete();
         $job->job_applies()->delete();
@@ -184,10 +187,12 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
         }
         // upate
         $banner = JobBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Job/Banner/' . $banner->banner;
+        unlink($unlink);
         $banner->update(['banner' => $name]);
     }
     /**

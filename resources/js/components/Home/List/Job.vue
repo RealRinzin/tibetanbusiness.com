@@ -14,7 +14,7 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'job/'+jobs.id"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${jobs.banner})`}'></div></a>
+                                        <a v-bind:href="'job/'+jobs.id"><div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${jobs.banner})`}'></div></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">
                                         <h5>{{jobs.title}}</h5>
@@ -62,8 +62,8 @@ export default {
                 }else{
                     axios.get('/api/job/list/all').then(response=>{
                         this.isLoading = true; //Loading true
-                        for (let index = 0; index < response.data.data.length; index++) {
-                            this.jobs[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                        for (let index = 0; index < response.data.length; index++) {
+                            this.jobs[index] = response.data[Math.floor(Math.random() *response.data.length)]
                         }
                         this.isLoading = false; //Loading true
                         this.loading = true;

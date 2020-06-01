@@ -9,7 +9,7 @@
             <div class="row" v-else>
                 <div class="col-md-6 col-sm-6 col-xs-12" v-for="(job,index) in job" v-if="index <= 1">
                     <a v-bind:href="'/job/'+job.id">
-                    <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${job.banner})`}'></div>
+                    <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div>
                     </a>
                     <h6 class="text-dark pt-3">{{job.title}}</h6>
                     <p class="text-muted my-0">{{job.mobile_no}}</p>
@@ -67,15 +67,17 @@ export default {
                             this.job = this.rent_active;
                             // loading
                             this.loading = true;
+
                         };
                 }else{
                     axios.get('/api/job/list/all').then(response=>{
-                        for (let x = 0; x < response.data.data.length; x++) {
-                            this.rent_active[x] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                        for (let x = 0; x < response.data.length; x++) {
+                            this.rent_active[x] = response.data[Math.floor(Math.random() *response.data.length)]
                             /**
                              * Rating Background
                              * Color
                              *  */  
+                            
                             if(this.rent_active[x].rate >= 0.0 && this.rent_active[x].rate <= 2.5){
                                 this.rent_active[x].rate_color = 'bg-danger';
                             }else if(this.rent_active[x].rate >= 2.6 && this.rent_active[x].rate <= 3.5 ){
@@ -91,6 +93,7 @@ export default {
                             this.job = this.rent_active;
                             // loading
                             this.loading = true;
+                            
                         }
                     })
                 }

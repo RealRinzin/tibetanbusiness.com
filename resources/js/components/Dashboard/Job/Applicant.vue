@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-md table-striped table-hover ">
+                <table class="table table-lg table-striped table-hover ">
                 <thead class="thead-dark">
                     <tr>
                     <th scope="col">S.No</th>
@@ -10,13 +10,12 @@
                     <th scope="col">Email</th>
                     <th scope="col">Mobile No</th>
                     <th scope="col">CV / Resume</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Submitted On</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(applicant,index) in applicants">
                         <th scope="row">{{index + 1}}</th>
-
                         <td>{{applicant.name}}</td>
                         <td>{{applicant.email}}</td>
                         <td>{{applicant.mobile_no}}</td>

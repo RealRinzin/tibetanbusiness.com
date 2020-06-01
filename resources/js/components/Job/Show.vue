@@ -23,7 +23,7 @@
                                     <div class="row">
                                         <!-- Banner -->
                                         <div class="col-md-5">
-                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${job.banner})`}'>
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'>
                                             <div class="overlay">
                                                 <div class="d-flex flex-row job">
                                                     <a v-if="job.facebook" :href="job.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary btn"></i></a>

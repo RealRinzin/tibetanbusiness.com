@@ -2,7 +2,7 @@
     <div class="col-md-4 py-1" v-if="job">
     <loading :active.sync="isLoading"></loading>
         <div class="card">
-            <a v-bind:href="'job/'+job.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${job.banner})`}'></div></a>
+            <a v-bind:href="'job/'+job.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div></a>
             <div class="types">
                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button>
             </div>

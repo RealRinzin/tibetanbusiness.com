@@ -4,13 +4,13 @@
                 <div class="text-left w-50">
                     <form @submit.prevent="reply()" data-vv-scope="job_valid_reply_form">
                         <div class="input-group input-group-sm">
-                            <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
+                            <input type="text" v-validate="'required|min:1|max:255'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write your Question">Reply</button>
                             </span>
                             <div class="valid-feedback"></div>
-                            <div v-if="errors.has('job_valid_reply_form.question')" class="invalid-feedback">
-                                <span v-for="error in errors.collect('job_valid_reply_form.question')">{{ error }}</span>
+                            <div v-if="errors.has('job_valid_reply_form.reply')" class="invalid-feedback">
+                                <span v-for="error in errors.collect('job_valid_reply_form.reply')">{{ error }}</span>
                             </div>
                         </div>
                     </form>
