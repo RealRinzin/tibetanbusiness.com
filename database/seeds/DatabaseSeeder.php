@@ -1,5 +1,8 @@
 <?php
 
+use App\Event\EventBasicInfo;
+use App\Event\EventPhoto;
+use App\Event\EventReview;
 use App\Job\JobAnswer;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
@@ -27,6 +30,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 2)->create();
+        
         // Restaurant DB Seed
         // factory(RestaurantBasicInfo::class, 2)->create();
         // factory(RestaurantFacility::class, 2)->create();
@@ -42,9 +46,15 @@ class DatabaseSeeder extends Seeder
         // factory(RentFacility::class, 2)->create();
 
         // Job DB Seed
-        factory(JobBasicInfo::class,2)->create();
-        factory(JobApply::class, 2)->create();
-        factory(JobQuestion::class, 10)->create();
-        // factory(JobAnswer::class, 2)->create();
+        // factory(JobBasicInfo::class,2)->create();
+        // factory(JobApply::class, 2)->create();
+        // factory(JobQuestion::class, 10)->create();
+
+        // Event
+        factory(EventBasicInfo::class,2)->create();
+        factory(EventPhoto::class,2)->create();
+        // factory(EventReview::class,2)->create();
+
+        
     }
 }
