@@ -13,10 +13,10 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('event')->create('reviews', function (Blueprint $table) {
+        Schema::connection('event')->create('event_reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->uuid('event_info_basic_id');
+            $table->uuid('event_basic_info_id');
             $table->decimal('rate', 5, 1);
             $table->string('rate_color', 20)->nullable();
             $table->string('review');

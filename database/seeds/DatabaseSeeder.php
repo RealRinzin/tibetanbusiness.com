@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
         // Event
         factory(EventBasicInfo::class,2)->create();
         factory(EventPhoto::class,2)->create();
-        // factory(EventReview::class,2)->create();
+        factory(EventReview::class,2)->create();
 
         
     }

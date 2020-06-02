@@ -13,7 +13,7 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::connection('event')->create('photos', function (Blueprint $table) {
+        Schema::connection('event')->create('event_photos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('event_basic_info_id');

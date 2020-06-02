@@ -10,7 +10,7 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
     return [
         //
         'name' => $faker->sentence(1),
-        'banner' => $faker->sentence(),
+        'banner' => $faker->sentence(1),
         'email' => $faker->sentence(),
         'location' => $faker->sentence(1),
         'category' => $faker->sentence(),
