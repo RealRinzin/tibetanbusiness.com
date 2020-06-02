@@ -47,7 +47,7 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
         }
         // Store
         $restaurant = RestaurantBasicInfo::create([
@@ -120,6 +120,8 @@ class RestaurantBasicInfoController extends Controller
     {
         $restaurant = RestaurantBasicInfo::find($id);
         $restaurant->delete();
+        $unlink = public_path() . '/storage/Restaurant/Banner/' . $restaurant->banner;
+        unlink($unlink);
         $restaurant->restaurant_comments()->delete();
         $restaurant->restaurant_facilities()->delete();
         $restaurant->restaurant_food_photos()->delete();
@@ -235,10 +237,12 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
         }
         // upate
         $banner = RestaurantBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
+        unlink($unlink);
         $banner->update(['banner' => $name]);
     }
 

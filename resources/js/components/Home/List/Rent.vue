@@ -14,7 +14,7 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'rent/'+rents.id"><div class="banner" v-bind:style='{ backgroundImage: `url(img/${rents.banner})`}'></div></a>
+                                        <a v-bind:href="'rent/'+rents.id"><div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rents.banner})`}'></div></a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">
                                         <h5>{{rents.name}}</h5>

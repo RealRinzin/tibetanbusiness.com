@@ -9,7 +9,7 @@
             <div class="row" v-else>
                 <div class="col-md-6 col-sm-6 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
                     <a v-bind:href="'/restaurant/'+restaurant.id">
-                    <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'></div>
+                    <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div>
                     <div class="rate" v-if="restaurant.rate !=null"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
                     </a>
                     <h6 class="text-dark pt-3">{{restaurant.name}}</h6>

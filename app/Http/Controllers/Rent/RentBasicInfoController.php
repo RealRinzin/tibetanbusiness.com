@@ -56,7 +56,7 @@ class RentBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
         }
         $rent = RentBasicInfo::create([
             'user_id' => Auth::user()->id,
@@ -129,6 +129,8 @@ class RentBasicInfoController extends Controller
     {
         //
         $rent = RentBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Rent/Banner/' . $rent->banner;
+        unlink($unlink);
         $rent->delete();
         $rent->rent_comments()->delete();
         $rent->rent_facilities()->delete();
@@ -214,7 +216,7 @@ class RentBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/img/') . $name);
+            \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
         }
         // upate
         $banner = RentBasicInfo::find($id);

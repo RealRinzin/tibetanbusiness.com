@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <!-- banner -->
                         <div class="card text-center">
-                            <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/img/${restaurant.banner})`}'>
+                            <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'>
                                 <div class="overlay">
                                     <div class="row">
                                         <div class="col-md-12">

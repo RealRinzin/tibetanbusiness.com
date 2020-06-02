@@ -2,7 +2,7 @@
     <div class="col-md-4 py-1" v-if="rent">
     <loading :active.sync="isLoading"></loading>
         <div class="card">
-            <a v-bind:href="'rent/'+rent.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${rent.banner})`}'></div></a>
+            <a v-bind:href="'rent/'+rent.id"><div class="list" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rent.banner})`}'></div></a>
             <div class="likes" v-if="rent.rate != null">
                 <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
             </div>

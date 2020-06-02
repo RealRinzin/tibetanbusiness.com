@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <!-- Banner -->
                                         <div class="col-md-12">
-                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/img/${rent.banner})`}'>
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
                                             <div class="overlay">
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{rent.fare}} /-</h6>
                                                 <ul>

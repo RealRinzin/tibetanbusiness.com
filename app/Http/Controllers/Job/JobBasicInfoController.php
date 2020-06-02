@@ -133,7 +133,6 @@ class JobBasicInfoController extends Controller
     {
         //
         $job = JobBasicInfo::find($id);
-        // return $job->banner;
         $unlink = public_path() . '/storage/Job/Banner/' . $job->banner;
         unlink($unlink);
         $job->delete();

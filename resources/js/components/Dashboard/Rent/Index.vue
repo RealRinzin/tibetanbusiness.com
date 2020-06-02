@@ -25,7 +25,7 @@
                     <tbody>
                         <tr v-for="(rent,index) in rents">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="rent.banner !==''" :href="'/rent/'+rent.id"><img :src="'/img/'+rent.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="rent.banner !==''" :href="'/rent/'+rent.id"><img :src="'/storage/Rent/Banner/'+rent.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{rent.name}}</td>
                             <td>{{rent.address}}</td>
                             <td>{{rent.location}}</td>
