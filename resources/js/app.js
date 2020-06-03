@@ -206,6 +206,10 @@ Vue.component('dashboard-job-index', require('./components/Dashboard/Job/Index.v
 Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue').default);
 
 
+// Event Dashboard
+Vue.component('dashboard-event-index', require('./components/Dashboard/Event/Index.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

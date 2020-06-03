@@ -139,9 +139,9 @@ class RestaurantBasicInfoController extends Controller
      */
     public function all()
     {
-        return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::all());
-        // $restaurants =  RestaurantBasicInfo::all();
-        // return $restaurants->toArray($restaurants);
+        $restaurants =  RestaurantBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
     }
     /**
      * 

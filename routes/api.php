@@ -71,9 +71,17 @@ use Illuminate\Http\Request;
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
         Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
         Route::get('job_apply/{job_basic_info}/applicant', 'Job\JobApplyController@applicant');
+   
+        // Event API
+        /**
+         * Event API
+         * Authorization
+         */
+        Route::apiResource('event', 'Event\EventBasicInfoController');
+        Route::get('user/events', 'Event\EventBasicInfoController@user_event');
+        Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
 
-        // Route::apiResource('job_question', 'Job\JobQuestionController');
-        // Route::apiResource('job_answer', 'Job\JobAnswerController');
+
     
     });
 
@@ -104,18 +112,30 @@ use Illuminate\Http\Request;
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
 
-/**
- * JOB API 
- * Custom 
- * Deauthorized
- */
+    /**
+     * JOB API 
+     * Custom 
+     * Deauthorized
+     */
 
-Route::get('job/list/all', 'Job\JobBasicInfoController@all');
-// Route::get('job_question/questions/{id}', 'Job\JobQuestionController@question');
-Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
-Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
-// Route::get('job_answer/replies/{id}', 'Job\JobQuestionController@replies');
-Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
-Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
-Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
-Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');
+    Route::get('job/list/all', 'Job\JobBasicInfoController@all');
+    // Route::get('job_question/questions/{id}', 'Job\JobQuestionController@question');
+    Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
+    Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
+    // Route::get('job_answer/replies/{id}', 'Job\JobQuestionController@replies');
+    Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
+    Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
+    Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
+    Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');
+
+    /**
+     * Event API 
+     * Custom 
+     * Deauthorized
+     */
+    Route::get('event/list/all', 'Event\EventBasicInfoController@all');
+    Route::get('event/view/{id}', 'Event\EventBasicInfoController@display');
+    Route::get('event/list/featured_ad', 'Event\EventBasicInfoController@featured_ad');
+    Route::get('event/list/sidebar_ad', 'Event\EventBasicInfoController@sidebar_ad');
+    Route::get('event/list/home_ad', 'Event\EventBasicInfoController@home_ad');
+

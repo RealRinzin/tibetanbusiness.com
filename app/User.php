@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Event\EventBasicInfo;
 use App\Job\JobBasicInfo;
 use App\Rent\RentBasicInfo;
 use App\Restaurant\RestaurantBasicInfo;
@@ -71,6 +72,12 @@ class User extends Authenticatable
     public function job_basic_infos()
     {
         return $this->hasMany(JobBasicInfo::class);
+    }
+
+
+    public function event_basic_infos()
+    {
+        return $this->hasMany(EventBasicInfo::class);
     }
 
 }

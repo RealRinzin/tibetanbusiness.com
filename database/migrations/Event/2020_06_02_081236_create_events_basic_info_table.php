@@ -16,6 +16,8 @@ class CreateEventsBasicInfoTable extends Migration
         Schema::connection('event')->create('event_basic_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
+            $table->decimal('rate', 5, 1)->nullable();
+            $table->string('rate_color', 100)->nullable();
             $table->string('name', 160);
             $table->string('banner', 80);
             $table->string('email', 100);

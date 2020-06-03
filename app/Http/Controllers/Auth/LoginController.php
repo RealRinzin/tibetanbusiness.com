@@ -7,6 +7,9 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
+use Illuminate\Support\Facades\URL;
+
+use Illuminate\Routing\UrlGenerator;
 class LoginController extends Controller
 {
     /*
@@ -28,6 +31,8 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    // protected $redirectTo = $url;
+    
 
     /**
      * Create a new controller instance.
@@ -56,6 +61,8 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($service)
     {
+        $current_url = URL::current();
+
         $github_user = Socialite::driver($service)->user();
         /**
          * Add User to Database
@@ -73,6 +80,8 @@ class LoginController extends Controller
         // $user->token;
         Auth::login($user,true);
         return redirect($this->redirectTo);
+        // return redirect($current_url);
+        // return redirect()->back();
     }
 // /* login status */
 //     public function login_status()

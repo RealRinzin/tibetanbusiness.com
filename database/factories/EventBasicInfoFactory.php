@@ -11,6 +11,8 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
         //
         'name' => $faker->sentence(1),
         'banner' => $faker->sentence(1),
+        'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 10), // 48.8932,
+        'rate_color' => $faker->sentence(),
         'email' => $faker->sentence(),
         'location' => $faker->sentence(1),
         'category' => $faker->sentence(),
