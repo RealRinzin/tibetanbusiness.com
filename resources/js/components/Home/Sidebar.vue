@@ -6,5 +6,7 @@
         <rent-sidebar></rent-sidebar>
         <!-- Job -->
         <job-sidebar></job-sidebar>
+        <!-- Event -->
+        <event-sidebar></event-sidebar>
     </div>
 </template>

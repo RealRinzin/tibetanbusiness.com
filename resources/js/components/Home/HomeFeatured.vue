@@ -11,7 +11,7 @@
                     <!-- Restaurant -->
                     <div class="col-md-4 py-1" v-if="restaurant">
                         <div class="card">
-                            <a v-bind:href="'restaurant/'+restaurant.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${restaurant.banner})`}'></div></a>
+                            <a v-bind:href="'restaurant/'+restaurant.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div></a>
                             <div class="likes" v-if="restaurant.rate != null">
                                 <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                             </div>
@@ -28,7 +28,7 @@
                     <!-- Events -->
                     <div class="col-md-4 py-1" v-if="event">
                         <div class="card">
-                            <a v-bind:href="'restaurant/'+event.id"><div class="list" v-bind:style='{ backgroundImage: `url(img/${event.banner})`}'></div></a>
+                            <a v-bind:href="'event/'+event.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'></div></a>
                             <div class="likes" v-if="event.rate != null">
                                 <p v-if="event" v-bind:class="event.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{event.rate}}</p>
                             </div>
@@ -42,16 +42,46 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Rents -->
+                    <div class="col-md-4 py-1" v-if="rent">
+                        <div class="card">
+                            <a v-bind:href="'rent/'+rent.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'></div></a>
+                            <div class="likes" v-if="rent.rate != null">
+                                <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
+                            </div>
+                            <div class="types">
+                                <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Rent</button>
+                            </div>
+                            <div class="card-body text-truncate">
+                                <h5>{{rent.name}}</h5>
+                                <h6>{{rent.mobile_no}}</h6>
+                                <h6>{{rent.location}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job -->
+                    <div class="col-md-4 py-1" v-if="job">
+                        <div class="card">
+                            <a v-bind:href="'job/'+job.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div></a>
+                            <div class="types">
+                                <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button>
+                            </div>
+                            <div class="card-body text-truncate">
+                                <h5>{{job.title}}</h5>
+                                <h6>{{job.mobile_no}}</h6>
+                                <h6>{{job.location}}</h6>
+                            </div>
+                        </div>
+                    </div>
                     <!-- <featured-rent></featured-rent> -->
                     <!-- <featured-job></featured-job> -->
                 </div>
             </div>
         </div> 
-
-        <!-- <business-list></business-list> -->
-        <home-restaurant></home-restaurant>
-        <home-rent></home-rent>
-        <home-job></home-job>
+        <event-list></event-list>
+        <rent-list></rent-list>
+        <job-list></job-list>
+        <restaurant-list></restaurant-list>
     </div>
 </template>
 
@@ -60,6 +90,11 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+    import EventList from './List/Event.vue';
+    import JobList from './List/Job.vue';
+    import RentList from './List/Rent.vue';
+    import RestaurantList from './List/Restaurant.vue';
+    
     export default {
         /**
          * 
@@ -73,6 +108,8 @@
                 online_restaurant:[],
                 // random test
                 event:{},
+                rent:{},
+                job:{},
             }
         },
         /**
@@ -81,7 +118,7 @@
          *  */
         methods:{
             // Featured business
-            load_restaurant(){
+            load_business(){
                 this.isLoading = true; //Loading true
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
@@ -181,7 +218,70 @@
                         })
                     }        
                 })
+                // Featured Rent
+                axios.get('/api/rent/list/featured_ad')
+                .then(response=>{
+                    if (response.data.length > 0) {
+                        // Assign
+                        this.rent = response.data[Math.floor(Math.random() *response.data.length)]
+                            /**
+                             * Rating Background
+                             * Color
+                             *  */  
+                            if(this.rent.rate >= 0.0 && this.rent.rate <= 2.5){
+                                this.rent.rate_color = 'bg-danger';
+                            }else if(this.rent.rate >= 2.6 && this.rent.rate <= 3.5 ){
+                                this.rent.rate_color = 'bg-warning';
+                            }else if(this.rent.rate >= 3.6 && this.rent.rate <= 4.0 ){
+                                this.rent.rate_color = 'bg-info';
+                            }else if(this.rent.rate >= 4.1 && this.rent.rate <= 5.0 ){
+                                this.rent.rate_color = 'bg-success';
+                            }else{
+                                this.rent.rate_color = 'bg-secondary';
+                            }
+                            this.isLoading = false; //Loading true
+                        }else{
+                        axios.get('/api/rent/list/all')
+                        .then(response => {
+                            // Assign
+                            this.rent = response.data[Math.floor(Math.random() *response.data.length)]
+                            /**
+                             * Rating Background
+                             * Color
+                             *  */  
+                            if(this.rent.rate >= 0.0 && this.rent.rate <= 2.5){
+                                this.rent.rate_color = 'bg-danger';
+                            }else if(this.rent.rate >= 2.6 && this.rent.rate <= 3.5 ){
+                                this.rent.rate_color = 'bg-warning';
+                            }else if(this.rent.rate >= 3.6 && this.rent.rate <= 4.0 ){
+                                this.rent.rate_color = 'bg-info';
+                            }else if(this.rent.rate >= 4.1 && this.rent.rate <= 5.0 ){
+                                this.rent.rate_color = 'bg-success';
+                            }else{
+                                this.rent.rate_color = 'bg-secondary';
+                            }
+                            this.isLoading = false; //Loading true
 
+                        })
+                    }
+                })
+                // Featured Job
+                axios.get('/api/job/list/featured_ad')
+                .then(response=>{
+                    if (response.data.length > 0) {
+                        // Assign
+                        this.job = response.data[Math.floor(Math.random() *response.data.length)]
+                        this.isLoading = false; //Loading true
+                    }else{
+                        axios.get('/api/job/list/all')
+                        .then(response => {
+                            // Assign
+                            this.job = response.data[Math.floor(Math.random() *response.data.length)]
+                            this.isLoading = false; //Loading true
+
+                        })
+                    }
+                })
 
             },
         },
@@ -189,13 +289,13 @@
          * 
          * Components
          *  */  
-        components:{Loading},
+        components:{Loading,EventList,RentList,JobList,RestaurantList},
         /**
          * Mounted
          *  */ 
         mounted() {
             // Featured Restaurant
-            this.load_restaurant();
+            this.load_business();
 
 
             // API

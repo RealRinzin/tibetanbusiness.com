@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <add-event @load_job="load_job"></add-event> -->
+            <add-event @load_event="load_event"></add-event>
         </div>
     </div>
 </template>
@@ -53,7 +53,7 @@
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
-// import AddJob from './AddNew.vue';
+import AddEvent from './AddNew.vue';
 export default {
     data(){
         return{
@@ -99,9 +99,9 @@ export default {
          * ADD
          * Restaurant
          *  */ 
-        // add_job(){
-        //     $("#job_add_modal").modal("show");  
-        // },
+        add_job(){
+            $("#event_add_modal").modal("show");  
+        },
         /**
          * DELETE
          * Delete the
@@ -127,7 +127,7 @@ export default {
     /**
      * Components
      *  */ 
-    components:{Loading},
+    components:{Loading,AddEvent},
     mounted(){
         this.load_event();
     }
