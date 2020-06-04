@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Opening Hour<span class="text-danger p-1">*</span></label>
+                                                <label for="opening_hour">Opening Hour<span class="text-danger p-1">*</span></label>
                                                     <VueCtkDateTimePicker id="opening"
                                                     v-model="restaurant.opening_hour"
                                                     :color="'coral'"
@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Closing Hour<span class="text-danger p-1">*</span></label>
+                                                <label for="closing_hour">Closing Hour<span class="text-danger p-1">*</span></label>
                                                     <VueCtkDateTimePicker v-validate="'required'" name="closing_hour" id="closing_hour"
                                                     v-model="restaurant.closing_hour"
                                                     :color="'coral'"

@@ -29,7 +29,8 @@ class CreateEventsBasicInfoTable extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description', 225)->nullable();
-            $table->string('time');
+            $table->string('start_time')->nullable();
+            $table->string('end_time')->nullable();
             $table->string('instagram', 100)->nullable();
             $table->string('facebook', 100)->nullable();
             $table->string('website', 100)->nullable();

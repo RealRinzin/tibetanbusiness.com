@@ -41,6 +41,45 @@ class EventBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+        //
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+        }
+        // return $name;
+        $job = EventBasicInfo::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'banner' => $name,
+            'email' => $request->email,
+            'location' => $request->location,
+            'category' => $request->category,
+            'address' => $request->address,
+            'mobile_no' => $request->mobile_no,
+            'entry_fee' => $request->entry_fee,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'description' => $request->description,
+            'status' => true,
+            'featured_ad' => false,
+            'sidebar_ad' => false,
+            'home_ad' => false,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+        ]);
+        return $job;
     }
 
     /**

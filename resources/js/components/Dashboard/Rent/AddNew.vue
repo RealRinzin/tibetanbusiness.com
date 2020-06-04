@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email<span class="text-danger p-1">*</span></label>
+                                                <label for="email">Email<span class="text-danger p-1">*</span></label>
                                                 <input type="text" v-validate="'required|max:45|email'" v-model="rent.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.email')" class="invalid-feedback">

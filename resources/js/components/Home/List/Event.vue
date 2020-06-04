@@ -62,8 +62,8 @@ export default {
                 }else{
                     axios.get('/api/event/list/all').then(response=>{
                         this.isLoading = true; //Loading true
-                        for (let index = 0; index < response.data.data.length; index++) {
-                            this.events[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                        for (let index = 0; index < response.data.length; index++) {
+                            this.events[index] = response.data[Math.floor(Math.random() *response.data.length)]
                         }
                         this.isLoading = false; //Loading true
                         this.loading = true;
