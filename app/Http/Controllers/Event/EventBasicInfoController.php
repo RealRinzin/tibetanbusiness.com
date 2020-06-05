@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Event;
 use App\Event\EventBasicInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Event\EventInfoBasicResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
@@ -135,7 +136,28 @@ class EventBasicInfoController extends Controller
     /**
      * Customized API
      * Routes
-     *  */  
+     *  */
+    // Event View page
+    public function view(EventBasicInfo $eventBasicInfo, $id)
+    {
+        return view('event.show', ['id' => EventBasicInfo::find($id)]);
+    }
+    // Dashboard Edit
+    public function event_edit(EventBasicInfo $eventBasicInfo, $id)
+    {
+        if (Auth::user()->id === EventBasicInfo::find($id)->user_id) {
+            return view('dashboard.event.edit', ['id' => EventBasicInfo::find($id)]);
+        } else {
+            // $this->authorize('rent_auth', $rentBasicInfo);
+            // return redirect('/');
+        }
+    }
+    // Display page
+    public function display($id)
+    {
+        // return "hellow";
+        return new EventInfoBasicResource(EventBasicInfo::find($id));
+    }
     // User Job
     public function user_event()
     {

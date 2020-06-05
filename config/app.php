@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -175,7 +174,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Add by Rinzin
-        Intervention\Image\ImageServiceProvider::class //Image upload
+        Intervention\Image\ImageServiceProvider::class, //Image upload
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+
 
 
     ],
@@ -229,7 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         // Added By Rinzin
-        'Image' => Intervention\Image\Facades\Image::class //Image intevention
+        'Image' => Intervention\Image\Facades\Image::class, //Image intevention
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

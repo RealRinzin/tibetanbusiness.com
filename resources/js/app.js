@@ -11,9 +11,13 @@ window.Vue = require('vue');
  * 
  * Social Sharing
  *  */  
-var SocialSharing = require("vue-social-sharing");
-Vue.use(SocialSharing);
+// import VueSocialSharing from 'vue-social-sharing'
 
+// Vue.use(VueSocialSharing, {
+//     networks: {
+//         facebook: 'https://facebook.com/share?url=@url&title=@title'
+//     }
+// })
 /**
  * Vue Progress bar
  * 
@@ -174,6 +178,8 @@ Vue.component('rent-comment', require('./components/Rent/RentComment.vue').defau
 Vue.component('job-show', require('./components/Job/Show.vue').default);
 Vue.component('job-question', require('./components/Job/Question.vue').default);
 
+// Event Component
+Vue.component('event-show', require('./components/Event/Show.vue').default);
 
 /**
  *     DASHBOARD COMPONENTS
@@ -206,6 +212,7 @@ Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue
 
 // Event Dashboard
 Vue.component('dashboard-event-index', require('./components/Dashboard/Event/Index.vue').default);
+Vue.component('dashboard-event-edit', require('./components/Dashboard/Event/Edit.vue').default);
 
 
 /**

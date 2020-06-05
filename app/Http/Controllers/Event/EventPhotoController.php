@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Event;
 
+use App\Event\EventBasicInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -81,5 +82,15 @@ class EventPhotoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * 
+     * Custom api functions
+     * 
+     *  */
+    public function photo(EventBasicInfo $eventBasicInfo)
+    {
+        return $eventBasicInfo->event_photos()->orderBy('created_at', 'desc')->get();
     }
 }

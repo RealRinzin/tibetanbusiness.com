@@ -51,9 +51,9 @@ class DatabaseSeeder extends Seeder
         // factory(JobQuestion::class, 10)->create();
 
         // Event
-        factory(EventBasicInfo::class,2)->create();
-        factory(EventPhoto::class,2)->create();
-        factory(EventReview::class,2)->create();
+        factory(EventBasicInfo::class,1)->create();
+        factory(EventPhoto::class,8)->create();
+        // factory(EventReview::class,2)->create();
 
         
     }

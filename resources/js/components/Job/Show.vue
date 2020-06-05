@@ -5,8 +5,9 @@
         :description="job.location"
         :image="job.banner"
         lang="langauge"
-        url="https://tibetanbusiness.com"
+        :url="url"
         />
+<a :href="'https://www.facebook.com/sharer.php?u='+url" target="_blank">Share facebook</a>
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -150,6 +151,7 @@ export default {
             isLoading : false,//Lazy loading
             loading:false, //loading
             is_logged:false,
+            url:'',
         }
     },
     methods:{
@@ -160,6 +162,7 @@ export default {
                 this.job = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
+                this.url ="https://tibetanbusiness.com:8890/job/"+this.job.title;
             })
         },
         // open modal

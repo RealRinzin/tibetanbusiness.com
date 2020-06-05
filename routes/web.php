@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('event', function () {
             return view('dashboard.Event.index');
         })->name('dashboard.event');
+        Route::get('event/edit/id={id}', 'Event\EventBasicInfoController@event_edit');
+
 
     });
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
@@ -81,3 +83,8 @@ Route::get('rent/{id}','Rent\RentBasicInfoController@view');
  * Job View / Show
  *  */
 Route::get('job/{id}', 'Job\JobBasicInfoController@view');
+/**
+ * Event
+ * View/ Show Page
+ *  */  
+Route::get('event/{id}', 'Event\EventBasicInfoController@view');
