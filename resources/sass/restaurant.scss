@@ -19,7 +19,7 @@ View individual show CSS
             right: 0px;
             width: 100%;
             height: inherit;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.4);
             .job{
                 position: absolute;
                 top: 0px;
@@ -90,5 +90,30 @@ View individual show CSS
     border-radius: 10px;
     // background-color: gainsboro;
     background-image: url("/img/placeholder.gif");
+    }
+    // Event
+    #event{
+        .title{
+            h6{
+                top:55% !important;
+                bottom:auto !important;
+                left:2px !important;
+                padding: 5px;
+            }
+        }
+        .banner{
+            ul{
+                bottom: 20px !important;
+                left: 2px;
+                position: absolute;
+                padding: 5px !important;
+                border-radius: 4px !important;
+                font-size: 16px;
+                li{
+                    padding: 3px 6px !important;
+                    margin:2px 0px !important;
+                }
+            }
+        }
     }
 }

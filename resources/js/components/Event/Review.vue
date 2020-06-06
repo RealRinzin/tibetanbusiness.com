@@ -64,6 +64,7 @@
     </div>
 </template>
 <script>
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
     props:['event_id'],
     data(){
@@ -91,6 +92,7 @@ export default {
     // methods
     methods:{
         load_review(){
+            var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy');
             axios.get('/api/event/'+this.event_id+'/reviews')
             .then(response=>{
                 this.reviews = response.data.data;

@@ -12,7 +12,7 @@
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div  class="container py-4">
+                <div  class="container py-4" id="event">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
@@ -21,12 +21,12 @@
                                         <!-- Banner -->
                                         <div class="col-md-12">
                                             <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
-                                            <div class="overlay">
-                                                <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{event.entry_fee}} /-</h6>
-                                                <ul>
-                                                    <li v-if="event.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{event.rating}}</a></li>
-                                                    <li v-if="event.facebook != null"><a :href="event.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                    <li v-if="event.instagram != null"><a :href="event.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                            <div class="overlay title">
+                                                <h6 class="font-weight-bold position-absolute  btn btn-danger">{{event.name}}</h6>
+                                                <ul class="detail">
+                                                    <li class="btn btn-danger btn-md">{{event.start_date | date}}</li>
+                                                    <li class="btn btn-danger btn-md">{{event.start_time}}<span :v-if="event.end_time"> -{{event.end_time}}</span></li>
+                                                    <li class="btn btn-danger btn-md">Entry Fee: Rs: {{event.entry_fee}}/</li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -61,11 +61,10 @@
                                 </div>
                                 <!--  Photo -->
                                 <div class="card">
-                                    <!-- <event-room-photo v-bind:rent_room_photos="event.room_photos"></event-room-photo> -->
                                     <photo :event_id="id"></photo>
                                 </div>
                                 <!-- comments -->
-                                    <event-review :event_id="id"></event-review>
+                                <event-review :event_id="id"></event-review>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
@@ -85,6 +84,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 import EventReview from './Review.vue';
+import format from 'date-fns/format';
 export default {
     props:['event_id'],
     data(){
@@ -97,6 +97,7 @@ export default {
     },
     methods:{
         load_event(){
+            
             this.isLoading = true;
             axios.get('/api/event/view/'+this.id)
             .then(response=>{
@@ -105,6 +106,12 @@ export default {
                 this.loading = true;
             })
         },
+    },
+    // Filer
+    filters:{
+        date(str){
+            return format(new Date(str), 'EE, MMM dd, yyyy');
+        }
     },
     // Components
     components:{Loading,Photo,EventReview},

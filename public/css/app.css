@@ -10903,7 +10903,7 @@ View individual show CSS
   right: 0px;
   width: 100%;
   height: inherit;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 #restaurant .banner .overlay .job {
@@ -10973,6 +10973,27 @@ View individual show CSS
   border: 0px;
   border-radius: 10px;
   background-image: url("/img/placeholder.gif");
+}
+
+#restaurant #event .title h6 {
+  top: 55% !important;
+  bottom: auto !important;
+  left: 2px !important;
+  padding: 5px;
+}
+
+#restaurant #event .banner ul {
+  bottom: 20px !important;
+  left: 2px;
+  position: absolute;
+  padding: 5px !important;
+  border-radius: 4px !important;
+  font-size: 16px;
+}
+
+#restaurant #event .banner ul li {
+  padding: 3px 6px !important;
+  margin: 2px 0px !important;
 }
 
 /* Sidebar  */
