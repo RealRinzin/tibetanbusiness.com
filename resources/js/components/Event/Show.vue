@@ -1,5 +1,12 @@
 <template>
-    <div>
+    <div style="min-height:80vh">
+        <vue-headful
+        :title="event.name"
+        :description="event.location"
+        :image="event.banner"
+        lang="langauge"
+        url="https://tibetanbusiness.com"
+        />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -52,17 +59,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Room Photo -->
+                                <!--  Photo -->
                                 <div class="card">
                                     <!-- <event-room-photo v-bind:rent_room_photos="event.room_photos"></event-room-photo> -->
                                     <photo :event_id="id"></photo>
                                 </div>
-                                <!-- Room Photo -->
-                                <div class="card">
-                                    <!-- <event-view-photo v-bind:rent_view_photos="event.view_photos"></event-view-photo> -->
-                                </div>
                                 <!-- comments -->
-                                    <!-- <event-comment v-bind:rent_uuid="event.id"></event-comment> -->
+                                    <event-review :event_id="id"></event-review>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
@@ -81,6 +84,7 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
+import EventReview from './Review.vue';
 export default {
     props:['event_id'],
     data(){
@@ -103,7 +107,7 @@ export default {
         },
     },
     // Components
-    components:{Loading,Photo},
+    components:{Loading,Photo,EventReview},
     mounted(){
         this.load_event();
     }

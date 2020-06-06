@@ -80,6 +80,8 @@ use Illuminate\Http\Request;
         Route::apiResource('event', 'Event\EventBasicInfoController');
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
+        Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
+        Route::apiResource('event_review', 'Event\EventReviewController');
 
 
     
@@ -138,6 +140,7 @@ use Illuminate\Http\Request;
     Route::get('event/list/featured_ad', 'Event\EventBasicInfoController@featured_ad');
     Route::get('event/list/sidebar_ad', 'Event\EventBasicInfoController@sidebar_ad');
     Route::get('event/list/home_ad', 'Event\EventBasicInfoController@home_ad');
-    Route::get('event/{event_basic_info}/photos', 'Event\EventPhotoController@photo');
+    Route::get( 'event/{event_basic_info}/photos', 'Event\EventPhotoController@photo');
+    Route::get('event/{event_basic_info}/reviews', 'Event\EventReviewController@review');
 
 

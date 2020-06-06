@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Event;
 
+use App\Event\EventBasicInfo;
+use App\Event\EventReview;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EventReviewController extends Controller
 {
@@ -35,7 +38,16 @@ class EventReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $review = EventReview::create([
+            'user_id' => Auth::user()->id,
+            'event_basic_info_id' => $request->event_basic_info_id,
+            'rate' => $request->rate,
+            'review' => $request->review,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $review;
     }
 
     /**
@@ -81,5 +93,14 @@ class EventReviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * 
+     * Custom api functions
+     * 
+     *  */
+    public function review(EventBasicInfo $eventBasicInfo)
+    {
+        return $eventBasicInfo->event_reviews()->orderBy('created_at', 'desc')->paginate('2');
     }
 }

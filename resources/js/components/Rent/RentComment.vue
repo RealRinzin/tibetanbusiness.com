@@ -111,8 +111,7 @@ export default {
     methods:{
         // load Comments
         load_comments(){
-            console.log(this.rent_uuid);
-            
+
             axios.get('/api/rent_comments/comment/'+this.rent_uuid)
             .then(response=>{
                 this.comments = response.data.data;
