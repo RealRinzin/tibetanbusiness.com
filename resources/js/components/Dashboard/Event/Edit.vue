@@ -59,6 +59,9 @@
                                     <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#photos" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">View Photos</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Reviews</a>
                                 </li>
 
@@ -66,6 +69,9 @@
                             <div class="tab-content py-3" id="custom-content-below-tabContent">
                                 <div class="tab-pane fade show active" id="custom-content-below-overview" role="tabpanel" aria-labelledby="custom-content-below-overview-tab">
                                     <overview :event="event"></overview>
+                                </div>
+                                <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                                    <photo :event="event"></photo>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                                     <review :event="event"></review>
@@ -86,6 +92,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Overview from './Overview.vue';
 import Review from './Review.vue';
+import Photo from './Photo.vue';
 // import Applicant from './Applicant.vue';
 
 export default {
@@ -170,7 +177,7 @@ export default {
         },
 
     },
-    components:{Loading,Overview,Review},
+    components:{Loading,Overview,Review,Photo},
     mounted(){
         this.event_load();
     }
