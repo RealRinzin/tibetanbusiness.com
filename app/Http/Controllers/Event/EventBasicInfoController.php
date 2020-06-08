@@ -92,6 +92,11 @@ class EventBasicInfoController extends Controller
     public function show($id)
     {
         //
+        // return new EventInfoBasicResource(EventBasicInfo::find($id));
+        $event = EventBasicInfo::find($id);
+        return $event->toArray($event);
+
+
     }
 
     /**

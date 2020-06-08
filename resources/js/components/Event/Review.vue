@@ -115,8 +115,10 @@ export default {
                         this.reviews[index].rate_color = 'bg-secondary';
                     }
                 }
+                console.log(response.data.last_page);
+                
                 // load more button
-                if(response.data.last_page > 2){
+                if(response.data.last_page > 1){
                     this.load_more_button = true
                 }
             })

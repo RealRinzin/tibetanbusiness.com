@@ -1,4 +1,4 @@
 @extends('dashboard')
 @section('content')
-<dashboard-event-edit :job_id="{{$id}}"></dashboard-event-edit>
+<dashboard-event-edit :event_id="{{$id}}"></dashboard-event-edit>
 @endsection
