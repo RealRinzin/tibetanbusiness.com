@@ -59,7 +59,7 @@
                                     <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Comments</a>
+                                    <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Reviews</a>
                                 </li>
 
                             </ul>
@@ -68,7 +68,7 @@
                                     <overview :event="event"></overview>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                    <!-- <applicant :job_id="id"></applicant> -->
+                                    <review :event="event"></review>
                                 </div>
 
                             </div>
@@ -85,7 +85,7 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Overview from './Overview.vue';
-// import Question from './Question.vue';
+import Review from './Review.vue';
 // import Applicant from './Applicant.vue';
 
 export default {
@@ -108,7 +108,7 @@ export default {
     //methods
     methods:{
         // loading Restaurant
-        job_load(){
+        event_load(){
             this.isLoading = true;
             axios.get('/api/event/'+this.id,{
                 headers : { Authorization : localStorage.getItem("token")}
@@ -159,7 +159,7 @@ export default {
                 data: {banner: this.bannerPreview},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
-                            this.job_load();
+                            this.event_load();
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',
@@ -170,11 +170,9 @@ export default {
         },
 
     },
-    components:{Loading,Overview,
-    // Question,Applicant
-    },
+    components:{Loading,Overview,Review},
     mounted(){
-        this.job_load();
+        this.event_load();
     }
 }
 </script>

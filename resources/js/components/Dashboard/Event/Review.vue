@@ -1,39 +1,5 @@
 <template>
     <div>
-        <div class="card">
-            <div class="row p-3">
-                <div class="col-md-12">
-                    <h5>Write Reviews</h5>
-                        <div v-if="is_logged">
-                            <form @submit.prevent="review_post(id)" data-vv-scope="event_valid_review_form">
-                                <p><star-rating v-model="post_review.rate"
-                                                v-bind:fixed-points="1"
-                                                v-bind:increment="0.3"
-                                                v-bind:max-rating="5"
-                                                border-color="#33373a"
-                                                inactive-color="#dcdcdc"
-                                                active-color="#f9c132"
-                                                v-bind:star-size="25"
-                                    ></star-rating></p>
-                                <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="post_review.review" class="form-control" name="review">
-                                    <span class="input-group-append">
-                                        <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
-                                    </span>
-                                    <div class="valid-feedback"></div>
-                                    <div v-if="errors.has('event_valid_review_form.review')" class="invalid-feedback">
-                                        <span v-for="error in errors.collect('event_valid_review_form.review')">{{ error }}</span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div v-else>
-                            <p class="pt-3">Please login to leave comment</p>
-                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
-                        </div>
-                </div>
-            </div>
-        </div>
         <!-- Show Review -->
         <div class="card p-3">
             <div class="row">
@@ -64,25 +30,13 @@
     </div>
 </template>
 <script>
-import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
-    props:['event_id'],
+    props:['event'],
     data(){
         return{
-            id:this.event_id,
+            id:this.event.id,
             reviews:{},
-            /**
-             * Check Login status
-             *  */ 
-            is_logged:false, //login status check
             events_lazy_load:false, //lazy loading
-            post_review:{
-                event_basic_info_id:this.event_id,
-                rate:'',
-                review:'',
-                avatar:localStorage.getItem('user_avatar'),
-                name:localStorage.getItem('user_name'),
-            }, //post review object
             load_more_button : false, //load more button
             total_reviews:0, //total review counts
             nextPage:2, //paginating 
@@ -92,8 +46,7 @@ export default {
     // methods
     methods:{
         load_review(){
-            var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy');
-            axios.get('/api/event/'+this.event_id+'/reviews')
+            axios.get('/api/event/'+this.id+'/reviews')
             .then(response=>{
                 this.reviews = response.data.data;
                 this.total_reviews = response.data.data.length
@@ -155,38 +108,9 @@ export default {
 
             })
         },
-        /**
-         * Post Comment
-         *  */ 
-        review_post(id){
-            /* Valid for post */
-            if(this.post_review.rate){
-                this.$validator.validateAll('event_valid_review_form').then((result) => {
-                    if(result){
-                        axios.post('/api/event_review',this.post_review,{
-                        headers : { Authorization : localStorage.getItem("token")}
-                        }).then(response=>{
-                            this.load_review();
-                            // Reset form
-                            // this.review = [];
-                            toast.fire({
-                                icon:'success',
-                                title:'Comment Posted',
-                            });
-                        })
-                    }
-                })
-            }else{
-                alert('Please give your rating ***')
-            }
-        }
+
     },
     mounted(){
-        axios.get('/login_status').then(response => {
-            if(response.data.status === true){
-                this.is_logged = true
-            }
-        })
         this.load_review();
     }
 }

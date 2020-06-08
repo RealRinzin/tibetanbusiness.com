@@ -78,10 +78,11 @@ use Illuminate\Http\Request;
          * Authorization
          */
         Route::apiResource('event', 'Event\EventBasicInfoController');
+        Route::apiResource('event_review', 'Event\EventReviewController');
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
-        Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
-        Route::apiResource('event_review', 'Event\EventReviewController');
+        Route::patch('event/banner_update/{id}', 'Event\EventBasicInfoController@banner_update');
+
 
 
     

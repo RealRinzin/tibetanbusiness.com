@@ -120,6 +120,8 @@ class EventBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $event = EventBasicInfo::find($id);
+        $event->update($request->all());
     }
 
     /**
@@ -169,7 +171,30 @@ class EventBasicInfoController extends Controller
         $events = Auth::user()->event_basic_infos;
         return $events->toArray($events);
     }
-
+    // Banner update
+    public function banner_update(Request $request, $id)
+    {
+        // return $request;
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+        }
+        // upate
+        $banner = EventBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Event/Banner/' . $banner->banner;
+        unlink($unlink);
+        $banner->update(['banner' => $name]);
+    }
     // Update status
     public function status_update(Request $request, $id)
     {
