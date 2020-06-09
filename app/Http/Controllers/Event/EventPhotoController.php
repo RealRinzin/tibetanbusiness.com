@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Event;
 
 use App\Event\EventBasicInfo;
+use App\Event\EventPhoto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class EventPhotoController extends Controller
 {
@@ -37,6 +39,21 @@ class EventPhotoController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request;
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $restaurant = EventPhoto::create([
+                    'event_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Event\Photos');
+            }
+        }
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**
@@ -82,6 +99,11 @@ class EventPhotoController extends Controller
     public function destroy($id)
     {
         //
+        $photo = EventPhoto::find($id);
+        // return $photo->path;
+        $unlink = public_path() . '/storage/Event/Photos/' . $photo->path;
+        unlink($unlink);
+        $photo->delete();
     }
 
     /**

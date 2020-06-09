@@ -115,6 +115,7 @@
         total_image:0,
         images: [],
         // End
+        valid_image:[],
       };
     },
     // Methods
@@ -173,8 +174,16 @@
             this.total_image = e.target.files.length;
               const files = e.target.files;
               if (this.total_image <=5) {
-                    Array.from(files).forEach(file => this.addImage(file));
-              }else{
+                  for (let index = 0; index < e.target.files.length; index++) {
+                    if(files[index].size < 1000000){
+                      this.valid_image.push(files[index]);
+                      }else{
+                        alert("Your image size should be less than 1MB")
+                      }
+                  }
+                  Array.from(this.valid_image).forEach(file => this.addImage(file));
+              }
+              else{
                 alert("select less than 5 photos");
               }
         },

@@ -22,10 +22,6 @@
 </div>
 </template>
 <script>
-    // Import component
-    import Loading from 'vue-loading-overlay';
-    // Import stylesheet
-    import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
     // Data
     data(){
@@ -45,7 +41,6 @@ export default {
              *  */ 
             axios.get('/api/rent/list/sidebar_ad')
             .then(response=>{
-                this.isLoading = true; //Loading true
                 if(response.data.length > 0){
                         for (let x = 0; x < response.data.length; x++) {
                             this.rent_active[x] = response.data[Math.floor(Math.random() *response.data.length)]

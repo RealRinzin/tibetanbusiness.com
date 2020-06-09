@@ -17,6 +17,7 @@
                   <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
                 </div>
               </div>
+              <!-- div. -->
         </div>
     </div>
   </div>
@@ -50,7 +51,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Menu Photos</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add Photos</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -113,6 +114,7 @@
         total_image:0,
         images: [],
         // End
+        valid_image:[],
       };
     },
     // Methods
@@ -131,8 +133,6 @@
        * Function
        *  */ 
       photo_view(index){
-          console.log(index);
-          
             this.modal_status = true;
             // active class
             this.active = index;   
@@ -140,22 +140,22 @@
       /**
        * Removing Photo
        *  */
-    //   remove(id,index){
-    //     let confirmBox = confirm('Are you sure want to Delete!!!');
-    //     if(confirmBox == true){
-    //       axios.delete('/api/rent_room_photos/'+id,{
-    //         headers : { Authorization : localStorage.getItem("token")}
-    //       })
-    //       .then(response=>{
-    //         //  Flash Message  
-    //         toast.fire({
-    //             icon:'success',
-    //             title:'Deleted Successfully',
-    //         });
-    //         this.$delete(this.photos,index);
-    //       })
-    //     }
-    //   },
+      remove(id,index){
+        let confirmBox = confirm('Are you sure want to Delete!!!');
+        if(confirmBox == true){
+          axios.delete('/api/event_photo/'+id,{
+            headers : { Authorization : localStorage.getItem("token")}
+          })
+          .then(response=>{
+            //  Flash Message  
+            toast.fire({
+                icon:'success',
+                title:'Deleted Successfully',
+            });
+            this.$delete(this.photos,index);
+          })
+        }
+      },
       // Menu modal
       upload_photos_modal(){
             $("#upload_photos_modal").modal("show");           
@@ -181,8 +181,16 @@
             // Total Selected Image 
             this.total_image = e.target.files.length;
               const files = e.target.files;
-              if (this.total_image <=5) {
-                    Array.from(files).forEach(file => this.addImage(file));
+                if (this.total_image <=5) {
+                  for (let index = 0; index < e.target.files.length; index++) {
+                    if(files[index].size < 1000000){
+                      this.valid_image.push(files[index]);
+                      }else{
+                        alert("Your image size should be less than 1MB")
+                      }
+                  }
+                  Array.from(this.valid_image).forEach(file => this.addImage(file));
+                  
               }else{
                 alert("select less than 5 photos");
               }
@@ -216,6 +224,7 @@
             }
             return `${(Math.round(size * 100) / 100)} ${fSExt[i]}`;
         },
+        
         /* Remove image */
         destory(index){
             // Removing image
@@ -223,6 +232,7 @@
             // Removing the image files
             this.$delete(this.files,index);
         },
+
         // Upload
         upload(id) {
             const formData = new FormData();
@@ -231,7 +241,7 @@
             // Append the ID of restaurant
                 formData.append('id',id);
             });
-            axios.post('/api/rent_room_photos', formData,{
+            axios.post('/api/event_photo', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
               .then(response => {
@@ -242,10 +252,11 @@
                   });
                   this.images = [];
                   this.files = [];
-                  $("#upload_rent_room_photos_modal").modal("hide"); 
+                  $("#upload_photos_modal").modal("hide"); 
                 // callback function
                 // this.$root.$emit(...)
-                  this.$emit('rent_load');
+                  // this.$emit('event_load');
+                  this.load_photo();
               })
         }
         

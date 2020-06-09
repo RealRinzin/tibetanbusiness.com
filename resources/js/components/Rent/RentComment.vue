@@ -38,9 +38,6 @@
         <div class="card p-3">
             <div class="row">
                 <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
-                <div v-if="comments_lazy_load">
-                    <loading :active.sync="comments_lazy_load"></loading>
-                </div>
                     <div class="col-md-12 p-3" v-for="(comment,index) in comments">
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="comment.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
@@ -111,7 +108,6 @@ export default {
     methods:{
         // load Comments
         load_comments(){
-
             axios.get('/api/rent_comments/comment/'+this.rent_uuid)
             .then(response=>{
                 this.comments = response.data.data;

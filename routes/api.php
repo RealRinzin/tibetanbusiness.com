@@ -78,6 +78,7 @@ use Illuminate\Http\Request;
          * Authorization
          */
         Route::apiResource('event', 'Event\EventBasicInfoController');
+        Route::apiResource('event_photo', 'Event\EventPhotoController');
         Route::apiResource('event_review', 'Event\EventReviewController');
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');

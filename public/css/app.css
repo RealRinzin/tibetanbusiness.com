@@ -11272,7 +11272,7 @@ Background resource loading
 .loading {
   background-image: url("/img/spinner-loading.gif");
   background-position: center center;
-  background-size: cover;
+  background-repeat: no-repeat;
   height: 120px;
 }
 

@@ -59,7 +59,7 @@
                                     <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#photos" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">View Photos</a>
+                                    <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#photos" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Photos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Reviews</a>
