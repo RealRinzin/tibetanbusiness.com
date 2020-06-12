@@ -166,10 +166,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label for="description">Job Description <span class="text-danger p-1">*</span></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                <textarea rows="5" cols="50" v-validate="'max:150'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.description')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.description')">{{ error }}</span>

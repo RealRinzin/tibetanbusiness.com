@@ -231,6 +231,7 @@ const app = new Vue({
             // User object
             user_name:'',
             user_avatar:'',
+            user_id:'',
         }
     },
     // Methods
@@ -252,6 +253,8 @@ const app = new Vue({
                  *  */
 
                 if (response.data.status === true) {
+                    // User
+                    localStorage.setItem("user_id",response.data.user.id);
                     // User Local Storage
                     localStorage.setItem("user_name",response.data.user.name);
                     // user avatar storage
@@ -266,8 +269,6 @@ const app = new Vue({
                             // List errors on response...
                         });
                 } else {
-                    console.log("not true");
-
                 }
             });
         }

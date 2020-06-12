@@ -11,12 +11,12 @@
                         <tr>
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Entry Fee</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
                             <th scope="col">Location</th>
-                            <th scope="col">Email</th>
                             <th scope="col">Mobile</th>
-                            <th scope="col">Added on</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -27,11 +27,11 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="event.banner !==''" :href="'/event/'+event.id"><img :src="'/storage/Event/Banner/'+event.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{event.name}}</td>
-                            <td>{{event.address}}</td>
+                            <td>Rs: {{event.entry_fee}}</td>
+                            <td>{{event.start_date}}</td>
+                            <td>{{event.start_time}}<span v-if="event.start_time"> a.m</span></td>
                             <td>{{event.location}}</td>
-                            <td>{{event.email}}</td>
                             <td>{{event.mobile_no}}</td>
-                            <td><timeago :datetime="event.created_at" /></td>
                             <td>
                                 <label class="switch" @click="status_update(event.id,index)">
                                 <input type="checkbox" v-model="event.status">

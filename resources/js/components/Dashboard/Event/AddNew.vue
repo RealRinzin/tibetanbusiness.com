@@ -139,7 +139,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label for="description">Event Description <span class="text-danger p-1">*</span></label>
                                                 <textarea rows="4" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
@@ -194,7 +194,7 @@ export default {
             fileReader.readAsDataURL(event.target.files[0]);
         },
 
-       add_event(){
+       add_event(){           
             this.$validator.validateAll('event_validate_add_form').then((result) => {                  
                 if(result){
                     axios.post('/api/event',this.event,{

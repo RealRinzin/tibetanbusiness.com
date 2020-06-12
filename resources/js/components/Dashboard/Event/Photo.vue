@@ -12,11 +12,11 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-xs-6" v-for="(photo,index) in photos">
         <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo"  v-bind:style='{ backgroundImage: `url(/storage/Event/Photos/${photo.path})`}'>
-              <div class="overlay">
-                <div class="d-flex mt-auto ml-auto p-2">
-                  <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-                </div>
-              </div>
+          <div class="overlay">
+            <div class="d-flex mt-auto ml-auto p-2">
+              <button class="btn btn-danger btn-xs" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
+            </div>
+          </div>
               <!-- div. -->
         </div>
     </div>

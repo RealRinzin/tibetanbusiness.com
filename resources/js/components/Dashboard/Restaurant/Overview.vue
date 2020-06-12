@@ -420,7 +420,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-8 col-sm-6">
                                             <div class="form-group">
                                                 <label for="address">Description <small class="text-success">(optional)</small></label>
                                                 <textarea rows="4" cols="50" v-validate="'max:150'" v-model="restaurant.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>

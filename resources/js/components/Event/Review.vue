@@ -6,7 +6,9 @@
                     <h5>Write Reviews</h5>
                         <div v-if="is_logged">
                             <form @submit.prevent="review_post(id)" data-vv-scope="event_valid_review_form">
-                                <p><star-rating v-model="post_review.rate"
+                                <p><star-rating 
+                                                :rating="rating"
+                                                v-model="post_review.rate"
                                                 v-bind:fixed-points="1"
                                                 v-bind:increment="0.3"
                                                 v-bind:max-rating="5"
@@ -14,6 +16,8 @@
                                                 inactive-color="#dcdcdc"
                                                 active-color="#f9c132"
                                                 v-bind:star-size="25"
+                                                @rating-selected ="setRating"
+
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
                                     <input type="text" v-validate="'required|min:1|max:255'" v-model="post_review.review" class="form-control" name="review">
@@ -48,7 +52,11 @@
                             <h6 class="mt-0">{{event.name}} 
                                 <!-- <small class="text-muted"><timeago :datetime="event.created_at" /></small> -->
                                 <small>
-                                <span  v-bind:class="event.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{event.rate}}</span>
+                                    <span  v-bind:class="event.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{event.rate}}</span>
+                                    <span v-if="event.user_id === user_id" class="p-2">
+                                        <span class="btn btn-xs btn-secondary" @click="edit(event.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                        <span class="btn btn-xs btn-danger" @click="destory(event.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    </span>
                                 </small>
                             </h6>
                             <small class="text-muted" style="font-size:12px"><timeago :datetime="event.created_at" /></small>
@@ -58,6 +66,36 @@
                     </div>
                 <div class="col-md-12 text-center" v-if="load_more_button">
                     <button @click="load_more_reviews()" class="btn btn-danger btn-sm">Load more</button>
+                </div>
+            </div>
+        </div>
+<!-- Edit Modal -->
+<!-- Modal -->
+        <div class="modal fade" id="event_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="review_update()"  data-vv-scope="event_update_review">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Review<span class="text-danger p-1">*</span></label>
+                            <input type="text" v-validate="'required'" v-model="update_review.review" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="name">
+                            <div class="valid-feedback"></div>
+                            <div v-if="errors.has('event_update_review.review')" class="invalid-feedback">
+                                <span v-for="error in errors.collect('event_update_review.review')">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -71,6 +109,9 @@ export default {
         return{
             id:this.event_id,
             reviews:{},
+            rating:0,
+            update_review:{},
+            user_id:localStorage.getItem('user_id'),
             /**
              * Check Login status
              *  */ 
@@ -87,10 +128,16 @@ export default {
             total_reviews:0, //total review counts
             nextPage:2, //paginating 
 
+
         }
     },
     // methods
     methods:{
+        // start
+    setRating: function(rating){
+      this.rating= rating;
+    },
+    // Loading
         load_review(){
             var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy');
             axios.get('/api/event/'+this.event_id+'/reviews')
@@ -179,6 +226,49 @@ export default {
             }else{
                 alert('Please give your rating ***')
             }
+        },
+        /**
+        Delete Review
+         */  
+         destory(id,index){
+            let confirmBox = confirm('Are you sure want to Delete!!!');
+            if(confirmBox == true){
+                axios.delete('/api/event_review/'+id,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    //  Flash Message  
+                    toast.fire({
+                        icon:'success',
+                        title:'Successfully Deleted',
+                    });
+                    this.load_review();
+                    this.$delete(this.reviews,index);
+                })
+            }
+         },
+        //  Edit
+         edit(id,index){
+            $("#event_review_update_modal").modal("show");
+             this.update_review = this.reviews[index];
+         },
+        //  update
+        review_update(){
+            this.$validator.validateAll('event_update_review').then((result) => {                  
+                if(result){
+                    axios.post('/api/event_review',this.update_review,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                        // closing modal
+                            $("#event_review_update_modal").modal("hide");  
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Updated',
+                            });
+                    })
+                }
+            })
         }
     },
     mounted(){

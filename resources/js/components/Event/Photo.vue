@@ -81,8 +81,6 @@ export default {
             $("#photo_modal").modal("show");//show modal by click
             this.modal_status = true; // modal status
             this.single_photo = this.photos[$id]; // assigning object
-            console.log(this.single_photo);
-            
         },
         // More photo modal
         more_photo_modal(){

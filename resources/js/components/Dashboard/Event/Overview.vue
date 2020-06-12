@@ -21,7 +21,7 @@
                             </div>
                             <div class="row py-1">
                                 <div class="col-md-6 col-sm-4">
-                                    <h6 class="text-dark">entry_fee:</h6>
+                                    <h6 class="text-dark">Entry Fee:</h6>
                                 </div>
                                 <div class="col-md-6 col-sm-8">
                                     <h6 class="text-muted font-weight-bold">Rs {{event.entry_fee}}/-</h6>
@@ -49,7 +49,7 @@
                                     <h6 class="text-dark">Timing:</h6>
                                 </div>
                                 <div class="col-md-6 col-sm-8">
-                                    <h6 class="text-muted">{{event.start_time}} - {{event.end_time}}</h6>
+                                    <h6 class="text-muted">{{event.start_time}}<span v-if="event.start_time"> a.m - </span> {{event.end_time}}  <span v-if="event.end_time"> p.m</span></h6>
                                 </div>
                             </div>
                             <div class="row py-1">
@@ -263,10 +263,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label for="description">Event Description <span class="text-danger p-1">*</span></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                <textarea rows="5" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('event_validate_update_form.description')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('event_validate_update_form.description')">{{ error }}</span>

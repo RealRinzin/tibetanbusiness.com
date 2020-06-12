@@ -82,6 +82,8 @@ class EventReviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $review = EventReview::find($id);
+        $review->update($request->all());
     }
 
     /**
@@ -93,6 +95,9 @@ class EventReviewController extends Controller
     public function destroy($id)
     {
         //
+        $review = EventReview::find($id);
+        // return $review;
+        $review->delete();
     }
     /**
      * 

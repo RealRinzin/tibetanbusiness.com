@@ -22,11 +22,11 @@
                                         <div class="col-md-12">
                                             <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
                                             <div class="overlay title">
-                                                <h6 class="font-weight-bold position-absolute  btn btn-danger">{{event.name}}</h6>
+                                                <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{event.name}}</h6>
                                                 <ul class="detail">
-                                                    <li class="btn btn-danger btn-md">{{event.start_date | date}}</li>
-                                                    <li class="btn btn-danger btn-md">{{event.start_time}}<span :v-if="event.end_time"> -{{event.end_time}}</span></li>
-                                                    <li class="btn btn-danger btn-md">Entry Fee: Rs: {{event.entry_fee}}/</li>
+                                                    <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
+                                                    <li class="btn btn-danger btn-md"><i class="far fa-clock mr-2"></i>{{event.start_time}} <span v-if="event.start_time"> a.m </span>-{{event.end_time}} <span v-if="event.end_time"> p.m</span></li>
+                                                    <li class="btn btn-danger btn-md"><i class="fas fa-rupee-sign mr-2"></i>Entry Fee: Rs: {{event.entry_fee}}/</li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -35,10 +35,9 @@
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
                                                     <div class="col-md-6 col-sm-6">
-                                                        <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{event.name}}</h6>
-                                                        <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{event.mobile_no}}</h6>
+                                                        <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{event.name}}</h6>
+                                                        <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{event.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{event.location}}</h6>
-                                                        <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{event.entry_fee}} </h6>
                                                     </div>
                                             </div>
                                         </div>
@@ -64,7 +63,7 @@
                                     <photo :event_id="id"></photo>
                                 </div>
                                 <!-- comments -->
-                                <event-review :event_id="id"></event-review>
+                                <event-review :event_id="id" :rating="rating"></event-review>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
@@ -93,11 +92,11 @@ export default {
             event:{}, //event objects
             isLoading : false,//Lazy loading
             loading:false, //loading
+            rating:0,
         }
     },
     methods:{
         load_event(){
-            
             this.isLoading = true;
             axios.get('/api/event/view/'+this.id)
             .then(response=>{
