@@ -134,9 +134,9 @@ export default {
     // methods
     methods:{
         // start
-    setRating: function(rating){
-      this.rating= rating;
-    },
+        setRating: function(rating){
+        this.rating= rating;
+        },
     // Loading
         load_review(){
             var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy');

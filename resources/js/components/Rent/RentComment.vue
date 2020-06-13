@@ -14,6 +14,7 @@
                                                 inactive-color="#dcdcdc"
                                                 active-color="#f9c132"
                                                 v-bind:star-size="25"
+                                                @rating-selected ="setRating"
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
                                     <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="review.comment" class="form-control" name="comment">
@@ -65,6 +66,7 @@ export default {
     data(){
         return{
             id:'',
+            rating:0,
             // comments:{},
             /**
              * Review 
@@ -106,6 +108,10 @@ export default {
     },
     // Methods
     methods:{
+        // start
+        setRating: function(rating){
+        this.rating= rating;
+        },
         // load Comments
         load_comments(){
             axios.get('/api/rent_comments/comment/'+this.rent_uuid)

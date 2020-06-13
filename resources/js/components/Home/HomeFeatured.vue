@@ -4,7 +4,7 @@
             <loading :active.sync="isLoading"></loading>
         </div>
         <div v-else>
-            <div class="container">
+            <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
                     <!-- <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5"> -->
@@ -26,9 +26,17 @@
                         </div>
                     </div>
                     <!-- Events -->
-                    <div class="col-md-4 py-1" v-if="event">
+                    <div class="col-md-4 py-1 info" v-if="event">
                         <div class="card">
-                            <a v-bind:href="'event/'+event.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'></div></a>
+                            <a v-bind:href="'event/'+event.id">
+                                <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
+                                    <ul>
+                                        <li class="ng-binding">{{event.start_date | date}}</li>
+                                        <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li>
+                                        <li class="ng-binding">Entry Fee:₹{{event.entry_fee}}/-</li>
+                                    </ul>
+                                </div>
+                            </a>
                             <div class="likes" v-if="event.rate != null">
                                 <p v-if="event" v-bind:class="event.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{event.rate}}</p>
                             </div>
@@ -43,9 +51,16 @@
                         </div>
                     </div>
                     <!-- Rents -->
-                    <div class="col-md-4 py-1" v-if="rent">
+                    <div  class="col-md-4 py-1 info" v-if="rent">
                         <div class="card">
-                            <a v-bind:href="'rent/'+rent.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'></div></a>
+                            <a v-bind:href="'rent/'+rent.id">
+                                <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
+                                    <ul>
+                                        <li class="ng-binding">Rent:₹{{rent.fare}}/-</li>
+                                        <li class="ng-binding">Size: {{rent.accomodation_size}} Person</li>
+                                    </ul>
+                                </div>
+                            </a>
                             <div class="likes" v-if="rent.rate != null">
                                 <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                             </div>
@@ -73,8 +88,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <featured-rent></featured-rent> -->
-                    <!-- <featured-job></featured-job> -->
                 </div>
             </div>
         </div> 
@@ -94,6 +107,7 @@
     import JobList from './List/Job.vue';
     import RentList from './List/Rent.vue';
     import RestaurantList from './List/Restaurant.vue';
+    import format from 'date-fns/format';
     
     export default {
         /**
@@ -284,6 +298,18 @@
                 })
 
             },
+        },
+        /**
+         * Filter
+         *  */ 
+        filters:{
+            date(str){
+                return format(new Date(str), 'EE, MMM dd, yyyy');
+            },
+            // trim string
+            trim(str){
+                return str.slice(0, 50) + "..."
+            }
         },
         /**
          * 

@@ -14,6 +14,8 @@
                                                 inactive-color="#dcdcdc"
                                                 active-color="#f9c132"
                                                 v-bind:star-size="25"
+                                                @rating-selected ="setRating"
+
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
                                     <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="review.comment" class="form-control" name="comment">
@@ -73,7 +75,7 @@ export default {
             // Restaurant id
             rest_id:this.restaurant,
             // Start rating
-            // rating: 0,
+            rating: 0,
             // user: localStorage.getItem('user'),
             // Post comment
             review:{
@@ -107,6 +109,11 @@ export default {
      * Methods
      *  */ 
     methods:{
+        // start
+        setRating: function(rating){
+        this.rating= rating;
+        },
+        // Comment
         comment(){
             /**
              * 

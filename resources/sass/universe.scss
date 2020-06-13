@@ -261,3 +261,24 @@ Background resource loading
     background-repeat: no-repeat;
     height:120px;
   }
+
+  #featured{
+    .info{
+      ul{
+        top: 75%;
+        left: 5px;
+        position: absolute;
+        padding: 5px 0px;
+        border-radius: 4px;
+        font-size: 13px;
+        li{
+          background-color: #e15246 !important;
+          display: inline;
+          list-style: none;
+          color: #ffffff;
+          padding: 3px 6px;
+          border-radius: 2px;
+        }
+      }
+    }
+  }

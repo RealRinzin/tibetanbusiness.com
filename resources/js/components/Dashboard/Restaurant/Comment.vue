@@ -73,6 +73,8 @@ export default {
         }
     },
     methods:{
+
+        // load
         load_comments(){
         },
         view(index){
