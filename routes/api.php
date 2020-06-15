@@ -84,9 +84,17 @@ use Illuminate\Http\Request;
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
         Route::patch('event/banner_update/{id}', 'Event\EventBasicInfoController@banner_update');
 
+        // Sale API
+        /**
+         * Sale API
+         * Authorization
+         */
+        Route::apiResource('sale', 'Sale\SaleBasicInfoController');
+        Route::apiResource('sale_photo', 'Sale\SalePhotoController');
+        Route::get('user/sales', 'Sale\SaleBasicInfoController@user_sale');
+        Route::patch('sale/status_update/{id}', 'Sale\SaleBasicInfoController@status_update');
+        Route::patch('sale/banner_update/{id}', 'Sale\SaleBasicInfoController@banner_update');
 
-
-    
     });
 
     
@@ -145,4 +153,14 @@ use Illuminate\Http\Request;
     Route::get( 'event/{event_basic_info}/photos', 'Event\EventPhotoController@photo');
     Route::get('event/{event_basic_info}/reviews', 'Event\EventReviewController@review');
 
+    /**
+     * SALE API 
+     * Custom 
+     * Deauthorized
+     */
+    Route::get('sale/list/all', 'Sale\SaleBasicInfoController@all');
+    Route::get('sale/list/featured_ad', 'Sale\SaleBasicInfoController@featured_ad');
+    Route::get('sale/list/sidebar_ad', 'Sale\SaleBasicInfoController@sidebar_ad');
+    Route::get('sale/list/home_ad', 'Sale\SaleBasicInfoController@home_ad');
+    Route::get('sale/{sale_basic_info}/photos', 'Sale\SalePhotoController@photo');
 

@@ -18,6 +18,8 @@ use App\Restaurant\RestaurantFacility;
 use App\Restaurant\RestaurantFoodPhoto;
 use App\Restaurant\RestaurantMenuPhoto;
 use App\Restaurant\RestaurantOperationDay;
+use App\Sale\SaleBasicInfo;
+use App\Sale\SalePhoto;
 use App\User;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
@@ -51,10 +53,11 @@ class DatabaseSeeder extends Seeder
         // factory(JobQuestion::class, 10)->create();
 
         // Event
-        factory(EventBasicInfo::class,1)->create();
-        factory(EventPhoto::class,8)->create();
+        // factory(EventBasicInfo::class,1)->create();
+        // factory(EventPhoto::class,8)->create();
         // factory(EventReview::class,2)->create();
-
-        
+        // SALE
+        factory(SaleBasicInfo::class,2)->create();
+        factory(SalePhoto::class,2)->create();
     }
 }

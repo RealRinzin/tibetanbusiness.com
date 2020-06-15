@@ -8,5 +8,7 @@
         <job-sidebar></job-sidebar>
         <!-- Event -->
         <event-sidebar></event-sidebar>
+        <!-- Sale -->
+        <sale-sidebar></sale-sidebar>
     </div>
 </template>

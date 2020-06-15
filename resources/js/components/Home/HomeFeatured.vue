@@ -88,6 +88,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Sale -->
+                    <div class="col-md-4 py-1" v-if="sale">
+                        <div class="card">
+                            <a v-bind:href="'sale/'+sale.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div></a>
+                            <div class="types">
+                                <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button>
+                            </div>
+                            <div class="card-body text-truncate">
+                                <h5>{{sale.name}}</h5>
+                                <h6>{{sale.mobile_no}}</h6>
+                                <h6>{{sale.location}}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> 
@@ -95,6 +109,7 @@
         <rent-list></rent-list>
         <job-list></job-list>
         <restaurant-list></restaurant-list>
+        <sale-list></sale-list>
     </div>
 </template>
 
@@ -107,6 +122,7 @@
     import JobList from './List/Job.vue';
     import RentList from './List/Rent.vue';
     import RestaurantList from './List/Restaurant.vue';
+    import SaleList from './List/Sale.vue';
     import format from 'date-fns/format';
     
     export default {
@@ -124,6 +140,7 @@
                 event:{},
                 rent:{},
                 job:{},
+                sale:{},
             }
         },
         /**
@@ -296,7 +313,20 @@
                         })
                     }
                 })
-
+                // Featured Sale
+                axios.get('/api/sale/list/featured_ad')
+                .then(response=>{
+                    if (response.data.length > 0) {
+                        // Assign
+                        this.sale = response.data[Math.floor(Math.random() *response.data.length)]
+                    }else{
+                        axios.get('/api/sale/list/all')
+                        .then(response => {
+                            // Assign
+                            this.sale = response.data[Math.floor(Math.random() *response.data.length)]
+                        })
+                    }
+                })
             },
         },
         /**
@@ -315,7 +345,7 @@
          * 
          * Components
          *  */  
-        components:{Loading,EventList,RentList,JobList,RestaurantList},
+        components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList},
         /**
          * Mounted
          *  */ 

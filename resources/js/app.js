@@ -154,6 +154,7 @@ Vue.component('sidebar', require('./components/Home/Sidebar.vue').default);
 Vue.component('rent-sidebar', require('./components/Rent/Sidebar.vue').default);
 Vue.component('job-sidebar', require('./components/Job/Sidebar.vue').default);
 Vue.component('event-sidebar', require('./components/Event/Sidebar.vue').default);
+// Vue.component('sale-sidebar', require('./components/Sale/Sidebar.vue').default);
 
 
 /**
@@ -214,6 +215,9 @@ Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue
 Vue.component('dashboard-event-index', require('./components/Dashboard/Event/Index.vue').default);
 Vue.component('dashboard-event-edit', require('./components/Dashboard/Event/Edit.vue').default);
 
+// Sale Dashboard
+Vue.component('dashboard-sale-index', require('./components/Dashboard/Sale/Index.vue').default);
+Vue.component('dashboard-sale-edit', require('./components/Dashboard/Sale/Edit.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

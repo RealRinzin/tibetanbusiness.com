@@ -53,6 +53,12 @@ Route::group(['middleware' => ['auth']], function () {
         })->name('dashboard.event');
         Route::get('event/edit/id={id}', 'Event\EventBasicInfoController@event_edit');
 
+        // Sale
+        Route::get('sale', function () {
+            return view('dashboard.Sale.index');
+        })->name('dashboard.sale');
+        Route::get('sale/edit/id={id}', 'Sale\SaleBasicInfoController@sale_edit');
+
 
     });
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
