@@ -19,4 +19,21 @@ class ServiceBasicInfo extends Model
     }
     // mass fill
     protected $guarded = [];
+    // Relationship
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function service_photos()
+    {
+        return $this->hasMany(ServicePhoto::class);
+    }
+    public function service_reviews()
+    {
+        return $this->hasMany(ServiceReview::class);
+    }
+    public function service_working_days()
+    {
+        return $this->hasMany(ServiceWorkingDay::class);
+    }
 }

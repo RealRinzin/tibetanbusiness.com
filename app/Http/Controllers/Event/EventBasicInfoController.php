@@ -229,10 +229,4 @@ class EventBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
-    // User Job
-    public function user_job()
-    {
-        $jobs = Auth::user()->job_basic_infos;
-        return $jobs->toArray($jobs);
-    }
 }

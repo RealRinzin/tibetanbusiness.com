@@ -115,9 +115,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{route('dashboard.service')}}" class="nav-link">
                                 <i class="fas fa-home mr-2 text-danger"></i>
-                                <p>Rents<span class="right badge badge-danger">New</span></p>
+                                <p>Services<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                         <li class="nav-item">

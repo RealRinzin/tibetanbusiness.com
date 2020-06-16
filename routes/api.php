@@ -95,6 +95,17 @@ use Illuminate\Http\Request;
         Route::patch('sale/status_update/{id}', 'Sale\SaleBasicInfoController@status_update');
         Route::patch('sale/banner_update/{id}', 'Sale\SaleBasicInfoController@banner_update');
 
+        // Service API
+        /**
+         * Service API
+         * Authorization
+         */
+        Route::apiResource('service', 'Service\ServiceBasicInfoController');
+        Route::apiResource('service_photo', 'Service\ServicePhotoController');
+        Route::apiResource('service_review', 'Service\ServiceReviewController');
+        Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');
+
+
     });
 
     
@@ -131,10 +142,8 @@ use Illuminate\Http\Request;
      */
 
     Route::get('job/list/all', 'Job\JobBasicInfoController@all');
-    // Route::get('job_question/questions/{id}', 'Job\JobQuestionController@question');
     Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
     Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
-    // Route::get('job_answer/replies/{id}', 'Job\JobQuestionController@replies');
     Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
     Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
     Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
@@ -165,4 +174,11 @@ use Illuminate\Http\Request;
     Route::get('sale/{sale_basic_info}/photos', 'Sale\SalePhotoController@photo');
     Route::get('sale/view/{id}', 'Sale\SaleBasicInfoController@display');
 
+    /**
+     * SERVICE API 
+     * Custom 
+     * Deauthorized
+     */
+    Route::get('service/list/all', 'Service\ServiceBasicInfoController@all');
+    Route::get('service/list/featured_ad', 'Service\ServiceBasicInfoController@featured_ad');
 

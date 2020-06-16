@@ -19,4 +19,10 @@ class ServicePhoto extends Model
     }
     // mass fill
     protected $guarded = [];
+    // Relationship
+    public function service_basic_infos()
+    {
+        return $this->belongsTo(ServiceBasicInfo::class);
+    }
+
 }

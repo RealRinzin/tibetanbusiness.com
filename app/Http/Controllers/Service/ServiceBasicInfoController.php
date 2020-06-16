@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\ServiceBasicInfo;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceBasicInfoController extends Controller
 {
@@ -47,6 +49,8 @@ class ServiceBasicInfoController extends Controller
     public function show($id)
     {
         //
+        $service = ServiceBasicInfo::find($id);
+        return $service->toArray($service);
     }
 
     /**
@@ -81,5 +85,34 @@ class ServiceBasicInfoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    // CUSTOM API
+    // Dashboard Edit
+    public function service_edit(ServiceBasicInfo $serviceBasicInfo, $id)
+    {
+        if (Auth::user()->id === ServiceBasicInfo::find($id)->user_id) {
+            return view('dashboard.service.edit', ['id' => ServiceBasicInfo::find($id)]);
+        } else {
+            // $this->authorize('rent_auth', $rentBasicInfo);
+            // return redirect('/');
+        }
+    }
+    public function all()
+    {
+        $service =  ServiceBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $service->toArray($service);
+    }
+    public function featured_ad()
+    {
+        $service =  ServiceBasicInfo::where('featured_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $service->toArray($service);
+    }
+    
+    public function user_service()
+    {
+        $service = Auth::user()->service_basic_infos;
+        return $service->toArray($service);
     }
 }

@@ -58,6 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.Sale.index');
         })->name('dashboard.sale');
         Route::get('sale/edit/id={id}', 'Sale\SaleBasicInfoController@sale_edit');
+        // Service
+        Route::get('service', function () {
+            return view('dashboard.Service.index');
+        })->name('dashboard.service');
+        Route::get('service/edit/id={id}', 'Service\ServiceBasicInfoController@service_edit');
+
 
 
     });

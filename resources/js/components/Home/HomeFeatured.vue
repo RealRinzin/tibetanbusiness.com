@@ -102,6 +102,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Service -->
+                    <div class="col-md-4 py-1" v-if="service">
+                        <div class="card">
+                            <a v-bind:href="'service/'+service.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div></a>
+                            <div class="types">
+                                <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button>
+                            </div>
+                            <div class="card-body text-truncate">
+                                <h5>{{service.name}}</h5>
+                                <h6>{{service.mobile_no}}</h6>
+                                <h6>{{service.location}}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> 
@@ -141,6 +155,7 @@
                 rent:{},
                 job:{},
                 sale:{},
+                service:{},
             }
         },
         /**
@@ -324,6 +339,20 @@
                         .then(response => {
                             // Assign
                             this.sale = response.data[Math.floor(Math.random() *response.data.length)]
+                        })
+                    }
+                })
+                // Featured Service
+                axios.get('/api/service/list/featured_ad')
+                .then(response=>{
+                    if (response.data.length > 0) {
+                        // Assign
+                        this.service = response.data[Math.floor(Math.random() *response.data.length)]
+                    }else{
+                        axios.get('/api/service/list/all')
+                        .then(response => {
+                            // Assign
+                            this.service = response.data[Math.floor(Math.random() *response.data.length)]
                         })
                     }
                 })

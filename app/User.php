@@ -7,6 +7,7 @@ use App\Job\JobBasicInfo;
 use App\Rent\RentBasicInfo;
 use App\Restaurant\RestaurantBasicInfo;
 use App\Sale\SaleBasicInfo;
+use App\Service\ServiceBasicInfo;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -80,6 +81,10 @@ class User extends Authenticatable
     public function sale_basic_infos()
     {
         return $this->hasMany(SaleBasicInfo::class);
+    }
+    public function service_basic_infos()
+    {
+        return $this->hasMany(ServiceBasicInfo::class);
     }
 
 }

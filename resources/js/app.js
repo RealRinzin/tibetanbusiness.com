@@ -221,6 +221,10 @@ Vue.component('dashboard-event-edit', require('./components/Dashboard/Event/Edit
 Vue.component('dashboard-sale-index', require('./components/Dashboard/Sale/Index.vue').default);
 Vue.component('dashboard-sale-edit', require('./components/Dashboard/Sale/Edit.vue').default);
 
+// Service Dashboard
+Vue.component('dashboard-service-index', require('./components/Dashboard/Service/Index.vue').default);
+Vue.component('dashboard-service-edit', require('./components/Dashboard/Service/Edit.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
