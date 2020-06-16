@@ -154,7 +154,7 @@ Vue.component('sidebar', require('./components/Home/Sidebar.vue').default);
 Vue.component('rent-sidebar', require('./components/Rent/Sidebar.vue').default);
 Vue.component('job-sidebar', require('./components/Job/Sidebar.vue').default);
 Vue.component('event-sidebar', require('./components/Event/Sidebar.vue').default);
-// Vue.component('sale-sidebar', require('./components/Sale/Sidebar.vue').default);
+Vue.component('sale-sidebar', require('./components/Sale/Sidebar.vue').default);
 
 
 /**
@@ -181,6 +181,8 @@ Vue.component('job-question', require('./components/Job/Question.vue').default);
 
 // Event Component
 Vue.component('event-show', require('./components/Event/Show.vue').default);
+// Sale Component
+Vue.component('sale-show', require('./components/Sale/Show.vue').default);
 
 /**
  *     DASHBOARD COMPONENTS

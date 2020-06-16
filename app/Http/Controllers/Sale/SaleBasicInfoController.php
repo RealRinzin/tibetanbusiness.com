@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sale;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Sale\SaleBasicInfoResource;
 use App\Sale\SaleBasicInfo;
 use Illuminate\Support\Facades\Auth;
 
@@ -136,23 +137,23 @@ class SaleBasicInfoController extends Controller
     }
     public function featured_ad()
     {
-        $jobs =  SaleBasicInfo::where('featured_ad', '=', true)
+        $sales =  SaleBasicInfo::where('featured_ad', '=', true)
             ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        return $sales->toArray($sales);
     }
     // Front
     public function home_ad()
     {
-        $jobs =  SaleBasicInfo::where('home_ad', '=', true)
+        $sales =  SaleBasicInfo::where('home_ad', '=', true)
             ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        return $sales->toArray($sales);
     }
     // Sidebar
     public function sidebar_ad()
     {
-        $jobs =  SaleBasicInfo::where('sidebar_ad', '=', true)
+        $sales =  SaleBasicInfo::where('sidebar_ad', '=', true)
             ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        return $sales->toArray($sales);
     }
     // User Job
     public function user_sale()
@@ -169,10 +170,10 @@ class SaleBasicInfoController extends Controller
         $status->update($request->all());
     }
     // Display
-    // public function view(SaleBasicInfo $saleBasicInfo, $id)
-    // {
-    //     return view('event.show', ['id' => SaleBasicInfo::find($id)]);
-    // }
+    public function view(SaleBasicInfo $saleBasicInfo, $id)
+    {
+        return view('sale.show', ['id' => SaleBasicInfo::find($id)]);
+    }
     // Dashboard Edit
     public function sale_edit(SaleBasicInfo $saleBasicInfo, $id)
     {
@@ -183,7 +184,13 @@ class SaleBasicInfoController extends Controller
             // return redirect('/');
         }
     }
-
+    // Display page
+    public function display($id)
+    {
+        return new SaleBasicInfoResource(SaleBasicInfo::find($id));
+        // $sale = SaleBasicInfo::find($id);
+        // return $sale->toArray($sale);
+    }
     // Banner update
     public function banner_update(Request $request, $id)
     {
@@ -204,8 +211,8 @@ class SaleBasicInfoController extends Controller
         }
         // upate
         $banner = SaleBasicInfo::find($id);
+        // $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
+        // unlink($unlink);
         $banner->update(['banner' => $name]);
-        $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
-        unlink($unlink);
     }
 }

@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="{{route('dashboard.sale')}}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Sales<span class="right badge badge-danger">New</span></p>
                             </a>

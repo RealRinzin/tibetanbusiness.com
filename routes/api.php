@@ -163,4 +163,6 @@ use Illuminate\Http\Request;
     Route::get('sale/list/sidebar_ad', 'Sale\SaleBasicInfoController@sidebar_ad');
     Route::get('sale/list/home_ad', 'Sale\SaleBasicInfoController@home_ad');
     Route::get('sale/{sale_basic_info}/photos', 'Sale\SalePhotoController@photo');
+    Route::get('sale/view/{id}', 'Sale\SaleBasicInfoController@display');
+
 

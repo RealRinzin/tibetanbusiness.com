@@ -66,8 +66,8 @@ export default {
                         };
                 }else{
                     axios.get('/api/rent/list/all').then(response=>{
-                        for (let x = 0; x < response.data.data.length; x++) {
-                            this.rent_active[x] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
+                        for (let x = 0; x < response.data.length; x++) {
+                            this.rent_active[x] = response.data[Math.floor(Math.random() *response.data.length)]
                             /**
                              * Rating Background
                              * Color

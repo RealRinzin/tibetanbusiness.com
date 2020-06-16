@@ -3,7 +3,7 @@
     <div id="sidebar">
         <!-- Rents -->
         <div class="card p-3">
-            <h6 class="py-2"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents</h6>
+            <h6 class="py-2"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Events</h6>
             <div v-if="!loading" class="loading">
             </div>
             <div class="row" v-else>
