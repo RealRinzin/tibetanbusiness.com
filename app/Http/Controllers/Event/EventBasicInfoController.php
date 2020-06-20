@@ -42,7 +42,6 @@ class EventBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
-        //
         $name = '';
         // Image upload script in php
         if ($request->banner) {

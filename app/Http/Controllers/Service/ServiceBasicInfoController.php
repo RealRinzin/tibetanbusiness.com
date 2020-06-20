@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Service\ServiceBasicInfoResource;
 use App\Service\ServiceBasicInfo;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +39,41 @@ class ServiceBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+        }
+        // return $name;
+        $service = ServiceBasicInfo::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'banner' => $name,
+            'email' => $request->email,
+            'location' => $request->location,
+            'type' => $request->type,
+            'opening_hour' => $request->opening_hour,
+            'closing_hour' => $request->closing_hour,
+            'address' => $request->address,
+            'mobile_no' => $request->mobile_no,
+            'description' => $request->description,
+            'status' => true,
+            'featured_ad' => false,
+            'sidebar_ad' => false,
+            'home_ad' => false,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+        ]);
+        return $service;
     }
 
     /**
@@ -74,6 +110,8 @@ class ServiceBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $service = ServiceBasicInfo::find($id);
+        $service->update($request->all());
     }
 
     /**
@@ -85,8 +123,16 @@ class ServiceBasicInfoController extends Controller
     public function destroy($id)
     {
         //
+        $service = ServiceBasicInfo::find($id);
+        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
+        // unlink($unlink);
+        $service->delete();
     }
     // CUSTOM API
+    public function view(ServiceBasicInfo $serviceBasicInfo, $id)
+    {
+        return view('service.show', ['id' => ServiceBasicInfo::find($id)]);
+    }
     // Dashboard Edit
     public function service_edit(ServiceBasicInfo $serviceBasicInfo, $id)
     {
@@ -114,5 +160,39 @@ class ServiceBasicInfoController extends Controller
     {
         $service = Auth::user()->service_basic_infos;
         return $service->toArray($service);
+    }
+    public function banner_update(Request $request, $id)
+    {
+        // return $request;
+        $name = '';
+        // Image upload script in php
+        if ($request->banner) {
+            $name = time() . '.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+        }
+        // upate
+        $banner = ServiceBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Service/Banner/' . $banner->banner;
+        unlink($unlink);
+        $banner->update(['banner' => $name]);
+    }
+    // Status update
+    public function status_update(Request $request, $id)
+    {
+        $status = ServiceBasicInfo::find($id);
+        // update
+        $status->update($request->all());
+    }
+    public function display($id)
+    {
+        return new ServiceBasicInfoResource(ServiceBasicInfo::find($id));
     }
 }

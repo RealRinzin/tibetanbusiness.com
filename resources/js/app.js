@@ -183,6 +183,7 @@ Vue.component('job-question', require('./components/Job/Question.vue').default);
 Vue.component('event-show', require('./components/Event/Show.vue').default);
 // Sale Component
 Vue.component('sale-show', require('./components/Sale/Show.vue').default);
+Vue.component('service-show', require('./components/Service/Show.vue').default);
 
 /**
  *     DASHBOARD COMPONENTS

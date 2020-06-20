@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\ServiceBasicInfo;
+use App\Service\ServiceWorkingDay;
 
 class ServiceWorkingDayController extends Controller
 {
@@ -70,6 +72,10 @@ class ServiceWorkingDayController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // fetch ID
+        $service = ServiceWorkingDay::find($id);
+        // udpate function
+        $service->update($request->all());
     }
 
     /**
@@ -81,5 +87,10 @@ class ServiceWorkingDayController extends Controller
     public function destroy($id)
     {
         //
+    }
+    // Custom API
+    public function working_day(ServiceBasicInfo $serviceBasicInfo)
+    {
+        return $serviceBasicInfo->service_working_days()->get();
     }
 }

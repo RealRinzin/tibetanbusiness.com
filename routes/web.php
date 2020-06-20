@@ -101,9 +101,9 @@ Route::get('job/{id}', 'Job\JobBasicInfoController@view');
  *  */  
 Route::get('event/{id}', 'Event\EventBasicInfoController@view');
 
-
 /**
  * Event
  * View/ Show Page
  *  */
 Route::get('sale/{id}', 'Sale\SaleBasicInfoController@view');
+Route::get('service/{id}', 'Service\ServiceBasicInfoController@view');

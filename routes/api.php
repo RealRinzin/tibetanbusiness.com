@@ -102,9 +102,11 @@ use Illuminate\Http\Request;
          */
         Route::apiResource('service', 'Service\ServiceBasicInfoController');
         Route::apiResource('service_photo', 'Service\ServicePhotoController');
+        Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController');
         Route::apiResource('service_review', 'Service\ServiceReviewController');
         Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');
-
+        Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
+        Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
 
     });
 
@@ -181,4 +183,8 @@ use Illuminate\Http\Request;
      */
     Route::get('service/list/all', 'Service\ServiceBasicInfoController@all');
     Route::get('service/list/featured_ad', 'Service\ServiceBasicInfoController@featured_ad');
+    Route::get( 'service/{service_basic_info}/photos', 'Service\ServicePhotoController@photo');
+    Route::get('service/{service_basic_info}/reviews', 'Service\ServiceReviewController@review');
+    Route::get('service_working_day/{service_basic_info}/working_day', 'Service\ServiceWorkingDayController@working_day');
+    Route::get('service/view/{id}', 'Service\ServiceBasicInfoController@display');
 

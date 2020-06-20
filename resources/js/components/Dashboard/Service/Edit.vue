@@ -10,7 +10,7 @@
                         <div class="col-md-6">
                             <!-- banner -->
                             <div class="card text-center">
-                                <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${service.banner})`}'>
+                                <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'>
                                     <div class="overlay">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -18,7 +18,7 @@
                                             </div>
                                             <div class="col-md-12 py-4">
                                                 <label  for="rent_banner" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
-                                                <input type="file"  id="rent_banner" name="rent_banner" class="upload_browser" @change="banner_event">
+                                                <input type="file"  id="rent_banner" name="rent_banner" class="upload_browser" @change="banner_service">
                                             </div>
                                         </div>
                                     </div>
@@ -71,10 +71,10 @@
                                     <overview :service="service"></overview>
                                 </div>
                                 <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                    <!-- <photo :service="service"></photo> -->
+                                    <photo :service="service"></photo>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                    <!-- <review :service="service"></review> -->
+                                    <review :service="service"></review>
                                 </div>
 
                             </div>
@@ -91,8 +91,8 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Overview from './Overview.vue';
-// import Review from './Review.vue';
-// import Photo from './Photo.vue';
+import Review from './Review.vue';
+import Photo from './Photo.vue';
 // import Applicant from './Applicant.vue';
 
 export default {
@@ -115,7 +115,7 @@ export default {
     //methods
     methods:{
         // loading Restaurant
-        event_load(){
+        service_load(){
             this.isLoading = true;
             axios.get('/api/service/'+this.id,{
                 headers : { Authorization : localStorage.getItem("token")}
@@ -136,7 +136,7 @@ export default {
         /**
          * Update Banner
          *  */
-        banner_event(service){
+        banner_service(service){
             const extension = service.target.files[0].type;
             const size = service.target.files[0].size;
             // Check extension
@@ -166,7 +166,7 @@ export default {
                 data: {banner: this.bannerPreview},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
-                            this.event_load();
+                            this.service_load();
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',
@@ -177,13 +177,9 @@ export default {
         },
 
     },
-    components:{
-        Loading,
-        Overview,
-    // Review,Photo
-    },
+    components:{Loading,Overview,Photo,Review},
     mounted(){
-        this.event_load();
+        this.service_load();
     }
 }
 </script>

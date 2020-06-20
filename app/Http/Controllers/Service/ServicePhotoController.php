@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\ServiceBasicInfo;
+use App\Service\ServicePhoto;
+use Illuminate\Support\Facades\Auth;
 
 class ServicePhotoController extends Controller
 {
@@ -36,6 +39,20 @@ class ServicePhotoController extends Controller
     public function store(Request $request)
     {
         //
+        if (count($request->images)) {
+            foreach ($request->images as $image) {
+                $photo = ServicePhoto::create([
+                    'service_basic_info_id' => $request->id,
+                    'path' => $image->store(''),
+                    'user_id' => Auth::user()->id,
+                ]);
+                // $image->store('public\images');
+                $image->store('public\Service\Photos');
+            }
+        }
+        return response()->json([
+            "message" => "Done"
+        ]);
     }
 
     /**
@@ -81,5 +98,20 @@ class ServicePhotoController extends Controller
     public function destroy($id)
     {
         //
+        $photo = ServicePhoto::find($id);
+        $unlink = public_path() . '/storage/Service/Photos/' . $photo->path;
+        unlink($unlink);
+        $photo->delete();
     }
+
+    /**
+     * 
+     * Custom
+     * API
+     *  */
+    public function photo(ServiceBasicInfo $serviceBasicInfo)
+    {
+        return $serviceBasicInfo->service_photos()->orderBy('created_at', 'desc')->get();
+    } 
+
 }
