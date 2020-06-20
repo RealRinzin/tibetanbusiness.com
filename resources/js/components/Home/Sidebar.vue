@@ -10,5 +10,8 @@
         <event-sidebar></event-sidebar>
         <!-- Sale -->
         <sale-sidebar></sale-sidebar>
+        <!-- Service -->
+        <service-sidebar></service-sidebar>
+
     </div>
 </template>

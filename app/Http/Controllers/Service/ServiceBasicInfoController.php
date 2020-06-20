@@ -155,7 +155,21 @@ class ServiceBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
-    
+    // Front
+    public function home_ad()
+    {
+        $services =  ServiceBasicInfo::where('home_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $services->toArray($services);
+    }
+    // Sidebar
+    public function sidebar_ad()
+    {
+        $sales =  ServiceBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get();
+        return $sales->toArray($sales);
+    }
+    // user service
     public function user_service()
     {
         $service = Auth::user()->service_basic_infos;

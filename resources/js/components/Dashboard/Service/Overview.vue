@@ -191,7 +191,6 @@
                                             </label>
                                         </li>
                                     </div>
-                                    <!-- update -->
                                     <div class="col-md-12 border-top text-right pt-1">
                                         <button class="btn btn-danger btn-md" @click="update_operation_days(operation.id)">Update</button>
                                     </div>
@@ -367,6 +366,8 @@ export default {
             axios.get('/api/service_working_day/'+this.id+'/working_day')
             .then(response=>{
                 this.operation = response.data[0];
+                console.log(response);
+                
             })
         },
         edit(){

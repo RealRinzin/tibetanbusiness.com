@@ -183,6 +183,8 @@ use Illuminate\Http\Request;
      */
     Route::get('service/list/all', 'Service\ServiceBasicInfoController@all');
     Route::get('service/list/featured_ad', 'Service\ServiceBasicInfoController@featured_ad');
+    Route::get('service/list/home_ad', 'Service\ServiceBasicInfoController@home_ad');
+    Route::get('service/list/sidebar_ad', 'Service\ServiceBasicInfoController@sidebar_ad');
     Route::get( 'service/{service_basic_info}/photos', 'Service\ServicePhotoController@photo');
     Route::get('service/{service_basic_info}/reviews', 'Service\ServiceReviewController@review');
     Route::get('service_working_day/{service_basic_info}/working_day', 'Service\ServiceWorkingDayController@working_day');

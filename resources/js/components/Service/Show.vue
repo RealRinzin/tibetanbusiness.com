@@ -33,6 +33,22 @@
                                                         <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{service.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{service.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{service.location}}</h6>
+                                                    <h6 class="text-muted pt-1" v-if="working_day != null">
+                                                        <span v-if="working_day.monday" class="text-success btn btn-outline-success" >Mon</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Mon</span>
+                                                        <span v-if="working_day.tuesday" class="text-success btn btn-outline-success" >Tues</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Tues</span>
+                                                        <span v-if="working_day.wednesday" class="text-success btn btn-outline-success">Wed</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Wed</span>
+                                                        <span v-if="working_day.thursday" class="text-success btn btn-outline-success">Thurs</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Thurs</span>
+                                                        <span v-if="working_day.friday" class="text-success btn btn-outline-success">Fri</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Fri</span>
+                                                        <span v-if="working_day.saturday" class="text-success btn btn-outline-success">Sat</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Sat</span>
+                                                        <span v-if="working_day.sunday" class="text-success btn btn-outline-success">Sun</span>
+                                                        <span v-else class="text-danger btn btn-outline-danger">Sun</span>
+                                                    </h6>
                                                     </div>
                                             </div>
                                         </div>
@@ -88,16 +104,23 @@ export default {
             isLoading : false,//Lazy loading
             loading:false, //loading
             rating:0,
+            working_day:{},
         }
     },
     methods:{
-        load_event(){
+        load_service(){
             this.isLoading = true;
             axios.get('/api/service/view/'+this.id)
             .then(response=>{
                 this.service = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
+            })
+        },
+        operation_day(){
+            axios.get('/api/service_working_day/'+this.id+'/working_day')
+            .then(response=>{
+                this.working_day = response.data[0];
             })
         },
     },
@@ -110,7 +133,9 @@ export default {
     // Components
     components:{Loading,Photo,Review},
     mounted(){
-        this.load_event();
+        this.load_service();
+        this.operation_day();
+
     }
 }
 </script>

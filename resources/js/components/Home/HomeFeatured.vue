@@ -124,6 +124,7 @@
         <job-list></job-list>
         <restaurant-list></restaurant-list>
         <sale-list></sale-list>
+        <service-list></service-list>
     </div>
 </template>
 
@@ -137,6 +138,7 @@
     import RentList from './List/Rent.vue';
     import RestaurantList from './List/Restaurant.vue';
     import SaleList from './List/Sale.vue';
+    import ServiceList from './List/Service.vue';
     import format from 'date-fns/format';
     
     export default {
@@ -374,7 +376,7 @@
          * 
          * Components
          *  */  
-        components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList},
+        components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList},
         /**
          * Mounted
          *  */ 

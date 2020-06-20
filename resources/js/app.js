@@ -155,6 +155,7 @@ Vue.component('rent-sidebar', require('./components/Rent/Sidebar.vue').default);
 Vue.component('job-sidebar', require('./components/Job/Sidebar.vue').default);
 Vue.component('event-sidebar', require('./components/Event/Sidebar.vue').default);
 Vue.component('sale-sidebar', require('./components/Sale/Sidebar.vue').default);
+Vue.component('service-sidebar', require('./components/Service/Sidebar.vue').default);
 
 
 /**

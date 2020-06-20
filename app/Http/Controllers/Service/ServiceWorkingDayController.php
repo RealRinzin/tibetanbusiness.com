@@ -38,6 +38,8 @@ class ServiceWorkingDayController extends Controller
     public function store(Request $request)
     {
         //
+        $working_day = ServiceWorkingDay::create($request->all());
+
     }
 
     /**

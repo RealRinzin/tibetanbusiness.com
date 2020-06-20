@@ -167,8 +167,8 @@ export default {
     data(){
         return{
             service:{},
+            id:'',
             bannerPreview:'',
-            // today : 
         }
     },
     methods:{
@@ -198,6 +198,7 @@ export default {
                         headers : { Authorization : localStorage.getItem("token")}
                         })
                         .then(response=>{
+                            this.id = response.data.id;
                             // closing modal
                                 $("#service_add_modal").modal("hide");  
                                 //  Flash Message  
@@ -205,13 +206,29 @@ export default {
                                     icon:'success',
                                     title:'Updated',
                                 });
+                                this.operation ={
+                                    monday : true,
+                                    tuesday : true,
+                                    wednesday : true,
+                                    thursday : true,
+                                    friday : true,
+                                    saturday : true,
+                                    sunday : false,
+                                    service_basic_info_id : this.id
+                                }
                                 this.$emit('load_service');
+                                axios.post('/api/service_working_day',this.operation,{
+                                headers : { Authorization : localStorage.getItem("token")}
+                                })
+                                .then(response=>{
+                                })
                         })
                     }
                })
         }
     },
     mounted(){
+
     }
 }
 </script>
