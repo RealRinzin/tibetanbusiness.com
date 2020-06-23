@@ -11292,6 +11292,28 @@ Background resource loading
   border-radius: 2px;
 }
 
+/* Search Result CSS */
+
+#search .banner {
+  background-image: url(/images/background.jpg?1023b264e26b8630eb77887f42b6aee5);
+  height: 140px;
+  border-radius: 4px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#search .rate {
+  position: absolute;
+  top: 2px;
+  right: 9px;
+}
+
+#search .rate .btn {
+  padding: 2px;
+  font-size: 13px;
+}
+
 #dashboard {
   /*Facility  */
   /** Upload Browser Css  */

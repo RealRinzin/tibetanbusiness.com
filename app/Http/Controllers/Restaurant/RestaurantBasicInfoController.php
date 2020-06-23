@@ -271,4 +271,9 @@ class RestaurantBasicInfoController extends Controller
         return $restaurants->toArray($restaurants);
 
     }
+
+    // SEARCH Result
+    public function search(){
+        return "search";
+    }
 }

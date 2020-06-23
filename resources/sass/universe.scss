@@ -282,3 +282,24 @@ Background resource loading
       }
     }
   }
+
+  /* Search Result CSS */
+  #search{
+    .banner{
+        background-image: url('img/background.jpg');
+        height: 140px;
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .rate{
+        position: absolute;
+        top:2px;
+        right: 9px;
+        .btn{
+            padding:2px;
+            font-size: 13px;
+        }
+    }
+  }

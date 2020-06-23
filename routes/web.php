@@ -107,3 +107,37 @@ Route::get('event/{id}', 'Event\EventBasicInfoController@view');
  *  */
 Route::get('sale/{id}', 'Sale\SaleBasicInfoController@view');
 Route::get('service/{id}', 'Service\ServiceBasicInfoController@view');
+
+/**
+ * 
+ * Search 
+ * Result
+ * Restaurant / Service /Event
+ * 
+ *  */ 
+Route::prefix('search')->group(function () {
+    // Route::get('restaurant', function () {
+    //     // Matches The "/admin/users" URL
+    //     return view('dashboard.Restaurant.index');
+    // })->name('dashboard.restaurant');
+    // Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@search');
+    Route::get('{type}/{location?}', function($type){
+        if($type !== null){
+            // return $type;
+            if($type === 'restaurants'){
+                return view('restaurant.search');
+            }elseif ($type === 'events') {
+                return $type;
+            } elseif ($type === 'rents') {
+                return $type;
+            } elseif ($type === 'services') {
+                return $type;
+            } elseif ($type === 'jobs') {
+                return $type;
+            } elseif ($type === 'sales') {
+                return $type;
+            }
+        }
+        // return $type;
+    });
+});
