@@ -190,3 +190,7 @@ use Illuminate\Http\Request;
     Route::get('service_working_day/{service_basic_info}/working_day', 'Service\ServiceWorkingDayController@working_day');
     Route::get('service/view/{id}', 'Service\ServiceBasicInfoController@display');
 
+
+// Search Result
+// restaurant
+    Route::get('search/restaurants/','Restaurant\RestaurantBasicInfoController@search');

@@ -288,7 +288,7 @@ Background resource loading
     .banner{
         background-image: url('img/background.jpg');
         height: 140px;
-        border-radius: 4px;
+        border-radius: 4px 4px 0px 0px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -301,5 +301,11 @@ Background resource loading
             padding:2px;
             font-size: 13px;
         }
+    }
+    // list
+    #result{
+      .card{
+        border-radius:0px 0px 4px 4px;
+      }
     }
   }

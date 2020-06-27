@@ -143,6 +143,7 @@ Vue.component('image-upload', require('./components/ImageUpload.vue').default);
  * */
 Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
+Vue.component('search', require('./components/Home/Search.vue').default);
 // Vue.component('business-list', require('./components/Home/BusinessList.vue').default);
 Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
 Vue.component('featured-job', require('./components/Home/Featured/Job.vue').default);
@@ -292,5 +293,6 @@ const app = new Vue({
     // Mounted
     mounted(){
         this.login_status();   
+        
     }
 });

@@ -69,6 +69,24 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height:auto;
+    // Input height
+    .input{
+        height: 50px;
+        border-radius: 0px;
+    }
+    #dropdown{
+        display: block;
+        position: absolute;
+        background: red;
+        z-index: 2000;
+        width: 65%;
+        left: 24%;
+        top: 50px;
+        ul{
+            list-style: none;
+            margin-left:0px;
+        }
+    }
 }
 
 // Featured Home
@@ -190,3 +208,6 @@ footer{
     }
 
 }
+
+
+

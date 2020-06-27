@@ -2,25 +2,26 @@
     <div style="min-height:80vh" id="search">
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-8 mx-auto">
                     <div class="row">
                         <div class="col-md-7 col-sm-6">
                             <div class="card p-3">
-                                <form>
+                                <form @submit.prevent="search_result()">
                                     <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                     <div class="row">
                                         <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name">
+                                        <input type="text"  v-model="filter.name" class="form-control" placeholder="First name">
                                         </div>
                                         <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name">
+                                        <input type="text" v-model="filter.location" class="form-control" placeholder="Last name">
                                         </div>
+                                        <input type="submit" class="btn btn-danger btn-xs">
                                     </div>
                                 </form>
                             </div>
                             <!-- Result -->
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">
+                            <div class="row" id="result">
+                                <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
                                     <a v-bind:href="'/restaurant/'+restaurant.id">
                                     <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div>
                                     <div class="rate" v-if="restaurant.rate !=null"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
@@ -30,6 +31,13 @@
                                         <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
                                         <p class="text-muted my-0">{{restaurant.location}}</p>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- <button class="btn btn-danger btn-sm">Load More</button> -->
+                                    <button @click="load_more()" class="btn btn-danger btn-sm">Load more</button>
+
                                 </div>
                             </div>
                         </div>
@@ -54,78 +62,76 @@ export default {
     data(){
         return{
             loading: false,
+            load_more_button : true,
             restaurant:[], // Restaurants Object
+            restaurants:{
+                data:[],
+                next_page_url:`/api/search/restaurants`,
+                },
+                nextPage:1,
             restaurant_active:[],
+            // filter
+            filter:{
+                name:'',
+                location:''
+            },
+            // loading
+            loading:false,
+            isLoading : false,//Lazy loading
+            add:[]
+
         }
     },
     /**
      *  Methods
      *  */ 
     methods:{
-        search(){
-            /**
-             * Restaurant Sidebar AD
-             *  */ 
-            axios.get('/api/restaurant/list/sidebar_ad')
+        load_result(){
+            axios.get('/api/search/restaurants')
+             .then(response=>{ 
+                this.restaurants = response.data.data;
+                // this.total_questions = response.data.total;
+                // if(this.total_questions  == 0){
+                //     this.load_more_button = false;
+                // }
+            })
+        },
+        // search result
+        search_result(){
+            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
+            .then((response)=>{ 
+                this.restaurants = response.data.data;
+            })
+
+        },
+        // load more button
+        
+        load_more(nextPage){
+            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
             .then(response=>{
-                this.isLoading = true; //Loading true
-                if(response.data.length > 0){
-                        for (let x = 0; x < response.data.length; x++) {
-                            this.restaurant_active[x] = response.data[Math.floor(Math.random() *response.data.length)]
-                            /**
-                             * Rating Background
-                             * Color
-                             *  */  
-                            if(this.restaurant_active[x].rate >= 0.0 && this.restaurant_active[x].rate <= 2.5){
-                                this.restaurant_active[x].rate_color = 'bg-danger';
-                            }else if(this.restaurant_active[x].rate >= 2.6 && this.restaurant_active[x].rate <= 3.5 ){
-                                this.restaurant_active[x].rate_color = 'bg-warning';
-                            }else if(this.restaurant_active[x].rate >= 3.6 && this.restaurant_active[x].rate <= 4.0 ){
-                                this.restaurant_active[x].rate_color = 'bg-info';
-                            }else if(this.restaurant_active[x].rate >= 4.1 && this.restaurant_active[x].rate <= 5.0 ){
-                                this.restaurant_active[x].rate_color = 'bg-success';
-                            }else{
-                                this.restaurant_active[x].rate_color = 'bg-secondary';
-                            }
-                            // Assign to restarant
-                            this.restaurant = this.restaurant_active;
-                            // loading
-                            this.loading = true;
-                        }
-                        // this.restaurant = this.event;
+                if(response.data.current_page <= response.data.last_page){
+                    this.nextPage = response.data.current_page + 1;
+                    this.load_more_button = true; 
+                    // this.restaurants = response.data.data;
+                    /**
+                     * Comments 
+                     * data Distribution
+                     *  */  
+                    this.restaurants = [
+                        ...this.restaurants,
+                        ...response.data.data
+                    ];                    
                 }else{
-                    axios.get('/restaurants/list').then(response=>{
-                        for (let x = 0; x < response.data.data.length; x++) {
-                            this.restaurant_active[x] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
-                            /**
-                             * Rating Background
-                             * Color
-                             *  */  
-                            if(this.restaurant_active[x].rate >= 0.0 && this.restaurant_active[x].rate <= 2.5){
-                                this.restaurant_active[x].rate_color = 'bg-danger';
-                            }else if(this.restaurant_active[x].rate >= 2.6 && this.restaurant_active[x].rate <= 3.5 ){
-                                this.restaurant_active[x].rate_color = 'bg-warning';
-                            }else if(this.restaurant_active[x].rate >= 3.6 && this.restaurant_active[x].rate <= 4.0 ){
-                                this.restaurant_active[x].rate_color = 'bg-info';
-                            }else if(this.restaurant_active[x].rate >= 4.1 && this.restaurant_active[x].rate <= 5.0 ){
-                                this.restaurant_active[x].rate_color = 'bg-success';
-                            }else{
-                                this.restaurant_active[x].rate_color = 'bg-secondary';
-                            }
-                            // Assigning to restaurant
-                            this.restaurant = this.restaurant_active;
-                            // loading
-                            this.loading = true;
-                        }
-                    })
+                    this.load_more_button = false;
                 }
             })
-        }
+        },
     },
     // Components
+    components:{Loading},
     // Mounted
     mounted(){
-        this.search();
+        this.load_result();
     }
 }
 </script>

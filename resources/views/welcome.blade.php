@@ -11,6 +11,7 @@
             <div class="col-md-12 py-4">
                 <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
             </div>
+            <!-- <search></search> -->
             <!-- search box -->
             <div class="col-md-8 mx-auto">
                 <div class="input-group input-group-lg mb-3">
@@ -27,9 +28,20 @@
                         </ul>
                     </div>
                     <!-- btn-group -->
-                    <input type="text" class="form-control">
+
+                    <input type="text" class="form-control" onfocus="check()" onkeydown="return false">
+                    <div id="dropdown" style="display:none">
+                        <ul>
+                            <li>Events</li>
+                            <li>Sales</li>
+                            <li>Rents</li>
+                            <li>Jobs</li>
+                            <li>Services</li>
+                            <li>Restaurants</li>
+                        </ul>
+                    </div>
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -37,8 +49,15 @@
             </div>
         </div>
     </div>
+
 </div>
 <div id="home_featured" class="py-4" style="min-height: 100vh">
     <home-featured></home-featured>
 </div>
 @endsection
+<script>
+    function check() {
+        $("#dropdown").css("display", "block");
+
+    }
+</script>

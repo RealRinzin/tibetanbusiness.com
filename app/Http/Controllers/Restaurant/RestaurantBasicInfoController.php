@@ -273,7 +273,10 @@ class RestaurantBasicInfoController extends Controller
     }
 
     // SEARCH Result
-    public function search(){
-        return "search";
+    public function search(Request $request){
+        $restaurants =  RestaurantBasicInfo::where('name', 'like', "%$request->name%")
+            ->where('location','like',"%$request->location%")
+            ->orderBy('created_at', 'desc')->paginate('3');
+        return $restaurants->toArray($restaurants);
     }
 }

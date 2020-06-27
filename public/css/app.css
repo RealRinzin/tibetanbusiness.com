@@ -11297,7 +11297,7 @@ Background resource loading
 #search .banner {
   background-image: url(/images/background.jpg?1023b264e26b8630eb77887f42b6aee5);
   height: 140px;
-  border-radius: 4px;
+  border-radius: 4px 4px 0px 0px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -11312,6 +11312,10 @@ Background resource loading
 #search .rate .btn {
   padding: 2px;
   font-size: 13px;
+}
+
+#search #result .card {
+  border-radius: 0px 0px 4px 4px;
 }
 
 #dashboard {
@@ -11456,6 +11460,26 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: auto;
+}
+
+#home_search .input {
+  height: 50px;
+  border-radius: 0px;
+}
+
+#home_search #dropdown {
+  display: block;
+  position: absolute;
+  background: red;
+  z-index: 2000;
+  width: 65%;
+  left: 24%;
+  top: 50px;
+}
+
+#home_search #dropdown ul {
+  list-style: none;
+  margin-left: 0px;
 }
 
 #home_featured .card-body {
