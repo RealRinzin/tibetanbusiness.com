@@ -3,8 +3,8 @@
     <div id="sidebar">
         <!-- Restaurant -->
         <div class="card p-3">
+            <div v-if="!loading">
             <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6>
-            <div v-if="!loading" class="loading">
             </div>
             <div class="row" v-else>
                 <div class="col-md-6 col-sm-6 col-xs-12" v-for="(restaurant,index) in restaurant" v-if="index <= 1">

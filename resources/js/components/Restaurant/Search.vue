@@ -20,16 +20,24 @@
                                 </form>
                             </div>
                             <!-- Result -->
-                            <div class="row" id="result">
-                                <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
-                                    <a v-bind:href="'/restaurant/'+restaurant.id">
-                                    <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div>
-                                    <div class="rate" v-if="restaurant.rate !=null"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
-                                    </a>
-                                    <div class="card px-2">
-                                        <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
-                                        <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
-                                        <p class="text-muted my-0">{{restaurant.location}}</p>
+                            <div  class="mx-auto bg-white text-center mx-3" style="height:100vh">
+                            <img src="/img/loading-red.svg" alt="" style="margin:50%;">
+                            </div>
+                            <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
+                            <img src="/img/loading-red.svg" alt="" style="margin-top:50%;">
+                            </div>
+                            <div v-else>
+                                <div class="row" id="result">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
+                                        <a v-bind:href="'/restaurant/'+restaurant.id">
+                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div>
+                                        <div class="rate" v-if="restaurant.rate !=null"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
+                                        </a>
+                                        <div class="card px-2">
+                                            <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
+                                            <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
+                                            <p class="text-muted my-0">{{restaurant.location}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +84,6 @@ export default {
                 location:''
             },
             // loading
-            loading:false,
             isLoading : false,//Lazy loading
             add:[]
 
@@ -91,6 +98,7 @@ export default {
             axios.get('/api/search/restaurants')
              .then(response=>{ 
                 this.restaurants = response.data.data;
+                this.loading = true;
                 // this.total_questions = response.data.total;
                 // if(this.total_questions  == 0){
                 //     this.load_more_button = false;
@@ -99,25 +107,25 @@ export default {
         },
         // search result
         search_result(){
-            console.log(this.nextPage);
-            
+            this.loading = false;
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page=1')
             .then((response)=>{ 
                 this.restaurants = response.data.data;
+                this.loading = true;
             })
 
         },
         // load more button
         
         load_more(nextPage){
-            console.log(this.nextPage);
-            
+                this.loading = false;
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
             // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
                     this.load_more_button = true; 
+                    this.loading = true;
                     // this.restaurants = response.data.data;
                     /**
                      * Comments 
