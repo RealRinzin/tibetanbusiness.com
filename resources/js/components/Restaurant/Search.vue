@@ -2,7 +2,7 @@
     <div style="min-height:80vh" id="search">
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-8 mx-auto">
+                <div class="col-md-10 mx-auto">
                     <div class="row">
                         <div class="col-md-7 col-sm-6">
                             <div class="card p-3">
@@ -19,12 +19,12 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- Result -->
-                            <div  class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-red.svg" alt="" style="margin:50%;">
+                            <div class="alert alert-light" role="alert">
+                                Total Result : {{total}}
                             </div>
+                            <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-red.svg" alt="" style="margin-top:50%;">
+                            <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
@@ -41,8 +41,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                            <div class="row my-2" v-if="load_more_button">
+                                <div class="col-md-12 text-center">
                                     <!-- <button class="btn btn-danger btn-sm">Load More</button> -->
                                     <button @click="load_more()" class="btn btn-danger btn-sm">Load more</button>
 
@@ -71,7 +71,8 @@ export default {
         return{
             loading: false,
             load_more_button : true,
-            restaurant:[], // Restaurants Object
+            total:0,
+            // restaurant:[], // Restaurants Object
             restaurants:{
                 data:[],
                 next_page_url:`/api/search/restaurants`,
@@ -85,7 +86,6 @@ export default {
             },
             // loading
             isLoading : false,//Lazy loading
-            add:[]
 
         }
     },
@@ -99,10 +99,20 @@ export default {
              .then(response=>{ 
                 this.restaurants = response.data.data;
                 this.loading = true;
-                // this.total_questions = response.data.total;
-                // if(this.total_questions  == 0){
-                //     this.load_more_button = false;
-                // }
+                this.total = response.data.total;
+                for (let index = 0; index < this.restaurants.length; index++) {
+                    if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
+                        this.restaurants[index].rate_color = 'bg-danger';
+                    }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
+                        this.restaurants[index].rate_color = 'bg-warning';
+                    }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
+                        this.restaurants[index].rate_color = 'bg-info';
+                    }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
+                        this.restaurants[index].rate_color = 'bg-success';
+                    }else{
+                        this.restaurants[index].rate_color = 'bg-secondary';
+                    }
+                }
             })
         },
         // search result
@@ -112,20 +122,39 @@ export default {
             .then((response)=>{ 
                 this.restaurants = response.data.data;
                 this.loading = true;
+                this.total = response.data.total;
+                if(response.data.current_page <= response.data.last_page){
+                    this.load_more_button = true; 
+                }else{
+                    this.load_more_button = false; 
+                }
+                for (let index = 0; index < this.restaurants.length; index++) {
+                    if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
+                        this.restaurants[index].rate_color = 'bg-danger';
+                    }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
+                        this.restaurants[index].rate_color = 'bg-warning';
+                    }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
+                        this.restaurants[index].rate_color = 'bg-info';
+                    }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
+                        this.restaurants[index].rate_color = 'bg-success';
+                    }else{
+                        this.restaurants[index].rate_color = 'bg-secondary';
+                    }
+                }
             })
 
         },
         // load more button
         
         load_more(nextPage){
-                this.loading = false;
+                // this.loading = false;
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
             // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
                     this.load_more_button = true; 
-                    this.loading = true;
+
                     // this.restaurants = response.data.data;
                     /**
                      * Comments 
@@ -134,7 +163,21 @@ export default {
                     this.restaurants = [
                         ...this.restaurants,
                         ...response.data.data
-                    ];                    
+                    ];    
+                    // Rate Background
+                    for (let index = 0; index < this.restaurants.length; index++) {
+                        if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
+                            this.restaurants[index].rate_color = 'bg-danger';
+                        }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
+                            this.restaurants[index].rate_color = 'bg-warning';
+                        }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
+                            this.restaurants[index].rate_color = 'bg-info';
+                        }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
+                            this.restaurants[index].rate_color = 'bg-success';
+                        }else{
+                            this.restaurants[index].rate_color = 'bg-secondary';
+                        }
+                    }                
                 }else{
                     this.load_more_button = false;
                 }
