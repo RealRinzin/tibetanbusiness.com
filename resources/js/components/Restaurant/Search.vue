@@ -68,7 +68,7 @@ export default {
                 data:[],
                 next_page_url:`/api/search/restaurants`,
                 },
-                nextPage:1,
+                nextPage:2,
             restaurant_active:[],
             // filter
             filter:{
@@ -87,6 +87,7 @@ export default {
      *  */ 
     methods:{
         load_result(){
+            // axios.get('/api/search/restaurants')
             axios.get('/api/search/restaurants')
              .then(response=>{ 
                 this.restaurants = response.data.data;
@@ -98,7 +99,9 @@ export default {
         },
         // search result
         search_result(){
-            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
+            console.log(this.nextPage);
+            
+            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page=1')
             .then((response)=>{ 
                 this.restaurants = response.data.data;
             })
@@ -107,7 +110,10 @@ export default {
         // load more button
         
         load_more(nextPage){
+            console.log(this.nextPage);
+            
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
+            // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
