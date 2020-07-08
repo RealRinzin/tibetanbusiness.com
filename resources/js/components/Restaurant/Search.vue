@@ -41,6 +41,7 @@
                                     </div>
                                 </div>
                             </div>
+                                <loading :active.sync="isLoading"></loading>
                             <div class="row my-2" v-if="load_more_button">
                                 <div class="col-md-12 text-center">
                                     <!-- <button class="btn btn-danger btn-sm">Load More</button> -->
@@ -70,7 +71,7 @@ export default {
     data(){
         return{
             loading: false,
-            load_more_button : true,
+            load_more_button : false,
             total:0,
             // restaurant:[], // Restaurants Object
             restaurants:{
@@ -86,6 +87,7 @@ export default {
             },
             // loading
             isLoading : false,//Lazy loading
+            lazy:false,
 
         }
     },
@@ -100,6 +102,9 @@ export default {
                 this.restaurants = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
+                if (response.data.current_page <= response.data.last_page) {
+                    this.load_more_button = true;
+                }
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
                         this.restaurants[index].rate_color = 'bg-danger';
@@ -123,7 +128,7 @@ export default {
                 this.restaurants = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if(response.data.current_page <= response.data.last_page){
+                if(response.data.current_page < response.data.last_page){
                     this.load_more_button = true; 
                 }else{
                     this.load_more_button = false; 
@@ -148,13 +153,15 @@ export default {
         
         load_more(nextPage){
                 // this.loading = false;
+                this.isLoading = true; //Loading true
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
             // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
                     this.load_more_button = true; 
-
+                    this.isLoading = false; //Loading true
+                    this.lazy = true;
                     // this.restaurants = response.data.data;
                     /**
                      * Comments 
@@ -179,6 +186,8 @@ export default {
                         }
                     }                
                 }else{
+                    // this.lazy = false;
+                    this.isLoading = false; //Loading true
                     this.load_more_button = false;
                 }
             })
