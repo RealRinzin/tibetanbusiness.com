@@ -20,7 +20,7 @@
                                 </form>
                             </div>
                             <div class="alert alert-light" role="alert">
-                                Total Result : {{total}}
+                                Total Result : {{total}} {{empty_result}}
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -73,12 +73,14 @@ export default {
             loading: false,
             load_more_button : false,
             total:0,
+            empty_result:'',
             // restaurant:[], // Restaurants Object
             restaurants:{
                 data:[],
                 next_page_url:`/api/search/restaurants`,
                 },
                 nextPage:2,
+                search_next_page:2,
             restaurant_active:[],
             // filter
             filter:{
@@ -123,11 +125,17 @@ export default {
         // search result
         search_result(){
             this.loading = false;
+            this.nextPage = 2;
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page=1')
             .then((response)=>{ 
                 this.restaurants = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
+                // check for empty result
+                if(response.data.total == 0){
+                    this.empty_result = "We don't found the search item"
+                }
+                // Check the load more button
                 if(response.data.current_page < response.data.last_page){
                     this.load_more_button = true; 
                 }else{
@@ -153,7 +161,7 @@ export default {
         
         load_more(nextPage){
                 // this.loading = false;
-                this.isLoading = true; //Loading true
+            this.isLoading = true; //Loading true
             axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
             // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
