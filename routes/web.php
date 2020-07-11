@@ -121,15 +121,14 @@ Route::prefix('search')->group(function () {
     //     return view('dashboard.Restaurant.index');
     // })->name('dashboard.restaurant');
     // Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@search');
-    Route::get('{type}/{location?}', function($type){
+    Route::get('{type}', function($type){
         if($type !== null){
             // return $type;
             if($type === 'restaurants'){
                 return view('restaurant.search');
             }elseif ($type === 'events') {
-                return $type;
             } elseif ($type === 'rents') {
-                return $type;
+                return view('rent.search');
             } elseif ($type === 'services') {
                 return $type;
             } elseif ($type === 'jobs') {

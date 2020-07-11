@@ -249,4 +249,15 @@ class RentBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
+
+    // SEARCH Result
+    public function search(Request $request)
+    {
+        $rents =  RentBasicInfo::where('name', 'like', "$request->name%")
+        ->where('location', 'like', "$request->location%")
+        ->where('rate','like',"$request->rate%")
+        ->where('status', '=', '1')
+            ->orderBy('created_at', 'desc')->paginate('2');
+        return $rents->toArray($rents);
+    }
 }

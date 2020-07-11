@@ -11298,6 +11298,7 @@ Background resource loading
   background-image: url(/images/background.jpg?1023b264e26b8630eb77887f42b6aee5);
   height: 140px;
   border-radius: 4px 4px 0px 0px;
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -11316,6 +11317,24 @@ Background resource loading
 
 #search #result .card {
   border-radius: 0px 0px 4px 4px;
+}
+
+#search #result .info ul {
+  top: 75%;
+  left: 5px;
+  position: absolute;
+  padding: 5px 0px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#search #result .info ul li {
+  background-color: #e15246 !important;
+  display: inline;
+  list-style: none;
+  color: #ffffff;
+  padding: 3px 6px;
+  border-radius: 2px;
 }
 
 #dashboard {

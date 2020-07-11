@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                                <loading :active.sync="isLoading"></loading>
+                            <loading :active.sync="isLoading"></loading>
                             <div class="row my-2" v-if="load_more_button">
                                 <div class="col-md-12 text-center">
                                     <!-- <button class="btn btn-danger btn-sm">Load More</button> -->
@@ -89,7 +89,7 @@ export default {
             },
             // loading
             isLoading : false,//Lazy loading
-            lazy:false,
+            // lazy:false,
 
         }
     },
@@ -169,8 +169,7 @@ export default {
                     this.nextPage = response.data.current_page + 1;
                     this.load_more_button = true; 
                     this.isLoading = false; //Loading true
-                    this.lazy = true;
-                    // this.restaurants = response.data.data;
+                    // this.lazy = true;
                     /**
                      * Comments 
                      * data Distribution
