@@ -209,4 +209,15 @@ class ServiceBasicInfoController extends Controller
     {
         return new ServiceBasicInfoResource(ServiceBasicInfo::find($id));
     }
+    // SEARCH Result
+    public function search(Request $request)
+    {
+        $services = ServiceBasicInfo::where('name', 'like', "$request->name%")
+        ->where('location', 'like', "%$request->location%")
+        ->where('rate', 'like', "$request->rate%")
+        ->where('type', 'like', "$request->type%")
+        ->where('status', '=', '1')
+            ->orderBy('created_at', 'desc')->paginate('3');
+        return $services->toArray($services);
+    }
 }

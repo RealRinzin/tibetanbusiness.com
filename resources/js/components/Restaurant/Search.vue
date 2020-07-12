@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height:80vh" id="search">
+    <div style="min-height:80vh">
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-12 mx-auto">
@@ -33,12 +33,19 @@
                                             <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
+                                        <div class="col-md-12 py-2">
+                                            <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.rate}}</a>
+                                            <!-- <a href="#" class="badge badge-secondary">{{filter.type}}</a> -->
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <!-- Result -->
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>

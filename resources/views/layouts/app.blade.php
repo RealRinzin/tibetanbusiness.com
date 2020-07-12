@@ -19,6 +19,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="article:author" content="Rinzin">
     <!-- CSRF Token -->
+    <title> @yield('title')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('tibetanbusiness.png')}}">
     <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title>

@@ -127,14 +127,17 @@ Route::prefix('search')->group(function () {
             if($type === 'restaurants'){
                 return view('restaurant.search');
             }elseif ($type === 'events') {
+                return view('event.search');
             } elseif ($type === 'rents') {
                 return view('rent.search');
             } elseif ($type === 'services') {
-                return $type;
+                return view('service.search');
+
             } elseif ($type === 'jobs') {
-                return $type;
+                return view('job.search');
+
             } elseif ($type === 'sales') {
-                return $type;
+                return view('sale.search');
             }
         }
         // return $type;

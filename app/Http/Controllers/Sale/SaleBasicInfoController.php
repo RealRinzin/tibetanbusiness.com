@@ -215,4 +215,16 @@ class SaleBasicInfoController extends Controller
         // unlink($unlink);
         $banner->update(['banner' => $name]);
     }
+    // SEARCH Result
+    public function search(Request $request)
+    {
+        $sales =  SaleBasicInfo::where('name', 'like', "$request->name%")
+        ->where('location', 'like', "$request->location%")
+        ->where('type', 'like',"$request->type%")
+        ->where('price', '<=', "$request->price")
+        // ->where('rate', 'like', "$request->rate%")
+        ->where('status', '=', '1')
+            ->orderBy('created_at', 'desc')->paginate('3');
+        return $sales->toArray($sales);
+    }
 }

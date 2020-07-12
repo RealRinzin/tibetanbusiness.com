@@ -231,7 +231,9 @@ Vue.component('dashboard-service-edit', require('./components/Dashboard/Service/
 
 // Search Result
 Vue.component('restaurant-search', require('./components/Restaurant/Search.vue').default);
-Vue.component('rent-search', require('./components/Rent/Search.vue').default);
+Vue.component("rent-search", require("./components/Rent/Search.vue").default);
+Vue.component("sale-search", require("./components/Sale/Search.vue").default);
+Vue.component("service-search", require("./components/Service/Search.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

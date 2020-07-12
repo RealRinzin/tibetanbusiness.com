@@ -1,6 +1,6 @@
 <template>
     <div style="min-height:80vh">
-        <div class="container py-4" id="search">
+        <div class="container py-4">
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
@@ -34,7 +34,7 @@
                                             ></star-rating>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-2">
-                                            <small class="small text-muted">Price:Rs <span class="text-muted" id="demo"></span></small>
+                                            <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
                                             <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
@@ -42,13 +42,21 @@
                                             <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
+                                        <div class="col-md-12 py-2">
+                                            <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.fare}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.rate}}</a>
+                                            <a href="#" class="badge badge-secondary">{{filter.accomodation_size}}</a>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
-                                Total Result : {{total}} {{empty_result}} {{filter.name}} {{filter.location}}
+                                Total Result : {{total}}
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
