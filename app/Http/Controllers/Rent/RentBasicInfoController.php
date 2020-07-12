@@ -253,11 +253,14 @@ class RentBasicInfoController extends Controller
     // SEARCH Result
     public function search(Request $request)
     {
+
         $rents =  RentBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('rate','like',"$request->rate%")
+        ->where('fare', '<=',"$request->fare")
+        ->where('accomodation_size', 'like', "$request->accomodation_size%")
         ->where('status', '=', '1')
-            ->orderBy('created_at', 'desc')->paginate('2');
+            ->orderBy('created_at', 'desc')->paginate('3');
         return $rents->toArray($rents);
     }
 }

@@ -134,14 +134,12 @@
          *  */ 
         data(){
             return{
-                // title:'Tenzin rinzin',
                 rate:0,
                 // Loading
                 loading:false,
                 isLoading : false,//Lazy loading
                 // Object
                 restaurant:{}, //individual show
-                // restaurants:{}, // Restaurant objects
                 // /**
                 //  * Comments
                 //  * Current Page 

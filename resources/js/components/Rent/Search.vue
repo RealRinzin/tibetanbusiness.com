@@ -2,30 +2,26 @@
     <div style="min-height:80vh">
         <div class="container py-4" id="search">
             <div class="row">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-7 col-sm-6">
+                        <div class="col-md-3">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-6 py-1">
+                                        <div class="col-md-12 col-sm-12 py-1">
                                         <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                         </div>
-                                        <div class="col-md-4 col-sm-6 py-1">
+                                        <div class="col-md-12 col-sm-12 py-1">
                                         <input type="text" v-model="filter.location" class="form-control" placeholder="Location">
                                         </div>
-                                        <div class="col-md-4 col-sm-6 py-1">
+                                        <div class="col-md-12 col-sm-12 py-1">
                                             <!-- <small for="" class="text-muted">Size</small> -->
-                                            <input type="number" class="form-control" placeholder="Accomodation Size">
+                                            <input type="number" v-model="filter.accomodation_size" class="form-control" placeholder="Accomodation Size">
                                         </div>
                                     </div>
                                     <div class="row py-2">
-                                        <div class="col-md-8 col-sm-6 py-1">
-                                            <small class="small text-muted">Price:Rs <span class="text-muted" id="demo"></span></small>
-                                            <input type="range" style="width:100%" min="600" max="200000" value="3000" id="myRange" placeholder="Size">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 pt-3">
+                                        <div class="col-md-12 col-sm-12 pt-1">
                                             <star-rating v-model="filter.rate"
                                                         v-bind:increment="1"
                                                         v-bind:max-rating="5"
@@ -33,16 +29,25 @@
                                                         inactive-color="#dcdcdc"
                                                         active-color="#f9c132"
                                                         v-bind:star-size="25"
+                                                        @rating-selected ="setRating"
                                             ></star-rating>
                                         </div>
+                                        <div class="col-md-12 col-sm-12 py-2">
+                                            <small class="small text-muted">Price:Rs <span class="text-muted" id="demo"></span></small>
+                                            <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
+                                        </div>
                                         <div class="col-md-12 py-2 text-center">
-                                            <input type="submit" class="btn btn-danger btn-md">
+                                            <button class="btn btn-danger btn-lg w-25"><i class="fas fa-search"></i></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()">Reset</button>
+                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
                             <div class="alert alert-light" role="alert">
-                                Total Result : {{total}} {{empty_result}}
+                                Total Result : {{total}} {{empty_result}} {{filter.name}} {{filter.location}}
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -78,7 +83,7 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-5 col-sm-6">
+                        <div class="col-md-3 col-sm-6">
                             <sidebar></sidebar>
                         </div>
                     </div>
@@ -100,6 +105,7 @@ export default {
             loading: false,
             load_more_button : false,
             total:0,
+            rating:0,
             empty_result:'',
             // rent:[], // Restaurants Object
             rents:{
@@ -114,10 +120,14 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
+                // fare:50000,
+                fare:45000,
+                accomodation_size:'',
             },
             // loading
             isLoading : false,//Lazy loading
             // lazy:false,
+            result:[],
 
         }
     },
@@ -125,9 +135,14 @@ export default {
      *  Methods
      *  */ 
     methods:{
+        // star
+        setRating: function(rating){
+        this.rating= rating;
+        },
+        // loading
         load_result(){
             // axios.get('/api/search/rents')
-            axios.get('/api/search/rents')
+            axios.get('/api/search/rents?fare=50000')
              .then(response=>{ 
                 this.rents = response.data.data;
                 this.loading = true;
@@ -154,7 +169,12 @@ export default {
         search_result(){
             this.loading = false;
             this.nextPage = 2;
-            axios.get('/api/search/rents?name='+this.filter.name+'&location='+this.filter.location+'&rate='+this.filter.rate+'&page=1')
+            axios.get('/api/search/rents?name='+this.filter.name+
+            '&location='+this.filter.location+
+            '&rate='+this.filter.rate+
+            '&fare='+this.filter.fare+
+            '&accomodation_size='+this.filter.accomodation_size+
+            '&page=1')
             .then((response)=>{ 
                 this.rents = response.data.data;
                 this.loading = true;
@@ -190,7 +210,11 @@ export default {
         load_more(nextPage){
                 // this.loading = false;
             this.isLoading = true; //Loading true
-            axios.get('/api/search/rents?name='+this.filter.name+'&location='+this.filter.location+'&rate='+this.filter.rate+'&page='+this.nextPage)
+            axios.get('/api/search/rents?name='+this.filter.name+'&location='+this.filter.location+
+            '&rate='+this.filter.rate+
+            '&fare='+this.filter.fare+
+            '&accomodation_size='+this.filter.accomodation_size+
+            '&page='+this.nextPage)
             // axios.get('/api/search/rents?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
@@ -227,6 +251,18 @@ export default {
                 }
             })
         },
+        // Reset the search form
+        reset(){
+
+            filter:{
+                name=''; 
+                location='';
+                rate='';
+                // fare:50000,
+                fare=45000;
+                accomodation_size='';
+            }
+        }
     },
     // Components
     components:{Loading},
