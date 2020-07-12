@@ -253,12 +253,12 @@ class JobBasicInfoController extends Controller
     {
         $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
         ->where('location', 'like', "%$request->location%")
-        ->where('profession', 'like', "%$request->profession%")
+        ->where('profession', 'like', "$request->profession%")
         ->where('nature', 'like', "$request->nature%")
         ->where('experience', 'like', "$request->experience%")
-        // ->where('salary', '<=', "$request->salary")
+        ->where('salary', '<=', "$request->salary")
         ->where('status', '=', '1')
-            ->orderBy('created_at', 'desc')->paginate('3');
+        ->orderBy('created_at', 'desc')->paginate('3');
         return $jobs->toArray($jobs);
     }
 }

@@ -22,15 +22,16 @@
                                         <div class="col-md-12 col-sm-12 py-1">
                                           <select name="location" v-model="filter.profession" class="form-control">
                                                 <option value="">Choose Profession..</option>
-                                                <option value="MA">Dharamsala</option>
+                                                <option value="Dharamsala">Dharamsala</option>
                                                 <option value="BA">Mussoorie</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
                                           <select name="location" v-model="filter.experience" class="form-control">
                                                 <option value="">Choose Experience..</option>
-                                                <option value="MA">Dharamsala</option>
-                                                <option value="BA">Mussoorie</option>
+                                                <option value="1">1 Years</option>
+                                                <option value="2">2 Years</option>
+                                                <option value="3">3 Years</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
@@ -144,7 +145,7 @@ export default {
                 experience:'',
                 profession:'',
                 // fare:50000,
-                salary:20000,
+                salary:200000,
             },
             // loading
             isLoading : false,//Lazy loading
@@ -170,7 +171,7 @@ export default {
                 nature:'',
                 experience:'',
                 profession:'',
-                salary:20000,
+                salary:200000,
             },
             // Get the result
             axios.get('/api/search/jobs?salary=200000')
@@ -189,8 +190,8 @@ export default {
             this.nextPage = 2;
             axios.get('/api/search/jobs?title='+this.filter.title+
             '&location='+this.filter.location+
-            '&rate='+this.filter.rate+
             '&salary='+this.filter.salary+
+            '&profession='+this.filter.profession+
             '&experience='+this.filter.experience+
             '&nature='+this.filter.nature+
             '&page=1')
@@ -217,10 +218,12 @@ export default {
         load_more(nextPage){
                 // this.loading = false;
             this.isLoading = true; //Loading true
-            axios.get('/api/search/jobs?name='+this.filter.name+'&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&fare='+this.filter.fare+
-            '&accomodation_size='+this.filter.accomodation_size+
+            axios.get('/api/search/jobs?title='+this.filter.title+
+            '&location='+this.filter.location+
+            '&salary='+this.filter.salary+
+            '&experience='+this.filter.experience+
+            '&profession='+this.filter.profession+
+            '&nature='+this.filter.nature+
             '&page='+this.nextPage)
             // axios.get('/api/search/jobs?page='+)
             .then(response=>{
