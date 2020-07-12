@@ -197,3 +197,4 @@ use Illuminate\Http\Request;
     Route::get('search/rents/', 'Rent\RentBasicInfoController@search');
     Route::get('search/sales/', 'Sale\SaleBasicInfoController@search');
     Route::get('search/services/', 'Service\ServiceBasicInfoController@search');
+    Route::get('search/jobs/', 'Job\JobBasicInfoController@search');

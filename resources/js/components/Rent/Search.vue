@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
@@ -129,7 +129,6 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
-                // fare:50000,
                 fare:45000,
                 accomodation_size:'',
             },
@@ -150,6 +149,14 @@ export default {
         },
         // loading
         load_result(){
+            // reset form
+            this.filter = {
+                name:'',
+                location:'',
+                rate:'',
+                fare:45000,
+                accomodation_size:'',
+            },
             // axios.get('/api/search/rents')
             axios.get('/api/search/rents?fare=50000')
              .then(response=>{ 
@@ -262,15 +269,7 @@ export default {
         },
         // Reset the search form
         reset(){
-
-            filter:{
-                name=''; 
-                location='';
-                rate='';
-                // fare:50000,
-                fare=45000;
-                accomodation_size='';
-            }
+            this.load_result();
         }
     },
     // Components

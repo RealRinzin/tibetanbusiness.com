@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
@@ -71,7 +71,7 @@
                                         <a v-bind:href="'/service/'+service.id">
                                         <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'>
                                     <ul>
-                                        <li class="ng-binding">Type:{{service.type}}</li>
+                                        <li class="font-weight-bold">Service type: {{service.type}}</li>
                                     </ul>
                                         </div>
                                         <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>
@@ -150,6 +150,13 @@ export default {
         },
         // loading
         load_result(){
+            // Reset form
+            this.filter ={
+                name:'',
+                location:'',
+                rate:'',
+                type:'',
+            },
             // axios.get('/api/search/services')
             axios.get('/api/search/services')
              .then(response=>{ 
@@ -260,13 +267,7 @@ export default {
         },
         // Reset the search form
         reset(){
-
-            filter:{
-                name=''; 
-                location='';
-                rate='';
-                type='';
-            }
+            this.load_result();
         }
     },
     // Components

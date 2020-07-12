@@ -135,7 +135,6 @@ Route::prefix('search')->group(function () {
 
             } elseif ($type === 'jobs') {
                 return view('job.search');
-
             } elseif ($type === 'sales') {
                 return view('sale.search');
             }

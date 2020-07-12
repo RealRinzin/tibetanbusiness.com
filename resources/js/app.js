@@ -234,6 +234,7 @@ Vue.component('restaurant-search', require('./components/Restaurant/Search.vue')
 Vue.component("rent-search", require("./components/Rent/Search.vue").default);
 Vue.component("sale-search", require("./components/Sale/Search.vue").default);
 Vue.component("service-search", require("./components/Service/Search.vue").default);
+Vue.component("job-search", require("./components/Job/Search.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

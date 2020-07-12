@@ -248,4 +248,17 @@ class JobBasicInfoController extends Controller
         $jobs = Auth::user()->job_basic_infos;
         return $jobs->toArray($jobs);
     }
+    // SEARCH Result
+    public function search(Request $request)
+    {
+        $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
+        ->where('location', 'like', "%$request->location%")
+        ->where('profession', 'like', "%$request->profession%")
+        ->where('nature', 'like', "$request->nature%")
+        ->where('experience', 'like', "$request->experience%")
+        // ->where('salary', '<=', "$request->salary")
+        ->where('status', '=', '1')
+            ->orderBy('created_at', 'desc')->paginate('3');
+        return $jobs->toArray($jobs);
+    }
 }
