@@ -2,23 +2,43 @@
     <div style="min-height:80vh" id="search">
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-7 col-sm-6">
+                        <!-- filter -->
+                        <div class="col-md-3">
                             <div class="card p-3">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                     <div class="row">
-                                        <div class="col">
-                                        <input type="text"  v-model="filter.name" class="form-control" placeholder="First name">
+                                        <div class="col-md-12 py-1">
+                                        <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                         </div>
-                                        <div class="col">
-                                        <input type="text" v-model="filter.location" class="form-control" placeholder="Last name">
+                                        <div class="col-md-12 py-1">
+                                        <input type="text" v-model="filter.location" class="form-control" placeholder="Location">
                                         </div>
-                                        <input type="submit" class="btn btn-danger btn-xs">
+                                        <div class="col-md-12 col-sm-12 pt-1">
+                                            <small class="text-warning">Rating</small>
+                                            <star-rating v-model="filter.rate"
+                                                        v-bind:increment="1"
+                                                        v-bind:max-rating="5"
+                                                        border-color="#33373a"
+                                                        inactive-color="#dcdcdc"
+                                                        active-color="#f9c132"
+                                                        v-bind:star-size="25"
+                                                        @rating-selected ="setRating"
+                                            ></star-rating>
+                                        </div>
+                                        <div class="col-md-12 py-2 text-center">
+                                            <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
+                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
+                                        </div>
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                        <!-- Result -->
+                        <div class="col-md-6 col-sm-6">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
@@ -51,7 +71,7 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-5 col-sm-6">
+                        <div class="col-md-3 col-sm-6">
                             <sidebar></sidebar>
                         </div>
                     </div>
@@ -85,7 +105,8 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:''
+                location:'',
+                rate:''
             },
             // loading
             isLoading : false,//Lazy loading
@@ -97,6 +118,9 @@ export default {
      *  Methods
      *  */ 
     methods:{
+        setRating: function(rating){
+        this.rating= rating;
+        },
         load_result(){
             // axios.get('/api/search/restaurants')
             axios.get('/api/search/restaurants')
@@ -126,7 +150,11 @@ export default {
         search_result(){
             this.loading = false;
             this.nextPage = 2;
-            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page=1')
+            axios.get('/api/search/restaurants?name='+
+            this.filter.name+'&location='+
+            this.filter.location+
+            '&rate='+this.filter.rate+
+            '&page=1')
             .then((response)=>{ 
                 this.restaurants = response.data.data;
                 this.loading = true;
@@ -162,7 +190,11 @@ export default {
         load_more(nextPage){
                 // this.loading = false;
             this.isLoading = true; //Loading true
-            axios.get('/api/search/restaurants?name='+this.filter.name+'&location='+this.filter.location+'&page='+this.nextPage)
+            axios.get('/api/search/restaurants?name='+
+            this.filter.name+
+            '&location='+this.filter.location+
+            '&rate='+this.filter.rate+
+            '&page='+this.nextPage)
             // axios.get('/api/search/restaurants?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
@@ -199,12 +231,25 @@ export default {
                 }
             })
         },
+        // Reset the search form
+        reset(){
+
+            filter:{
+                name=''; 
+                location='';
+                rate='';
+                // fare:50000,
+                fare=45000;
+                accomodation_size='';
+            }
+        }
     },
     // Components
     components:{Loading},
     // Mounted
     mounted(){
         this.load_result();
+        // 
     }
 }
 </script>

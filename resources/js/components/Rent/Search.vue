@@ -17,11 +17,12 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
                                             <!-- <small for="" class="text-muted">Size</small> -->
-                                            <input type="number" v-model="filter.accomodation_size" class="form-control" placeholder="Accomodation Size">
+                                            <input type="number" v-model="filter.accomodation_size" class="form-control" min="1" placeholder="Accomodation Size">
                                         </div>
                                     </div>
                                     <div class="row py-2">
                                         <div class="col-md-12 col-sm-12 pt-1">
+                                            <small class="text-warning">Rating</small>
                                             <star-rating v-model="filter.rate"
                                                         v-bind:increment="1"
                                                         v-bind:max-rating="5"
@@ -37,8 +38,8 @@
                                             <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
-                                            <button class="btn btn-danger btn-lg w-25"><i class="fas fa-search"></i></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()">Reset</button>
+                                            <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                     </div>
