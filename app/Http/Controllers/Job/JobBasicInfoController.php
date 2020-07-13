@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Job\JobApplyResource;
 use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Job\JobBasicInfo;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class JobBasicInfoController extends Controller
@@ -251,12 +252,14 @@ class JobBasicInfoController extends Controller
     // SEARCH Result
     public function search(Request $request)
     {
+        // $today = Carbon::now()->format('Y-m-d');
         $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
         ->where('location', 'like', "%$request->location%")
         ->where('profession', 'like', "$request->profession%")
         ->where('nature', 'like', "$request->nature%")
         ->where('experience', 'like', "$request->experience%")
         ->where('salary', '<=', "$request->salary")
+        ->where('deadline','>=',date('Y-m-d'))
         ->where('status', '=', '1')
         ->orderBy('created_at', 'desc')->paginate('3');
         return $jobs->toArray($jobs);
