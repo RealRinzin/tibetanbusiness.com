@@ -252,7 +252,6 @@ class JobBasicInfoController extends Controller
     // SEARCH Result
     public function search(Request $request)
     {
-        // $today = Carbon::now()->format('Y-m-d');
         $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
         ->where('location', 'like', "%$request->location%")
         ->where('profession', 'like', "$request->profession%")

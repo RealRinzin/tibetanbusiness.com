@@ -1,10 +1,15 @@
 <template>
     <div>
+        
         <div v-if="!loading">
             <loading :active.sync="isLoading"></loading>
         </div>
+        
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
+                zvzxcz
+                                <input type="checkbox" id="ball"><label for="ball">Toggle</label>
+
                 <button class="btn btn-info btn-md my-3" @click="add_restaurant()">Add New Restaurant</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
@@ -32,11 +37,13 @@
                             <td>{{restaurant.email}}</td>
                             <td>{{restaurant.mobile_no}}</td>
                             <td><timeago :datetime="restaurant.created_at" /></td>
-                            <td>
-                                <label class="switch" @click="status_update(restaurant.id,index)">
+                            <td id="toggle">
+                                <input type="checkbox" id="apple" v-model="restaurant.status"><label @click="status_update(restaurant.id,index)" for="apple">Toggle</label>
+
+                                <!-- <label class="switch" @click="status_update(restaurant.id,index)">
                                 <input type="checkbox" v-model="restaurant.status">
                                 <span class="slider round"></span>
-                                </label>
+                                </label> -->
                             </td>
                             <td><a  :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>

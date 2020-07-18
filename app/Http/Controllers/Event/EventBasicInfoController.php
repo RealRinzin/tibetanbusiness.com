@@ -228,4 +228,16 @@ class EventBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
+    // SEARCH Result
+    public function search(Request $request)
+    {
+        $events = EventBasicInfo::where('name', 'like', "$request->name%")
+        ->where('location', 'like', "$request->location%")
+        ->where('category','like',"$request->category%")
+        ->where('start_date', '>=', date('Y-m-d'))
+        // ->where('entry_fee','<=',"$request->entry_fee")
+        ->where('status', '=', '1')
+            ->orderBy('created_at', 'desc')->paginate('3');
+        return $events->toArray($events);
+    }
 }

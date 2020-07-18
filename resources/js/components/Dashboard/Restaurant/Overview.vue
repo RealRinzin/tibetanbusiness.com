@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row" id="toggle">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -112,64 +112,44 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Monday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.monday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                        <input type="checkbox" id="monday" v-model="operation.monday"><label for="monday"></label>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Tuesday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.tuesday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <input type="checkbox" id="tuesday" v-model="operation.tuesday"><label for="tuesday"></label>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Wednesday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.wednesday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <input type="checkbox" id="wednesday" v-model="operation.wednesday"><label for="wednesday"></label>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Thursday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.thursday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                        <input type="checkbox" id="thursday" v-model="operation.thursday"><label for="thursday"></label>
+
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Friday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.friday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <input type="checkbox" id="friday" v-model="operation.friday"><label for="friday"></label>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Saturday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.saturday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                        <input type="checkbox" id="saturday" v-model="operation.saturday"><label for="saturday"></label>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Sunday</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="operation.sunday">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                        <input type="checkbox" id="sunday" v-model="operation.sunday"><label for="sunday"></label>
                                                 </li>
                                             </div>
                                             <!-- update -->

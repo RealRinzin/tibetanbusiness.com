@@ -45,8 +45,8 @@ return [
     ],
     // Facebook Login
     'facebook' => [
-        'client_id' =>  '320651235266376',
-        'client_secret' => 'ba5b7ff26f82df76340c456ba5802a94',
+        'client_id' =>  '3727328730617726',
+        'client_secret' => '1f8e16bd7bb2d63b1d61dc0a5ede97fd',
         'redirect' => 'https://tibetanbusiness.com:8890/login/facebook/callback',
 
     ],
