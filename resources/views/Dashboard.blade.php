@@ -69,7 +69,6 @@
                     <a href="" class="nav-link">Contact</a>
                 </li>
             </ul>
-
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
@@ -182,6 +181,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" id="dashboard">
+        <example-component></example-component>
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">

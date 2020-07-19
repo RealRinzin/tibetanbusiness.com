@@ -1,5 +1,6 @@
 <template>
     <div style="min-height:80vh">
+
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-12 mx-auto">
@@ -36,6 +37,10 @@
                                         <div class="col-md-12 col-sm-12 py-2">
                                             <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
                                             <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 py-2">
+                                            <small class="small text-muted">Price:₹ <span class="text-muted" id="min"></span></small>
+                                            <input type="range" v-model="filter.fare_min" style="width:100%" min="100" max="50000" value="3000" id="fare" placeholder="Size">
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
@@ -111,6 +116,9 @@ export default {
     // Data
     data(){
         return{
+            // check:'',
+            range:0,
+            // min:'',
             loading: false,
             load_more_button : false,
             total:0,
@@ -147,6 +155,7 @@ export default {
         setRating: function(rating){
         this.rating= rating;
         },
+
         // loading
         load_result(){
             // reset form
@@ -154,11 +163,12 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
+                fare_min:10000,
                 fare:45000,
                 accomodation_size:'',
             },
             // axios.get('/api/search/rents')
-            axios.get('/api/search/rents?fare=50000')
+            axios.get('/api/search/rents?fare=50000&fare_min=100')
              .then(response=>{ 
                 this.rents = response.data.data;
                 this.loading = true;
@@ -189,6 +199,7 @@ export default {
             '&location='+this.filter.location+
             '&rate='+this.filter.rate+
             '&fare='+this.filter.fare+
+            '&fare_min='+this.filter.fare_min+
             '&accomodation_size='+this.filter.accomodation_size+
             '&page=1')
             .then((response)=>{ 
@@ -280,10 +291,12 @@ export default {
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
         output.innerHTML = slider.value;
-
         slider.oninput = function() {
         output.innerHTML = this.value;
         }
+        // Slider range
     }
 }
+
 </script>
+
