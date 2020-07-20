@@ -34,13 +34,18 @@
                                                         @rating-selected ="setRating"
                                             ></star-rating>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-2">
+                                        <!-- <div class="col-md-6 col-sm-12 py-2">
                                             <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
                                             <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-2">
-                                            <small class="small text-muted">Price:₹ <span class="text-muted" id="min"></span></small>
-                                            <input type="range" v-model="filter.fare_min" style="width:100%" min="100" max="50000" value="3000" id="fare" placeholder="Size">
+                                        </div> -->
+                                        <div class="col-md-6 col-sm-12 py-2">
+                                        <p>
+                                            <small>Price:₹ {{filter.min}} </small>
+                                        <input type="text" id="amount" readonly  style="border:0; color:#f6931f; font-weight:bold;">
+                                        </p>
+                                        <div id="slider-range"></div>
+                                            <!-- <small class="small text-muted">Price:₹ <span class="text-muted" id="min"></span></small> -->
+                                            <!-- <input type="range" v-model="filter.fare_min" style="width:100%" min="100" max="50000" value="3000" id="fare" placeholder="Size"> -->
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
@@ -137,7 +142,6 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
-                fare:45000,
                 accomodation_size:'',
             },
             // loading
@@ -155,7 +159,6 @@ export default {
         setRating: function(rating){
         this.rating= rating;
         },
-
         // loading
         load_result(){
             // reset form
@@ -193,6 +196,12 @@ export default {
         },
         // search result
         search_result(){
+            // Range
+                var min = document.getElementById("amount");
+                this.number = min.value.split("-");
+                this.filter.fare_min = this.number[0];
+                this.filter.fare = this.number[1];
+            // End 
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/rents?name='+this.filter.name+
@@ -288,13 +297,27 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
+        // var slider = document.getElementById("myRange");
+        // var output = document.getElementById("demo");
+        // output.innerHTML = slider.value;
+        // slider.oninput = function() {
+        // output.innerHTML = this.value;
+        // }
         // Slider range
+                   $( function() {
+                        $( "#slider-range" ).slider({
+                        range: true,
+                        min: 0,
+                        max: 500,
+                        // values: [ 75, 300],
+                        slide: function( event, ui ) {
+                            $( "#amount" ).val( + ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                        }
+                        });
+                        $( "#amount" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                        " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                            // console.log(this.number);
+                    } );
     }
 }
 

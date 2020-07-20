@@ -24,6 +24,8 @@
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <!-- File upload script -->
     <!-- <link rel="stylesheet" href="{{asset('css/jquery.fileuploader.min.css')}}"> -->
 
@@ -181,7 +183,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" id="dashboard">
-        <example-component></example-component>
+            <example-component></example-component>
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
@@ -216,6 +218,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.js"></script>
     <!-- Custom components vue -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- jquery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </body>
 
