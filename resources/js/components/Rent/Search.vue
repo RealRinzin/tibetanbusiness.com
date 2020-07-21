@@ -54,7 +54,7 @@
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
                                             <small v-if="filter.name" class="badge badge-secondary"> Name: {{filter.name}}</small>
                                             <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                            <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}}</small>
+                                            <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
                                             <small v-if="filter.accomodation_size" class="badge badge-secondary">Accomodation Size:{{filter.accomodation_size}}</small>
                                             <small v-if="filter.fare_min" class="badge badge-secondary">Min: {{filter.fare_min}}</small>
                                             <small v-if="filter.fare_max" class="badge badge-secondary">Max : {{filter.fare_max}}</small>
@@ -315,13 +315,6 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        // var slider = document.getElementById("myRange");
-        // var output = document.getElementById("demo");
-        // output.innerHTML = slider.value;
-        // slider.oninput = function() {
-        // output.innerHTML = this.value;
-        // }
-        // Slider range
 
     }
 }

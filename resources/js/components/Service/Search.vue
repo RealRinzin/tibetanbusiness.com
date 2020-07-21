@@ -48,10 +48,10 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.type}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.rate}} <small  class="fas fa-star text-warning"></small></a>
+                                            <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                            <small v-if="filter.type" class="badge badge-secondary">Type: {{filter.type}}</small>
+                                            <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
                                         </div>
                                     </div>
                                 </form>

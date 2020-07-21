@@ -7,7 +7,7 @@
             <div v-if="!loading" class="loading">
             </div>
             <div class="row" v-else>
-                <div class="col-md-6 col-sm-6 col-xs-12" v-for="(event,index) in event" v-if="index <= 1">
+                <div class="col-6" v-for="(event,index) in event" v-if="index <= 1">
                     <a v-bind:href="'/event/'+event.id">
                     <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'></div>
                     <div class="rate" v-if="event.rate !=null"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>

@@ -57,11 +57,12 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.fare}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.rate}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.accomodation_size}}</a>
+                                            <small v-if="filter.title" class="badge badge-secondary">Title: {{filter.title}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                            <small v-if="filter.profession" class="badge badge-secondary my-1">Profession: {{filter.profession}}</small>
+                                            <small v-if="filter.salary" class="badge badge-secondary">Salary: {{filter.salary}}</small>
+                                            <small v-if="filter.nature" class="badge badge-secondary">Nature: {{filter.nature}}</small>
+                                            <small v-if="filter.experience" class="badge badge-secondary my-1">Experience: {{filter.experience}}</small>
                                         </div>
                                     </div>
                                 </form>

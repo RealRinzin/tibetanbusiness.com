@@ -7,7 +7,7 @@
             <div v-if="!loading" class="loading">
             </div>
             <div class="row" v-else>
-                <div class="col-md-6 col-sm-6 col-xs-12" v-for="(service,index) in service" v-if="index <= 1">
+                <div class="col-6" v-for="(service,index) in service" v-if="index <= 1">
                     <a v-bind:href="'/service/'+service.id">
                     <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div>
                     <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>

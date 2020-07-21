@@ -40,10 +40,10 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords</p>
-                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.price}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.type}}</a>
+                                            <small v-if="filter.name" href="#" class="badge badge-secondary">Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" href="#" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                            <small v-if="filter.price" href="#" class="badge badge-secondary">Price: {{filter.price}}</small>
+                                            <small v-if="filter.type" href="#" class="badge badge-secondary">Type: {{filter.type}}</small>
                                         </div>
                                     </div>
                                 </form>

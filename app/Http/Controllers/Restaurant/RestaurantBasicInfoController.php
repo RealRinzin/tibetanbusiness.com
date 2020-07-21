@@ -277,7 +277,7 @@ class RestaurantBasicInfoController extends Controller
         $restaurants =  RestaurantBasicInfo::where('name', 'like', "$request->name%")
             ->where('location','like',"%$request->location%")
             -> where('rate', 'like', "$request->rate%")
-            ->orWhere('rate','=',null)
+            // ->orWhere('rate','=',null)
             ->where('status','=','1')
             ->orderBy('created_at', 'desc')->paginate('3');
         return $restaurants->toArray($restaurants);

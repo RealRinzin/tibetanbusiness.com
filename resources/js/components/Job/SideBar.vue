@@ -7,7 +7,7 @@
             <div v-if="!loading" class="loading">
             </div>
             <div class="row" v-else>
-                <div class="col-md-6 col-sm-6 col-xs-12" v-for="(job,index) in job" v-if="index <= 1">
+                <div class="col-6" v-for="(job,index) in job" v-if="index <= 1">
                     <a v-bind:href="'/job/'+job.id">
                     <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div>
                     </a>
