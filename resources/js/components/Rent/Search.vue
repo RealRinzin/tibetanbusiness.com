@@ -52,11 +52,12 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.fare}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.rate}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.accomodation_size}}</a>
+                                            <small v-if="filter.name" class="badge badge-secondary"> Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                            <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}}</small>
+                                            <small v-if="filter.accomodation_size" class="badge badge-secondary">Accomodation Size:{{filter.accomodation_size}}</small>
+                                            <small v-if="filter.fare_min" class="badge badge-secondary">Min: {{filter.fare_min}}</small>
+                                            <small v-if="filter.fare_max" class="badge badge-secondary">Max : {{filter.fare_max}}</small>
                                         </div>
                                     </div>
                                 </form>
@@ -139,6 +140,8 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
+                fare_max:'',
+                fare_min:'',
                 accomodation_size:'',
             },
             // loading
