@@ -257,7 +257,7 @@ class RentBasicInfoController extends Controller
         $rents =  RentBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('rate','like',"$request->rate%")
-        ->whereBetween('fare', [$request->fare_min,$request->fare])
+        ->whereBetween('fare', [$request->fare_min,$request->fare_max])
         // ->where('fare', '<=',"$request->fare")
         ->where('accomodation_size', 'like', "$request->accomodation_size%")
         ->where('status', '=', '1')

@@ -328,4 +328,20 @@ Background resource loading
       }
     }
     }
-  }
+    // Price range
+    // #range{
+    }
+    #filter{
+          .ui-state-default, .ui-widget-content .ui-state-default{
+              border-radius: 50% !important;
+              cursor: pointer;
+              // background-color:#dc4245;
+            }
+            .ui-state-focus:hover{
+              box-shadow: 0 0 0 8px rgba(145,56,10,.1);
+              border-radius: 50% !important;
+            }
+            .ui-state-focus:active{
+              border: none !important;
+            }
+    }

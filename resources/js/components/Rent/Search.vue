@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3" id="filter">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
@@ -38,11 +38,9 @@
                                             <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
                                             <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
                                         </div> -->
-                                        <div class="col-md-6 col-sm-12 py-2">
-                                        <p>
-                                            <small>Price:₹ {{filter.min}} </small>
-                                        <input type="text" id="amount" readonly  style="border:0; color:#f6931f; font-weight:bold;">
-                                        </p>
+                                        <div class="col-md-12 col-sm-12 py-2" id="range">
+                                        <small class="text-muted">Price:₹ {{filter.min}} </small>
+                                        <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
                                         <div id="slider-range"></div>
                                             <!-- <small class="small text-muted">Price:₹ <span class="text-muted" id="min"></span></small> -->
                                             <!-- <input type="range" v-model="filter.fare_min" style="width:100%" min="100" max="50000" value="3000" id="fare" placeholder="Size"> -->
@@ -121,8 +119,7 @@ export default {
     // Data
     data(){
         return{
-            // check:'',
-            range:0,
+            max:50000,
             // min:'',
             loading: false,
             load_more_button : false,
@@ -166,12 +163,28 @@ export default {
                 name:'',
                 location:'',
                 rate:'',
-                fare_min:10000,
-                fare:45000,
+                fare_min:'',
+                fare_max:'',
                 accomodation_size:'',
             },
+            // Slider Range
+            $( function() {
+                $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 100000,
+                values: [ 0, 300000],
+                slide: function( event, ui ) {
+                    $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                }
+                });
+                $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                    // console.log(this.number);
+            } );
+            // End Range
             // axios.get('/api/search/rents')
-            axios.get('/api/search/rents?fare=50000&fare_min=100')
+            axios.get('/api/search/rents?fare_min=0&fare_max=5000000')
              .then(response=>{ 
                 this.rents = response.data.data;
                 this.loading = true;
@@ -197,18 +210,18 @@ export default {
         // search result
         search_result(){
             // Range
-                var min = document.getElementById("amount");
-                this.number = min.value.split("-");
-                this.filter.fare_min = this.number[0];
-                this.filter.fare = this.number[1];
+            var fare = document.getElementById("fare");
+            this.number = fare.value.split("-");
+            this.filter.fare_min = this.number[0];
+            this.filter.fare_max = this.number[1];
             // End 
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/rents?name='+this.filter.name+
             '&location='+this.filter.location+
             '&rate='+this.filter.rate+
-            '&fare='+this.filter.fare+
             '&fare_min='+this.filter.fare_min+
+            '&fare_max='+this.filter.fare_max+
             '&accomodation_size='+this.filter.accomodation_size+
             '&page=1')
             .then((response)=>{ 
@@ -246,9 +259,11 @@ export default {
         load_more(nextPage){
                 // this.loading = false;
             this.isLoading = true; //Loading true
-            axios.get('/api/search/rents?name='+this.filter.name+'&location='+this.filter.location+
+            axios.get('/api/search/rents?name='+this.filter.name+
+            '&location='+this.filter.location+
             '&rate='+this.filter.rate+
-            '&fare='+this.filter.fare+
+            '&fare_min='+this.filter.fare_min+
+            '&fare_max='+this.filter.fare_max+
             '&accomodation_size='+this.filter.accomodation_size+
             '&page='+this.nextPage)
             // axios.get('/api/search/rents?page='+)
@@ -304,20 +319,7 @@ export default {
         // output.innerHTML = this.value;
         // }
         // Slider range
-                   $( function() {
-                        $( "#slider-range" ).slider({
-                        range: true,
-                        min: 0,
-                        max: 500,
-                        // values: [ 75, 300],
-                        slide: function( event, ui ) {
-                            $( "#amount" ).val( + ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-                        }
-                        });
-                        $( "#amount" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                        " - " + $( "#slider-range" ).slider( "values", 1 ) );
-                            // console.log(this.number);
-                    } );
+
     }
 }
 

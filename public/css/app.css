@@ -11282,6 +11282,21 @@ Background resource loading
   border-radius: 2px;
 }
 
+#filter .ui-state-default,
+#filter .ui-widget-content .ui-state-default {
+  border-radius: 50% !important;
+  cursor: pointer;
+}
+
+#filter .ui-state-focus:hover {
+  box-shadow: 0 0 0 8px rgba(145, 56, 10, 0.1);
+  border-radius: 50% !important;
+}
+
+#filter .ui-state-focus:active {
+  border: none !important;
+}
+
 #dashboard {
   /*Facility  */
   /** Upload Browser Css  */
