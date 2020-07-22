@@ -19,13 +19,20 @@
                                                 <option value="mussoorie">Mussoorie</option>
                                             </select>
                                         </div>
+                                        <div class="col-md-12 col-sm-12 py-1">
+                                          <select name="location" v-model="filter.category" class="form-control">
+                                                <option value="">Choose Category..</option>
+                                                <option value="Mobile">Mobile</option>
+                                                <option value="Title">Title</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="row py-2">
                                         <div class="col-md-12 col-sm-12 pt-1">
                                             <div class="row">
                                                 <div class="col-12"> 
                                                     <label for="from" class="small text-muted">From</label>
-                                                    <input type="date" v-model="filter.from" class="form-control" id="from" name="from">
+                                                    <input type="date" v-model="filter.from" class="form-control" id="from" name="from" value="2021-07-22">
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="to" class="text-muted small">to</label>
@@ -40,7 +47,6 @@
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
                                             <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
@@ -69,9 +75,9 @@
                                         <a v-bind:href="'/event/'+event.id">
                                         <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${event.banner})`}'>
                                     <ul>
-                                        <li class="btn">Entry Fee:₹{{event.entry_fee}}/-</li>
-                                        <!-- <li class="btn">Nature: {{event.nature}}</li> -->
-                                        <!-- <li class="btn">Experience: {{event.experience}}</li> -->
+                                        <li class="btn small">Fee:₹ {{event.entry_fee}}/-</li>
+                                        <li class="btn small">Date: {{event.start_date |date}}</li>
+                                        <li class="btn small">Type:{{event.category}}</li>
                                     </ul>
                                         </div>
                                         <div class="rate" v-if="event.rate !=null"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
@@ -87,9 +93,7 @@
                             <loading :active.sync="isLoading"></loading>
                             <div class="row my-2" v-if="load_more_button">
                                 <div class="col-md-12 text-center">
-                                    <!-- <button class="btn btn-danger btn-sm">Load More</button> -->
                                     <button @click="load_more()" class="btn btn-danger btn-sm">Load more</button>
-
                                 </div>
                             </div>
                         </div>
@@ -109,10 +113,14 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+    // date
+    import format from 'date-fns/format';
+
 export default {
     // Data
     data(){
         return{
+            today:'',
             loading: false,
             load_more_button : false,
             total:0,
@@ -131,8 +139,11 @@ export default {
                 location:'',
                 category:'',
                 entry_fee:'',
-                from:'',
-                to:'',
+                // date : new Date(),
+                // from:format(new Date(date), 'yyyy-MM-dd'),
+                from:'2020-07-22',
+                to:'2020-12-22',
+                // to:format(new Date(date), 'yyyy-MM-dd'),
             },
             // loading
             isLoading : false,//Lazy loading
@@ -151,37 +162,9 @@ export default {
         },
         // loading
         load_result(){
-            // $( function() {
-            //     var dateFormat = "mm/dd/yy",
-            //     from = $( "#from" )
-            //         .datepicker({
-            //         defaultDate: "+1w",
-            //         changeMonth: true,
-            //         //   numberOfMonths: 3
-            //         })
-            //         .on( "change", function() {
-            //         to.datepicker( "option","dateFormat","yy-mm-dd", "minDate", getDate( this ) );
-            //         }),
-            //     to = $( "#to" ).datepicker({
-            //         defaultDate: "+1w",
-            //         changeMonth: true,
-            //         // numberOfMonths: 3
-            //     })
-            //     .on( "change", function() {
-            //         from.datepicker( "option","dateFormat","yy-mm-dd", "maxDate", getDate( this ) );
-            //     });
-            
-            //     function getDate( element ) {
-            //     var date;
-            //     try {
-            //         date = $.datepicker.parseDate( dateFormat, element.value );
-            //     } catch( error ) {
-            //         date = null;
-            //     }
-            
-            //     return date;
-            //     }
-            // } );
+        let date = new Date();
+        // this.filter.from = format(new Date(date), 'yyyy-MM-dd');
+        // this.filter.to = format(new Date(date), 'yyyy-MM-dd');
             // filter paramater
             this.filter = {
                 name:'',
@@ -192,7 +175,7 @@ export default {
                 to:'',
             },
             // Get the result
-            axios.get('/api/search/events')
+            axios.get('/api/search/events?from'+this.from+'&to'+this.to)
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
@@ -204,12 +187,14 @@ export default {
         },
         // search result
         search_result(){
-            console.log(this.filter);
+            // console.log(this.filter);
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/events?name='+this.filter.name+
             '&location='+this.filter.location+
             '&category='+this.filter.category+
+            '&from='+this.filter.from+
+            '&to='+this.filter.to+
             '&page=1')
             .then((response)=>{ 
                 this.events = response.data.data;
@@ -237,6 +222,8 @@ export default {
             axios.get('/api/search/events?name='+this.filter.name+
             '&location='+this.filter.location+
             '&category='+this.filter.category+
+            '&from='+this.filter.from+
+            '&to='+this.filter.to+
             '&page='+this.nextPage)
             // axios.get('/api/search/events?page='+)
             .then(response=>{
@@ -268,19 +255,25 @@ export default {
     },
     // Components
     components:{Loading},
+    /**
+     * Filter
+     *  */ 
+    filters:{
+        date(str){
+            return format(new Date(str), 'EE, MMM dd, yyyy');
+        }
+    },
     // Mounted
     mounted(){
         this.load_result();
-        // today date
-        // var today = new Date();
-        // console.log(today.format("YYYY-MM-DD"));
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
-    // JQuery UI date
+        // date set
+        let date = new Date();
+        this.filter.from = format(new Date(date), 'yyyy-MM-dd');
+        this.filter.to = format(new Date(date), 'yyyy-MM-dd');
+        // this.today = date.getFullYear()+'-'+date.getDate()+'-'+date.getMonth();
+        // Javascript date
+        // console.log(new Date().getFullYear().getFullYear().getMonth());
+        
     }
 }
 </script>

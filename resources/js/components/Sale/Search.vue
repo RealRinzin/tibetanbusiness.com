@@ -18,7 +18,6 @@
                                                 <option value="Dharamsala">Dharamsala</option>
                                                 <option value="Mussoorie">Mussoorie</option>
                                             </select>
-                                        <!-- <input type="text" v-model="filter.location" class="form-control" placeholder="Location"> -->
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
                                           <select name="location" v-model="filter.type" class="form-control">
