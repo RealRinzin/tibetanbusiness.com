@@ -50,12 +50,11 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                            <small v-if="filter.entry_fee" class="badge badge-secondary">Entry Fee: {{filter.entry_fee}}</small>
-                                            <small v-if="filter.category" class="badge badge-secondary">Category: {{filter.category}}</small>
-                                            <small v-if="filter.from" class="badge badge-secondary">From: {{filter.from}}</small>
-                                            <small v-if="filter.to" class="badge badge-secondary">To: {{filter.to}}</small>
+                                            <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                            <small v-if="filter.entry_fee" class="badge badge-secondary mb-1">Entry Fee: {{filter.entry_fee}}</small>
+                                            <small v-if="filter.category" class="badge badge-secondary mb-1">Category: {{filter.category}}</small>
+                                            <!-- <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">From: {{filter.from}}- to {{filter.to}}</small> -->
                                         </div>
                                     </div>
                                 </form>
@@ -167,7 +166,7 @@ export default {
                 category:'',
                 entry_fee:'',
                 from:from,
-                to:'2030-10-20',
+                to:'2022-10-20',
             },
     
             // Get the result
