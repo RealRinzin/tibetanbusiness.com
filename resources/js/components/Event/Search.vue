@@ -120,7 +120,6 @@ export default {
     // Data
     data(){
         return{
-            today:'',
             loading: false,
             load_more_button : false,
             total:0,
@@ -139,11 +138,8 @@ export default {
                 location:'',
                 category:'',
                 entry_fee:'',
-                // date : new Date(),
-                // from:format(new Date(date), 'yyyy-MM-dd'),
-                from:'2020-07-22',
-                to:'2020-12-22',
-                // to:format(new Date(date), 'yyyy-MM-dd'),
+                from:'',
+                to:'2025-12-22'
             },
             // loading
             isLoading : false,//Lazy loading
@@ -162,20 +158,20 @@ export default {
         },
         // loading
         load_result(){
-        let date = new Date();
-        // this.filter.from = format(new Date(date), 'yyyy-MM-dd');
-        // this.filter.to = format(new Date(date), 'yyyy-MM-dd');
+            let today = new Date();
+            let from = format(new Date(today), 'yyyy-MM-dd');
             // filter paramater
             this.filter = {
                 name:'',
                 location:'',
                 category:'',
                 entry_fee:'',
-                from:'',
-                to:'',
+                from:from,
+                to:'2030-10-20',
             },
+    
             // Get the result
-            axios.get('/api/search/events?from'+this.from+'&to'+this.to)
+            axios.get('/api/search/events?from='+this.filter.from+'&to='+this.filter.to)
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
@@ -266,14 +262,6 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        // date set
-        let date = new Date();
-        this.filter.from = format(new Date(date), 'yyyy-MM-dd');
-        this.filter.to = format(new Date(date), 'yyyy-MM-dd');
-        // this.today = date.getFullYear()+'-'+date.getDate()+'-'+date.getMonth();
-        // Javascript date
-        // console.log(new Date().getFullYear().getFullYear().getMonth());
-        
     }
 }
 </script>
