@@ -44,25 +44,23 @@
                                         </div>
                                     </div>
                                     <div class="row py-2">
-                                        <div class="col-md-12 col-sm-12 pt-1">
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-2">
-                                            <small class="small text-muted">Salary:₹ <span class="text-muted" id="demo"></span></small>
-                                            <input type="range" v-model="filter.Salary" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
+                                        <div class="col-md-12 col-sm-12 py-2" id="range">
+                                            <small class="text-muted">Salary:₹{{filter.min}} </small>
+                                            <input type="text" id="salary" class="small text-muted my-2" readonly  style="border:0;">
+                                            <div id="slider-range"></div>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
                                             <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.title" class="badge badge-secondary">Title: {{filter.title}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                            <small v-if="filter.profession" class="badge badge-secondary my-1">Profession: {{filter.profession}}</small>
-                                            <small v-if="filter.salary" class="badge badge-secondary">Salary: {{filter.salary}}</small>
-                                            <small v-if="filter.nature" class="badge badge-secondary">Nature: {{filter.nature}}</small>
-                                            <small v-if="filter.experience" class="badge badge-secondary my-1">Experience: {{filter.experience}}</small>
+                                            <small v-if="filter.title" class="badge badge-secondary mb-1">Title: {{filter.title}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                            <small v-if="filter.profession" class="badge badge-secondary mb-1">Profession: {{filter.profession}}</small>
+                                            <small v-if="filter.salary_min || filter.salary_max" class="badge badge-secondary mb-1">Salary:₹{{filter.salary_min}} - {{filter.salary_max}}</small>
+                                            <small v-if="filter.nature" class="badge badge-secondary mb-1">Nature: {{filter.nature}}</small>
+                                            <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
                                         </div>
                                     </div>
                                 </form>
@@ -71,6 +69,15 @@
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}}
+                            </div>
+                            <div class="py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                <small v-if="filter.title" class="badge badge-secondary mb-1">Title: {{filter.title}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                <small v-if="filter.profession" class="badge badge-secondary mb-1">Profession: {{filter.profession}}</small>
+                                <small v-if="filter.salary_min || filter.salary_max" class="badge badge-secondary mb-1">Salary:₹{{filter.salary_min}} - {{filter.salary_max}}</small>
+                                <small v-if="filter.nature" class="badge badge-secondary mb-1">Nature: {{filter.nature}}</small>
+                                <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -145,6 +152,8 @@ export default {
                 nature:'',
                 experience:'',
                 profession:'',
+                salary_min:'',
+                salary_max:'',
                 // fare:50000,
                 salary:200000,
             },
@@ -172,10 +181,27 @@ export default {
                 nature:'',
                 experience:'',
                 profession:'',
-                salary:200000,
+                salary_min:'',
+                salary_max:'',
             },
+            // Slider Range
+            $( function() {
+                $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 100000,
+                values: [ 0, 300000],
+                slide: function( event, ui ) {
+                    $( "#salary" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                }
+                });
+                $( "#salary" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                    // console.log(this.number);
+            } );
+            // End Range
             // Get the result
-            axios.get('/api/search/jobs?salary=200000')
+            axios.get('/api/search/jobs?salary_min=0&salary_max=5000000')
              .then(response=>{ 
                 this.jobs = response.data.data;
                 this.loading = true;
@@ -187,11 +213,18 @@ export default {
         },
         // search result
         search_result(){
+            // Salary Range
+            var salary = document.getElementById("salary");
+            this.number = salary.value.split("-");
+            this.filter.salary_min = this.number[0];
+            this.filter.salary_max = this.number[1];
+            // Salary Range End
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/jobs?title='+this.filter.title+
             '&location='+this.filter.location+
-            '&salary='+this.filter.salary+
+            '&salary_min='+this.filter.salary_min+
+            '&salary_max='+this.filter.salary_max+
             '&profession='+this.filter.profession+
             '&experience='+this.filter.experience+
             '&nature='+this.filter.nature+
@@ -221,7 +254,8 @@ export default {
             this.isLoading = true; //Loading true
             axios.get('/api/search/jobs?title='+this.filter.title+
             '&location='+this.filter.location+
-            '&salary='+this.filter.salary+
+            '&salary_min='+this.filter.salary_min+
+            '&salary_max='+this.filter.salary_max+
             '&experience='+this.filter.experience+
             '&profession='+this.filter.profession+
             '&nature='+this.filter.nature+
@@ -259,12 +293,12 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
+        // var slider = document.getElementById("myRange");
+        // var output = document.getElementById("demo");
+        // output.innerHTML = slider.value;
+        // slider.oninput = function() {
+        // output.innerHTML = this.value;
+        // }
     }
 }
 </script>

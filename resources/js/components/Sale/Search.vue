@@ -42,10 +42,10 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords</p>
-                                            <small v-if="filter.name" href="#" class="badge badge-secondary">Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" href="#" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                            <small v-if="filter.price" href="#" class="badge badge-secondary">Price: {{filter.price}}</small>
-                                            <small v-if="filter.type" href="#" class="badge badge-secondary">Type: {{filter.type}}</small>
+                                            <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                            <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
+                                            <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
                                         </div>
                                     </div>
                                 </form>

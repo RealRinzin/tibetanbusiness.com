@@ -257,7 +257,8 @@ class JobBasicInfoController extends Controller
         ->where('profession', 'like', "$request->profession%")
         ->where('nature', 'like', "$request->nature%")
         ->where('experience', 'like', "$request->experience%")
-        ->where('salary', '<=', "$request->salary")
+            // ->where('salary', '<=', "$request->salary")
+        ->whereBetween('salary', [$request->salary_min, $request->salary_max])
         ->where('deadline','>=',date('Y-m-d'))
         ->where('status', '=', '1')
         ->orderBy('created_at', 'desc')->paginate('3');

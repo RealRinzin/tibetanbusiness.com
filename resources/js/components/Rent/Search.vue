@@ -36,7 +36,7 @@
                                         </div>
                                         <!-- Range Price -->
                                         <div class="col-md-12 col-sm-12 py-2" id="range">
-                                            <small class="text-muted">Price:₹ {{filter.min}} </small>
+                                            <small class="text-muted">Price:₹{{filter.min}} </small>
                                             <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
                                             <div id="slider-range"></div>
                                         </div>
@@ -46,12 +46,11 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.name" class="badge badge-secondary"> Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                            <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                            <small v-if="filter.accomodation_size" class="badge badge-secondary">Accomodation Size:{{filter.accomodation_size}}</small>
-                                            <small v-if="filter.fare_min" class="badge badge-secondary">Min: {{filter.fare_min}}</small>
-                                            <small v-if="filter.fare_max" class="badge badge-secondary">Max : {{filter.fare_max}}</small>
+                                            <small v-if="filter.name" class="badge badge-secondary mb-1"> Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                            <small v-if="filter.rate" class="badge badge-secondary mb-1">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
+                                            <small v-if="filter.accomodation_size" class="badge badge-secondary mb-1">Accomodation Size:{{filter.accomodation_size}}</small>
+                                            <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
                                         </div>
                                     </div>
                                 </form>
@@ -63,12 +62,11 @@
                             </div>
                             <div class="py-2">
                                 <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                <small v-if="filter.name" class="badge badge-secondary"> Name: {{filter.name}}</small>
-                                <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                <small v-if="filter.accomodation_size" class="badge badge-secondary">Accomodation Size:{{filter.accomodation_size}}</small>
-                                <small v-if="filter.fare_min" class="badge badge-secondary">Min: {{filter.fare_min}}</small>
-                                <small v-if="filter.fare_max" class="badge badge-secondary">Max : {{filter.fare_max}}</small>
+                                <small v-if="filter.name" class="badge badge-secondary mb-1"> Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                <small v-if="filter.rate" class="badge badge-secondary mb-1">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
+                                <small v-if="filter.accomodation_size" class="badge badge-secondary mb-1">Accomodation Size:{{filter.accomodation_size}}</small>
+                                <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
