@@ -34,21 +34,15 @@
                                                         @rating-selected ="setRating"
                                             ></star-rating>
                                         </div>
-                                        <!-- <div class="col-md-6 col-sm-12 py-2">
-                                            <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
-                                            <input type="range" v-model="filter.fare" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
-                                        </div> -->
+                                        <!-- Range Price -->
                                         <div class="col-md-12 col-sm-12 py-2" id="range">
-                                        <small class="text-muted">Price:₹ {{filter.min}} </small>
-                                        <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
-                                        <div id="slider-range"></div>
-                                            <!-- <small class="small text-muted">Price:₹ <span class="text-muted" id="min"></span></small> -->
-                                            <!-- <input type="range" v-model="filter.fare_min" style="width:100%" min="100" max="50000" value="3000" id="fare" placeholder="Size"> -->
+                                            <small class="text-muted">Price:₹ {{filter.min}} </small>
+                                            <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
+                                            <div id="slider-range"></div>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
                                             <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
@@ -66,6 +60,15 @@
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}}
+                            </div>
+                            <div class="py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                <small v-if="filter.name" class="badge badge-secondary"> Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
+                                <small v-if="filter.accomodation_size" class="badge badge-secondary">Accomodation Size:{{filter.accomodation_size}}</small>
+                                <small v-if="filter.fare_min" class="badge badge-secondary">Min: {{filter.fare_min}}</small>
+                                <small v-if="filter.fare_max" class="badge badge-secondary">Max : {{filter.fare_max}}</small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">

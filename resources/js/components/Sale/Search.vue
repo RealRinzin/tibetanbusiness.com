@@ -29,13 +29,15 @@
                                         </div>
                                     </div>
                                     <div class="row py-2">
-                                        <div class="col-md-12 col-sm-12 py-2">
-                                            <small class="small text-muted">Price:₹ <span class="text-muted" id="demo"></span></small>
-                                            <input type="range" v-model="filter.price" style="width:100%" min="500" max="50000" value="3000" id="myRange" placeholder="Size">
+                                        <!-- Range Price -->
+                                        <div class="col-md-12 col-sm-12 py-2" id="range">
+                                            <small class="text-muted">Price:₹ {{filter.min}} </small>
+                                            <input type="text" id="price" class="small text-muted my-2" readonly  style="border:0;">
+                                            <div id="slider-range"></div>
                                         </div>
                                         <div class="col-md-12 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click.prevent="reset()"><small>Reset</small></button>
+                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                         </div>
                                         <div class="col-md-12 py-2">
@@ -122,7 +124,8 @@ export default {
                 name:'',
                 location:'',
                 type:'',
-                price:'200000'
+                price_min:0,
+                price_max:10000000,
             },
             // loading
             isLoading : false,//Lazy loading
@@ -135,11 +138,19 @@ export default {
      *  Methods
      *  */ 
     methods:{
-
         // loading
         load_result(){
+            // Reset
+            this.filter={
+                name:'',
+                location:'',
+                type:'',
+                // fare:50000,
+                price_min:'',
+                price_max:'',
+            }
             // axios.get('/api/search/sales')
-            axios.get('/api/search/sales?price=50000')
+            axios.get('/api/search/sales?price_min=0&price_max=50000')
              .then(response=>{ 
                 this.sales = response.data.data;
                 this.loading = true;
@@ -147,16 +158,37 @@ export default {
                 if (response.data.current_page <= response.data.last_page) {
                     this.load_more_button = true;
                 }
-            })
+            });
+            // Slider Range
+            $( function() {
+                $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 100000,
+                values: [ 0, 300000],
+                slide: function( event, ui ) {
+                    $( "#price" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                }
+                });
+                $( "#price" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+            } );
         },
         // search result
         search_result(){
+            // Range
+            var price = document.getElementById("price");
+            this.price = price.value.split("-");
+            this.filter.price_min = this.price[0];
+            this.filter.price_max = this.price[1];
+            // Range
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/sales?name='+this.filter.name+
             '&location='+this.filter.location+
             '&type='+this.filter.type+
-            '&price='+this.filter.price+
+            '&price_min='+this.filter.price_min+
+            '&price_max='+this.filter.price_max+
             '&page=1')
             .then((response)=>{ 
                 this.sales = response.data.data;
@@ -178,13 +210,13 @@ export default {
         // load more button
         
         load_more(nextPage){
-                // this.loading = false;
             this.isLoading = true; //Loading true
-            axios.get('/api/search/sales?name='+this.filter.name+'&location='+this.filter.location+
+            axios.get('/api/search/sales?name='+this.filter.name+
+            '&location='+this.filter.location+
             '&type='+this.filter.type+
-            '&price='+this.filter.price+
+            '&price_min='+this.filter.price_min+
+            '&price_max='+this.filter.price_max+
             '&page='+this.nextPage)
-            // axios.get('/api/search/sales?page='+)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
@@ -208,14 +240,7 @@ export default {
         },
         // Reset the search form
         reset(){
-
-            filter:{
-                name=''; 
-                location='';
-                type='';
-                // fare:50000,
-                price=45000;
-            }
+            this.load_result();
         }
     },
     // Components
@@ -223,13 +248,6 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
     }
 }
 </script>

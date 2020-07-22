@@ -22,6 +22,16 @@
                                     </div>
                                     <div class="row py-2">
                                         <div class="col-md-12 col-sm-12 pt-1">
+                                            <div class="row">
+                                                <div class="col-12"> 
+                                                    <label for="from" class="small text-muted">From</label>
+                                                    <input type="date" v-model="filter.from" class="form-control" id="from" name="from">
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="to" class="text-muted small">to</label>
+                                                    <input type="date" v-model="filter.to"  class="form-control" id="to" name="to">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-2">
                                             <small class="small text-muted">Salary:₹ <span class="text-muted" id="demo"></span></small>
@@ -34,11 +44,12 @@
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <a href="#" class="badge badge-secondary">{{filter.name}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.location}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.entry_fee}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.category}}</a>
-                                            <a href="#" class="badge badge-secondary">{{filter.start_date}}</a>
+                                            <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
+                                            <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                            <small v-if="filter.entry_fee" class="badge badge-secondary">Entry Fee: {{filter.entry_fee}}</small>
+                                            <small v-if="filter.category" class="badge badge-secondary">Category: {{filter.category}}</small>
+                                            <small v-if="filter.from" class="badge badge-secondary">From: {{filter.from}}</small>
+                                            <small v-if="filter.to" class="badge badge-secondary">To: {{filter.to}}</small>
                                         </div>
                                     </div>
                                 </form>
@@ -120,7 +131,8 @@ export default {
                 location:'',
                 category:'',
                 entry_fee:'',
-                start_date:'',
+                from:'',
+                to:'',
             },
             // loading
             isLoading : false,//Lazy loading
@@ -139,13 +151,45 @@ export default {
         },
         // loading
         load_result(){
+            // $( function() {
+            //     var dateFormat = "mm/dd/yy",
+            //     from = $( "#from" )
+            //         .datepicker({
+            //         defaultDate: "+1w",
+            //         changeMonth: true,
+            //         //   numberOfMonths: 3
+            //         })
+            //         .on( "change", function() {
+            //         to.datepicker( "option","dateFormat","yy-mm-dd", "minDate", getDate( this ) );
+            //         }),
+            //     to = $( "#to" ).datepicker({
+            //         defaultDate: "+1w",
+            //         changeMonth: true,
+            //         // numberOfMonths: 3
+            //     })
+            //     .on( "change", function() {
+            //         from.datepicker( "option","dateFormat","yy-mm-dd", "maxDate", getDate( this ) );
+            //     });
+            
+            //     function getDate( element ) {
+            //     var date;
+            //     try {
+            //         date = $.datepicker.parseDate( dateFormat, element.value );
+            //     } catch( error ) {
+            //         date = null;
+            //     }
+            
+            //     return date;
+            //     }
+            // } );
             // filter paramater
             this.filter = {
                 name:'',
                 location:'',
                 category:'',
                 entry_fee:'',
-                start_date:'',
+                from:'',
+                to:'',
             },
             // Get the result
             axios.get('/api/search/events')
@@ -160,6 +204,7 @@ export default {
         },
         // search result
         search_result(){
+            console.log(this.filter);
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/events?name='+this.filter.name+
@@ -226,12 +271,16 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+        // today date
+        // var today = new Date();
+        // console.log(today.format("YYYY-MM-DD"));
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
         output.innerHTML = slider.value;
         slider.oninput = function() {
         output.innerHTML = this.value;
         }
+    // JQuery UI date
     }
 }
 </script>

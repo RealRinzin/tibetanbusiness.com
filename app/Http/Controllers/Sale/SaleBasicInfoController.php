@@ -221,8 +221,8 @@ class SaleBasicInfoController extends Controller
         $sales =  SaleBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('type', 'like',"$request->type%")
-        ->where('price', '<=', "$request->price")
-        // ->where('rate', 'like', "$request->rate%")
+        // ->where('price', '<=', "$request->price")
+        ->whereBetween('price', [$request->price_min, $request->price_max])
         ->where('status', '=', '1')
             ->orderBy('created_at', 'desc')->paginate('3');
         return $sales->toArray($sales);

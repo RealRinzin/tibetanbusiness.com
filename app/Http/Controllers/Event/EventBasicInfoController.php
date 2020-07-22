@@ -235,6 +235,7 @@ class EventBasicInfoController extends Controller
         ->where('location', 'like', "$request->location%")
         ->where('category','like',"$request->category%")
         ->where('start_date', '>=', date('Y-m-d'))
+        // ->whereBetween('start_date', [$request->to,date('Y-m-d')])
         // ->where('entry_fee','<=',"$request->entry_fee")
         ->where('status', '=', '1')
             ->orderBy('created_at', 'desc')->paginate('3');
