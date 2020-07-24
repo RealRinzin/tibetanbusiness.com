@@ -5,11 +5,11 @@
                 <h6 class="text-dark">Menu Photo ({{total_photos}})</h6>
             </div>
             <!-- Single photos -->
-            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-for="(menu_photo,index) in photos" v-if="index < 7">
+            <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(menu_photo,index) in photos" v-if="index < 7">
                 <div @click="photo_modal(index)" class="photo" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${menu_photo.path})`}'></div>
             </div>
             <!-- More Photos -->
-            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-if="total_photos >7">
+            <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">
                 <div @click="more_photo_modal()" class="photo text-center p-3">
                     <i class="far fa-images fa-2x text-muted py-2"></i>
                     <p> {{total_photos - 7}} Photos More</p>

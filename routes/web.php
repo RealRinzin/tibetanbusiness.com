@@ -32,35 +32,35 @@ Route::group(['middleware' => ['auth']], function () {
         // RESTAURANT
         Route::get('restaurant', function () {
             // Matches The "/admin/users" URL
-            return view('dashboard.Restaurant.index');
+            return view('dashboard.restaurant.index');
         })->name('dashboard.restaurant');
         Route::get('restaurant/edit/id={id}','Restaurant\RestaurantBasicInfoController@restaurant_edit');
 
         // RENT
         Route::get('rent', function(){
-            return view('dashboard.Rent.index');
+            return view('dashboard.rent.index');
         })->name('dashboard.rent');
         Route::get('rent/edit/id={id}', 'Rent\RentBasicInfoController@rent_edit');
 
         // JOB
         Route::get('job',function(){
-            return view('dashboard.Job.index');
+            return view('dashboard.job.index');
         })->name('dashboard.job');
         Route::get('job/edit/id={id}', 'Job\JobBasicInfoController@job_edit');
         // EVENT
         Route::get('event', function () {
-            return view('dashboard.Event.index');
+            return view('dashboard.event.index');
         })->name('dashboard.event');
         Route::get('event/edit/id={id}', 'Event\EventBasicInfoController@event_edit');
 
         // Sale
         Route::get('sale', function () {
-            return view('dashboard.Sale.index');
+            return view('dashboard.sale.index');
         })->name('dashboard.sale');
         Route::get('sale/edit/id={id}', 'Sale\SaleBasicInfoController@sale_edit');
         // Service
         Route::get('service', function () {
-            return view('dashboard.Service.index');
+            return view('dashboard.service.index');
         })->name('dashboard.service');
         Route::get('service/edit/id={id}', 'Service\ServiceBasicInfoController@service_edit');
 

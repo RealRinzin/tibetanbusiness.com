@@ -49,7 +49,11 @@
                         <div class="media-body">
                             <h6 class="mt-0">{{comments.name}}
                                 <small>
-                                <span  v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
+                                    <span v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
+                                    <span v-if="comments.user_id === user_id" class="p-2">
+                                        <span class="btn btn-xs btn-secondary" @click="edit(comments.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                        <span class="btn btn-xs btn-danger" @click="destory(comments.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    </span>
                                 </small>
                                 </h6>
                             <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
@@ -59,6 +63,36 @@
                     </div>
                 <div class="col-md-12 text-center" v-if="load_more_button">
                     <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
+                </div>
+            </div>
+        </div>
+<!-- Edit Modal -->
+<!-- Modal -->
+        <div class="modal fade" id="restaurant_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="review_update()"  data-vv-scope="restaurant_update_review">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Review<span class="text-danger p-1">*</span></label>
+                            <input type="text" v-validate="'required'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="name">
+                            <div class="valid-feedback"></div>
+                            <div v-if="errors.has('restaurant_update_review.review')" class="invalid-feedback">
+                                <span v-for="error in errors.collect('restaurant_update_review.review')">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -75,6 +109,9 @@ export default {
             // Restaurant id
             rest_id:this.restaurant,
             // Start rating
+            // User ID
+            user_id:localStorage.getItem('user_id'),
+            update_review:{},
             rating: 0,
             // user: localStorage.getItem('user'),
             // Post comment
@@ -248,7 +285,51 @@ export default {
             }else{
                 alert('Please give your rating ***')
             }
-        }
+        },
+        //  Edit
+         edit(id,index){
+            $("#restaurant_review_update_modal").modal("show");
+             this.update_review = this.comments[index];
+         },
+        //  update
+        review_update(){
+            // console.log(this.update_review);
+            this.$validator.validateAll('restaurant_update_review').then((result) => {                  
+                if(result){
+                    axios.patch('/api/restaurant_comments/'+this.update_review.id,this.update_review,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                        // closing modal
+                            $("#restaurant_review_update_modal").modal("hide");  
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Updated',
+                            });
+                    })
+                }
+            })
+        },
+        /**
+        Delete Review
+         */  
+         destory(id,index){
+            let confirmBox = confirm('Are you sure want to Delete!!!');
+            if(confirmBox == true){
+                axios.delete('/api/restaurant_comments/'+id,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    //  Flash Message  
+                    toast.fire({
+                        icon:'success',
+                        title:'Successfully Deleted',
+                    });
+                    this.comment();
+                    this.$delete(this.comments,index);
+                })
+            }
+         },
     },
     mounted(){
         // Comments load

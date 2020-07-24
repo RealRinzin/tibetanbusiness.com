@@ -239,7 +239,11 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name">
+                                                <select v-validate="'required'" v-model="service.location" name="location" class="form-control" id="location">
+                                                    <option :value="service.location">{{service.location}}</option>
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
+                                                <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.location')">{{ error }}</span>
@@ -358,6 +362,7 @@ export default {
             id:this.service.id,
             // service:{},
             operation:{},
+            locations:{},
         }
     },
     methods:{
@@ -366,8 +371,6 @@ export default {
             axios.get('/api/service_working_day/'+this.id+'/working_day')
             .then(response=>{
                 this.operation = response.data[0];
-                console.log(response);
-                
             })
         },
         edit(){
@@ -416,6 +419,11 @@ export default {
     },
     mounted(){
         this.working_day();
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
     }
 }
 </script>

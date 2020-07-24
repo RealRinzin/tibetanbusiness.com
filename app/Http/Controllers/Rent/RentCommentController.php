@@ -82,6 +82,8 @@ class RentCommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $comment = RentComment::find($id);
+        $comment->update($request->all());
     }
 
     /**
@@ -92,7 +94,8 @@ class RentCommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = RentComment::find($id);
+        $comment->delete();
     }
 
     /**

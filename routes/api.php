@@ -108,6 +108,10 @@ use Illuminate\Http\Request;
         Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
 
+
+
+    // Other API
+        Route::apiResource('location', 'Location\LocationController', ['except' => ['index']]);
     });
 
     
@@ -199,3 +203,6 @@ use Illuminate\Http\Request;
     Route::get('search/services/', 'Service\ServiceBasicInfoController@search');
     Route::get('search/jobs/', 'Job\JobBasicInfoController@search');
     Route::get('search/events/', 'Event\EventBasicInfoController@search');
+
+// Other API
+    Route::get('location', 'Location\LocationController@index');

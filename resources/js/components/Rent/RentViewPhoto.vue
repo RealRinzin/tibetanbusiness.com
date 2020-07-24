@@ -4,11 +4,11 @@
             <div class="col-md-12">
                 <h6 class="text-dark">View Photos({{total_photos}})</h6>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-for="(view_photo,index) in view_photos" v-if="index < 7">
+            <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(view_photo,index) in view_photos" v-if="index < 7">
                 <div class="photo" @click="view_photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Rent/View-Photos/${view_photo.path})`}'></div>
             </div>
             <!-- More Photos -->
-            <div class="col-md-3 col-sm-4 col-xs-6 py-2" v-if="total_photos >7">
+            <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">
                 <div @click="more_view_photo_modal()" class="photo text-center p-3">
                     <i class="far fa-images fa-2x text-muted py-2"></i>
                     <p> {{total_photos - 7}} Photos More</p>

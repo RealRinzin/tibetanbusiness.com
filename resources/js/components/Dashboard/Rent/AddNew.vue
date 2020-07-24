@@ -20,7 +20,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="name">Name<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="rent.name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="rent.name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.name')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.name')">{{ error }}</span>
@@ -30,7 +30,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="fare">Price<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="Price">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.fare')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.fare')">{{ error }}</span>
@@ -40,7 +40,9 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location">
+                                                <select v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location">
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.location')">{{ error }}</span>
@@ -60,7 +62,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="accomodation_size">Accomodation Size<span class="text-danger p-1">*</span></label>
-                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="How many people can stay">
+                                                <input type="number" min="1" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="How many people can stay">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.accomodation_size')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.accomodation_size')">{{ error }}</span>
@@ -90,7 +92,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="rent.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'max:50|url'" v-model="rent.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_add_form.instagram')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_add_form.instagram')">{{ error }}</span>
@@ -163,6 +165,8 @@ export default {
             facilities:{},
             // Banner Preview
             bannerPreview:'',
+            // Locations
+            locations:{},
         }
     },
     /**
@@ -236,6 +240,11 @@ export default {
         }
     },
     mounted(){
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
     }
 }
 </script>

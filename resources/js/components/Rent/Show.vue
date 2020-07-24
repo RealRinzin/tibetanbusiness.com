@@ -42,30 +42,30 @@
                                                     </div>
                                                 <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">Facilities</h6>
-                                                    <p class="text-success" v-if="rent.facility[0].geyser"> <i class="fas fa-subway mr-1"></i> Geyser</p>
+                                                    <p class="text-success" v-if="rent.facility[0].geyser == 1"> <i class="fas fa-subway mr-1"></i> Geyser</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-subway mr-1"></i>Geyser</p>
-                                                    <p class="text-success" v-if="rent.facility[0].wifi"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
+                                                    <p class="text-success" v-if="rent.facility[0].wifi == 1"> <i class="fas fa-wifi mr-1"></i> Wifi</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-wifi mr-1"></i> Wifi</p>
-                                                    <p class="text-success" v-if="rent.facility[0].ac"> <i class="fas fa-fan mr-1"></i>AC</p>
+                                                    <p class="text-success" v-if="rent.facility[0].ac == 1"> <i class="fas fa-fan mr-1"></i>AC</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>AC</p>
-                                                    <p class="text-success" v-if="rent.facility[0].washing_machine"><i class="fas fa-power-off mr-1"></i>Washing Machine</p>
+                                                    <p class="text-success" v-if="rent.facility[0].washing_machine == 1"><i class="fas fa-power-off mr-1"></i>Washing Machine</p>
                                                     <p class="text-danger" v-else><i class="fas fa-power-off mr-1"></i>Washing Machine</p>
-                                                    <p class="text-success" v-if="rent.facility[0].gym"> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
+                                                    <p class="text-success" v-if="rent.facility[0].gym == 1"> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-dumbbell mr-1"></i>Gym</p>
-                                                    <p class="text-success" v-if="rent.facility[0].pet_allowed"> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
+                                                    <p class="text-success" v-if="rent.facility[0].pet_allowed == 1"> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">More</h6>
-                                                    <p class="text-success" v-if="rent.facility[0].single_room "><i class="fas fa-bed mr-1"></i>Single Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].single_room  == 1"><i class="fas fa-bed mr-1"></i>Single Room</p>
                                                     <p class="text-danger" v-else><i class="fas fa-bed mr-1"></i>Single Room</p>
-                                                    <p class="text-success" v-if="rent.facility[0].double_room "> <i class="fas fa-bed mr-1"></i>Double Room</p>
+                                                    <p class="text-success" v-if="rent.facility[0].double_room  == 1"> <i class="fas fa-bed mr-1"></i>Double Room</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-bed mr-1"></i>Double Room</p>
-                                                    <p class="text-success" v-if="rent.facility[0].fridge "> <i class="fas fa-box mr-1"></i> Fridge</p>
+                                                    <p class="text-success" v-if="rent.facility[0].fridge  == 1"> <i class="fas fa-box mr-1"></i> Fridge</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-box mr-1"></i>Fridge</p>
-                                                    <p class="text-success" v-if="rent.facility[0].garden"><i class="fas fa-tree mr-1"></i>Garden</p>
+                                                    <p class="text-success" v-if="rent.facility[0].garden == 1"><i class="fas fa-tree mr-1"></i>Garden</p>
                                                     <p class="text-danger" v-else><i class="fas fa-tree mr-1"></i> Garden</p>
-                                                    <p class="text-success" v-if="rent.facility[0].parking_space"> <i class="fas fa-car mr-1"></i>Parking Space</p>
+                                                    <p class="text-success" v-if="rent.facility[0].parking_space == 1"> <i class="fas fa-car mr-1"></i>Parking Space</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-car mr-1"></i>Parking Space</p>
                                                 </div>
                                             </div>

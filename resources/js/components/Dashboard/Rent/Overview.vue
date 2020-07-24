@@ -256,7 +256,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="fare">Price<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="Price">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.fare')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.fare')">{{ error }}</span>
@@ -266,7 +266,11 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location">
+                                                <select v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location">
+                                                    <option :value="rent.location">{{rent.location}}</option>
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
+                                                <!-- <input type="text" v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.location')">{{ error }}</span>
@@ -306,7 +310,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="rent.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'max:50|url'" v-model="rent.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.instagram')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.instagram')">{{ error }}</span>
@@ -365,9 +369,7 @@ export default {
     props:['rent','facilities'],
     data(){
         return {
-            // rent:{},
-            // data:this.rest_id,
-
+            locations:{},
         }
     },
     methods:{
@@ -412,6 +414,11 @@ export default {
         }
     },
     mounted(){
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
     }
 }
 </script>

@@ -36,7 +36,14 @@
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body">
-                            <h6 class="mt-0">{{question.name}} <small class="text-muted"><timeago :datetime="question.created_at" /></small></h6>
+                            <h6 class="mt-0">{{question.name}} 
+                                <small class="text-muted">
+                                <timeago :datetime="question.created_at" />
+                                    <span v-if="question.user_id === user_id" class="p-2">
+                                        <span class="btn btn-xs btn-danger" @click="destory(question.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    </span>
+                                </small>
+                            </h6>
                             <p class="text-muted">{{question.question}}</p>
                             <replies :questions="question"></replies>
                             </div>
@@ -56,7 +63,9 @@ export default {
     data(){
         return{
             id:'',
-            // questions:{},
+            // User Id
+            user_id:localStorage.getItem('user_id'),
+            update_question:{},
             /**
              * Review 
              * Comments
@@ -156,6 +165,25 @@ export default {
                 }
             })
         },
+        /**
+        Delete Review
+         */  
+         destory(id,index){
+            let confirmBox = confirm('Are you sure want to Delete!!!');
+            if(confirmBox == true){
+                axios.delete('/api/job_question/'+id,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    //  Flash Message  
+                    toast.fire({
+                        icon:'success',
+                        title:'Successfully Deleted',
+                    });
+                    this.load_questions();
+                    this.$delete(this.questions,index);
+                })
+            }
+         },
     },
     // components
     components:{Replies},

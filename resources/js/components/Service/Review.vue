@@ -71,7 +71,7 @@
         </div>
 <!-- Edit Modal -->
 <!-- Modal -->
-        <div class="modal fade" id="event_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="service_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -248,19 +248,20 @@ export default {
          },
         //  Edit
          edit(id,index){
-            $("#event_review_update_modal").modal("show");
+            $("#service_review_update_modal").modal("show");
              this.update_review = this.reviews[index];
          },
         //  update
         review_update(){
-            this.$validator.validateAll('event_update_review').then((result) => {                  
+            // console.log(this.update_review);
+            this.$validator.validateAll('service_update_review').then((result) => {                  
                 if(result){
-                    axios.post('/api/event_review',this.update_review,{
+                    axios.patch('/api/service_review/'+this.update_review.id,this.update_review,{
                     headers : { Authorization : localStorage.getItem("token")}
                     })
                     .then(response=>{
                         // closing modal
-                            $("#event_review_update_modal").modal("hide");  
+                            $("#service_review_update_modal").modal("hide");  
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',

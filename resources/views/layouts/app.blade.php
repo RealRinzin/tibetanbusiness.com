@@ -118,7 +118,7 @@
                     </div>
                     <div class="row py-2">
                         <div class="divider"></div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6">
                             <ul>
                                 <li>Miao</li>
                                 <li>Tezu</li>
@@ -128,7 +128,7 @@
                                 <li>Mungod</li>
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6 my-1">
                             <ul>
                                 <li>Ravangala</li>
                                 <li>Bandara</li>
@@ -138,7 +138,7 @@
                                 <li>Ladak</li>
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6 my-1">
                             <ul>
                                 <li>Tuting</li>
                                 <li>Bir</li>
@@ -148,7 +148,7 @@
                                 <li>Ponta</li>
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6 my-1">
                             <ul>
                                 <li>Puruwala</li>
                                 <li>Shimla</li>
@@ -158,7 +158,7 @@
                                 <li>Clement Town</li>
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6 my-1">
                             <ul>
                                 <li>Gangtok</li>
                                 <li>Kalimpong</li>
@@ -168,7 +168,7 @@
                                 <li>Shilong</li>
                             </ul>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-4">
+                        <div class="col-md-2 col-sm-4 col-6 my-1">
                             <ul>
                                 <li>Dekyiling</li>
                             </ul>

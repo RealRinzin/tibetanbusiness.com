@@ -81,6 +81,10 @@ class ServiceReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $service = ServiceReview::find($id);
+        $service->update($request->all());
+
     }
 
     /**
@@ -91,7 +95,8 @@ class ServiceReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $review = ServiceReview::find($id);
+        $review->delete();
     }
     public function review(ServiceBasicInfo $serviceBasicInfo)
     {

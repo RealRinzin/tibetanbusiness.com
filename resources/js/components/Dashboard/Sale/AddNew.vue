@@ -47,7 +47,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="entry_fee">Total Item<span class="text-danger p-1">*</span></label>
-                                            <input type="number" v-validate="'required|numeric|max:6'" v-model="sale.total_item" name="total_item" class="form-control" id="total_item" aria-describedby="emailHelp" placeholder="Total Item">
+                                            <input type="number" min="1" v-validate="'required|numeric|max:6'" v-model="sale.total_item" name="total_item" class="form-control" id="total_item" aria-describedby="emailHelp" placeholder="Total Item">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_add_form.total_item')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_add_form.total_item')">{{ error }}</span>
@@ -57,7 +57,9 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required'" v-model="sale.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location">
+                                                <select v-validate="'required'" v-model="sale.location" name="location" class="form-control" id="location">
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_add_form.location')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_add_form.location')">{{ error }}</span>
@@ -127,6 +129,7 @@ export default {
             sale:{},
             bannerPreview:'',
             // today : 
+            locations:{},
         }
     },
     methods:{
@@ -170,6 +173,11 @@ export default {
         }
     },
     mounted(){
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
     }
 }
 </script>

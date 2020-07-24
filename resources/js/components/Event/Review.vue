@@ -111,6 +111,7 @@ export default {
             reviews:{},
             rating:0,
             update_review:{},
+            // User Id
             user_id:localStorage.getItem('user_id'),
             /**
              * Check Login status
@@ -255,7 +256,7 @@ export default {
         review_update(){
             this.$validator.validateAll('event_update_review').then((result) => {                  
                 if(result){
-                    axios.post('/api/event_review',this.update_review,{
+                    axios.patch('/api/event_review/'+this.update_review.id,this.update_review,{
                     headers : { Authorization : localStorage.getItem("token")}
                     })
                     .then(response=>{

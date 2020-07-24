@@ -88,6 +88,8 @@ class JobQuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $question = JobQuestion::find($id);
+        $question->update($request->all());
     }
     /**
      * Remove the specified resource from storage.
@@ -98,6 +100,11 @@ class JobQuestionController extends Controller
     public function destroy($id)
     {
         //
+        $question = JobQuestion::find($id);
+        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
+        // unlink($unlink);
+        $question->delete();
+        // $restaurant->restaurant_comments()->delete();
     }
 
     // All comments

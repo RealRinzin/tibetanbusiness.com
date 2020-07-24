@@ -39,7 +39,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="type">Type<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.type" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.type" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="Type">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.type')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.type')">{{ error }}</span>
@@ -49,7 +49,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name">
+                                                <select v-validate="'required'" v-model="service.location" name="location" class="form-control" id="location">
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
+                                                <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.location')">{{ error }}</span>
@@ -79,7 +82,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Mobile no<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="service.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="service.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.mobile_no')">{{ error }}</span>
@@ -89,7 +92,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Email<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="service.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="service.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.email')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.email')">{{ error }}</span>
@@ -99,7 +102,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Address<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.address')">{{ error }}</span>
@@ -109,7 +112,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="service.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'max:50|url'" v-model="service.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.instagram')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.instagram')">{{ error }}</span>
@@ -169,6 +172,7 @@ export default {
             service:{},
             id:'',
             bannerPreview:'',
+            locations:{},
         }
     },
     methods:{
@@ -228,6 +232,11 @@ export default {
         }
     },
     mounted(){
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
 
     }
 }

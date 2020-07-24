@@ -90,6 +90,8 @@ class RestaurantCommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $comment = RestaurantComment::find($id);
+        $comment->update($request->all());
     }
 
     /**
@@ -101,5 +103,7 @@ class RestaurantCommentController extends Controller
     public function destroy($id)
     {
         //
+        $comment = RestaurantComment::find($id);
+        $comment->delete();
     }
 }

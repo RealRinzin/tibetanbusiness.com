@@ -29,7 +29,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="title">Title<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.title" name="title" class="form-control" id="title" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.title" name="title" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Job Title">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.title')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.title')">{{ error }}</span>
@@ -39,7 +39,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="organization">Organization<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.organization" name="organization" class="form-control" id="organization" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.organization" name="organization" class="form-control" id="organization" aria-describedby="emailHelp" placeholder="Organization">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.organization')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.organization')">{{ error }}</span>
@@ -49,7 +49,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="salary">Salary<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="Salary">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.salary')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.salary')">{{ error }}</span>
@@ -59,7 +59,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="profession">Profession<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.profession" name="profession" class="form-control" id="profession" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.profession" name="profession" class="form-control" id="profession" aria-describedby="emailHelp" placeholder="Profession">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.profession')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.profession')">{{ error }}</span>
@@ -69,7 +69,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="nature">Nature<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.nature" name="nature" class="form-control" id="nature" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.nature" name="nature" class="form-control" id="nature" aria-describedby="emailHelp" placeholder="Nature">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.nature')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.nature')">{{ error }}</span>
@@ -79,7 +79,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="experience">Experience<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.experience" name="experience" class="form-control" id="experience" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.experience" name="experience" class="form-control" id="experience" aria-describedby="emailHelp" placeholder="Experience">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.experience')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.experience')">{{ error }}</span>
@@ -89,7 +89,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Deadline<span class="text-danger p-1">*</span></label>
-                                                <input type="date" v-validate="'required|'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="date" v-validate="'required|'" v-model="job.deadline" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="Deadline">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.deadline')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.deadline')">{{ error }}</span>
@@ -99,7 +99,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name">
+                                                <select v-validate="'required'" v-model="job.location" name="location" class="form-control" id="location">
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
+                                                <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="job.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.location')">{{ error }}</span>
@@ -109,7 +112,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Mobile no<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.mobile_no')">{{ error }}</span>
@@ -119,7 +122,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Email<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="job.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="job.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.email')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.email')">{{ error }}</span>
@@ -129,7 +132,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Address<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.address')">{{ error }}</span>
@@ -139,7 +142,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="job.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="name">
+                                                <input type="text" v-validate="'max:50|url'" v-model="job.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_add_form.instagram')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_add_form.instagram')">{{ error }}</span>
@@ -199,6 +202,7 @@ export default {
             job:{},
             bannerPreview:'',
             // today : 
+            locations:{},
         }
     },
     methods:{
@@ -242,6 +246,11 @@ export default {
         }
     },
     mounted(){
+        // locations api
+        axios.get('/api/location')
+        .then(response=>{
+            this.locations = response.data;
+        })
     }
 }
 </script>
