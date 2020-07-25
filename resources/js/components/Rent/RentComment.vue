@@ -17,7 +17,7 @@
                                                 @rating-selected ="setRating"
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="review.comment" class="form-control" name="comment">
+                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="review.comment" class="form-control" name="comment">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
@@ -65,7 +65,7 @@
 <!-- Edit Modal -->
 <!-- Modal -->
         <div class="modal fade" id="rent_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Review</h5>

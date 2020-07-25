@@ -26,13 +26,13 @@
             </div>
         </div>
        <!-- Comment View -->
-        <div class="card p-3">
-            <div class="row">
+        <!-- <div class="card p-3"> -->
+            <div class="row p-3">
                 <h5 class="text-dark">Questions<span class="text-muted ml-2" style="font-size:14px">({{total_questions}})</span></h5>
                 <div v-if="questions_lazy_load">
                     <loading :active.sync="questions_lazy_load"></loading>
                 </div>
-                    <div class="col-md-12 p-3" v-for="(question,index) in questions">
+                    <div class="col-md-12 p-3 card" v-for="(question,index) in questions">
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body">
@@ -53,7 +53,7 @@
                     <button @click="load_more_questions()" class="btn btn-danger btn-sm">Load more</button>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
 </template>
 <script>

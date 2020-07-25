@@ -4,7 +4,7 @@
             <div class="text-left w-75">
                 <form @submit.prevent="reply()" data-vv-scope="job_valid_reply_form">
                     <div class="input-group input-group-sm">
-                        <input type="text" v-validate="'required|min:1|max:255|alpha_spaces'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
+                        <input type="text" v-validate="'required|min:1|max:255'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                         <span class="input-group-append">
                             <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write your Question">Reply</button>
                         </span>
@@ -16,12 +16,19 @@
                 </form>
             </div>
         </div>
-        <div class="media mt-3" v-for="reply in replies.data">
+        <div class="media mt-3" v-for="(reply,index) in replies.data">
             <a class="pr-3" href="#">
                 <img class="mr-2 img-circle" src="https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal" alt="Generic placeholder image" style="height:50px;width:50px">
             </a>
             <div class="media-body">
-                <h6 class="mt-0">{{reply.name}} <small class="text-muted"><timeago :datetime="reply.created_at" /></small></h6>
+                <h6 class="mt-0">{{reply.name}} 
+                    <small class="text-muted"><timeago :datetime="reply.created_at" />
+                        <span v-if="reply.user_id === user_id" class="p-2">
+                            <span class="btn btn-xs btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                            <span class="btn btn-xs btn-danger" @click="destory(reply.id,index)"><i class="fas fa-trash-alt"></i></span>
+                        </span>
+                    </small>
+                </h6>
                 <p class="text-muted">
                     {{reply.question}}
                 </p>
@@ -32,6 +39,36 @@
             <!-- {{questions}} -->
             <button @click="load_replies" class="btn btn-secondary btn-sm">Load Replies ({{questions.repliesCount}})</button>
         </div>
+<!-- Edit Modal -->
+<!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Reply</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="review_update()"  data-vv-scope="reply_update">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">Review<span class="text-danger p-1">*</span></label>
+                            <input type="text" v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply">
+                            <div class="valid-feedback"></div>
+                            <div v-if="errors.has('reply_update.reply')" class="invalid-feedback">
+                                <span v-for="error in errors.collect('reply_update.reply')">{{ error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     
 </template>
@@ -40,6 +77,9 @@ export default {
     props:['questions'],
     data(){
         return{
+            // User Id
+            user_id:localStorage.getItem('user_id'),
+            update_reply:{},
             question:{
                 job_basic_info_id:this.questions.job_basic_info_id,
                 job_question_id:this.questions.id,
@@ -81,8 +121,53 @@ export default {
                         this.load_replies();
                         toast.fire({
                             icon:'success',
-                            title:'Comment Posted',
+                            title:'Replied',
                         });
+                    })
+                }
+            })
+        },
+
+        /**
+        Delete Review
+         */  
+         destory(id,index){
+            let confirmBox = confirm('Are you sure want to Delete!!!');
+            if(confirmBox == true){
+                axios.delete('/api/job_question/'+id,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                }).then(response=>{
+                    //  Flash Message  
+                    toast.fire({
+                        icon:'success',
+                        title:'Successfully Deleted',
+                    });
+                    // this.load_replies();
+                    this.$delete(this.replies.data,index);
+                })
+            }
+         },
+        //  Edit
+         edit(id,index){
+            $("#modal").modal("show");
+             this.update_reply = this.replies.data[index];
+             console.log(this.update_reply);
+         },
+        //  update
+        review_update(){
+            this.$validator.validateAll('reply_update').then((result) => {                  
+                if(result){
+                    axios.patch('/api/job_question/'+this.update_reply.id,this.update_reply,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                        // closing modal
+                            $("#modal").modal("hide");  
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Reply Updated!!!',
+                            });
                     })
                 }
             })
