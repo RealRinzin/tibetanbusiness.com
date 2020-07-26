@@ -41,8 +41,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-2">
-                                            <small class="small text-muted">Salary:₹ <span class="text-muted" id="demo"></span></small>
-                                            <input type="range" v-model="filter.entry_fee" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size">
+                                            <small class="small text-muted">Entry Fee:₹ <span class="text-muted"></span></small>
+                                            <!-- <input type="range" v-model="filter.entry_fee" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size"> -->
+                                            <input type="text"  id="entry_fee" class="small text-muted my-2" readonly  style="border:0;">
+                                            <div id="slider-range"></div>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
@@ -136,7 +138,8 @@ export default {
                 name:'',
                 location:'',
                 category:'',
-                entry_fee:'',
+                fee_min:0,
+                fee_max:10000000,
                 from:'',
                 to:'2025-12-22'
             },
@@ -164,13 +167,32 @@ export default {
                 name:'',
                 location:'',
                 category:'',
-                entry_fee:'',
+                fee_min:0,
+                fee_max:1000000,
                 from:from,
-                to:'2022-10-20',
+                to:'2022-10-20'
             },
-    
+            // Slider Range
+            $( function() {
+                $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 100000,
+                values: [ 0, 300000],
+                slide: function( event, ui ) {
+                    $( "#entry_fee" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                }
+                });
+                $( "#entry_fee" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                    // console.log(this.number);
+            } );
             // Get the result
-            axios.get('/api/search/events?from='+this.filter.from+'&to='+this.filter.to)
+            axios.get('/api/search/events?from='
+            +this.filter.from+
+            '&to='+this.filter.to+
+            '&fee_min='+this.filter.fee_min+
+            '&fee_max='+this.filter.fee_max)
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
@@ -183,6 +205,12 @@ export default {
         // search result
         search_result(){
             // console.log(this.filter);
+            // Range
+            var fee = document.getElementById("entry_fee");
+            this.number = fee.value.split("-");
+            this.filter.fee_min = this.number[0];
+            this.filter.fee_max = this.number[1];
+            //  variables
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/events?name='+this.filter.name+
@@ -190,7 +218,9 @@ export default {
             '&category='+this.filter.category+
             '&from='+this.filter.from+
             '&to='+this.filter.to+
-            '&page=1')
+            '&fee_min='+this.filter.fee_min+
+            '&fee_max='+this.filter.fee_max
+            +'&page=1')
             .then((response)=>{ 
                 this.events = response.data.data;
                 this.loading = true;
@@ -261,6 +291,7 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+
     }
 }
 </script>

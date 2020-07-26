@@ -231,11 +231,13 @@ class EventBasicInfoController extends Controller
     // SEARCH Result
     public function search(Request $request)
     {
+        // return $request;
         $events = EventBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('category','like',"$request->category%")
-        ->whereBetween('start_date', [$request->from, $request->to])
-        // ->orWhereBetween('start_date', [date('Y-d-d'),'2022-01-10'])
+        ->whereBetween('start_date',[$request->from, $request->to])
+        // ->OrWhereBetween('entry_fee',[$request->fee_min, $request->fee_max])
+        // ->whereBetween('entry_fee', [$request->fee_min, $request->fee_max])
         // ->where('entry_fee','<=',"$request->entry_fee")
         ->where('status', '=', '1')
             ->orderBy('created_at', 'desc')->paginate('3');
