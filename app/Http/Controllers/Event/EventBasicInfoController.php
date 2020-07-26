@@ -236,7 +236,7 @@ class EventBasicInfoController extends Controller
         ->where('location', 'like', "$request->location%")
         ->where('category','like',"$request->category%")
         ->whereBetween('start_date',[$request->from, $request->to])
-        // ->OrWhereBetween('entry_fee',[$request->fee_min, $request->fee_max])
+        // ->whereBetween('entry_fee',[$request->fee_min, $request->fee_max])
         // ->whereBetween('entry_fee', [$request->fee_min, $request->fee_max])
         // ->where('entry_fee','<=',"$request->entry_fee")
         ->where('status', '=', '1')

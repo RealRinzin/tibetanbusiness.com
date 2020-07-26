@@ -54,7 +54,7 @@
                                             <p class="small text-muted pb-0 mb-1">Search keywords:</p>
                                             <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
                                             <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                            <small v-if="filter.entry_fee" class="badge badge-secondary mb-1">Entry Fee: {{filter.entry_fee}}</small>
+                                            <small v-if="filter.entry_fee" class="badge badge-secondary mb-1">Entry Fee: {{filter.fee_min}}</small>
                                             <small v-if="filter.category" class="badge badge-secondary mb-1">Category: {{filter.category}}</small>
                                             <!-- <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">From: {{filter.from}}- to {{filter.to}}</small> -->
                                         </div>
@@ -189,10 +189,7 @@ export default {
             } );
             // Get the result
             axios.get('/api/search/events?from='
-            +this.filter.from+
-            '&to='+this.filter.to+
-            '&fee_min='+this.filter.fee_min+
-            '&fee_max='+this.filter.fee_max)
+            +this.filter.from+'&to='+this.filter.to+'&fee_min='+this.filter.fee_min+'&fee_max='+this.filter.fee_max)
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
