@@ -19,7 +19,7 @@
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             Action
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="target">
                             <li class="dropdown-item"><a href="#">Action</a></li>
                             <li class="dropdown-item"><a href="#">Another action</a></li>
                             <li class="dropdown-item"><a href="#">Something else here</a></li>
@@ -29,16 +29,25 @@
                     </div>
                     <!-- btn-group -->
 
-                    <input type="text" class="form-control" onfocus="check()" onkeydown="return false">
-                    <div id="dropdown" style="display:none">
-                        <ul>
-                            <li>Events</li>
-                            <li>Sales</li>
-                            <li>Rents</li>
-                            <li>Jobs</li>
-                            <li>Services</li>
-                            <li>Restaurants</li>
+                    <input type="text" id="service_search" class="form-control" readonly="readonly" onfocusin="service_in()">
+                    <div id="dropdown" style="display:none;transition:1s">
+                        <ul id="sizelist">
+                            <li value="Events" class="element">
+                                <a href="#">Events</a>
+                            </li>
+                            <li value="Sales" class="element">Sales</li>
+                            <li value="Rents" class="element">Rents</li>
+                            <li value="Jobs" class="element">Jobs</li>
+                            <li value="Services" class="element">Services</li>
+                            <li value="Restaurants" class="element">Restaurants</li>
                         </ul>
+                        <!-- <ul id="results">
+                            <li class="device_result searchterm" data-url="apple-iphone-5s">
+                                <a href="#">Apple iPhone 5s</a>
+                            </li>
+                            <li class="device_result searchterm" data-url="apple-iphone-5c">
+                                <a href="#">Apple iPhone 5s</a>
+                            </li> -->
                     </div>
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-danger">
@@ -56,8 +65,7 @@
 </div>
 @endsection
 <script>
-    function check() {
+    function service_in() {
         $("#dropdown").css("display", "block");
-
     }
 </script>
