@@ -298,6 +298,10 @@ const app = new Vue({
     // Mounted
     mounted(){
         this.login_status();   
+
+        if(screen.width > 767){
+            $( "#search_collapse" ).addClass( "show" );
+        }
         
     }
 });

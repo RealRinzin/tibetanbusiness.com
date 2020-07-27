@@ -8,49 +8,51 @@
                         <div class="col-md-3" id="filter">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                        <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
+                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <div class="collapse" id="search_collapse">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <input type="text" v-model="filter.location" class="form-control" placeholder="Location">
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                                <!-- <small for="" class="text-muted">Size</small> -->
+                                                <input type="number" v-model="filter.accomodation_size" class="form-control" min="1" placeholder="Accomodation Size">
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                        <input type="text" v-model="filter.location" class="form-control" placeholder="Location">
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                            <!-- <small for="" class="text-muted">Size</small> -->
-                                            <input type="number" v-model="filter.accomodation_size" class="form-control" min="1" placeholder="Accomodation Size">
-                                        </div>
-                                    </div>
-                                    <div class="row py-2">
-                                        <div class="col-md-12 col-sm-12 pt-1">
-                                            <small class="text-warning">Rating</small>
-                                            <star-rating v-model="filter.rate"
-                                                        v-bind:increment="1"
-                                                        v-bind:max-rating="5"
-                                                        border-color="#33373a"
-                                                        inactive-color="#dcdcdc"
-                                                        active-color="#f9c132"
-                                                        v-bind:star-size="25"
-                                                        @rating-selected ="setRating"
-                                            ></star-rating>
-                                        </div>
-                                        <!-- Range Price -->
-                                        <div class="col-md-12 col-sm-12 py-2" id="range">
-                                            <small class="text-muted">Price:₹{{filter.min}} </small>
-                                            <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
-                                            <div id="slider-range"></div>
-                                        </div>
-                                        <div class="col-md-12 py-2 text-center">
-                                            <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                        </div>
-                                        <div class="col-md-12 py-2">
-                                            <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.name" class="badge badge-secondary mb-1"> Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                            <small v-if="filter.rate" class="badge badge-secondary mb-1">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                            <small v-if="filter.accomodation_size" class="badge badge-secondary mb-1">Accomodation Size:{{filter.accomodation_size}}</small>
-                                            <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
+                                        <div class="row py-2">
+                                            <div class="col-md-12 col-sm-12 pt-1">
+                                                <small class="text-warning">Rating</small>
+                                                <star-rating v-model="filter.rate"
+                                                            v-bind:increment="1"
+                                                            v-bind:max-rating="5"
+                                                            border-color="#33373a"
+                                                            inactive-color="#dcdcdc"
+                                                            active-color="#f9c132"
+                                                            v-bind:star-size="25"
+                                                            @rating-selected ="setRating"
+                                                ></star-rating>
+                                            </div>
+                                            <!-- Range Price -->
+                                            <div class="col-md-12 col-sm-12 py-2" id="range">
+                                                <small class="text-muted">Price:₹{{filter.min}} </small>
+                                                <input type="text" id="fare" class="small text-muted my-2" readonly  style="border:0;">
+                                                <div id="slider-range"></div>
+                                            </div>
+                                            <div class="col-md-12 py-2 text-center">
+                                                <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
+                                            </div>
+                                            <div class="col-md-12 py-2">
+                                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                                <small v-if="filter.name" class="badge badge-secondary mb-1"> Name: {{filter.name}}</small>
+                                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                                <small v-if="filter.rate" class="badge badge-secondary mb-1">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
+                                                <small v-if="filter.accomodation_size" class="badge badge-secondary mb-1">Accomodation Size:{{filter.accomodation_size}}</small>
+                                                <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>

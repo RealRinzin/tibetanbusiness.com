@@ -231,12 +231,13 @@ class EventBasicInfoController extends Controller
     // SEARCH Result
     public function search(Request $request)
     {
-        // return $request;
+        $min = (int)$request->fee_min;
+        $max = (int)$request->fee_max;
         $events = EventBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('category','like',"$request->category%")
         ->whereBetween('start_date',[$request->from, $request->to])
-        // ->whereBetween('entry_fee',[$request->fee_min, $request->fee_max])
+        ->whereBetween('entry_fee',[$min, $max])
         // ->whereBetween('entry_fee', [$request->fee_min, $request->fee_max])
         // ->where('entry_fee','<=',"$request->entry_fee")
         ->where('status', '=', '1')

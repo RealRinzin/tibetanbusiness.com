@@ -7,60 +7,62 @@
                         <div class="col-md-3">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                        <input type="text"  v-model="filter.title" class="form-control" placeholder="Job Title">
+                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <div class="collapse" id="search_collapse">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <input type="text"  v-model="filter.title" class="form-control" placeholder="Job Title">
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <select name="location" v-model="filter.location" class="form-control">
+                                                    <option value="">Choose Location..</option>
+                                                    <option value="Dharamsala">Dharamsala</option>
+                                                    <option value="mussoorie">Mussoorie</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <select name="location" v-model="filter.profession" class="form-control">
+                                                    <option value="">Choose Profession..</option>
+                                                    <option value="Dharamsala">Dharamsala</option>
+                                                    <option value="BA">Mussoorie</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <select name="location" v-model="filter.experience" class="form-control">
+                                                    <option value="">Choose Experience..</option>
+                                                    <option value="1">1 Years</option>
+                                                    <option value="2">2 Years</option>
+                                                    <option value="3">3 Years</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 py-1">
+                                            <select name="location" v-model="filter.nature" class="form-control">
+                                                    <option value="">Choose Full Time/Part..</option>
+                                                    <option value="full time">Full Time</option>
+                                                    <option value="part time">Part Time</option>
+                                                    <option value="internship">Internship</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.location" class="form-control">
-                                                <option value="">Choose Location..</option>
-                                                <option value="Dharamsala">Dharamsala</option>
-                                                <option value="mussoorie">Mussoorie</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.profession" class="form-control">
-                                                <option value="">Choose Profession..</option>
-                                                <option value="Dharamsala">Dharamsala</option>
-                                                <option value="BA">Mussoorie</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.experience" class="form-control">
-                                                <option value="">Choose Experience..</option>
-                                                <option value="1">1 Years</option>
-                                                <option value="2">2 Years</option>
-                                                <option value="3">3 Years</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.nature" class="form-control">
-                                                <option value="">Choose Full Time/Part..</option>
-                                                <option value="full time">Full Time</option>
-                                                <option value="part time">Part Time</option>
-                                                <option value="internship">Internship</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row py-2">
-                                        <div class="col-md-12 col-sm-12 py-2" id="range">
-                                            <small class="text-muted">Salary:₹{{filter.min}} </small>
-                                            <input type="text" id="salary" class="small text-muted my-2" readonly  style="border:0;">
-                                            <div id="slider-range"></div>
-                                        </div>
-                                        <div class="col-md-12 py-2 text-center">
-                                            <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                        </div>
-                                        <div class="col-md-12 py-2">
-                                            <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.title" class="badge badge-secondary mb-1">Title: {{filter.title}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                            <small v-if="filter.profession" class="badge badge-secondary mb-1">Profession: {{filter.profession}}</small>
-                                            <small v-if="filter.salary_min || filter.salary_max" class="badge badge-secondary mb-1">Salary:₹{{filter.salary_min}} - {{filter.salary_max}}</small>
-                                            <small v-if="filter.nature" class="badge badge-secondary mb-1">Nature: {{filter.nature}}</small>
-                                            <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
+                                        <div class="row py-2">
+                                            <div class="col-md-12 col-sm-12 py-2" id="range">
+                                                <small class="text-muted">Salary:₹{{filter.min}} </small>
+                                                <input type="text" id="salary" class="small text-muted my-2" readonly  style="border:0;">
+                                                <div id="slider-range"></div>
+                                            </div>
+                                            <div class="col-md-12 py-2 text-center">
+                                                <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
+                                            </div>
+                                            <div class="col-md-12 py-2">
+                                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                                <small v-if="filter.title" class="badge badge-secondary mb-1">Title: {{filter.title}}</small>
+                                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                                <small v-if="filter.profession" class="badge badge-secondary mb-1">Profession: {{filter.profession}}</small>
+                                                <small v-if="filter.salary_min || filter.salary_max" class="badge badge-secondary mb-1">Salary:₹{{filter.salary_min}} - {{filter.salary_max}}</small>
+                                                <small v-if="filter.nature" class="badge badge-secondary mb-1">Nature: {{filter.nature}}</small>
+                                                <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>

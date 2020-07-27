@@ -7,7 +7,13 @@
                         <div class="col-md-3">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Button with data-target
+                                    </button> -->
+                                    <small class="btn text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">
+                                        Filter: <i class="fas fa-sliders-h mx-1"></i>
+                                    </small>
+                                    <div class="collapse" id="search_collapse">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 py-1">
                                         <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
@@ -58,6 +64,7 @@
                                             <small v-if="filter.category" class="badge badge-secondary mb-1">Category: {{filter.category}}</small>
                                             <!-- <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">From: {{filter.from}}- to {{filter.to}}</small> -->
                                         </div>
+                                    </div>
                                     </div>
                                 </form>
                             </div>
@@ -178,13 +185,13 @@ export default {
                 range: true,
                 min: 0,
                 max: 100000,
-                values: [ 0, 300000],
+                values: [ 0, 100000],
                 slide: function( event, ui ) {
-                    $( "#entry_fee" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                    $( "#entry_fee" ).val(+ui.values[0]+"-"+ui.values[ 1 ] );
                 }
                 });
-                $( "#entry_fee" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                $( "#entry_fee" ).val( +$("#slider-range" ).slider( "values", 0 )+
+                "-"+$("#slider-range").slider( "values", 1 ) );
                     // console.log(this.number);
             } );
             // Get the result
@@ -201,7 +208,6 @@ export default {
         },
         // search result
         search_result(){
-            // console.log(this.filter);
             // Range
             var fee = document.getElementById("entry_fee");
             this.number = fee.value.split("-");
@@ -246,6 +252,8 @@ export default {
             '&category='+this.filter.category+
             '&from='+this.filter.from+
             '&to='+this.filter.to+
+            '&fee_min='+this.filter.fee_min+
+            '&fee_max='+this.filter.fee_max+
             '&page='+this.nextPage)
             // axios.get('/api/search/events?page='+)
             .then(response=>{
@@ -288,7 +296,6 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-
     }
 }
 </script>

@@ -7,46 +7,48 @@
                         <div class="col-md-3">
                             <div class="card p-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                        <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
+                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                        <div class="collapse" id="search_collapse">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 py-1">
+                                                <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 py-1">
+                                                    <select name="location" v-model="filter.location" class="form-control">
+                                                        <option value="">Choose Location..</option>
+                                                        <option value="Dharamsala">Dharamsala</option>
+                                                        <option value="Mussoorie">Mussoorie</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 py-1">
+                                                <select name="location" v-model="filter.type" class="form-control">
+                                                        <option value="">Choose Category..</option>
+                                                        <option value="Mobile">Mobile</option>
+                                                        <option value="Title">Title</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row py-2">
+                                                <!-- Range Price -->
+                                                <div class="col-md-12 col-sm-12 py-2" id="range">
+                                                    <small class="text-muted">Price:₹ {{filter.min}} </small>
+                                                    <input type="text" id="price" class="small text-muted my-2" readonly  style="border:0;">
+                                                    <div id="slider-range"></div>
+                                                </div>
+                                                <div class="col-md-12 text-center">
+                                                    <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                    <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
+                                                    <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
+                                                </div>
+                                                <div class="col-md-12 py-2">
+                                                    <p class="small text-muted pb-0 mb-1">Search keywords</p>
+                                                    <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
+                                                    <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                                    <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
+                                                    <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="location" v-model="filter.location" class="form-control">
-                                                <option value="">Choose Location..</option>
-                                                <option value="Dharamsala">Dharamsala</option>
-                                                <option value="Mussoorie">Mussoorie</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.type" class="form-control">
-                                                <option value="">Choose Category..</option>
-                                                <option value="Mobile">Mobile</option>
-                                                <option value="Title">Title</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row py-2">
-                                        <!-- Range Price -->
-                                        <div class="col-md-12 col-sm-12 py-2" id="range">
-                                            <small class="text-muted">Price:₹ {{filter.min}} </small>
-                                            <input type="text" id="price" class="small text-muted my-2" readonly  style="border:0;">
-                                            <div id="slider-range"></div>
-                                        </div>
-                                        <div class="col-md-12 text-center">
-                                            <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
-                                            <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                            <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
-                                        </div>
-                                        <div class="col-md-12 py-2">
-                                            <p class="small text-muted pb-0 mb-1">Search keywords</p>
-                                            <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                            <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
-                                            <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
