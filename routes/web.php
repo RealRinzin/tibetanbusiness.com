@@ -121,7 +121,8 @@ Route::prefix('search')->group(function () {
     //     return view('dashboard.Restaurant.index');
     // })->name('dashboard.restaurant');
     // Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@search');
-    Route::get('{type}', function($type){
+    // Route::get('{type}/{location?}', function($type,$location) {
+        Route::get('{type}', function ($type) {
         if($type !== null){
             // return $type;
             if($type === 'restaurants'){

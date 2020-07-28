@@ -48,14 +48,15 @@
                 </div>
             </div> -->
             <div class="col-md-8 mx-auto mb-5" id="tb_search_dropdown">
-                <form method="get" action="/search/restaurants">
+                <form method="get" action="search/">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-5 px-0 col-12" id="tb_location">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-success fa-2x"></i></span>
                                 </div>
-                                <input type="text" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
+                                <input type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                 <ul id="location_list" style="display:none;transition:1s">
                                     <li value="Dharamsala"><a href="#">Dharamsala</a></li>
                                     <li value="Delhi"><a href="#">Delhi</a></li>
@@ -81,20 +82,20 @@
                                 </div>
                                 <input type="text" id="service_search" onfocusin="service_dropdown()" class="form-control" readonly="readonly" placeholder="Service Type" aria-label="service type" required>
                                 <ul id="service_list" style="display:none;transition:1s">
-                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
-                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
-                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
-                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
-                                    <li value="Service"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
-                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
+                                    <li value="sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
+                                    <li value="rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
+                                    <li value="events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
+                                    <li value="jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
+                                    <li value="services"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
+                                    <li value="restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-2 px-0 col-12">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-danger w-75">
+                            <div class="input-group-append" id="my-link">
+                                <a href="" id="link" type="submit" class="btn btn-danger w-50">
                                     <i class="fas fa-search fa-2x"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -11004,6 +11004,7 @@ View individual show CSS
 #tb_search_dropdown .btn {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
+  line-height: 0.5rem;
 }
 
 #tb_search_dropdown input:focus {

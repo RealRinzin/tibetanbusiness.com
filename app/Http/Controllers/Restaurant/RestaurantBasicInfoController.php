@@ -274,6 +274,10 @@ class RestaurantBasicInfoController extends Controller
 
     // SEARCH Result
     public function search(Request $request){
+        // // return $request;
+        // $title = $_GET['location'];
+        // $category = $_GET['type'];
+        // return  $title;
         $restaurants =  RestaurantBasicInfo::where('name', 'like', "$request->name%")
             ->where('location','like',"%$request->location%")
             -> where('rate', 'like', "$request->rate%")

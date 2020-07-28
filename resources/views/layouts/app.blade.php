@@ -295,6 +295,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         // location
+        var locate = "";
+        var service = "";
+
         function location_dropdown() {
             $("#location_list").css("display", "block")
             $("#service_list").css("display", "none");
@@ -303,6 +306,7 @@
         $("#location_list li").click(function() {
             let term = $(this).attr("value")
             $("#location_search").val(term);
+            locate = term;
             // Closing the dropdown
             $("#location_list").css("display", "none");
         });
@@ -315,19 +319,17 @@
         $("#service_list li").click(function() {
             let term = $(this).attr("value")
             $("#service_search").val(term);
+            service = term;
             // Closing the dropdown
             $("#service_list").css("display", "none");
+        })
+        // Adding text
+        $("#link").click(function() {
+            let url = $("a").attr("href", "/search/" + service + "?" + locate);
+            console.log();
+            // $("a").text("MySQL Tutordial");
         });
     </script>
-    <!-- Auto Complete -->
-    <!-- <script>
-        $("li").click(function() {
-            let term = $(this).attr("value")
-            $("#service_search").val(term);
-            // Closing the dropdown
-            $("#dropdown").css("display", "none");
-        });
-    </script> -->
 </body>
 
 </html>
