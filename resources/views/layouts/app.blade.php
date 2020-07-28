@@ -100,7 +100,7 @@
                     </ul>
                 </div>
             </nav>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,7 +135,7 @@
                         </form>
                     </div>
                 </div>
-            </nav>
+            </nav> -->
             <!-- /.navbar -->
             <!-- content -->
             @yield('content')
@@ -221,12 +221,6 @@
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
-                <!-- <div class="modal-header bg-danger">
-                    <h5 class="modal-title text-center" id="exampleModalLabel" style="margin: 0px auto !important">Login with Tibetanbusiness.com</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="text-white">&times;</span>
-                    </button>
-                </div> -->
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body login-card-body">
@@ -299,15 +293,41 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- Auto Complete -->
     <script>
+        // location
+        function location_dropdown() {
+            $("#location_list").css("display", "block")
+            $("#service_list").css("display", "none");
+
+        }
+        $("#location_list li").click(function() {
+            let term = $(this).attr("value")
+            $("#location_search").val(term);
+            // Closing the dropdown
+            $("#location_list").css("display", "none");
+        });
+        // Service
+        function service_dropdown() {
+            $("#service_list").css("display", "block")
+            $("#location_list").css("display", "none")
+
+        }
+        $("#service_list li").click(function() {
+            let term = $(this).attr("value")
+            $("#service_search").val(term);
+            // Closing the dropdown
+            $("#service_list").css("display", "none");
+        });
+    </script>
+    <!-- Auto Complete -->
+    <!-- <script>
         $("li").click(function() {
             let term = $(this).attr("value")
             $("#service_search").val(term);
             // Closing the dropdown
             $("#dropdown").css("display", "none");
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

@@ -10994,6 +10994,87 @@ View individual show CSS
   margin: 2px 0px !important;
 }
 
+/* Search Dropdown */
+
+#tb_search_dropdown input,
+#tb_search_dropdown .input-group-text {
+  border-radius: 0px !important;
+}
+
+#tb_search_dropdown .btn {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+#tb_search_dropdown input:focus {
+  outline: none !important;
+}
+
+#tb_search_dropdown .form-control[readonly] {
+  background: #ffffff !important;
+}
+
+#tb_search_dropdown #tb_location {
+  position: relative;
+  /*width: 110px;*/
+}
+
+#tb_search_dropdown .form-control {
+  height: auto;
+}
+
+#tb_search_dropdown #tb_location ul {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  height: 270px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#tb_search_dropdown #tb_type ul {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+}
+
+#tb_search_dropdown ul li {
+  list-style: none;
+  padding: 6px;
+  color: white;
+  background: #565d64;
+  border-bottom: 0.3px solid #8c9297;
+}
+
+#tb_search_dropdown ul li:list-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: pink;
+}
+
+#tb_search_dropdown ul li:hover {
+  background-color: gray;
+  color: white;
+  transition: 1.5s;
+  cursor: pointer;
+}
+
+#tb_search_dropdown #tb_location ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#tb_search_dropdown #tb_type ul li a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#tb_search_dropdown #service_list {
+  display: none;
+}
+
 /* Sidebar  */
 
 #sidebar .banner {
