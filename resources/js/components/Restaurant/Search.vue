@@ -30,7 +30,7 @@
                                                     ></star-rating>
                                                 </div>
                                                 <div class="col-md-12 py-2 text-center">
-                                                    <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                    <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                     <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                                     <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                                 </div>
@@ -96,6 +96,7 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+    props: ['location'],
     // Data
     data(){
         return{
@@ -114,7 +115,7 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:'',
+                location:this.location,
                 rate:''
             },
             // loading
@@ -123,6 +124,7 @@ export default {
 
         }
     },
+
     /**
      *  Methods
      *  */ 
@@ -130,15 +132,10 @@ export default {
         setRating: function(rating){
         this.rating= rating;
         },
+        
         load_result(){
-            // reset form
-            this.filter ={
-                name:'',
-                location:'',
-                rate:''
-            },
             // axios.get('/api/search/restaurants')
-            axios.get('/api/search/restaurants')
+            axios.get('/api/search/restaurants?location='+this.filter.location)
              .then(response=>{ 
                 this.restaurants = response.data.data;
                 this.loading = true;
@@ -248,15 +245,22 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.filter.location = "",
+            // this.fiter ={
+            //     name:'',
+            //     location:'',
+            //     rate:'',
+            // }
             this.load_result();
         }
     },
+
     // Components
     components:{Loading},
     // Mounted
     mounted(){
         this.load_result();
-        // 
+        // this.filter.location = this.location;
     }
 }
 </script>

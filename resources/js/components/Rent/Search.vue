@@ -42,7 +42,7 @@
                                                 <div id="slider-range"></div>
                                             </div>
                                             <div class="col-md-12 py-2 text-center">
-                                                <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                 <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             </div>
                                             <div class="col-md-12 py-2">

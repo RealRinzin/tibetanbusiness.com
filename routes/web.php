@@ -120,26 +120,28 @@ Route::prefix('search')->group(function () {
     //     // Matches The "/admin/users" URL
     //     return view('dashboard.Restaurant.index');
     // })->name('dashboard.restaurant');
-    // Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@search');
+    Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@result');
     // Route::get('{type}/{location?}', function($type,$location) {
-        Route::get('{type}', function ($type) {
-        if($type !== null){
-            // return $type;
-            if($type === 'restaurants'){
-                return view('restaurant.search');
-            }elseif ($type === 'events') {
-                return view('event.search');
-            } elseif ($type === 'rents') {
-                return view('rent.search');
-            } elseif ($type === 'services') {
-                return view('service.search');
+    //     Route::get('{type}/{location?}', function ($type) {
+    //         // dd($type,$location);
+    //     if($type !== null){
+    //         // return $type;
+    //         if($type === 'Restaurants'){
+    //             return view('restaurant.search');
+    //         }elseif ($type === 'Events') {
+    //             return view('event.search');
+    //         } elseif ($type === 'Rents') {
+    //             return view('Rent.search');
+    //         } elseif ($type === 'Services') {
+    //             return view('service.search');
 
-            } elseif ($type === 'jobs') {
-                return view('job.search');
-            } elseif ($type === 'sales') {
-                return view('sale.search');
-            }
-        }
-        // return $type;
-    });
+    //         } elseif ($type === 'Jobs') {
+    //             return view('job.search');
+    //         } elseif ($type === 'Sales') {
+    //             return view('sale.search');
+    //         }
+    //     }else{
+    //         return '/';
+    //     }
+    // });
 });

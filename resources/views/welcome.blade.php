@@ -13,8 +13,8 @@
             </div>
             <!-- <search></search> -->
             <!-- search box -->
-            <!-- <div class="col-md-8 mx-auto">
-                <div class="input-group input-group-lg mb-3">
+            <!-- <div class="col-md-6 mx-auto" id="tb_search_dropdown">
+                <div class="input-group input-group-lg mb-3" id="tb_type">
                     <div class="input-group-prepend">
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             Action
@@ -27,23 +27,21 @@
                             <li class="dropdown-item"><a href="#">Separated link</a></li>
                         </ul>
                     </div>
-                    <input type="text" id="service_search" class="form-control" readonly="readonly" onfocusin="service_in()">
+                    <input type="text" id="service_search" class="form-control" readonly="readonly" onfocusin="service_dropdown()">
+                    <ul id="service_list" style="display:none;transition:1s">
+                        <li value="Sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
+                        <li value="Rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
+                        <li value="Events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
+                        <li value="Jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
+                        <li value="Services"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
+                        <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
+                    </ul>
                     <div id="dropdown" style="display:none;transition:1s">
-                        <ul id="sizelist">
-                            <li value="Events" class="element">
-                                <a href="#">Events</a>
-                            </li>
-                            <li value="Sales" class="element"> <img src="/img/chef.png" alt=""> Sales</li>
-                            <li value="Rents" class="element">Rents</li>
-                            <li value="Jobs" class="element">Jobs</li>
-                            <li value="Services" class="element">Services</li>
-                            <li value="Restaurants" class="element">Restaurants</li>
-                        </ul>
                     </div>
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-danger">
+                        <a type="submit" id="link" class="btn btn-danger">
                             <i class="fas fa-search"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div> -->
@@ -54,7 +52,7 @@
                         <div class="col-md-5 px-0 col-12" id="tb_location">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-success fa-2x"></i></span>
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted fa-2x"></i></span>
                                 </div>
                                 <input type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                 <ul id="location_list" style="display:none;transition:1s">
@@ -82,12 +80,12 @@
                                 </div>
                                 <input type="text" id="service_search" onfocusin="service_dropdown()" class="form-control" readonly="readonly" placeholder="Service Type" aria-label="service type" required>
                                 <ul id="service_list" style="display:none;transition:1s">
-                                    <li value="sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
-                                    <li value="rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
-                                    <li value="events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
-                                    <li value="jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
-                                    <li value="services"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
-                                    <li value="restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
+                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
+                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
+                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
+                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
+                                    <li value="Services"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
+                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -6,21 +6,25 @@
     .btn{
       border-top-left-radius: 0px !important;
       border-bottom-left-radius: 0px !important;
-      line-height: 0.5rem
+      // line-height: 0.5rem;
+      // height:2rem;
     }
     input:focus {
       outline: none !important;
       }
     .form-control[readonly]{
       background: #ffffff !important;
+      font-size: 22px;
     }
     #tb_location {
       position: relative;
-      /*width: 110px;*/
-
+    }
+    #tb_location .input-group-text{
+      border-top-left-radius: 3px !important;
+      border-bottom-left-radius: 3px !important;
     }
     .form-control{
-      height: auto;
+      height: 3rem;
     }
 
 	 #tb_location ul {
@@ -36,19 +40,23 @@
 		  width: 100%;
 		  position: absolute;
 		  z-index: 10;
-		  top:100%;
+      top:100%;
+      padding-left:0px !important;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
 		}
 	ul li {
 		  list-style: none;
 		  padding:6px;
-		  color:white;
-		  background: #565d64;
+		  color:#000;
+		  // background: #565d64;
+		  background: #ffffff;
 		  border-bottom: .3px solid #8c9297;
 		}
-	ul li:list-child{
-	  border-bottom-left-radius: 3px;
-	  border-bottom-right-radius: 3px;
-	  background: pink;
+	#tb_type ul li:last-of-type{
+	  border-bottom-left-radius: 5px;
+	  border-bottom-right-radius: 5px;
+	  // background: pink;
 	}
 	 ul li:hover{
 		background-color:gray;
@@ -58,11 +66,14 @@
 	}
 	#tb_location ul li a{
 		text-decoration: none;
-		color:#fff;
+    // color:#fff;
+		color:#000;
+    
 	}
 	#tb_type ul li a{
 		text-decoration: none;
-		color:#ffffff;
+		// color:#ffffff;
+		color:#000;
 	}
 	#service_list{
 		display: none;

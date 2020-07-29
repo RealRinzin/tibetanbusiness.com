@@ -325,7 +325,7 @@
         })
         // Adding text
         $("#link").click(function() {
-            let url = $("a").attr("href", "/search/" + service + "?" + locate);
+            let url = $("a").attr("href", "/search/" + service + "?location=" + locate);
             console.log();
             // $("a").text("MySQL Tutordial");
         });

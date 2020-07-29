@@ -36,7 +36,7 @@
                                                     <div id="slider-range"></div>
                                                 </div>
                                                 <div class="col-md-12 text-center">
-                                                    <button class="btn btn-danger btn-lg w-25"><small class="fas fa-search"></small></button>
+                                                    <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                     <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                                     <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                                 </div>
@@ -244,6 +244,7 @@ export default {
             this.load_result();
         }
     },
+
     // Components
     components:{Loading},
     // Mounted
