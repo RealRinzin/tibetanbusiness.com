@@ -9,7 +9,7 @@
                 <div class="row py-3">
                     <!-- <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5"> -->
                     <!-- Restaurant -->
-                    <div class="col-md-4 py-1" v-if="restaurant">
+                    <div class="col-md-4 col-sm-6 py-1" v-if="restaurant">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurant.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div></a>
                             <div class="likes" v-if="restaurant.rate != null">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <!-- Events -->
-                    <div class="col-md-4 py-1 info" v-if="event">
+                    <div class="col-md-4 col-sm-6 py-1 info" v-if="event">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
                                 <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <!-- Rents -->
-                    <div  class="col-md-4 py-1 info" v-if="rent">
+                    <div  class="col-md-4 col-sm-6 py-1 info" v-if="rent">
                         <div class="card">
                             <a v-bind:href="'rent/'+rent.id">
                                 <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <!-- Job -->
-                    <div class="col-md-4 py-1" v-if="job">
+                    <div class="col-md-4 col-sm-6 py-1" v-if="job">
                         <div class="card">
                             <a v-bind:href="'job/'+job.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div></a>
                             <div class="types">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <!-- Sale -->
-                    <div class="col-md-4 py-1" v-if="sale">
+                    <div class="col-md-4 col-sm-6 py-1" v-if="sale">
                         <div class="card">
                             <a v-bind:href="'sale/'+sale.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div></a>
                             <div class="types">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <!-- Service -->
-                    <div class="col-md-4 py-1" v-if="service">
+                    <div class="col-md-4 col-sm-6 py-1" v-if="service">
                         <div class="card">
                             <a v-bind:href="'service/'+service.id"><div class="list" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div></a>
                             <div class="types">

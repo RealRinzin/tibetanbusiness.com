@@ -132,6 +132,7 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+    props:['location'],
     // Data
     data(){
         return{
@@ -150,7 +151,7 @@ export default {
             // filter
             filter:{
                 title:'',
-                location:'',
+                location:this.location,
                 nature:'',
                 experience:'',
                 profession:'',
@@ -177,15 +178,6 @@ export default {
         // loading
         load_result(){
             // filter paramater
-            this.filter = {
-                title:'',
-                location:'',
-                nature:'',
-                experience:'',
-                profession:'',
-                salary_min:'',
-                salary_max:'',
-            },
             // Slider Range
             $( function() {
                 $( "#slider-range" ).slider({
@@ -203,7 +195,7 @@ export default {
             } );
             // End Range
             // Get the result
-            axios.get('/api/search/jobs?salary_min=0&salary_max=5000000')
+            axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
              .then(response=>{ 
                 this.jobs = response.data.data;
                 this.loading = true;
@@ -287,6 +279,18 @@ export default {
         },
         // Reset the search form
         reset(){
+            // Reset form
+            this.filter ={
+                title:'',
+                location:'',
+                nature:'',
+                experience:'',
+                profession:'',
+                salary_min:'',
+                salary_max:'',
+                // fare:50000,
+                salary:200000,
+            },
             this.load_result();
         }
     },

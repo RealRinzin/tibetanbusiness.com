@@ -49,7 +49,7 @@
                 <form method="get" action="#">
                     {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-md-5 px-0 col-12" id="tb_location">
+                        <div class="col-md-5 px-0 col-sm-5 col-6" id="tb_location">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted fa-2x"></i></span>
@@ -71,14 +71,14 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-5 px-0 col-12" id="tb_type">
+                        <div class="col-md-5 px-0 col-sm-5 col-6" id="tb_type">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">
-                                        <i class="fas fa-search fa-2x"></i>
+                                        <i class="fas fa-tools fa-2x"></i>
                                     </span>
                                 </div>
-                                <input type="text" id="service_search" onfocusin="service_dropdown()" class="form-control" readonly="readonly" placeholder="Service Type" aria-label="service type" required>
+                                <input type="text" id="service_search" onfocusin="service_dropdown()" class="form-control" readonly="readonly" placeholder="Service" aria-label="service type" required>
                                 <ul id="service_list" style="display:none;transition:1s">
                                     <li value="Sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
                                     <li value="Rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
@@ -89,7 +89,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-2 px-0 col-12">
+                        <div class="col-md-2 px-0 col-sm-2 col-12">
                             <div class="input-group-append" id="my-link">
                                 <button id="link" type="submit" class="btn btn-danger w-50">
                                     <!-- <a href="" id="link" type="submit" class="btn btn-danger w-50"> -->

@@ -228,7 +228,12 @@ class EventBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
-    // SEARCH Result
+    // Search View
+    public function search_engine(Request $request)
+    {
+        return view('event.search', ['location' => $request->location]);
+    }
+    // Search Query
     public function search(Request $request)
     {
         $min = (int)$request->fee_min;

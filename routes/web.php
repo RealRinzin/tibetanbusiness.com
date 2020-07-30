@@ -120,7 +120,12 @@ Route::prefix('search')->group(function () {
     //     // Matches The "/admin/users" URL
     //     return view('dashboard.Restaurant.index');
     // })->name('dashboard.restaurant');
-    Route::get('{type}/{location?}', 'Restaurant\RestaurantBasicInfoController@result');
+    Route::get('Restaurants/{location?}', 'Restaurant\RestaurantBasicInfoController@search_engine');
+    Route::get('Events/{location?}', 'Event\EventBasicInfoController@search_engine');
+    Route::get('Jobs/{location?}', 'Job\JobBasicInfoController@search_engine');
+    Route::get('Rents/{location?}', 'Rent\RentBasicInfoController@search_engine');
+    Route::get('Sales/{location?}', 'Sale\SaleBasicInfoController@search_engine');
+    Route::get('Services/{location?}', 'Service\ServiceBasicInfoController@search_engine');
     // Route::get('{type}/{location?}', function($type,$location) {
     //     Route::get('{type}/{location?}', function ($type) {
     //         // dd($type,$location);

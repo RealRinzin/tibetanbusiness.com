@@ -112,6 +112,7 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+    props:['location'],
     // Data
     data(){
         return{
@@ -131,7 +132,7 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:'',
+                location:this.location,
                 rate:'',
                 type:'',
             },
@@ -152,15 +153,8 @@ export default {
         },
         // loading
         load_result(){
-            // Reset form
-            this.filter ={
-                name:'',
-                location:'',
-                rate:'',
-                type:'',
-            },
             // axios.get('/api/search/services')
-            axios.get('/api/search/services')
+            axios.get('/api/search/services?location='+this.filter.location)
              .then(response=>{ 
                 this.services = response.data.data;
                 this.loading = true;
@@ -269,6 +263,12 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.filter ={
+                name:'',
+                location:'',
+                rate:'',
+                type:'',
+            },
             this.load_result();
         }
     },

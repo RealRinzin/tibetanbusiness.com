@@ -18,7 +18,7 @@
       }
     .form-control[readonly]{
       background: #ffffff !important;
-      font-size: 22px;
+      font-size: 18px;
     }
     #tb_location {
       position: relative;
@@ -96,14 +96,14 @@
   
   // Alert Required
   .required{
-    border:solid 1px red;
-    border-left:solid 1px red !important;
-    transition: 2s;
-    border-radius: 3px;;
+    border:solid 1px #dc4245;
+    border-left:solid 1px #dc4245 !important;
+    transition: .5s;
+    // border-radius: 3px;
   }
   .required::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
-    opacity: 1; /* Firefox */
+    color:#94291a;
+    font-size:18px !important;
   }
 }
 

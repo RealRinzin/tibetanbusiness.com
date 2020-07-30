@@ -209,7 +209,13 @@ class ServiceBasicInfoController extends Controller
     {
         return new ServiceBasicInfoResource(ServiceBasicInfo::find($id));
     }
-    // SEARCH Result
+
+    // Search View
+    public function search_engine(Request $request)
+    {
+        return view('service.search', ['location' => $request->location]);
+    }
+    // Search Query
     public function search(Request $request)
     {
         $services = ServiceBasicInfo::where('name', 'like', "$request->name%")

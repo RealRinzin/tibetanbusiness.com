@@ -11016,7 +11016,7 @@ View individual show CSS
 
 #tb_search_dropdown .form-control[readonly] {
   background: #ffffff !important;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 #tb_search_dropdown #tb_location {
@@ -11098,45 +11098,39 @@ View individual show CSS
 }
 
 #tb_search_dropdown .required {
-  border: solid 1px red;
-  border-left: solid 1px red !important;
-  transition: 2s;
-  border-radius: 3px;
+  border: solid 1px #dc4245;
+  border-left: solid 1px #dc4245 !important;
+  transition: 0.5s;
 }
 
 #tb_search_dropdown .required::-webkit-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1;
-  /* Firefox */
+  color: #94291a;
+  font-size: 18px !important;
 }
 
 #tb_search_dropdown .required::-moz-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1;
-  /* Firefox */
+  color: #94291a;
+  font-size: 18px !important;
 }
 
 #tb_search_dropdown .required:-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1;
-  /* Firefox */
+  color: #94291a;
+  font-size: 18px !important;
 }
 
 #tb_search_dropdown .required::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1;
-  /* Firefox */
+  color: #94291a;
+  font-size: 18px !important;
 }
 
 #tb_search_dropdown .required::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1;
-  /* Firefox */
+  color: #94291a;
+  font-size: 18px !important;
 }
 
 /* Sidebar  */

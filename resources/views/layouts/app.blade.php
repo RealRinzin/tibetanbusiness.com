@@ -294,10 +294,9 @@
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        // location
         var locate = "";
         var service = "";
-
+        // location
         function location_dropdown() {
             $("#location_list").css("display", "block")
             $("#service_list").css("display", "none");
@@ -312,6 +311,10 @@
             $("#location_search").removeClass("required");
 
         });
+
+        // Focus out
+        // $("#location_search").focusout(function() {
+        // })
         // Service
         function service_dropdown() {
             $("#service_list").css("display", "block")
@@ -329,24 +332,27 @@
         })
         // Adding text
         $("#link").click(function(event) {
-            // let url = $("a").attr("href", "/search/" + service + "?location=" + locate);
-            // console.log();
             if (!service || !locate) {
-                // $('form').attr('action', '#');
                 // console.log("empty");
                 event.preventDefault();
-                // Required Service
-                $("#service_search").addClass("required");
-                $("#service_search").attr("placeholder", "Select Type");
-                // Required Location
-                $("#location_search").addClass("required");
-                $("#location_search").attr("placeholder", "Select Location");
-
+                if (service) {
+                    $("#service_search").removeClass("required");
+                } else {
+                    // Required Service
+                    $("#service_search").addClass("required");
+                    $("#service_search").attr("placeholder", "Select Service");
+                }
+                // location required
+                if (locate) {
+                    $("#location_search").removeClass("required");
+                } else {
+                    // Required Location
+                    $("#location_search").addClass("required");
+                    $("#location_search").attr("placeholder", "Select Location");
+                }
             } else {
-                // locate="Dharamsala";
                 $('form').attr('action', '/search/' + service + "?location=" + locate);
             }
-            // $("a").text("MySQL Tutordial");
         });
     </script>
 </body>

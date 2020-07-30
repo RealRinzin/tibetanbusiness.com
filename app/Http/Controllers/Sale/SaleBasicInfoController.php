@@ -215,7 +215,12 @@ class SaleBasicInfoController extends Controller
         // unlink($unlink);
         $banner->update(['banner' => $name]);
     }
-    // SEARCH Result
+    // Search View
+    public function search_engine(Request $request)
+    {
+        return view('sale.search', ['location' => $request->location]);
+    }
+    // Search Query
     public function search(Request $request)
     {
         $sales =  SaleBasicInfo::where('name', 'like', "$request->name%")
@@ -224,7 +229,7 @@ class SaleBasicInfoController extends Controller
         // ->where('price', '<=', "$request->price")
         ->whereBetween('price', [$request->price_min, $request->price_max])
         ->where('status', '=', '1')
-            ->orderBy('created_at', 'desc')->paginate('3');
+        ->orderBy('created_at', 'desc')->paginate('3');
         return $sales->toArray($sales);
     }
 }

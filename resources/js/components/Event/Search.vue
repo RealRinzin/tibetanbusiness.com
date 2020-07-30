@@ -125,6 +125,7 @@
     import format from 'date-fns/format';
 
 export default {
+    props: ['location'],
     // Data
     data(){
         return{
@@ -143,7 +144,7 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:'',
+                location:this.location,
                 category:'',
                 fee_min:0,
                 fee_max:10000000,
@@ -169,16 +170,7 @@ export default {
         load_result(){
             let today = new Date();
             let from = format(new Date(today), 'yyyy-MM-dd');
-            // filter paramater
-            this.filter = {
-                name:'',
-                location:'',
-                category:'',
-                fee_min:0,
-                fee_max:1000000,
-                from:from,
-                to:'2022-10-20'
-            },
+            this.filter.from = from;
             // Slider Range
             $( function() {
                 $( "#slider-range" ).slider({
@@ -196,7 +188,12 @@ export default {
             } );
             // Get the result
             axios.get('/api/search/events?from='
-            +this.filter.from+'&to='+this.filter.to+'&fee_min='+this.filter.fee_min+'&fee_max='+this.filter.fee_max)
+            +this.filter.from+
+            '&to='+this.filter.to+
+            '&fee_min='+this.filter.fee_min+
+            '&fee_max='+this.filter.fee_max+
+            '&location='+this.filter.location
+            )
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
@@ -280,6 +277,18 @@ export default {
         },
         // Reset the search form
         reset(){
+            let today = new Date();
+            let from = format(new Date(today), 'yyyy-MM-dd');
+            // filter paramater
+            this.filter = {
+                name:'',
+                location:'',
+                category:'',
+                fee_min:0,
+                fee_max:1000000,
+                from:from,
+                to:'2022-10-20'
+            },
             this.load_result();
         }
     },

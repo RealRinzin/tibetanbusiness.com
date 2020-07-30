@@ -1,4 +1,4 @@
 @extends('welcome')
 @section('content')
-<service-search></service-search>
+<service-search :location="{{json_encode($location)}}"></service-search>
 @endsection

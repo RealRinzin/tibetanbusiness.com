@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('title', 'Jobs')
+@section('title', 'Job Result')
 @section('content')
-<job-search></job-search>
+<job-search v-bind:location="{{json_encode($location)}}"></job-search>
 @endsection

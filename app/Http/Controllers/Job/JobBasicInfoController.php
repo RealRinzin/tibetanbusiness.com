@@ -249,7 +249,12 @@ class JobBasicInfoController extends Controller
         $jobs = Auth::user()->job_basic_infos;
         return $jobs->toArray($jobs);
     }
-    // SEARCH Result
+    // Search View
+    public function search_engine(Request $request)
+    {
+        return view('job.search', ['location' => $request->location]);
+    }
+    // Search Query
     public function search(Request $request)
     {
         $jobs = JobBasicInfo::where('title', 'like', "$request->title%")

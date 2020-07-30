@@ -120,6 +120,7 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+    props:['location'],
     // Data
     data(){
         return{
@@ -141,7 +142,7 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:'',
+                location:this.location,
                 rate:'',
                 fare_max:'',
                 fare_min:'',
@@ -164,15 +165,6 @@ export default {
         },
         // loading
         load_result(){
-            // reset form
-            this.filter = {
-                name:'',
-                location:'',
-                rate:'',
-                fare_min:'',
-                fare_max:'',
-                accomodation_size:'',
-            },
             // Slider Range
             $( function() {
                 $( "#slider-range" ).slider({
@@ -190,7 +182,7 @@ export default {
             } );
             // End Range
             // axios.get('/api/search/rents')
-            axios.get('/api/search/rents?fare_min=0&fare_max=5000000')
+            axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
              .then(response=>{ 
                 this.rents = response.data.data;
                 this.loading = true;
@@ -310,6 +302,15 @@ export default {
         },
         // Reset the search form
         reset(){
+            // reset form
+            this.filter = {
+                name:'',
+                location:'',
+                rate:'',
+                fare_min:0,
+                fare_max:5000000,
+                accomodation_size:'',
+            },
             this.load_result();
         }
     },

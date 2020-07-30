@@ -106,6 +106,7 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
+    props:['location'],
     // Data
     data(){
         return{
@@ -123,7 +124,7 @@ export default {
             // filter
             filter:{
                 name:'',
-                location:'',
+                location:this.location,
                 type:'',
                 price_min:0,
                 price_max:10000000,
@@ -141,17 +142,8 @@ export default {
     methods:{
         // loading
         load_result(){
-            // Reset
-            this.filter={
-                name:'',
-                location:'',
-                type:'',
-                // fare:50000,
-                price_min:'',
-                price_max:'',
-            }
             // axios.get('/api/search/sales')
-            axios.get('/api/search/sales?price_min=0&price_max=50000')
+            axios.get('/api/search/sales?price_min=0&price_max=500000&location='+this.filter.location)
              .then(response=>{ 
                 this.sales = response.data.data;
                 this.loading = true;
@@ -241,6 +233,15 @@ export default {
         },
         // Reset the search form
         reset(){
+            // Reset
+            this.filter={
+                name:'',
+                location:'',
+                type:'',
+                // fare:50000,
+                price_min:0,
+                price_max:1000000,
+            }
             this.load_result();
         }
     },
