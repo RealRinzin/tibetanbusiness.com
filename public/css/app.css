@@ -11001,6 +11001,10 @@ View individual show CSS
   border-radius: 0px !important;
 }
 
+#tb_search_dropdown input {
+  border-left: none !important;
+}
+
 #tb_search_dropdown .btn {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
@@ -11017,6 +11021,10 @@ View individual show CSS
 
 #tb_search_dropdown #tb_location {
   position: relative;
+}
+
+#tb_search_dropdown #tb_location i {
+  color: #c9cdd1 !important;
 }
 
 #tb_search_dropdown #tb_location .input-group-text {
@@ -11038,12 +11046,15 @@ View individual show CSS
   overflow-x: hidden;
 }
 
+#tb_search_dropdown #tb_type i {
+  color: #c9cdd1 !important;
+}
+
 #tb_search_dropdown #tb_type ul {
   width: 100%;
   position: absolute;
   z-index: 10;
   top: 100%;
-  padding-left: 0px !important;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -11073,6 +11084,10 @@ View individual show CSS
   color: #000;
 }
 
+#tb_search_dropdown .input-group-text {
+  background-color: #fff !important;
+}
+
 #tb_search_dropdown #tb_type ul li a {
   text-decoration: none;
   color: #000;
@@ -11080,6 +11095,48 @@ View individual show CSS
 
 #tb_search_dropdown #service_list {
   display: none;
+}
+
+#tb_search_dropdown .required {
+  border: solid 1px red;
+  border-left: solid 1px red !important;
+  transition: 2s;
+  border-radius: 3px;
+}
+
+#tb_search_dropdown .required::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
+}
+
+#tb_search_dropdown .required::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
+}
+
+#tb_search_dropdown .required:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
+}
+
+#tb_search_dropdown .required::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
+}
+
+#tb_search_dropdown .required::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
 }
 
 /* Sidebar  */

@@ -301,7 +301,6 @@
         function location_dropdown() {
             $("#location_list").css("display", "block")
             $("#service_list").css("display", "none");
-
         }
         $("#location_list li").click(function() {
             let term = $(this).attr("value")
@@ -309,6 +308,9 @@
             locate = term;
             // Closing the dropdown
             $("#location_list").css("display", "none");
+            // removing required class
+            $("#location_search").removeClass("required");
+
         });
         // Service
         function service_dropdown() {
@@ -322,11 +324,28 @@
             service = term;
             // Closing the dropdown
             $("#service_list").css("display", "none");
+            // Removing required class
+            $("#service_search").removeClass("required");
         })
         // Adding text
-        $("#link").click(function() {
-            let url = $("a").attr("href", "/search/" + service + "?location=" + locate);
-            console.log();
+        $("#link").click(function(event) {
+            // let url = $("a").attr("href", "/search/" + service + "?location=" + locate);
+            // console.log();
+            if (!service || !locate) {
+                // $('form').attr('action', '#');
+                // console.log("empty");
+                event.preventDefault();
+                // Required Service
+                $("#service_search").addClass("required");
+                $("#service_search").attr("placeholder", "Select Type");
+                // Required Location
+                $("#location_search").addClass("required");
+                $("#location_search").attr("placeholder", "Select Location");
+
+            } else {
+                // locate="Dharamsala";
+                $('form').attr('action', '/search/' + service + "?location=" + locate);
+            }
             // $("a").text("MySQL Tutordial");
         });
     </script>

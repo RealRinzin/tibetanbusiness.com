@@ -46,7 +46,7 @@
                 </div>
             </div> -->
             <div class="col-md-8 mx-auto mb-5" id="tb_search_dropdown">
-                <form method="get" action="search/">
+                <form method="get" action="#">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-5 px-0 col-12" id="tb_location">
@@ -91,9 +91,10 @@
                         </div>
                         <div class="col-md-2 px-0 col-12">
                             <div class="input-group-append" id="my-link">
-                                <a href="" id="link" type="submit" class="btn btn-danger w-50">
-                                    <i class="fas fa-search fa-2x"></i>
-                                </a>
+                                <button id="link" type="submit" class="btn btn-danger w-50">
+                                    <!-- <a href="" id="link" type="submit" class="btn btn-danger w-50"> -->
+                                        <i class="fas fa-search fa-2x"></i>
+                                    </button>
                             </div>
                         </div>
                     </div>
