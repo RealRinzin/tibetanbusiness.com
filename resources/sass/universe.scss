@@ -455,3 +455,10 @@ Background resource loading
               border: none !important;
             }
     }
+    // Search Collapse
+  .search_filter{
+    position: fixed !important;
+    left: 0px;
+    z-index:2;
+    
+  }

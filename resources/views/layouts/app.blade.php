@@ -3,26 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="twitter:title">
-    <meta name="description" />
-    <meta itemprop="description">
-    <meta property="og:description">
-    <meta property="fb:app_id" content="123456789">
-    <meta property="og:url" content="https://tibetanbusiness.com:8890">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="title">
-    <meta property="og:image" content="image">
-    <meta property="og:image:alt" content="description">
-    <meta property="og:description" content="description">
-    <meta property="og:site_name" content="https://tibetanushiness.com">
-    <meta property="og:locale" content="en_US">
-    <meta property="article:author" content="Rinzin">
-    <!-- CSRF Token -->
     <title> @yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
+    <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
+    <meta property="og:description" content="How much does culture influence creative thinking?" />
+    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('tibetanbusiness.png')}}">
-    <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title>
+    <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -40,7 +33,6 @@
     <!-- jquery UI -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
 </head>
-
 <body>
     <div id="app">
         <div class="wrapper">
@@ -293,6 +285,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
     <script>
         var locate = "";
         var service = "";

@@ -4,10 +4,11 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="card p-3" style="padding-bottom:0px !important">
+                        <small style="z-index:3;top:70px;padding:3px 6px;" class="btn btn-danger position-fixed" id="mobile_search_toggle"  data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
+                        <div class="col-md-3" id="search_mobile">
+                            <div class="card p-3 mt-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <small class="text-muted" id="desktop_search_toggle">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
                                         <div class="collapse" id="search_collapse">
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 py-1">
@@ -36,17 +37,17 @@
                                                     <div id="slider-range"></div>
                                                 </div>
                                                 <div class="col-md-12 text-center">
-                                                    <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
-                                                    <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
+                                                    <button class="btn btn-danger btn-md w-25" id="search"><small class="fas fa-search"></small></button>
+                                                    <button class="btn btn-secondary btn-md w-50" @click="reset()" id="rest_form"><small>Reset</small></button>
                                                     <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                                 </div>
-                                                <div class="col-md-12 py-2">
+                                                <!-- <div class="col-md-12 py-2">
                                                     <p class="small text-muted pb-0 mb-1">Search keywords</p>
                                                     <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
                                                     <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
                                                     <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
                                                     <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                 </form>
@@ -55,6 +56,13 @@
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}}
+                            </div>
+                            <div class="col-md-12 py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords</p>
+                                <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
+                                <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -169,6 +177,12 @@ export default {
         },
         // search result
         search_result(){
+            // hidding collapse after 
+            // clicking the search button hit
+            // Mobile screensize
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             // Range
             var price = document.getElementById("price");
             this.price = price.value.split("-");
@@ -233,14 +247,20 @@ export default {
         },
         // Reset the search form
         reset(){
-            // Reset
-            this.filter={
-                name:'',
-                location:'',
-                type:'',
-                // fare:50000,
-                price_min:0,
-                price_max:1000000,
+            // hidding collapse after 
+            // clicking the reset
+            // Mobile screensize
+                // Reset
+                this.filter={
+                    name:'',
+                    location:'',
+                    type:'',
+                    // fare:50000,
+                    price_min:0,
+                    price_max:1000000,
+                }
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
             }
             this.load_result();
         }

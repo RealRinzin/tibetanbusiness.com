@@ -207,6 +207,10 @@ export default {
         },
         // search result
         search_result(){
+            // Desktop
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             // Range
             var fare = document.getElementById("fare");
             this.number = fare.value.split("-");
@@ -310,7 +314,11 @@ export default {
                 fare_min:0,
                 fare_max:5000000,
                 accomodation_size:'',
-            },
+            };
+            // Desktop size
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.load_result();
         }
     },

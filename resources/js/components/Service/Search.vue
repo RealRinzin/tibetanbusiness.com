@@ -47,13 +47,6 @@
                                                     <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                                     <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                                 </div>
-                                                <div class="col-md-12 py-2">
-                                                    <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                                    <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
-                                                    <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                                    <small v-if="filter.type" class="badge badge-secondary">Type: {{filter.type}}</small>
-                                                    <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                                </div>
                                             </div>
                                         </div>
                                 </form>
@@ -62,6 +55,13 @@
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}}
+                            </div>
+                            <div class="col-md-12 py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                <small v-if="filter.type" class="badge badge-secondary">Type: {{filter.type}}</small>
+                                <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -179,6 +179,11 @@ export default {
         },
         // search result
         search_result(){
+            // Desktop resize
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
+            // 
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/services?name='+this.filter.name+
@@ -268,7 +273,10 @@ export default {
                 location:'',
                 rate:'',
                 type:'',
-            },
+            };
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.load_result();
         }
     },

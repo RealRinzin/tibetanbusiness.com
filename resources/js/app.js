@@ -297,10 +297,19 @@ const app = new Vue({
     },
     // Mounted
     mounted(){
-        this.login_status();   
-
-        if(screen.width > 767){
-            $( "#search_collapse" ).addClass( "show" );
+        this.login_status(); 
+        // Mobile device size  
+        if(screen.width < 767){
+            $("#search_collapse").addClass("hide");
+            $("#search_mobile").addClass("search_filter");
+            $("#desktop_search_toggle").css("display", "none");
+            $("#search_mobile").addClass("p-0");
+            $("#search_mobile .card").removeClass("p-3");
+            $("#search_mobile .card").addClass("px-3");
+        }else{
+        //Other size
+            $("#search_collapse").addClass("show");
+            $("#mobile_search_toggle").css("display","none");
         }
         
     }

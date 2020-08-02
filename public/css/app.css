@@ -11492,6 +11492,12 @@ Background resource loading
   border: none !important;
 }
 
+.search_filter {
+  position: fixed !important;
+  left: 0px;
+  z-index: 2;
+}
+
 #dashboard {
   /*Facility  */
   /** Upload Browser Css  */

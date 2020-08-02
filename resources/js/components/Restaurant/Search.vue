@@ -51,6 +51,13 @@
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
+                            <div class="col-md-12 py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
+                                <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
+                                <!-- <a href="#" class="badge badge-secondary">{{filter.type}}</a> -->
+                            </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
                             <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
@@ -160,6 +167,12 @@ export default {
         },
         // search result
         search_result(){
+            // hidding collapse after 
+            // clicking the search button hit
+            // Mobile screensize
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/restaurants?name='+
@@ -245,12 +258,19 @@ export default {
         },
         // Reset the search form
         reset(){
-            this.filter.location = "",
-            // this.fiter ={
-            //     name:'',
-            //     location:'',
-            //     rate:'',
-            // }
+            // this.filter.location = "";
+            // this.filter.name = "";
+            // this.filter.rate = "";
+            // this.filter.location = "",
+            this.fiter={
+                name:'',
+                location:'',
+                rate:'',
+            };
+            // Desktop resize
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.load_result();
         }
     },
