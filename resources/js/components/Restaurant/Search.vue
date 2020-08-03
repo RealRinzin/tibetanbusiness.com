@@ -8,7 +8,7 @@
                         <div class="col-md-3">
                             <div class="card p-3">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <small class="text-muted" data-toggle="collapse"  data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                         <div class="collapse" id="search_collapse">
                                             <div class="row">
                                                 <div class="col-md-12 py-1">
@@ -128,7 +128,6 @@ export default {
             // loading
             isLoading : false,//Lazy loading
             // lazy:false,
-
         }
     },
 
@@ -262,7 +261,7 @@ export default {
             // this.filter.name = "";
             // this.filter.rate = "";
             // this.filter.location = "",
-            this.fiter={
+            this.filter = {
                 name:'',
                 location:'',
                 rate:'',

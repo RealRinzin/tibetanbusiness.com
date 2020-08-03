@@ -205,6 +205,10 @@ export default {
         },
         // search result
         search_result(){
+            // Desktop
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             // Range
             var fee = document.getElementById("entry_fee");
             this.number = fee.value.split("-");
@@ -288,7 +292,11 @@ export default {
                 fee_max:1000000,
                 from:from,
                 to:'2022-10-20'
-            },
+            };
+            // Desktop
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.load_result();
         }
     },

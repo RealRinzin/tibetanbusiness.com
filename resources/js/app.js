@@ -300,6 +300,8 @@ const app = new Vue({
         this.login_status(); 
         // Mobile device size  
         if(screen.width < 767){
+            $("#tb_location").removeClass("px-0");
+            $("#tb_type").removeClass("px-0");
             $("#search_collapse").addClass("hide");
             $("#search_mobile").addClass("search_filter");
             $("#desktop_search_toggle").css("display", "none");

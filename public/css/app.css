@@ -11133,6 +11133,84 @@ View individual show CSS
   font-size: 18px !important;
 }
 
+/** Mobile search dropdown  */
+
+#tb_mobile_search_dropdown input:focus {
+  outline: none !important;
+}
+
+#tb_mobile_search_dropdown .form-control[readonly] {
+  background: #ffffff !important;
+  font-size: 14px;
+}
+
+#tb_mobile_search_dropdown ul {
+  width: 100%;
+  z-index: 100;
+  top: 105%;
+  height: 270px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-left: 0px;
+  background-color: #ffffff;
+}
+
+#tb_mobile_search_dropdown ul li {
+  list-style: none;
+  padding: 6px;
+  color: #000;
+  background: #ffffff;
+  border-bottom: 0.3px solid #8c9297;
+}
+
+#tb_mobile_search_dropdown ul li:hover {
+  background-color: gray;
+  color: white;
+  transition: 1.5s;
+  cursor: pointer;
+}
+
+#tb_mobile_search_dropdown ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+#tb_mobile_search_dropdown .required {
+  border: solid 1px #dc4245;
+  border-left: solid 1px #dc4245 !important;
+  transition: 0.5s;
+}
+
+#tb_mobile_search_dropdown .required::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #94291a;
+  font-size: 18px !important;
+}
+
+#tb_mobile_search_dropdown .required::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #94291a;
+  font-size: 18px !important;
+}
+
+#tb_mobile_search_dropdown .required:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #94291a;
+  font-size: 18px !important;
+}
+
+#tb_mobile_search_dropdown .required::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #94291a;
+  font-size: 18px !important;
+}
+
+#tb_mobile_search_dropdown .required::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #94291a;
+  font-size: 18px !important;
+}
+
 /* Sidebar  */
 
 #sidebar .banner {

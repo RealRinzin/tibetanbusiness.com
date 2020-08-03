@@ -12,44 +12,11 @@
                 <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
             </div>
             <!-- <search></search> -->
-            <!-- search box -->
-            <!-- <div class="col-md-6 mx-auto" id="tb_search_dropdown">
-                <div class="input-group input-group-lg mb-3" id="tb_type">
-                    <div class="input-group-prepend">
-                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            Action
-                        </button>
-                        <ul class="dropdown-menu" id="target">
-                            <li class="dropdown-item"><a href="#">Action</a></li>
-                            <li class="dropdown-item"><a href="#">Another action</a></li>
-                            <li class="dropdown-item"><a href="#">Something else here</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                    <input type="text" id="service_search" class="form-control" readonly="readonly" onfocusin="service_dropdown()">
-                    <ul id="service_list" style="display:none;transition:1s">
-                        <li value="Sales"><a href="#"> <span class="mr-2"><img src="img/money.png"></span> Sales</a></li>
-                        <li value="Rents"><a href="#"> <span class="mr-2"><img src="img/rent.png"></span> Rents</a></li>
-                        <li value="Events"><a href="#"> <span class="mr-2"><img src="img/birthday.png"></span> Events</a></li>
-                        <li value="Jobs"><a href="#"> <span class="mr-2"><img src="img/opportunity.png"></span> Jobs</a></li>
-                        <li value="Services"><a href="#"><span class="mr-2"><img src="img/mechanic.png"></span> Services</a></li>
-                        <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="img/chef.png"></span> Restaurants</a></li>
-                    </ul>
-                    <div id="dropdown" style="display:none;transition:1s">
-                    </div>
-                    <div class="input-group-append">
-                        <a type="submit" id="link" class="btn btn-danger">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-            </div> -->
             <div class="col-md-8 mx-auto mb-5" id="tb_search_dropdown">
                 <form method="get" action="#">
                     {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-md-5 px-0 col-sm-5 col-6" id="tb_location">
+                        <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_location">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted fa-2x"></i></span>
@@ -71,7 +38,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-5 px-0 col-sm-5 col-6" id="tb_type">
+                        <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_type">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">
@@ -90,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-md-2 px-0 col-sm-2 col-12">
-                            <div class="input-group-append" id="my-link">
+                            <div class="input-group-append">
                                 <button id="link" type="submit" class="btn btn-danger w-50">
                                     <!-- <a href="" id="link" type="submit" class="btn btn-danger w-50"> -->
                                         <i class="fas fa-search fa-2x"></i>

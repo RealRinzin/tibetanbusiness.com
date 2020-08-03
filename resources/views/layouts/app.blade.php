@@ -33,6 +33,7 @@
     <!-- jquery UI -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
 </head>
+
 <body>
     <div id="app">
         <div class="wrapper">
@@ -43,26 +44,63 @@
                         <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                     </a>
                     <!-- Left navbar links -->
-                    <ul class="navbar-nav">
+                    <!-- <ul class="navbar-nav">
                         <li class="nav-item d-none d-sm-inline-block">
                             <a href="index3.html" class="nav-link">Add Business</a>
                         </li>
                         <li class="nav-item d-none d-sm-inline-block">
                             <a href="#" class="nav-link">Promote Business</a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                     <!-- SEARCH FORM -->
-                    <form class="form-inline ml-3">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-navbar" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    @if(Request::is('/'))
+                    Home
+                    @else
+                    <div id="tb_mobile_search_dropdown">
+                        <form class="form-inline ml-3" method="get" action="#">
+                            {{ csrf_field() }}
+                            <span class="w-50">
+                                <div class="input-group input-group-sm">
+                                    <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location">
+                                    <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
+                                        <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                        <li value="Delhi"><a href="#">Delhi</a></li>
+                                        <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                        <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                        <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                        <li value="Delhi"><a href="#">Delhi</a></li>
+                                        <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                        <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                        <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                        <li value="Delhi"><a href="#">Delhi</a></li>
+                                        <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                        <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                    </ul>
+                                </div>
+                            </span>
+                            <span class="w-50">
+                                <div class="input-group input-group-sm">
+                                    <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
+                                    <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
+                                        <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
+                                        <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
+                                        <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
+                                        <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/opportunity.png"></span> Jobs</a></li>
+                                        <li value="Services"><a href="#"><span class="mr-2"><img src="/img/mechanic.png"></span> Services</a></li>
+                                        <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/chef.png"></span> Restaurants</a></li>
+                                    </ul>
+                                    <div class="input-group-append">
+                                        <button id="link" class="btn btn-navbar" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </span>
+                        </form>
+                    </div>
+                    @endif
 
                     <!-- Right navbar links -->
                     <ul class="navbar-nav ml-auto">
@@ -92,7 +130,7 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +165,7 @@
                         </form>
                     </div>
                 </div>
-            </nav> -->
+            </nav>
             <!-- /.navbar -->
             <!-- content -->
             @yield('content')
@@ -325,6 +363,7 @@
         })
         // Adding text
         $("#link").click(function(event) {
+            console.log("check");
             if (!service || !locate) {
                 // console.log("empty");
                 event.preventDefault();

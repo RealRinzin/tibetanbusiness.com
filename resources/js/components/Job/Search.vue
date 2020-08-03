@@ -207,6 +207,10 @@ export default {
         },
         // search result
         search_result(){
+            // Desktop
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             // Salary Range
             var salary = document.getElementById("salary");
             this.number = salary.value.split("-");
@@ -290,7 +294,11 @@ export default {
                 salary_max:'',
                 // fare:50000,
                 salary:200000,
-            },
+            };
+            // Desktop
+            if(screen.width < 767){
+                $("#search_collapse").removeClass("show");
+            }
             this.load_result();
         }
     },

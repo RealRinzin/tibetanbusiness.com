@@ -9,7 +9,7 @@
                 <div class="col-md-8 mx-auto">
                     <h6 class="bg-danger btn">New Sale</h6>
                     <div class="row">
-                        <div class="col-md-6" v-for="(sales,index) in sales" v-if="index <= 1">
+                        <div class="col-md-6 col-6" v-for="(sales,index) in sales" v-if="index <= 1">
                         <!-- <div class="col-md-6"> -->
                             <div class="card">
                                 <div class="row">
