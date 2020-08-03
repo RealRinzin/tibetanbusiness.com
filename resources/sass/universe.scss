@@ -118,7 +118,7 @@
 		  width: 100%;
 		  z-index: 100;
 		  top:105%;
-		  height: 270px;
+		  // height: 270px;
 		  overflow: scroll;
       overflow-x:hidden;
       padding-left:0px;
@@ -147,8 +147,8 @@
   
   // Alert Required
   .required{
-    border:solid 1px #dc4245;
-    border-left:solid 1px #dc4245 !important;
+    border:solid 1px #ffffff;
+    border-left:solid 1px #ffffff !important;
     transition: .5s;
     // border-radius: 3px;
   }

@@ -11148,7 +11148,6 @@ View individual show CSS
   width: 100%;
   z-index: 100;
   top: 105%;
-  height: 270px;
   overflow: scroll;
   overflow-x: hidden;
   padding-left: 0px;
@@ -11176,8 +11175,8 @@ View individual show CSS
 }
 
 #tb_mobile_search_dropdown .required {
-  border: solid 1px #dc4245;
-  border-left: solid 1px #dc4245 !important;
+  border: solid 1px #ffffff;
+  border-left: solid 1px #ffffff !important;
   transition: 0.5s;
 }
 

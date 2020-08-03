@@ -59,7 +59,6 @@
                         <div class="col-md-2 px-0 col-sm-2 col-12">
                             <div class="input-group-append">
                                 <button id="link" type="submit" class="btn btn-danger w-50">
-                                    <!-- <a href="" id="link" type="submit" class="btn btn-danger w-50"> -->
                                         <i class="fas fa-search fa-2x"></i>
                                     </button>
                             </div>
