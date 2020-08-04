@@ -43,27 +43,26 @@
                     <a href="/" class="navbar-brand">
                         <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
                     </a>
-
                     <!-- SEARCH FORM -->
                     @if(Request::is('/'))
                     <!-- Left navbar links -->
-                    <ul>
-                        <li class="nav-item d-none d-sm-inline-block">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-sm-inline-block">
                             <a href="index3.html" class="nav-link">Add Business</a>
                         </li>
-                        <li class="nav-item d-none d-sm-inline-block">
+                        <li class="nav-item d-sm-inline-block">
                             <a href="#" class="nav-link">Promote Business</a>
                         </li>
                     </ul>
                     @else
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div class="col-md-12">
                             <div id="tb_mobile_search_dropdown">
                                 <form class="form-inline ml-3" method="get" action="">
                                     {{ csrf_field() }}
                                     <span class="w-50">
                                         <div class="input-group input-group-sm">
-                                            <input style="border-radius:3px 0px 0px 3px"  type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
+                                            <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                             <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
                                             <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
                                                 <li value="Dharamsala"><a href="#">Dharamsala</a></li>
@@ -109,15 +108,15 @@
                     <!-- Right navbar links -->
                     <ul class="navbar-nav ml-auto">
                         @guest
-                        <li class="nav-item d-none d-sm-inline-block">
+                        <li class="nav-item d-sm-inline-block">
                             <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
                         </li>
                         @else
                         <div id="avatar">
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle" style="height:35;width:35px">
-                                    <!-- {{ Auth::user()->name }} <span class="caret"></span> -->
+                                    <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
+                                    <!-- {{ Auth::user()->name }} --> <span class="caret"></span> 
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <nav-bar></nav-bar>
@@ -134,7 +133,19 @@
                     </ul>
                 </div>
             </nav>
-            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            @if(!Request::is('/'))
+            <div class="toast mx-auto" data-autohide="false">
+                <div class="toast-header p-0">
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body">
+                    <button class="btn btn-danger">Add Business</button>
+                    <button class="btn btn-danger">Promote Business</button>
+                </div>
+            </div>
+        </div>
+        @endif
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -170,86 +181,86 @@
                     </div>
                 </div>
             </nav> -->
-            <!-- /.navbar -->
-            <!-- content -->
-            @yield('content')
-            <footer>
-                <div class="container">
-                    <div class="row py-2">
-                        <div class="col-md-12">
-                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
-                        </div>
-                    </div>
-                    <div class=" divider"></div>
-                    <div class="row py-2">
-                        <div class="col-md-12">
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="divider"></div>
-                        <div class="col-md-2 col-sm-4 col-6">
-                            <ul>
-                                <li>Miao</li>
-                                <li>Tezu</li>
-                                <li>Kollegal</li>
-                                <li>Bylakuppe</li>
-                                <li>Herbertpur</li>
-                                <li>Mungod</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-6 my-1">
-                            <ul>
-                                <li>Ravangala</li>
-                                <li>Bandara</li>
-                                <li>Mainpat</li>
-                                <li>Odisha</li>
-                                <li>Hunsur</li>
-                                <li>Ladak</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-6 my-1">
-                            <ul>
-                                <li>Tuting</li>
-                                <li>Bir</li>
-                                <li>Dalhousie</li>
-                                <li>Kamrao</li>
-                                <li>Kham karto</li>
-                                <li>Ponta</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-6 my-1">
-                            <ul>
-                                <li>Puruwala</li>
-                                <li>Shimla</li>
-                                <li>Bomdila</li>
-                                <li>Dharamsala</li>
-                                <li>Darjeeling</li>
-                                <li>Clement Town</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-6 my-1">
-                            <ul>
-                                <li>Gangtok</li>
-                                <li>Kalimpong</li>
-                                <li>Munduwala</li>
-                                <li>Manali</li>
-                                <li>Delhi</li>
-                                <li>Shilong</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-6 my-1">
-                            <ul>
-                                <li>Dekyiling</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="row py-1">
-                        <p class="copyright text-center">© Copyright 2017</p>
+        <!-- /.navbar -->
+        <!-- content -->
+        @yield('content')
+        <footer>
+            <div class="container">
+                <div class="row py-2">
+                    <div class="col-md-12">
+                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
                     </div>
                 </div>
-            </footer>
-        </div>
+                <div class=" divider"></div>
+                <div class="row py-2">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="row py-2">
+                    <div class="divider"></div>
+                    <div class="col-md-2 col-sm-4 col-6">
+                        <ul>
+                            <li>Miao</li>
+                            <li>Tezu</li>
+                            <li>Kollegal</li>
+                            <li>Bylakuppe</li>
+                            <li>Herbertpur</li>
+                            <li>Mungod</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                        <ul>
+                            <li>Ravangala</li>
+                            <li>Bandara</li>
+                            <li>Mainpat</li>
+                            <li>Odisha</li>
+                            <li>Hunsur</li>
+                            <li>Ladak</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                        <ul>
+                            <li>Tuting</li>
+                            <li>Bir</li>
+                            <li>Dalhousie</li>
+                            <li>Kamrao</li>
+                            <li>Kham karto</li>
+                            <li>Ponta</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                        <ul>
+                            <li>Puruwala</li>
+                            <li>Shimla</li>
+                            <li>Bomdila</li>
+                            <li>Dharamsala</li>
+                            <li>Darjeeling</li>
+                            <li>Clement Town</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                        <ul>
+                            <li>Gangtok</li>
+                            <li>Kalimpong</li>
+                            <li>Munduwala</li>
+                            <li>Manali</li>
+                            <li>Delhi</li>
+                            <li>Shilong</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                        <ul>
+                            <li>Dekyiling</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row py-1">
+                    <p class="copyright text-center">© Copyright 2017</p>
+                </div>
+            </div>
+        </footer>
+    </div>
     </div>
     <!-- login Modal -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -329,6 +340,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/share.js') }}"></script>
     <script>
+        $('.toast').toast('show');
         var locate = "";
         var service = "";
         // location
