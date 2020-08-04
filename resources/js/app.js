@@ -308,11 +308,19 @@ const app = new Vue({
             $("#search_mobile").addClass("p-0");
             $("#search_mobile .card").removeClass("p-3");
             $("#search_mobile .card").addClass("px-3");
+            // Add business and promote button
+            $(".toast").toast("show");
+            $("#mobile_add_promote_link").css("display", "block");
+            $("#desktop_add_promote_link").css("display", "none");
         }else{
-        //Other size
-            $("#search_collapse").addClass("show");
-            $("#mobile_search_toggle").css("display","none");
-        }
+                 // Add business and promote button
+                 $(".toast").toast("hide");
+                 $("#mobile_add_promote_link").css("display", "none");
+                $("#desktop_add_promote_link").css("display", "block");
+                 //Other size
+                 $("#search_collapse").addClass("show");
+                 $("#mobile_search_toggle").css("display", "none");
+             }
         
     }
 });

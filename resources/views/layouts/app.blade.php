@@ -55,6 +55,14 @@
                         </li>
                     </ul>
                     @else
+                    <ul class="navbar-nav" id="desktop_add_promote_link">
+                        <li class="nav-item d-sm-inline-block">
+                            <a href="index3.html" class="nav-link">Add Business</a>
+                        </li>
+                        <li class="nav-item d-sm-inline-block">
+                            <a href="#" class="nav-link">Promote Business</a>
+                        </li>
+                    </ul>
                     <div class="row mx-auto">
                         <div class="col-md-12">
                             <div id="tb_mobile_search_dropdown">
@@ -116,7 +124,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
-                                    <!-- {{ Auth::user()->name }} --> <span class="caret"></span> 
+                                    <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <nav-bar></nav-bar>
@@ -134,7 +142,7 @@
                 </div>
             </nav>
             @if(!Request::is('/'))
-            <div class="toast mx-auto" data-autohide="false">
+            <!-- <div class="toast mx-auto" data-autohide="false" id="mobile_add_promote_link">
                 <div class="toast-header p-0">
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                 </div>
@@ -142,6 +150,13 @@
                     <button class="btn btn-danger">Add Business</button>
                     <button class="btn btn-danger">Promote Business</button>
                 </div>
+            </div> -->
+            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center" role="alert" id="mobile_add_promote_link">
+                <button class="btn btn-warning">Add Business</button>
+                <button class="btn btn-warning">Promote Business</button>
+                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
         @endif
@@ -340,7 +355,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/share.js') }}"></script>
     <script>
-        $('.toast').toast('show');
+        // toast pop up for 
+        // $('.toast').toast('show');
         var locate = "";
         var service = "";
         // location
