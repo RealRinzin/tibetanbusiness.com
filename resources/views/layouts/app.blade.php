@@ -142,16 +142,7 @@
                 </div>
             </nav>
             @if(!Request::is('/'))
-            <!-- <div class="toast mx-auto" data-autohide="false" id="mobile_add_promote_link">
-                <div class="toast-header p-0">
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                </div>
-                <div class="toast-body">
-                    <button class="btn btn-danger">Add Business</button>
-                    <button class="btn btn-danger">Promote Business</button>
-                </div>
-            </div> -->
-            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center" role="alert" id="mobile_add_promote_link">
+            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100" role="alert" id="mobile_add_promote_link">
                 <button class="btn btn-warning">Add Business</button>
                 <button class="btn btn-warning">Promote Business</button>
                 <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
@@ -160,43 +151,6 @@
             </div>
         </div>
         @endif
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="auto_complete()">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </nav> -->
-        <!-- /.navbar -->
         <!-- content -->
         @yield('content')
         <footer>
