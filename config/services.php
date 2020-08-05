@@ -39,8 +39,8 @@ return [
      *  */ 
     // Github Login
     'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'client_id' => 'af90d1f6d8d6b2d17d8a',
+        'client_secret' => 'd34dfce062e15d755520cf9572ae359187f304b0',
         'redirect' => 'https://tibetanbusiness.com:8890/login/github/callback',
     ],
     // Facebook Login

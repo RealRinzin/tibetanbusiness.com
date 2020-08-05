@@ -126,27 +126,4 @@ Route::prefix('search')->group(function () {
     Route::get('Rents/{location?}', 'Rent\RentBasicInfoController@search_engine');
     Route::get('Sales/{location?}', 'Sale\SaleBasicInfoController@search_engine');
     Route::get('Services/{location?}', 'Service\ServiceBasicInfoController@search_engine');
-    // Route::get('{type}/{location?}', function($type,$location) {
-    //     Route::get('{type}/{location?}', function ($type) {
-    //         // dd($type,$location);
-    //     if($type !== null){
-    //         // return $type;
-    //         if($type === 'Restaurants'){
-    //             return view('restaurant.search');
-    //         }elseif ($type === 'Events') {
-    //             return view('event.search');
-    //         } elseif ($type === 'Rents') {
-    //             return view('Rent.search');
-    //         } elseif ($type === 'Services') {
-    //             return view('service.search');
-
-    //         } elseif ($type === 'Jobs') {
-    //             return view('job.search');
-    //         } elseif ($type === 'Sales') {
-    //             return view('sale.search');
-    //         }
-    //     }else{
-    //         return '/';
-    //     }
-    // });
 });

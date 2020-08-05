@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Webpatser\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -67,8 +68,9 @@ class RegisterController extends Controller
         // return User::connection('mysql')->create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'provider_id' => '234234234',
+            'provider_id' => Uuid::generate(4),
             'password' => Hash::make($data['password']),
+            'avatar' => 'img/tibetanbusiness.png'
         ]);
     }
 }

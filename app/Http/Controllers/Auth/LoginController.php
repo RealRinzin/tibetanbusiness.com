@@ -63,36 +63,30 @@ class LoginController extends Controller
     {
         $current_url = URL::current();
 
-        $github_user = Socialite::driver($service)->user();
+        $socialite_login = Socialite::driver($service)->user();
         /**
          * Add User to Database
          *  */ 
-        // dd($github_user);
-        $user = User::where('provider_id',$github_user->getId())->first();
+        if($socialite_login->name == null){
+            $socialite_login->name = $socialite_login->nickname;
+        };
+        $user = User::where('provider_id',$socialite_login->getId())->first();
         if(!$user){
             $user = User::create([
-                'email' => $github_user->email,
-                'name' => $github_user->name,
-                'avatar' => $github_user->avatar,
-                'provider_id' => $github_user->id,
+                'email' => $socialite_login->email,
+                'name' => $socialite_login->name,
+                'avatar' => $socialite_login->avatar,
+                'provider_id' => $socialite_login->id,
             ]);
         }
         // $user->token;
+
         Auth::login($user,true);
         return redirect($this->redirectTo);
+        // if(Auth::login($user, false)) {
+        //     return route('login');
+        // }
         // return redirect($current_url);
         // return redirect()->back();
     }
-// /* login status */
-//     public function login_status()
-//     {
-//         // return "hellow";
-//         $isUserLogged = false;
-//         if (Auth::check()) {
-//             $user = Auth::user();
-//             $isUserLogged = true;
-//         }
-//         return response()->json(array('response' => 'success', 'status' => $isUserLogged, 'user' => $user));
-//         // return redirect($this->redirectTo);
-//     }
 }
