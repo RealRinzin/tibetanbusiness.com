@@ -1,6 +1,6 @@
 <template>
     <div>
-    <a class="dropdown-item" @click="logout()" href="/dashboard">Dashboard</a>
+    <a class="dropdown-item" href="/dashboard">Dashboard</a>
     <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a>
     </div>
 </template>

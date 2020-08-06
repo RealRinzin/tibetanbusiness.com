@@ -23,41 +23,14 @@
 
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css"> -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <!-- File upload script -->
-    <!-- <link rel="stylesheet" href="{{asset('css/jquery.fileuploader.min.css')}}"> -->
 
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper" id="app">
         <vue-progress-bar></vue-progress-bar>
-        <!-- Navbar -->
-        <!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto mr-5">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle" style="height:35;width:35px">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="logout" class="dropdown-item">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </nav> -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
@@ -65,47 +38,27 @@
                     <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="/dashboard" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="" class="nav-link">Contact</a>
-                </li>
+                </li> -->
             </ul>
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Messages Dropdown Menu -->
-
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge"></span>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle" style="height: 30px;height:30px">
+                        <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
+                            <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
+                            @csrf
+                        </form>
                     </div>
-                </li>
+                </div>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -183,7 +136,6 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" id="dashboard">
-            <!-- <example-component></example-component> -->
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
@@ -201,18 +153,18 @@
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        <footer class="main-footer text-center p-3 small">
+            <strong>Copyright &copy; <?php echo date("Y") ?> <a href="https://www.tibetanbusiness.com">Tibetanbusiness Co</a></strong>
             All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
+            <!-- <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.0.4
-            </div>
+            </div> -->
         </footer>
     </div>
     <!-- REQUIRED SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
     <!-- File upload script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.js"></script>
@@ -220,7 +172,15 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <script>
+        $("#clear_storage").click(function() {
+            localStorage.removeItem('token');
+            // Remove User Object
+            localStorage.removeItem('user_name');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('user_avatar');
+        });
+    </script>
 </body>
 
 </html>

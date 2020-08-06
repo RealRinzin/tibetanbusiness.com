@@ -43,7 +43,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     /**
      * Redirect the user to the GitHub authentication page.
      *
@@ -83,10 +82,10 @@ class LoginController extends Controller
 
         Auth::login($user,true);
         return redirect($this->redirectTo);
-        // if(Auth::login($user, false)) {
-        //     return route('login');
+        // if (Auth::check()) {
+        //     return "passed";
+        // }else{
+        //     return "failed";
         // }
-        // return redirect($current_url);
-        // return redirect()->back();
     }
 }

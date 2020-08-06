@@ -127,17 +127,17 @@
                                     <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <nav-bar></nav-bar>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <!-- <nav-bar></nav-bar> -->
+                                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
+                                        <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
                                         @csrf
                                     </form>
                                 </div>
                             </li>
                         </div>
                         @endguest
-                        <!-- <li class="nav-item d-none d-sm-inline-block">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
-                        </li> -->
                     </ul>
                 </div>
             </nav>
@@ -345,8 +345,19 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/share.js') }}"></script>
     <script>
-        // toast pop up for 
-        // $('.toast').toast('show');
+        // Clearing the storage
+        $("#clear_storage").click(function() {
+            localStorage.removeItem('token');
+            // Remove User Object
+            localStorage.removeItem('user_name');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('user_avatar');
+        });
+        /**@abstract
+         * Search 
+         * Filter
+         * Find
+         *  */
         var locate = "";
         var service = "";
         // location

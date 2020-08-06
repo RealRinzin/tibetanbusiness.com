@@ -18,9 +18,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            // return $guard;
             return redirect('/');
         }
-
         return $next($request);
     }
 }
