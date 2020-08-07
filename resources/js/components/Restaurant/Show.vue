@@ -8,7 +8,7 @@
         url="https://tibetanbusiness.com"
         />
         <div id="restaurant" style="min-height:80vh">
-            <div v-if="!loading">
+            <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
@@ -56,7 +56,7 @@
                                                         <span v-else class="text-danger btn btn-outline-danger">Sun</span>
                                                     </h6>
                                                 </div>
-                                                <div class="col-md-3 col-sm-6  col-6 facility" v-if="restaurant.facility[0] !=null">
+                                                <div class="col-md-3 col-sm-6  col-6 facility" v-if="restaurant.facility[0] != null">
                                                     <h6 class="mb-3 text-muted">Facilities</h6>
                                                     <p class="text-success" v-if="restaurant.facility[0].home_delivery == 1"> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-truck mr-1"></i> Home Delivery</p>
@@ -127,8 +127,7 @@
     import 'vue-loading-overlay/dist/vue-loading.css';
         // Map
     export default {
-        props:['rating'],
-
+        // props:['rating'],
         /**
          * Data
          *  */ 
@@ -166,6 +165,7 @@
                 this.isLoading = true; //Loading true
                 axios.get('/view'+window.location.pathname).then(response=>{
                     this.restaurant = response.data.data;
+                    console.log(this.restaurant);
                     // loading
                     this.isLoading = false; //Loading true
                     this.loading = true;

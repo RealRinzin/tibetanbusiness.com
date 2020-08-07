@@ -7,7 +7,6 @@
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
-                    <!-- <div class="col-md-4 py-1" v-for="(restaurants,index) in restaurants" v-if="index <= 5"> -->
                     <!-- Restaurant -->
                     <div class="col-md-4 col-sm-6 py-1" v-if="restaurant">
                         <div class="card">
@@ -172,7 +171,7 @@
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
                     if(response.data.length > 0){
-                        
+                    
                         // Assign Featured restaurant
                         this.restaurant = response.data[Math.floor(Math.random() *response.data.length)]                        
                         /**
@@ -191,8 +190,8 @@
                             this.restaurant.rate_color = 'bg-secondary';
                         }
                         // loading success
-                        this.isLoading = false; //Loading true
-                        this.load = true;
+                        // this.isLoading = false; //Loading true
+                        // this.load = true;
                     }else{
                     axios.get('/api/restaurant/list/all')
                         .then(response=>{
@@ -215,8 +214,8 @@
                             }
             
                             // loading success
-                            this.isLoading = false; //Loading true
-                            this.load = true;
+                            // this.isLoading = false; //Loading true
+                            // this.load = true;
                         })
                     }
                 })
@@ -240,12 +239,10 @@
                             }else{
                                 this.event.rate_color = 'bg-secondary';
                             }
-                            this.isLoading = false; //Loading true
+                            // this.isLoading = false; //Loading true
                     }else{
                         axios.get('/api/event/list/all')
                         .then(response=>{
-                            console.log("all");
-                            
                             this.event = response.data[Math.floor(Math.random() *response.data.length)];
                             /**
                              * Rating Background
@@ -262,7 +259,7 @@
                             }else{
                                 this.event.rate_color = 'bg-secondary';
                             }
-                            this.isLoading = false; //Loading true
+                            // this.isLoading = false; //Loading true
                         })
                     }        
                 })
@@ -287,7 +284,7 @@
                             }else{
                                 this.rent.rate_color = 'bg-secondary';
                             }
-                            this.isLoading = false; //Loading true
+                            // this.isLoading = false; //Loading true
                         }else{
                         axios.get('/api/rent/list/all')
                         .then(response => {
@@ -308,7 +305,7 @@
                             }else{
                                 this.rent.rate_color = 'bg-secondary';
                             }
-                            this.isLoading = false; //Loading true
+                            // this.isLoading = false; //Loading true
 
                         })
                     }
@@ -319,13 +316,13 @@
                     if (response.data.length > 0) {
                         // Assign
                         this.job = response.data[Math.floor(Math.random() *response.data.length)]
-                        this.isLoading = false; //Loading true
+                        // this.isLoading = false; //Loading true
                     }else{
                         axios.get('/api/job/list/all')
                         .then(response => {
                             // Assign
                             this.job = response.data[Math.floor(Math.random() *response.data.length)]
-                            this.isLoading = false; //Loading true
+                            // this.isLoading = false; //Loading true
 
                         })
                     }
@@ -358,6 +355,7 @@
                         })
                     }
                 })
+                        this.load = true;
             },
         },
         /**
@@ -383,14 +381,6 @@
         mounted() {
             // Featured Restaurant
             this.load_business();
-
-
-            // API
-            // axios.get('https://indian-cities-api-nocbegfhqg.now.sh/cities')
-            // .then(response=>{
-            //     console.log(response);
-                
-            // })
         },
     }
 </script>

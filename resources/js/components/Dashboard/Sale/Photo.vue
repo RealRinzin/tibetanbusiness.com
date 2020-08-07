@@ -10,7 +10,7 @@
     </div>
     <!-- Photo iterations -->
     <div class="row">
-      <div class="col-md-2 col-sm-4 col-xs-6" v-for="(photo,index) in photos">
+      <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo"  v-bind:style='{ backgroundImage: `url(/storage/Sale/Photos/${photo.path})`}'>
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">

@@ -3,15 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title> @yield('title')</title>
+    <title>Tibetanbusiness.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
-    <meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description" content="How much does culture influence creative thinking?" />
-    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('tibetanbusiness.png')}}">
@@ -55,7 +49,8 @@
                         </li>
                     </ul>
                     @else
-                    <ul class="navbar-nav" id="desktop_add_promote_link">
+                    <ul class="navbar-nav d-none d-sm-block">
+                        <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
                         <li class="nav-item d-sm-inline-block">
                             <a href="index3.html" class="nav-link">Add Business</a>
                         </li>
@@ -69,10 +64,13 @@
                                 <form class="form-inline ml-3" method="get" action="">
                                     {{ csrf_field() }}
                                     <span class="w-50">
-                                        <div class="input-group input-group-sm">
+                                        <div class="input-group input-group-md">
                                             <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                             <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
                                             <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
+                                                <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                                 <li value="Dharamsala"><a href="#">Dharamsala</a></li>
                                                 <li value="Delhi"><a href="#">Delhi</a></li>
                                                 <li value="Dehradun"><a href="#">Dehradun</a></li>
@@ -89,9 +87,12 @@
                                         </div>
                                     </span>
                                     <span class="w-50">
-                                        <div class="input-group input-group-sm">
+                                        <div class="input-group input-group-md">
                                             <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
                                             <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
+                                                <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                                 <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
                                                 <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
                                                 <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
@@ -142,7 +143,7 @@
                 </div>
             </nav>
             @if(!Request::is('/'))
-            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100" role="alert" id="mobile_add_promote_link">
+            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
                 <button class="btn btn-warning">Add Business</button>
                 <button class="btn btn-warning">Promote Business</button>
                 <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
@@ -167,7 +168,7 @@
                 </div>
                 <div class="row py-2">
                     <div class="divider"></div>
-                    <div class="col-md-2 col-sm-4 col-6">
+                    <div class="col-md-2 col-sm-4 col-4">
                         <ul>
                             <li>Miao</li>
                             <li>Tezu</li>
@@ -177,7 +178,7 @@
                             <li>Mungod</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                    <div class="col-md-2 col-sm-4 col-4 my-1">
                         <ul>
                             <li>Ravangala</li>
                             <li>Bandara</li>
@@ -187,7 +188,7 @@
                             <li>Ladak</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                    <div class="col-md-2 col-sm-4 col-4 my-1">
                         <ul>
                             <li>Tuting</li>
                             <li>Bir</li>
@@ -197,7 +198,7 @@
                             <li>Ponta</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                    <div class="col-md-2 col-sm-4 col-4 my-1">
                         <ul>
                             <li>Puruwala</li>
                             <li>Shimla</li>
@@ -207,7 +208,7 @@
                             <li>Clement Town</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                    <div class="col-md-2 col-sm-4 col-4 my-1">
                         <ul>
                             <li>Gangtok</li>
                             <li>Kalimpong</li>
@@ -217,7 +218,7 @@
                             <li>Shilong</li>
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-6 my-1">
+                    <div class="col-md-2 col-sm-4 col-4 my-1">
                         <ul>
                             <li>Dekyiling</li>
                         </ul>
@@ -225,7 +226,20 @@
                 </div>
                 <div class="divider"></div>
                 <div class="row py-1">
-                    <p class="copyright text-center">© Copyright 2017</p>
+                    <div class="col-12">
+                        <p class="copyright text-center">Tibetanbusiness © Copyright <?php echo date('Y'); ?></p>
+                        <p class="copyright text-center">
+                            <span><i class="fab fa-facebook fa-2x mr-2 text-primary"></i></span>
+                            <span><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></span>
+                            <span><i class="fab fa-twitter mr-2 fa-2x text-info"></i></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="col-12 my-3">
+                        <p class="copyright text-center">Policy and Terms</p>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -375,16 +389,19 @@
             $("#location_search").removeClass("required");
 
         });
-
-        // Focus out
-        // $("#location_search").focusout(function() {
-        // })
+        // location close
+        $("#location_close").click(function() {
+            $("#location_list").css("display", "none");
+        })
         // Service
         function service_dropdown() {
             $("#service_list").css("display", "block")
             $("#location_list").css("display", "none")
-
         }
+        // service close
+        $("#service_close").click(function() {
+            $("#service_list").css("display", "none");
+        })
         $("#service_list li").click(function() {
             let term = $(this).attr("value")
             $("#service_search").val(term);
@@ -414,7 +431,6 @@
                     $("#location_search").attr("placeholder", "Select Location");
                 }
                 event.preventDefault();
-
             } else {
                 $('form').attr('action', '/search/' + service + "?location=" + locate);
             }

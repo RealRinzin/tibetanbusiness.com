@@ -1,4 +1,5 @@
 <template>
+
     <div style="min-height:80vh">
         <vue-headful
         :title="rent.name"
@@ -34,13 +35,13 @@
                                         <!-- Overview -->
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
-                                                    <div class="col-md-6 col-sm-6">
+                                                    <div class="col-md-6 col-sm-4 col-4">
                                                         <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{rent.location}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
                                                     </div>
-                                                <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
+                                                <div class="col-md-3 col-sm-4 col-4 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">Facilities</h6>
                                                     <p class="text-success" v-if="rent.facility[0].geyser == 1"> <i class="fas fa-subway mr-1"></i> Geyser</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-subway mr-1"></i>Geyser</p>
@@ -55,7 +56,7 @@
                                                     <p class="text-success" v-if="rent.facility[0].pet_allowed == 1"> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-dog mr-1"></i>Pet Allowed</p>
                                                 </div>
-                                                <div class="col-md-3 col-sm-6 facility" v-if="rent.facility !=null">
+                                                <div class="col-md-3 col-sm-4 col-4 facility" v-if="rent.facility !=null">
                                                     <h6 class="mb-3 text-muted">More</h6>
                                                     <p class="text-success" v-if="rent.facility[0].single_room  == 1"><i class="fas fa-bed mr-1"></i>Single Room</p>
                                                     <p class="text-danger" v-else><i class="fas fa-bed mr-1"></i>Single Room</p>

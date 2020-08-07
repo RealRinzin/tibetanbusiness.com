@@ -417,6 +417,9 @@ Background resource loading
   }
 
   #featured{
+    .card{
+      min-height: 250px;
+    }
     .info{
       ul{
         top: 75%;

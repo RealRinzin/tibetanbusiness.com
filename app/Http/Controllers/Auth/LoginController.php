@@ -10,6 +10,8 @@ use Socialite;
 use Illuminate\Support\Facades\URL;
 
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Redirect;
+
 class LoginController extends Controller
 {
     /*
@@ -31,8 +33,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
-    // protected $redirectTo = $url;
-    
+
 
     /**
      * Create a new controller instance.
@@ -42,6 +43,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        // $this->redirectTo = url()->previous();
     }
     /**
      * Redirect the user to the GitHub authentication page.
@@ -61,6 +63,7 @@ class LoginController extends Controller
     public function handleProviderCallback($service)
     {
         $current_url = URL::current();
+        // return $current_url;
 
         $socialite_login = Socialite::driver($service)->user();
         /**
@@ -81,11 +84,19 @@ class LoginController extends Controller
         // $user->token;
 
         Auth::login($user,true);
-        return redirect($this->redirectTo);
-        // if (Auth::check()) {
-        //     return "passed";
-        // }else{
-        //     return "failed";
-        // }
+        // Redirect URL
+        /**
+         * Social login Redirecting
+         * if the user is logged is already in the cache
+         * will redirect to the same page
+         * otherwise redirect to the home page
+         *  */ 
+        $url = url()->previous();
+        if($url == 'https://accounts.google.com.np/accounts/SetSID' || $url == 'https://www.facebook.com/' || $url == 'https://github.com/'){
+            return redirect($this->redirectTo);
+        }else{
+            return redirect()->back();
+        }
+        // return redirect($this->redirectTo);
     }
 }

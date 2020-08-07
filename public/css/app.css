@@ -11490,6 +11490,10 @@ Background resource loading
   height: 120px;
 }
 
+#featured .card {
+  min-height: 250px;
+}
+
 #featured .info ul {
   top: 75%;
   left: 5px;

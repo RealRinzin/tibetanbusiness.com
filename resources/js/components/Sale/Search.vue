@@ -4,11 +4,11 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <small style="z-index:3;top:70px;padding:3px 6px;" class="btn btn-danger position-fixed" id="mobile_search_toggle"  data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
                         <div class="col-md-3" id="search_mobile">
                             <div class="card p-3 mt-3" style="padding-bottom:0px !important">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted" id="desktop_search_toggle">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
+                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
+
                                         <div class="collapse" id="search_collapse">
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 py-1">
@@ -39,15 +39,7 @@
                                                 <div class="col-md-12 text-center">
                                                     <button class="btn btn-danger btn-md w-25" id="search"><small class="fas fa-search"></small></button>
                                                     <button class="btn btn-secondary btn-md w-50" @click="reset()" id="rest_form"><small>Reset</small></button>
-                                                    <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
                                                 </div>
-                                                <!-- <div class="col-md-12 py-2">
-                                                    <p class="small text-muted pb-0 mb-1">Search keywords</p>
-                                                    <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
-                                                    <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                                    <small v-if="filter.type" class="badge badge-secondary mb-1">Type: {{filter.type}}</small>
-                                                    <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
-                                                </div> -->
                                             </div>
                                         </div>
                                 </form>

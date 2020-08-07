@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
-          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="upload_photos_modal()">Upload New photos</button></div>
+          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="upload_photos_modal()">Upload photos</button></div>
           <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
         </div>
       </div>
     </div>
     <!-- Photo iterations -->
     <div class="row">
-      <div class="col-md-2 col-sm-4 col-xs-6" v-for="(photo,index) in photos">
+      <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo"  v-bind:style='{ backgroundImage: `url(/storage/Service/Photos/${photo.path})`}'>
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">
