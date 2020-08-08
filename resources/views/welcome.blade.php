@@ -11,8 +11,8 @@
             <div class="col-md-12 py-4">
                 <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
             </div>
-            <!-- <search></search> -->
-            <div class="col-md-8 mx-auto mb-5" id="tb_search_dropdown">
+            <!-- Desktop Search -->
+            <div class="col-md-8 mx-auto mb-5 col-11" id="tb_search_dropdown">
                 <form method="get" action="#">
                     {{ csrf_field() }}
                     <div class="row">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-2 px-0 col-sm-2 col-12">
                             <div class="input-group-append">
-                                <button id="link" type="submit" class="btn btn-danger w-50">
+                                <button id="link" type="submit" class="btn btn-danger w-75">
                                     <i class="fas fa-search fa-2x"></i>
                                 </button>
                             </div>

@@ -234,10 +234,10 @@ export default {
                     ]; 
                     // loadmore Button
                     if(response.data.current_page == response.data.last_page){
-                            this.load_more_button = false; 
-                        }else{
-                            this.load_more_button = true; 
-                        }
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     // Rate Background
                     for (let index = 0; index < this.restaurants.length; index++) {
                         if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
