@@ -53,8 +53,8 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-danger" role="alert">
-                                Total Result : {{total}}
+                            <div class="alert alert-danger small" role="alert">
+                                Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="col-md-12 py-2">
                                 <p class="small text-muted pb-0 mb-1">Search keywords:</p>
@@ -159,9 +159,18 @@ export default {
                 this.services = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if (response.data.current_page <= response.data.last_page) {
-                    this.load_more_button = true;
+                // Load more button
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
                 }
+                // if response it there
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+                }else{
+                    this.load_more_button = true;
+                    this.empty_result='';
+                }
+                // Rating values
                 for (let index = 0; index < this.services.length; index++) {
                     if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
                         this.services[index].rate_color = 'bg-danger';
@@ -200,11 +209,12 @@ export default {
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page < response.data.last_page){
-                    this.load_more_button = true; 
-                }else{
+                if(response.data.current_page == response.data.last_page){
                     this.load_more_button = false; 
+                }else{
+                    this.load_more_button = true; 
                 }
+                // rating values
                 for (let index = 0; index < this.services.length; index++) {
                     if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
                         this.services[index].rate_color = 'bg-danger';
@@ -234,8 +244,13 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
                     this.isLoading = false; //Loading true
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     // this.lazy = true;
                     /**
                      * Comments 
@@ -262,7 +277,6 @@ export default {
                 }else{
                     // this.lazy = false;
                     this.isLoading = false; //Loading true
-                    this.load_more_button = false;
                 }
             })
         },

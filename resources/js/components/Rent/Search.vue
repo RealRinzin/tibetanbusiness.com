@@ -45,14 +45,6 @@
                                                 <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                 <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             </div>
-                                            <div class="col-md-12 py-2">
-                                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                                <small v-if="filter.name" class="badge badge-secondary mb-1"> Name: {{filter.name}}</small>
-                                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                                <small v-if="filter.rate" class="badge badge-secondary mb-1">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                                <small v-if="filter.accomodation_size" class="badge badge-secondary mb-1">Accomodation Size:{{filter.accomodation_size}}</small>
-                                                <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -60,7 +52,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
-                                Total Result : {{total}}
+                                Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="py-2">
                                 <p class="small text-muted pb-0 mb-1">Search keywords:</p>
@@ -187,9 +179,18 @@ export default {
                 this.rents = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if (response.data.current_page <= response.data.last_page) {
-                    this.load_more_button = true;
+                // Load more button
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
                 }
+                // if response it there
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+                }else{
+                    this.load_more_button = true;
+                    this.empty_result='';
+                }
+                // rating values
                 for (let index = 0; index < this.rents.length; index++) {
                     if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
                         this.rents[index].rate_color = 'bg-danger';
@@ -235,11 +236,12 @@ export default {
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page < response.data.last_page){
-                    this.load_more_button = true; 
-                }else{
+                if(response.data.current_page == response.data.last_page){
                     this.load_more_button = false; 
+                }else{
+                    this.load_more_button = true; 
                 }
+                // Rating values
                 for (let index = 0; index < this.rents.length; index++) {
                     if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
                         this.rents[index].rate_color = 'bg-danger';
@@ -272,7 +274,12 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     this.isLoading = false; //Loading true
                     // this.lazy = true;
                     /**
@@ -300,7 +307,6 @@ export default {
                 }else{
                     // this.lazy = false;
                     this.isLoading = false; //Loading true
-                    this.load_more_button = false;
                 }
             })
         },

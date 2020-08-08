@@ -56,14 +56,6 @@
                                             <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                             <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                         </div>
-                                        <div class="col-md-12 py-2">
-                                            <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                            <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
-                                            <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                            <small v-if="filter.entry_fee" class="badge badge-secondary mb-1">Entry Fee: {{filter.fee_min}}</small>
-                                            <small v-if="filter.category" class="badge badge-secondary mb-1">Category: {{filter.category}}</small>
-                                            <!-- <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">From: {{filter.from}}- to {{filter.to}}</small> -->
-                                        </div>
                                     </div>
                                     </div>
                                 </form>
@@ -71,7 +63,15 @@
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
                             <div class="alert alert-light" role="alert">
-                                Total Result : {{total}}
+                                Total Result : {{total}} {{empty_result}}
+                            </div>
+                            <div class="col-md-12 py-2">
+                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
+                                <small v-if="filter.name" class="badge badge-secondary mb-1">Name: {{filter.name}}</small>
+                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
+                                <small v-if="filter.entry_fee" class="badge badge-secondary mb-1">Entry Fee: {{filter.fee_min}}</small>
+                                <small v-if="filter.category" class="badge badge-secondary mb-1">Category: {{filter.category}}</small>
+                                <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">Date: {{filter.from}} - {{filter.to}}</small>
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -198,8 +198,16 @@ export default {
                 this.events = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if (response.data.current_page <= response.data.last_page) {
+                // Load more button
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
+                }
+                // if response it there
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+                }else{
                     this.load_more_button = true;
+                    this.empty_result='';
                 }
             })
         },
@@ -234,10 +242,10 @@ export default {
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page < response.data.last_page){
-                    this.load_more_button = true; 
-                }else{
+                if(response.data.current_page == response.data.last_page){
                     this.load_more_button = false; 
+                }else{
+                    this.load_more_button = true; 
                 }
 
             })
@@ -260,9 +268,13 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
                     this.isLoading = false; //Loading true
-                    // this.lazy = true;
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     /**
                      * Comments 
                      * data Distribution
@@ -275,7 +287,6 @@ export default {
                 }else{
                     // this.lazy = false;
                     this.isLoading = false; //Loading true
-                    this.load_more_button = false;
                 }
             })
         },

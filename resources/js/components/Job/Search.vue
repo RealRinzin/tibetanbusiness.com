@@ -54,23 +54,14 @@
                                                 <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                 <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
                                             </div>
-                                            <div class="col-md-12 py-2">
-                                                <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                                <small v-if="filter.title" class="badge badge-secondary mb-1">Title: {{filter.title}}</small>
-                                                <small v-if="filter.location" class="badge badge-secondary mb-1">Location: {{filter.location}}</small>
-                                                <small v-if="filter.profession" class="badge badge-secondary mb-1">Profession: {{filter.profession}}</small>
-                                                <small v-if="filter.salary_min || filter.salary_max" class="badge badge-secondary mb-1">Salary:₹{{filter.salary_min}} - {{filter.salary_max}}</small>
-                                                <small v-if="filter.nature" class="badge badge-secondary mb-1">Nature: {{filter.nature}}</small>
-                                                <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
-                                            </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-light" role="alert">
-                                Total Result : {{total}}
+                            <div class="alert alert-light small" role="alert">
+                                Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="py-2">
                                 <p class="small text-muted pb-0 mb-1">Search keywords:</p>
@@ -200,17 +191,22 @@ export default {
                 this.jobs = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if (response.data.current_page <= response.data.last_page) {
+                this.total = response.data.total;
+                // Load more button
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
+                }
+                // if response it there
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+                }else{
                     this.load_more_button = true;
+                    this.empty_result='';
                 }
             })
         },
         // search result
         search_result(){
-            // Desktop
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
             // Salary Range
             var salary = document.getElementById("salary");
             this.number = salary.value.split("-");
@@ -236,12 +232,11 @@ export default {
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page < response.data.last_page){
-                    this.load_more_button = true; 
-                }else{
+                if(response.data.current_page == response.data.last_page){
                     this.load_more_button = false; 
+                }else{
+                    this.load_more_button = true; 
                 }
-
             })
 
         },
@@ -262,8 +257,13 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
                     this.isLoading = false; //Loading true
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     // this.lazy = true;
                     /**
                      * Comments 
@@ -277,7 +277,6 @@ export default {
                 }else{
                     // this.lazy = false;
                     this.isLoading = false; //Loading true
-                    this.load_more_button = false;
                 }
             })
         },

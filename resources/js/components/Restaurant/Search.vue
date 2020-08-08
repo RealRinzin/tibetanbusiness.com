@@ -32,14 +32,6 @@
                                                 <div class="col-md-12 py-2 text-center">
                                                     <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                     <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
-                                                    <!-- <input type="submit" class="btn btn-danger btn-md" placeholder="Search"> -->
-                                                </div>
-                                                <div class="col-md-12 py-2">
-                                                    <p class="small text-muted pb-0 mb-1">Search keywords:</p>
-                                                    <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
-                                                    <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
-                                                    <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                                    <!-- <a href="#" class="badge badge-secondary">{{filter.type}}</a> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +48,6 @@
                                 <small v-if="filter.name" class="badge badge-secondary">Name: {{filter.name}}</small>
                                 <small v-if="filter.location" class="badge badge-secondary">Location: {{filter.location}}</small>
                                 <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
-                                <!-- <a href="#" class="badge badge-secondary">{{filter.type}}</a> -->
                             </div>
                             <!-- Result -->
                             <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
@@ -109,7 +100,7 @@ export default {
         return{
             loading: false,
             load_more_button : false,
-            total:0,
+            total:'',
             empty_result:'',
             // restaurant:[], // Restaurants Object
             restaurants:{
@@ -146,9 +137,18 @@ export default {
                 this.restaurants = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                if (response.data.current_page <= response.data.last_page) {
-                    this.load_more_button = true;
+                // If not result at all
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
                 }
+                // Load more button
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+                }else{
+                    this.load_more_button = true;
+                    this.empty_result='';
+                }
+                // Looping to assign rating values
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
                         this.restaurants[index].rate_color = 'bg-danger';
@@ -166,9 +166,7 @@ export default {
         },
         // search result
         search_result(){
-            // hidding collapse after 
-            // clicking the search button hit
-            // Mobile screensize
+            // Desktop resize
             if(screen.width < 767){
                 $("#search_collapse").removeClass("show");
             }
@@ -188,11 +186,12 @@ export default {
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page < response.data.last_page){
-                    this.load_more_button = true; 
-                }else{
+                if(response.data.current_page == response.data.last_page){
                     this.load_more_button = false; 
+                }else{
+                    this.load_more_button = true; 
                 }
+                // Rating values
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
                         this.restaurants[index].rate_color = 'bg-danger';
@@ -223,7 +222,6 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
                     this.isLoading = false; //Loading true
                     // this.lazy = true;
                     /**
@@ -233,7 +231,13 @@ export default {
                     this.restaurants = [
                         ...this.restaurants,
                         ...response.data.data
-                    ];    
+                    ]; 
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
                     // Rate Background
                     for (let index = 0; index < this.restaurants.length; index++) {
                         if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
@@ -251,16 +255,12 @@ export default {
                 }else{
                     // this.lazy = false;
                     this.isLoading = false; //Loading true
-                    this.load_more_button = false;
+                    // this.load_more_button = false;
                 }
             })
         },
         // Reset the search form
         reset(){
-            // this.filter.location = "";
-            // this.filter.name = "";
-            // this.filter.rate = "";
-            // this.filter.location = "",
             this.filter = {
                 name:'',
                 location:'',
