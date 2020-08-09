@@ -117,8 +117,19 @@ body{
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
-            // background-image: url('img/background2.jpg');
+            background-image: url(//afarkas.github.io/lazysizes/assets/imgs/loader.gif);
             }
+    // Lazysize loading
+        .lazyloading {
+            opacity: 1;
+            transition: 600ms opacity;
+            background: #f7f7f7 url(//afarkas.github.io/lazysizes/assets/imgs/loader.gif) no-repeat center;
+            min-height: 60px;
+        }
+        .lazyloaded {
+        opacity: 1;
+        transition: 10ms opacity;
+        }
         .likes{
             position: absolute;
             font-size: 12px !important;
@@ -141,6 +152,7 @@ body{
             right: 10px;
        }
     }
+
 }
 
 #business_list{

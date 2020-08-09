@@ -81,12 +81,12 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(event,index) in events">
                                         <a v-bind:href="'/event/'+event.id">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${event.banner})`}'>
-                                    <ul>
-                                        <li class="btn small">Fee:₹ {{event.entry_fee}}/-</li>
-                                        <li class="btn small">Date: {{event.start_date |date}}</li>
-                                        <li class="btn small">Type:{{event.category}}</li>
-                                    </ul>
+                                        <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
+                                            <ul>
+                                                <li class="btn small">Fee:₹ {{event.entry_fee}}/-</li>
+                                                <li class="btn small">Date: {{event.start_date |date}}</li>
+                                                <li class="btn small">Type:{{event.category}}</li>
+                                            </ul>
                                         </div>
                                         <div class="rate" v-if="event.rate !=null"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
                                         </a>

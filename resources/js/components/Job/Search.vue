@@ -80,12 +80,13 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(job,index) in jobs">
                                         <a v-bind:href="'/job/'+job.id">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'>
-                                    <ul>
-                                        <li class="btn">Salary:₹{{job.salary}}/-</li>
-                                        <li class="btn">Nature: {{job.nature}}</li>
-                                        <li class="btn">Experience: {{job.experience}}</li>
-                                    </ul>
+                                        <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
+                                        <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
+                                            <ul>
+                                                <li class="btn">Salary:₹{{job.salary}}/-</li>
+                                                <li class="btn">Nature: {{job.nature}}</li>
+                                                <li class="btn">Experience: {{job.experience}}</li>
+                                            </ul>
                                         </div>
                                         <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                                         </a>
@@ -146,10 +147,8 @@ export default {
                 nature:'',
                 experience:'',
                 profession:'',
-                salary_min:'',
-                salary_max:'',
-                // fare:50000,
-                salary:200000,
+                salary_min:0,
+                salary_max:5000000,
             },
             // loading
             isLoading : false,//Lazy loading

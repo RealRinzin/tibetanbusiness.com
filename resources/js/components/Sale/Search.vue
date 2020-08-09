@@ -63,8 +63,9 @@
                             <div v-else>
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(sale,index) in sales">
+
                                         <a v-bind:href="'/sale/'+sale.id">
-                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'>
+                                            <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
                                                 <ul>
                                                     <li class="ng-binding">Price:₹{{sale.price}}/-</li>
                                                     <li class="ng-binding">Total items: {{sale.total_item}}</li>

@@ -9,7 +9,9 @@
             <div class="row" v-else>
                 <div class="col-6" v-for="(rent,index) in rent" v-if="index <= 1">
                     <a v-bind:href="'/rent/'+rent.id">
-                    <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'></div>
+                    <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'></div> -->
+                    <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div>
+
                     <div class="rate" v-if="rent.rate !=null"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
                     </a>
                     <h6 class="text-dark pt-3">{{rent.name}}</h6>

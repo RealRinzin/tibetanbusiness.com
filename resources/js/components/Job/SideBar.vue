@@ -9,7 +9,9 @@
             <div class="row" v-else>
                 <div class="col-6" v-for="(job,index) in job" v-if="index <= 1">
                     <a v-bind:href="'/job/'+job.id">
-                    <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div>
+                    <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
+                    <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
+
                     </a>
                     <h6 class="text-dark pt-3">{{job.title}}</h6>
                     <p class="text-muted my-0">{{job.mobile_no}}</p>

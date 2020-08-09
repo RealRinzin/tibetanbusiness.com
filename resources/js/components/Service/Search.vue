@@ -71,11 +71,12 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(service,index) in services">
                                         <a v-bind:href="'/service/'+service.id">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'>
-                                    <ul>
-                                        <li class="font-weight-bold">Service type: {{service.type}}</li>
-                                    </ul>
-                                        </div>
+                                        <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'> -->
+                                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto">
+                                                <ul>
+                                                    <li class="font-weight-bold">Service type: {{service.type}}</li>
+                                                </ul>
+                                            </div>
                                         <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">

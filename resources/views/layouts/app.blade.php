@@ -436,6 +436,21 @@
             }
         });
     </script>
+    <!-- Lazy loading image -->
+    <script>
+        function loadJS(u) {
+            var r = document.getElementsByTagName("script")[0],
+                s = document.createElement("script");
+            s.src = u;
+            r.parentNode.insertBefore(s, r);
+        }
+
+        if (!window.HTMLPictureElement || !('sizes' in document.createElement('img'))) {
+            loadJS("ls.respimg.min.js");
+        }
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/bgset/ls.bgset.min.js"></script>
 </body>
 
 </html>

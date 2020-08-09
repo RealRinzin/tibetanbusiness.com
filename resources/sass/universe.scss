@@ -1,3 +1,5 @@
+
+
 /* Search Dropdown */
 #tb_search_dropdown{
   	input,.input-group-text{
@@ -160,12 +162,23 @@
 /* Sidebar  */
 #sidebar{
     .banner{
-        background-image: url('img/background.jpg');
+        background-image: url('http://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
         height: 70px;
         border-radius: 4px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+    }
+      // Lazysize loading
+    .lazyloading {
+        opacity: 1;
+        transition: 600ms opacity;
+        background: #f7f7f7 url('/img/tibetanbusiness.png') no-repeat center;
+        min-height: 60px;
+    }
+    .lazyloaded {
+    opacity: 1;
+    transition: 10ms opacity;
     }
     .rate{
         position: absolute;
@@ -415,7 +428,9 @@ Background resource loading
     background-repeat: no-repeat;
     height:120px;
   }
+// 
 
+// Featured
   #featured{
     .card{
       min-height: 250px;
@@ -443,13 +458,24 @@ Background resource loading
   /* Search Result CSS */
   #search{
     .banner{
-        background-image: url('img/background.jpg');
+        background-image: url('http://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
         height: 140px;
         border-radius: 4px 4px 0px 0px;
         position: relative;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+    }
+      // Lazysize loading
+    .lazyloading {
+        opacity: 1;
+        transition: 600ms opacity;
+        background: #f7f7f7 url(//afarkas.github.io/lazysizes/assets/imgs/loader.gif) no-repeat center;
+        min-height: 60px;
+    }
+    .lazyloaded {
+    opacity: 1;
+    transition: 10ms opacity;
     }
     .rate{
         position: absolute;

@@ -57,7 +57,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
                                         <a v-bind:href="'/restaurant/'+restaurant.id">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div>
+                                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
                                         <div class="rate" v-if="restaurant.rate !=null"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">

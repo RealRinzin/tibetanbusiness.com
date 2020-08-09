@@ -33,7 +33,9 @@
                             <td>{{restaurant.mobile_no}}</td>
                             <td><timeago :datetime="restaurant.created_at" /></td>
                             <td id="toggle">
-                                <input type="checkbox" :id="index" v-model="restaurant.status"><label @click="status_update(restaurant.id,index)" :for="index"></label>
+
+                                <input type="checkbox" :id="index" v-model="restaurant.status" ><label @click="status_update(restaurant.id,index)" :for="index"></label>
+                                <!-- <input type="checkbox" :id="index" v-model="restaurant.status" v-else="restaurant.status == 0"><label @click="status_update(restaurant.id,index)" :for="index"></label> -->
                                 <!-- <label class="switch" @click="status_update(restaurant.id,index)">
                                 <input type="checkbox" v-model="restaurant.status">
                                 <span class="slider round"></span>
