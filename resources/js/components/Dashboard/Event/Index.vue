@@ -33,10 +33,11 @@
                             <td>{{event.location}}</td>
                             <td>{{event.mobile_no}}</td>
                             <td>
-                                <label class="switch" @click="status_update(event.id,index)">
-                                <input type="checkbox" v-model="event.status">
-                                <span class="slider round"></span>
-                                </label>
+                                <toggle-button 
+                                 :value="event.status"
+                                @change="status_update(event.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
                             <td><a  :href="'/dashboard/event/edit/id='+event.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(event.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -76,6 +77,18 @@ export default {
                 this.loading = true;
                 // Import event object
                 this.events = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.events.length; index++) {
+                    if(this.events[index].status == 1){
+                        this.events[index].status = true
+                    }else{
+                        this.events[index].status = false
+                    }
+                }
             })
         },
         /**

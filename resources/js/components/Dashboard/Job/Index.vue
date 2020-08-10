@@ -33,10 +33,15 @@
                             <td>{{job.mobile_no}}</td>
                             <td><timeago :datetime="job.created_at" /></td>
                             <td>
-                                <label class="switch" @click="status_update(job.id,index)">
+                                <toggle-button 
+                                 :value="job.status"
+                                @change="status_update(job.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
+                                <!-- <label class="switch" @click="status_update(job.id,index)">
                                 <input type="checkbox" v-model="job.status">
                                 <span class="slider round"></span>
-                                </label>
+                                </label> -->
                             </td>
                             <td><a  :href="'/dashboard/job/edit/id='+job.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(job.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -76,6 +81,18 @@ export default {
                 this.loading = true;
                 // Import job object
                 this.jobs = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.jobs.length; index++) {
+                    if(this.jobs[index].status == 1){
+                        this.jobs[index].status = true
+                    }else{
+                        this.jobs[index].status = false
+                    }
+                }
             })
         },
         /**

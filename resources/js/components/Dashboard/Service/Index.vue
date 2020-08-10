@@ -29,10 +29,11 @@
                             <td>{{service.location}}</td>
                             <td>{{service.mobile_no}}</td>
                             <td>
-                                <label class="switch" @click="status_update(service.id,index)">
-                                <input type="checkbox" v-model="service.status">
-                                <span class="slider round"></span>
-                                </label>
+                                <toggle-button 
+                                 :value="service.status"
+                                @change="status_update(service.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
                             <td><a  :href="'/dashboard/service/edit/id='+service.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(service.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -72,6 +73,18 @@ export default {
                 this.loading = true;
                 // Import service object
                 this.services = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.services.length; index++) {
+                    if(this.services[index].status == 1){
+                        this.services[index].status = true
+                    }else{
+                        this.services[index].status = false
+                    }
+                }
             })
         },
         /**

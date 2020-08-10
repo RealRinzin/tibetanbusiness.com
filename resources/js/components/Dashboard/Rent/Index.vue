@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div v-if="!loading">
             <loading :active.sync="isLoading"></loading>
         </div>
@@ -33,10 +34,11 @@
                             <td>{{rent.mobile_no}}</td>
                             <td><timeago :datetime="rent.created_at" /></td>
                             <td>
-                                <label class="switch" @click="status_update(rent.id,index)">
-                                <input type="checkbox" v-model="rent.status">
-                                <span class="slider round"></span>
-                                </label>
+                                <toggle-button 
+                                 :value="rent.status"
+                                @change="status_update(rent.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
                             <td><a  :href="'/dashboard/rent/edit/id='+rent.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(rent.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -75,6 +77,18 @@ export default {
                 this.loading = true;
                 // Import rent object
                 this.rents = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.rents.length; index++) {
+                    if(this.rents[index].status == 1){
+                        this.rents[index].status = true
+                    }else{
+                        this.rents[index].status = false
+                    }
+                }
             })
         },
         /**

@@ -32,14 +32,12 @@
                             <td>{{restaurant.email}}</td>
                             <td>{{restaurant.mobile_no}}</td>
                             <td><timeago :datetime="restaurant.created_at" /></td>
-                            <td id="toggle">
-
-                                <input type="checkbox" :id="index" v-model="restaurant.status" ><label @click="status_update(restaurant.id,index)" :for="index"></label>
-                                <!-- <input type="checkbox" :id="index" v-model="restaurant.status" v-else="restaurant.status == 0"><label @click="status_update(restaurant.id,index)" :for="index"></label> -->
-                                <!-- <label class="switch" @click="status_update(restaurant.id,index)">
-                                <input type="checkbox" v-model="restaurant.status">
-                                <span class="slider round"></span>
-                                </label> -->
+                            <td>
+                                <toggle-button 
+                                 :value="restaurant.status"
+                                @change="status_update(restaurant.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
                             <td><a  :href="'/dashboard/restaurant/edit/id='+restaurant.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(restaurant.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -78,6 +76,18 @@ export default {
                 this.loading = true;
                 // Import restaurant object
                 this.restaurants = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.restaurants.length; index++) {
+                    if(this.restaurants[index].status == 1){
+                        this.restaurants[index].status = true
+                    }else{
+                        this.restaurants[index].status = false
+                    }
+                }
             })
         },
         /**
@@ -102,9 +112,7 @@ export default {
          * Restaurant
          *  */ 
         add_restaurant(){
-            $("#restaurant_add_modal").modal("show");  
-            console.log("add");
-                      
+            $("#restaurant_add_modal").modal("show");   
         },
         /**
          * DELETE

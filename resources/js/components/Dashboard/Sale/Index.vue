@@ -31,10 +31,11 @@
                             <td>{{sale.location}}</td>
                             <td>{{sale.mobile_no}}</td>
                             <td>
-                                <label class="switch" @click="status_update(sale.id,index)">
-                                <input type="checkbox" v-model="sale.status">
-                                <span class="slider round"></span>
-                                </label>
+                                <toggle-button 
+                                 :value="sale.status"
+                                @change="status_update(sale.id,index)"
+                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
                             <td><a  :href="'/dashboard/sale/edit/id='+sale.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(sale.id,index)"><i class="fas fa-trash-alt "></i></button></td>
@@ -74,6 +75,18 @@ export default {
                 this.loading = true;
                 // Import sale object
                 this.sales = response.data;
+                /**
+                 * Reassigning
+                 * Status to true and false string 
+                 * insteat of  value 1 and 0
+                 *  */ 
+                for (let index = 0; index < this.sales.length; index++) {
+                    if(this.sales[index].status == 1){
+                        this.sales[index].status = true
+                    }else{
+                        this.sales[index].status = false
+                    }
+                }
             })
         },
         /**

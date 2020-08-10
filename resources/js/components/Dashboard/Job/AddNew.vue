@@ -239,6 +239,7 @@ export default {
                                     icon:'success',
                                     title:'Updated',
                                 });
+                                location.reload();
                                 this.$emit('load_job');
                         })
                     }
