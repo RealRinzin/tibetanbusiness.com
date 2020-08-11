@@ -109,7 +109,7 @@ export default {
             overview:{},
             // operatin
             //facilities
-            facilities:{},
+            facilities:[],
             // comments
             comments:{},
             // Banner
@@ -131,7 +131,81 @@ export default {
                 // Assigning Restaurant object
                 this.rent = response.data.data;
                 // facitilies
-                this.facilities = this.rent.facility[0]; 
+                this.rent.facility.forEach(element => {
+                    this.facilities = element 
+                });
+                // Geyser
+                if(this.facilities.geyser == 1){
+                    this.facilities.geyser = true;
+                }else{
+                    this.facilities.geyser = false;
+                }
+                // wifi
+                if(this.facilities.wifi == 1){
+                    this.facilities.wifi = true;
+                }else{
+                    this.facilities.wifi = false;
+                }
+                // ac
+                if(this.facilities.ac == 1){
+                    this.facilities.ac = true;
+                }else{
+                    this.facilities.ac = false;
+                }
+                // washing_machine
+                if(this.facilities.washing_machine == 1){
+                    this.facilities.washing_machine = true;
+                }else{
+                    this.facilities.washing_machine = false;
+                }
+                // single_room
+                if(this.facilities.single_room == 1){
+                    this.facilities.single_room = true;
+                }else{
+                    this.facilities.single_room = false;
+                }
+                // double room
+                if(this.facilities.double_room == 1){
+                    this.facilities.double_room = true;
+                }else{
+                    this.facilities.double_room = false;
+                }
+                // bathroom_attached
+                if(this.facilities.bathroom_attached == 1){
+                    this.facilities.bathroom_attached = true;
+                }else{
+                    this.facilities.bathroom_attached = false;
+                }
+                // Fridge
+                if(this.facilities.fridge == 1){
+                    this.facilities.fridge = true;
+                }else{
+                    this.facilities.fridge = false;
+                }
+                // pet_allowed
+                if(this.facilities.pet_allowed == 1){
+                    this.facilities.pet_allowed = true;
+                }else{
+                    this.facilities.pet_allowed = false;
+                }
+                // Gym
+                if(this.facilities.gym == 1){
+                    this.facilities.gym = true;
+                }else{
+                    this.facilities.gym = false;
+                }
+                // garden
+                if(this.facilities.garden == 1){
+                    this.facilities.garden = true;
+                }else{
+                    this.facilities.garden = false;
+                }
+                // parking space
+                if(this.facilities.parking_space == 1){
+                    this.facilities.parking_space = true;
+                }else{
+                    this.facilities.parking_space = false;
+                }
                 // comments
                 this.comments = this.rent.comments;
 

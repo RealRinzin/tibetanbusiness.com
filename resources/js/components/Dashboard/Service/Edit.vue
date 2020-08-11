@@ -68,7 +68,7 @@
                             </ul>
                             <div class="tab-content py-3" id="custom-content-below-tabContent">
                                 <div class="tab-pane fade show active" id="custom-content-below-overview" role="tabpanel" aria-labelledby="custom-content-below-overview-tab">
-                                    <overview :service="service"></overview>
+                                    <overview :service="service" :operation="operation"></overview>
                                 </div>
                                 <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                                     <photo :service="service"></photo>
@@ -107,7 +107,7 @@ export default {
             // Restaurant Object
             service:{}, 
             // comments
-            services:{},
+            operation:{},
             // Bannser
             bannerPreview:null,
         }
@@ -121,7 +121,6 @@ export default {
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(response=>{
-
                 //Lazy loading            
                 this.isLoading= false;
                 this.loading = true;
@@ -130,8 +129,54 @@ export default {
                 // services
             })  
             /**
-             * Retrieveing Overview
+             * Retrieving Operation days
              *  */  
+            axios.get('/api/service_working_day/'+this.id+'/working_day')
+            .then(response=>{
+                this.operation = response.data[0];
+                // monday
+                if(this.operation.monday == 1){
+                    this.operation.monday = true;
+                }else{
+                    this.operation.monday = false;
+                }
+                // tuesday
+                if(this.operation.tuesday == 1){
+                    this.operation.tuesday = true;
+                }else{
+                    this.operation.tuesday = false;
+                }
+                // wednesday
+                if(this.operation.wednesday == 1){
+                    this.operation.wednesday = true;
+                }else{
+                    this.operation.wednesday = false;
+                }
+                // thursday
+                if(this.operation.thursday == 1){
+                    this.operation.thursday = true;
+                }else{
+                    this.operation.thursday = false;
+                }
+                // friday
+                if(this.operation.friday == 1){
+                    this.operation.friday = true;
+                }else{
+                    this.operation.friday = false;
+                }
+                // saturday
+                if(this.operation.saturday == 1){
+                    this.operation.saturday = true;
+                }else{
+                    this.operation.saturday = false;
+                }
+                // sunday
+                if(this.operation.sunday == 1){
+                    this.operation.sunday = true;
+                }else{
+                    this.operation.sunday = false;
+                }
+            })
         },
         /**
          * Update Banner

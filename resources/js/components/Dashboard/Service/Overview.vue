@@ -131,68 +131,79 @@
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Monday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.monday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.monday"
+                                                :v-model="operation.monday"
+                                                @change="day_update('monday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Tuesday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.tuesday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.tuesday"
+                                                :v-model="operation.tuesday"
+                                                @change="day_update('tuesday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Wednesday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.wednesday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.wednesday"
+                                                :v-model="operation.wednesday"
+                                                @change="day_update('wednesday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Thursday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.thursday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.thursday"
+                                                :v-model="operation.thursday"
+                                                @change="day_update('thursday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Friday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.friday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.friday"
+                                                :v-model="operation.friday"
+                                                @change="day_update('friday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Saturday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.saturday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.saturday"
+                                                :v-model="operation.saturday"
+                                                @change="day_update('saturday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <li class="d-flex">
                                             <span class="text-dark h6 flex-grow-1">Sunday</span>
-                                            <label class="switch">
-                                            <input type="checkbox" v-model="operation.sunday">
-                                            <span class="slider round"></span>
-                                            </label>
+                                            <toggle-button 
+                                                :value="operation.sunday"
+                                                :v-model="operation.sunday"
+                                                @change="day_update('sunday',operation.id)"
+                                                :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                :labels="{checked: 'On', unchecked: 'Off'}"/>
                                         </li>
-                                    </div>
-                                    <div class="col-md-12 border-top text-right pt-1">
-                                        <button class="btn btn-danger btn-md" @click="update_operation_days(operation.id)">Update</button>
                                     </div>
                                 </div>
                                 <!-- </ul> -->
@@ -356,23 +367,16 @@
 <script>
 import format from 'date-fns/format';
 export default {
-    props:['service'],
+    props:['service','operation'],
     data(){
         return{
             id:this.service.id,
-            // service:{},
-            operation:{},
             locations:{},
         }
     },
     methods:{
-        // modal
-        working_day(){
-            axios.get('/api/service_working_day/'+this.id+'/working_day')
-            .then(response=>{
-                this.operation = response.data[0];
-            })
-        },
+    
+        // editing
         edit(){
             $("#service_overview_update_modal").modal("show");           
         },
@@ -397,18 +401,17 @@ export default {
                     }
                 })
         },
-        // Update Working day
-        update_operation_days(id){
+        // Toggle day update
+        day_update(day,id){
+            // Day reverse toggle
+            this.operation[day] =! this.operation[day];
+            // Update function
             axios.patch('/api/service_working_day/'+id,this.operation,{
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(response=>{
-                toast.fire({
-                    icon:'success',
-                    title:'Updated Successfully',
-                });
             })
-        }
+        },
 
     },
     // Filters
@@ -418,7 +421,6 @@ export default {
         }
     },
     mounted(){
-        this.working_day();
         // locations api
         axios.get('/api/location')
         .then(response=>{

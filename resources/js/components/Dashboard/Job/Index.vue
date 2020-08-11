@@ -38,10 +38,6 @@
                                 @change="status_update(job.id,index)"
                                 :color="{checked:'#28a745',unchecked:'#dc4245'}"
                                 :labels="{checked: 'Live', unchecked: 'Off'}"/>
-                                <!-- <label class="switch" @click="status_update(job.id,index)">
-                                <input type="checkbox" v-model="job.status">
-                                <span class="slider round"></span>
-                                </label> -->
                             </td>
                             <td><a  :href="'/dashboard/job/edit/id='+job.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(job.id,index)"><i class="fas fa-trash-alt "></i></button></td>

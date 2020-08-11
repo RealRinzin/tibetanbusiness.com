@@ -119,105 +119,134 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-subway fa-1x text-secondary mr-2"></i> Geyser </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.geyser">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.geyser"
+                                                        @change="facility_update('geyser',facilities.id)"
+                                                        :v-model="facilities.geyser"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-wifi fa-1x text-secondary mr-2"></i> WiFi </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.wifi">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.wifi"
+                                                        :v-model="facilities.wifi"
+                                                        @change="facility_update('wifi',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-fan fa-1x text-secondary mr-2"></i> AC </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.ac">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.ac"
+                                                        :v-model="facilities.ac"
+                                                        @change="facility_update('ac',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-power-off text-secondary mr-2"></i> Washing Machine </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.washing_machine">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.washing_machine"
+                                                        :v-model="facilities.washing_machine"
+                                                        @change="facility_update('washing_machine',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-dumbbell text-secondary mr-2"></i> Gym </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.gym">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.gym"
+                                                        :v-model="facilities.gym"
+                                                        @change="facility_update('gym',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-dog text-secondary mr-2"></i> Pet Allowed </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.pet_allowed">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.pet_allowed"
+                                                        :v-model="facilities.pet_allowed"
+                                                        @change="facility_update('pet_allowed',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-bed text-secondary mr-2"></i> Single Room </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.single_room">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.single_room"
+                                                        :v-model="facilities.single_room"
+                                                        @change="facility_update('single_room',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-bed text-secondary mr-2"></i> Double Room</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.double_room">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.double_room"
+                                                        :v-model="facilities.double_room"
+                                                        @change="facility_update('double_room',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-box text-secondary mr-2"></i>Fridge</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.fridge">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.fridge"
+                                                        :v-model="facilities.fridge"
+                                                        @change="facility_update('fridge',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-tree text-secondary mr-2"></i>Garden</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.garden">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.garden"
+                                                        :v-model="facilities.garden"
+                                                        @change="facility_update('garden',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i>Parking Space</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.parking_space">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.parking_space"
+                                                        :v-model="facilities.parking_space"
+                                                        @change="facility_update('parking_space',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
-                                            <!-- update -->
-                                            <div class="col-md-12 border-top text-right pt-1">
-                                                <button class="btn btn-info" @click="update_facility(facilities.id)">Update</button>
+                                            <div class="col-md-6 col-sm-6">
+                                                <li class="d-flex">
+                                                    <span class="text-dark flex-grow-1"><i class="fas fa-sink"></i> Bathroom Attached</span>
+                                                    <toggle-button 
+                                                        :value="facilities.bathroom_attached"
+                                                        :v-model="facilities.bathroom_attached"
+                                                        @change="facility_update('bathroom_attached',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                                </li>
                                             </div>
                                         </div>
                                         <!-- </ul> -->
@@ -230,7 +259,7 @@
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="rent_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="rent_overview_update_modal" tab0="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
@@ -399,21 +428,17 @@ export default {
                     }
                 })
         },
-
-        // update_facility
-        update_facility(id){
+        facility_update(facility,id){
+            // Reverse the boolean
+            this.facilities[facility] =! this.facilities[facility];
+            // Update function
             axios.patch('/api/rent_facilities/'+id,this.facilities,{
                 headers : { Authorization : localStorage.getItem("token")}
-            }).then(response=>{
-                //  Flash Message  
-                toast.fire({
-                    icon:'success',
-                    title:'Facilities Updated',
-                });
-            })
-        }
+            }).then(response=>{})
+        },
     },
     mounted(){
+        // this.facility();
         // locations api
         axios.get('/api/location')
         .then(response=>{

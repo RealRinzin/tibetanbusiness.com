@@ -99,4 +99,13 @@ class RestaurantFacilityController extends Controller
     {
         //
     }
+
+    /**
+     * 
+     * Custom 
+     * API
+     *  */
+    public function facility(){
+        return "hellow";
+    } 
 }

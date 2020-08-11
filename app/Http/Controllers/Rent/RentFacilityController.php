@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentBasicInfo;
 use App\Rent\RentFacility;
+use App\Restaurant\RestaurantBasicInfo;
 
 class RentFacilityController extends Controller
 {
@@ -72,9 +74,11 @@ class RentFacilityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $request;
         // fetch ID
+        $facilities = $request[0];
+        // return $facilities;
         $facilities = RentFacility::find($id);
+        // return $facilities;
         // udpate function
         $facilities->update($request->all());
     }
@@ -88,5 +92,15 @@ class RentFacilityController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * 
+     * Custom 
+     * API
+     *  */
+    public function facility(RentBasicInfo $rentBasicInfo)
+    {
+        return $rentBasicInfo->rent_facilities()->get(); 
+
     }
 }

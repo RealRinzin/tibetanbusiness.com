@@ -42,6 +42,7 @@ use Illuminate\Http\Request;
          * Getting the API of Ower Restaurant
          *  */ 
         Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
+        // Restaurant Facility
 
         // RENT API
         /**
@@ -57,6 +58,7 @@ use Illuminate\Http\Request;
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
         Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
         Route::patch('rent/banner_update/{id}', 'Rent\RentBasicInfoController@banner_update');
+        Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
         // JOB API
         /**
          * Rent API
@@ -140,6 +142,7 @@ use Illuminate\Http\Request;
     Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
+        // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
 
     /**
      * JOB API 

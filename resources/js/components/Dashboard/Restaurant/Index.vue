@@ -79,7 +79,8 @@ export default {
                 /**
                  * Reassigning
                  * Status to true and false string 
-                 * insteat of  value 1 and 0
+                 * insteat of  value
+                 * 
                  *  */ 
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].status == 1){
