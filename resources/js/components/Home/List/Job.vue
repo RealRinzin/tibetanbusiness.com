@@ -7,7 +7,7 @@
         <div  v-else class="container py-3">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn bt-xs">New Rents</h6>
+                    <h6 class="bg-danger btn bt-xs">New Jobs</h6>
                     <div class="row">
                         <div class="col-md-6 col-6" v-for="(jobs,index) in jobs" v-if="index <= 1">
                         <!-- <div class="col-md-6"> -->

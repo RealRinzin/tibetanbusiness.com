@@ -131,9 +131,11 @@ export default {
                 // Assigning Restaurant object
                 this.rent = response.data.data;
                 // facitilies
+
                 this.rent.facility.forEach(element => {
                     this.facilities = element 
                 });
+                // this.facilities = response.data[]
                 // Geyser
                 if(this.facilities.geyser == 1){
                     this.facilities.geyser = true;

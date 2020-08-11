@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantBasicInfo;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Restaurant\RestaurantFacility;
@@ -105,7 +106,8 @@ class RestaurantFacilityController extends Controller
      * Custom 
      * API
      *  */
-    public function facility(){
-        return "hellow";
+    public function facility(RestaurantBasicInfo $restaurantBasicInfo){
+        return $restaurantBasicInfo->restaurant_facilities()->get(); 
+
     } 
 }

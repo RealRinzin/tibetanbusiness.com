@@ -7,7 +7,7 @@
         <div  v-else class="container py-3">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn">New Rents</h6>
+                    <h6 class="bg-danger btn">Rents</h6>
                     <div class="row">
                         <div class="col-md-6 col-6" v-for="(rents,index) in rents" v-if="index <= 1">
                         <!-- <div class="col-md-6"> -->
@@ -15,8 +15,8 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <a v-bind:href="'rent/'+rents.id">
-                                        <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rents.banner})`}'></div> -->
-                                        <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div>
+                                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rents.banner})`}'></div>
+                                        <!-- <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div> -->
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">

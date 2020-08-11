@@ -156,15 +156,27 @@ body{
 }
 
 #business_list{
+        // Lazysize loading
+      .lazyloading {
+          opacity: 1;
+          transition: 600ms opacity;
+          background: #f7f7f7 url('/img/tibetanbusiness.png') no-repeat center;
+          min-height: 60px;
+      }
+      .lazyloaded {
+      opacity: 1;
+      transition: 10ms opacity;
+      }
     .banner{
         height:100px;
         // background: red;
-        background-image: url('img/5.gif');
         position: relative;
         border-radius: 4px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+        background-image: url('http://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+
     }
     .info{
         h5{

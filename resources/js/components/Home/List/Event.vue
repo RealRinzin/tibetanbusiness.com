@@ -1,29 +1,32 @@
 <template>
-         <div class="container py-3">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn">Upcoming Events</h6>
-                    <div class="row">
-                        <div class="col-md-6 col-6" v-for="(events,index) in events" v-if="index <= 1">
-                            <div class="card">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'event/'+events.id">
-                                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${events.banner})`}'></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 p-3 info">
-                                        <h5>{{events.name}}</h5>
-                                        <h6 class="pt-1">{{events.mobile_no}}</h6>
-                                        <h6>{{events.location}}</h6>
-                                    </div>
+<div>
+        <div class="container py-3">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h6 class="bg-danger btn">Upcoming Events</h6>
+                <div class="row">
+                    {{events}}
+                    <div class="col-md-6 col-6" v-for="(events,index) in events" v-if="index <= 1">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <a v-bind:href="'event/'+events.id">
+                                    <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${events.banner})`}'></div>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-sm-6 p-3 info">
+                                    <h5>{{events.name}}</h5>
+                                    <h6 class="pt-1">{{events.mobile_no}}</h6>
+                                    <h6>{{events.location}}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+    </div> 
+</div>
 </template>
 <script>
     // Import component
@@ -34,9 +37,9 @@ export default {
     data(){
         return{
             // loading:false,
-            isLoading : false,//Lazy loading
+            // isLoading : false,//Lazy loading
             events:[],
-            loading:false, //loading
+            // loading:false, //loading
 
         }
     },

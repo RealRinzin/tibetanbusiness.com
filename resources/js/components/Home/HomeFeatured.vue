@@ -1,9 +1,6 @@
 <template>
     <div>
-        <div v-if="!load" style="min-height:400px">
-            <loading :active.sync="isLoading" ></loading>
-        </div>
-        <div v-else class="container" id="featured">
+        <div class="container" id="featured">
             <button class="btn btn-warning">Latest Featured </button>
             <div class="row py-3" style="min-height:400px">
                 <!-- Restaurant -->
@@ -134,18 +131,18 @@
 
         <!-- Business Listing -->
         <div class="container py-3" id="business_list">
-            <event-list></event-list>
-            <!-- <rent-list></rent-list> -->
-            <!-- <job-list></job-list> -->
-            <!-- <restaurant-list></restaurant-list> -->
-            <!-- <sale-list></sale-list> -->
-            <!-- <service-list></service-list> -->
+                <event-list></event-list>
+                <rent-list></rent-list>
+                <job-list></job-list>
+                <restaurant-list></restaurant-list>
+                <sale-list></sale-list>
+                <service-list></service-list>
         </div>
-
     </div>
 </template>
 
 <script>
+    import format from 'date-fns/format';
     // Import component
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
@@ -156,21 +153,8 @@
     import RestaurantList from './List/Restaurant.vue';
     import SaleList from './List/Sale.vue';
     import ServiceList from './List/Service.vue';
-    import format from 'date-fns/format';
     
     export default {
-        /**
-         * Filter
-         *  */ 
-        filters:{
-            date(str){
-                return format(new Date(str), 'EE, MMM dd, yyyy');
-            },
-            // trim string
-            trim(str){
-                return str.slice(0, 50) + "..."
-            }
-        },
         /**
          * 
          * Data Model
@@ -196,7 +180,7 @@
         methods:{
             // Featured business
             load_business(){
-                this.isLoading = true; //Loading true
+                // this.isLoading = true; //Loading true
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
@@ -385,13 +369,25 @@
                         })
                     }
                      // loading success
-                        this.isLoading = false; //Loading true
-                        this.load = true;
+                        // this.isLoading = false; //Loading true
+                        // this.load = true;
                 })
                 // // loading success
                 // this.isLoading = false; //Loading true
                 // this.load = true;
+            }
+        },
+        /**
+         * Filter
+         *  */ 
+        filters:{
+            date(str){
+                return format(new Date(str), 'EE, MMM dd, yyyy');
             },
+            // trim string
+            trim(str){
+                return str.slice(0, 50) + "..."
+            }
         },
         /**
          * 

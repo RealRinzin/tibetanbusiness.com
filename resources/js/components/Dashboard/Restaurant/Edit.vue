@@ -124,9 +124,75 @@ export default {
                 // Assigning Restaurant object
                 this.restaurant = response.data.data;
                 // Operation Day
-                this.operation = this.restaurant.operation[0];  
+                this.operation = this.restaurant.operation[0];
+                // console.log(this.operation);
+                // this.restaurant.operation.forEach(element => {
+                //     this.operation = element;
+                //     if(this.operation.monday == 1){
+                //         this.operation.monday = true;
+                //     }else{
+                //         this.operation.monday = false;
+                //     }
+                // });
+
+                // axios.get('/api/restaurant/'+this.id+'/facility')
+                // .then(response=>{
+                //     this.operation = response.data
+                // })
+                // console.log(this.operation);
+                // monday
+                // if(this.operation.monday === 1){
+                //     this.operation.monday = true;
+                // }else{
+                //     this.operation.monday = false;
+                // }
+                // // tuesday
+                // if(this.operation.tuesday == 1){
+                //     this.operation.tuesday = true;
+                // }else{
+                //     this.operation.tuesday = false;
+                // }
+                // // wednesday
+                // if(this.operation.wednesday == 1){
+                //     this.operation.wednesday = true;
+                // }else{
+                //     this.operation.wednesday = false;
+                // }
+                // // thursday
+                // if(this.operation.thursday == 1){
+                //     this.operation.thursday = true;
+                // }else{
+                //     this.operation.thursday = false;
+                // }
+                // // friday
+                // if(this.operation.friday == 1){
+                //     this.operation.friday = true;
+                // }else{
+                //     this.operation.friday = false;
+                // }
+                // // saturday
+                // if(this.operation.saturday == 1){
+                //     this.operation.saturday = true;
+                // }else{
+                //     this.operation.saturday = false;
+                // }
+                // // sunday
+                // if(this.operation.sunday == 1){
+                //     this.operation.sunday = true;
+                // }else{
+                //     this.operation.sunday = false;
+                // }  
                 // facitilies
                 this.facilities = this.restaurant.facility[0]; 
+                // axios.get('/api/restaurant/'+this.id+'/facility')
+                // .then(response=>{
+                //     this.facilities = response.data[0]
+                    if(this.facilities.home_delivery == 1){
+                        this.facilities.home_delivery = true;
+                    }else{
+                        this.facilities.home_delivery = false;
+                    }
+                // })
                 //Lazy loading            
                 this.isLoading= false;
                 // comments

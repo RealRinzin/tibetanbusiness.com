@@ -6,14 +6,16 @@
         <div v-else class="container py-3">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn">Upcoming Events</h6>
+                    <h6 class="bg-danger btn">Restaurant</h6>
                     <div class="row">
                         <div class="col-md-6 col-6" v-for="(restaurants,index) in restaurants" v-if="index <= 1">
                         <!-- <div class="col-md-6"> -->
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'restaurant/'+restaurants.id"><div class="banner" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurants.banner})`}'></div></a>
+                                        <a v-bind:href="'restaurant/'+restaurants.id">
+                                        <div class="banner lazyloaded" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurants.banner})`}'></div>
+                                        </a>
                                     </div>
                                     <div class="col-md-6 col-sm-6 p-3 info">
                                         <h5>{{restaurants.name}}</h5>

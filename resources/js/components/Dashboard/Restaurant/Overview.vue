@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row" id="toggle">
+        <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -100,19 +100,22 @@
                     <!-- toggles -->
                     <div class="col-md-6">
                         <div class="row">
-                            <!-- Operation day -->
                             <div class="col-md-12">
                                 <div class="card facility">
                                     <div class="p-2">
                                     <button class="btn btn-info btn-sm">Operating Days</button>
                                     </div>
                                     <div class="card-body">
-                                        <!-- <ul> -->
+                                        {{operation}}
                                         <div class="row">
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Monday</span>
-                                                        <input type="checkbox" id="monday" v-model="operation.monday"><label for="monday"></label>
+                                                        <!-- <input type="checkbox" id="monday" v-model="operation.monday"><label for="monday"></label> -->
+                                                    <toggle-button 
+                                                        :v-model="operation.monday"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
@@ -131,7 +134,6 @@
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Thursday</span>
                                                         <input type="checkbox" id="thursday" v-model="operation.thursday"><label for="thursday"></label>
-
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
@@ -152,12 +154,10 @@
                                                         <input type="checkbox" id="sunday" v-model="operation.sunday"><label for="sunday"></label>
                                                 </li>
                                             </div>
-                                            <!-- update -->
                                             <div class="col-md-12 border-top text-right pt-1">
                                                 <button class="btn btn-danger btn-md" @click="update_operation_days(operation.id)">Update</button>
                                             </div>
                                         </div>
-                                        <!-- </ul> -->
                                     </div>
                                 </div>
                             </div>
@@ -168,15 +168,21 @@
                                     <button class="btn btn-info btn-sm">Facilities</button>
                                     </div>
                                     <div class="card-body">
+                                        {{facilities}}
                                         <!-- <ul> -->
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
-                                                    <label class="switch">
+                                                    <!-- <label class="switch">
                                                     <input type="checkbox" v-model="facilities.home_delivery">
                                                     <span class="slider round"></span>
-                                                    </label>
+                                                    </label> -->
+                                                    <toggle-button 
+                                                        :value="facilities.home_delivery"
+                                                        :v-model="facilities.home_delivery"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
@@ -476,11 +482,11 @@ export default {
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(response=>{
-                        //  Flash Message  
-                        toast.fire({
-                            icon:'success',
-                            title:'Updated Successfully',
-                        });
+                //  Flash Message  
+                toast.fire({
+                    icon:'success',
+                    title:'Updated Successfully',
+                });
             })
         },
         // update_facility
@@ -496,6 +502,11 @@ export default {
             })
         }
     },
+        /**
+     * 
+     * Watch
+     *  */ 
+
     mounted(){
         // locations api
         axios.get('/api/location')

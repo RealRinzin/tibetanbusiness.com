@@ -246,7 +246,7 @@ Vue.component("event-search", require("./components/Event/Search.vue").default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+// Vue.component("event-list", require("./components/Home/List/Event.vue").default);
 const app = new Vue({
     el: '#app',
     // Data
@@ -304,24 +304,13 @@ const app = new Vue({
         this.login_status(); 
         // Mobile device size  
         if(screen.width < 767){
-            // $("#tb_location").removeClass("px-0");
-            // $("#tb_type").removeClass("px-0");
             $("#search_collapse").addClass("hide");
-            // $("#search_mobile").addClass("search_filter");
-            // $("#desktop_search_toggle").css("display", "none");
-            // $("#search_mobile").addClass("p-0");
-            // $("#search_mobile .card").removeClass("p-3");
-            // $("#search_mobile .card").addClass("px-3");
             // Add business and promote button
             $("#mobile_add_promote_link").css("display", "block");
             $("#desktop_add_promote_link").css("display", "none");
         }else{
             //Other size
             $("#search_collapse").addClass("show");
-            // $("#mobile_search_toggle").css("display", "none");
-            // Add business and promote button
-            // $("#mobile_add_promote_link").css("display", "none");
-            // $("#desktop_add_promote_link").css("display", "block");
              }
         
     }
