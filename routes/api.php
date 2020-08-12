@@ -31,6 +31,7 @@ use Illuminate\Http\Request;
         Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
         Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
+        // Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
     // showing the individual restaurant without relationship datas
         Route::get('restaurant/individual/{id}', 'Restaurant\RestaurantBasicInfoController@show_individual');
     // Update restaurant Rate
@@ -131,7 +132,7 @@ use Illuminate\Http\Request;
     Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
     Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
     Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');
-
+    Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
 
 /**
  * RENT API 

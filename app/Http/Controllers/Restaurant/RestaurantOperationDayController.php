@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantOperationDay;
 use Illuminate\Support\Facades\DB;
 
@@ -91,4 +92,13 @@ class RestaurantOperationDayController extends Controller
     {
         //
     }
+    /**
+     * 
+     * Custom 
+     * API
+     *  */
+    public function operation(RestaurantBasicInfo $restaurantBasicInfo)
+    {
+        return $restaurantBasicInfo->restaurant_operation_days()->get();
+    } 
 }

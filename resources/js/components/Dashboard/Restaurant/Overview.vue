@@ -106,56 +106,84 @@
                                     <button class="btn btn-info btn-sm">Operating Days</button>
                                     </div>
                                     <div class="card-body">
-                                        {{operation}}
                                         <div class="row">
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Monday</span>
-                                                        <!-- <input type="checkbox" id="monday" v-model="operation.monday"><label for="monday"></label> -->
                                                     <toggle-button 
+                                                        :value="operation.monday"
+                                                        @change="update_operation_days('monday',operation.id)"
                                                         :v-model="operation.monday"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
+
+                                                </li>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <li class="d-flex">
+                                                    <span class="text-dark h6 flex-grow-1">Tuesday</span>
+                                                    <toggle-button 
+                                                        :value="operation.tuesday"
+                                                        :v-model="operation.tuesday"
+                                                        @change="update_operation_days('tuesday',operation.id)"
                                                         :color="{checked:'#28a745',unchecked:'#dc4245'}"
                                                         :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
-                                                    <span class="text-dark h6 flex-grow-1">Tuesday</span>
-                                                    <input type="checkbox" id="tuesday" v-model="operation.tuesday"><label for="tuesday"></label>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Wednesday</span>
-                                                    <input type="checkbox" id="wednesday" v-model="operation.wednesday"><label for="wednesday"></label>
+                                                    <toggle-button 
+                                                        :v-model="operation.wednesday"
+                                                        :value="operation.wednesday"
+                                                        @change="update_operation_days('wednesday',operation.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Thursday</span>
-                                                        <input type="checkbox" id="thursday" v-model="operation.thursday"><label for="thursday"></label>
+                                                    <toggle-button 
+                                                        :v-model="operation.thursday"
+                                                        @change="update_operation_days('thursday',operation.id)"
+                                                        :value="operation.thursday"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Friday</span>
-                                                    <input type="checkbox" id="friday" v-model="operation.friday"><label for="friday"></label>
+                                                    <toggle-button 
+                                                        :v-model="operation.friday"
+                                                        :value="operation.friday"
+                                                        @change="update_operation_days('friday',operation.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Saturday</span>
-                                                        <input type="checkbox" id="saturday" v-model="operation.saturday"><label for="saturday"></label>
+                                                    <toggle-button 
+                                                        :v-model="operation.saturday"
+                                                        :value="operation.saturday"
+                                                        @change="update_operation_days('saturday',operation.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark h6 flex-grow-1">Sunday</span>
-                                                        <input type="checkbox" id="sunday" v-model="operation.sunday"><label for="sunday"></label>
+                                                    <toggle-button 
+                                                        :v-model="operation.sunday"
+                                                        @change="update_operation_days('sunday',operation.id)"
+                                                        :value="operation.sunday"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
-                                            </div>
-                                            <div class="col-md-12 border-top text-right pt-1">
-                                                <button class="btn btn-danger btn-md" @click="update_operation_days(operation.id)">Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -168,19 +196,15 @@
                                     <button class="btn btn-info btn-sm">Facilities</button>
                                     </div>
                                     <div class="card-body">
-                                        {{facilities}}
                                         <!-- <ul> -->
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
-                                                    <!-- <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.home_delivery">
-                                                    <span class="slider round"></span>
-                                                    </label> -->
                                                     <toggle-button 
                                                         :value="facilities.home_delivery"
                                                         :v-model="facilities.home_delivery"
+                                                        @change="update_facility('home_delivery',facilities.id)"
                                                         :color="{checked:'#28a745',unchecked:'#dc4245'}"
                                                         :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
@@ -188,87 +212,101 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-wifi fa-1x text-secondary mr-2"></i> WiFi </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.wifi">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.wifi"
+                                                        :v-model="facilities.wifi"
+                                                        @change="update_facility('wifi',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fab fa-cc-visa mr-1 fa-1x text-secondary mr-2"></i> Card Payment </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.card_payment">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.card_payment"
+                                                        :v-model="facilities.card_payment"
+                                                        @change="update_facility('card_payment',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fa fa-fan mr-1 fa-1x text-secondary mr-2"></i> AC </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.ac">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.ac"
+                                                        :v-model="facilities.ac"
+                                                        @change="update_facility('ac',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-glass-cheers text-secondary mr-2"></i> Party Booking </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.party_booking">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.party_booking"
+                                                        :v-model="facilities.party_booking"
+                                                        @change="update_facility('party_booking',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Veg </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.veg">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.veg"
+                                                        :v-model="facilities.veg"
+                                                        @change="update_facility('veg',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Non-Veg </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.none_veg">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.none_veg"
+                                                        :v-model="facilities.none_veg"
+                                                        @change="update_facility('none_veg',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking </span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.parking_lot">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.parking_lot"
+                                                        :v-model="facilities.parking_lot"
+                                                        @change="update_facility('parking_lot',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-building text-secondary mr-2"></i> Roof Top</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.roof_top">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.roof_top"
+                                                        :v-model="facilities.roof_top"
+                                                        @change="update_facility('roof_top',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <li class="d-flex">
                                                     <span class="text-dark flex-grow-1"><i class="fas fa-beer text-secondary mr-2"></i>Beverage</span>
-                                                    <label class="switch">
-                                                    <input type="checkbox" v-model="facilities.beverage">
-                                                    <span class="slider round"></span>
-                                                    </label>
+                                                    <toggle-button 
+                                                        :value="facilities.beverage"
+                                                        :v-model="facilities.beverage"
+                                                        @change="update_facility('beverage',facilities.id)"
+                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                                 </li>
-                                            </div>
-                                            <!-- update -->
-                                            <div class="col-md-12 border-top text-right pt-1">
-                                                <button class="btn btn-info" @click="update_facility(facilities.id)">Update</button>
                                             </div>
                                         </div>
                                         <!-- </ul> -->
@@ -439,13 +477,15 @@
 import { Validator } from 'vee-validate';
 export default {
     // Data
-    props:['restaurant','operation','facilities'],
+    props:['restaurant','facilities','operation'],
     data(){
         return {
             locations:{},
         }
     },
+
     methods:{
+
         // Overview edit
         edit(){
             $("#overview_update_modal").modal("show");           
@@ -477,37 +517,30 @@ export default {
             }
         },
         // update_operation_days
-        update_operation_days(id){
-            axios.patch('/api/restaurant_operation_days/'+id,this.operation,{
+        update_operation_days(day,id){
+            // Reverse binding
+            this.operation[day] =! this.operation[day];
+            // Update
+            axios.patch('/api/restaurant_operation_days/'+this.operation.id,this.operation,{
                 headers : { Authorization : localStorage.getItem("token")}
             })
-            .then(response=>{
-                //  Flash Message  
-                toast.fire({
-                    icon:'success',
-                    title:'Updated Successfully',
-                });
-            })
+            .then(response=>{})
         },
         // update_facility
-        update_facility(id){
+        update_facility(type,id){
+            // Reverse toggle
+            this.facilities[type] =! this.facilities[type];
+            // Update
             axios.patch('/api/restaurant_facilities/'+id,this.facilities,{
                 headers : { Authorization : localStorage.getItem("token")}
             }).then(response=>{
-                //  Flash Message  
-                toast.fire({
-                    icon:'success',
-                    title:'Facilities Updated',
-                });
             })
         }
     },
-        /**
-     * 
-     * Watch
-     *  */ 
 
+    // Mounted
     mounted(){
+        // this.load();
         // locations api
         axios.get('/api/location')
         .then(response=>{

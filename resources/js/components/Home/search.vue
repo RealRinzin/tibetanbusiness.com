@@ -1,56 +1,57 @@
 <template>
-    <div class="w-100">
-            <form @submit.prevent="search()">
-                <div class="col-md-8 mx-auto">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 p-0">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-mug-hot"></i></label>
+    <div>
+        <!-- <div v-for="(event,index) in events" :key="event.id" v-if="index <= 1">
+            {{event.name}}
+        </div> -->
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h6 class="bg-danger btn">Upcoming Events</h6>
+                <div class="row">
+                    <div class="col-md-6 col-6" v-for="(event,index) in events" :key="event.id" v-if="index <= 1">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <a v-bind:href="'event/'+event.id">
+                                    <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${event.banner})`}'></div>
+                                    </a>
                                 </div>
-                                <select class="custom-select input" v-model="keyword.category" id="inputGroupSelect01">
-                                    <option selected>Choose Type</option>
-                                    <option value="events">Event</option>
-                                    <option value="jobs">Job</option>
-                                    <option value="rents">Rent</option>
-                                    <option value="sales">Sale</option>
-                                    <option value="restaurants">Restaurant</option>
-                                    <option value="services">Service</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-sm-8 p-0">
-                            <div class="input-group mb-3">
-                                <input type="text" v-model="keyword.location" class="form-control input" placeholder="Location" aria-label="Location" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                <div class="col-md-6 col-sm-6 p-3 info">
+                                    <h5>{{event.name}}</h5>
+                                    <h6 class="pt-1">{{event.mobile_no}}</h6>
+                                    <h6>{{event.location}}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            keyword:{
-                category:'',
-                location:''
-            }
-        }
-    },
-    // Methods
-    methods:{
-        search(){
-            window.location.href = "/search/"+this.keyword.category+'/'+this.keyword.location;
-        }
-    },
-    mounted(){
+
+data(){
+    return{
+        events:{},
+        actives:[],
     }
+},
+methods:{
+    load_events(){   
+         axios.get('api/event/list/home_ad')
+        .then(response=>{
+            this.events = response.data;
+            for (let index = 0; index < response.data.length; index++) {
+                this.events[index] = response.data[Math.floor(Math.random() *response.data.length)]
+                // this.actives.push(this.events)
+            }
+        })
+    }
+},
+
+mounted(){
+this.load_events();
+}
 }
 </script>

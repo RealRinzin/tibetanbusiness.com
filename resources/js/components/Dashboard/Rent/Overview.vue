@@ -263,7 +263,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Update Restaurant</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Rent</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -285,7 +285,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="fare">Price<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="Price">
+                                                <input type="text" v-validate="'required|numeric|max:6'" v-model="rent.fare" name="fare" class="form-control" id="fare" aria-describedby="emailHelp" placeholder="Monthly Rent">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.fare')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.fare')">{{ error }}</span>
@@ -319,7 +319,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="accomodation_size">Accomodation Size<span class="text-danger p-1">*</span></label>
-                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <input type="number" v-validate="'required|numeric|max:5'" v-model="rent.accomodation_size" min="1" name="accomodation_size" class="form-control" id="accomodation_size" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.accomodation_size')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.accomodation_size')">{{ error }}</span>
@@ -328,8 +328,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|max:45|email'" v-model="rent.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                                <label for="exampleInputEmail1">Email<small class="text-success">(optional)</small></label>
+                                                <input type="text" v-validate="'max:45|email'" v-model="rent.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.email')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.email')">{{ error }}</span>

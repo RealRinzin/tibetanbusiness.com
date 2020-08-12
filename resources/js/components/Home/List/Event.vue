@@ -5,19 +5,18 @@
             <div class="col-md-8 mx-auto">
                 <h6 class="bg-danger btn">Upcoming Events</h6>
                 <div class="row">
-                    {{events}}
-                    <div class="col-md-6 col-6" v-for="(events,index) in events" v-if="index <= 1">
+                    <div class="col-md-6 col-6" v-for="(event,index) in events" :key="event.id" v-if="index <= 1">
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
-                                    <a v-bind:href="'event/'+events.id">
-                                    <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${events.banner})`}'></div>
+                                    <a v-bind:href="'event/'+event.id">
+                                    <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${event.banner})`}'></div>
                                     </a>
                                 </div>
                                 <div class="col-md-6 col-sm-6 p-3 info">
-                                    <h5>{{events.name}}</h5>
-                                    <h6 class="pt-1">{{events.mobile_no}}</h6>
-                                    <h6>{{events.location}}</h6>
+                                    <h5>{{event.name}}</h5>
+                                    <h6 class="pt-1">{{event.mobile_no}}</h6>
+                                    <h6>{{event.location}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +37,7 @@ export default {
         return{
             // loading:false,
             // isLoading : false,//Lazy loading
-            events:[],
+            events:{},
             // loading:false, //loading
 
         }
@@ -51,6 +50,7 @@ export default {
             axios.get('api/event/list/home_ad')
             .then(response=>{
                 // this.isLoading = true; //Loading true
+                this.events = response.data;
                 if(response.data.length > 0){
                     for (let index = 0; index < response.data.length; index++) {
                         this.events[index] = response.data[Math.floor(Math.random() *response.data.length)]

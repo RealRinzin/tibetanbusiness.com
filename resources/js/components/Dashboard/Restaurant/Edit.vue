@@ -1,82 +1,86 @@
 <template>
     <div id="restaurant">
-        <loading :active.sync="isLoading"></loading>
-        <div class="row">
-            <div class="col-md-10 mx-auto">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- banner -->
-                        <div class="card text-center">
-                            <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'>
-                                <div class="overlay">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <i class="fas fa-camera fa-5x text-white"></i>
+        <div v-if="!loading">
+            <loading :active.sync="isLoading"></loading>
+        </div>
+        <div v-else>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- banner -->
+                            <div class="card text-center">
+                                <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'>
+                                    <div class="overlay">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <i class="fas fa-camera fa-5x text-white"></i>
+                                            </div>
+                                            <div class="col-md-12 py-4">
+                                                <label  for="banner" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
+                                                <input type="file"  id="banner" name="banner" class="upload_browser" @change="banner_event">
+                                            </div>
                                         </div>
-                                        <div class="col-md-12 py-4">
-                                            <label  for="banner" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
-                                            <input type="file"  id="banner" name="banner" class="upload_browser" @change="banner_event">
+                                    </div>
+                                </div>
+                                <div v-else class="banner" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
+                                    <div class="overlay">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-info btn-md" @click="update_banner(restaurant.id)">
+                                                    <h5><i class="fas fa-cloud-upload-alt mr-2"></i></h5>
+                                                    <p>Upload</p>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div v-else class="banner" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
-                                <div class="overlay">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <button class="btn btn-info btn-md" @click="update_banner(restaurant.id)">
-                                                <h5><i class="fas fa-cloud-upload-alt mr-2"></i></h5>
-                                                <p>Upload</p>
-                                            </button>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="/img/map.jpeg" alt="" height="250">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="nav-tab">
+                            <div class="width-25">
+                                <button class="btn btn-secondary btn-md"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{restaurant.rate}}</button>
+                                <span>
+                                    <label class="switch">
+                                    <input type="checkbox" v-model="restaurant.status">
+                                    <span class="slider round"></span>
+                                    </label>
+                                </span>
+                            </div>
+                            <ul class="nav nav-tabs mt-3" id="custom-content-below-tab" role="tablist">
+                                <li class="nav-item pl-0">
+                                    <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Menu Photos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Food Photos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a :href="'custom-content-below-settings-tab'" class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Comments</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content py-3" id="custom-content-below-tabContent">
+                                <div class="tab-pane fade show active" id="custom-content-below-overview" role="tabpanel" aria-labelledby="custom-content-below-overview-tab">
+                                    <dashboard-restaurant-overview :restaurant="overview" :operation="operation" :facilities="facilities"></dashboard-restaurant-overview>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="/img/map.jpeg" alt="" height="250">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" id="nav-tab">
-                        <div class="width-25">
-                            <button class="btn btn-secondary btn-md"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{restaurant.rate}}</button>
-                            <span>
-                                <label class="switch">
-                                <input type="checkbox" v-model="restaurant.status">
-                                <span class="slider round"></span>
-                                </label>
-                            </span>
-                        </div>
-                        <ul class="nav nav-tabs mt-3" id="custom-content-below-tab" role="tablist">
-                            <li class="nav-item pl-0">
-                                <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Menu Photos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Food Photos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a :href="'custom-content-below-settings-tab'" class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Comments</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content py-3" id="custom-content-below-tabContent">
-                            <div class="tab-pane fade show active" id="custom-content-below-overview" role="tabpanel" aria-labelledby="custom-content-below-overview-tab">
-                                <dashboard-restaurant-overview :restaurant="overview" :operation="operation" :facilities="facilities"></dashboard-restaurant-overview>
-                            </div>
-                            <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                <dashboard-restaurant-menu-photo v-bind:menu_photos="restaurant.menu_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-menu-photo>
-                            </div>
-                            <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-                                <dashboard-restaurant-food-photo v-bind:food_photos="restaurant.food_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-food-photo>
-                            </div>
-                            <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
-                                <dashboard-restaurant-comment v-bind:comments="comments"></dashboard-restaurant-comment>
+                                <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+                                    <dashboard-restaurant-menu-photo v-bind:menu_photos="restaurant.menu_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-menu-photo>
+                                </div>
+                                <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+                                    <dashboard-restaurant-food-photo v-bind:food_photos="restaurant.food_photos" :id="restaurant.id" @load="load"></dashboard-restaurant-food-photo>
+                                </div>
+                                <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
+                                    <dashboard-restaurant-comment v-bind:comments="comments"></dashboard-restaurant-comment>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,7 +99,9 @@ export default {
     data(){
         return{
             // Lazy loading
+            // Lazy loading
             isLoading : false,//Lazy loading
+            loading:false, //loading
             // restaurant ID
             id:this.rest_id.id,//Restaurant ID
             // Restaurant Object
@@ -121,80 +127,122 @@ export default {
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(response=>{
+                //Lazy loading            
+                this.isLoading= false;
+                this.loading = true;
                 // Assigning Restaurant object
                 this.restaurant = response.data.data;
                 // Operation Day
-                this.operation = this.restaurant.operation[0];
-                // console.log(this.operation);
-                // this.restaurant.operation.forEach(element => {
-                //     this.operation = element;
-                //     if(this.operation.monday == 1){
-                //         this.operation.monday = true;
-                //     }else{
-                //         this.operation.monday = false;
-                //     }
-                // });
+                // this.operation = this.restaurant.operation[0];
+                this.restaurant.operation.forEach(element => {
+                    this.operation = element;
+                    // monday
+                    if(this.operation.monday == 1){
+                        this.operation.monday = true;
+                    }else{
+                        this.operation.monday = false;
+                    }
+                    // wednesday
+                    if(this.operation.tuesday == 1){
+                        this.operation.tuesday = true;
+                    }else{
+                        this.operation.tuesday = false;
+                    }
+                    // wednesday
+                    if(this.operation.wednesday == 1){
+                        this.operation.wednesday = true;
+                    }else{
+                        this.operation.wednesday = false;
+                    }
+                    // wednesday
+                    if(this.operation.thursday == 1){
+                        this.operation.thursday = true;
+                    }else{
+                        this.operation.thursday = false;
+                    }
+                    // wednesday
+                    if(this.operation.friday == 1){
+                        this.operation.friday = true;
+                    }else{
+                        this.operation.friday = false;
+                    }
+                    // wednesday
+                    if(this.operation.saturday == 1){
+                        this.operation.saturday = true;
+                    }else{
+                        this.operation.saturday = false;
+                    }
+                    // wednesday
+                    if(this.operation.sunday == 1){
+                        this.operation.sunday = true;
+                    }else{
+                        this.operation.sunday = false;
+                    }
+                });
 
-                // axios.get('/api/restaurant/'+this.id+'/facility')
-                // .then(response=>{
-                //     this.operation = response.data
-                // })
-                // console.log(this.operation);
-                // monday
-                // if(this.operation.monday === 1){
-                //     this.operation.monday = true;
-                // }else{
-                //     this.operation.monday = false;
-                // }
-                // // tuesday
-                // if(this.operation.tuesday == 1){
-                //     this.operation.tuesday = true;
-                // }else{
-                //     this.operation.tuesday = false;
-                // }
-                // // wednesday
-                // if(this.operation.wednesday == 1){
-                //     this.operation.wednesday = true;
-                // }else{
-                //     this.operation.wednesday = false;
-                // }
-                // // thursday
-                // if(this.operation.thursday == 1){
-                //     this.operation.thursday = true;
-                // }else{
-                //     this.operation.thursday = false;
-                // }
-                // // friday
-                // if(this.operation.friday == 1){
-                //     this.operation.friday = true;
-                // }else{
-                //     this.operation.friday = false;
-                // }
-                // // saturday
-                // if(this.operation.saturday == 1){
-                //     this.operation.saturday = true;
-                // }else{
-                //     this.operation.saturday = false;
-                // }
-                // // sunday
-                // if(this.operation.sunday == 1){
-                //     this.operation.sunday = true;
-                // }else{
-                //     this.operation.sunday = false;
-                // }  
                 // facitilies
                 this.facilities = this.restaurant.facility[0]; 
-                // axios.get('/api/restaurant/'+this.id+'/facility')
-                // .then(response=>{
-                //     this.facilities = response.data[0]
+                    // Home Delivery
                     if(this.facilities.home_delivery == 1){
                         this.facilities.home_delivery = true;
                     }else{
                         this.facilities.home_delivery = false;
                     }
-                // })
-                //Lazy loading            
-                this.isLoading= false;
+                    // wifi
+                    if(this.facilities.wifi == 1){
+                        this.facilities.wifi = true;
+                    }else{
+                        this.facilities.wifi = false;
+                    }
+                    // party booking
+                    if(this.facilities.party_booking == 1){
+                        this.facilities.party_booking = true;
+                    }else{
+                        this.facilities.party_booking = false;
+                    }
+                    // Roof Top
+                    if(this.facilities.roof_top == 1){
+                        this.facilities.roof_top = true;
+                    }else{
+                        this.facilities.roof_top = false;
+                    }
+                    // AC
+                    if(this.facilities.ac == 1){
+                        this.facilities.ac = true;
+                    }else{
+                        this.facilities.ac = false;
+                    }
+                    // veg
+                    if(this.facilities.veg == 1){
+                        this.facilities.veg = true;
+                    }else{
+                        this.facilities.veg = false;
+                    }
+                    // none_veg
+                    if(this.facilities.none_veg == 1){
+                        this.facilities.none_veg = true;
+                    }else{
+                        this.facilities.none_veg = false;
+                    }
+                    // Beverage
+                    if(this.facilities.beverage == 1){
+                        this.facilities.beverage = true;
+                    }else{
+                        this.facilities.beverage = false;
+                    }
+                    // Parking Lot
+                    if(this.facilities.parking_lot == 1){
+                        this.facilities.parking_lot = true;
+                    }else{
+                        this.facilities.parking_lot = false;
+                    }
+                    // Credit Card
+                    if(this.facilities.card_payment == 1){
+                        this.facilities.card_payment = true;
+                    }else{
+                        this.facilities.card_payment = false;
+                    }
+
                 // comments
                 this.comments = this.restaurant.comments;
             })  

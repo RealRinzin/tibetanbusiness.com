@@ -75,7 +75,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{Auth::user()->avatar}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                        <img src="{{Auth::user()->avatar}}" alt="Tibetanbusiness Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"> {{Auth::user()->name}}</a>
