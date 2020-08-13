@@ -216,7 +216,7 @@ use Illuminate\Http\Request;
 // Other API
     Route::get('location', 'Location\LocationController@index');
     Route::get('profession', 'Profession\ProfessionController@index');
-    Route::get('categories/profession', 'Category\CategoryController@job');
+    Route::get('categories/job', 'Category\CategoryController@job');
     Route::get('categories/event', 'Category\CategoryController@event');
     Route::get('categories/sale', 'Category\CategoryController@sale');
     Route::get('categories/service', 'Category\CategoryController@service');

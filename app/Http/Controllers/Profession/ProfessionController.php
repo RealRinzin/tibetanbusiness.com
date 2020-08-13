@@ -85,4 +85,5 @@ class ProfessionController extends Controller
     {
         //
     }
+    
 }

@@ -14,35 +14,37 @@
                                             <input type="text"  v-model="filter.title" class="form-control" placeholder="Job Title">
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <!-- <select name="location" v-model="filter.location" class="form-control">
-                                                    <option value="">Choose Location..</option>
-                                                    <option value="Dharamsala">Dharamsala</option>
-                                                    <option value="mussoorie">Mussoorie</option>
-                                                </select> -->
-                                                <input type="text" @focusin="job_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Service" aria-label="Service type">
-
+                                                <input type="text" @focusin="job_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Location" aria-label="Service type">
                                                     <ul id="job_location_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
                                                     <button type="button" @click="close()" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <!-- <li value="Dharamsala"><a href="#">Dharamsala</a></li> -->
                                                     <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="profession" v-model="filter.profession" class="form-control">
-                                                    <option value="">Choose Profession..</option>
-                                                    <option value="Dharamsala">Dharamsala</option>
-                                                    <option value="BA">Mussoorie</option>
-                                                </select>
+                                               <input type="text" @focusin="job_profession_dropdown()" v-model="filter.profession" class="rounded form-control " readonly="readonly" placeholder="Profession" aria-label="Profession">
+                                                <ul id="job_profession_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
+                                                    <button type="button" @click="close"  class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li v-for="profession in professions" :value="profession.name" @click="set_profession(profession.name)">{{profession.name}}</li>
+                                                </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="experience" v-model="filter.experience" class="form-control">
-                                                    <option value="">Choose Experience..</option>
-                                                    <option value="1">1 Years</option>
-                                                    <option value="2">2 Years</option>
-                                                    <option value="3">3 Years</option>
-                                                </select>
+                                               <input type="text" @focusin="job_experience_dropdown()" v-model="filter.experience" class="rounded form-control " readonly="readonly" placeholder="Experience" aria-label="Profession">
+                                                <ul id="job_experience_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
+                                                    <button type="button" @click="close"  class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li value="no experience" @click="set_experience('')">No Experience</li>
+                                                    <li value="6 months" @click="set_experience('6 Months')">6 Months</li>
+                                                    <li value="1 yr" @click="set_experience('1 Year')">1 Year</li>
+                                                    <li value="2 yr" @click="set_experience('2 yr')">2 Year</li>
+                                                    <li value="3 yr" @click="set_experience('3 yr')">3 Year</li>
+                                                    <li value="4 yr" @click="set_experience('4 yr')">4 Year</li>
+                                                    <li value="5 yr" @click="set_experience('5 yr')">5 Year</li>
+                                                </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1 position-relative">
                                                 <input type="text" @focusin="search_location()" v-model="filter.nature" class="rounded form-control " readonly="readonly" placeholder="Service" aria-label="Service type">
@@ -219,7 +221,7 @@ export default {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
-                    this.empty_result='';
+                    // this.empty_result='';
                 }
             })
         },
@@ -254,6 +256,10 @@ export default {
                     this.load_more_button = false; 
                 }else{
                     this.load_more_button = true; 
+                }
+                // Desktop
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
                 }
             })
 
@@ -324,6 +330,8 @@ export default {
          *  */ 
        job_location_dropdown() {
             $("#job_location_list").css("display", "block");
+            $("#job_profession_list").css("display", "none");
+            $("#job_experience_list").css("display", "none");
         },
         set_location(location){
             this.filter.location = location;
@@ -331,7 +339,31 @@ export default {
         },
         close(){
             $("#job_location_list").css("display", "none");
-        }
+            $("#job_profession_list").css("display", "none");
+            $("#job_experience_list").css("display", "none");
+        },
+        // profession
+       job_profession_dropdown() {
+            $("#job_profession_list").css("display", "block");
+            $("#job_location_list").css("display", "none");
+            $("#job_experience_list").css("display", "none");
+
+        },
+        set_profession(profession){
+            this.filter.profession = profession;
+            $("#job_profession_list").css("display", "none");
+        },
+        // profession
+       job_experience_dropdown() {
+            $("#job_experience_list").css("display", "block");
+            $("#job_location_list").css("display", "none");
+            $("#job_profession_list").css("display", "none");
+        },
+        set_experience(experience){
+            this.filter.experience = experience;
+            $("#job_experience_list").css("display", "none");
+        },
+
     },
     // Components
     components:{Loading},
@@ -340,9 +372,15 @@ export default {
         this.load_result();
         // location
             // locations api
-        axios.get('/api/location')
+            axios.get('/api/location')
             .then(response => {
                 this.locations = response.data;
+            })
+            // Profession
+            axios.get('/api/categories/job')
+            .then(response=>{
+                this.professions = response.data;
+                console.log(this.professions);
             })
     }
 }

@@ -90,8 +90,8 @@ class CategoryController extends Controller
      * Sales
      *  */ 
     // Job profession
-    public function profession(){
-        $jobs = Category::where('category','=','profession')
+    public function job(){
+        $jobs = Category::where('category','=','job')
         ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
