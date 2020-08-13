@@ -60,7 +60,7 @@
                     </ul>
                     <div class="row mx-auto">
                         <div class="col-md-12">
-                            <div id="tb_mobile_search_dropdown">
+                            <div id="dropdown_lists">
                                 <form class="form-inline ml-3" method="get" action="">
                                     {{ csrf_field() }}
                                     <span class="w-50">
@@ -382,6 +382,7 @@
         $("#location_list li").click(function() {
             let term = $(this).attr("value")
             $("#location_search").val(term);
+
             locate = term;
             // Closing the dropdown
             $("#location_list").css("display", "none");
@@ -434,6 +435,26 @@
             } else {
                 $('form').attr('action', '/search/' + service + "?location=" + locate);
             }
+        });
+        /**@abstract
+         * List
+         * Search Engine
+         * Location List
+         * Category List
+         *  */
+        $("#search_service_close").click(function() {
+            $("#search_service_list").css("display", "none");
+        })
+        $("#search_service_list li").click(function() {
+            let term = $(this).attr("value")
+            console.log(term);
+            $("#location_search").val(term);
+            locate = term;
+            // Closing the dropdown
+            $("#location_list").css("display", "none");
+            // removing required class
+            $("#location_search").removeClass("required");
+
         });
     </script>
     <!-- Lazy loading image -->

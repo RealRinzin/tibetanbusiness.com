@@ -312,6 +312,7 @@ const app = new Vue({
             //Other size
             $("#search_collapse").addClass("show");
              }
+
         
     }
 });

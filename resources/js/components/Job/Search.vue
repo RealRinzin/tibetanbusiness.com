@@ -5,7 +5,7 @@
                 <div class="col-md-12 mx-auto">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card p-3" style="padding-bottom:0px !important">
+                            <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                     <div class="collapse" id="search_collapse">
@@ -14,34 +14,63 @@
                                             <input type="text"  v-model="filter.title" class="form-control" placeholder="Job Title">
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="location" v-model="filter.location" class="form-control">
+                                            <!-- <select name="location" v-model="filter.location" class="form-control">
                                                     <option value="">Choose Location..</option>
                                                     <option value="Dharamsala">Dharamsala</option>
                                                     <option value="mussoorie">Mussoorie</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" @focusin="job_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Service" aria-label="Service type">
+
+                                                    <ul id="job_location_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
+                                                    <button type="button" @click="close()" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <!-- <li value="Dharamsala"><a href="#">Dharamsala</a></li> -->
+                                                    <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                                </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="location" v-model="filter.profession" class="form-control">
+                                            <select name="profession" v-model="filter.profession" class="form-control">
                                                     <option value="">Choose Profession..</option>
                                                     <option value="Dharamsala">Dharamsala</option>
                                                     <option value="BA">Mussoorie</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="location" v-model="filter.experience" class="form-control">
+                                            <select name="experience" v-model="filter.experience" class="form-control">
                                                     <option value="">Choose Experience..</option>
                                                     <option value="1">1 Years</option>
                                                     <option value="2">2 Years</option>
                                                     <option value="3">3 Years</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-12 col-sm-12 py-1">
-                                            <select name="location" v-model="filter.nature" class="form-control">
+                                            <div class="col-md-12 col-sm-12 py-1 position-relative">
+                                                <input type="text" @focusin="search_location()" v-model="filter.nature" class="rounded form-control " readonly="readonly" placeholder="Service" aria-label="Service type">
+                                                <ul id="search_service_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
+                                                    <button type="button" id="search_service_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <!-- <li value="Dharamsala"><a href="#">Dharamsala</a></li> -->
+                                                    <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                                
+                                                    <!-- <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li> -->
+                                                </ul>
+                                            <!-- <select name="nature" v-model="filter.nature" class="form-control">
                                                     <option value="">Choose Full Time/Part..</option>
                                                     <option value="full time">Full Time</option>
                                                     <option value="part time">Part Time</option>
                                                     <option value="internship">Internship</option>
-                                                </select>
+                                                </select> -->
                                             </div>
                                         </div>
                                         <div class="row py-2">
@@ -128,6 +157,7 @@ export default {
     // Data
     data(){
         return{
+            
             loading: false,
             load_more_button : false,
             total:0,
@@ -154,6 +184,14 @@ export default {
             isLoading : false,//Lazy loading
             // lazy:false,
             result:[],
+            /**
+             * Dropdown List
+             * location
+             * profession
+             * nature
+             *  */  
+            locations:{},
+            professions:{},
 
         }
     },
@@ -298,6 +336,20 @@ export default {
                 $("#search_collapse").removeClass("show");
             }
             this.load_result();
+        },
+        /**
+         * SEARCH LIST
+         * DROPDOWN
+         *  */ 
+       job_location_dropdown() {
+            $("#job_location_list").css("display", "block");
+        },
+        set_location(location){
+            this.filter.location = location;
+            $("#job_location_list").css("display", "none");
+        },
+        close(){
+            $("#job_location_list").css("display", "none");
         }
     },
     // Components
@@ -305,12 +357,12 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        // var slider = document.getElementById("myRange");
-        // var output = document.getElementById("demo");
-        // output.innerHTML = slider.value;
-        // slider.oninput = function() {
-        // output.innerHTML = this.value;
-        // }
+        // location
+            // locations api
+            axios.get('/api/location')
+                .then(response => {
+                    this.locations = response.data;
+                })
     }
 }
 </script>

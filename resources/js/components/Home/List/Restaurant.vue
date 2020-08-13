@@ -1,28 +1,21 @@
 <template>
-    <div id="business_list">
-        <div v-if="!loading">
-            <loading :active.sync="isLoading"></loading>
-        </div>
-        <div v-else class="container py-3">
+    <div class="row" v-if="loading">
+        <div class="col-md-8 mx-auto">
+            <h6 class="bg-danger btn">Restaurant</h6>
             <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <h6 class="bg-danger btn">Restaurant</h6>
-                    <div class="row">
-                        <div class="col-md-6 col-6" v-for="(restaurants,index) in restaurants" v-if="index <= 1">
-                        <!-- <div class="col-md-6"> -->
-                            <div class="card">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6">
-                                        <a v-bind:href="'restaurant/'+restaurants.id">
-                                        <div class="banner lazyloaded" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurants.banner})`}'></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 p-3 info">
-                                        <h5>{{restaurants.name}}</h5>
-                                        <h6 class="pt-1">{{restaurants.mobile_no}}</h6>
-                                        <h6>{{restaurants.location}}</h6>
-                                    </div>
-                                </div>
+                <div class="col-md-6 col-6" v-for="(restaurants,index) in restaurants" :key="index" v-if="index <= 1">
+                <!-- <div class="col-md-6"> -->
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <a v-bind:href="'restaurant/'+restaurants.id">
+                                <div class="banner lazyloaded" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurants.banner})`}'></div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-6 p-3 info">
+                                <h5>{{restaurants.name}}</h5>
+                                <h6 class="pt-1">{{restaurants.mobile_no}}</h6>
+                                <h6>{{restaurants.location}}</h6>
                             </div>
                         </div>
                     </div>
@@ -32,17 +25,11 @@
     </div>
 </template>
 <script>
-    // Import component
-    import Loading from 'vue-loading-overlay';
-    // Import stylesheet
-    import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
     data(){
         return{
-            // loading:false,
-            isLoading : false,//Lazy loading
-            restaurants:[],
-            loading:false, //loading
+            loading:false,
+            restaurants:{},
         }
     },
     // methods / Functions
@@ -52,31 +39,24 @@ export default {
             // home advertisment
             axios.get('api/restaurant/list/home_ad')
             .then(response=>{
-                this.isLoading = true; //Loading true
+                this.restaurants = response.data;
+                this.loading = true;
                 if(response.data.length > 0){
                     for (let index = 0; index < response.data.length; index++) {
                         this.restaurants[index] = response.data[Math.floor(Math.random() *response.data.length)]
                     }
-                    this.isLoading = false; //Loading true
-                    this.loading = true; //loading
                 }else{
                     axios.get('/api/restaurant/list/all').then(response=>{
-                        this.isLoading = true; //Loading true
+                        this.loading = true;
                         for (let index = 0; index < response.data.data.length; index++) {
                             this.restaurants[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
                         }
-                        this.isLoading = false; //Loading true
-                        this.loading = true; //loading
                     })
                 }
             })
         }
     },
-    /**
-     * 
-     * Components
-     *  */  
-    components:{Loading},
+    // mounted
     mounted(){
         this.restaurant_list(); // Restaurant
     }

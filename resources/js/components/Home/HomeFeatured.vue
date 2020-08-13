@@ -136,13 +136,13 @@
 
         <!-- Business Listing -->
         <div class="container py-3" id="business_list">
-            <search></search>
+            <!-- <search></search> -->
             <event-list></event-list>
-            <!-- <rent-list></rent-list> -->
-            <!-- <job-list></job-list> -->
-            <!-- <restaurant-list></restaurant-list> -->
-            <!-- <sale-list></sale-list> -->
-            <!-- <service-list></service-list> -->
+            <rent-list></rent-list>
+            <job-list></job-list>
+            <restaurant-list></restaurant-list>
+            <sale-list></sale-list>
+            <service-list></service-list>
         </div>
 
     </div>
