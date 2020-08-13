@@ -47,30 +47,11 @@
                                             <div class="col-md-12 col-sm-12 py-1 position-relative">
                                                 <input type="text" @focusin="search_location()" v-model="filter.nature" class="rounded form-control " readonly="readonly" placeholder="Service" aria-label="Service type">
                                                 <ul id="search_service_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded overflow-hidden w-100 list-unstyled px-1 my-2">
-                                                    <button type="button" id="search_service_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" @click="close" id="search_service_close" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <!-- <li value="Dharamsala"><a href="#">Dharamsala</a></li> -->
                                                     <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
-                                                
-                                                    <!-- <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li> -->
                                                 </ul>
-                                            <!-- <select name="nature" v-model="filter.nature" class="form-control">
-                                                    <option value="">Choose Full Time/Part..</option>
-                                                    <option value="full time">Full Time</option>
-                                                    <option value="part time">Part Time</option>
-                                                    <option value="internship">Internship</option>
-                                                </select> -->
                                             </div>
                                         </div>
                                         <div class="row py-2">
@@ -359,10 +340,10 @@ export default {
         this.load_result();
         // location
             // locations api
-            axios.get('/api/location')
-                .then(response => {
-                    this.locations = response.data;
-                })
+        axios.get('/api/location')
+            .then(response => {
+                this.locations = response.data;
+            })
     }
 }
 </script>

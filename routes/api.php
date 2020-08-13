@@ -113,9 +113,12 @@ use Illuminate\Http\Request;
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
 
 
-
     // Other API
+    // List API
         Route::apiResource('location', 'Location\LocationController', ['except' => ['index']]);
+        Route::apiResource('profession', 'Profession\ProfessionController', ['except' => ['index']]);
+        Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job']]);
+
     });
 
     
@@ -212,3 +215,8 @@ use Illuminate\Http\Request;
 
 // Other API
     Route::get('location', 'Location\LocationController@index');
+    Route::get('profession', 'Profession\ProfessionController@index');
+    Route::get('categories/profession', 'Category\CategoryController@job');
+    Route::get('categories/event', 'Category\CategoryController@event');
+    Route::get('categories/sale', 'Category\CategoryController@sale');
+    Route::get('categories/service', 'Category\CategoryController@service');

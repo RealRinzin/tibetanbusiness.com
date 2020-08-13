@@ -442,20 +442,20 @@
          * Location List
          * Category List
          *  */
-        $("#search_service_close").click(function() {
-            $("#search_service_list").css("display", "none");
-        })
-        $("#search_service_list li").click(function() {
-            let term = $(this).attr("value")
-            console.log(term);
-            $("#location_search").val(term);
-            locate = term;
-            // Closing the dropdown
-            $("#location_list").css("display", "none");
-            // removing required class
-            $("#location_search").removeClass("required");
+        // $("#search_service_close").click(function() {
+        //     $("#search_service_list").css("display", "none");
+        // })
+        // $("#search_service_list li").click(function() {
+        //     let term = $(this).attr("value")
+        //     console.log(term);
+        //     $("#location_search").val(term);
+        //     locate = term;
+        //     // Closing the dropdown
+        //     $("#location_list").css("display", "none");
+        //     // removing required class
+        //     $("#location_search").removeClass("required");
 
-        });
+        // });
     </script>
     <!-- Lazy loading image -->
     <script>
