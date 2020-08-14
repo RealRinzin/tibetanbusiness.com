@@ -5,11 +5,8 @@
                 <div class="col-md-12 mx-auto">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card p-3" style="padding-bottom:0px !important">
+                            <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
-                                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        Button with data-target
-                                    </button> -->
                                     <small class="btn text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">
                                         Filter: <i class="fas fa-sliders-h mx-1"></i>
                                     </small>
@@ -19,18 +16,22 @@
                                         <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.location" class="form-control">
-                                                <option value="">Choose Location..</option>
-                                                <option value="Dharamsala">Dharamsala</option>
-                                                <option value="mussoorie">Mussoorie</option>
-                                            </select>
+                                            <input type="text" @focusin="event_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Location" aria-label="Service type">
+                                                <ul id="event_location_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
+                                                <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                            </ul>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
-                                          <select name="location" v-model="filter.category" class="form-control">
-                                                <option value="">Choose Category..</option>
-                                                <option value="Mobile">Mobile</option>
-                                                <option value="Title">Title</option>
-                                            </select>
+                                            <input type="text" @focusin="event_category_dropdown()" v-model="filter.category" class="rounded form-control " readonly="readonly" placeholder="Category" aria-label="Service type">
+                                                <ul id="event_category_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
+                                                <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <li v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="row py-2">
@@ -155,6 +156,14 @@ export default {
             isLoading : false,//Lazy loading
             // lazy:false,
             result:[],
+            /**
+             * Dropdown List
+             * location
+             * profession
+             * nature
+             *  */  
+            locations:{},
+            categories:{},
 
         }
     },
@@ -309,7 +318,36 @@ export default {
                 $("#search_collapse").removeClass("show");
             }
             this.load_result();
-        }
+        },
+        /**
+         * SEARCH LIST
+         * DROPDOWN
+         *  */ 
+       event_location_dropdown() {
+            $("#event_location_list").css("display", "block");
+            $("#event_category_list").css("display", "none");
+            // $("#job_profession_list").css("display", "none");
+            // $("#job_experience_list").css("display", "none");
+            // $("#job_nature_list").css("display", "none");
+        },
+        set_location(location){
+            this.filter.location = location;
+            $("#event_location_list").css("display", "none");
+        },
+        // categoryu
+        event_category_dropdown() {
+            $("#event_category_list").css("display", "block");
+            $("#event_location_list").css("display", "none");
+        },
+        set_category(category){
+            this.filter.category = category;
+            $("#event_category_list").css("display", "none");
+        },
+        close(){
+            $("#event_location_list").css("display", "none");
+            $("#event_category_list").css("display", "none");
+        },
+
     },
     // Components
     components:{Loading},
@@ -324,6 +362,16 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+        // locations api
+        axios.get('/api/location')
+        .then(response => {
+            this.locations = response.data;
+        })
+        // Profession
+        axios.get('/api/categories/event')
+        .then(response=>{
+            this.categories = response.data;
+        })
     }
 }
 </script>

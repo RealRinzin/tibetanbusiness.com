@@ -173,8 +173,6 @@ export default {
             /**
              * Dropdown List
              * location
-             * profession
-             * nature
              *  */  
             locations:{},
             professions:{},

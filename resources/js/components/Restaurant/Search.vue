@@ -6,7 +6,7 @@
                     <div class="row">
                         <!-- filter -->
                         <div class="col-md-3">
-                            <div class="card p-3">
+                            <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse"  data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                         <div class="collapse" id="search_collapse">
@@ -15,7 +15,13 @@
                                                 <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                                 </div>
                                                 <div class="col-md-12 py-1">
-                                                <input type="text" v-model="filter.location" class="form-control" placeholder="Location">
+                                                    <input type="text" @focusin="restaurant_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Location" aria-label="Location">
+                                                        <ul id="restaurant_location_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
+                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                                    </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 pt-1">
                                                     <small class="text-warning">Rating</small>
@@ -119,6 +125,7 @@ export default {
             // loading
             isLoading : false,//Lazy loading
             // lazy:false,
+            locations:{},
         }
     },
 
@@ -271,7 +278,21 @@ export default {
                 $("#search_collapse").removeClass("show");
             }
             this.load_result();
-        }
+        },
+        /**
+         * SEARCH LIST
+         * DROPDOWN
+         *  */ 
+        restaurant_location_dropdown() {
+            $("#restaurant_location_list").css("display", "block");
+        },
+        set_location(location){
+            this.filter.location = location;
+            $("#restaurant_location_list").css("display", "none");
+        },
+        close(){
+            $("#restaurant_location_list").css("display", "none");
+        },
     },
 
     // Components
@@ -280,6 +301,10 @@ export default {
     mounted(){
         this.load_result();
         // this.filter.location = this.location;
+        axios.get('/api/location')
+        .then(response => {
+            this.locations = response.data;
+        })
     }
 }
 </script>

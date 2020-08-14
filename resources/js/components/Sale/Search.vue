@@ -5,7 +5,7 @@
                 <div class="col-md-12 mx-auto">
                     <div class="row">
                         <div class="col-md-3" id="search_mobile">
-                            <div class="card p-3 mt-3" style="padding-bottom:0px !important">
+                            <div class="card p-3 mt-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
 
@@ -15,19 +15,24 @@
                                                 <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <select name="location" v-model="filter.location" class="form-control">
-                                                        <option value="">Choose Location..</option>
-                                                        <option value="Dharamsala">Dharamsala</option>
-                                                        <option value="Mussoorie">Mussoorie</option>
-                                                    </select>
+                                                    <input type="text" @focusin="sale_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Location" aria-label="Service type">
+                                                        <ul id="sale_location_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
+                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                                    </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                <select name="location" v-model="filter.type" class="form-control">
-                                                        <option value="">Choose Category..</option>
-                                                        <option value="Mobile">Mobile</option>
-                                                        <option value="Title">Title</option>
-                                                    </select>
+                                                    <input type="text" @focusin="sale_type_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Product Type" aria-label="Service type">
+                                                        <ul id="sale_type_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
+                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <li v-for="category in categories" :value="category.name" @click="set_type(category.name)">{{category.name}}</li>
+                                                    </ul>
                                                 </div>
+
                                             </div>
                                             <div class="row py-2">
                                                 <!-- Range Price -->
@@ -63,7 +68,6 @@
                             <div v-else>
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(sale,index) in sales">
-
                                         <a v-bind:href="'/sale/'+sale.id">
                                             <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
                                                 <ul>
@@ -134,6 +138,12 @@ export default {
             isLoading : false,//Lazy loading
             // lazy:false,
             result:[],
+            /**
+             * Dropdown List
+             * location
+             *  */  
+            locations:{},
+            categories:{},
 
         }
     },
@@ -268,7 +278,32 @@ export default {
                 $("#search_collapse").removeClass("show");
             }
             this.load_result();
-        }
+        },
+        /**
+         * SEARCH LIST
+         * DROPDOWN
+         *  */ 
+        sale_location_dropdown() {
+            $("#sale_location_list").css("display", "block");
+            $("#sale_type_list").css("display", "none");
+        },
+        set_location(location){
+            this.filter.location = location;
+            $("#sale_location_list").css("display", "none");
+        },
+        // categoryu
+        sale_type_dropdown() {
+            $("#sale_type_list").css("display", "block");
+            $("#sale_location_list").css("display", "none");
+        },
+        set_type(category){
+            this.filter.type = category;
+            $("#sale_type_list").css("display", "none");
+        },
+        close(){
+            $("#sale_location_list").css("display", "none");
+            $("#sale_type_list").css("display", "none");
+        },
     },
 
     // Components
@@ -276,6 +311,16 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+        // locations api
+        axios.get('/api/location')
+        .then(response => {
+            this.locations = response.data;
+        })
+        // Profession
+        axios.get('/api/categories/sale')
+        .then(response=>{
+            this.categories = response.data;
+        })
     }
 }
 </script>
