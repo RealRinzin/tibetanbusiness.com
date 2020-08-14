@@ -262,6 +262,7 @@ export default {
         },
         // Reset the search form
         reset(){
+                this.empty_result = '';
             // hidding collapse after 
             // clicking the reset
             // Mobile screensize

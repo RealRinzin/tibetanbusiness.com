@@ -190,7 +190,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="profession">Profession<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.profession" name="profession" class="form-control" id="profession" aria-describedby="emailHelp" placeholder="Profession">
+                                                <select v-validate="'required'" v-model="job.profession" name="profession" class="form-control" id="profession" placeholder="Selected Profession">
+                                                    <option value="" disabled selected>Select Profession</option>
+                                                    <option v-for="profession in professions" :value="profession.name">{{profession.name}}</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.profession')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.profession')">{{ error }}</span>
@@ -210,7 +213,13 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="nature">Nature<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.nature" name="nature" class="form-control" id="nature" aria-describedby="emailHelp" placeholder="Nature">
+                                                <select v-validate="'required'" v-model="job.nature" name="nature" class="form-control" id="nature">
+                                                    <option value="" disabled selected>Select Nature</option>
+                                                    <option value="Full Time"> Full Time</option>
+                                                    <option value="Part Time"> Part Time</option>
+                                                    <option value="Contract"> Contract</option>
+                                                    <option value="Internship"> Internship</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.nature')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.nature')">{{ error }}</span>
@@ -220,7 +229,16 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="experience">Experience<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.experience" name="experience" class="form-control" id="experience" aria-describedby="emailHelp" placeholder="Experience">
+                                                <select v-validate="'required'" v-model="job.experience" name="experience" class="form-control" id="experience">
+                                                    <option value="" disabled selected>Select Experience</option>
+                                                    <option value="6 Months"> 6 Months</option>
+                                                    <option value="1 Yrs"> 1 Years</option>
+                                                    <option value="2 Yrs"> 2 Years</option>
+                                                    <option value="3 Yrs"> 3 Years</option>
+                                                    <option value="4 Yrs"> 4 Years</option>
+                                                    <option value="5 Yrs"> 5 Years</option>
+                                                    <option value="6 Yrs above"> 6 Years Above</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.experience')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.experience')">{{ error }}</span>
@@ -331,6 +349,7 @@ export default {
         return{
             // job:{},
             locations:{},
+            professions:{},
         }
     },
     methods:{
@@ -367,6 +386,11 @@ export default {
         axios.get('/api/location')
         .then(response=>{
             this.locations = response.data;
+        })
+        // profession
+        axios.get('/api/categories/job')
+        .then(response => {
+            this.professions = response.data;
         })
     }
 }

@@ -144,17 +144,6 @@ export default {
                 this.restaurants = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
-                // If not result at all
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // Load more button
-                if (response.data.current_page == response.data.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                    this.empty_result='';
-                }
                 // Looping to assign rating values
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
@@ -168,6 +157,17 @@ export default {
                     }else{
                         this.restaurants[index].rate_color = 'bg-secondary';
                     }
+                }
+                // If not result at all
+                if(response.data.total == 0){
+                    this.empty_result="We don't found the search item";
+                }
+                // Load more button
+                if (response.data.current_page == response.data.last_page) {
+                    this.load_more_button = false;
+
+                }else{
+                    this.load_more_button = true;
                 }
             })
         },
@@ -268,6 +268,7 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.empty_result = '';
             this.filter = {
                 name:'',
                 location:'',

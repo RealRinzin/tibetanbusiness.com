@@ -240,7 +240,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="type">Type<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.type" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="name">
+                                                <select v-validate="'required'" v-model="service.type" name="type" class="form-control" id="type">
+                                                    <option value="" selected disabled>Service Type</option>
+                                                    <option v-for="category in categories" :value="category.name">{{category.name}}</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.type')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.type')">{{ error }}</span>
@@ -372,6 +375,7 @@ export default {
         return{
             id:this.service.id,
             locations:{},
+            categories:{},
         }
     },
     methods:{
@@ -425,6 +429,10 @@ export default {
         axios.get('/api/location')
         .then(response=>{
             this.locations = response.data;
+        })
+        axios.get('/api/categories/service')
+        .then(response=>{
+            this.categories = response.data;
         })
     }
 }

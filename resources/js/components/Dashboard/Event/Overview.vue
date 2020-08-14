@@ -162,7 +162,10 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="category">Category<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|min:2|max:40'" v-model="event.category" name="category" class="form-control" id="category" aria-describedby="emailHelp" placeholder="Select Category">
+                                            <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="event.category" name="category" class="form-control" id="category" aria-describedby="emailHelp" placeholder="Select Category"> -->
+                                                <select v-validate="'required'" v-model="event.category" name="category" class="form-control" id="category">
+                                                    <option v-for="category in categories" :value="category.name">{{category.name}}</option>
+                                                </select>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.category')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.category')">{{ error }}</span>
@@ -297,6 +300,7 @@ export default {
         return{
             // event:{},
             locations:{},
+            categories:{},
         }
     },
     methods:{
@@ -338,6 +342,11 @@ export default {
         axios.get('/api/location')
         .then(response=>{
             this.locations = response.data;
+        })
+        // Events
+        axios.get('/api/categories/event')
+        .then(response=>{
+            this.categories = response.data;
         })
     }
 }

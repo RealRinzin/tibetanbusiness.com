@@ -39,7 +39,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="type">Type<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.type" name="type" class="form-control" id="type" aria-describedby="emailHelp" placeholder="Type">
+                                                <select v-validate="'required'" v-model="service.type" name="type" class="form-control" id="type">
+                                                    <option value="" selected disabled>Service Type</option>
+                                                    <option v-for="category in categories" :value="category.name">{{category.name}}</option>
+                                                </select>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.type')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.type')">{{ error }}</span>
@@ -50,6 +53,7 @@
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
                                                 <select v-validate="'required'" v-model="service.location" name="location" class="form-control" id="location">
+                                                    <option value="" selected disabled>Select Location</option>
                                                     <option v-for="location in locations" :value="location.name">{{location.name}}</option>
                                                 </select>
                                                 <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name"> -->
@@ -173,6 +177,7 @@ export default {
             id:'',
             bannerPreview:'',
             locations:{},
+            categories:{},
         }
     },
     methods:{
@@ -236,6 +241,10 @@ export default {
         axios.get('/api/location')
         .then(response=>{
             this.locations = response.data;
+        })
+        axios.get('/api/categories/service')
+        .then(response=>{
+            this.categories = response.data;
         })
 
     }

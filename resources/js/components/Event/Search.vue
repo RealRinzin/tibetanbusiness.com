@@ -216,7 +216,6 @@ export default {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
-                    this.empty_result='';
                 }
             })
         },
@@ -303,6 +302,8 @@ export default {
         reset(){
             let today = new Date();
             let from = format(new Date(today), 'yyyy-MM-dd');
+            // Reset
+            this.empty_result='';
             // filter paramater
             this.filter = {
                 name:'',

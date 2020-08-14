@@ -38,12 +38,13 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     <li value="no experience" @click="set_experience('No Experience')">No Experience</li>
-                                                    <li value="6 months" @click="set_experience('6 Months')">6 Months</li>
-                                                    <li value="1 yr" @click="set_experience('1 Years')">1 Year</li>
-                                                    <li value="2 yr" @click="set_experience('2 Years')">2 Years</li>
-                                                    <li value="3 yr" @click="set_experience('3 Years')">3 Years</li>
-                                                    <li value="4 yr" @click="set_experience('4 Years')">4 Years</li>
-                                                    <li value="5 yr" @click="set_experience('5 Years')">5 Years</li>
+                                                    <li value="6 Months" @click="set_experience('6 Months')">6 Months</li>
+                                                    <li value="1 Yrs" @click="set_experience('1 Years')">1 Year</li>
+                                                    <li value="2 Yrs" @click="set_experience('2 Years')">2 Years</li>
+                                                    <li value="3 Yrs" @click="set_experience('3 Years')">3 Years</li>
+                                                    <li value="4 Yrs" @click="set_experience('4 Years')">4 Years</li>
+                                                    <li value="5 Yrs" @click="set_experience('5 Years')">5 Years</li>
+                                                    <li value="6 Yrs above" @click="set_experience('6 Years above')">6 Years Above</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1 position-relative">
@@ -306,6 +307,7 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.empty_result='';
             // Reset form
             this.filter ={
                 title:'',

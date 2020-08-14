@@ -27,7 +27,9 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="category">Category<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|min:2|max:40'" v-model="event.category" name="category" class="form-control" id="category" aria-describedby="emailHelp" placeholder="Select Category">
+                                                <select v-validate="'required'" v-model="event.category" name="category" class="form-control" id="category">
+                                                    <option v-for="category in categories" :value="category.name">{{category.name}}</option>
+                                                </select>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_add_form.category')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_add_form.category')">{{ error }}</span>
@@ -156,7 +158,7 @@
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                            <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Create</button>
                         </div>
                     </form>
                 </div>
@@ -175,6 +177,7 @@ export default {
             bannerPreview:'',
             // today :
             locations:{}, 
+            categories:{},
         }
     },
     methods:{
@@ -222,6 +225,11 @@ export default {
         axios.get('/api/location')
         .then(response=>{
             this.locations = response.data;
+        })
+        // Events
+        axios.get('/api/categories/event')
+        .then(response=>{
+            this.categories = response.data;
         })
     }
 }

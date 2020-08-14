@@ -180,7 +180,6 @@ export default {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
-                    this.empty_result='';
                 }
                 // Rating values
                 for (let index = 0; index < this.services.length; index++) {
@@ -294,6 +293,8 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.empty_result = '';
+            // Reset filter
             this.filter ={
                 name:'',
                 location:'',

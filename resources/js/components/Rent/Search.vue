@@ -197,7 +197,6 @@ export default {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
-                    this.empty_result='';
                 }
                 // rating values
                 for (let index = 0; index < this.rents.length; index++) {
@@ -321,6 +320,7 @@ export default {
         },
         // Reset the search form
         reset(){
+            this.empty_result='';
             // reset form
             this.filter = {
                 name:'',
@@ -356,6 +356,7 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+        // API
         axios.get('/api/location')
         .then(response => {
             this.locations = response.data;
