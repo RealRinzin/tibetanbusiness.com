@@ -11139,33 +11139,62 @@ View individual show CSS
   outline: none !important;
 }
 
+#dropdown_lists input::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 14px;
+}
+
+#dropdown_lists input::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 14px;
+}
+
+#dropdown_lists input:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 14px;
+}
+
+#dropdown_lists input::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 14px;
+}
+
+#dropdown_lists input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 14px;
+}
+
 #dropdown_lists .form-control[readonly] {
   background: #ffffff !important;
   font-size: 14px;
+}
+
+#dropdown_lists .height {
+  height: 250px;
 }
 
 #dropdown_lists ul {
   width: 100%;
   z-index: 100;
   top: 105%;
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow: scroll !important;
+  overflow-x: hidden !important;
   padding-left: 0px;
   background-color: #ffffff;
 }
 
 #dropdown_lists ul li {
   list-style: none;
-  padding: 6px;
-  color: #000;
+  padding: 4px;
+  color: #6c747d;
   background: #ffffff;
-  border-bottom: 0.3px solid #8c9297;
+  border-bottom: 0.3px solid #ced4db;
 }
 
 #dropdown_lists ul li:hover {
-  background-color: gray;
-  color: white;
-  transition: 1.5s;
+  background-color: #edf1f4;
+  color: #6c747d;
+  transition: 0.5s;
   cursor: pointer;
 }
 
