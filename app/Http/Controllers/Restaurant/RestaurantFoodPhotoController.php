@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantFoodPhoto;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,5 +49,12 @@ class RestaurantFoodPhotoController extends Controller
         if($photos->path){
             unlink('img/' . $photos->path);
         }
+    }
+
+    /**
+     *Photos 
+     */
+    public function photos(RestaurantBasicInfo $restaurantBasicInfo){
+        return $restaurantBasicInfo->restaurant_food_photos()->orderBy('created_at', 'desc')->get(); 
     }
 }

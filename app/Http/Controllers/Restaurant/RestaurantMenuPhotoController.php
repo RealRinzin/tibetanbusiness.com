@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantMenuPhoto;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,11 +49,12 @@ class RestaurantMenuPhotoController extends Controller
         //        
         $photos = RestaurantMenuPhoto::find($id);
         $photos->delete();
-        // Deleting the file too
-        // if ($photos->path) {
-        //     unlink('storage/Restaurant/Menu-Pictures' . $photos->path);
-        // }
-        // unlink('img/'.$photos->path);
-        // return $photos;
+    }
+    /**
+     *Photos 
+     */
+    public function photos(RestaurantBasicInfo $restaurantBasicInfo)
+    {
+        return $restaurantBasicInfo->restaurant_menu_photos()->orderBy('created_at', 'desc')->get();
     }
 }

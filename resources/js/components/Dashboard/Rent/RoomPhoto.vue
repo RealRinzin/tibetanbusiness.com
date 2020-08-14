@@ -64,8 +64,8 @@
                 @drop="onDrop"
                 :class="{ dragging: isDragging }">
                 <div class="upload-control" v-show="images.length">
-                    <label for="file" class="btn btn-primary btn-md">Select a file</label>
-                    <button class="btn btn-warning btn-md" @click="upload(id)">Upload</button>
+                    <button class="btn btn-warning btn-md" @click="clear_all()">Clear All</button>
+                    <button class="btn btn-success btn-md" @click="upload(id)">Upload</button>
                 </div>
 
                 <div v-show="!images.length">
@@ -100,7 +100,7 @@
  
 <script>
   export default {
-    props:['room_photos','id','rent_load'],
+    props:['id'],
     data() {
       return {
         photos:this.room_photos,
@@ -118,6 +118,13 @@
     },
     // Methods
     methods:{
+        load_photo(){
+            axios.get('/api/rent/'+this.id+'/room_photos')
+            .then(response=>{
+                // data
+                this.photos = response.data;
+            })
+        },
       /**
        * Photo click
        * Function
@@ -217,6 +224,7 @@
         destory(index){
             // Removing image
             this.$delete(this.images,index);
+            this.$delete(this.valid_image,index);
             // Removing the image files
             this.$delete(this.files,index);
         },
@@ -239,16 +247,23 @@
                   });
                   this.images = [];
                   this.files = [];
+                  this.valid_image = [];
                   $("#upload_rent_room_photos_modal").modal("hide"); 
                 // callback function
-                // this.$root.$emit(...)
-                  this.$emit('rent_load');
+                  this.load_photo()
               })
+        },
+        // Clear all files
+        clear_all(){
+            this.images = [];
+            this.files = [];
+            this.valid_image =[]
         }
         
     },
     // mounted
     mounted(){
+      this.load_photo()
     }
   };
 </script> 

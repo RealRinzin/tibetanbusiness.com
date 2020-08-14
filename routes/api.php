@@ -135,7 +135,9 @@ use Illuminate\Http\Request;
     Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
     Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
     Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');
-    Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
+    Route::get( 'restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
+    Route::get('restaurant/{restaurant_basic_info}/food_photos', 'Restaurant\RestaurantFoodPhotoController@photos');
+    Route::get('restaurant/{restaurant_basic_info}/menu_photos', 'Restaurant\RestaurantMenuPhotoController@photos');
 
 /**
  * RENT API 
@@ -148,6 +150,9 @@ use Illuminate\Http\Request;
     Route::get('rent/list/featured_ad', 'Rent\RentBasicInfoController@featured_ad');
     Route::get('rent/list/sidebar_ad', 'Rent\RentBasicInfoController@sidebar_ad');
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
+    Route::get('rent/{rent_basic_info}/room_photos', 'Rent\RentRoomPhotoController@photos');
+    Route::get('rent/{rent_basic_info}/view_photos', 'Rent\RentViewPhotoController@photos');
+
         // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
 
     /**

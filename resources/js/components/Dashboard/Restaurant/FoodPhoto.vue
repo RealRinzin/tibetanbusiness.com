@@ -62,7 +62,7 @@
                 @drop="fp_onDrop"
                 :class="{ dragging: fp_isDragging }">
                 <div class="upload-control" v-show="fp_images.length">
-                    <label for="file" class="btn btn-primary btn-md">Select a file</label>
+                    <button class="btn btn-success btn-md" @click="clear_all()">Clear All</button>
                     <button class="btn btn-warning btn-md" @click="fp_upload(id)">Upload</button>
                 </div>
 
@@ -101,7 +101,7 @@
 </template>
 <script>
   export default {
-    props:['food_photos','id','load'],
+    props:['id'],
     // data
     data() {
       return {
@@ -123,6 +123,13 @@
      * Methods
      *  */ 
     methods:{
+        load_photo(){
+            axios.get('/api/restaurant/'+this.id+'/food_photos')
+            .then(response=>{
+                // data
+                this.photos = response.data;
+            })
+        },
       // photo index
       photo_view(index){
         // status
@@ -222,6 +229,7 @@
         fp_destory(index){
             // Removing image
             this.$delete(this.images,index);
+            this.$delete(this.valid_image,index);
             // Removing the image files
             this.$delete(this.files,index);
         },
@@ -246,25 +254,25 @@
                   });
                   this.fp_images = [];
                   this.fp_files = [];
+                  this.valid_image = [];
                   $("#upload_food_photos_modal").modal("hide");  
                   // callback
-                  this.$emit('load');
+                  this.load_photo();
+
+                  // this.$emit('load');
               })
+        },
+        // Clear all files
+        clear_all(){
+            this.images = [];
+            this.files = [];
+            this.valid_image =[]
         }
 
     },
-    /**
-     * Watch the 
-     * Props Data
-     *  */ 
-      watch: {
-        food_photos: function(data) { 
-           this.photos = data
-        }
-      },
     // mounted
     mounted(){
-
+      this.load_photo();
     }
   }
 </script> 

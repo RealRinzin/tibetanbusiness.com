@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rent;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rent\RentBasicInfo;
 use App\Rent\RentViewPhoto;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,5 +101,12 @@ class RentViewPhotoController extends Controller
         //
         $photos = RentViewPhoto::find($id);
         $photos->delete();
+    }
+    /**
+     *Photos 
+     */
+    public function photos(RentBasicInfo $rentBasicInfo)
+    {
+        return $rentBasicInfo->rent_view_photos()->orderBy('created_at', 'desc')->get();
     }
 }

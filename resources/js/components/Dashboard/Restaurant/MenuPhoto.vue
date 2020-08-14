@@ -102,7 +102,7 @@
  
 <script>
   export default {
-    props:['menu_photos','id','load'],
+    props:['id'],
     data() {
       return {
         photos:{},
@@ -120,6 +120,13 @@
     },
     // Methods
     methods:{
+        load_photo(){
+            axios.get('/api/restaurant/'+this.id+'/menu_photos')
+            .then(response=>{
+                // data
+                this.photos = response.data;
+            })
+        },
       /**
        * Photo click
        * Function
@@ -220,6 +227,7 @@
         destory(index){
             // Removing image
             this.$delete(this.images,index);
+            this.$delete(this.valid_image,index);
             // Removing the image files
             this.$delete(this.files,index);
         },
@@ -242,25 +250,22 @@
                   });
                   this.images = [];
                   this.files = [];
+                  this.valid_image=[];
                   $("#upload_menu_photos_modal").modal("hide"); 
-
-                // callback function
-                  this.$emit('load');
+                  this.load_photo();
               })
+        },
+        // Clear all files
+        clear_all(){
+            this.images = [];
+            this.files = [];
+            this.valid_image =[]
         }
         
     },
-    /**
-     * 
-     * Watch
-     *  */ 
-    watch:{
-        menu_photos(data){
-          this.photos = data;
-        }
-    },
     // mounted
     mounted(){
+      this.load_photo();
 
     }
   };
