@@ -30,6 +30,7 @@ use Illuminate\Http\Request;
         Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
         Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
         Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
+        Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController');
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
         // Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
     // showing the individual restaurant without relationship datas

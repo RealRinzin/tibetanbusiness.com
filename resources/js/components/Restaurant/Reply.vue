@@ -16,7 +16,7 @@
                 </form>
             </div>
         </div>
-        <div class="media mt-3" v-for="(reply,index) in replies.data">
+        <div class="media mt-3" v-for="(reply,index) in replies">
             <a class="pr-3" href="#">
                 <img class="mr-2 img-circle" src="https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal" alt="Generic placeholder image" style="height:50px;width:50px">
             </a>
@@ -34,10 +34,8 @@
                 </p>
             </div>
         </div>
-        <!-- {{questions}} -->
-        <!-- <div class="text-center mt-3 p-2" v-if="questions.repliesCount > 0 && replies.next_page_url"> -->
-            <!-- {{questions}} -->
-            <!-- <button @click="load_replies" class="btn btn-secondary btn-sm small">Load Replies</button> -->
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <button @click="load_more_replies()" class="btn btn-secondary btn-sm small">Load replies</button>
         </div>
     </div>
 </template>
@@ -47,6 +45,8 @@ export default {
     data(){
         return{
             replies:{},
+            load_more_button:false, //load more button
+            nextPage:2, // page numbers
         }
     },
     // methods
@@ -54,11 +54,37 @@ export default {
         load_replies(){
             axios.get('/api/restaurant/'+this.id+'/reply')
             .then((response) => {
-                this.replies = response.data;
+                this.replies = response.data.data;
+            //   if(response.data.total > response.data.per_page){
+            //         this.load_more_button = true; 
+            //     }
+            this.load_more_button =true;
             }).catch((err) => {
-                
             });
-        }
+        },
+        // Load more replies
+        load_more_replies(nextPage){
+            axios.get('/api/restaurant/'+this.id+'/reply?page='+this.nextPage)
+            .then((response) => {
+                if(response.data.current_page <= response.data.last_page){
+                    this.nextPage = response.data.current_page + 1; //page number
+                    // this.replies = response.data; // response data
+                    // reply object
+                    this.replies = [
+                        ...this.replies,
+                        ...response.data.data
+                    ];
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
+                }
+                
+            }).catch((err) => {
+            });
+        },
     },
 
     mounted(){
