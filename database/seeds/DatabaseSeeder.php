@@ -14,6 +14,7 @@ use App\Rent\RentRoomPhoto;
 use App\Rent\RentViewPhoto;
 use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantComment;
+use App\Restaurant\RestaurantCommentReply;
 use App\Restaurant\RestaurantFacility;
 use App\Restaurant\RestaurantFoodPhoto;
 use App\Restaurant\RestaurantMenuPhoto;
@@ -38,12 +39,13 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 2)->create();
         
         // Restaurant DB Seed
-        // factory(RestaurantBasicInfo::class, 2)->create();
-        // factory(RestaurantFacility::class, 2)->create();
-        // factory(RestaurantOperationDay::class, 2)->create();
-        // factory(RestaurantFoodPhoto::class, 2)->create();
-        // factory(RestaurantMenuPhoto::class, 10)->create();
-        // factory(RestaurantComment::class, 2)->create();
+        factory(RestaurantBasicInfo::class, 10)->create();
+        factory(RestaurantFacility::class, 2)->create();
+        factory(RestaurantOperationDay::class, 2)->create();
+        factory(RestaurantFoodPhoto::class, 2)->create();
+        factory(RestaurantMenuPhoto::class, 10)->create();
+        factory(RestaurantComment::class, 10)->create();
+        factory(RestaurantCommentReply::class,10)->create();
         // Rent DB Seed
         // factory(RentBasicInfo::class, 2)->create();
         // factory(RentComment::class, 2)->create();
@@ -65,9 +67,9 @@ class DatabaseSeeder extends Seeder
         // factory(SalePhoto::class,2)->create();
 
         // SERVICE
-        factory(ServiceBasicInfo::class, 2)->create();
-        factory(ServicePhoto::class, 2)->create();
-        factory(ServiceReview::class, 2)->create();
-        factory(ServiceWorkingDay::class, 2)->create();
+        // factory(ServiceBasicInfo::class, 2)->create();
+        // factory(ServicePhoto::class, 2)->create();
+        // factory(ServiceReview::class, 2)->create();
+        // factory(ServiceWorkingDay::class, 2)->create();
     }
 }

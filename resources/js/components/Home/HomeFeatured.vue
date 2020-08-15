@@ -35,7 +35,8 @@
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
                                 <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                     <ul>
-                                        <li class="ng-binding">{{event.start_date | date}}</li>
+                                        <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
+                                        <li class="ng-binding">{{event.start_date}}</li>
                                         <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li>
                                         <li class="ng-binding">Entry Fee:₹{{event.entry_fee}}/-</li>
                                     </ul>

@@ -131,6 +131,7 @@ use Illuminate\Http\Request;
  * Listing Advertisment
  *  */
     Route::get('restaurant_comments/comment/{id}','Restaurant\RestaurantCommentController@comment');
+    Route::get('restaurant/{restaurant_comment}/reply', 'Restaurant\RestaurantCommentReplyController@reply');
     Route::get('restaurant/list/featured_ad/', 'Restaurant\RestaurantBasicInfoController@featured_ad');
     Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
     Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');

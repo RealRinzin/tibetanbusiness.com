@@ -77,7 +77,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                            <input type="text" v-validate="'required'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="name">
+                                <textarea v-validate="'required'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
+                                </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('rent_update_review.review')" class="invalid-feedback">
                                 <span v-for="error in errors.collect('rent_update_review.review')">{{ error }}</span>
@@ -125,7 +126,7 @@ export default {
              *  */ 
             comments:{},
             nextPage:2,
-            load_more_button : true,
+            load_more_button : false,
             total_comments:0,
             comments_lazy_load:false,
             /**
@@ -155,6 +156,10 @@ export default {
             .then(response=>{
                 this.comments = response.data.data;
                 this.total_comments = response.data.total;
+
+                if(response.data.total > response.data.per_page){
+                    this.load_more_button = true;
+                }
                 /**
                  * Rating background
                  * Danger, Warning, Info, Success
@@ -191,7 +196,6 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
                     // this.comments = response.data.data;
                     /**
                      * Comments 
@@ -201,6 +205,12 @@ export default {
                         ...this.comments,
                         ...response.data.data
                     ];
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
                     /**
                      * Comment 
                      * Load rate background
@@ -236,8 +246,6 @@ export default {
                         axios.post('/api/rent_comments',this.review,{
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
-                            console.log(response);
-                            
                             this.load_comments();
                             // Reset form
                             // this.review = [];

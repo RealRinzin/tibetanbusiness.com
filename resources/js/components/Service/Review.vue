@@ -84,7 +84,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                            <input type="text" v-validate="'required'" v-model="update_review.review" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="name">
+                                <textarea v-validate="'required'" v-model="update_review.review" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Review" rows="4" cols="50">
+                                </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('event_update_review.review')" class="invalid-feedback">
                                 <span v-for="error in errors.collect('event_update_review.review')">{{ error }}</span>
@@ -143,7 +144,11 @@ export default {
             axios.get('/api/service/'+this.service_id+'/reviews')
             .then(response=>{
                 this.reviews = response.data.data;
-                this.total_reviews = response.data.data.length
+                this.total_reviews = response.data.total;
+                // load more
+                if(response.data.total > response.data.per_page){
+                    this.load_more_button = true;
+                }
                 /**
                  * Rating background
                  * Danger, Warning, Info, Success
@@ -162,10 +167,7 @@ export default {
                         this.reviews[index].rate_color = 'bg-secondary';
                     }
                 }
-                // load more button
-                if(response.data.last_page > 1){
-                    this.load_more_button = true
-                }
+
             })
         },
         // Load more reviews

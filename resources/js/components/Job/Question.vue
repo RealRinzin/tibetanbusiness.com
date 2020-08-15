@@ -35,7 +35,7 @@
                     <div class="col-md-12 p-3 card" v-for="(question,index) in questions">
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                        <div class="media-body">
+                        <div class="media-body border-0">
                             <h6 class="mt-0">{{question.name}} 
                                 <small class="text-muted">
                                 <timeago :datetime="question.created_at" />
@@ -45,7 +45,7 @@
                                 </small>
                             </h6>
                             <p class="text-muted">{{question.question}}</p>
-                            <replies :questions="question"></replies>
+                            <replies :questions="question" @load="load_questions()"></replies>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ export default {
             },
             // replies:{},
             nextPage:2,
-            load_more_button : true,
+            load_more_button : false,
             total_questions:0,
             questions_lazy_load:false,
             /**
@@ -108,15 +108,11 @@ export default {
         axios.get('/api/job/'+this.job_uuid+'/questions')
             .then(response=>{ 
                 this.questions = response.data.data;
+                console.log(this.questions);
                 this.total_questions = response.data.total;
-                if(this.total_questions  == 0){
-                    this.load_more_button = false;
+                if(response.data.total > response.data.per_page){
+                    this.load_more_button = true;
                 }
-            })
-            // Auto
-            axios.get(`/api/job/${this.job_uuid}/questions`)
-            .then(({data})=>{
-                this.queries = data;
             })
         },
         /**
@@ -128,7 +124,10 @@ export default {
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1;
-                    this.load_more_button = true; 
+                    // Load more hide
+                    if(response.data.current_page ===response.data.last_page){
+                        this.load_more_button = false
+                    }
                     // this.questions = response.data.data;
                     /**
                      * Comments 
@@ -138,8 +137,6 @@ export default {
                         ...this.questions,
                         ...response.data.data
                     ];                    
-                }else{
-                    this.load_more_button = false;
                 }
             })
         },
@@ -153,10 +150,7 @@ export default {
                     axios.post('/api/job_question',this.question,{
                     headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
-
                         this.load_questions();
-                        // Reset form
-                        // this.review = [];
                         toast.fire({
                             icon:'success',
                             title:'Comment Posted',

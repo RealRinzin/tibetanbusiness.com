@@ -22,9 +22,10 @@ class RestaurantComment extends Model
         });
     }
     // Relationship
-    public function restaurant_basic_infos()
+    public function restaurant_comment_replies()
     {
-        return $this->belongsTo(RestaurantBasicInfo::class);
+        return $this->hasMany(RestaurantCommentReply::class);
     }
     //
+
 }

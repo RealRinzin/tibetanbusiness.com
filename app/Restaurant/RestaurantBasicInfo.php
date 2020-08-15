@@ -47,4 +47,5 @@ class RestaurantBasicInfo extends Model
     {
         return $this->hasMany(RestaurantComment::class);
     }
+
 }

@@ -55,7 +55,6 @@ class JobQuestionController extends Controller
     }
     // reply
     public function reply_store(Request $request){
-
         $reply = JobQuestion::create([
             'user_id' => Auth::user()->id,
             'job_basic_info_id' => $request->job_basic_info_id,
@@ -89,7 +88,9 @@ class JobQuestionController extends Controller
     {
         //
         $question = JobQuestion::find($id);
-        $question->update($request->all());
+        $question->question = $request->question;
+        // $question->update($request->all());
+        $question->update();
     }
     /**
      * Remove the specified resource from storage.

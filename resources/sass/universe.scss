@@ -168,7 +168,7 @@
 /* Sidebar  */
 #sidebar{
     .banner{
-        background-image: url('http://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+        background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
         height: 70px;
         border-radius: 4px;
         background-size: cover;
@@ -405,7 +405,7 @@ Background resource loading
   /* Search Result CSS */
   #search{
     .banner{
-        background-image: url('http://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+        background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
         height: 140px;
         border-radius: 4px 4px 0px 0px;
         position: relative;
@@ -417,7 +417,7 @@ Background resource loading
     .lazyloading {
         opacity: 1;
         transition: 600ms opacity;
-        background: #f7f7f7 url(//afarkas.github.io/lazysizes/assets/imgs/loader.gif) no-repeat center;
+        background: #f7f7f7 url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif') no-repeat center;
         min-height: 60px;
     }
     .lazyloaded {

@@ -7,7 +7,7 @@
             <div class="col-md-8 mx-auto">
                 <h6 class="bg-danger btn">Upcoming Events</h6>
                 <div class="row">
-                    <div class="col-md-6 col-6" v-for="(event,index) in events" :key="event.id" v-if="index <= 1">
+                    <div class="col-md-6 col-6" v-for="(event,index) in active" :key="index">
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -34,19 +34,21 @@ export default {
 data(){
     return{
         events:{},
-        actives:[],
+        active:[],
     }
 },
 methods:{
     load_events(){   
          axios.get('api/event/list/home_ad')
         .then(response=>{
-            this.events = response.data;
-            for (let index = 0; index < response.data.length; index++) {
-                this.events[index] = response.data[Math.floor(Math.random() *response.data.length)]
-                // this.actives.push(this.events)
-            }
+
+                for (let index = 0; index < response.data.length; index++) {
+                    this.events[index] = response.data[Math.floor(Math.random() *response.data.length)]   
+                }
+                this.active = this.events;
         })
+
+
     }
 },
 

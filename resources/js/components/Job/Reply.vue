@@ -6,7 +6,7 @@
                     <div class="input-group input-group-sm">
                         <input type="text" v-validate="'required|min:1|max:255'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                         <span class="input-group-append">
-                            <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write your Question">Reply</button>
+                            <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write you Answer..">Reply</button>
                         </span>
                         <div class="valid-feedback"></div>
                         <div v-if="errors.has('job_valid_reply_form.question')" class="invalid-feedback">
@@ -20,7 +20,7 @@
             <a class="pr-3" href="#">
                 <img class="mr-2 img-circle" src="https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal" alt="Generic placeholder image" style="height:50px;width:50px">
             </a>
-            <div class="media-body">
+            <div class="media-body border-0">
                 <h6 class="mt-0">{{reply.name}} 
                     <small class="text-muted"><timeago :datetime="reply.created_at" />
                         <span v-if="reply.user_id === user_id" class="p-2">
@@ -37,11 +37,11 @@
         <!-- {{questions}} -->
         <div class="text-center mt-3 p-2" v-if="questions.repliesCount > 0 && replies.next_page_url">
             <!-- {{questions}} -->
-            <button @click="load_replies" class="btn btn-secondary btn-sm">Load Replies ({{questions.repliesCount}})</button>
+            <button @click="load_replies" class="btn btn-secondary btn-sm small">Load Replies</button>
         </div>
 <!-- Edit Modal -->
 <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="reply" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -53,8 +53,10 @@
                 <form @submit.prevent="review_update()"  data-vv-scope="reply_update">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Review<span class="text-danger p-1">*</span></label>
-                            <input type="text" v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply">
+                            <label for="name">Reply<span class="text-danger p-1">*</span></label>
+                            <!-- <input type="text" v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply"> -->
+                                <textarea v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control"  aria-describedby="emailHelp" placeholder="Review" rows="4" cols="50">
+                                </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('reply_update.reply')" class="invalid-feedback">
                                 <span v-for="error in errors.collect('reply_update.reply')">{{ error }}</span>
@@ -69,12 +71,32 @@
                 </div>
             </div>
         </div>
+<!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="rinzin" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rinzin">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
     
 </template>
 <script>
 export default {
-    props:['questions'],
+    props:['questions','load'],
     data(){
         return{
             // User Id
@@ -123,6 +145,7 @@ export default {
                             icon:'success',
                             title:'Replied',
                         });
+                        this.$emit('load');
                     })
                 }
             })
@@ -144,14 +167,15 @@ export default {
                     });
                     // this.load_replies();
                     this.$delete(this.replies.data,index);
+                    this.load_replies();
                 })
             }
          },
         //  Edit
          edit(id,index){
-            $("#modal").modal("show");
+            $('#reply').appendTo("body").modal('show');
+            // this.update_reply.delete()
              this.update_reply = this.replies.data[index];
-             console.log(this.update_reply);
          },
         //  update
         review_update(){
@@ -162,7 +186,7 @@ export default {
                     })
                     .then(response=>{
                         // closing modal
-                            $("#modal").modal("hide");  
+                            $("#reply").modal("hide");  
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',

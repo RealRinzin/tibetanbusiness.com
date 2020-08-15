@@ -50,7 +50,6 @@
                         <img class="mr-2 img-circle" :src="event.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body">
                             <h6 class="mt-0">{{event.name}} 
-                                <!-- <small class="text-muted"><timeago :datetime="event.created_at" /></small> -->
                                 <small>
                                     <span  v-bind:class="event.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{event.rate}}</span>
                                     <span v-if="event.user_id === user_id" class="p-2">
@@ -145,7 +144,11 @@ export default {
             axios.get('/api/event/'+this.event_id+'/reviews')
             .then(response=>{
                 this.reviews = response.data.data;
-                this.total_reviews = response.data.data.length
+                this.total_reviews = response.data.total;
+                // load more
+                if(response.data.total > response.data.per_page){
+                    this.load_more_button = true;
+                }
                 /**
                  * Rating background
                  * Danger, Warning, Info, Success
@@ -164,10 +167,7 @@ export default {
                         this.reviews[index].rate_color = 'bg-secondary';
                     }
                 }
-                // load more button
-                if(response.data.last_page > 1){
-                    this.load_more_button = true
-                }
+
             })
         },
         // Load more reviews
