@@ -10,8 +10,9 @@ class RestaurantCommentReply extends Model
     //
     //
     protected $connection = 'restaurant';
-
     public $incrementing = false;
+    // mass fill
+    protected $guarded = [];
     protected static function boot()
     {
         parent::boot();

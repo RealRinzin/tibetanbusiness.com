@@ -105,5 +105,7 @@ class RestaurantCommentController extends Controller
         //
         $comment = RestaurantComment::find($id);
         $comment->delete();
+        $comment->restaurant_comment_replies()->delete();
+
     }
 }

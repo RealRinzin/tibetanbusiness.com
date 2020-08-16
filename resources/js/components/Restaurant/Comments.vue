@@ -60,7 +60,7 @@
                             </h6>
                         <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
                         <p class="text-muted">{{comments.comment}}</p>
-                                <p>
+                                <!-- <p>
                                 <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#'+comments.id+'-'+index" aria-expanded="false" aria-controls="collapseExample">
                                     Button with data-target
                                 </button>
@@ -69,8 +69,8 @@
                                 <div class="card card-body">
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                                 </div>
-                                </div>
-                        <replies :id="comments.id"></replies>
+                                </div> -->
+                        <replies :id="comments.id" @comment="comment()"></replies>
                     </div>
                     </div>
                 </div>
@@ -273,7 +273,8 @@ export default {
                             // this.review.rate ='';
                             // refresh comment
                             this.comment();
-                            this.load_comments();
+                            location.reload();
+                            // this.load_comments();
                             // Reset form
                             // this.review = [];
                             toast.fire({
@@ -338,6 +339,7 @@ export default {
                         title:'Successfully Deleted',
                     });
                     this.comment();
+                    location.reload();
                     this.$delete(this.comments,index);
                 })
             }

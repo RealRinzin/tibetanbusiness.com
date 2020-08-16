@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'provider_id' => Uuid::generate(4),
             'password' => Hash::make($data['password']),
-            'avatar' => 'img/tibetanbusiness.png'
+            'avatar' => '/img/tibetanbusiness.png'
         ]);
     }
 }

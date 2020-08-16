@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Restaurant\RestaurantComment;
+use App\Restaurant\RestaurantCommentReply;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantCommentReplyController extends Controller
 {
@@ -37,6 +39,14 @@ class RestaurantCommentReplyController extends Controller
     public function store(Request $request)
     {
         //
+        $replies = RestaurantCommentReply::create([
+            'user_id' => Auth::user()->id,
+            'restaurant_comment_id' => $request->restaurant_comment_id,
+            'reply' => $request->reply,
+            'name' => $request->name,
+            'avatar' => $request->avatar,
+        ]);
+        return $replies;
     }
 
     /**
@@ -71,6 +81,8 @@ class RestaurantCommentReplyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $reply = RestaurantCommentReply::find($id);
+        $reply->update($request->all());
     }
 
     /**
@@ -82,6 +94,9 @@ class RestaurantCommentReplyController extends Controller
     public function destroy($id)
     {
         //
+        //
+        $reply = RestaurantCommentReply::find($id);
+        $reply->delete();
     }
     // Reply
     public function reply(RestaurantComment $restaurantComment){
