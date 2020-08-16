@@ -2,15 +2,15 @@
     <div>
         <div class="d-flex justify-content-center">
             <div class="text-left w-75">
-                <form @submit.prevent="reply_comment(id)" data-vv-scope="restaurant_valid_reply_form">
+                <form @submit.prevent="reply_comment(id)" data-vv-scope="valid_reply_form">
                     <div class="input-group input-group-sm">
-                        <input type="text" v-validate="'required|min:1|max:255'" v-model="reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
+                        <input type="text" v-validate="'required|min:1|max:255'" v-model="create_reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                         <span class="input-group-append">
                             <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write you Answer..">Reply</button>
                         </span>
                         <div class="valid-feedback"></div>
-                        <div v-if="errors.has('restaurant_valid_reply_form.reply')" class="invalid-feedback">
-                            <span v-for="error in errors.collect('restaurant_valid_reply_form.reply')">{{ error }}</span>
+                        <div v-if="errors.has('valid_reply_form.reply')" class="invalid-feedback">
+                            <span v-for="error in errors.collect('valid_reply_form.reply')">{{ error }}</span>
                         </div>
                     </div>
                 </form>
@@ -23,26 +23,22 @@
             <div class="media-body border-0">
                 <h6 class="mt-0">{{reply.name}} 
                     <small class="text-muted"><timeago :datetime="reply.created_at" />
-                                <span v-if="reply.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                    <span class="btn btn-xs btn-danger" @click="destory(reply.id,index)"><i class="fas fa-trash-alt"></i></span>
-                                </span>
+                        <span v-if="reply.user_id === user_id" class="p-2">
+                            <span class="btn btn-xs btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                            <span class="btn btn-xs btn-danger" @click="destory(reply.id)"><i class="fas fa-trash-alt"></i></span>
+                        </span>
                     </small>
                 </h6>
                 <p class="text-muted">
                     {{reply.reply}}
                 </p>
             </div>
-        </div>
-        <div class="col-md-12 text-center" v-if="load_more_button">
-            <p  @click="load_more_replies()" class="small text-secondary" style="cursor:pointer">Load replies..</p>
-        </div>
-<!-- Modal -->
-        <div class="modal fade" id="reply_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" :id="reply.id" tabindex="1" role="dialog" aria-labelledby="id" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Reply</h5>
+                    <h5 class="modal-title" id="id">Update Reply</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -51,7 +47,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                                <textarea v-validate="'required'" v-model="update_reply.reply" name="reply_update" class="form-control" id="reply_update" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
+                                <textarea v-validate="'required'" v-model="update_reply.reply" name="reply_update" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('reply_update.reply_update')" class="invalid-feedback">
@@ -67,6 +63,10 @@
                 </div>
             </div>
         </div>
+        </div>
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <p  @click="load_more_replies()" class="small text-secondary" style="cursor:pointer">Load replies..</p>
+        </div>
     </div>
 </template>
 <script>
@@ -77,9 +77,9 @@ export default {
             replies:{},
             update_reply:{},
             load_more_button:false, //load more button
-            nextPage:1, // page numbers
+            nextPage:2, // page numbers
             user_id:localStorage.getItem('user_id'), //User ID
-            reply:{
+            create_reply:{
                 restaurant_comment_id:this.id,
                 reply:'',
                 avatar:localStorage.getItem('user_avatar'),
@@ -105,7 +105,7 @@ export default {
             .then((response) => {
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1; //page number
-                    // this.replies = response.data; // response data
+
                     // reply object
                     this.replies = [
                         ...this.replies,
@@ -124,9 +124,9 @@ export default {
         },
         // Replying Comment
         reply_comment(){
-            this.$validator.validateAll('restaurant_valid_reply_form').then((result) => {
+            this.$validator.validateAll('valid_reply_form').then((result) => {
                 if(result){
-                    axios.post('/api/restaurant_comment_replies',this.reply,{
+                    axios.post('/api/restaurant_comment_replies',this.create_reply,{
                         headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
                         this.load_replies();
@@ -134,8 +134,6 @@ export default {
                             icon:'success',
                             title:'Comment Posted',
                         });
-                        this.$emit('comment');
-                        this.reply.reply = ' '
                     })
                 }
             });
@@ -143,12 +141,17 @@ export default {
 
       //  Edit
          edit(id,index){
-            $('#reply_update_modal').appendTo("body").modal('show');
-             this.update_reply = this.replies[index];
+             axios.get('/api/restaurant_comment_replies/'+id)
+             .then(response=>{
+                 //  $('#').appendTo("body").modal('show');
+                 this.update_reply = response.data;
+                 $('#'+id).appendTo("body").modal('show');
+
+             })
+                //  $('#update_reply').appendTo("body").modal('show');
          },
        //  update
         reply_update(id){
-            // console.log(this.update_review);
             this.$validator.validateAll('reply_update').then((result) => {                  
                 if(result){
                     axios.patch('/api/restaurant_comment_replies/'+id,this.update_reply,{
@@ -156,12 +159,17 @@ export default {
                     })
                     .then(response=>{
                         // closing modal
-                        $('#reply_update_modal').modal('hide');
+                        // $('#reply_update_modal').appendTo("body").modal('hide');
+                            $('#reply_update').modal('hide');
+                            $('#update_reply').appendTo("body").modal('hide');
+                            $('#'+id).appendTo("body").modal('hide');
                             //  Flash Message  
                             toast.fire({
                                 icon:'success',
                                 title:'Updated',
                             });
+                            // location.reload();
+                            this.load_replies();
                     })
                 }
             })
@@ -186,6 +194,7 @@ export default {
             }
          },
     },
+    // Components
 
     mounted(){
         this.load_replies();

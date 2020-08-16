@@ -39,6 +39,7 @@ class RestaurantCommentReplyController extends Controller
     public function store(Request $request)
     {
         //
+        // return $$request;
         $replies = RestaurantCommentReply::create([
             'user_id' => Auth::user()->id,
             'restaurant_comment_id' => $request->restaurant_comment_id,
@@ -58,6 +59,8 @@ class RestaurantCommentReplyController extends Controller
     public function show($id)
     {
         //
+        $reply = RestaurantCommentReply::find($id);
+        return $reply->toArray($reply);
     }
 
     /**

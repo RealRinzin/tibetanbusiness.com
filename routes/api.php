@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
         Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
         Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
         Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
-        Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController');
+        Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController',['except' => ['index','show']]);
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
         // Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
     // showing the individual restaurant without relationship datas
@@ -140,6 +140,8 @@ use Illuminate\Http\Request;
     Route::get( 'restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
     Route::get('restaurant/{restaurant_basic_info}/food_photos', 'Restaurant\RestaurantFoodPhotoController@photos');
     Route::get('restaurant/{restaurant_basic_info}/menu_photos', 'Restaurant\RestaurantMenuPhotoController@photos');
+    Route::get('restaurant_comment_replies/{id}', 'Restaurant\RestaurantCommentReplyController@show');
+
 
 /**
  * RENT API 

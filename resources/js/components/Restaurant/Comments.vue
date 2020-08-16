@@ -70,7 +70,7 @@
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                                 </div>
                                 </div> -->
-                        <replies :id="comments.id" @comment="comment()"></replies>
+                        <replies :id="comments.id" @load="comment()"></replies>
                     </div>
                     </div>
                 </div>
@@ -273,14 +273,12 @@ export default {
                             // this.review.rate ='';
                             // refresh comment
                             this.comment();
-                            location.reload();
-                            // this.load_comments();
-                            // Reset form
                             // this.review = [];
                             toast.fire({
                                 icon:'success',
                                 title:'Comment Posted',
                             });
+
                         })
                         /**
                          * 
@@ -334,12 +332,13 @@ export default {
                     headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
                     //  Flash Message  
+
                     toast.fire({
                         icon:'success',
                         title:'Successfully Deleted',
                     });
                     this.comment();
-                    location.reload();
+                    // location.reload();
                     this.$delete(this.comments,index);
                 })
             }
