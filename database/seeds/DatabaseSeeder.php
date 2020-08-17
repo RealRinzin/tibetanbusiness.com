@@ -8,6 +8,7 @@ use App\Job\JobAnswer;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use App\Job\JobQuestion;
+use App\Job\JobQuestionReply;
 use App\Rent\RentBasicInfo;
 use App\Rent\RentComment;
 use App\Rent\RentFacility;
@@ -55,9 +56,10 @@ class DatabaseSeeder extends Seeder
         // factory(RentFacility::class, 10)->create();
 
         // Job DB Seed
-        // factory(JobBasicInfo::class,2)->create();
-        // factory(JobApply::class, 2)->create();
-        // factory(JobQuestion::class, 10)->create();
+        factory(JobBasicInfo::class,2)->create();
+        factory(JobApply::class, 2)->create();
+        factory(JobQuestion::class, 10)->create();
+        factory(JobQuestionReply::class,10)->create();
 
         // Event
         // factory(EventBasicInfo::class,10)->create();

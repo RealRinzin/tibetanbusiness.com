@@ -2,64 +2,58 @@
     <div>
         <div class="d-flex justify-content-center">
             <div class="text-left w-75">
-                <form @submit.prevent="reply()" data-vv-scope="job_valid_reply_form">
+                <form @submit.prevent="reply_comment(id)" data-vv-scope="valid_reply_form">
                     <div class="input-group input-group-sm">
-                        <input type="text" v-validate="'required|min:1|max:255'" v-model="question.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
+                        <input type="text" v-validate="'required|min:1|max:255'" v-model="create_reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                         <span class="input-group-append">
                             <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write you Answer..">Reply</button>
                         </span>
                         <div class="valid-feedback"></div>
-                        <div v-if="errors.has('job_valid_reply_form.question')" class="invalid-feedback">
-                            <span v-for="error in errors.collect('job_valid_reply_form.question')">{{ error }}</span>
+                        <div v-if="errors.has('valid_reply_form.reply')" class="invalid-feedback">
+                            <span v-for="error in errors.collect('valid_reply_form.reply')">{{ error }}</span>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="media mt-3" v-for="(reply,index) in replies.data">
+        <div class="media mt-3" v-for="(reply,index) in replies">
             <a class="pr-3" href="#">
-                <img class="mr-2 img-circle" src="https://graph.facebook.com/v3.3/2656023347975235/picture?type=normal" alt="Generic placeholder image" style="height:50px;width:50px">
+                <img class="mr-2 img-circle" :src="reply.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
             </a>
             <div class="media-body border-0">
                 <h6 class="mt-0">{{reply.name}} 
                     <small class="text-muted"><timeago :datetime="reply.created_at" />
                         <span v-if="reply.user_id === user_id" class="p-2">
                             <span class="btn btn-xs btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                            <span class="btn btn-xs btn-danger" @click="destory(reply.id,index)"><i class="fas fa-trash-alt"></i></span>
+                            <span class="btn btn-xs btn-danger" @click="destory(reply.id)"><i class="fas fa-trash-alt"></i></span>
                         </span>
                     </small>
                 </h6>
-                <p class="text-muted">
-                    {{reply.question}}
-                </p>
+                <p class="text-muted">{{reply.reply}}</p>
             </div>
         </div>
-        <!-- {{questions}} -->
-        <div class="text-center mt-3 p-2" v-if="questions.repliesCount > 0 && replies.next_page_url">
-            <!-- {{questions}} -->
-            <button @click="load_replies" class="btn btn-secondary btn-sm small">Load Replies</button>
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <p  @click="load_more_replies()" class="small text-secondary" style="cursor:pointer">Load replies..</p>
         </div>
-<!-- Edit Modal -->
-<!-- Modal -->
-        <div class="modal fade" id="reply" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" :id="reply_id" tabindex="1" role="dialog" aria-labelledby="id" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Reply</h5>
+                    <h5 class="modal-title" id="id">Update Reply</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form @submit.prevent="review_update()"  data-vv-scope="reply_update">
+                <form @submit.prevent="reply_update(update_reply.id)"  data-vv-scope="reply_update">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Reply<span class="text-danger p-1">*</span></label>
-                            <!-- <input type="text" v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply"> -->
-                                <textarea v-validate="'required'" v-model="update_reply.question" name="reply" class="form-control"  aria-describedby="emailHelp" placeholder="Review" rows="4" cols="50">
+                            <label for="name">Review<span class="text-danger p-1">*</span></label>
+                                <textarea v-validate="'required'" v-model="update_reply.reply" name="reply_update" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
-                            <div v-if="errors.has('reply_update.reply')" class="invalid-feedback">
-                                <span v-for="error in errors.collect('reply_update.reply')">{{ error }}</span>
+                            <div v-if="errors.has('reply_update.reply_update')" class="invalid-feedback">
+                                <span v-for="error in errors.collect('reply_update.reply_update')">{{ error }}</span>
                             </div>
                         </div>
                     </div>
@@ -71,136 +65,128 @@
                 </div>
             </div>
         </div>
-<!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="rinzin" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rinzin">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
-        </div>
     </div>
-    
 </template>
 <script>
 export default {
-    props:['questions','load'],
+    props:['id'],
     data(){
         return{
-            // User Id
-            user_id:localStorage.getItem('user_id'),
+            replies:{},
+            reply_id:'',
             update_reply:{},
-            question:{
-                job_basic_info_id:this.questions.job_basic_info_id,
-                job_question_id:this.questions.id,
+            load_more_button:false, //load more button
+            nextPage:2, // page numbers
+            user_id:localStorage.getItem('user_id'), //User ID
+            create_reply:{
+                job_question_id:this.id,
                 reply:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),
             },
-            replies:{
-                data:[],
-                next_page_url:`/api/job/${this.questions.id}/replies`,
-                },
-                
-            // nextPage:1,
         }
     },
-    // Methods
+    // methods
     methods:{
         load_replies(){
-            // axios.get('/api/job/'+this.questions.id+'/replies/?page='+this.nextPage)
-            axios.get(this.replies.next_page_url)
-            .then(({data})=>{
-                this.replies ={
-                    ...data,
-                    data:[
-                        ...this.replies.data,
-                        ...data.data
-                    ]
+            axios.get('/api/job/'+this.id+'/reply')
+            .then((response) => {
+                this.replies = response.data.data;
+              if(response.data.total > response.data.per_page){
+                    this.load_more_button = true; 
                 }
-            })
+            }).catch((err) => {
+            });
         },
-        // Reply the question
-        reply(){
-            /* Valid for post */
-            this.$validator.validateAll('job_valid_reply_form').then((result) => {
+        // Load more replies
+        load_more_replies(nextPage){
+            axios.get('/api/job/'+this.id+'/reply?page='+this.nextPage)
+            .then((response) => {
+                if(response.data.current_page <= response.data.last_page){
+                    this.nextPage = response.data.current_page + 1; //page number
+                    // reply object
+                    this.replies = [
+                        ...this.replies,
+                        ...response.data.data
+                    ];
+                    // loadmore Button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
+                }
+                
+            }).catch((err) => {
+            });
+        },
+        // Replying Comment
+        reply_comment(){
+            this.$validator.validateAll('valid_reply_form').then((result) => {
                 if(result){
-                    axios.post('/api/job/question/reply',this.question,{
-                    headers : { Authorization : localStorage.getItem("token")}
+                    axios.post('/api/job_question_reply',this.create_reply,{
+                        headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
                         this.load_replies();
                         toast.fire({
                             icon:'success',
-                            title:'Replied',
+                            title:'Comment Posted',
                         });
-                        this.$emit('load');
+                    })
+                }
+            });
+        },
+
+      //  Edit
+         edit(id,index){
+             this.reply_id = id;
+             axios.get('/api/job_question_reply/'+id)
+             .then(response=>{
+                 this.update_reply = response.data;
+                $('#'+id).appendTo("body").modal('show');
+             })
+         },
+       //  update
+        reply_update(id){
+            this.$validator.validateAll('reply_update').then((result) => {                  
+                if(result){
+                    axios.patch('/api/job_question_reply/'+id,this.update_reply,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                            $('#'+id).appendTo("body").modal('hide');
+                            toast.fire({
+                                icon:'success',
+                                title:'Updated',
+                            });
+                            // location.reload();
+                            this.load_replies();
                     })
                 }
             })
         },
-
         /**
         Delete Review
          */  
          destory(id,index){
             let confirmBox = confirm('Are you sure want to Delete!!!');
             if(confirmBox == true){
-                axios.delete('/api/job_question/'+id,{
+                axios.delete('/api/job_question_reply/'+id,{
                     headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
                     //  Flash Message  
+                        this.load_replies();
                     toast.fire({
                         icon:'success',
                         title:'Successfully Deleted',
                     });
-                    // this.load_replies();
-                    this.$delete(this.replies.data,index);
-                    this.load_replies();
+                    this.$delete(this.replies,index);
                 })
             }
          },
-        //  Edit
-         edit(id,index){
-            $('#reply').appendTo("body").modal('show');
-            // this.update_reply.delete()
-             this.update_reply = this.replies.data[index];
-         },
-        //  update
-        review_update(){
-            this.$validator.validateAll('reply_update').then((result) => {                  
-                if(result){
-                    axios.patch('/api/job_question/'+this.update_reply.id,this.update_reply,{
-                    headers : { Authorization : localStorage.getItem("token")}
-                    })
-                    .then(response=>{
-                        // closing modal
-                            $("#reply").modal("hide");  
-                            //  Flash Message  
-                            toast.fire({
-                                icon:'success',
-                                title:'Reply Updated!!!',
-                            });
-                    })
-                }
-            })
-        }
-
     },
     mounted(){
-
+        this.load_replies();
     }
-    
 }
 </script>

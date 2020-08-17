@@ -7,7 +7,7 @@
         lang="langauge"
         :url="url"
         />
-<a :href="'https://www.facebook.com/sharer.php?u='+url" target="_blank">Share facebook</a>
+        <a :href="'https://www.facebook.com/sharer.php?u='+url" target="_blank">Share facebook</a>
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <!-- Question & Ansert -->
-                                <job-question v-bind:job_uuid="job.id"></job-question>
+                                <job-question :job_uuid="job.id"></job-question>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">

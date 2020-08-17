@@ -64,7 +64,8 @@ use Illuminate\Http\Request;
         Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create']]);
         Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show']]);
         Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['show','index','create']]);
-        Route::post('job/question/reply','Job\JobQuestionController@reply_store');
+        Route::apiResource('job_question_reply', 'Job\JobQuestionReplyController', ['except' => ['show', 'index']]);
+        // Route::post('job/question/reply','Job\JobQuestionController@reply_store');
         Route::get('user/jobs', 'Job\JobBasicInfoController@user_job');
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
@@ -109,16 +110,14 @@ use Illuminate\Http\Request;
         Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
 
-
-    // Other API
-    // List API
+        // Other API
+        // List API
         Route::apiResource('location', 'Location\LocationController', ['except' => ['index']]);
         Route::apiResource('profession', 'Profession\ProfessionController', ['except' => ['index']]);
         Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job']]);
 
     });
 
-    
     /**
  * RESTAURANT API (DEAUTH)
  * Restaurannt
@@ -165,11 +164,13 @@ use Illuminate\Http\Request;
 
     Route::get('job/list/all', 'Job\JobBasicInfoController@all');
     Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
-    Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
+    // Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
     Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
     Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
     Route::get('job/list/sidebar_ad', 'Job\JobBasicInfoController@sidebar_ad');
     Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');
+    Route::get('job/{job_question}/reply', 'Job\JobQuestionReplyController@reply');
+    Route::get('job_question_reply/{id}', 'Job\JobQuestionReplyController@show');
 
     /**
      * Event API 
@@ -217,7 +218,7 @@ use Illuminate\Http\Request;
 
 // Search Result
 // restaurant
-    Route::get( 'search/restaurants/', 'Restaurant\RestaurantBasicInfoController@search');
+    Route::get('search/restaurants/', 'Restaurant\RestaurantBasicInfoController@search');
     Route::get('search/rents/', 'Rent\RentBasicInfoController@search');
     Route::get('search/sales/', 'Sale\SaleBasicInfoController@search');
     Route::get('search/services/', 'Service\ServiceBasicInfoController@search');

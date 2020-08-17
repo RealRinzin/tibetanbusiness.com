@@ -33,9 +33,9 @@ class JobQuestion extends Model
         return $this->belongsTo(JobBasicInfo::class);
     }
     
-    public function job_answers()
+    public function job_question_replies()
     {
-        return $this->hasMany(JobAnswer::class);
+        return $this->hasMany(JobQuestionReply::class);
     }
     // Replies
     public function replies(){
