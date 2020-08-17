@@ -33,8 +33,12 @@
                     {{reply.reply}}
                 </p>
             </div>
+        </div>
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <p  @click="load_more_replies()" class="small text-secondary" style="cursor:pointer">Load replies..</p>
+        </div>
         <!-- Modal -->
-        <div class="modal fade" :id="reply.id" tabindex="1" role="dialog" aria-labelledby="id" aria-hidden="true">
+        <div class="modal fade" :id="reply_id" tabindex="1" role="dialog" aria-labelledby="id" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -63,18 +67,15 @@
                 </div>
             </div>
         </div>
-        </div>
-        <div class="col-md-12 text-center" v-if="load_more_button">
-            <p  @click="load_more_replies()" class="small text-secondary" style="cursor:pointer">Load replies..</p>
-        </div>
     </div>
 </template>
 <script>
 export default {
-    props:['id','comment'],
+    props:['id'],
     data(){
         return{
             replies:{},
+            reply_id:'',
             update_reply:{},
             load_more_button:false, //load more button
             nextPage:2, // page numbers
@@ -105,7 +106,6 @@ export default {
             .then((response) => {
                 if(response.data.current_page <= response.data.last_page){
                     this.nextPage = response.data.current_page + 1; //page number
-
                     // reply object
                     this.replies = [
                         ...this.replies,
@@ -141,14 +141,12 @@ export default {
 
       //  Edit
          edit(id,index){
+             this.reply_id = id;
              axios.get('/api/restaurant_comment_replies/'+id)
              .then(response=>{
-                 //  $('#').appendTo("body").modal('show');
                  this.update_reply = response.data;
-                 $('#'+id).appendTo("body").modal('show');
-
+                $('#'+id).appendTo("body").modal('show');
              })
-                //  $('#update_reply').appendTo("body").modal('show');
          },
        //  update
         reply_update(id){
@@ -158,12 +156,7 @@ export default {
                     headers : { Authorization : localStorage.getItem("token")}
                     })
                     .then(response=>{
-                        // closing modal
-                        // $('#reply_update_modal').appendTo("body").modal('hide');
-                            $('#reply_update').modal('hide');
-                            $('#update_reply').appendTo("body").modal('hide');
                             $('#'+id).appendTo("body").modal('hide');
-                            //  Flash Message  
                             toast.fire({
                                 icon:'success',
                                 title:'Updated',
@@ -194,8 +187,6 @@ export default {
             }
          },
     },
-    // Components
-
     mounted(){
         this.load_replies();
     }
