@@ -94,6 +94,8 @@ class EventReviewReplyController extends Controller
     public function destroy($id)
     {
         //
+        $reply = EventReviewReply::find($id);
+        $reply->delete();
     }
     // Reply
     public function reply(EventReview $eventReview)

@@ -254,9 +254,10 @@ class RestaurantBasicInfoController extends Controller
      * Banner etc
      *  */ 
     public function featured_ad(){
-        $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
-        ->orderBy('created_at','desc')->get();
-        return $restaurants->toArray($restaurants);
+        // $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
+        // ->orderBy('created_at','desc')->get();
+        // return $restaurants->toArray($restaurants);
+        return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::where('featured_ad', '=', true)->get());
     }
     // Front
     public function home_ad(){
@@ -278,6 +279,7 @@ class RestaurantBasicInfoController extends Controller
     }
     // Search Query
     public function search(Request $request){
+
         $restaurants =  RestaurantBasicInfo::where('name', 'like', "$request->name%")
             ->where('location','like',"%$request->location%")
             -> where('rate', 'like', "$request->rate%")

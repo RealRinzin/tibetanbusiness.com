@@ -204,9 +204,9 @@
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
-                    if(response.data.length > 0){
+                    if(response.data.data.length > 0){
                         // Assign Featured restaurant
-                        this.restaurant = response.data[Math.floor(Math.random() *response.data.length)]                        
+                        this.restaurant = response.data.data[Math.floor(Math.random() *response.data.data.length)]                        
                         /**
                          * Rating Background
                          * Color

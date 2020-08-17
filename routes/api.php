@@ -232,3 +232,7 @@ use Illuminate\Http\Request;
     Route::get('categories/event', 'Category\CategoryController@event');
     Route::get('categories/sale', 'Category\CategoryController@sale');
     Route::get('categories/service', 'Category\CategoryController@service');
+
+
+// Testing
+Route::get('test', 'Restaurant\RestaurantBasicInfoController@test');

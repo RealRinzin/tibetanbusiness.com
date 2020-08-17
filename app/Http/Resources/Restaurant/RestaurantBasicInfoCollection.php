@@ -4,7 +4,7 @@ namespace App\Http\Resources\Restaurant;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class RestaurantBasicInfoResourceCollection extends ResourceCollection
+class RestaurantBasicInfoCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -34,8 +34,7 @@ class RestaurantBasicInfoResourceCollection extends ResourceCollection
             'website' => $this->website,
             'status' => $this->status,
             // counting the review stars
-            'rating' => $this->restaurant_comments->count() > 0 ?round($this->restaurant_comments->sum('rate') / $this->restaurant_comments->count(),1):null,
-            // 'posts' => RestaurantMenuPhotoResource::collection($this->whenLoaded('restaurant_menu_photos')),
+            'rating' => $this->restaurant_comments->count() > 0 ? round($this->restaurant_comments->sum('rate') / $this->restaurant_comments->count(), 1) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
