@@ -15,7 +15,7 @@
                                 <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto">
                                 </div>
                             </a>
-                            <div class="likes" v-if="restaurant.rate != null">
+                            <div class="likes" v-if="restaurant.rate > 0">
                                 <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                             </div>
                             <div class="types">
@@ -160,7 +160,8 @@
     import RestaurantList from './List/Restaurant.vue';
     import SaleList from './List/Sale.vue';
     import ServiceList from './List/Service.vue';
-    import format from 'date-fns/format';
+    // import format from 'date-fns/format';
+    import { compareAsc, format } from 'date-fns'
     
     export default {
         /**

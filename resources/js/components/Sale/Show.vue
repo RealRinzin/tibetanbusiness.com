@@ -78,7 +78,9 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 // import EventReview from './Review.vue';
-import format from 'date-fns/format';
+// import format from 'date-fns/format';
+import { compareAsc, format } from 'date-fns';
+
 export default {
     props:['sale_id'],
     data(){

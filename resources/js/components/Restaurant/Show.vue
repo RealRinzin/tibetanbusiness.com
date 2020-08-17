@@ -7,6 +7,16 @@
         lang="langauge"
         url="https://tibetanbusiness.com"
         />
+<ShareNetwork
+    network="facebook"
+    url="https://news.vuejs.org/issues/180"
+    title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
+    description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+    quote="The hot reload is so fast it\'s near instant. - Evan You"
+    hashtags="vuejs,vite"
+  >
+    Share on Facebook
+</ShareNetwork>
         <div id="restaurant" style="min-height:80vh">
             <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>
@@ -150,6 +160,17 @@
                 // load_more_button : true,
                 // total_comments:0,
                 // comments_lazy_load:false,
+                sharing: {
+                    url: 'https://news.vuejs.org/issues/180',
+                    title: 'Say hi to Vite! A brand new, extremely fast development setup for Vue.',
+                    description: 'This week, I’d like to introduce you to "Vite", which means "Fast". It’s a brand new development setup created by Evan You.',
+                    quote: 'The hot reload is so fast it\'s near instant. - Evan You',
+                    hashtags: 'vuejs,vite,javascript',
+                    twitterUser: 'youyuxi'
+                },
+                networks: [
+                        { network: 'facebook', name: 'Facebook', icon: 'fab fah fa-lg fa-facebook-f', color: '#1877f2' },
+                    ]
             }
         },
         /**
@@ -165,7 +186,6 @@
                 this.isLoading = true; //Loading true
                 axios.get('/view'+window.location.pathname).then(response=>{
                     this.restaurant = response.data.data;
-                    console.log(this.restaurant);
                     // loading
                     this.isLoading = false; //Loading true
                     this.loading = true;
