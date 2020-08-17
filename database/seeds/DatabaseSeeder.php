@@ -3,6 +3,7 @@
 use App\Event\EventBasicInfo;
 use App\Event\EventPhoto;
 use App\Event\EventReview;
+use App\Event\EventReviewReply;
 use App\Job\JobAnswer;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
@@ -39,19 +40,19 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 2)->create();
         
         // Restaurant DB Seed
-        factory(RestaurantBasicInfo::class, 10)->create();
-        factory(RestaurantFacility::class, 2)->create();
-        factory(RestaurantOperationDay::class, 2)->create();
-        factory(RestaurantFoodPhoto::class, 2)->create();
-        factory(RestaurantMenuPhoto::class, 10)->create();
-        factory(RestaurantComment::class, 10)->create();
-        factory(RestaurantCommentReply::class,10)->create();
+        // factory(RestaurantBasicInfo::class, 10)->create();
+        // factory(RestaurantFacility::class, 2)->create();
+        // factory(RestaurantOperationDay::class, 2)->create();
+        // factory(RestaurantFoodPhoto::class, 2)->create();
+        // factory(RestaurantMenuPhoto::class, 10)->create();
+        // factory(RestaurantComment::class, 10)->create();
+        // factory(RestaurantCommentReply::class,10)->create();
         // Rent DB Seed
-        // factory(RentBasicInfo::class, 2)->create();
-        // factory(RentComment::class, 2)->create();
-        // factory(RentRoomPhoto::class, 2)->create();
-        // factory(RentViewPhoto::class, 2)->create();
-        // factory(RentFacility::class, 2)->create();
+        // factory(RentBasicInfo::class, 10)->create();
+        // factory(RentComment::class, 10)->create();
+        // factory(RentRoomPhoto::class, 10)->create();
+        // factory(RentViewPhoto::class, 10)->create();
+        // factory(RentFacility::class, 10)->create();
 
         // Job DB Seed
         // factory(JobBasicInfo::class,2)->create();
@@ -59,9 +60,10 @@ class DatabaseSeeder extends Seeder
         // factory(JobQuestion::class, 10)->create();
 
         // Event
-        // factory(EventBasicInfo::class,1)->create();
+        // factory(EventBasicInfo::class,10)->create();
         // factory(EventPhoto::class,8)->create();
         // factory(EventReview::class,2)->create();
+        // factory(EventReviewReply::class, 2)->create();
         // SALE
         // factory(SaleBasicInfo::class,2)->create();
         // factory(SalePhoto::class,2)->create();

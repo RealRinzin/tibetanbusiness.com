@@ -47,6 +47,6 @@ class CreateRestaurantsBasicInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurants_basic_info');
+        Schema::connection('restaurant')->dropIfExists('restaurants_basic_info');
     }
 }

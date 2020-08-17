@@ -37,6 +37,6 @@ class CreateRestaurantFacilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_facilities');
+        Schema::connection('restaurant')->dropIfExists('restaurant_facilities');
     }
 }

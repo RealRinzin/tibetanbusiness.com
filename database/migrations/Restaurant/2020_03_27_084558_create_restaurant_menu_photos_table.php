@@ -29,6 +29,6 @@ class CreateRestaurantMenuPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_menu_photos');
+        Schema::connection('restaurant')->dropIfExists('restaurant_menu_photos');
     }
 }

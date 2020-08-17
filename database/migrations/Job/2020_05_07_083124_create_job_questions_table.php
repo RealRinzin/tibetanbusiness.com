@@ -32,6 +32,6 @@ class CreateJobQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_questions');
+        Schema::connection('job')->dropIfExists('job_questions');
     }
 }

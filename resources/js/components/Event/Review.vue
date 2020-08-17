@@ -39,16 +39,16 @@
             </div>
         </div>
         <!-- Show Review -->
-        <div class="card p-3">
+        <div class="p-3">
             <div class="row">
                 <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_reviews}})</span></h5>
                 <div v-if="events_lazy_load">
                     <loading :active.sync="events_lazy_load"></loading>
                 </div>
-                    <div class="col-md-12 p-3" v-for="(event,index) in reviews">
+                    <div class="col-md-12 card p-3" v-for="(event,index) in reviews">
                         <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="event.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                        <div class="media-body">
+                        <div class="media-body border-0">
                             <h6 class="mt-0">{{event.name}} 
                                 <small>
                                     <span  v-bind:class="event.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{event.rate}}</span>
@@ -60,6 +60,7 @@
                             </h6>
                             <small class="text-muted" style="font-size:12px"><timeago :datetime="event.created_at" /></small>
                             <p class="text-muted">{{event.review}}</p>
+                            <replies :id="event.id"></replies>
                             </div>
                         </div>
                     </div>
@@ -102,6 +103,7 @@
     </div>
 </template>
 <script>
+import Replies from './Reply.vue';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
     props:['event_id'],
@@ -273,6 +275,8 @@ export default {
             })
         }
     },
+    // Components
+    components:{Replies},
     mounted(){
         axios.get('/login_status').then(response => {
             if(response.data.status === true){

@@ -33,6 +33,6 @@ class CreateRentCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_comments');
+        Schema::connection('rent')->dropIfExists('rent_comments');
     }
 }

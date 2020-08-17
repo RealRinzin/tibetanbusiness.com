@@ -29,6 +29,6 @@ class CreateRentRoomPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_room_photos');
+        Schema::connection('rent')->dropIfExists('rent_room_photos');
     }
 }

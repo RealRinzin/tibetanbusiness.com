@@ -13,7 +13,7 @@ class CreateRentCommentRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('restaurant')->create('rent_comment_replies', function (Blueprint $table) {
+        Schema::connection('rent')->create('rent_comment_replies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('rent_comment_id');
@@ -31,6 +31,6 @@ class CreateRentCommentRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_comment_replies');
+        Schema::connection('rent')->dropIfExists('rent_comment_replies');
     }
 }

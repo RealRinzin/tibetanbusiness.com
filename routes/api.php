@@ -33,17 +33,10 @@ use Illuminate\Http\Request;
         Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController',['except' => ['index','show']]);
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
         // Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
-    // showing the individual restaurant without relationship datas
         Route::get('restaurant/individual/{id}', 'Restaurant\RestaurantBasicInfoController@show_individual');
-    // Update restaurant Rate
         Route::patch('restaurants/rating/{id}', 'Restaurant\RestaurantBasicInfoController@update_rate');
-     // Restaurant status update
         Route::patch('restaurant/status_update/{id}', 'Restaurant\RestaurantBasicInfoController@status_update');
-    // Restaurant banner update
         Route::patch('restaurant/banner_update/{id}', 'Restaurant\RestaurantBasicInfoController@banner_update');
-        /**
-         * Getting the API of Ower Restaurant
-         *  */ 
         Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
         // Restaurant Facility
 
@@ -57,6 +50,7 @@ use Illuminate\Http\Request;
         Route::apiResource('rent_facilities', 'Rent\RentFacilityController');
         Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController');
         Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController');
+        Route::apiResource('rent_comment_replies', 'Rent\RentCommentReplyController',['except' =>['index','show']]);
         Route::get('user/rents', 'Rent\RentBasicInfoController@user_rent');
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
         Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
@@ -85,6 +79,7 @@ use Illuminate\Http\Request;
         Route::apiResource('event', 'Event\EventBasicInfoController');
         Route::apiResource('event_photo', 'Event\EventPhotoController');
         Route::apiResource('event_review', 'Event\EventReviewController');
+        Route::apiResource('event_review_replies', 'Event\EventReviewReplyController', ['except' => ['index', 'show']]);
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
         Route::patch('event/banner_update/{id}', 'Event\EventBasicInfoController@banner_update');
@@ -109,6 +104,7 @@ use Illuminate\Http\Request;
         Route::apiResource('service_photo', 'Service\ServicePhotoController');
         Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController');
         Route::apiResource('service_review', 'Service\ServiceReviewController');
+        Route::apiResource('service_review_replies', 'Service\ServiceReviewReplyController',['except' =>['index','show']]);
         Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');
         Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
@@ -156,6 +152,8 @@ use Illuminate\Http\Request;
     Route::get('rent/list/home_ad', 'Rent\RentBasicInfoController@home_ad');
     Route::get('rent/{rent_basic_info}/room_photos', 'Rent\RentRoomPhotoController@photos');
     Route::get('rent/{rent_basic_info}/view_photos', 'Rent\RentViewPhotoController@photos');
+    Route::get('rent/{rent_comment}/reply', 'Rent\RentCommentReplyController@reply');
+    Route::get('rent_comment_replies/{id}', 'Rent\RentCommentReplyController@show');
 
         // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
 
@@ -185,6 +183,8 @@ use Illuminate\Http\Request;
     Route::get('event/list/home_ad', 'Event\EventBasicInfoController@home_ad');
     Route::get( 'event/{event_basic_info}/photos', 'Event\EventPhotoController@photo');
     Route::get('event/{event_basic_info}/reviews', 'Event\EventReviewController@review');
+    Route::get('event/{event_review}/reply', 'Event\EventReviewReplyController@reply');
+    Route::get('event_review_replies/{id}', 'Event\EventReviewReplyController@show');
 
     /**
      * SALE API 
@@ -211,6 +211,8 @@ use Illuminate\Http\Request;
     Route::get('service/{service_basic_info}/reviews', 'Service\ServiceReviewController@review');
     Route::get('service_working_day/{service_basic_info}/working_day', 'Service\ServiceWorkingDayController@working_day');
     Route::get('service/view/{id}', 'Service\ServiceBasicInfoController@display');
+    Route::get('service/{service_review}/reply', 'Service\ServiceReviewReplyController@reply');
+    Route::get('service_review_replies/{id}', 'Service\ServiceReviewReplyController@show');
 
 
 // Search Result

@@ -7,8 +7,6 @@ use Webpatser\Uuid\Uuid;
 
 class EventReview extends Model
 {
-    //
-    //
     //Rent connection
     protected $connection = 'event';
     // Increment
@@ -29,6 +27,10 @@ class EventReview extends Model
     public function event_basic_infos()
     {
         return $this->belongsTo(EventPhoto::class);
+    }
+    public function event_review_replies()
+    {
+        return $this->hasMany(EventReviewReply::class);
     }
 
 }

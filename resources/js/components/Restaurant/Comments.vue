@@ -37,47 +37,47 @@
             </div>
         </div>
         <!-- Comment View -->
-            <div class="row">
-                <div class="col-12 my-2 card p-3">
-                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
-                    <p class="alert small text-danger" v-if="total_comments == 0">Be the first to leave review, if you enjoyed their service.</p>
-                    <div v-if="comments_lazy_load">
-                        <loading :active.sync="comments_lazy_load"></loading>
-                    </div>
-                </div>
-                <div class="card col-md-12 p-3" v-for="(comments,index) in comments">
-                    <div class="media animated fadeIn duration-1s">
-                    <img class="mr-2 img-circle" :src="comments.avatar" alt="Tibetanbusiness.com" style="height:50px;width:50px">
-                    <div class="media-body border-0">
-                        <h6 class="mt-0">{{comments.name}}
-                            <small>
-                                <span v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
-                                <span v-if="comments.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-secondary" @click="edit(comments.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                    <span class="btn btn-xs btn-danger" @click="destory(comments.id,index)"><i class="fas fa-trash-alt"></i></span>
-                                </span>
-                            </small>
-                            </h6>
-                        <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
-                        <p class="text-muted">{{comments.comment}}</p>
-                                <!-- <p>
-                                <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#'+comments.id+'-'+index" aria-expanded="false" aria-controls="collapseExample">
-                                    Button with data-target
-                                </button>
-                                </p>
-                                <div class="collapse" :id="comments.id+'-'+index">
-                                <div class="card card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                </div>
-                                </div> -->
-                        <replies :id="comments.id" @load="comment()"></replies>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-12 text-center" v-if="load_more_button">
-                    <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
+        <div class="row">
+            <div class="col-12 my-2 card p-3">
+                <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
+                <p class="alert small text-danger" v-if="total_comments == 0">Be the first to leave review, if you enjoyed their service.</p>
+                <div v-if="comments_lazy_load">
+                    <loading :active.sync="comments_lazy_load"></loading>
                 </div>
             </div>
+            <div class="card col-md-12 p-3" v-for="(comments,index) in comments">
+                <div class="media animated fadeIn duration-1s">
+                <img class="mr-2 img-circle" :src="comments.avatar" alt="Tibetanbusiness.com" style="height:50px;width:50px">
+                <div class="media-body border-0">
+                    <h6 class="mt-0">{{comments.name}}
+                        <small>
+                            <span v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
+                            <span v-if="comments.user_id === user_id" class="p-2">
+                                <span class="btn btn-xs btn-secondary" @click="edit(comments.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                <span class="btn btn-xs btn-danger" @click="destory(comments.id,index)"><i class="fas fa-trash-alt"></i></span>
+                            </span>
+                        </small>
+                        </h6>
+                    <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
+                    <p class="text-muted">{{comments.comment}}</p>
+                            <!-- <p>
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#'+comments.id+'-'+index" aria-expanded="false" aria-controls="collapseExample">
+                                Button with data-target
+                            </button>
+                            </p>
+                            <div class="collapse" :id="comments.id+'-'+index">
+                            <div class="card card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            </div>
+                            </div> -->
+                    <replies :id="comments.id"></replies>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center" v-if="load_more_button">
+                <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
+            </div>
+        </div>
 <!-- Edit Modal -->
 <!-- Modal -->
         <div class="modal fade" id="restaurant_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

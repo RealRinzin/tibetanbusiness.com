@@ -33,6 +33,6 @@ class CreateRestaurantCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_comments');
+        Schema::connection('restaurant')->dropIfExists('restaurant_comments');
     }
 }

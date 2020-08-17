@@ -34,6 +34,6 @@ class CreateRestaurantOperationDayTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurant_operation_day');
+        Schema::connection('restaurant')->dropIfExists('restaurant_operation_day');
     }
 }

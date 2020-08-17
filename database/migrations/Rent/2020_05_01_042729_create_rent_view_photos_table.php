@@ -29,6 +29,6 @@ class CreateRentViewPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_view_photos');
+        Schema::connection('rent')->dropIfExists('rent_view_photos');
     }
 }

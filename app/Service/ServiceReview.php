@@ -24,4 +24,8 @@ class ServiceReview extends Model
     {
         return $this->belongsTo(ServiceBasicInfo::class);
     }
+    public function service_review_replies()
+    {
+        return $this->hasMany(ServiceReviewReply::class);
+    }
 }

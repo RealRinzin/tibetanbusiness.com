@@ -47,6 +47,6 @@ class CreateRentBasicInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_basic_info');
+        Schema::connection('rent')->dropIfExists('rent_basic_info');
     }
 }

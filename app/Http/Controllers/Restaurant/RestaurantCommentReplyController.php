@@ -97,7 +97,6 @@ class RestaurantCommentReplyController extends Controller
     public function destroy($id)
     {
         //
-        //
         $reply = RestaurantCommentReply::find($id);
         $reply->delete();
     }

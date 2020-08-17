@@ -39,6 +39,6 @@ class CreateRentFacilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rent_facilities');
+        Schema::connection('rent')->dropIfExists('rent_facilities');
     }
 }

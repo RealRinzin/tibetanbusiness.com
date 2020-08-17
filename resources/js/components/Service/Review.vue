@@ -39,34 +39,30 @@
             </div>
         </div>
         <!-- Show Review -->
-        <div class="card p-3">
-            <div class="row">
-                <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_reviews}})</span></h5>
-                <div v-if="events_lazy_load">
-                    <loading :active.sync="events_lazy_load"></loading>
-                </div>
-                    <div class="col-md-12 p-3" v-for="(service,index) in reviews">
-                        <div class="media animated fadeIn duration-1s">
-                        <img class="mr-2 img-circle" :src="service.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                        <div class="media-body">
-                            <h6 class="mt-0">{{service.name}} 
-                                <!-- <small class="text-muted"><timeago :datetime="service.created_at" /></small> -->
-                                <small>
-                                    <span  v-bind:class="service.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{service.rate}}</span>
-                                    <span v-if="service.user_id === user_id" class="p-2">
-                                        <span class="btn btn-xs btn-secondary" @click="edit(service.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                        <span class="btn btn-xs btn-danger" @click="destory(service.id,index)"><i class="fas fa-trash-alt"></i></span>
-                                    </span>
-                                </small>
-                            </h6>
-                            <small class="text-muted" style="font-size:12px"><timeago :datetime="service.created_at" /></small>
-                            <p class="text-muted">{{service.review}}</p>
-                            </div>
-                        </div>
+        <div class="row">
+            <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_reviews}})</span></h5>
+            <div class="col-md-12 card p-3" v-for="(service,index) in reviews">
+                <div class="media animated fadeIn duration-1s">
+                <img class="mr-2 img-circle" :src="service.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                <div class="media-body border-0">
+                    <h6 class="mt-0">{{service.name}} 
+                        <!-- <small class="text-muted"><timeago :datetime="service.created_at" /></small> -->
+                        <small>
+                            <span  v-bind:class="service.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{service.rate}}</span>
+                            <span v-if="service.user_id === user_id" class="p-2">
+                                <span class="btn btn-xs btn-secondary" @click="edit(service.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                <span class="btn btn-xs btn-danger" @click="destory(service.id,index)"><i class="fas fa-trash-alt"></i></span>
+                            </span>
+                        </small>
+                    </h6>
+                    <small class="text-muted" style="font-size:12px"><timeago :datetime="service.created_at" /></small>
+                    <p class="text-muted">{{service.review}}</p>
+                        <replies :id="service.id"></replies>
                     </div>
-                <div class="col-md-12 text-center" v-if="load_more_button">
-                    <button @click="load_more_reviews()" class="btn btn-danger btn-sm">Load more</button>
                 </div>
+            </div>
+            <div class="col-md-12 text-center" v-if="load_more_button">
+                <button @click="load_more_reviews()" class="btn btn-danger btn-sm">Load more</button>
             </div>
         </div>
 <!-- Edit Modal -->
@@ -103,6 +99,7 @@
     </div>
 </template>
 <script>
+import Replies from './Reply.vue';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
     props:['service_id'],
@@ -274,6 +271,8 @@ export default {
             })
         }
     },
+        // Components
+    components:{Replies},
     mounted(){
         axios.get('/login_status').then(response => {
             if(response.data.status === true){
