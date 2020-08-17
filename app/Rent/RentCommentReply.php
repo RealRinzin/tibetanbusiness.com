@@ -5,13 +5,14 @@ namespace App\Rent;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
-class RentComment extends Model
+class RentCommentReply extends Model
 {
     //
-    //Rent connection
+    //
     protected $connection = 'rent';
-    // Increment
     public $incrementing = false;
+    // mass fill
+    protected $guarded = [];
     protected static function boot()
     {
         parent::boot();
@@ -19,17 +20,9 @@ class RentComment extends Model
             $mode->id = str_replace("-", "", Uuid::generate(4));
         });
     }
-    // mass fill
-    protected $guarded = [];
-
-    // Relationship
-    public function rent_basic_infos()
+    // Relationships
+    public function rent_comments()
     {
-        return $this->belongsTo(RentBasicInfo::class);
-    }
-    // Relationship
-    public function rent_comment_replies()
-    {
-        return $this->hasMany(RentCommentReply::class);
+        return $this->belongsTo(RentComment::class);
     }
 }
