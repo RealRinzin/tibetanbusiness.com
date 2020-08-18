@@ -34,4 +34,8 @@ class EventBasicInfo extends Model
     {
         return $this->hasMany(EventReview::class);
     }
+    public function event_interests()
+    {
+        return $this->hasMany(EventInterest::class);
+    }
 }

@@ -11021,6 +11021,11 @@ View individual show CSS
   margin: 2px 0px !important;
 }
 
+#restaurant #event .interested i:hover {
+  color: #007bff;
+  cursor: pointer;
+}
+
 /* Search Dropdown */
 
 #tb_search_dropdown input,

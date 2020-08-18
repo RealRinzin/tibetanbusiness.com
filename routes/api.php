@@ -82,6 +82,7 @@ use Illuminate\Http\Request;
         Route::apiResource('event', 'Event\EventBasicInfoController');
         Route::apiResource('event_photo', 'Event\EventPhotoController');
         Route::apiResource('event_review', 'Event\EventReviewController');
+        Route::apiResource('event_interest', 'Event\EventInterestController',['except'=>['index','show','edit','update']]);
         Route::apiResource('event_review_replies', 'Event\EventReviewReplyController', ['except' => ['index', 'show']]);
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');

@@ -26,7 +26,7 @@
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
                                                     <li class="btn btn-danger btn-md"><i class="far fa-clock mr-2"></i>{{event.start_time}} <span v-if="event.start_time"> a.m </span>-{{event.end_time}} <span v-if="event.end_time"> p.m</span></li>
-                                                    <li class="btn btn-danger btn-md"><i class="fas fa-rupee-sign mr-2"></i>Entry Fee: Rs: {{event.entry_fee}}/</li>
+                                                    <li class="btn btn-danger btn-md">Entry Fee:<i class="fas fa-rupee-sign mr-2"></i> {{event.entry_fee}}/</li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -34,10 +34,14 @@
                                         <!-- Overview -->
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
-                                                    <div class="col-md-6 col-sm-6">
+                                                    <div class="col-6">
                                                         <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{event.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{event.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{event.location}}</h6>
+                                                    </div>
+                                                    <div class="col-6 text-right text-muted text-bold interested">
+                                                            <p class="text-sm" v-if="liked"><i class="fas text-lg text-primary fa-thumbs-up mr-1" @click="thumbs_down(event.interested)"></i>{{event.interested}} People Interested</p>
+                                                            <p class="text-sm" v-else><i class="far text-lg fa-thumbs-up mr-1" @click="thumbs_up(event.interested)"></i>{{event.interested}} People Interested</p>
                                                     </div>
                                             </div>
                                         </div>
@@ -90,10 +94,15 @@ export default {
     data(){
         return{
             id:this.event_id.id,
+            user_id:localStorage.getItem('user_id'),
             event:{}, //event objects
             isLoading : false,//Lazy loading
             loading:false, //loading
             rating:0,
+            // participate like
+            audience:{},
+            liked:false,
+            liked_id:''
         }
     },
     methods:{
@@ -102,10 +111,44 @@ export default {
             axios.get('/api/event/view/'+this.id)
             .then(response=>{
                 this.event = response.data.data;
+                //Event interested record
+                this.audience = this.event.event_interested;
                 this.isLoading = false;
                 this.loading = true;
+                // Check if liked
+                for (let index = 0; index < this.audience.length; index++) {
+                    if(this.audience[index].user_id === this.user_id){
+                        this.liked = true;
+                        this.liked_id = this.audience[index].id
+                        break;
+                    }
+                }
             })
         },
+        // participate
+        thumbs_up(count){
+            this.liked = true;
+            this.event_interested = count +1;
+            axios.post('/api/event_interest',{id:this.id},{
+                headers : { Authorization : localStorage.getItem("token")}
+            })
+            .then(repsone=>{
+            // this.event_interested = count +1
+            this.load_event();
+            })
+        },
+        // Ignore event
+        thumbs_down(count){
+            this.liked = false;
+            this.event_interested = count -1;
+            axios.delete('/api/event_interest/'+this.liked_id,{
+                headers : { Authorization : localStorage.getItem("token")}
+            })
+            .then(repsone=>{
+                // this.event_interested = count -1
+                this.load_event();
+            })
+        }
     },
     // Filer
     filters:{

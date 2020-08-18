@@ -136,8 +136,11 @@ class EventBasicInfoController extends Controller
         $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
         unlink($unlink);
         $event->delete();
-        // $job->job_questions()->delete();
-        // $job->job_applies()->delete();
+        $event->event_interests()->delete();
+        $event->event_reviews()->delete();
+        $event->event_photos()->delete();
+        // $interest->job_questions()->delete();
+        // $review->job_applies()->delete();
     }
 
     /**

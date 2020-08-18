@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources\Event;
 
+use App\Event\EventInterest;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class EventInfoBasicResource extends JsonResource
 {
@@ -22,6 +24,7 @@ class EventInfoBasicResource extends JsonResource
             'rate' => $this->rate,
             'rate_color' => $this->rate_color,
             'rating' => $this->event_reviews->count() > 0 ? round($this->event_reviews->sum('rate') / $this->event_reviews->count(), 1) : 0,
+            'interested' => $this->event_interests->count(),
             'name' => $this->name,
             'banner' => $this->banner,
             'email' => $this->email,
@@ -41,6 +44,8 @@ class EventInfoBasicResource extends JsonResource
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'event_interested' => EventInterestResource::collection($this->event_interests),
+
         ];
     }
 }
