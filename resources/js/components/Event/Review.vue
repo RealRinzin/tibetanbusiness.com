@@ -106,7 +106,7 @@
 import Replies from './Reply.vue';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
-    props:['event_id'],
+    props:['event_id','avg_rating'],
     data(){
         return{
             id:this.event_id,
@@ -214,6 +214,9 @@ export default {
             if(this.post_review.rate){
                 this.$validator.validateAll('event_valid_review_form').then((result) => {
                     if(result){
+                    // calculating the rating
+                        let calculate_rate =(((this.avg_rating*this.reviews.length) + (this.post_review.rate))/(this.reviews.length+1)).toFixed(1);
+                        // Post Review
                         axios.post('/api/event_review',this.post_review,{
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
@@ -223,6 +226,17 @@ export default {
                             toast.fire({
                                 icon:'success',
                                 title:'Comment Posted',
+                            });
+                        /**
+                         * 
+                         * Update rate
+                         *  */ 
+                        axios({
+                            method: 'patch',
+                            url: '/api/event/rating/'+id,
+                            data: {rate: calculate_rate},
+                            headers : { Authorization : localStorage.getItem("token")}
+                            }).then(response=>{
                             });
                         })
                     }

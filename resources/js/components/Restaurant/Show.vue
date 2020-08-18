@@ -34,7 +34,7 @@
                                             <div class="overlay">
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
                                                 <ul>
-                                                    <li v-if="restaurant.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
+                                                    <li v-if="restaurant.rating > 0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
                                                     <li v-if="restaurant.facebook != null"><a :href="'//'+restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
                                                     <li v-if="restaurant.website != null"><a :href="'//'+restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
                                                     <li v-if="restaurant.instagram != null"><a :href="'//'+restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
@@ -46,7 +46,7 @@
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
                                                 <div class="col-md-6 col-sm-6 col-12">
-                                                    <h6 class="text-muted py-1"><i class="fas fa-clock mr-2"></i>{{restaurant.opening_hour}} - {{restaurant.closing_hour}}</h6>
+                                                    <h6 class="text-muted py-1"><i class="fas fa-clock mr-2"></i>{{restaurant.opening_hour}} a.m - {{restaurant.closing_hour}}p.m</h6>
                                                     <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{restaurant.mobile_no}}</h6>
                                                     <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{restaurant.location}}</h6>
                                                     <h6 class="text-muted pt-1" v-if="restaurant.operation[0] != null">

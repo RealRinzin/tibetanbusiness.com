@@ -139,6 +139,20 @@ class EventBasicInfoController extends Controller
         // $job->job_questions()->delete();
         // $job->job_applies()->delete();
     }
+
+    /**
+     *  Updating Star rating
+     * Restaurant
+     * Star Rate
+     * 
+     *  */
+    public function update_rate(Request $request, $id)
+    {
+        $rate = EventBasicInfo::find($id);
+        $rate->rate=$request->rate;
+        $rate->update();
+        // $rate->update($request->all());
+    }
     /**
      * Customized API
      * Routes

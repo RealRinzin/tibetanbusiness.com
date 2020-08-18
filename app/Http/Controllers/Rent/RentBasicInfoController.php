@@ -115,6 +115,7 @@ class RentBasicInfoController extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $rent = RentBasicInfo::find($id);
         $rent->update($request->all());
     }
@@ -137,7 +138,20 @@ class RentBasicInfoController extends Controller
         $rent->rent_view_photos()->delete();
         $rent->rent_room_photos()->delete();
     }
-
+    /**
+     *  Updating Star rating
+     * Restaurant
+     * Star Rate
+     * 
+     *  */
+    public function update_rate(Request $request, $id)
+    {
+        // return $request;
+        $rate = RentBasicInfo::find($id);
+        // $rent->rate = $request->rate;
+        // $rent->update();
+        $rate->update($request->all());
+    }
     /**
      * Get all Rent 
      * without authorization

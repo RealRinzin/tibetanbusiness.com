@@ -68,7 +68,7 @@
 <!-- Edit Modal -->
 <!-- Modal -->
         <div class="modal fade" id="service_review_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Review</h5>
@@ -102,7 +102,7 @@
 import Replies from './Reply.vue';
 import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 export default {
-    props:['service_id'],
+    props:['service_id','avg_rating'],
     data(){
         return{
             id:this.service_id,
@@ -209,6 +209,9 @@ export default {
             if(this.post_review.rate){
                 this.$validator.validateAll('service_valid_review_form').then((result) => {
                     if(result){
+                        // Calculate rating
+                        let calculate_rate =(((this.avg_rating*this.reviews.length) + (this.post_review.rate))/(this.reviews.length+1)).toFixed(1);
+                        // Post Review
                         axios.post('/api/service_review',this.post_review,{
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
@@ -218,6 +221,17 @@ export default {
                             toast.fire({
                                 icon:'success',
                                 title:'Comment Posted',
+                            });
+                        /**
+                         * 
+                         * Update rate
+                         *  */ 
+                        axios({
+                            method: 'patch',
+                            url: '/api/service/rating/'+this.id,
+                            data: {rate: calculate_rate},
+                            headers : { Authorization : localStorage.getItem("token")}
+                            }).then(response=>{
                             });
                         })
                     }

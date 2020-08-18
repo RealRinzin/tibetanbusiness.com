@@ -63,7 +63,7 @@
                                     <photo :event_id="id"></photo>
                                 </div>
                                 <!-- comments -->
-                                <event-review :event_id="id" :rating="rating"></event-review>
+                                <event-review :event_id="id" :rating="rating" :avg_rating="event.rating"></event-review>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">

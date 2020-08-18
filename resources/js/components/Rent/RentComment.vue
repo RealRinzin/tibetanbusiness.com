@@ -98,7 +98,7 @@
 <script>
 import Replies from './Reply.vue';
 export default {
-    props:['rent_uuid'],
+    props:['rent_uuid','avg_rating'],
     data(){
         return{
             id:'',
@@ -178,14 +178,7 @@ export default {
                     }else{
                         this.comments[index].rate_color = 'bg-secondary';
                     }
-                    /**
-                     * 
-                     * Update the star rate
-                     *  */ 
-                    this.count_rate = parseFloat(this.count_rate) + parseFloat(this.comments[index].rate);
                 }
-                // aggregating rating
-                this.average_rate = (this.count_rate / this.total_comments).toFixed(1);
             })
         },
         /**
@@ -244,6 +237,9 @@ export default {
             if(this.review.rate){
                 this.$validator.validateAll('rent_valid_comment_form').then((result) => {
                     if(result){
+                    // calculating the rating
+                        let calculate_rate =(((this.avg_rating*this.comments.length) + (this.review.rate))/(this.comments.length+1)).toFixed(1);
+                        // Post Review
                         axios.post('/api/rent_comments',this.review,{
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
@@ -253,6 +249,17 @@ export default {
                             toast.fire({
                                 icon:'success',
                                 title:'Comment Posted',
+                            });
+                        /**
+                         * 
+                         * Update rate
+                         *  */ 
+                        axios({
+                            method: 'patch',
+                            url: '/api/rent/rating/'+this.rent_uuid,
+                            data: {rate: calculate_rate},
+                            headers : { Authorization : localStorage.getItem("token")}
+                            }).then(response=>{
                             });
                         })
                     }

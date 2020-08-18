@@ -56,6 +56,8 @@ use Illuminate\Http\Request;
         Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
         Route::patch('rent/banner_update/{id}', 'Rent\RentBasicInfoController@banner_update');
         Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
+        Route::patch('rent/rating/{id}', 'Rent\RentBasicInfoController@update_rate');
+
         // JOB API
         /**
          * Rent API
@@ -84,6 +86,8 @@ use Illuminate\Http\Request;
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
         Route::patch('event/banner_update/{id}', 'Event\EventBasicInfoController@banner_update');
+        Route::patch('event/rating/{id}', 'Event\EventBasicInfoController@update_rate');
+    
 
         // Sale API
         /**
@@ -95,6 +99,8 @@ use Illuminate\Http\Request;
         Route::get('user/sales', 'Sale\SaleBasicInfoController@user_sale');
         Route::patch('sale/status_update/{id}', 'Sale\SaleBasicInfoController@status_update');
         Route::patch('sale/banner_update/{id}', 'Sale\SaleBasicInfoController@banner_update');
+        Route::patch('sale/rating/{id}', 'Sale\SaleBasicInfoController@update_rate');
+
 
         // Service API
         /**
@@ -109,6 +115,7 @@ use Illuminate\Http\Request;
         Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');
         Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
+        Route::patch('service/rating/{id}', 'Service\ServiceBasicInfoController@update_rate');
 
         // Other API
         // List API

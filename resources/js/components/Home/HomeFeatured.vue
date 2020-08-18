@@ -43,7 +43,7 @@
                                 </div>
                             </a>
                             <div class="likes" v-if="event.rate != null">
-                                <p v-if="event" v-bind:class="event.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{event.rate}}</p>
+                                <p v-if="event" v-bind:class="event.rate_color" class="btn"><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.rate}} Interested</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button>
@@ -67,7 +67,7 @@
                                     </ul>
                                 </div>
                             </a>
-                            <div class="likes" v-if="rent.rate != null">
+                            <div class="likes" v-if="rent.rate >0">
                                 <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                             </div>
                             <div class="types">
@@ -87,6 +87,9 @@
                             <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                 <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
                             </a>
+                            <div class="likes">
+                                <p v-if="job"  class="btn btn-warning"><i class="fas fa-thumbs-up text-white fa-1x mr-1"></i>59 Interested</p>
+                            </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button>
                             </div>
@@ -121,6 +124,9 @@
                             <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div> -->
                                 <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
                             </a>
+                            <div class="likes" v-if="service.rate > 0">
+                                <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
+                            </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button>
                             </div>
@@ -205,9 +211,9 @@
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
-                    if(response.data.data.length > 0){
+                    if(response.data.length > 0){
                         // Assign Featured restaurant
-                        this.restaurant = response.data.data[Math.floor(Math.random() *response.data.data.length)]                        
+                        this.restaurant = response.data[Math.floor(Math.random() *response.data.length)]                        
                         /**
                          * Rating Background
                          * Color

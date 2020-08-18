@@ -25,7 +25,7 @@
                                             <div class="overlay">
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{rent.fare}} /-</h6>
                                                 <ul>
-                                                    <li v-if="rent.rating != null"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{rent.rating}}</a></li>
+                                                    <li v-if="rent.rating >0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{rent.rating}}</a></li>
                                                     <li v-if="rent.facebook != null"><a :href="rent.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
                                                     <li v-if="rent.instagram != null"><a :href="rent.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                                 </ul>
@@ -97,7 +97,7 @@
                                     <rent-view-photo v-bind:rent_view_photos="rent.view_photos"></rent-view-photo>
                                 </div>
                                 <!-- comments -->
-                                    <rent-comment v-bind:rent_uuid="rent.id"></rent-comment>
+                                    <rent-comment v-bind:rent_uuid="rent.id" :avg_rating="rent.rating"></rent-comment>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">

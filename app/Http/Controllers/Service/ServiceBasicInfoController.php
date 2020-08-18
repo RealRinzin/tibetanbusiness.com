@@ -128,6 +128,18 @@ class ServiceBasicInfoController extends Controller
         // unlink($unlink);
         $service->delete();
     }
+    /**
+     *  Updating Star rating
+     * Restaurant
+     * Star Rate
+     * 
+     *  */
+    public function update_rate(Request $request, $id)
+    {
+        // return $request;
+        $rate = ServiceBasicInfo::find($id);
+        $rate->update($request->all());
+    }
     // CUSTOM API
     public function view(ServiceBasicInfo $serviceBasicInfo, $id)
     {

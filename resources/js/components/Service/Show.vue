@@ -23,6 +23,12 @@
                                             <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'>
                                             <div class="overlay title">
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{service.name}}</h6>
+                                                <ul>
+                                                    <li v-if="service.rating >0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{service.rating}}</a></li>
+                                                    <li v-if="service.facebook != null"><a :href="'//'+service.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                    <li v-if="service.website != null"><a :href="'//'+service.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                    <li v-if="service.instagram != null"><a :href="'//'+service.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                </ul>
                                             </div>
                                             </div>                                
                                         </div>
@@ -74,7 +80,7 @@
                                     <photo :service_id="id"></photo>
                                 </div>
                                 <!-- comments -->
-                                <review :service_id="id" :rating="rating"></review>
+                                <review :service_id="id" :rating="rating" :avg_rating="service.rating"></review>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">

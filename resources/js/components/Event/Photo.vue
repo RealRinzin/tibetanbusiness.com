@@ -77,10 +77,10 @@ export default {
             })
         },
         // Load Single Photo
-        photo_modal($id){
+        photo_modal(id){
             $("#photo_modal").modal("show");//show modal by click
             this.modal_status = true; // modal status
-            this.single_photo = this.photos[$id]; // assigning object
+            this.single_photo = this.photos[id]; // assigning object
         },
         // More photo modal
         more_photo_modal(){

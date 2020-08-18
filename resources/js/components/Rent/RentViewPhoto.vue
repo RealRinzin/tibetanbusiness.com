@@ -79,7 +79,6 @@ export default {
         },
     },
     mounted(){
-        console.log("RentView");
     }
 }
 </script>

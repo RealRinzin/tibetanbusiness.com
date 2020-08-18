@@ -268,7 +268,7 @@ export default {
                 this.$validator.validateAll('valid_comment_form').then((result) => {
                     if(result){
                         // calculating the rating
-                        let calculate_rate =((this.avg_rate*this.comments.length) + (this.review.rate))/(this.comments.length+1);
+                        let calculate_rate =(((this.avg_rate*this.comments.length) + (this.review.rate))/(this.comments.length+1)).toFixed(1);
                         // Comment Post
                         axios.post('/api/restaurant_comments',this.review,{
                             headers : { Authorization : localStorage.getItem("token")}

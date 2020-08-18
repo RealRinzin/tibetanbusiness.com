@@ -93,7 +93,6 @@ export default {
         load_replies(){
             axios.get('/api/rent/'+this.id+'/reply')
             .then((response) => {
-                console.log(response);
                 this.replies = response.data.data;
               if(response.data.total > response.data.per_page){
                     this.load_more_button = true; 

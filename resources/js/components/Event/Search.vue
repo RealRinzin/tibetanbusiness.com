@@ -89,7 +89,7 @@
                                                 <li class="btn small">Type:{{event.category}}</li>
                                             </ul>
                                         </div>
-                                        <div class="rate" v-if="event.rate !=null"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
+                                        <div class="rate" v-if="event.rate >0"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3 font-weight-bolder">{{event.name}}</h6>

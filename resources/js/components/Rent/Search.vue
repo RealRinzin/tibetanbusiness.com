@@ -83,7 +83,7 @@
                                                 <li class="ng-binding">Size: {{rent.accomodation_size}} Person</li>
                                             </ul>
                                         </div>
-                                        <div class="rate" v-if="rent.rate !=null"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
+                                        <div class="rate" v-if="rent.rate >0"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{rent.name}}</h6>
@@ -179,7 +179,6 @@ export default {
                 });
                 $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
                 " - " + $( "#slider-range" ).slider( "values", 1 ) );
-                    // console.log(this.number);
             } );
             // End Range
             // axios.get('/api/search/rents')
