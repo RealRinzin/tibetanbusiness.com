@@ -222,6 +222,7 @@ class EventBasicInfoController extends Controller
     }
     public function all()
     {
+
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('status', '=', true)
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
@@ -245,10 +246,6 @@ class EventBasicInfoController extends Controller
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('sidebar_ad', '=', true)
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
-
-        // $jobs =  EventBasicInfo::where('sidebar_ad', '=', true)
-        //     ->orderBy('created_at', 'desc')->get();
-        // return $jobs->toArray($jobs);
     }
     // Search View
     public function search_engine(Request $request)
@@ -266,20 +263,12 @@ class EventBasicInfoController extends Controller
             ->whereBetween('start_date', [$request->from, $request->to])
             ->whereBetween('entry_fee', [$min, $max])
             ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
-        // $events = new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
-        //         ->where('location', 'like', "$request->location%")
-        //         ->where('category', 'like', "$request->category%")
-        //         ->whereBetween('start_date', [$request->from, $request->to])
-        //         ->whereBetween('entry_fee', [$min, $max])
-        //         ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate());
+        // $events = EventBasicInfo::where('name', 'like', "$request->name%")
+        // ->where('location', 'like', "$request->location%")
+        // ->where('category','like',"$request->category%")
+        // ->whereBetween('start_date',[$request->from, $request->to])
+        // ->whereBetween('entry_fee',[$min, $max])
+        // ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('3');
         // return $events->toArray($events);
-
-        $events = EventBasicInfo::where('name', 'like', "$request->name%")
-        ->where('location', 'like', "$request->location%")
-        ->where('category','like',"$request->category%")
-        ->whereBetween('start_date',[$request->from, $request->to])
-        ->whereBetween('entry_fee',[$min, $max])
-        ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('3');
-        return $events->toArray($events);
     }
 }

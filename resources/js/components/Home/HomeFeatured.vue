@@ -43,7 +43,7 @@
                                 </div>
                             </a>
                             <div class="likes" v-if="event.interested >0">
-                                <p v-if="event" v-bind:class="event.rate_color" class="btn"><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</p>
+                                <p v-bind:class="event.rate_color" class="btn"><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button>
@@ -88,7 +88,8 @@
                                 <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
                             </a>
                             <div class="likes">
-                                <p v-if="job"  class="btn btn-warning"><i class="fas fa-thumbs-up text-white fa-1x mr-1"></i>59 Interested</p>
+                                <p v-if="job.interested > 0" class="btn btn-secondary btn-sm small"><i class="fas fa-thumbs-up text-white fa-1x mr-1"></i>{{job.interested}} Interested</p>
+                                <p v-if="job.applied>0" class="btn btn-success btn-sm small"><i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</p>
                             </div>
                             <div class="types">
                                 <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button>

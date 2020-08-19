@@ -33,9 +33,9 @@ class JobBasicInfo extends Model
     {
         return $this->hasMany(JobApply::class);
     }
-    public function job_answers()
+    public function job_interests()
     {
-        return $this->hasMany(JobAnswer::class);
+        return $this->hasMany(JobInterest::class);
     }
     public function job_questions()
     {

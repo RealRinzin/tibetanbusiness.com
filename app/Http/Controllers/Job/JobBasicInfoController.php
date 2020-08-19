@@ -145,12 +145,6 @@ class JobBasicInfoController extends Controller
      * Get all Rent 
      * without authorization
      *  */
-    public function all()
-    {
-        $jobs =  JobBasicInfo::where('status', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
-    }
     // 
     public function view(JobBasicInfo $jobBasicInfo, $id)
     {
@@ -223,24 +217,33 @@ class JobBasicInfoController extends Controller
         // update
         $status->update($request->all());
     }
+    public function all()
+    {
+        $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get());
+        return $jobs->toArray($jobs);
+        // $jobs =  JobBasicInfo::where('status', '=', true)
+        //     ->orderBy('created_at', 'desc')->get();
+        // return $jobs->toArray($jobs);
+    }
     public function featured_ad()
     {
-        $jobs =  JobBasicInfo::where('featured_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+        $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('featured_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
     // Front
     public function home_ad()
     {
-        $jobs =  JobBasicInfo::where('home_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+        $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('home_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
     // Sidebar
     public function sidebar_ad()
     {
-        $jobs =  JobBasicInfo::where('sidebar_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+        $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
     // User Job

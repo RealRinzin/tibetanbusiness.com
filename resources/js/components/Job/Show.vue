@@ -1,13 +1,5 @@
 <template>
     <div style="min-height:80vh">
-        <vue-headful
-        :title="job.title"
-        :description="job.location"
-        :image="job.banner"
-        lang="langauge"
-        :url="url"
-        />
-        <a :href="'https://www.facebook.com/sharer.php?u='+url" target="_blank">Share facebook</a>
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -99,11 +91,20 @@
                                 </div>
                                 <!-- Apply -->
                                 <div class="row pb-3">
-                                    <div class="col-md-12" v-if="is_logged">
-                                        <button data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-md w-25">APPLY JOB</button>
-                                    </div>
-                                    <div class="col-md-12" v-else>
-                                    <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login to apply</a></p>
+                                    <div class="col-12">
+                                        <span v-if="is_logged" > 
+                                                <button v-if="applied" class="btn btn-info btn-sm small">You have Applied </button>
+                                                <button v-else data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-sm small">APPLY</button>
+                                        </span>
+                                        <button v-else class="btn btn-danger btn-sm small" data-toggle="modal" data-target="#login">Login to apply</button>
+                                        <button class="btn btn-success small btn-sm"><i class="fas fa-check text-white fa-1x mr-1"></i>
+                                        <span v-if="applied">You and {{job.applied -1}} others Applied</span>
+                                        <span v-else>{{job.applied}} others Applied</span>
+                                        </button>
+                                        <button class="btn btn-secondary small btn-sm">
+                                            <span v-if="interested"><i class="fas fa-thumbs-up text-warning fa-1x mr-1" @click="thumbs_down(interested_id)"></i> You and {{job.interested -1}} others Interested</span>
+                                            <span v-else><i class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id)"></i>{{job.interested}} Interested</span>
+                                        </button>
                                     </div>
                                 </div>
                                 <!-- Info -->
@@ -147,22 +148,73 @@ export default {
     data(){
         return{
             id:this.job_id['id'], //Rent Id
+            user_id:'',
             job:{}, //job objects
             isLoading : false,//Lazy loading
             loading:false, //loading
+            // status 
             is_logged:false,
-            url:'',
+            applied:false,
+            applied_id:'',
+            interested:false,
+            interested_id:'',
         }
     },
     methods:{
-        load_rent(){
+        load_job(){
+            // Job Object data
             this.isLoading = true;
             axios.get('/api/job/view/'+this.id)
             .then(response=>{
                 this.job = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
-                this.url ="https://tibetanbusiness.com:8890/job/"+this.job.title;
+                // Check Login Status
+                axios.get('/login_status').then(response => {
+                    if(response.data.status == true){
+                        this.is_logged = true;
+                        this.user_id = response.data.user.id;
+                        // Check if user
+                        // Applied this Job
+                        for (let index = 0; index < this.job.job_applied.length; index++) {
+                            if(this.job.job_applied[index].user_id == this.user_id){
+                                this.applied = true;
+                                this.applied_id = this.job.job_applied[index].id
+                                break;
+                            }
+                        }
+                        // Check If user
+                        // User is interested
+                        for (let y = 0; y < this.job.job_interested.length; y++) {
+                            if(this.job.job_interested[y].user_id == this.user_id){
+                            // console.log(this.job.job_interested[y].id)
+                                this.interested = true;
+                                this.interested_id = this.job.job_interested[y].id
+                                break;
+                            }
+                        }
+                    }
+                })
+            })
+        },
+        // Interested
+        thumbs_up(id){
+            axios.post('/api/job_interest',{id:this.id},{
+                headers : { Authorization : localStorage.getItem("token")}
+            })
+            .then(repsone=>{
+                this.interested = true
+            this.load_job();
+            })
+        },
+        // Unliked
+        thumbs_down(id){
+            axios.delete('/api/job_interest/'+id,{
+                headers : { Authorization : localStorage.getItem("token")}
+            })
+            .then(repsone=>{
+                this.interested = false
+            this.load_job();
             })
         },
         // open modal
@@ -179,12 +231,7 @@ export default {
      *  */  
     components:{Loading,Apply},
     mounted(){
-        this.load_rent();
-        axios.get('/login_status').then(response => {
-            if(response.data.status === true){
-                this.is_logged = true
-            }
-        })
+        this.load_job();
     }
 }
 </script>
