@@ -136,14 +136,14 @@ export default {
                 this.isLoading = false;
                 this.loading = true;
                 // Check if liked
-                if(this.is_logged){
+                // if(this.is_logged){
                     for (let index = 0; index < this.audience.length; index++) {
                         if(this.audience[index].user_id === this.user_id){
                             this.liked = true;
                             this.liked_id = this.audience[index].id
                             break;
                         }
-                    }
+                    // }
                 }
             })
         },

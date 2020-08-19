@@ -6,6 +6,7 @@ use App\Event\EventBasicInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Event\EventInfoBasicResource;
+use App\Http\Resources\Event\EventInfoBasicResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
@@ -221,29 +222,33 @@ class EventBasicInfoController extends Controller
     }
     public function all()
     {
-        $events =  EventBasicInfo::where('status', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
     public function featured_ad()
     {
-        $jobs =  EventBasicInfo::where('featured_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('featured_ad', '=', true)
+        ->orderBy('created_at', 'desc')->get());
+        return $events->toArray($events);
     }
     // Front
     public function home_ad()
     {
-        $jobs =  EventBasicInfo::where('home_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_d', '=', true)
+            ->orderBy('created_at', 'desc')->get());
+        return $events->toArray($events);
     }
     // Sidebar
     public function sidebar_ad()
     {
-        $jobs =  EventBasicInfo::where('sidebar_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $jobs->toArray($jobs);
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('sidebar_ad', '=', true)
+            ->orderBy('created_at', 'desc')->get());
+        return $events->toArray($events);
+
+        // $jobs =  EventBasicInfo::where('sidebar_ad', '=', true)
+        //     ->orderBy('created_at', 'desc')->get();
+        // return $jobs->toArray($jobs);
     }
     // Search View
     public function search_engine(Request $request)
@@ -255,15 +260,26 @@ class EventBasicInfoController extends Controller
     {
         $min = (int)$request->fee_min;
         $max = (int)$request->fee_max;
+        return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
+            ->where('location', 'like', "$request->location%")
+            ->where('category', 'like', "$request->category%")
+            ->whereBetween('start_date', [$request->from, $request->to])
+            ->whereBetween('entry_fee', [$min, $max])
+            ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+        // $events = new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
+        //         ->where('location', 'like', "$request->location%")
+        //         ->where('category', 'like', "$request->category%")
+        //         ->whereBetween('start_date', [$request->from, $request->to])
+        //         ->whereBetween('entry_fee', [$min, $max])
+        //         ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate());
+        // return $events->toArray($events);
+
         $events = EventBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('category','like',"$request->category%")
         ->whereBetween('start_date',[$request->from, $request->to])
         ->whereBetween('entry_fee',[$min, $max])
-        // ->whereBetween('entry_fee', [$request->fee_min, $request->fee_max])
-        // ->where('entry_fee','<=',"$request->entry_fee")
-        ->where('status', '=', '1')
-            ->orderBy('created_at', 'desc')->paginate('3');
+        ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('3');
         return $events->toArray($events);
     }
 }

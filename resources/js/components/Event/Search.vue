@@ -89,7 +89,7 @@
                                                 <li class="btn small">Type:{{event.category}}</li>
                                             </ul>
                                         </div>
-                                        <div class="rate" v-if="event.rate >0"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
+                                        <div class="rate btn btn-warning btn-sm small" v-if="event.interested >0"><span><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3 font-weight-bolder">{{event.name}}</h6>
@@ -150,7 +150,7 @@ export default {
                 fee_min:0,
                 fee_max:10000000,
                 from:'',
-                to:'2025-12-22'
+                to:'2020-12-22'
             },
             // loading
             isLoading : false,//Lazy loading
@@ -206,13 +206,13 @@ export default {
              .then(response=>{ 
                 this.events = response.data.data;
                 this.loading = true;
-                this.total = response.data.total;
+                this.total = response.data.meta.total;
                 // Load more button
                 if(response.data.total == 0){
                     this.empty_result="We don't found the search item";
                 }
                 // if response it there
-                if (response.data.current_page == response.data.last_page) {
+                if (response.data.meta.current_page == response.data.meta.last_page) {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
@@ -244,13 +244,13 @@ export default {
             .then((response)=>{ 
                 this.events = response.data.data;
                 this.loading = true;
-                this.total = response.data.total;
+                this.total = response.data.meta.total;
                 // check for empty result
-                if(response.data.total == 0){
+                if(response.data.meta.total == 0){
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page == response.data.last_page){
+                if(response.data.meta.current_page == response.data.meta.last_page){
                     this.load_more_button = false; 
                 }else{
                     this.load_more_button = true; 
@@ -274,11 +274,11 @@ export default {
             '&page='+this.nextPage)
             // axios.get('/api/search/events?page='+)
             .then(response=>{
-                if(response.data.current_page <= response.data.last_page){
+                if(response.data.meta.current_page <= response.data.meta.last_page){
                     this.nextPage = response.data.current_page + 1;
                     this.isLoading = false; //Loading true
                     // loadmore Button
-                    if(response.data.current_page == response.data.last_page){
+                    if(response.data.meta.current_page == response.data.meta.last_page){
                         this.load_more_button = false; 
                     }else{
                         this.load_more_button = true; 

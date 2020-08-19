@@ -12,7 +12,6 @@ window.Vue = require('vue');
  * Social Sharing
  *  */  
 import VueSocialSharing from 'vue-social-sharing'
-
 Vue.use(VueSocialSharing);
 /**
  * Vue Progress bar
