@@ -25,27 +25,37 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="row p-2">
+                <div class="col-12">
+                    <h5 class="text-dark">Questions<span class="text-muted ml-2 small">({{total_questions}})</span></h5>
+                </div>
+            </div>
+        </div>
        <!-- Comment View -->
         <!-- <div class="card p-3"> -->
-        <div class="row">
-            <h5 class="text-dark">Questions<span class="text-muted ml-2" style="font-size:14px">({{total_questions}})</span></h5>
-                <div class="col-md-12 p-3 card" v-for="(question,index) in questions">
-                    <div class="media animated fadeIn duration-1s">
-                    <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                    <div class="media-body border-0">
-                        <h6 class="mt-0">{{question.name}} 
-                            <small class="text-muted">
-                            <timeago :datetime="question.created_at" />
-                                <span v-if="question.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-danger" @click="destory(question.id,index)"><i class="fas fa-trash-alt"></i></span>
-                                </span>
-                            </small>
-                        </h6>
-                        <p class="text-muted">{{question.question}}</p>
-                        <replies :id="question.id"></replies>
+            <div class="card" v-for="(question,index) in questions">
+                <div class="row p-3">
+                    <div class="col-md-12">
+                        <div class="media animated fadeIn duration-1s">
+                        <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                        <div class="media-body border-0">
+                            <h6 class="mt-0">{{question.name}} 
+                                <small class="text-muted">
+                                <timeago :datetime="question.created_at" />
+                                    <span v-if="question.user_id === user_id" class="p-2">
+                                        <span class="btn btn-xs btn-danger" @click="destory(question.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    </span>
+                                </small>
+                            </h6>
+                            <p class="text-muted">{{question.question}}</p>
+                            <replies :id="question.id"></replies>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        <div class="row">
             <div class="col-md-12 text-center" v-if="load_more_button">
                 <button @click="load_more_questions()" class="btn btn-danger btn-sm">Load more</button>
             </div>

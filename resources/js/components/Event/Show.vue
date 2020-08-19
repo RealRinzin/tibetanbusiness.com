@@ -118,13 +118,6 @@ export default {
     },
     methods:{
         load_event(){
-            // Login status
-            axios.get('/login_status').then(response => {
-                if(response.data.status == true){
-                    this.is_logged = true,
-                    this.user_id = response.data.user.id
-                }
-            })
             // Load Events
             this.isLoading = true;
             axios.get('/api/event/view/'+this.id)
@@ -135,21 +128,26 @@ export default {
                 // loading 
                 this.isLoading = false;
                 this.loading = true;
-                // Check if liked
-                // if(this.is_logged){
-                    for (let index = 0; index < this.audience.length; index++) {
-                        if(this.audience[index].user_id === this.user_id){
-                            this.liked = true;
-                            this.liked_id = this.audience[index].id
-                            break;
+                // Login status
+                axios.get('/login_status').then(response => {
+                    if(response.data.status == true){
+                        this.is_logged = true,
+                        this.user_id = response.data.user.id
+                        // Check if liked
+                        for (let index = 0; index < this.audience.length; index++) {
+                            if(this.audience[index].user_id == this.user_id){
+                                this.liked = true;
+                                this.liked_id = this.audience[index].id
+                                break;
+                            }
                         }
-                    // }
-                }
+                    }
+                })
             })
         },
         // participate
         thumbs_up(count){
-            this.liked = true;
+            // this.liked = true;
             this.event_interested = count +1;
             axios.post('/api/event_interest',{id:this.id},{
                 headers : { Authorization : localStorage.getItem("token")}

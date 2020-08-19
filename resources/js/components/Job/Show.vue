@@ -92,16 +92,16 @@
                                 <!-- Apply -->
                                 <div class="row pb-3">
                                     <div class="col-12">
-                                        <span v-if="is_logged" > 
-                                                <button v-if="applied" class="btn btn-info btn-sm small">You have Applied </button>
-                                                <button v-else data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-sm small">APPLY</button>
+                                        <span v-if="is_logged"> 
+                                                <button v-if="applied" class="btn btn-info btn-sm small my-1">You have Applied </button>
+                                                <button v-else data-toggle="modal" @click="open_modal()" data-target="#apply_job" class="btn btn-info btn-sm small my-1">APPLY</button>
                                         </span>
-                                        <button v-else class="btn btn-danger btn-sm small" data-toggle="modal" data-target="#login">Login to apply</button>
-                                        <button class="btn btn-success small btn-sm"><i class="fas fa-check text-white fa-1x mr-1"></i>
+                                        <button v-else class="btn btn-danger btn-sm small my-1" data-toggle="modal" data-target="#login">Login to apply</button>
+                                        <button class="btn btn-success small btn-sm my-1"><i class="fas fa-check text-white fa-1x mr-1"></i>
                                         <span v-if="applied">You and {{job.applied -1}} others Applied</span>
                                         <span v-else>{{job.applied}} others Applied</span>
                                         </button>
-                                        <button class="btn btn-secondary small btn-sm">
+                                        <button class="btn btn-secondary small btn-sm my-1">
                                             <span v-if="interested"><i class="fas fa-thumbs-up text-warning fa-1x mr-1" @click="thumbs_down(interested_id)"></i> You and {{job.interested -1}} others Interested</span>
                                             <span v-else><i class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id)"></i>{{job.interested}} Interested</span>
                                         </button>
