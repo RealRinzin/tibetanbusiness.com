@@ -40,8 +40,16 @@
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{event.location}}</h6>
                                                     </div>
                                                     <div class="col-6 text-right text-muted text-bold interested">
-                                                            <p class="text-sm" v-if="liked"><i class="fas text-lg text-primary fa-thumbs-up mr-1" @click="thumbs_down(event.interested)"></i>{{event.interested}} People Interested</p>
-                                                            <p class="text-sm" v-else><i class="far text-lg fa-thumbs-up mr-1" @click="thumbs_up(event.interested)"></i>{{event.interested}} People Interested</p>
+                                                        <div v-if="is_logged">
+                                                            <p class="small text-bold" v-if="liked"><i class="fas text-lg text-primary fa-thumbs-up mr-1" @click="thumbs_down(event.interested)"></i>You and {{event.interested -1}} People Interested</p>
+                                                            <p class="small text-bold" v-else><i class="far text-lg fa-thumbs-up mr-1" @click="thumbs_up(event.interested)"></i>{{event.interested}} People Interested</p>
+                                                        </div>
+                                                        <div v-else>
+                                                            <p class="small text-bold">
+                                                            <a href=""  data-toggle="modal" data-target="#login"><i class="far text-lg text-muted fa-thumbs-up mr-1"></i> </a>
+                                                                {{event.interested}} People Interested
+                                                            </p>
+                                                        </div>
                                                     </div>
                                             </div>
                                         </div>
@@ -94,11 +102,14 @@ export default {
     data(){
         return{
             id:this.event_id.id,
-            user_id:localStorage.getItem('user_id'),
+            // user_id:localStorage.getItem('user_id'),
+            user_id:'',
             event:{}, //event objects
             isLoading : false,//Lazy loading
             loading:false, //loading
             rating:0,
+            // login status check
+            is_logged:false,
             // participate like
             audience:{},
             liked:false,
@@ -107,20 +118,31 @@ export default {
     },
     methods:{
         load_event(){
+            // Login status
+            axios.get('/login_status').then(response => {
+                if(response.data.status == true){
+                    this.is_logged = true,
+                    this.user_id = response.data.user.id
+                }
+            })
+            // Load Events
             this.isLoading = true;
             axios.get('/api/event/view/'+this.id)
             .then(response=>{
                 this.event = response.data.data;
                 //Event interested record
                 this.audience = this.event.event_interested;
+                // loading 
                 this.isLoading = false;
                 this.loading = true;
                 // Check if liked
-                for (let index = 0; index < this.audience.length; index++) {
-                    if(this.audience[index].user_id === this.user_id){
-                        this.liked = true;
-                        this.liked_id = this.audience[index].id
-                        break;
+                if(this.is_logged){
+                    for (let index = 0; index < this.audience.length; index++) {
+                        if(this.audience[index].user_id === this.user_id){
+                            this.liked = true;
+                            this.liked_id = this.audience[index].id
+                            break;
+                        }
                     }
                 }
             })
@@ -140,7 +162,7 @@ export default {
         // Ignore event
         thumbs_down(count){
             this.liked = false;
-            this.event_interested = count -1;
+            this.event_interested = count - 1;
             axios.delete('/api/event_interest/'+this.liked_id,{
                 headers : { Authorization : localStorage.getItem("token")}
             })

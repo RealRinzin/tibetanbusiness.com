@@ -41,7 +41,7 @@ class EventReviewController extends Controller
         // return $request;
         $review = EventReview::create([
             'user_id' => Auth::user()->id,
-            'event_basic_info_id' => $request->event_basic_io_id,
+            'event_basic_info_id' => $request->event_basic_info_id,
             'rate' => $request->rate,
             'review' => $request->review,
             'name' => $request->name,

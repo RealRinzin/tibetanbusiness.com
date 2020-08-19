@@ -52,6 +52,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider($service)
     {
+        // $current_url = URL::current();
         return Socialite::driver($service)->redirect();
     }
 
@@ -62,6 +63,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($service)
     {
+
         $current_url = URL::current();
         // return $current_url;
 

@@ -7,16 +7,63 @@
         lang="langauge"
         url="https://tibetanbusiness.com"
         />
-<ShareNetwork
-    network="facebook"
-    url="https://news.vuejs.org/issues/180"
-    title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-    description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-    quote="The hot reload is so fast it\'s near instant. - Evan You"
-    hashtags="vuejs,vite"
-  >
-    Share on Facebook
-</ShareNetwork>
+<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+ <social-sharing url="https://vuejs.org/"
+                      title="The Progressive JavaScript Framework"
+                      description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
+                      quote="Vue is a progressive framework for building user interfaces."
+                      hashtags="vuejs,javascript,framework"
+                      twitter-user="vuejs"
+                      inline-template>
+  <div>
+
+      <network network="email">
+           Email
+      </network>
+      <network network="facebook">
+         Facebook
+      </network>
+      <network network="googleplus">
+         Google +
+      </network>
+      <network network="line">
+         Line
+      </network>
+      <network network="linkedin">
+         LinkedIn
+      </network>
+      <network network="odnoklassniki">
+         Odnoklassniki
+      </network>
+      <network network="pinterest">
+         Pinterest
+      </network>
+      <network network="reddit">
+         Reddit
+      </network>
+      <network network="skype">
+         Skype
+      </network>
+      <network network="sms">
+         SMS
+      </network>
+      <network network="telegram">
+         Telegram
+      </network>
+      <network network="twitter">
+         Twitter
+      </network>
+      <network network="vk">
+         VKontakte
+      </network>
+      <network network="weibo">
+         Weibo
+      </network> 
+      <network network="whatsapp">
+         Whatsapp
+      </network>
+  </div>
+</social-sharing>
         <div id="restaurant" style="min-height:80vh">
             <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>

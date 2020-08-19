@@ -38,15 +38,18 @@
                 </div>
             </div>
         </div>
-        <!-- Show Review -->
-        <div class="p-3">
+        <div class="card p-3">
             <div class="row">
-                <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_reviews}})</span></h5>
-                <div v-if="events_lazy_load">
-                    <loading :active.sync="events_lazy_load"></loading>
+                <div class="col-12">
+                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_reviews}})</span></h5>
                 </div>
-                    <div class="col-md-12 card p-3" v-for="(event,index) in reviews">
-                        <div class="media animated fadeIn duration-1s">
+            </div>
+        </div>
+        <!-- Reviews / Comments -->
+        <div class="card" v-for="(event,index) in reviews">
+            <div class="row p-3">
+                <div class="col-12">
+                    <div class="media animated fadeIn duration-1s">
                         <img class="mr-2 img-circle" :src="event.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body border-0">
                             <h6 class="mt-0">{{event.name}} 
@@ -61,13 +64,13 @@
                             <small class="text-muted" style="font-size:12px"><timeago :datetime="event.created_at" /></small>
                             <p class="text-muted">{{event.review}}</p>
                             <replies :id="event.id"></replies>
-                            </div>
                         </div>
                     </div>
-                <div class="col-md-12 text-center" v-if="load_more_button">
-                    <button @click="load_more_reviews()" class="btn btn-danger btn-sm">Load more</button>
                 </div>
             </div>
+        </div>
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <button @click="load_more_reviews()" class="btn btn-danger btn-sm">Load more</button>
         </div>
 <!-- Edit Modal -->
 <!-- Modal -->

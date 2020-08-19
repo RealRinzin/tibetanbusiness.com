@@ -83,6 +83,8 @@ class EventReviewReplyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $reply = EventReviewReply::find($id);
+        $reply->update($request->all());
     }
 
     /**
