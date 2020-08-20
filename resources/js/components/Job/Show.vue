@@ -103,7 +103,10 @@
                                         </button>
                                         <button class="btn btn-secondary small btn-sm my-1">
                                             <span v-if="interested"><i class="fas fa-thumbs-up text-warning fa-1x mr-1" @click="thumbs_down(interested_id)"></i> You and {{job.interested -1}} others Interested</span>
-                                            <span v-else><i class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id)"></i>{{job.interested}} Interested</span>
+                                            <span v-else>
+                                                <i v-if="is_logged" class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id)"></i>
+                                                <i  v-else class="fas fa-thumbs-up text-white fa-1x mr-1" data-toggle="modal" data-target="#login"></i>
+                                                {{job.interested}} Interested</span>
                                         </button>
                                     </div>
                                 </div>

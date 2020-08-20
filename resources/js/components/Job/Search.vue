@@ -107,7 +107,11 @@
                                         <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
-                                            <h6 class="text-dark pt-3 font-weight-bolder">{{job.title}}</h6>
+                                            <p class="my-1">
+                                                <span class="btn btn-sm btn-success mr-1 small" v-if="job.applied >0"> <i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</span>
+                                                <span class="btn btn-sm btn-secondary mr-1 small" v-if="job.interested > 0"> <i class="fas fa-thumbs-up text-warning fa-1x mr-1"></i>{{job.interested}} Interested</span>
+                                            </p>
+                                            <h6 class="text-dark font-weight-bolder">{{job.title}}</h6>
                                             <p class="text-muted my-0">{{job.mobile_no}}</p>
                                             <p class="text-muted my-0">{{job.location}}</p>
                                         </div>
@@ -171,6 +175,8 @@ export default {
             isLoading : false,//Lazy loading
             // lazy:false,
             result:[],
+            // Login status
+            is_logged:false,
             /**
              * Dropdown List
              * location
@@ -189,6 +195,13 @@ export default {
         },
         // loading
         load_result(){
+        // Login status
+            axios.get('/login_status').then(response => {
+                if(response.data.status === true){
+                    this.is_logged = true
+                }
+            console.log(this.is_logged);
+            })
             // filter paramater
             // Slider Range
             $( function() {
@@ -205,20 +218,20 @@ export default {
                 " - " + $( "#slider-range" ).slider( "values", 1 ) );
                     // console.log(this.number);
             } );
+            console.log(this.is_logged);
             // End Range
             // Get the result
             axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
              .then(response=>{ 
                 this.jobs = response.data.data;
                 this.loading = true;
-                this.total = response.data.total;
-                this.total = response.data.total;
+                this.total = response.data.meta.total;
                 // Load more button
-                if(response.data.total == 0){
+                if(response.data.meta.total == 0){
                     this.empty_result="We don't found the search item";
                 }
                 // if response it there
-                if (response.data.current_page == response.data.last_page) {
+                if (response.data.meta.current_page == response.data.meta.last_page) {
                     this.load_more_button = false;
                 }else{
                     this.load_more_button = true;
@@ -228,6 +241,7 @@ export default {
         },
         // search result
         search_result(){
+            console.log(this.is_logged);
             // Salary Range
             var salary = document.getElementById("salary");
             this.number = salary.value.split("-");
@@ -247,13 +261,13 @@ export default {
             .then((response)=>{ 
                 this.jobs = response.data.data;
                 this.loading = true;
-                this.total = response.data.total;
+                this.total = response.data.meta.total;
                 // check for empty result
-                if(response.data.total == 0){
+                if(response.data.meta.total == 0){
                     this.empty_result = "We don't found the search item"
                 }
                 // Check the load more button
-                if(response.data.current_page == response.data.last_page){
+                if(response.data.meta.current_page == response.data.meta.last_page){
                     this.load_more_button = false; 
                 }else{
                     this.load_more_button = true; 
@@ -268,6 +282,7 @@ export default {
         // load more button
         
         load_more(nextPage){
+            console.log(this.is_logged);
                 // this.loading = false;
             this.isLoading = true; //Loading true
             axios.get('/api/search/jobs?title='+this.filter.title+
@@ -280,11 +295,11 @@ export default {
             '&page='+this.nextPage)
             // axios.get('/api/search/jobs?page='+)
             .then(response=>{
-                if(response.data.current_page <= response.data.last_page){
-                    this.nextPage = response.data.current_page + 1;
+                if(response.data.meta.current_page <= response.data.meta.last_page){
+                    this.nextPage = response.data.meta.current_page + 1;
                     this.isLoading = false; //Loading true
                     // loadmore Button
-                    if(response.data.current_page == response.data.last_page){
+                    if(response.data.meta.current_page == response.data.meta.last_page){
                         this.load_more_button = false; 
                     }else{
                         this.load_more_button = true; 

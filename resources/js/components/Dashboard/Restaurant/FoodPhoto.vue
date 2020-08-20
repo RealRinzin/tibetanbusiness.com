@@ -245,8 +245,7 @@
               headers : { Authorization : localStorage.getItem("token")}
             })
               .then(response => {
-                console.log(response);
-                
+
                 //  Flash Message  
                   toast.fire({
                     icon:'success',

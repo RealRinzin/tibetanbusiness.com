@@ -263,12 +263,5 @@ class EventBasicInfoController extends Controller
             ->whereBetween('start_date', [$request->from, $request->to])
             ->whereBetween('entry_fee', [$min, $max])
             ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
-        // $events = EventBasicInfo::where('name', 'like', "$request->name%")
-        // ->where('location', 'like', "$request->location%")
-        // ->where('category','like',"$request->category%")
-        // ->whereBetween('start_date',[$request->from, $request->to])
-        // ->whereBetween('entry_fee',[$min, $max])
-        // ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('3');
-        // return $events->toArray($events);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Job\JobApplyResource;
 use App\Http\Resources\Job\JobBasicInfoResource;
+use App\Http\Resources\Job\JobBasicInfoResourceCollection;
 use App\Job\JobBasicInfo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -260,16 +261,27 @@ class JobBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
-        $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
-        ->where('location', 'like', "%$request->location%")
-        ->where('profession', 'like', "$request->profession%")
-        ->where('nature', 'like', "$request->nature%")
-        ->where('experience', 'like', "$request->experience%")
-            // ->where('salary', '<=', "$request->salary")
-        ->whereBetween('salary', [$request->salary_min, $request->salary_max])
-        ->where('deadline','>=',date('Y-m-d'))
-        ->where('status', '=', '1')
-        ->orderBy('created_at', 'desc')->paginate('3');
-        return $jobs->toArray($jobs);
+
+        return new JobBasicInfoResourceCollection(JobBasicInfo::where('title', 'like', "$request->title%")
+                ->where('location', 'like', "%$request->location%")
+                ->where('profession', 'like', "$request->profession%")
+                ->where('nature', 'like', "$request->nature%")
+                ->where('experience', 'like', "$request->experience%")
+                ->whereBetween('salary', [$request->salary_min, $request->salary_max])
+                ->where('deadline', '>=', date('Y-m-d'))
+                ->where('status', '=', true)
+                ->orderBy('created_at', 'desc')->paginate('3'));
+
+        // Original
+        // $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
+        // ->where('location', 'like', "%$request->location%")
+        // ->where('profession', 'like', "$request->profession%")
+        // ->where('nature', 'like', "$request->nature%")
+        // ->where('experience', 'like', "$request->experience%")
+        // ->whereBetween('salary', [$request->salary_min, $request->salary_max])
+        // ->where('deadline','>=',date('Y-m-d'))
+        // ->where('status', '=', '1')
+        // ->orderBy('created_at', 'desc')->paginate('3');
+        // return $jobs->toArray($jobs);
     }
 }
