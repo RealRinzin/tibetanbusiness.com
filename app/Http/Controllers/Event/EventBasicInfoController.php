@@ -236,7 +236,7 @@ class EventBasicInfoController extends Controller
     // Front
     public function home_ad()
     {
-        $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_d', '=', true)
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_ad', '=', true)
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }

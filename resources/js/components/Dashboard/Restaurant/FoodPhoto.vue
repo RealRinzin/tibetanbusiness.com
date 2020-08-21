@@ -141,6 +141,7 @@
        * Removing Photo
        *  */
       remove(id,index){
+        
         let confirmBox = confirm('Are you sure want to Delete!!!');
         if(confirmBox == true){
           axios.delete('/api/restaurant_food_photos/'+id,{

@@ -114,16 +114,19 @@ body{
             position: relative;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-image: url("https://afarkas.github.io/lazysizes/assets/imgs/loader.gif");
+            background-size: cover !important;
+            background: url('/img/loading-img.svg') no-repeat center;
+            // background-repeat: no-repeat;
+            // background-position: center center;
+            // background-image: url("https://afarkas.github.io/lazysizes/assets/imgs/loader.gif");
             }
     // Lazysize loading
         .lazyloading {
             opacity: 1;
             transition: 600ms opacity;
-            background: #f7f7f7 url("https://afarkas.github.io/lazysizes/assets/imgs/loader.gif") no-repeat center;
+            background-size: cover !important;
+            background: url('/img/loading-img.svg') no-repeat center;
+            // background: url("https://afarkas.github.io/lazysizes/assets/imgs/loader.gif") no-repeat center;
             min-height: 60px;
         }
         .lazyloaded {
@@ -223,9 +226,19 @@ footer{
         width: 50px;
     }
 }
-
-// login
-
+// Vue Awesome Swiper Modified Css
+.swiper-button-next, .swiper-button-prev{
+    top:30% !important;
+}
+.swiper-button-next::after, .swiper-button-prev:after{
+    font-size: 11px !important;
+    color:#ffffff;
+    padding:8px;
+    border:solid .5px #fff;
+    background: #c9c7c8;
+    // border-radius: 50%;;
+}
+/* Login UI CSS */
 #login{
     // top:15%;
     .modal-content{

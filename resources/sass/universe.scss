@@ -168,19 +168,23 @@
 /* Sidebar  */
 #sidebar{
     .banner{
-        background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+        // background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+        background-image: url('/img/loading-img.svg') no-repeat center;
         height: 70px;
         border-radius: 4px;
         background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+        // background-repeat: no-repeat;
+        // background-position: center center;
     }
       // Lazysize loading
     .lazyloading {
         opacity: 1;
         transition: 600ms opacity;
-        background: #f7f7f7 url('/img/tibetanbusiness.png') no-repeat center;
+        background: #f7f7f7 url('/img/loading-img.svg');
         min-height: 60px;
+        background-size: cover;
+        background-position:center;
+        background-repeat: no-repeat;
     }
     .lazyloaded {
     opacity: 1;

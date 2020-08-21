@@ -23,6 +23,7 @@
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <!-- rating star -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <!-- Slick Slider -->
     <!-- google map -->
     <!-- jquery UI -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>

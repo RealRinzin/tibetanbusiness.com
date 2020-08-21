@@ -144,7 +144,7 @@
 
         <!-- Business Listing -->
         <div class="container py-3" id="business_list">
-            <!-- <search></search> -->
+            <search></search>
             <event-list></event-list>
             <rent-list></rent-list>
             <job-list></job-list>

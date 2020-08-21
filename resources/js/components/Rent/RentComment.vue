@@ -35,32 +35,43 @@
                 </div>
             </div>
         </div>
+        <!--  -->
+        <div class="card">
+            <div class="row p-3">
+                <div class="col-12">
+                    <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
+                </div>
+            </div>
+        </div>
        <!-- Comments -->
-        <div class="row">
-            <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
-            <div class="col-md-12 card p-3" v-for="(comment,index) in comments">
-                <div class="media animated fadeIn duration-1s">
-                <img class="mr-2 img-circle" :src="comment.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
-                    <div class="media-body border-0">
-                        <h6 class="mt-0">{{comment.name}}
-                            <small>
-                                <span  v-bind:class="comment.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comment.rate}}</span>
-                                <span v-if="comment.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-secondary" @click="edit(comment.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                    <span class="btn btn-xs btn-danger" @click="destory(comment.id,index)"><i class="fas fa-trash-alt"></i></span>
-                                </span>
-                            </small>
-                            </h6>
-                        <p class="text-muted" style="font-size:12px"><timeago :datetime="comment.created_at" /></p>
-                        <p class="text-muted">{{comment.comment}}</p>
-                        <!-- Comment Replies -->
-                        <replies :id="comment.id"></replies>
+        <div class="card" v-for="(comment,index) in comments">
+            <div class="row p-3">
+                <div class="col-md-12">
+                    <div class="media animated fadeIn duration-1s">
+                    <img class="mr-2 img-circle" :src="comment.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                        <div class="media-body border-0">
+                            <h6 class="mt-0">{{comment.name}}
+                                <small>
+                                    <span  v-bind:class="comment.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comment.rate}}</span>
+                                    <span v-if="comment.user_id === user_id" class="p-2">
+                                        <span class="btn btn-xs btn-secondary" @click="edit(comment.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                        <span class="btn btn-xs btn-danger" @click="destory(comment.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    </span>
+                                </small>
+                                </h6>
+                            <p class="text-muted" style="font-size:12px"><timeago :datetime="comment.created_at" /></p>
+                            <p class="text-muted">{{comment.comment}}</p>
+                            <!-- Comment Replies -->
+                            <replies :id="comment.id"></replies>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 text-center" v-if="load_more_button">
-                <button @click="load_more_comments()" class="btn btn-danger btn-sm">Load more</button>
-            </div>
+        </div>
+        <div class="row">
+                <div class="col-12 text-center" v-if="load_more_button">
+                    <button @click="load_more_comments()" class="btn btn-danger btn-sm">Load more</button>
+                </div>
         </div>
 <!-- Edit Modal -->
 <!-- Modal -->
