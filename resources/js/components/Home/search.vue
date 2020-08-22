@@ -1,6 +1,6 @@
 <template>
 <div class="contain">
-    <span v-for="list in active">{{list.name}}</span>
+
     <swiper class="swiper col-md-4 col-sm-6 col-12" :options="settings">
         <swiper-slide v-for="(events,index) in events" :key="index" >
                         <div class="card">
@@ -38,7 +38,7 @@ import 'swiper/css/swiper.css'
           return{
               events:[],
               active:[],
-        settings:{
+            settings:{
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop:true,

@@ -227,16 +227,19 @@ footer{
     }
 }
 // Vue Awesome Swiper Modified Css
-.swiper-button-next, .swiper-button-prev{
-    top:30% !important;
-}
-.swiper-button-next::after, .swiper-button-prev:after{
-    font-size: 11px !important;
-    color:#ffffff;
-    padding:8px;
-    border:solid .5px #fff;
-    background: #c9c7c8;
-    // border-radius: 50%;;
+.swiper-container{
+    padding:0px 7.5px !important;
+    .swiper-button-next, .swiper-button-prev{
+        top:30% !important;
+    }
+    .swiper-button-next::after, .swiper-button-prev:after{
+        font-size: 11px !important;
+        color:#ffffff;
+        padding:8px;
+        border:solid .5px #fff;
+        background: #c9c7c8;
+        // border-radius: 50%;;
+    }
 }
 /* Login UI CSS */
 #login{

@@ -11901,13 +11901,17 @@ footer img {
   width: 50px;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
+.swiper-container {
+  padding: 0px 7.5px !important;
+}
+
+.swiper-container .swiper-button-next,
+.swiper-container .swiper-button-prev {
   top: 30% !important;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev:after {
+.swiper-container .swiper-button-next::after,
+.swiper-container .swiper-button-prev:after {
   font-size: 11px !important;
   color: #ffffff;
   padding: 8px;
