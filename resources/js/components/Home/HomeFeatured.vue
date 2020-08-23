@@ -41,7 +41,7 @@
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                         <ul>
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
-                                            <li class="ng-binding">{{event.start_date}}</li>
+                                            <li class="ng-binding">{{event.start_date | date}}</li>
                                             <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li>
                                             <li class="ng-binding">Entry Fee:₹{{event.entry_fee}}/-</li>
                                         </ul>
@@ -139,7 +139,7 @@
                         <div class="swiper-button-next" slot="button-next"></div>
                     </swiper>
                     <!-- Service -->
-                    <swiper class="col-md-4 col-sm-6 py-1 swiper" :options="settings" v-if="services">
+                    <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="services">
                         <swiper-slide v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
@@ -147,7 +147,7 @@
                                     <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
                                 </a>
                                 <div class="likes" v-if="service.rate > 0">
-                                    <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
+                                    <p v-if="service" v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
                                 </div>
                                 <div class="types">
                                     <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button>
@@ -420,6 +420,19 @@
                         for (let index = 0; index < response.data.length; index++) {
                             // Push
                             this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
+                        // bg
+                            if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
+                                this.services[index].rate_color = 'bg-danger';
+                            }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
+                                this.services[index].rate_color = 'bg-warning';
+                            }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
+                                this.services[index].rate_color = 'bg-info';
+                            }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
+                                this.services[index].rate_color = 'bg-success';
+                            }
+                            else{
+                                this.services[index].rate_color = 'bg-secondary';
+                            }
                         }
                     }else{
                         axios.get('/api/service/list/all')
@@ -427,6 +440,19 @@
                         for (let index = 0; index < response.data.length; index++) {
                                 // Push
                                 this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
+                        // bg
+                                if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
+                                    this.services[index].rate_color = 'bg-danger';
+                                }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
+                                    this.services[index].rate_color = 'bg-warning';
+                                }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
+                                    this.services[index].rate_color = 'bg-info';
+                                }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
+                                    this.services[index].rate_color = 'bg-success';
+                                }
+                                else{
+                                    this.services[index].rate_color = 'bg-secondary';
+                                }
                             }
                         })
                     }

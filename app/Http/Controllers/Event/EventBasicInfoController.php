@@ -224,19 +224,22 @@ class EventBasicInfoController extends Controller
     {
 
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('status', '=', true)
+            ->where('start_date', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
     public function featured_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('featured_ad', '=', true)
-        ->orderBy('created_at', 'desc')->get());
+            ->where('start_date', '>=', date('Y-m-d'))
+            ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
     // Front
     public function home_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_ad', '=', true)
+            ->where('start_date', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -244,6 +247,7 @@ class EventBasicInfoController extends Controller
     public function sidebar_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('sidebar_ad', '=', true)
+            ->where('start_date', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -262,6 +266,7 @@ class EventBasicInfoController extends Controller
             ->where('category', 'like', "$request->category%")
             ->whereBetween('start_date', [$request->from, $request->to])
             ->whereBetween('entry_fee', [$min, $max])
+            ->where('start_date', '>=', date('Y-m-d'))
             ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
     }
 }

@@ -167,14 +167,16 @@
 }
 /* Sidebar  */
 #sidebar{
+  // Swiper css
+      .swiper-button-next, .swiper-button-prev{
+        top:20% !important;
+      }
     .banner{
         // background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
         background-image: url('/img/loading-img.svg') no-repeat center;
         height: 70px;
         border-radius: 4px;
         background-size: cover;
-        // background-repeat: no-repeat;
-        // background-position: center center;
     }
       // Lazysize loading
     .lazyloading {

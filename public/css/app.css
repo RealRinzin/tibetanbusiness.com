@@ -11273,6 +11273,11 @@ View individual show CSS
 
 /* Sidebar  */
 
+#sidebar .swiper-button-next,
+#sidebar .swiper-button-prev {
+  top: 20% !important;
+}
+
 #sidebar .banner {
   background-image: url("/img/loading-img.svg") no-repeat center;
   height: 70px;
