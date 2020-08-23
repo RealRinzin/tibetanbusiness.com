@@ -156,12 +156,6 @@ class RentBasicInfoController extends Controller
      * Get all Rent 
      * without authorization
      *  */
-    public function all(){
-        $rents =  RentBasicInfo::where('status', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $rents->toArray($rents);
-    }
-
     public function view(RentBasicInfo $rentBasicInfo, $id)
     {
         return view('rent.show', ['id' => RentBasicInfo::find($id)]);
@@ -243,16 +237,25 @@ class RentBasicInfoController extends Controller
      * Sidebar
      * Banner etc
      *  */
+        public function all(){
+        $rents =  RentBasicInfo::where('status', '=', true)
+            ->orderBy('created_at', 'desc')
+            ->inRandomOrder()->get();
+        return $rents->toArray($rents);
+    }
+
     public function featured_ad()
     {
         $rents =  RentBasicInfo::where('featured_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->inRandomOrder()->get();
         return $rents->toArray($rents);
     }
     // Front
     public function home_ad()
     {
         $rents =  RentBasicInfo::where('home_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
@@ -260,6 +263,7 @@ class RentBasicInfoController extends Controller
     public function sidebar_ad()
     {
         $rents =  RentBasicInfo::where('sidebar_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }

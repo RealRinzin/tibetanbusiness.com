@@ -137,12 +137,6 @@ class RestaurantBasicInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function all()
-    {
-        $restaurants =  RestaurantBasicInfo::where('status', '=', true)
-            ->orderBy('created_at', 'desc')->get();
-        return $restaurants->toArray($restaurants);
-    }
     /**
      * 
      * View or showing
@@ -252,10 +246,19 @@ class RestaurantBasicInfoController extends Controller
      * Home Featured
      * Sidebar
      * Banner etc
-     *  */ 
+     *  */
+    public function all()
+    {
+        $restaurants =  RestaurantBasicInfo::where('status', '=', true)
+            ->inRandomOrder()
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
+    
     public function featured_ad(){
         $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
-        ->orderBy('created_at','desc')->get();
+            ->inRandomOrder()
+            ->orderBy('created_at','desc')->get();
         return $restaurants->toArray($restaurants);
         // return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::where('featured_ad', '=', true)->get());
     }
@@ -268,6 +271,7 @@ class RestaurantBasicInfoController extends Controller
     // Sidebar
     public function sidebar_ad(){
         $restaurants =  RestaurantBasicInfo::where('sidebar_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $restaurants->toArray($restaurants);
 

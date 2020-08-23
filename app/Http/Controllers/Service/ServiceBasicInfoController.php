@@ -158,12 +158,14 @@ class ServiceBasicInfoController extends Controller
     public function all()
     {
         $service =  ServiceBasicInfo::where('status', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
     public function featured_ad()
     {
         $service =  ServiceBasicInfo::where('featured_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
@@ -178,6 +180,7 @@ class ServiceBasicInfoController extends Controller
     public function sidebar_ad()
     {
         $sales =  ServiceBasicInfo::where('sidebar_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }

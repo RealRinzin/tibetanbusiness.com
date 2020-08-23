@@ -29,8 +29,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Events -->
                     <swiper class="col-md-4 col-sm-6 col-12 swiper info" :options="settings" v-if="events">
@@ -60,8 +60,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Rents -->
                     <swiper class="swiper col-md-4 col-sm-6 info" :options="settings" v-if="rents">
@@ -89,8 +89,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Job -->
                     <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="jobs">
@@ -114,8 +114,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Sale -->
                     <swiper class="col-md-4 col-sm-6 swiper" :options="settings"  v-if="sales">
@@ -135,8 +135,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Service -->
                     <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="services">
@@ -159,8 +159,8 @@
                                 </div>
                             </div>
                         </swiper-slide>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                 </div>
             </div>
@@ -216,13 +216,14 @@
             return{
                 load:false,
                 isLoading : false,//Lazy loading
-                restaurants:[],
-                // random test
-                events:[],
-                rents:[],
-                jobs:[],
-                sales:[],
-                services:[],
+                // Objects
+                restaurants:{total:0},
+                events:{total:0},
+                rents:{total:0},
+                jobs:{total:0},
+                sales:{total:0},
+                services:{total:0},
+                // total
                 //  Swiper slider
                 settings:{
                     slidesPerView: 1,
@@ -253,8 +254,9 @@
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
                     if(response.data.length > 0){
+                        this.restaurants = response.data;
+                        // rate background
                         for (let index = 0; index < response.data.length; index++) {
-                            this.restaurants.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
                                 this.restaurants[index].rate_color = 'bg-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
@@ -272,8 +274,9 @@
                     }else{
                     axios.get('/api/restaurant/list/all')
                         .then(response=>{
+                            this.restaurants = response.data; 
+                            // rate background
                             for (let index = 0; index < response.data.length; index++) {
-                                this.restaurants.push(response.data[Math.floor(Math.random() *response.data.length)]);
                                 if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
                                     this.restaurants[index].rate_color = 'bg-danger';
                                 }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
@@ -294,8 +297,10 @@
                 axios.get('/api/event/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
+                        this.events = response.data;
+                        // Background color
                         for (let index = 0; index < response.data.length; index++) {
-                            this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
+                            // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
                             if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
                                 this.events[index].rate_color = 'bg-danger';
@@ -314,9 +319,11 @@
                     }else{
                         axios.get('/api/event/list/all')
                         .then(response=>{
-                            for (let index = 0; index < response.data.length; index++) {
-                                this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                                // bg
+                        this.events = response.data;
+                        // Background color
+                        for (let index = 0; index < response.data.length; index++) {
+                            // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
+                            // bg
                                 if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
                                     this.events[index].rate_color = 'bg-danger';
                                 }else if(this.events[index].rate >= 2.6 && this.events[index].rate <= 3.5 ){
@@ -337,9 +344,9 @@
                 axios.get('/api/rent/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
+                        this.rents = response.data;
+                        // Background color
                         for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.rents.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
                             if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
                                 this.rents[index].rate_color = 'bg-danger';
@@ -357,9 +364,9 @@
                     }else{
                         axios.get('/api/rent/list/all')
                         .then(response => {
+                            this.rents = response.data;
+                            // Background color
                             for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.rents.push(response.data[Math.floor(Math.random() *response.data.length)]);
                                 // bg
                                 if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
                                     this.rents[index].rate_color = 'bg-danger';
@@ -381,17 +388,12 @@
                 axios.get('/api/job/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
-                        for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.jobs.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                        }
+                        this.jobs = response.data;
+                        // Background color
                     }else{
                         axios.get('/api/job/list/all')
                         .then(response => {
-                            for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                                this.jobs.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                            }
+                            this.jobs = response.data;
                         })
                     }
                 })
@@ -399,17 +401,11 @@
                 axios.get('/api/sale/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
-                        for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.sales.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                        }
+                        this.sales = response.data;
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
-                            for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.sales.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                            }
+                            this.sales = response.data;
                         })
                     }
                 })
@@ -417,9 +413,8 @@
                 axios.get('/api/service/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
+                        this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
                         // bg
                             if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
                                 this.services[index].rate_color = 'bg-danger';
@@ -437,10 +432,9 @@
                     }else{
                         axios.get('/api/service/list/all')
                         .then(response => {
+                        this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                        // bg
+                            // bg
                                 if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
                                     this.services[index].rate_color = 'bg-danger';
                                 }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){

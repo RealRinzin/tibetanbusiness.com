@@ -175,12 +175,12 @@
                 service_loading:false,
                 rent_loading:false,
                 // Objects
-                restaurants:[], 
-                events:[], 
-                jobs:[], 
-                rents:[], 
-                sales:[], 
-                services:[],
+                restaurants:{}, 
+                events:{}, 
+                jobs:{}, 
+                rents:{}, 
+                sales:{}, 
+                services:{},
                 // Swiper Carousel
                 settings:{
                     slidesPerView: 2,
@@ -211,8 +211,9 @@
                 .then(response=>{
                     this.restaurant_loading = true; //Loading true
                     if(response.data.length > 0){
+                        this.restaurants = response.data;
+                        // background color
                         for (let index = 0; index < response.data.length; index++) {
-                            this.restaurants.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
                                 this.restaurants[index].rate_color = 'bg-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
@@ -229,8 +230,8 @@
                         }
                     }else{
                         axios.get('/restaurants/list/all').then(response=>{
+                            this.restaurants = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                            this.restaurants.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
                                 this.restaurants[index].rate_color = 'bg-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
@@ -256,8 +257,9 @@
                 .then(response=>{
                     this.event_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.events = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                            this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
+                            // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
                             if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
                                 this.events[index].rate_color = 'bg-danger';
@@ -277,8 +279,8 @@
                         axios.get('/api/event/list/all')
                         .then(response=>{
                             this.event_loading = true; //Loading true
+                            this.events = response.data;
                             for (let index = 0; index < response.data.length; index++) {
-                                this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
                                 // bg
                                 if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
                                     this.events[index].rate_color = 'bg-danger';
@@ -304,18 +306,12 @@
                 .then(response=>{
                     this.job_loading = true; //Loading true
                     if (response.data.length > 0) {
-                        for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.jobs.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                        }
+                        this.jobs = response.data;
                     }else{
                         axios.get('/api/job/list/all')
                         .then(response => {
                             this.job_loading = true; //Loading true
-                            for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                                this.jobs.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                            }
+                            this.jobs = response.data;
                         })
                     }
                 })
@@ -327,9 +323,8 @@
                 .then(response=>{
                     this.rent_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.rents = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.rents.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
                             if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
                                 this.rents[index].rate_color = 'bg-danger';
@@ -348,9 +343,8 @@
                         axios.get('/api/rent/list/all')
                         .then(response => {
                             this.rent_loading = true; //Loading true
+                            this.rents = response.data;
                             for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.rents.push(response.data[Math.floor(Math.random() *response.data.length)]);
                                 // bg
                                 if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
                                     this.rents[index].rate_color = 'bg-danger';
@@ -374,19 +368,13 @@
                 axios.get('/api/sale/list/sidebar_ad')
                 .then(response=>{
                     this.sale_loading = true; //Loading true
+                    this.sales = response.data;
                     if (response.data.length > 0) {
-                        for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.sales.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                        }
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
                             this.sale_loading = true; //Loading true
-                            for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.sales.push(response.data[Math.floor(Math.random() *response.data.length)]);
-                            }
+                            this.sales = response.data;
                         })
                     }
                 })
@@ -397,9 +385,8 @@
                 .then(response=>{
                     this.service_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                            // Push
-                            this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // rate color
                             if(this.services[index].rate >= 0.0 && this.services[index].rate <= 2.5){
                                 this.services[index].rate_color = 'bg-danger';
@@ -417,9 +404,8 @@
                         axios.get('/api/service/list/all')
                         .then(response => {
                         this.service_loading = true; //Loading true
+                        this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
-                                // Push
-                                this.services.push(response.data[Math.floor(Math.random() *response.data.length)]);
                                 // rate color
                                 if(this.services[index].rate >= 0.0 && this.services[index].rate <= 2.5){
                                     this.services[index].rate_color = 'bg-danger';

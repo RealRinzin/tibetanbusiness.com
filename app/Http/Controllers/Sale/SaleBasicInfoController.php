@@ -132,12 +132,15 @@ class SaleBasicInfoController extends Controller
     public function all()
     {
         $sales =  SaleBasicInfo::where('status', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
+            
         return $sales->toArray($sales);
     }
     public function featured_ad()
     {
         $sales =  SaleBasicInfo::where('featured_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
@@ -152,6 +155,7 @@ class SaleBasicInfoController extends Controller
     public function sidebar_ad()
     {
         $sales =  SaleBasicInfo::where('sidebar_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
