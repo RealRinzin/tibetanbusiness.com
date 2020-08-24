@@ -165,16 +165,18 @@
                 </div>
             </div>
         </div>
-
         <!-- Business Listing -->
-        <div class="container py-3" id="business_list">
-            <!-- <search></search> -->
-            <event-list></event-list>
-            <rent-list></rent-list>
-            <job-list></job-list>
-            <restaurant-list></restaurant-list>
-            <sale-list></sale-list>
-            <service-list></service-list>
+        <div class="bg-white" style="min-height:450vh">
+            <div class="container py-3" id="business_list">
+                <!-- <search></search> -->
+                <event-list></event-list>
+                <rent-list></rent-list>
+                <job-list></job-list>
+                <restaurant-list></restaurant-list>
+                <sale-list></sale-list>
+                <service-list></service-list>
+            </div>
+
         </div>
 
     </div>

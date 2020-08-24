@@ -1,17 +1,12 @@
 @extends('layouts.app')
 @section('content')
-<div id="home_search">
+<search></search>
+<!-- <div id="home_search">
     <div class="container py-5">
         <div class="row">
-            <!-- logo -->
-            <!-- <div class="col-md-12 d-flex justify-content-center">
-                <img src="img/tibetanbusiness.png" alt="Tibetanbusiness logo" class="elevation-3" style="opacity: .8">
-            </div> -->
-            <!-- Text -->
             <div class="col-md-12 py-4">
                 <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
             </div>
-            <!-- Desktop Search -->
             <div class="col-md-8 mx-auto mb-5 col-11" id="tb_search_dropdown">
                 <form method="get" action="#">
                     {{ csrf_field() }}
@@ -70,13 +65,11 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
-
-</div>
+</div> -->
 <div id="home_featured" class="py-4" style="min-height: 100vh">
     <home-featured></home-featured>
 </div>

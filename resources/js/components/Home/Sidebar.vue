@@ -4,7 +4,7 @@
         <!-- Restaurants -->
         <!-- Services -->
         <div class="card p-3" v-if="restaurants">
-            <h6 class="py-2"> <span><img src="/img/restaurant.png" alt=""></span> Restaurants</h6>
+            <h6>RESTAURANTS</h6>
             <div class="divider"></div>
             <div v-if="!restaurant_loading">
             </div>

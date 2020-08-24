@@ -11836,10 +11836,15 @@ body {
   right: 10px;
 }
 
+#business_list .card {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
 #business_list .lazyloading {
   opacity: 1;
   transition: 600ms opacity;
-  background: #f7f7f7 url("/img/tibetanbusiness.png") no-repeat center;
+  background: url("/img/loading-img.svg") no-repeat center;
   min-height: 60px;
 }
 
@@ -11851,11 +11856,8 @@ body {
 #business_list .banner {
   height: 100px;
   position: relative;
-  border-radius: 4px;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url("https://afarkas.github.io/lazysizes/assets/imgs/loader.gif");
+  background-image: url("/img/loading-img.svg") no-repeat center;
 }
 
 #business_list .info h5 {
