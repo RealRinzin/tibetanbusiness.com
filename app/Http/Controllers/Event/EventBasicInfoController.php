@@ -241,6 +241,7 @@ class EventBasicInfoController extends Controller
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_ad', '=', true)
             ->where('start_date', '>=', date('Y-m-d'))
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }

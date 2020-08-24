@@ -239,6 +239,7 @@ class JobBasicInfoController extends Controller
     public function home_ad()
     {
         $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('home_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }

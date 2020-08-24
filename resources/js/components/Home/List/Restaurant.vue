@@ -7,12 +7,12 @@
                     <swiper-slide class="col-md-6 col-6" v-for="(restaurants,index) in restaurants" :key="index">
                         <div class="card">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-12">
                                     <a v-bind:href="'restaurant/'+restaurants.id">
                                     <div class="banner lazyloaded" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurants.banner})`}'></div>
                                     </a>
                                 </div>
-                                <div class="col-md-6 col-sm-6 p-3 info">
+                                <div class="info">
                                     <h5>{{restaurants.name}}</h5>
                                     <h6 class="pt-1">{{restaurants.mobile_no}}</h6>
                                     <h6>{{restaurants.location}}</h6>
@@ -45,10 +45,6 @@ export default {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
                     },
-                    // pagination
-                    pagination: {
-                        el: '.swiper-pagination'
-                    }
                 }
         }
     },
