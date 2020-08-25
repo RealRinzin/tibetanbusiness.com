@@ -265,7 +265,8 @@ class RestaurantBasicInfoController extends Controller
     // Front
     public function home_ad(){
         $restaurants =  RestaurantBasicInfo::where('home_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->inRandomOrder()->get();
         return $restaurants->toArray($restaurants);
     }
     // Sidebar

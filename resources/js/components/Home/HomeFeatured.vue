@@ -166,15 +166,15 @@
             </div>
         </div>
         <!-- Business Listing -->
-        <div class="bg-white" style="min-height:450vh">
+        <div class="bg-white" style="min-height:140vh">
             <div class="container py-3" id="business_list">
                 <!-- <search></search> -->
                 <event-list></event-list>
+                <sale-list></sale-list>
                 <rent-list></rent-list>
                 <job-list></job-list>
-                <restaurant-list></restaurant-list>
-                <sale-list></sale-list>
                 <service-list></service-list>
+                <restaurant-list></restaurant-list>
             </div>
 
         </div>

@@ -148,7 +148,8 @@ class SaleBasicInfoController extends Controller
     public function home_ad()
     {
         $sales =  SaleBasicInfo::where('home_ad', '=', true)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->inRandomOrder()->get();
         return $sales->toArray($sales);
     }
     // Sidebar

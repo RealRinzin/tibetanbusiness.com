@@ -1,24 +1,23 @@
 <template>
     <div class="row" v-if="loading">
-        <div class="col-md-8 mx-auto">
-            <h6 class="bg-danger btn">Service</h6>
-            <div class="row">
-                <div class="col-md-6 col-6" v-for="(services,index) in services" v-if="index <= 1">
-                <!-- <div class="col-md-6"> -->
+        <div class="col-md-12 mx-auto">
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</h6>
+            <swiper class="row swiper" :options="settings">
+                <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <a v-bind:href="'service/'+services.id"><div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${services.banner})`}'></div></a>
-                            </div>
-                            <div class="col-md-6 col-sm-6 p-3 info">
-                                <h5>{{services.name}}</h5>
-                                <h6 class="pt-1">{{services.mobile_no}}</h6>
-                                <h6>{{services.location}}</h6>
-                            </div>
+                        <a v-bind:href="'service/'+service.id">
+                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/service/Banner/${service.banner})`}'></div>
+                        </a>
+                        <div class="info p-1">
+                            <h5>{{service.name}}</h5>
+                            <h6 class="pt-1">{{service.mobile_no}}</h6>
+                            <h6>{{service.location}}</h6>
                         </div>
                     </div>
-                </div>
-            </div>
+                </swiper-slide>
+                    <div class="swiper-button-prev" slot="button-prev"></div>
+                    <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
         </div>
     </div>
 </template>
@@ -28,7 +27,40 @@ export default {
         return{
             loading:false,
             services:{},
-            check:[]
+            settings:{
+                // slidesPerView: 4,
+                spaceBetween: 30,
+                slidesPerGroup: 2,
+                loop: true,
+                breakpoints: {
+                    1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                    },
+                    768: {
+                    slidesPerView: 3,
+                    spaceBetween: 15
+                    },
+                    640: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                    },
+                    320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    slidesPerGroup: 1,
+                    }
+                },
+                // loopFillGroupWithBlank: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                }
+            }
         }
     },
     // methods / Functions
@@ -38,34 +70,15 @@ export default {
             // home advertisment
             axios.get('api/service/list/home_ad')
             .then(response=>{
-                this.services = response.data;
                 this.loading = true;
-                if(response.data.length > 0){
-                    for (let index = 0; index < response.data.length; index++) {
-                        this.services[index] = response.data[Math.floor(Math.random() *response.data.length)]
-                        // if(Math.floor(Math.random() *response.data.length) == Math.floor(Math.random() *response.data.length)){
-                        //     console.log("Same");
-                        //     console.log(Math.floor(Math.random() *response.data.length));
-                        // }else{
-                        //     console.log(Math.floor(Math.random() *response.data.length));
-
-                        // }
-                    }
-                    // for (let i = 0; i < 2; i++) {
-                    //     this.check = this.services;
-                    //      console.log(this.check[i].name);
-                    // }
+                if(response.data.length > 0){                    
+                    this.services = response.data;
                 }else{
                     axios.get('/api/service/list/all').then(response=>{
-                        this.services = response.data;
                         this.loading = true;
-                        for (let index = 0; index < response.data.data.length; index++) {
-                            this.services[index] = response.data.data[Math.floor(Math.random() *response.data.data.length)]
-                        }
+                        this.services = response.data;
                     })
                 }
-                   
-
             })
         }
     },
