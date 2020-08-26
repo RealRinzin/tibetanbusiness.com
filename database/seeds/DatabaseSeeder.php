@@ -7,6 +7,7 @@ use App\Event\EventReviewReply;
 use App\Job\JobAnswer;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
+use App\Job\JobInterest;
 use App\Job\JobQuestion;
 use App\Job\JobQuestionReply;
 use App\Rent\RentBasicInfo;
@@ -56,10 +57,11 @@ class DatabaseSeeder extends Seeder
         // factory(RentFacility::class, 10)->create();
 
         // Job DB Seed
-        factory(JobBasicInfo::class,2)->create();
-        factory(JobApply::class, 2)->create();
-        factory(JobQuestion::class, 10)->create();
-        factory(JobQuestionReply::class,10)->create();
+        factory(JobBasicInfo::class,1)->create();
+        factory(JobApply::class, 1)->create();
+        factory(JobQuestion::class, 1)->create();
+        factory(JobQuestionReply::class,1)->create();
+        factory(JobInterest::class,1);
 
         // Event
         // factory(EventBasicInfo::class,10)->create();

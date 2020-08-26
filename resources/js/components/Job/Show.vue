@@ -102,9 +102,9 @@
                                         <span v-else>{{job.applied}} others Applied</span>
                                         </button>
                                         <button class="btn btn-secondary small btn-sm my-1">
-                                            <span v-if="interested"><i class="fas fa-thumbs-up text-warning fa-1x mr-1" @click="thumbs_down(interested_id)"></i> You and {{job.interested -1}} others Interested</span>
+                                            <span v-if="interested"><i class="fas fa-thumbs-up text-warning fa-1x mr-1" @click="thumbs_down(interested_id,job.interested)"></i> You and {{job.interested -1}} others Interested</span>
                                             <span v-else>
-                                                <i v-if="is_logged" class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id)"></i>
+                                                <i v-if="is_logged" class="fas fa-thumbs-up text-white fa-1x mr-1" @click="thumbs_up(job.id,job.interested)"></i>
                                                 <i  v-else class="fas fa-thumbs-up text-white fa-1x mr-1" data-toggle="modal" data-target="#login"></i>
                                                 {{job.interested}} Interested</span>
                                         </button>
@@ -201,17 +201,21 @@ export default {
             })
         },
         // Interested
-        thumbs_up(id){
+        thumbs_up(id,count){
+            this.interested = true;
+            this.job_interested = count +1;
             axios.post('/api/job_interest',{id:this.id},{
                 headers : { Authorization : localStorage.getItem("token")}
             })
             .then(repsone=>{
-                this.interested = true
+            // this.interested = true;
             this.load_job();
             })
         },
         // Unliked
-        thumbs_down(id){
+        thumbs_down(id,count){
+            this.interested = false;
+            this.job_interested = count -1;
             axios.delete('/api/job_interest/'+id,{
                 headers : { Authorization : localStorage.getItem("token")}
             })

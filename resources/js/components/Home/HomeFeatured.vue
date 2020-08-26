@@ -42,7 +42,7 @@
                                         <ul>
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
                                             <li class="ng-binding">{{event.start_date | date}}</li>
-                                            <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li>
+                                            <!-- <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li> -->
                                             <li class="ng-binding">Entry Fee:₹{{event.entry_fee}}/-</li>
                                         </ul>
                                     </div>
@@ -118,12 +118,17 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Sale -->
-                    <swiper class="col-md-4 col-sm-6 swiper" :options="settings"  v-if="sales">
+                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales">
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"></div>
+                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
+                                        <ul>
+                                            <li class="ng-binding">Price:₹{{sale.price}}/-</li>
+                                            <li class="ng-binding">Type:{{sale.type}}</li>
+                                        </ul>
+                                    </div>
                                 </a>
                                 <div class="types">
                                     <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button>
@@ -168,13 +173,14 @@
         <!-- Business Listing -->
         <div class="bg-white" style="min-height:140vh">
             <div class="container py-3" id="business_list">
+                <home-list></home-list>
                 <!-- <search></search> -->
-                <event-list></event-list>
+                <!-- <event-list></event-list>
                 <sale-list></sale-list>
                 <rent-list></rent-list>
                 <job-list></job-list>
                 <service-list></service-list>
-                <restaurant-list></restaurant-list>
+                <restaurant-list></restaurant-list> -->
             </div>
 
         </div>
@@ -464,7 +470,6 @@
          *  */  
         components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList,Swiper,SwiperSlide},
     // components: {Swiper,SwiperSlide},
-
         /**
          * Mounted
          *  */ 

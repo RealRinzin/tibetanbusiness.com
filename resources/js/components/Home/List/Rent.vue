@@ -1,12 +1,12 @@
 <template>
     <div class="row my-1" v-if="loading">
-        <div class="col-md-12 mx-auto">
+        <div class="col-md-10 mx-auto">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</h6>
             <swiper class="row swiper" :options="settings" >
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/rent/Banner/${rent.banner})`}'></div>
+                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rent.banner})`}'></div>
                         </a>
                         <div class="info p-2">
                             <h5>{{rent.name}}</h5>
@@ -30,28 +30,28 @@ export default {
             // swiper
            settings:{
                 // slidesPerView: 4,
-                spaceBetween: 30,
+                spaceBetween: 10,
                 slidesPerGroup: 2,
                 loop: true,
                 breakpoints: {
-                    1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 30
+                        1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 10
+                        },
+                        768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10
+                        },
+                        640: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                        },
+                        320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5,
+                        slidesPerGroup: 1,
+                        }
                     },
-                    768: {
-                    slidesPerView: 3,
-                    spaceBetween: 15
-                    },
-                    640: {
-                    slidesPerView: 2,
-                    spaceBetween: 15
-                    },
-                    320: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                    slidesPerGroup: 1,
-                    }
-                },
                 // loopFillGroupWithBlank: true,
                 pagination: {
                     el: '.swiper-pagination',

@@ -1,12 +1,12 @@
 <template>
    <div class="row my-2" v-if="loading">
-        <div class="col-md-12 mx-auto">
+        <div class="col-md-10 mx-auto">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</h6>
             <swiper class="row swiper" :options="settings">
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurant.id">
-                            <div class="banner rounded-top lazyload" v-bind:style='{ backgroundImage: `url(storage/restaurant/Banner/${restaurant.banner})`}'></div>
+                            <div class="banner rounded-top lazyload" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurant.banner})`}'></div>
                             </a>
                             <div class="info p-2">
                                 <h5>{{restaurant.name}}</h5>
@@ -30,21 +30,21 @@ export default {
             restaurants:[],
             settings:{
                 // slidesPerView: 4,
-                spaceBetween: 30,
+                spaceBetween: 10,
                 slidesPerGroup: 2,
                 loop: true,
                 breakpoints: {
                     1024: {
                     slidesPerView: 4,
-                    spaceBetween: 30
+                    spaceBetween: 10
                     },
                     768: {
                     slidesPerView: 3,
-                    spaceBetween: 15
+                    spaceBetween: 10
                     },
                     640: {
                     slidesPerView: 2,
-                    spaceBetween: 15
+                    spaceBetween: 10
                     },
                     320: {
                     slidesPerView: 1,

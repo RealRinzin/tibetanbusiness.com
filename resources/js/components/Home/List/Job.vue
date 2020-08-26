@@ -1,12 +1,12 @@
 <template>
     <div class="row" v-if="loading">
-        <div class="col-md-12 mx-auto">
+        <div class="col-md-10 mx-auto">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</h6>
             <swiper class="row swiper" :options="settings">
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/job/Banner/${job.banner})`}'></div>
+                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Job/Banner/${job.banner})`}'></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{job.title}}</h5>
@@ -36,19 +36,19 @@ export default {
                 breakpoints: {
                     1024: {
                     slidesPerView: 4,
-                    spaceBetween: 30
+                    spaceBetween: 10
                     },
                     768: {
                     slidesPerView: 3,
-                    spaceBetween: 15
+                    spaceBetween: 10
                     },
                     640: {
                     slidesPerView: 2,
-                    spaceBetween: 15
+                    spaceBetween: 10
                     },
                     320: {
                     slidesPerView: 1,
-                    spaceBetween: 10,
+                    spaceBetween: 5,
                     slidesPerGroup: 1,
                     }
                 },

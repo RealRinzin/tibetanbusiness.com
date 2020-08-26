@@ -1,32 +1,9 @@
 <template>
 <div>
     <div id="sidebar">
-        <!-- Restaurants -->
-        <!-- Services -->
-        <div class="card p-3" v-if="restaurants">
-            <h6>RESTAURANTS</h6>
-            <div class="divider"></div>
-            <div v-if="!restaurant_loading">
-            </div>
-            <div class="row" v-else>
-                <swiper class="swiper" :options="settings">
-                        <swiper-slide  class="col-6" v-for="(restaurant,index) in restaurants" :key="index">
-                            <a v-bind:href="'/restaurant/'+restaurant.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
-                            <div class="rate" v-if="restaurant.rate > 0"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
-                            </a>
-                            <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
-                            <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
-                            <p class="text-muted my-0">{{restaurant.location}}</p>
-                        </swiper-slide>
-                    <div class="swiper-button-prev" slot="button-prev"></div>
-                    <div class="swiper-button-next" slot="button-next"></div>
-                </swiper>
-            </div>
-        </div>
         <!-- Sales -->
         <div class="card p-3" v-if="sales">
-            <h6 class="py-2"> <span><img src="/img/sale.png" alt=""></span> Sales</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/sale.png" class="mr-2" alt="">TRENDING SALES</h6>
             <div v-if="!sale_loading" class="text-center">
                 <div class="spinner-border m-5" role="status">
                 <span class="sr-only">Loading...</span>
@@ -54,9 +31,12 @@
         </div>
         <!-- Events -->
         <div class="card p-3" v-if="events">
-            <h6 class="py-2"> <span><img src="/img/event.png" alt=""></span> Events</h6>
-            <div v-if="!event_loading" class="loading">
-            </div>
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/event.png" class="mr-2" alt="">UPCOMING EVENTS</h6>
+            <div v-if="!event_loading" class="text-center">
+                    <div class="spinner-border m-5" role="status">
+                    <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             <div class="row" v-else>
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(event,index) in events" :key="index">
@@ -77,10 +57,12 @@
         </div>
         <!-- Rents -->
         <div class="card p-3" v-if="rents">
-            <h6 class="py-2"> <span><img src="/img/rent.png" alt=""></span> Rents</h6>
-            <div class="divider"></div>
-            <div v-if="!rent_loading" class="loading">
-            </div>
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/rent.png" class="mr-2" alt="">AVAILABE RENTS</h6>
+            <div v-if="!rent_loading" class="text-center">
+                    <div class="spinner-border m-5" role="status">
+                    <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             <div class="row" v-else>
                 <swiper class="swiper" :options="settings">
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6> -->
@@ -102,9 +84,11 @@
         </div>
         <!--Jobs  -->
         <div class="card p-3" v-if="jobs">
-            <h6 class="py-2"> <span><img src="/img/job.png" alt=""></span> Jobs</h6>
-            <div class="divider"></div>
-            <div v-if="!job_loading" class="loading">
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/job.png" class="mr-2" alt="">TRENDING JOBS</h6>
+            <div v-if="!job_loading" class="text-center">
+                <div class="spinner-border m-5" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>
             </div>
             <div class="row" v-else>
                 <swiper class="swiper" :options="settings">
@@ -127,9 +111,11 @@
         </div>
         <!-- Services -->
         <div class="card p-3" v-if="services">
-            <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Service</h6>
-            <div class="divider"></div>
-            <div v-if="!service_loading" class="loading">
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</h6>
+            <div v-if="!service_loading" class="text-center">
+                <div class="spinner-border m-5" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>
             </div>
             <div class="row" v-else>
                 <swiper class="swiper" :options="settings">
@@ -142,6 +128,30 @@
                             <h6 class="text-dark pt-3">{{service.name}}</h6>
                             <p class="text-muted my-0">{{service.mobile_no}}</p>
                             <p class="text-muted my-0">{{service.location}}</p>
+                        </swiper-slide>
+                    <div class="swiper-button-prev" slot="button-prev"></div>
+                    <div class="swiper-button-next" slot="button-next"></div>
+                </swiper>
+            </div>
+        </div>
+        <!-- restaurant -->
+        <div class="card p-3" v-if="restaurants">
+            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/restaurant.png" class="mr-2" alt="">TRENDING RESTAURANTS</h6>
+            <div v-if="!restaurant_loading" class="text-center">
+                <div class="spinner-border m-5" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div class="row" v-else>
+                <swiper class="swiper" :options="settings">
+                        <swiper-slide  class="col-6" v-for="(restaurant,index) in restaurants" :key="index">
+                            <a v-bind:href="'/restaurant/'+restaurant.id">
+                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
+                            <div class="rate" v-if="restaurant.rate > 0"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
+                            </a>
+                            <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
+                            <p class="text-muted my-0">{{restaurant.mobile_no}}</p>
+                            <p class="text-muted my-0">{{restaurant.location}}</p>
                         </swiper-slide>
                     <div class="swiper-button-prev" slot="button-prev"></div>
                     <div class="swiper-button-next" slot="button-next"></div>
@@ -179,7 +189,7 @@
                 // Swiper Carousel
                 settings:{
                     slidesPerView: 2,
-                    spaceBetween: 30,
+                    spaceBetween: 10,
                     slidesPerGroup: 3,
                     loop: true,
                     // loopFillGroupWithBlank: true,
@@ -198,7 +208,7 @@
          *  Methods
          *  */ 
         methods:{
-            sidebar_restaurants(){
+            sidebar(){
                 /**
                  * Restaurant Sidebar AD
                  *  */ 
@@ -424,7 +434,7 @@
 
         // Mounted
         mounted(){
-            this.sidebar_restaurants();
+            this.sidebar();
         }
     }
 </script>

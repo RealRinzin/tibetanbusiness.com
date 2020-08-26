@@ -147,7 +147,7 @@ export default {
         },
         // participate
         thumbs_up(count){
-            // this.liked = true;
+            this.liked = true;
             this.event_interested = count +1;
             axios.post('/api/event_interest',{id:this.id},{
                 headers : { Authorization : localStorage.getItem("token")}

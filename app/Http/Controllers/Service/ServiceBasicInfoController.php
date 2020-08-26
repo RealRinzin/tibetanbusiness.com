@@ -173,6 +173,7 @@ class ServiceBasicInfoController extends Controller
     public function home_ad()
     {
         $services =  ServiceBasicInfo::where('home_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')->get();
         return $services->toArray($services);
     }
