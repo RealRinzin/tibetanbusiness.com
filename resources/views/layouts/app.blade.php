@@ -34,7 +34,7 @@
         <div class="wrapper">
             <!-- Navbar -->
             @if(Request::is('/'))
-            <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100" style="z-index: 100;">
+            <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100">
                 <div class="container">
                     <a href="/" class="navbar-brand">
                         <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">

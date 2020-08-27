@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<!-- <search></search> -->
-<div id="home_search">
+<search></search>
+<!-- <div id="home_search">
     <div class="container py-5">
         <div class="row py-5">
             <div class="col-md-12 py-4">
@@ -77,7 +77,8 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
 <div id="home_featured" class="py-4" style="min-height: 100vh">
     <home-featured></home-featured>
 </div>
