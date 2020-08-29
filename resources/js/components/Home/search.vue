@@ -153,8 +153,7 @@ import 'swiper/css/swiper.css'
                 }
                 e.preventDefault();
             } else {
-                // let url = '/search/'+this.service+'?_token=IuURkc415IfrxTHoRHxPSgPIPrGvUhldRyAAsfCJ&location='+this.place;
-                let url = '/search/'+this.service+'?location='+this.place;
+                let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.place;
                 window.location.href = url;
                 // $('form').attr('action','/search/'+this.service+'?_token=IuURkc415IfrxTHoRHxPSgPIPrGvUhldRyAAsfCJ&location='+this.place);
             };
@@ -164,6 +163,7 @@ import 'swiper/css/swiper.css'
     components: {Swiper,SwiperSlide},
     // Mounted
     mounted(){
+
         // Location
         axios.get('/api/location')
         .then((response) => {

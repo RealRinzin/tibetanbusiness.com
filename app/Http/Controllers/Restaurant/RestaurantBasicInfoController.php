@@ -35,6 +35,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
+
         $name = '';
         // Image upload script in php
         if ($request->banner) {
@@ -47,6 +48,7 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+
             \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
         }
         // Store
