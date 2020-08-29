@@ -166,6 +166,9 @@ export default {
         },
         // loading
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
             // Slider Range
             $( function() {
                 $( "#slider-range" ).slider({

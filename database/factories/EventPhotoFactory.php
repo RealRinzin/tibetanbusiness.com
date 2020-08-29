@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 $factory->define(EventPhoto::class, function (Faker $faker) {
     return [
         //
-        'path' => $faker->sentence(1),
+        'path' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg']),
         'event_basic_info_id' =>  function(){
             return EventBasicInfo::all()->random();
         },

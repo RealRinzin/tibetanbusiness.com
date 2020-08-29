@@ -195,6 +195,9 @@ export default {
         },
         // loading
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
         // Login status
             axios.get('/login_status').then(response => {
                 if(response.data.status === true){

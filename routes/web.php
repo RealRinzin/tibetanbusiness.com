@@ -14,9 +14,7 @@
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    // return view('welcome');
-    $sliders = DB::table('users')->get();
-    return view('welcome', ['slider' => $sliders]);
+    return view('welcome');
 });
 
 Auth::routes();

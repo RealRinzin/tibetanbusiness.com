@@ -64,7 +64,11 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
                                         <a v-bind:href="'/restaurant/'+restaurant.id">
                                             <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
-                                        <div class="rate" v-if="restaurant.rate >0"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
+                                        <div class="rate" v-if="restaurant.rate >0">
+                                            <button class="btn btn-sm small" v-bind:class="restaurant.rate_color">
+                                            <i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}
+                                        </button>
+                                        </div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
@@ -115,7 +119,7 @@ export default {
                 },
                 nextPage:2,
                 search_next_page:2,
-            restaurant_active:[],
+                restaurant_active:[],
             // filter
             filter:{
                 name:'',
@@ -138,6 +142,9 @@ export default {
         },
         
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
             // axios.get('/api/search/restaurants')
             axios.get('/api/search/restaurants?location='+this.filter.location)
              .then(response=>{ 

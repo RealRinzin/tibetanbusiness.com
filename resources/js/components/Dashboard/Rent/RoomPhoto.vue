@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard_photo">
     <div class="row">
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
@@ -11,10 +11,10 @@
     <!-- Photo iterations -->
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
+        <button class="btn btn-danger btn-sm delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
         <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#rent-room-photo"  v-bind:style='{ backgroundImage: `url(/storage/Rent/Room-Photos/${photo.path})`}'>
               <div class="overlay">
                 <div class="d-flex mt-auto ml-auto p-2">
-                  <button class="btn btn-danger btn-sm" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
                 </div>
               </div>
         </div>

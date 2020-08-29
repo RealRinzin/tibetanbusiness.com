@@ -153,6 +153,9 @@ export default {
     methods:{
         // loading
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
             // axios.get('/api/search/sales')
             axios.get('/api/search/sales?price_min=0&price_max=500000&location='+this.filter.location)
              .then(response=>{ 

@@ -41,6 +41,7 @@ body{
         margin: 0px 2px;
         a{
             color:#fff !important;
+            padding:.25rem !important;
         }
     }
     .nav-item:hover{
@@ -54,13 +55,13 @@ body{
     // avatar
     #avatar{
         img{
-            height:40px !important;
-            width: 40px !important;
+            height:25px !important;
+            width: 25px !important;
             border:solid .5px #ffffff;
         }
-        .nav-item{
-            border:0px !important;
-        }
+        // .nav-item{
+        //     border:0px !important;
+        // }
         .nav-item:hover{
             background-color: transparent;
             transition: .6s;

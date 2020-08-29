@@ -14,7 +14,7 @@ $factory->define(ServiceBasicInfo::class, function (Faker $faker) {
         'rate_color' =>$faker->sentence(1),
         'type' => $faker->sentence(20),
         'address' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100), // 48.8932,
-        'banner' => $faker->sentence(),
+        'banner' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg']),
         'location' => $faker->sentence(1),
         'mobile_no' => $faker->numberBetween($min = 1000, $max = 9000),
         'email' => $faker->sentence(),

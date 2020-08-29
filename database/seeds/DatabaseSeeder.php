@@ -57,11 +57,11 @@ class DatabaseSeeder extends Seeder
         // factory(RentFacility::class, 10)->create();
 
         // Job DB Seed
-        factory(JobBasicInfo::class,1)->create();
-        factory(JobApply::class, 1)->create();
-        factory(JobQuestion::class, 1)->create();
-        factory(JobQuestionReply::class,1)->create();
-        factory(JobInterest::class,1);
+        // factory(JobBasicInfo::class,1)->create();
+        // factory(JobApply::class, 1)->create();
+        // factory(JobQuestion::class, 1)->create();
+        // factory(JobQuestionReply::class,1)->create();
+        // factory(JobInterest::class,1);
 
         // Event
         // factory(EventBasicInfo::class,10)->create();

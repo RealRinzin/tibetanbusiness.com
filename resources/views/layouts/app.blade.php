@@ -34,10 +34,10 @@
         <div class="wrapper">
             <!-- Navbar -->
             @if(Request::is('/'))
-            <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100">
+            <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100 p-1">
                 <div class="container">
                     <a href="/" class="navbar-brand">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
+                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="elevation-3" style="opacity:.8;height:35px;width:35px">
                     </a>
                     <!-- SEARCH FORM -->
                     @if(Request::is('/'))
@@ -124,9 +124,10 @@
                         @else
                         <div id="avatar">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
-                                    <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle p-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
+                                    <span><img src="{{Auth::user()->avatar}}" alt="" class="ml-2 img-fluid img-circle"></span>
+                                    <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <!-- <nav-bar></nav-bar> -->
@@ -177,7 +178,7 @@
                                     {{ csrf_field() }}
                                     <span class="w-50">
                                         <div class="input-group input-group-md">
-                                            <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
+                                            <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="tb_location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                             <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
                                             <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
                                                 <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
@@ -200,17 +201,17 @@
                                     </span>
                                     <span class="w-50">
                                         <div class="input-group input-group-md">
-                                            <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
+                                            <input id="tb_service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
                                             <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
                                                 <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
+                                                <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/sale.png"></span> Sales</a></li>
                                                 <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
-                                                <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
-                                                <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/opportunity.png"></span> Jobs</a></li>
-                                                <li value="Services"><a href="#"><span class="mr-2"><img src="/img/mechanic.png"></span> Services</a></li>
-                                                <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/chef.png"></span> Restaurants</a></li>
+                                                <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/event.png"></span> Events</a></li>
+                                                <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/job.png"></span> Jobs</a></li>
+                                                <li value="Services"><a href="#"><span class="mr-2"><img src="/img/service.png"></span> Services</a></li>
+                                                <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/restaurant.png"></span> Restaurants</a></li>
                                             </ul>
                                             <div class="input-group-append">
                                                 <button id="link" class="btn btn-navbar" type="submit">
@@ -477,12 +478,9 @@
         $(window).on("scroll", function() {
             if ($(window).scrollTop() > 10) {
                 $("#navbar").addClass("sticky_header");
-                console.log("add");
             } else {
                 //remove the background property so it comes transparent again (defined in your css)
                 $("#navbar").removeClass("sticky_header");
-                console.log("remove");
-
             }
         });
         // Clearing the storage
@@ -507,13 +505,13 @@
         }
         $("#location_list li").click(function() {
             let term = $(this).attr("value")
-            $("#location_search").val(term);
+            $("#tb_location_search").val(term);
 
             locate = term;
             // Closing the dropdown
             $("#location_list").css("display", "none");
             // removing required class
-            $("#location_search").removeClass("required");
+            $("#tb_location_search").removeClass("required");
 
         });
         // location close
@@ -531,31 +529,31 @@
         })
         $("#service_list li").click(function() {
             let term = $(this).attr("value")
-            $("#service_search").val(term);
+            $("#tb_service_search").val(term);
             service = term;
             // Closing the dropdown
             $("#service_list").css("display", "none");
             // Removing required class
-            $("#service_search").removeClass("required");
+            $("#tb_service_search").removeClass("required");
         })
         // Adding text
         $("#link").click(function(event) {
             if (!service || !locate) {
                 // console.log("empty");
                 if (service) {
-                    $("#service_search").removeClass("required");
+                    $("#tb_service_search").removeClass("required");
                 } else {
                     // Required Service
-                    $("#service_search").addClass("required");
-                    $("#service_search").attr("placeholder", "Select Service");
+                    $("#tb_service_search").addClass("required");
+                    $("#tb_service_search").attr("placeholder", "Select Service");
                 }
                 // location required
                 if (locate) {
                     $("#location_search").removeClass("required");
                 } else {
                     // Required Location
-                    $("#location_search").addClass("required");
-                    $("#location_search").attr("placeholder", "Select Location");
+                    $("#tb_location_search").addClass("required");
+                    $("#tb_location_search").attr("placeholder", "Select Location");
                 }
                 event.preventDefault();
             } else {

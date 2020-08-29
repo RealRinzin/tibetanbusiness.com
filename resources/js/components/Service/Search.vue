@@ -165,6 +165,9 @@ export default {
         },
         // loading
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
             // axios.get('/api/search/services')
             axios.get('/api/search/services?location='+this.filter.location)
              .then(response=>{ 

@@ -177,6 +177,9 @@ export default {
         },
         // loading
         load_result(){
+            if(this.location == null){
+                this.filter.location = ""
+            };
             let today = new Date();
             let from = format(new Date(today), 'yyyy-MM-dd');
             this.filter.from = from;

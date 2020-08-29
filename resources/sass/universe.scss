@@ -1,34 +1,4 @@
 // Carousel
-
-.carousel-fade .carousel-item {
- opacity: 0;
- transition-duration: .6s;
- transition-property: opacity;
-         -webkit-transition: all ease-out .5s;
-        -moz-transition: all ease-out .5s;
-        -o-transition: all ease-out .5s;
-        transition: all ease-out .5s;
-}
-
-.carousel-fade  .carousel-item.active,
-.carousel-fade  .carousel-item-next.carousel-item-left,
-.carousel-fade  .carousel-item-prev.carousel-item-right {
-  opacity: 1;
-}
-
-.carousel-fade .active.carousel-item-left,
-.carousel-fade  .active.carousel-item-right {
- opacity: 0;
-}
-
-.carousel-fade  .carousel-item-next,
-.carousel-fade .carousel-item-prev,
-.carousel-fade .carousel-item.active,
-.carousel-fade .active.carousel-item-left,
-.carousel-fade  .active.carousel-item-prev {
- transform: translateX(0);
- transform: translate3d(0, 0, 0);
-}
 .background{
   background-size:cover;
   background-repeat: no-repeat;
@@ -76,7 +46,7 @@
 		  position: absolute;
 		  z-index: 10;
 		  top:100%;
-		  height: 270px;
+		  height: 200px;
 		  overflow: scroll;
 		  overflow-x:hidden;
     }
@@ -90,6 +60,9 @@
 		  position: absolute;
 		  z-index: 10;
       top:100%;
+		  height: 200px;
+        overflow: scroll;
+		  overflow-x:hidden;
       // padding-left:0px !important;
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;

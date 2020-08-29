@@ -45,47 +45,54 @@
     .upload_browser{
         visibility: hidden;
     }
-.upload_browser::before {
-  content: 'Select some files';
-  display: inline-block;
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
+    .upload_browser::before {
+    content: 'Select some files';
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    }
     /* Dashboard Gallery View
     Restaurant / Event / Rent/ Events
      */
-   .gallery_view{
-    height: 80px;
-    width: 100%;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-image: url('/img/placeholder.gif');
-    cursor: pointer;
-            .overlay{
-                display: none; 
-            }
-            &:hover{
+    #dashboard_photo{
+        .delete_btn{
+            z-index: 100;
+            right: 5%;
+            bottom: 20%;
+        }
+        // hover
+        .gallery_view{
+            height: 80px;
+            width: 100%;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-image: url('/img/placeholder.gif');
+            cursor: pointer;
                 .overlay{
-                     position: absolute;
+                    display: none; 
+                }
+                &:hover{
+                .overlay{
+                    position: absolute;
                     transition: 1s ease;
-                     width: 100%;
-                     height: 100%;
-                     display: flex;
-                     justify-content: center;
-                     align-items: center;
-                     background: rgba(0, 0, 0, 0.5);
-                 }
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: rgba(0, 0, 0, 0.5);
+                }
             }
-    // background-image:url('/img/food2.jpg');
-   }
+        }
+    }
 }
