@@ -161,6 +161,8 @@ use Illuminate\Http\Request;
     Route::get('rent/{rent_basic_info}/view_photos', 'Rent\RentViewPhotoController@photos');
     Route::get('rent/{rent_comment}/reply', 'Rent\RentCommentReplyController@reply');
     Route::get('rent_comment_replies/{id}', 'Rent\RentCommentReplyController@show');
+    Route::get('rent/list/max_fare', 'Rent\RentBasicInfoController@max_fare');
+    Route::get('rent/list/min_fare', 'Rent\RentBasicInfoController@min_fare');
 
         // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
 

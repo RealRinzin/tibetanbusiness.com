@@ -189,32 +189,34 @@ body{
 }
 
 #business_list{
-        .card{
+    a{
+        color:#6c757d !important;
+    }
+    .card{
             border-bottom-left-radius: 0px !important;
             border-bottom-right-radius: 0px !important;
         }
         // Lazysize loading
-      .lazyloading {
+    .lazyloading {
           opacity: 1;
           transition: 600ms opacity;
         //   background: #f7f7f7 url('/img/tibetanbusiness.png') no-repeat center;
         background: url('/img/loading-img.svg') no-repeat center;
           min-height: 60px;
       }
-      .lazyloaded {
+    .lazyloaded {
       opacity: 1;
       transition: 10ms opacity;
       }
     .banner{
         height:100px;
-        // background: red;
         position: relative;
-        // border-radius: 4px;
         background-size: cover;
-        // background-repeat: no-repeat;
-        // background-position: center center;
         background-image: url('/img/loading-img.svg') no-repeat center;
-        // background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
+        .price{
+            bottom:2px;
+            left:3px;
+        }
 
     }
     .info{
@@ -222,11 +224,13 @@ body{
             font-size: 12px !important;
             // color:#89959B;
             color: #3e4041;
-            font-weight: bold;
+            font-weight: bolder;
         }
         h6{
             color:#89959B;
+            // color: #3e4041;
             font-size: 11px;
+            font-weight: bolder;
         }
     }
 }

@@ -2,12 +2,16 @@
     <div class="row">
         <!-- Event -->
         <div class="col-md-10 mx-auto my-4" v-if="event_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/event.png" class="mr-2" alt="">POPULAR EVENTS</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" alt="">POPULAR - UPCOMING EVENTS</a>
+            </h6>
             <swiper class="row swiper" :options="settings">
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
-                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner"  data-sizes="auto"></div>
+                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner"  data-sizes="auto">
+                                <p v-if="event.entry_fee" class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry Fee:&#x20B9 {{event.entry_fee}}</p>
+                            </div>
                             </a>
                             <div class="info p-2">
                                 <h5>{{event.name}}</h5>
@@ -22,16 +26,19 @@
         </div>
         <!-- Sales -->
         <div class="col-md-10 mx-auto my-4" v-if="sale_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/sale.png" class="mr-2" alt="">POPULAR SALES</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Sales'"><img src="/img/sale.png" class="mr-2" alt="">POPULAR SALES</a>
+            </h6>
             <swiper class="row swiper" :options="settings">
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
+                            <p v-if="sale.price" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Price:&#x20B9 {{sale.price}}</p>
+                        </div>
                         </a>
                         <div class="info p-1">
                             <h5>{{sale.name}}</h5>
-                            <h5 class="pt-1 text-muted"><i class="fas fa-rupee-sign"></i> {{sale.price}}</h5>
                             <h6>{{sale.mobile_no}}</h6>
                             <h6>{{sale.location}}</h6>
                         </div>
@@ -43,16 +50,19 @@
         </div>
         <!-- Rents -->
         <div class="col-md-10 mx-auto my-4" v-if="rent_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Rents'"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</a>
+            </h6>
             <swiper class="row swiper" :options="settings" >
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto">
+                            <p v-if="rent.fare" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Rent:&#x20B9 {{rent.fare}}</p>
+                        </div>
                         </a>
                         <div class="info p-2">
                             <h5>{{rent.name}}</h5>
-                            <h5 class="pt-1 text-muted"><i class="fas fa-rupee-sign"></i> {{rent.fare}}</h5>
                             <h6>{{rent.mobile_no}}</h6>
                             <h6>{{rent.location}}</h6>
                         </div>
@@ -64,7 +74,9 @@
         </div>
         <!-- Jobs -->
         <div class="col-md-10 mx-auto my-4" v-if="job_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</a>
+            </h6>
             <swiper class="row swiper" :options="settings">
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
@@ -84,7 +96,9 @@
         </div>
         <!-- Services -->
         <div class="col-md-10 mx-auto my-4" v-if="service_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Services'"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</a>
+            </h6>
             <swiper class="row swiper" :options="settings">
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
@@ -104,7 +118,9 @@
         </div>
         <!-- Restaurants -->
         <div class="col-md-10 mx-auto my-4" v-if="restaurant_loading">
-            <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</h6>
+            <h6 class="small text-muted py-2 font-weight-bolder">
+                <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</a>
+            </h6>
             <swiper class="row swiper" :options="settings">
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                         <div class="card">

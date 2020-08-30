@@ -11866,6 +11866,10 @@ body {
   right: 10px;
 }
 
+#business_list a {
+  color: #6c757d !important;
+}
+
 #business_list .card {
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
@@ -11890,15 +11894,21 @@ body {
   background-image: url("/img/loading-img.svg") no-repeat center;
 }
 
+#business_list .banner .price {
+  bottom: 2px;
+  left: 3px;
+}
+
 #business_list .info h5 {
   font-size: 12px !important;
   color: #3e4041;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 #business_list .info h6 {
   color: #89959B;
   font-size: 11px;
+  font-weight: bolder;
 }
 
 footer {

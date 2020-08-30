@@ -237,11 +237,20 @@ class RentBasicInfoController extends Controller
      * Sidebar
      * Banner etc
      *  */
-        public function all(){
-        $rents =  RentBasicInfo::where('status', '=', true)
-            ->orderBy('created_at', 'desc')
-            ->inRandomOrder()->get();
-        return $rents->toArray($rents);
+    public function max_fare(){
+        $max = RentBasicInfo::where('status','=',true)->max('fare');
+        return $max;
+    }
+    public function min_fare()
+    {
+        $min = RentBasicInfo::where('status', '=', true)->min('fare');
+        return $min;
+    }
+    public function all(){
+    $rents =  RentBasicInfo::where('status', '=', true)
+        ->orderBy('created_at', 'desc')
+        ->inRandomOrder()->get();
+    return $rents->toArray($rents);
     }
 
     public function featured_ad()

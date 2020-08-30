@@ -29,8 +29,8 @@
                             </form>
                         </div>
                         <div v-else>
-                            <p class="pt-3">Please login to leave comment</p>
-                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
+                            <p class="pt-3 text-muted">Please login to leave comment</p>
+                            <p><a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                             <p class="text-muted" style="font-size:12px"><timeago :datetime="comment.created_at" /></p>
                             <p class="text-muted">{{comment.comment}}</p>
                             <!-- Comment Replies -->
-                            <replies :id="comment.id"></replies>
+                            <replies :id="comment.id" :login_status="is_logged"></replies>
                         </div>
                     </div>
                 </div>

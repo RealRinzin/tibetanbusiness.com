@@ -5,7 +5,7 @@
                 <div class="col-md-12 mx-auto">
                     <div class="row">
                         <div class="col-md-3" id="search_mobile">
-                            <div class="card p-3 mt-3" style="padding-bottom:0px !important" id="dropdown_lists">
+                            <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
 
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-light" role="alert">
+                            <div class="alert alert-danger p-2 small" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="col-md-12 py-2">

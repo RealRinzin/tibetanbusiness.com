@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-light" role="alert">
+                            <div class="alert alert-danger p-2 small" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="py-2">
@@ -83,7 +83,7 @@
                                                 <li class="ng-binding">Size: {{rent.accomodation_size}} Person</li>
                                             </ul>
                                         </div>
-                                        <div class="rate" v-if="rent.rate >0"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
+                                        <div class="rate" v-if="rent.rate >0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-warning fa-1x mr-1"></i>{{rent.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{rent.name}}</h6>
@@ -153,7 +153,8 @@ export default {
             result:[],
             // Dropdown list
             locations:{},
-
+            // Max and Min
+            fare_max:{},
         }
     },
     /**
@@ -166,16 +167,18 @@ export default {
         },
         // loading
         load_result(){
+            // location set
             if(this.location == null){
                 this.filter.location = ""
             };
             // Slider Range
             $( function() {
+                // Range setting
                 $( "#slider-range" ).slider({
                 range: true,
                 min: 0,
-                max: 100000,
-                values: [ 0, 300000],
+                max:5681,
+                values: [0, 8999 ],
                 slide: function( event, ui ) {
                     $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
                 }

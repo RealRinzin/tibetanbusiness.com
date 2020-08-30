@@ -126,7 +126,7 @@
                                                     <p class="text-success" v-if="restaurant.facility[0].ac == 1"> <i class="fas fa-fan mr-1"></i>AC</p>
                                                     <p class="text-danger" v-else> <i class="fas fa-fan mr-1"></i>AC</p>
                                                 </div>
-                                                <div class="col-md-3 col-sm-6 col-6 facility">
+                                                <div class="col-md-3 col-sm-6 col-6 facility" v-if="restaurant.facility[0] != null">
                                                     <h6 class="mb-3 text-muted">More</h6>
                                                     <p class="text-success" v-if="restaurant.facility[0].roof_top == 1"><i class="fas fa-building mr-1"></i>Roof Top</p>
                                                     <p class="text-danger" v-else><i class="fas fa-building mr-1"></i>Roof Top</p>

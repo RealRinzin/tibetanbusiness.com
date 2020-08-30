@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-light small" role="alert">
+                            <div class="alert alert-danger p-2 small" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="py-2">

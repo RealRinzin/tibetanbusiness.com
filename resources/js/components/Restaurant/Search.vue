@@ -46,7 +46,7 @@
                         </div>
                         <!-- Result -->
                         <div class="col-md-6 col-sm-6" id="search">
-                            <div class="alert alert-light" role="alert">
+                            <div class="alert alert-danger p-2 small" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
                             <div class="col-md-12 py-2">
