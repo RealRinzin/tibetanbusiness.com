@@ -20,7 +20,7 @@
                         </div>
                         <div v-else>
                             <p class="pt-3 text-muted">Please login to leave Questions.</p>
-                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
+                            <p><a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                                 </small>
                             </h6>
                             <p class="text-muted">{{question.question}}</p>
-                            <replies :id="question.id"></replies>
+                            <replies :id="question.id" :login_status="is_logged"></replies>
                             </div>
                         </div>
                     </div>

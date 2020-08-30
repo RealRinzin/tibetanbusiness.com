@@ -54,7 +54,7 @@
 </template>
 <script>
 export default {
-    props:['service_id'],
+    props:['service_id','login_status'],
     data(){
         return{
             id:this.service_id,

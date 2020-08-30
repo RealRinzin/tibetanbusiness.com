@@ -7,7 +7,7 @@
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
-                            <div class="banner rounded-top lazyload" v-bind:style='{ backgroundImage: `url(storage/Event/Banner/${event.banner})`}'></div>
+                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner"  data-sizes="auto"></div>
                             </a>
                             <div class="info p-2">
                                 <h5>{{event.name}}</h5>
@@ -27,7 +27,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Sale/Banner/${sale.banner})`}'></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{sale.name}}</h5>
@@ -48,7 +48,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Rent/Banner/${rent.banner})`}'></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-2">
                             <h5>{{rent.name}}</h5>
@@ -69,7 +69,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Job/Banner/${job.banner})`}'></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{job.title}}</h5>
@@ -89,7 +89,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
-                        <div class="banner" v-bind:style='{ backgroundImage: `url(storage/Service/Banner/${service.banner})`}'></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{service.name}}</h5>
@@ -109,7 +109,7 @@
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                         <div class="card">
                             <a v-bind:href="'restaurant/'+restaurant.id">
-                            <div class="banner rounded-top lazyload" v-bind:style='{ backgroundImage: `url(storage/Restaurant/Banner/${restaurant.banner})`}'></div>
+                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
                             </a>
                             <div class="info p-2">
                                 <h5>{{restaurant.name}}</h5>

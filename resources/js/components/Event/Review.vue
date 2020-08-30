@@ -32,8 +32,8 @@
                             </form>
                         </div>
                         <div v-else>
-                            <p class="pt-3">Please login to leave comment</p>
-                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
+                            <p class="pt-3 text-muted">Please login to leave comment</p>
+                            <p><a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                             </h6>
                             <small class="text-muted" style="font-size:12px"><timeago :datetime="event.created_at" /></small>
                             <p class="text-muted">{{event.review}}</p>
-                            <replies :id="event.id"></replies>
+                            <replies :id="event.id" :login_status="is_logged"></replies>
                         </div>
                     </div>
                 </div>

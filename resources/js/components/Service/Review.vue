@@ -3,7 +3,7 @@
         <div class="card">
             <div class="row p-3">
                 <div class="col-md-12">
-                    <h5>Write Reviews</h5>
+                    <h6 class="text-dark">Write Reviews</h6>
                         <div v-if="is_logged">
                             <form @submit.prevent="review_post(id)" data-vv-scope="service_valid_review_form">
                                 <p><star-rating 
@@ -32,8 +32,8 @@
                             </form>
                         </div>
                         <div v-else>
-                            <p class="pt-3">Please login to leave comment</p>
-                            <p><a href="#" class="btn btn-danger btn-md" data-toggle="modal" data-target="#login">Login </a></p>
+                            <p class="pt-3 text-muted">Please login to leave comment</p>
+                            <p><a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
         <div class="card">
             <div class="row p-3">
                 <div class="col-12">
-                    <h5 class="text-dark">Reviews<span class="text-muted ml-2 small">({{total_reviews}})</span></h5>
+                    <h6 class="text-dark">Reviews<span class="text-muted ml-2 small">({{total_reviews}})</span></h6>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                         </h6>
                         <small class="text-muted" style="font-size:12px"><timeago :datetime="service.created_at" /></small>
                         <p class="text-muted">{{service.review}}</p>
-                            <replies :id="service.id"></replies>
+                            <replies :id="service.id" :login_status="is_logged"></replies>
                         </div>
                     </div>
                 </div>

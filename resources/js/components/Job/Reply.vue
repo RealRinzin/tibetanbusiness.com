@@ -1,6 +1,11 @@
 <template>
     <div>
-        <div class="d-flex justify-content-center">
+        <div v-if="!login_status">
+            <div class="justify-content-start">
+                <p class="m-0 text-muted small">Please <a href="#" class="text-danger font-weight-bolder" data-toggle="modal" data-target="#login">Login </a> to  reply</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center" v-if="login_status">
             <div class="text-left w-75">
                 <form @submit.prevent="reply_comment(id)" data-vv-scope="valid_reply_form">
                     <div class="input-group input-group-sm">
@@ -69,7 +74,7 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id','login_status'],
     data(){
         return{
             replies:{},

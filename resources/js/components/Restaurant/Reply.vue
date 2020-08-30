@@ -1,7 +1,12 @@
 <template>
     <div>
+        <div v-if="!login_status">
+            <div class="justify-content-start">
+                <p class="m-0 text-muted small">Please <a href="#" class="text-danger font-weight-bolder" data-toggle="modal" data-target="#login">Login </a> to  reply</p>
+            </div>
+        </div>
         <div class="d-flex justify-content-center">
-            <div class="text-left w-75">
+            <div class="text-left w-75" v-if="login_status">
                 <form @submit.prevent="reply_comment(id)" data-vv-scope="valid_reply_form">
                     <div class="input-group input-group-sm">
                         <input type="text" v-validate="'required|min:1|max:255'" v-model="create_reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
@@ -15,6 +20,9 @@
                     </div>
                 </form>
             </div>
+            <!-- <div v-else class="justify-content-start">
+                <p class="m-0 text-muted small">Please <a href="#" class="text-danger font-weight-bolder" data-toggle="modal" data-target="#login">Login </a> to  reply</p>
+            </div> -->
         </div>
         <div class="media mt-3" v-for="(reply,index) in replies">
             <a class="pr-3" href="#">
@@ -30,7 +38,7 @@
                     </small>
                 </h6>
                 <p class="text-muted">
-                    {{reply.reply}}
+                    {{reply.reply}} 
                 </p>
             </div>
         </div>
@@ -71,12 +79,13 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['id','login_status'],
     data(){
         return{
             replies:{},
             reply_id:'',
             update_reply:{},
+            is_logged:this.login_status, //login status check
             load_more_button:false, //load more button
             nextPage:2, // page numbers
             user_id:localStorage.getItem('user_id'), //User ID
@@ -189,6 +198,8 @@ export default {
     },
     mounted(){
         this.load_replies();
+        console.log(this.login_status);
+        // login stauts for
     }
 }
 </script>
