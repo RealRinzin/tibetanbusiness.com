@@ -54,11 +54,13 @@
                                             <div id="slider-range"></div>
                                         </div>
                                         <div class="col-12 py-2">
+                                            <form class="was-validated">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="entry_free" v-model="filter.entry_status" @change="entry_free_status(status)">
                                                 <label class="custom-control-label text-muted" for="entry_free">Entry Free</label>
-                                                <!-- <div class="invalid-feedback">Example invalid feedback text</div> -->
+                                                <div class="invalid-feedback">Example invalid feedback text</div>
                                             </div>
+                                            </form>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
@@ -216,7 +218,6 @@ export default {
                 "-"+$("#slider-range").slider( "values", 1 ) );
                     // console.log(this.number);
             } );
-            console.log(this.filter);
             // Get the result
             axios.get('/api/search/events?from='
             +this.filter.from+
@@ -328,6 +329,7 @@ export default {
         reset(){
             let today = new Date();
             let from = format(new Date(today), 'yyyy-MM-dd');
+            this.status = true;
             // Reset
             this.empty_result='';
             // filter paramater
@@ -335,6 +337,7 @@ export default {
                 name:'',
                 location:'',
                 category:'',
+                entry_status:false,
                 fee_min:0,
                 fee_max:1000000,
                 from:from,
