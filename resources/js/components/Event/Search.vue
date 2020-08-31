@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-2" v-if="status">
+                                        <div class="col-md-12 col-sm-12 py-2" v-show="status">
                                             <small class="small text-muted">Entry Fee:₹ <span class="text-muted"></span></small>
                                             <!-- <input type="range" v-model="filter.entry_fee" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size"> -->
                                             <input type="text"  id="entry_fee" class="small text-muted my-2" readonly  style="border:0;">
@@ -216,12 +216,14 @@ export default {
                 "-"+$("#slider-range").slider( "values", 1 ) );
                     // console.log(this.number);
             } );
+            console.log(this.filter);
             // Get the result
             axios.get('/api/search/events?from='
             +this.filter.from+
             '&to='+this.filter.to+
             '&fee_min='+this.filter.fee_min+
             '&fee_max='+this.filter.fee_max+
+            '&entry_free='+this.filter.entry_status+
             '&location='+this.filter.location
             )
              .then(response=>{ 
@@ -259,6 +261,7 @@ export default {
             '&category='+this.filter.category+
             '&from='+this.filter.from+
             '&to='+this.filter.to+
+            '&entry_free='+this.filter.entry_status+
             '&fee_min='+this.filter.fee_min+
             '&fee_max='+this.filter.fee_max
             +'&page=1')
@@ -290,6 +293,7 @@ export default {
             '&category='+this.filter.category+
             '&from='+this.filter.from+
             '&to='+this.filter.to+
+            '&entry_free='+this.filter.entry_status+
             '&fee_min='+this.filter.fee_min+
             '&fee_max='+this.filter.fee_max+
             '&page='+this.nextPage)

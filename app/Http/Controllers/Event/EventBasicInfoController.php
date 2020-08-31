@@ -262,9 +262,16 @@ class EventBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
+        // return $request;
         $min = (int)$request->fee_min;
         $max = (int)$request->fee_max;
-        if($request['entry_free'] == null){
+
+        if($request->entry_free === 'true'){
+            $status = true;
+        }else{
+            $status = false;
+        }
+        if(!$status){
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
@@ -273,18 +280,19 @@ class EventBasicInfoController extends Controller
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }else{
+            // return "not empty";
             $fee_charged = true;
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
                 // ->where('entry_free', [$request->entry_free])
                 ->where('entry_free', $fee_charged)
+                // ->whereBetween('entry_fee', [$min, $max])
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }
 
-        // Original script
         // return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
         //     ->where('location', 'like', "$request->location%")
         //     ->where('category', 'like', "$request->category%")
