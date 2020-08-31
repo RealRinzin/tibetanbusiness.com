@@ -48,10 +48,11 @@
                             <div class="width-25">
                                 <button class="btn btn-secondary btn-md"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{event.rate}}</button>
                                 <span>
-                                    <label class="switch">
-                                    <input type="checkbox" v-model="event.status">
-                                    <span class="slider round"></span>
-                                    </label>
+                                    <toggle-button 
+                                        :value="event.status"
+                                        :disabled="true"
+                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                 </span>
                             </div>
                             <ul class="nav nav-tabs mt-3" id="custom-content-below-tab" role="tablist">

@@ -7,16 +7,16 @@
             <div class="row">
                 <div class="col-md-10 mx-auto">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- banner -->
                             <div class="card text-center">
                                 <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
                                     <div class="overlay">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <i class="fas fa-camera fa-5x text-white"></i>
+                                                <i class="fas fa-camera fa-3x text-white"></i>
                                             </div>
-                                            <div class="col-md-12 py-4">
+                                            <div class="col-8 mx-auto">
                                                 <label  for="rent_banner" class="text-center btn btn-danger btn-md"><i class="fas fa-cloud-upload-alt mr-2"></i>Upload Image</label>
                                                 <input type="file"  id="rent_banner" name="rent_banner" class="upload_browser" @change="banner_event">
                                             </div>
@@ -27,7 +27,7 @@
                                     <div class="overlay">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button class="btn btn-info btn-md" @click="update_banner(rent.id)">
+                                                <button class="btn btn-info btn-md w-100" @click="update_banner(rent.id)">
                                                     <h5><i class="fas fa-cloud-upload-alt mr-2"></i></h5>
                                                     <p>Upload</p>
                                                 </button>
@@ -37,21 +37,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="card">
                                 <img src="/img/map.jpeg" alt="" height="250">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12" id="nav-tab">
                             <div class="width-25">
                                 <button class="btn btn-secondary btn-md"> <i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i><i class="fas fa-star text-warning fa-1x mr-2"></i>{{rent.rate}}</button>
                                 <span>
-                                    <label class="switch">
-                                    <input type="checkbox" v-model="rent.status">
-                                    <span class="slider round"></span>
-                                    </label>
+                                    <toggle-button 
+                                        :value="rent.status"
+                                        :disabled="true"
+                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
                                 </span>
                             </div>
                             <ul class="nav nav-tabs mt-3" id="custom-content-below-tab" role="tablist">

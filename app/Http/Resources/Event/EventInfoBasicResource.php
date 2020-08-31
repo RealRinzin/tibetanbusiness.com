@@ -23,6 +23,7 @@ class EventInfoBasicResource extends JsonResource
             'user_id' => $this->user_id,
             'rate' => $this->rate,
             'rate_color' => $this->rate_color,
+            'entry_free' => $this->entry_free,
             'rating' => $this->event_reviews->count() > 0 ? round($this->event_reviews->sum('rate') / $this->event_reviews->count(), 1) : 0,
             'interested' => $this->event_interests->count(),
             'name' => $this->name,

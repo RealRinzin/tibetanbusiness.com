@@ -21,6 +21,7 @@ class CreateEventsBasicInfoTable extends Migration
             $table->string('name', 160);
             $table->string('banner', 80);
             $table->string('email', 100);
+            $table->boolean('entry_free');
             $table->string('location', 30);
             $table->string('category', 100);
             $table->string('address', 100);

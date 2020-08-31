@@ -277,8 +277,9 @@ export default {
             '&page='+this.nextPage)
             // axios.get('/api/search/events?page='+)
             .then(response=>{
+                console.log(response.data);
                 if(response.data.meta.current_page <= response.data.meta.last_page){
-                    this.nextPage = response.data.current_page + 1;
+                    this.nextPage = response.data.meta.current_page + 1;
                     this.isLoading = false; //Loading true
                     // loadmore Button
                     if(response.data.meta.current_page == response.data.meta.last_page){

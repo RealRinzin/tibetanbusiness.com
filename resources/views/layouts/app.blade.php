@@ -8,9 +8,16 @@
     <meta name="description" content="@yield('description')">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" sizes="72x72" href="{{asset('tibetanbusiness.png')}}">
+    <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
     <!-- Fonts -->
+
+    <!-- META -->
+    <meta property="og:title" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="" />
+    <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- JQUERY UI -->
@@ -28,7 +35,9 @@
     <!-- jquery UI -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
     <!-- CSRF TOKEN -->
-    <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?></script>
+    <script>
+        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+    </script>
 </head>
 
 <body>

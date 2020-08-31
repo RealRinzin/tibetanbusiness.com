@@ -198,7 +198,6 @@ export default {
     },
     mounted(){
         this.load_replies();
-        console.log(this.login_status);
         // login stauts for
     }
 }

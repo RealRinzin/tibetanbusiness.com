@@ -264,12 +264,34 @@ class EventBasicInfoController extends Controller
     {
         $min = (int)$request->fee_min;
         $max = (int)$request->fee_max;
-        return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
-            ->where('location', 'like', "$request->location%")
-            ->where('category', 'like', "$request->category%")
-            ->whereBetween('start_date', [$request->from, $request->to])
-            ->whereBetween('entry_fee', [$min, $max])
-            ->where('start_date', '>=', date('Y-m-d'))
-            ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+        if($request['entry_free'] == null){
+            return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
+                ->where('location', 'like', "$request->location%")
+                ->where('category', 'like', "$request->category%")
+                ->whereBetween('start_date', [$request->from, $request->to])
+                ->whereBetween('entry_fee', [$min, $max])
+                ->where('start_date', '>=', date('Y-m-d'))
+                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+        }else{
+            $fee_charged = true;
+            return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
+                ->where('location', 'like', "$request->location%")
+                ->where('category', 'like', "$request->category%")
+                // ->where('entry_free', [$request->entry_free])
+                ->where('entry_free', $fee_charged)
+                ->whereBetween('start_date', [$request->from, $request->to])
+                ->where('start_date', '>=', date('Y-m-d'))
+                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+        }
+
+        // Original script
+        // return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
+        //     ->where('location', 'like', "$request->location%")
+        //     ->where('category', 'like', "$request->category%")
+        //     ->whereBetween('start_date', [$request->from, $request->to])
+        //     ->where('entry_free', false)
+        //     ->whereBetween('entry_fee', [$min, $max])
+        //     ->where('start_date', '>=', date('Y-m-d'))
+        //     ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
     }
 }

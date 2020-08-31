@@ -12,6 +12,7 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
         'name' => $faker->sentence(1),
         'banner' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg']),
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 10), // 48.8932,
+        'entry_free' => $faker->randomElement([true,false]),
         'rate_color' => $faker->sentence(),
         'email' => $faker->sentence(),
         'location' => $faker->sentence(1),

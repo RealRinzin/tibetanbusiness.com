@@ -100,7 +100,7 @@
                     <!-- toggles -->
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" v-if="operation != null">
                                 <div class="card facility">
                                     <div class="p-2">
                                     <button class="btn btn-info btn-sm">Operating Days</button>
@@ -189,129 +189,129 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Facilities day -->
-                                <div class="col-md-12">
-                                    <div class="card facility">
-                                    <div class="p-2">
-                                    <button class="btn btn-info btn-sm">Facilities</button>
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- <ul> -->
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
-                                                    <toggle-button 
-                                                        :value="facilities.home_delivery"
-                                                        :v-model="facilities.home_delivery"
-                                                        @change="update_facility('home_delivery',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-wifi fa-1x text-secondary mr-2"></i> WiFi </span>
-                                                    <toggle-button 
-                                                        :value="facilities.wifi"
-                                                        :v-model="facilities.wifi"
-                                                        @change="update_facility('wifi',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fab fa-cc-visa mr-1 fa-1x text-secondary mr-2"></i> Card Payment </span>
-                                                    <toggle-button 
-                                                        :value="facilities.card_payment"
-                                                        :v-model="facilities.card_payment"
-                                                        @change="update_facility('card_payment',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fa fa-fan mr-1 fa-1x text-secondary mr-2"></i> AC </span>
-                                                    <toggle-button 
-                                                        :value="facilities.ac"
-                                                        :v-model="facilities.ac"
-                                                        @change="update_facility('ac',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-glass-cheers text-secondary mr-2"></i> Party Booking </span>
-                                                    <toggle-button 
-                                                        :value="facilities.party_booking"
-                                                        :v-model="facilities.party_booking"
-                                                        @change="update_facility('party_booking',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Veg </span>
-                                                    <toggle-button 
-                                                        :value="facilities.veg"
-                                                        :v-model="facilities.veg"
-                                                        @change="update_facility('veg',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Non-Veg </span>
-                                                    <toggle-button 
-                                                        :value="facilities.none_veg"
-                                                        :v-model="facilities.none_veg"
-                                                        @change="update_facility('none_veg',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking </span>
-                                                    <toggle-button 
-                                                        :value="facilities.parking_lot"
-                                                        :v-model="facilities.parking_lot"
-                                                        @change="update_facility('parking_lot',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-building text-secondary mr-2"></i> Roof Top</span>
-                                                    <toggle-button 
-                                                        :value="facilities.roof_top"
-                                                        :v-model="facilities.roof_top"
-                                                        @change="update_facility('roof_top',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <li class="d-flex">
-                                                    <span class="text-dark flex-grow-1"><i class="fas fa-beer text-secondary mr-2"></i>Beverage</span>
-                                                    <toggle-button 
-                                                        :value="facilities.beverage"
-                                                        :v-model="facilities.beverage"
-                                                        @change="update_facility('beverage',facilities.id)"
-                                                        :color="{checked:'#28a745',unchecked:'#dc4245'}"
-                                                        :labels="{checked: 'On', unchecked: 'Off'}"/>
-                                                </li>
-                                            </div>
-                                        </div>
-                                        <!-- </ul> -->
-                                    </div>
+                        <!-- Facilities day -->
+                            <div class="col-md-12" v-if="facilities != null">
+                                <div class="card facility">
+                                <div class="p-2">
+                                <button class="btn btn-info btn-sm">Facilities</button>
                                 </div>
+                                <div class="card-body">
+                                    <!-- <ul> -->
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-motorcycle fa-1x text-secondary mr-2"></i> Home Delivery </span>
+                                                <toggle-button 
+                                                    :value="facilities.home_delivery"
+                                                    :v-model="facilities.home_delivery"
+                                                    @change="update_facility('home_delivery',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-wifi fa-1x text-secondary mr-2"></i> WiFi </span>
+                                                <toggle-button 
+                                                    :value="facilities.wifi"
+                                                    :v-model="facilities.wifi"
+                                                    @change="update_facility('wifi',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fab fa-cc-visa mr-1 fa-1x text-secondary mr-2"></i> Card Payment </span>
+                                                <toggle-button 
+                                                    :value="facilities.card_payment"
+                                                    :v-model="facilities.card_payment"
+                                                    @change="update_facility('card_payment',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fa fa-fan mr-1 fa-1x text-secondary mr-2"></i> AC </span>
+                                                <toggle-button 
+                                                    :value="facilities.ac"
+                                                    :v-model="facilities.ac"
+                                                    @change="update_facility('ac',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-glass-cheers text-secondary mr-2"></i> Party Booking </span>
+                                                <toggle-button 
+                                                    :value="facilities.party_booking"
+                                                    :v-model="facilities.party_booking"
+                                                    @change="update_facility('party_booking',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Veg </span>
+                                                <toggle-button 
+                                                    :value="facilities.veg"
+                                                    :v-model="facilities.veg"
+                                                    @change="update_facility('veg',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="far fa-stop-circle text-secondary mr-2"></i> Non-Veg </span>
+                                                <toggle-button 
+                                                    :value="facilities.none_veg"
+                                                    :v-model="facilities.none_veg"
+                                                    @change="update_facility('none_veg',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-car text-secondary mr-2"></i> Parking </span>
+                                                <toggle-button 
+                                                    :value="facilities.parking_lot"
+                                                    :v-model="facilities.parking_lot"
+                                                    @change="update_facility('parking_lot',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-building text-secondary mr-2"></i> Roof Top</span>
+                                                <toggle-button 
+                                                    :value="facilities.roof_top"
+                                                    :v-model="facilities.roof_top"
+                                                    @change="update_facility('roof_top',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <li class="d-flex">
+                                                <span class="text-dark flex-grow-1"><i class="fas fa-beer text-secondary mr-2"></i>Beverage</span>
+                                                <toggle-button 
+                                                    :value="facilities.beverage"
+                                                    :v-model="facilities.beverage"
+                                                    @change="update_facility('beverage',facilities.id)"
+                                                    :color="{checked:'#28a745',unchecked:'#dc4245'}"
+                                                    :labels="{checked: 'On', unchecked: 'Off'}"/>
+                                            </li>
+                                        </div>
+                                    </div>
+                                    <!-- </ul> -->
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>

@@ -1,19 +1,14 @@
 <template>
     <div>
         <vue-headful
+        :url="'https://tibetanbusiness.com/restaurant/'+restaurant.id"
         :title="restaurant.name"
+        :image="'/storage/Restaurant/Banner/'+restaurant.banner"
         :description="restaurant.location"
-        :image="restaurant.banner"
         lang="langauge"
-        url="https://tibetanbusiness.com"
         />
-<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
- <social-sharing url="https://vuejs.org/"
-                      title="The Progressive JavaScript Framework"
-                      description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
-                      quote="Vue is a progressive framework for building user interfaces."
-                      hashtags="vuejs,javascript,framework"
-                      twitter-user="vuejs"
+<div class="fb-share-button" data-href="ttps://tibetanbusiness.com:8890" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+ <social-sharing 
                       inline-template>
   <div>
 
@@ -208,12 +203,9 @@
                 // total_comments:0,
                 // comments_lazy_load:false,
                 sharing: {
-                    url: 'https://news.vuejs.org/issues/180',
-                    title: 'Say hi to Vite! A brand new, extremely fast development setup for Vue.',
-                    description: 'This week, I’d like to introduce you to "Vite", which means "Fast". It’s a brand new development setup created by Evan You.',
-                    quote: 'The hot reload is so fast it\'s near instant. - Evan You',
-                    hashtags: 'vuejs,vite,javascript',
-                    twitterUser: 'youyuxi'
+                    url: '',
+                    title: '',
+                    description: ''
                 },
                 networks: [
                         { network: 'facebook', name: 'Facebook', icon: 'fab fah fa-lg fa-facebook-f', color: '#1877f2' },
@@ -236,7 +228,11 @@
                     // loading
                     this.isLoading = false; //Loading true
                     this.loading = true;
-
+                    // sharing
+                    this.sharing={
+                        url:this.restaurant.name,
+                        title:this.restaurant.name,
+                    }
                 })
             }
     },
