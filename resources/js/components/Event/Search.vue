@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                     <div class="row py-2">
-                                        <div class="col-md-12 col-sm-12 pt-1">
+                                        <div class="col-md-12 col-sm-12 py-2">
                                             <div class="row">
                                                 <div class="col-12"> 
                                                     <label for="from" class="small text-muted">From</label>
@@ -47,11 +47,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 py-2">
+                                        <div class="col-md-12 col-sm-12 py-2" v-if="status">
                                             <small class="small text-muted">Entry Fee:₹ <span class="text-muted"></span></small>
                                             <!-- <input type="range" v-model="filter.entry_fee" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size"> -->
                                             <input type="text"  id="entry_fee" class="small text-muted my-2" readonly  style="border:0;">
                                             <div id="slider-range"></div>
+                                        </div>
+                                        <div class="col-12 py-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="entry_free" v-model="filter.entry_status" @change="entry_free_status(status)">
+                                                <label class="custom-control-label text-muted" for="entry_free">Entry Free</label>
+                                                <!-- <div class="invalid-feedback">Example invalid feedback text</div> -->
+                                            </div>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
                                             <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
@@ -134,6 +141,7 @@ export default {
             load_more_button : false,
             total:0,
             rating:0,
+            status:true,
             empty_result:'',
             // event:[], // Restaurants Object
             events:{
@@ -147,6 +155,7 @@ export default {
                 name:'',
                 location:this.location,
                 category:'',
+                entry_status:false,
                 fee_min:0,
                 fee_max:10000000,
                 from:'',
@@ -174,6 +183,15 @@ export default {
         // star
         setRating: function(rating){
         this.rating= rating;
+        },
+        entry_free_status(status){
+            if(status){
+                this.status = false;
+                this.load_result();
+            }else{
+                this.status = true
+                this.load_result();
+            }
         },
         // loading
         load_result(){
