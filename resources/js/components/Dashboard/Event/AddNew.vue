@@ -210,10 +210,10 @@ export default {
             if(status){
                 this.status = false;
                 // this.load_result();
-                this.event.entry_fee = ""
+                this.event.entry_fee = 0
             }else{
                 this.status = true
-                this.event.entry_fee = ""
+                this.event.entry_fee = 0
             }
         },
         /**
@@ -238,8 +238,9 @@ export default {
        add_event(){ 
         // Undefined check
            if(this.event.entry_fee === undefined){
-               this.event.entry_fee = " "
+               this.event.entry_fee = 0
            }
+           console.log(this.event);
         // Checking the entry free status
             if(this.event.entry_free){
                 this.event.entry_free = true;

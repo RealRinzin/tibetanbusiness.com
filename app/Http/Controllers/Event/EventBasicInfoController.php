@@ -274,11 +274,11 @@ class EventBasicInfoController extends Controller
 
         if(!$status){
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
-                ->where('location', 'like', "$request->location%")
+                ->where('location', 'like', "%$request->location")
                 ->where('category', 'like', "$request->category%")
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->whereBetween('entry_fee', [$min, $max])
-                // ->OrWhere('entry_fee','=',NULL)
+                // ->orWhere('entry_fee','=',NULL)
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }else{

@@ -92,7 +92,7 @@
                                         <a v-bind:href="'/event/'+event.id">
                                         <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="btn small" v-if="event.entry_fee">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
+                                                <li class="btn small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
                                                 <li class="btn small" v-else>Free Entry</span></li>
                                                 <li class="btn small">Date: {{event.start_date |date}}</li>
                                                 <li class="btn small">Type:{{event.category}}</li>
