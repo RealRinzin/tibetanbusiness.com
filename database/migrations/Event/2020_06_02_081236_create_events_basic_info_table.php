@@ -21,12 +21,12 @@ class CreateEventsBasicInfoTable extends Migration
             $table->string('name', 160);
             $table->string('banner', 80);
             $table->string('email', 100);
-            $table->boolean('entry_free');
+            $table->boolean('entry_free')->nullable();
             $table->string('location', 30);
+            $table->string('entry_fee')->nullable();
             $table->string('category', 100);
             $table->string('address', 100);
             $table->string('mobile_no', 12);
-            $table->string('entry_fee');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description', 225)->nullable();

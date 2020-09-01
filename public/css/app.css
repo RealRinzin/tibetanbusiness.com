@@ -11715,6 +11715,11 @@ Background resource loading
   background: rgba(0, 0, 0, 0.5);
 }
 
+#dashboard .add_edit_label label {
+  color: #6c757d !important;
+  font-size: 80%;
+}
+
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;

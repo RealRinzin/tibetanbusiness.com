@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="modal fade" id="event_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade add_edit_label" id="event_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
@@ -37,14 +37,35 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-7" v-show="status">
+                                                <div class="form-group">
+                                                    <label for="entry_fee" class="">Entry Fee<small class="text-success p-1">Optional</small></label>
+                                                    <input type="text" v-validate="'numeric|max:6'" v-model="event.entry_fee" name="entry_fee" class="form-control" id="entry_fee" aria-describedby="emailHelp" placeholder="Entry Fee">
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.entry_fee')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.entry_fee')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 pt-4">
+                                                <form class="was-validated">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="entry_free" v-model="event.entry_free" @change="entry_free_status(status)">
+                                                        <label class="custom-control-label text-muted" for="entry_free">Entry Free</label>
+                                                        <div class="invalid-feedback"></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
                                             <label for="entry_fee">Entry Fee<small class="text-success p-1">Optional</small></label>
                                             <input type="text" v-validate="'numeric|max:6'" v-model="event.entry_fee" name="entry_fee" class="form-control" id="entry_fee" aria-describedby="emailHelp" placeholder="Entry Fee">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_add_form.entry_fee')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_add_form.entry_fee')">{{ error }}</span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
@@ -71,7 +92,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                            <input type="text" v-validate="'max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_add_form.email')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_add_form.email')">{{ error }}</span>
@@ -92,7 +113,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="start_time"><small>Starts at </small><small class="text-success p-1">Optional</small></label>
+                                                    <label for="start_time">Starts at<small class="text-success p-1">Optional</small></label>
                                                     <input type="time"  v-model="event.start_time" name="start_time" class="form-control" id="start_time" aria-describedby="emailHelp" placeholder="Starting Date">
                                                     <div class="valid-feedback"></div>
                                                     <div v-if="errors.has('event_validate_add_form.start_time')" class="invalid-feedback">
@@ -102,7 +123,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="start_time"><small>Ends at</small><small class="text-success p-1"> Optional</small></label>
+                                                    <label for="start_time">Ends at<small class="text-success p-1"> Optional</small></label>
                                                     <input type="time"  v-model="event.end_time" name="end_time" class="form-control" id="end_time" aria-describedby="emailHelp" placeholder="Ending Time">
                                                     <div class="valid-feedback"></div>
                                                     <div v-if="errors.has('event_validate_add_form.end_time')" class="invalid-feedback">
@@ -178,9 +199,23 @@ export default {
             // today :
             locations:{}, 
             categories:{},
+            // Entry Free
+            // Functionality
+            status:true,
         }
     },
     methods:{
+        // Entry free check
+        entry_free_status(status){
+            if(status){
+                this.status = false;
+                // this.load_result();
+                this.event.entry_fee = ""
+            }else{
+                this.status = true
+                this.event.entry_fee = ""
+            }
+        },
         /**
          * Banner Image 
          * File
@@ -200,7 +235,18 @@ export default {
             fileReader.readAsDataURL(event.target.files[0]);
         },
 
-       add_event(){           
+       add_event(){ 
+        // Undefined check
+           if(this.event.entry_fee === undefined){
+               this.event.entry_fee = " "
+           }
+        // Checking the entry free status
+            if(this.event.entry_free){
+                this.event.entry_free = true;
+            }else{
+                this.event.entry_free = false;
+            }
+        // Adding new event
             this.$validator.validateAll('event_validate_add_form').then((result) => {                  
                 if(result){
                     axios.post('/api/event',this.event,{

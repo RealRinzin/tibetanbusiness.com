@@ -42,7 +42,6 @@ class EventBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $name = '';
         // Image upload script in php
         if ($request->banner) {
@@ -63,6 +62,7 @@ class EventBasicInfoController extends Controller
             'name' => $request->name,
             'banner' => $name,
             'email' => $request->email,
+            'entry_free'=>$request->entry_free,
             'location' => $request->location,
             'category' => $request->category,
             'address' => $request->address,
@@ -271,12 +271,14 @@ class EventBasicInfoController extends Controller
         }else{
             $status = false;
         }
+
         if(!$status){
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->whereBetween('entry_fee', [$min, $max])
+                // ->OrWhere('entry_fee','=',NULL)
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }else{
@@ -285,7 +287,6 @@ class EventBasicInfoController extends Controller
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
-                // ->where('entry_free', [$request->entry_free])
                 ->where('entry_free', $fee_charged)
                 // ->whereBetween('entry_fee', [$min, $max])
                 ->whereBetween('start_date', [$request->from, $request->to])

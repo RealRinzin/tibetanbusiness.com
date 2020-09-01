@@ -49,17 +49,16 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-2" v-show="status">
                                             <small class="small text-muted">Entry Fee:₹ <span class="text-muted"></span></small>
-                                            <!-- <input type="range" v-model="filter.entry_fee" style="width:100%" min="1000" max="50000" value="3000" id="myRange" placeholder="Size"> -->
                                             <input type="text"  id="entry_fee" class="small text-muted my-2" readonly  style="border:0;">
                                             <div id="slider-range"></div>
                                         </div>
                                         <div class="col-12 py-2">
                                             <form class="was-validated">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="entry_free" v-model="filter.entry_status" @change="entry_free_status(status)">
-                                                <label class="custom-control-label text-muted" for="entry_free">Entry Free</label>
-                                                <div class="invalid-feedback">Example invalid feedback text</div>
-                                            </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="entry_free" v-model="filter.entry_status" @change="entry_free_status(status)">
+                                                    <label class="custom-control-label text-muted" for="entry_free">Entry Free</label>
+                                                    <div class="invalid-feedback">Example invalid feedback text</div>
+                                                </div>
                                             </form>
                                         </div>
                                         <div class="col-md-12 py-2 text-center">
@@ -93,7 +92,8 @@
                                         <a v-bind:href="'/event/'+event.id">
                                         <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="btn small">Fee:₹ {{event.entry_fee}}/-</li>
+                                                <li class="btn small" v-if="event.entry_fee">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
+                                                <li class="btn small" v-else>Free Entry</span></li>
                                                 <li class="btn small">Date: {{event.start_date |date}}</li>
                                                 <li class="btn small">Type:{{event.category}}</li>
                                             </ul>
@@ -186,13 +186,14 @@ export default {
         setRating: function(rating){
         this.rating= rating;
         },
+        // Entry Free Chekc
         entry_free_status(status){
             if(status){
                 this.status = false;
-                this.load_result();
+                this.search_result();
             }else{
                 this.status = true
-                this.load_result();
+                this.search_result();
             }
         },
         // loading
