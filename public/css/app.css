@@ -11593,6 +11593,7 @@ Background resource loading
 #search #result .info ul li {
   display: inline;
   list-style: none;
+  font-weight: bolder;
   font-size: 12px !important;
   color: #ffffff;
   padding: 3px 6px;
