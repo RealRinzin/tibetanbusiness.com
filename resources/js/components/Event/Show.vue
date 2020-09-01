@@ -26,7 +26,8 @@
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
                                                     <li class="btn btn-danger btn-md"><i class="far fa-clock mr-2"></i>{{event.start_time}} <span v-if="event.start_time"> a.m </span>-{{event.end_time}} <span v-if="event.end_time"> p.m</span></li>
-                                                    <li class="btn btn-danger btn-md">Entry Fee:<i class="fas fa-rupee-sign mr-2"></i> {{event.entry_fee}}/</li>
+                                                    <li v-if="event.entry_free" class="btn btn-danger btn-md">Entry Free</li>
+                                                    <li v-else class="btn btn-success btn-md">Entry Fee:&#x20B9 {{event.entry_fee}}/</li>
                                                 </ul>
                                             </div>
                                             </div>                                

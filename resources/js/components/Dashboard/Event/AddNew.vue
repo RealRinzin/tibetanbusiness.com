@@ -58,14 +58,6 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="entry_fee">Entry Fee<small class="text-success p-1">Optional</small></label>
-                                            <input type="text" v-validate="'numeric|max:6'" v-model="event.entry_fee" name="entry_fee" class="form-control" id="entry_fee" aria-describedby="emailHelp" placeholder="Entry Fee">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.entry_fee')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.entry_fee')">{{ error }}</span>
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">

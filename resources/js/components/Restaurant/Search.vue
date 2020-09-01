@@ -67,7 +67,7 @@
                                         <div class="rate" v-if="restaurant.rate >0">
                                             <button class="btn btn-sm small" v-bind:class="restaurant.rate_color">
                                             <i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}
-                                        </button>
+                                            </button>
                                         </div>
                                         </a>
                                         <div class="card px-2">

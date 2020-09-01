@@ -77,7 +77,7 @@
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'> -->
                                             <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto">
                                                 <ul>
-                                                    <li class="font-weight-bold">Service type: {{service.type}}</li>
+                                                    <li class="font-weight-bold btn btn-danger btn-md small">Service type: {{service.type}}</li>
                                                 </ul>
                                             </div>
                                         <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>

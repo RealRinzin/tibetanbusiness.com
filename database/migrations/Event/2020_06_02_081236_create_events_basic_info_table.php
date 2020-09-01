@@ -16,16 +16,16 @@ class CreateEventsBasicInfoTable extends Migration
         Schema::connection('event')->create('event_basic_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->decimal('rate', 5, 1)->nullable();
-            $table->string('rate_color', 100)->nullable();
+            $table->decimal('rate',5,1)->nullable();
+            $table->string('rate_color')->nullable();
             $table->string('name', 160);
             $table->string('banner', 80);
             $table->string('email', 100);
             $table->boolean('entry_free')->nullable();
             $table->string('location', 30);
-            $table->string('entry_fee')->nullable();
-            $table->string('category', 100);
-            $table->string('address', 100);
+            $table->decimal('entry_fee',10,0)->nullable();
+            $table->string('category', 50);
+            $table->string('address', 150);
             $table->string('mobile_no', 12);
             $table->date('start_date');
             $table->date('end_date')->nullable();

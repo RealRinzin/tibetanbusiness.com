@@ -43,7 +43,8 @@
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
                                             <li class="ng-binding">{{event.start_date | date}}</li>
                                             <!-- <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li> -->
-                                            <li class="ng-binding">Entry Fee:₹{{event.entry_fee}}/-</li>
+                                            <li class="ng-binding bg-success" v-if="event.entry_free">Entry Fee</li>
+                                            <li class="ng-binding" v-else>Entry Fee:₹{{event.entry_fee}}/-</li>
                                         </ul>
                                     </div>
                                 </a>

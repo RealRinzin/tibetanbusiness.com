@@ -79,8 +79,8 @@
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="ng-binding">Rent:₹{{rent.fare}}/-</li>
-                                                <li class="ng-binding">Size: {{rent.accomodation_size}} Person</li>
+                                                <li class="ng-binding btn btn-danger btn-md small">Rent:₹{{rent.fare}}/-</li>
+                                                <li class="ng-binding btn btn-danger btn-md small">Size: {{rent.accomodation_size}} Person</li>
                                             </ul>
                                         </div>
                                         <div class="rate" v-if="rent.rate >0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>

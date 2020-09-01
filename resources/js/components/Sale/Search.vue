@@ -71,9 +71,9 @@
                                         <a v-bind:href="'/sale/'+sale.id">
                                             <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
                                                 <ul>
-                                                    <li class="ng-binding">Price:₹{{sale.price}}/-</li>
-                                                    <li class="ng-binding">Total items: {{sale.total_item}}</li>
-                                                    <li class="ng-binding">Category: {{sale.type}}</li>
+                                                    <li class="ng-binding btn btn-danger btn-md small">Price:₹{{sale.price}}/-</li>
+                                                    <li class="ng-binding btn btn-danger btn-md small">Total items: {{sale.total_item}}</li>
+                                                    <li class="ng-binding btn btn-danger btn-md small">Category: {{sale.type}}</li>
                                                 </ul>
                                             </div>
                                         </a>

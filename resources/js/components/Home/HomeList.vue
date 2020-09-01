@@ -10,7 +10,8 @@
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
                             <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner"  data-sizes="auto">
-                                <p v-if="event.entry_fee" class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry Fee:&#x20B9 {{event.entry_fee}}</p>
+                                <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-success  price p-1 m-0">Entry Free</p>
+                                <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
                             </div>
                             </a>
                             <div class="info p-2">

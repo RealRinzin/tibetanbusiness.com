@@ -99,9 +99,9 @@
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="btn">Salary:₹{{job.salary}}/-</li>
-                                                <li class="btn">Nature: {{job.nature}}</li>
-                                                <li class="btn">Experience: {{job.experience}}</li>
+                                                <li class="btn btn-danger btn-md small">Salary:₹{{job.salary}}/-</li>
+                                                <li class="btn btn-danger btn-md small">Nature: {{job.nature}}</li>
+                                                <li class="btn btn-danger btn-md small">Experience: {{job.experience}}</li>
                                             </ul>
                                         </div>
                                         <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>

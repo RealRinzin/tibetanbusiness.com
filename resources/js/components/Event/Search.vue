@@ -92,10 +92,10 @@
                                         <a v-bind:href="'/event/'+event.id">
                                         <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="btn small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
-                                                <li class="btn small" v-else>Free Entry</span></li>
-                                                <li class="btn small">Date: {{event.start_date |date}}</li>
-                                                <li class="btn small">Type:{{event.category}}</li>
+                                                <li class="btn btn-danger btn-md small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
+                                                <li class="btn small btn-success btn-md " v-else>Free Entry</span></li>
+                                                <li class="btn small btn-danger btn-md ">Date: {{event.start_date |date}}</li>
+                                                <li class="btn small btn-danger btn-md ">Type:{{event.category}}</li>
                                             </ul>
                                         </div>
                                         <div class="rate btn btn-warning btn-sm small" v-if="event.interested >0"><span><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</span></div>
