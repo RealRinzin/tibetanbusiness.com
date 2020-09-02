@@ -23,7 +23,7 @@ class CreateJobBasicInfoTable extends Migration
             $table->string('experience', 35);
             $table->string('nature', 100);
             $table->string('address', 100);
-            $table->decimal('salary', 10, 0)->nullable();
+            $table->decimal('salary', 8, 0)->nullable();
             $table->string('location', 30);
             $table->string('mobile_no', 12);
             $table->string('email', 100);

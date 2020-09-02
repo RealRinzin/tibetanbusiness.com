@@ -46,17 +46,30 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="salary">Salary<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="Salary">
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('job_validate_add_form.salary')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('job_validate_add_form.salary')">{{ error }}</span>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="row">
+                                                <div class="col-6" v-show="status">
+                                                    <div class="form-group">
+                                                        <label for="salary">Salary<span class="text-danger p-1">*</span></label>
+                                                        <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="Salary">
+                                                        <div class="valid-feedback"></div>
+                                                        <div v-if="errors.has('job_validate_add_form.salary')" class="invalid-feedback">
+                                                            <span v-for="error in errors.collect('job_validate_add_form.salary')">{{ error }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <form class="was-validated pt-4">
+                                                        <div class="custom-control custom-checkbox pt-3">
+                                                            <input type="checkbox" class="custom-control-input" id="entry_free"  @change="salary_disclose(status)">
+                                                            <label class="custom-control-label text-muted" for="entry_free">Not Disclose</label>
+                                                            <div class="invalid-feedback"></div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <label for="profession">Profession<span class="text-danger p-1">*</span></label>
                                                 <select v-validate="'required'" v-model="job.profession" name="profession" class="form-control" id="profession" placeholder="Selected Profession">
@@ -69,7 +82,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
+                                        <div class="col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <label for="nature">Nature<span class="text-danger p-1">*</span></label>
                                                 <select v-validate="'required'" v-model="job.nature" name="nature" class="form-control" id="nature">
@@ -90,6 +103,7 @@
                                                 <label for="experience">Experience<span class="text-danger p-1">*</span></label>
                                                 <select v-validate="'required'" v-model="job.experience" name="experience" class="form-control" id="experience">
                                                     <option value="" disabled selected>Select Experience</option>
+                                                    <option value="Not Required"> Not Required</option>
                                                     <option value="6 Months"> 6 Months</option>
                                                     <option value="1 Yrs"> 1 Years</option>
                                                     <option value="2 Yrs"> 2 Years</option>
@@ -223,9 +237,20 @@ export default {
             // today : 
             locations:{},
             professions:{},
+            // Salary Disclouse
+            status:true,
         }
     },
     methods:{
+        // Salary Disclose
+        salary_disclose(status){
+            if(status){
+                this.status = false;
+                this.job.salary = 0;
+            }else{
+                this.status = true;
+            }
+        },
         /**
          * Banner Image 
          * File

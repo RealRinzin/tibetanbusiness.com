@@ -232,7 +232,6 @@ export default {
            if(this.event.entry_fee === undefined){
                this.event.entry_fee = 0
            }
-           console.log(this.event);
         // Checking the entry free status
             if(this.event.entry_free){
                 this.event.entry_free = true;

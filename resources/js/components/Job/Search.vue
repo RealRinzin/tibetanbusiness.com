@@ -37,7 +37,7 @@
                                                     <button type="button" @click="close"  class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                    <li value="no experience" @click="set_experience('No Experience')">No Experience</li>
+                                                    <li value="no experience" @click="set_experience('Not Required')">Not Required</li>
                                                     <li value="6 Months" @click="set_experience('6 Months')">6 Months</li>
                                                     <li value="1 Yrs" @click="set_experience('1 Years')">1 Year</li>
                                                     <li value="2 Yrs" @click="set_experience('2 Years')">2 Years</li>
@@ -99,7 +99,8 @@
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="btn btn-danger btn-md small">Salary:₹{{job.salary}}/-</li>
+                                                <li v-if="job.salary > 0" class="btn btn-danger btn-md small">Salary:₹{{job.salary}}/-</li>
+                                                <li v-else class="btn btn-secondary btn-md small">Salary: Not Disclosed</li>
                                                 <li class="btn btn-danger btn-md small">Nature: {{job.nature}}</li>
                                                 <li class="btn btn-danger btn-md small">Experience: {{job.experience}}</li>
                                             </ul>

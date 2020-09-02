@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::connection('mysql')->create('posts', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('user_id');
             $table->string('title');
@@ -28,6 +28,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::connection('mysql')->dropIfExists('posts');
     }
 }

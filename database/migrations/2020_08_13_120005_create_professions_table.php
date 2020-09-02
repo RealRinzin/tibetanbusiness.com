@@ -13,7 +13,7 @@ class CreateProfessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('professions', function (Blueprint $table) {
+        Schema::connection('mysql')->create('professions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateProfessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professions');
+        Schema::connection('mysql')->dropIfExists('professions');
     }
 }

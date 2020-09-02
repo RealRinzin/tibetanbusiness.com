@@ -32,7 +32,8 @@
                                     <h6 class="text-dark">Salary:</h6>
                                 </div>
                                 <div class="col-md-6 col-sm-8">
-                                    <h6 class="text-muted font-weight-bold">Rs: {{job.salary}} /-</h6>
+                                    <h6 v-if="job.salary > 0" class="text-muted font-weight-bold">Rs: {{job.salary}} /-</h6>
+                                    <h6 v-else class="text-muted font-weight-bold">Not Disclosed</h6>
                                 </div>
                             </div>
                             <div class="row py-1">
@@ -178,12 +179,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="salary">Salary<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="Salary">
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('job_validate_update_form.salary')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('job_validate_update_form.salary')">{{ error }}</span>
+                                            <div class="row">
+                                                <div class="col-6" v-show="status">
+                                                    <div class="form-group">
+                                                        <label for="salary">Salary<span class="text-danger p-1">*</span></label>
+                                                        <input type="text" v-validate="'required|decimal:2|max:10'" v-model="job.salary" name="salary" class="form-control" id="salary" aria-describedby="emailHelp" placeholder="Salary">
+                                                        <div class="valid-feedback"></div>
+                                                        <div v-if="errors.has('job_validate_update_form.salary')" class="invalid-feedback">
+                                                            <span v-for="error in errors.collect('job_validate_update_form.salary')">{{ error }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <form class="was-validated pt-4">
+                                                        <div class="custom-control custom-checkbox pt-3">
+                                                            <input type="checkbox" class="custom-control-input"  id="salary_status" @change="salary_disclose(status)">
+                                                            <label class="custom-control-label text-muted small" for="salary_status">Not Disclose</label>
+                                                            <div class="invalid-feedback"></div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,6 +245,7 @@
                                                 <label for="experience">Experience<span class="text-danger p-1">*</span></label>
                                                 <select v-validate="'required'" v-model="job.experience" name="experience" class="form-control" id="experience">
                                                     <option value="" disabled selected>Select Experience</option>
+                                                    <option value="Not Required"> Not Required</option>
                                                     <option value="6 Months"> 6 Months</option>
                                                     <option value="1 Yrs"> 1 Years</option>
                                                     <option value="2 Yrs"> 2 Years</option>
@@ -350,15 +365,30 @@ export default {
             // job:{},
             locations:{},
             professions:{},
+            status:true,
+            check:true,
         }
     },
     methods:{
+        // Salary Disclose
+        salary_disclose(status){
+            if(status){
+                this.status = false;
+            }else{
+                this.status = true;
+            }
+        },
         // modal
         edit(){
             $("#job_overview_update_modal").modal("show");           
         },
         // Update
         update_overview(id){
+            
+                if(!this.status){
+                    this.job.salary = 0;
+                }
+                console.log(this.status);
                 this.$validator.validateAll('job_validate_update_form').then((result) => {
                     if (result) {
                         axios.patch('/api/job/'+id,this.job,{
@@ -382,6 +412,7 @@ export default {
 
     },
     mounted(){
+
         // locations api
         axios.get('/api/location')
         .then(response=>{

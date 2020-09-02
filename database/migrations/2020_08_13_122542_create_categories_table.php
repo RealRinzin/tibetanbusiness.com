@@ -13,7 +13,7 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::connection('mysql')->create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('category');
@@ -28,6 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::connection('mysql')->dropIfExists('categories');
     }
 }
