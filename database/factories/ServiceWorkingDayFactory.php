@@ -17,7 +17,6 @@ $factory->define(ServiceWorkingDay::class, function (Faker $faker) {
         'saturday' => $faker->boolean([true, false]),
         'sunday' => $faker->boolean([true, false]),
         'service_basic_info_id' => function () {
-            // return User::all()->random();
             return ServiceBasicInfo::all()->random();
         }
     ];

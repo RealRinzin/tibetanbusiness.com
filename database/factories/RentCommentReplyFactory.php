@@ -12,8 +12,8 @@ $factory->define(RentCommentReply::class, function (Faker $faker) {
     return [
         //
         'reply' => $faker->sentence(),
-        'name' => 'Tenzin',
-        'avatar' => '/img/tibetanbusiness.png',
+        'name' => $faker->randomElement(['Rinzin', 'Tashi', 'Dorjee', 'Passang', 'Dolma']),
+        'avatar' => $faker->randomElement(['/img/avatar1.png', '/img/avatar2.png', '/img/avatar3.png', '/img/avatar4.png']),
         'user_id' => function () {
             return User::all()->random();
         },

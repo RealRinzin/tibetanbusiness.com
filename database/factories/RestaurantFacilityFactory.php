@@ -19,7 +19,6 @@ $factory->define(RestaurantFacility::class, function (Faker $faker) {
         'parking_lot' => $faker->boolean(),
         'card_payment' => $faker->boolean(),
         'restaurant_basic_info_id' => function () {
-            // return User::all()->random();
             return RestaurantBasicInfo::all()->random();
         }
     ];

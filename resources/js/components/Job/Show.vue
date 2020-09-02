@@ -34,8 +34,8 @@
                                                     <h6 class="text-dark">Salary</h6>
                                                 </div>
                                                 <div class="col-md-9 col-6">
-                                                    <h6 v-if="job.salary" class="text-muted text-left">: Rs <span class="font-weight-bold">{{job.salary}} /-</span></h6>
-                                                    <h6 v-else class="text-muted text-left">Not Disclosed</h6>
+                                                    <h6 v-if="job.salary > 0" class="text-muted text-left">: Rs <span class="font-weight-bold">{{job.salary}} /-</span></h6>
+                                                    <h6 v-else class="text-muted text-left">:Not Disclosed</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
