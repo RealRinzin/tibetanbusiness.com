@@ -101,7 +101,7 @@
             </div>
         </div>
 <!-- Modal -->
-        <div class="modal fade" id="sale_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade add_edit_label" id="sale_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
@@ -160,7 +160,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                    <option value="" disabled selected>Select Location</option>
+                                                    <!-- <option value="" disabled selected>Select Location</option> -->
                                                 <select v-validate="'required'" v-model="sale.location" name="location" class="form-control" id="location">
                                                     <option :value="sale.location">{{sale.location}}</option>
                                                     <option v-for="location in locations" :value="location.name">{{location.name}}</option>

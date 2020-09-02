@@ -41,10 +41,10 @@
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                         <ul>
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
-                                            <li class="ng-binding">{{event.start_date | date}}</li>
+                                            <li class="btn btn-xs btn-danger small">{{event.start_date | date}}</li>
                                             <!-- <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li> -->
-                                            <li class="ng-binding bg-success" v-if="event.entry_free">Entry Fee</li>
-                                            <li class="ng-binding" v-else>Entry Fee:₹{{event.entry_fee}}/-</li>
+                                            <li class="btn btn-xs bg-success small" v-if="event.entry_free">Entry Fee</li>
+                                            <li class="btn btn-xs btn-danger small" v-else>Entry Fee:₹{{event.entry_fee}}/-</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -72,8 +72,8 @@
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto">
                                         <ul>
-                                            <li class="ng-binding">Rent:₹{{rent.fare}}/-</li>
-                                            <li class="ng-binding">Size: {{rent.accomodation_size}} Person</li>
+                                            <li class="btn btn-xs btn-danger small">Rent:₹{{rent.fare}}/-</li>
+                                            <li class="btn btn-xs btn-danger small">Size: {{rent.accomodation_size}} Person</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -94,12 +94,17 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Job -->
-                    <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="jobs">
+                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings" v-if="jobs">
                         <swiper-slide v-for="(job,index) in jobs" :key="index">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
+                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
+                                        <ul>
+                                            <li v-if="job.salary" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
+                                            <li class="btn btn-xs btn-danger small">Type:{{job.profession}}</li>
+                                        </ul>
+                                    </div>
                                 </a>
                                 <div class="likes">
                                     <p v-if="job.interested > 0" class="btn btn-secondary btn-sm small"><i class="fas fa-thumbs-up text-white fa-1x mr-1"></i>{{job.interested}} Interested</p>
@@ -123,11 +128,10 @@
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id">
-                                <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
                                         <ul>
-                                            <li class="ng-binding">Price:₹{{sale.price}}/-</li>
-                                            <li class="ng-binding">Type:{{sale.type}}</li>
+                                            <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
+                                            <li class="btn btn-xs btn-danger small">Type:{{sale.type}}</li>
                                         </ul>
                                     </div>
                                 </a>

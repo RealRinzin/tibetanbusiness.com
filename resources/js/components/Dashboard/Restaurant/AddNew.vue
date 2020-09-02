@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Modal -->
-        <div class="modal fade" id="restaurant_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade add_edit_label" id="restaurant_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                 <div class="modal-header">

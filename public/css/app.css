@@ -11008,7 +11008,7 @@ View individual show CSS
 }
 
 #restaurant #event .banner ul {
-  bottom: 20px !important;
+  bottom: 10px !important;
   left: 2px;
   position: absolute;
   padding: 5px !important;
@@ -11534,11 +11534,9 @@ Background resource loading
 }
 
 #featured .info ul li {
-  background-color: #e15246 !important;
   display: inline;
   list-style: none;
   color: #ffffff;
-  padding: 3px 6px;
   border-radius: 2px;
 }
 
@@ -11717,7 +11715,7 @@ Background resource loading
 
 #dashboard .add_edit_label label {
   color: #6c757d !important;
-  font-size: 80%;
+  font-size: 90%;
 }
 
 body {
@@ -11959,7 +11957,7 @@ footer img {
 
 .swiper-container .swiper-button-next,
 .swiper-container .swiper-button-prev {
-  top: 30% !important;
+  top: 27% !important;
 }
 
 .swiper-container .swiper-button-next::after,

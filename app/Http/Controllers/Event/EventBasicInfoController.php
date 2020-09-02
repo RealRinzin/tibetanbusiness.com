@@ -134,12 +134,12 @@ class EventBasicInfoController extends Controller
     {
         
         $event = EventBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
-        unlink($unlink);
         $event->delete();
         $event->event_interests()->delete();
         $event->event_reviews()->delete();
         $event->event_photos()->delete();
+        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
+        // unlink($unlink);
         // $interest->job_questions()->delete();
         // $review->job_applies()->delete();
     }
