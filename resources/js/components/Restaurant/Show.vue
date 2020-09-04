@@ -59,6 +59,7 @@
       </network>
   </div>
 </social-sharing>
+
         <div id="restaurant" style="min-height:80vh">
             <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>

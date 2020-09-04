@@ -18,3 +18,9 @@ mix.js('resources/js/app.js', 'public/js/app.min.js')
 mix.js([
    'resources/js/dashboard.min.js',
 ], 'public/js/dashboard.min.js');
+
+
+// Restaurant
+mix.js([
+   'resources/js/detail.min.js',
+], 'public/js/detail.min.js');

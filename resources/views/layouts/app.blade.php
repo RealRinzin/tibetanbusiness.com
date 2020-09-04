@@ -20,356 +20,362 @@
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- JQUERY UI -->
-    <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- fontawesome -->
-    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
-    <!-- Adminlte -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css"> -->
-    <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-    <!-- rating star -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- Slick Slider -->
-    <!-- google map -->
-    <!-- jquery UI -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
-    <!-- CSRF TOKEN -->
-    <script>
-        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-    </script>
+    @if(!Request::is('/'))
+        <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
+    @endif
+        <!-- JQUERY UI -->
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- fontawesome -->
+        <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+        <!-- Adminlte -->
+        <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+        <!-- rating star -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
+        <!-- jquery UI -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
+        <!-- CSRF TOKEN -->
+        <script>
+            window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+        </script>
 </head>
 
 <body>
+
+    @if(Request::is('/'))
     <div id="tibetanbusiness">
-        <div class="wrapper">
-            <!-- Navbar -->
-            @if(Request::is('/'))
-            <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100 p-1">
-                <div class="container">
-                    <a href="/" class="navbar-brand">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="elevation-3" style="opacity:.8;height:35px;width:35px">
-                    </a>
-                    <!-- SEARCH FORM -->
-                    @if(Request::is('/'))
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Add Business</a>
-                        </li>
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link">Promote Business</a>
-                        </li>
-                    </ul>
-                    @else
-                    <ul class="navbar-nav d-none d-sm-block">
-                        <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Add Business</a>
-                        </li>
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link">Promote Business</a>
-                        </li>
-                    </ul>
-                    <div class="row mx-auto">
-                        <div class="col-md-12">
-                            <div id="dropdown_lists">
-                                <form class="form-inline ml-3" method="get" action="">
-                                    {{ csrf_field() }}
-                                    <span class="w-50">
-                                        <div class="input-group input-group-md">
-                                            <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
-                                            <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
-                                            <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
-                                                <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                            </ul>
-                                        </div>
-                                    </span>
-                                    <span class="w-50">
-                                        <div class="input-group input-group-md">
-                                            <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
-                                            <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
-                                                <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
-                                                <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
-                                                <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
-                                                <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/opportunity.png"></span> Jobs</a></li>
-                                                <li value="Services"><a href="#"><span class="mr-2"><img src="/img/mechanic.png"></span> Services</a></li>
-                                                <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/chef.png"></span> Restaurants</a></li>
-                                            </ul>
-                                            <div class="input-group-append">
-                                                <button id="link" class="btn btn-navbar" type="submit">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </span>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    <!-- Right navbar links -->
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
-                        </li>
-                        @else
-                        <div id="avatar">
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle p-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
-                                    <span><img src="{{Auth::user()->avatar}}" alt="" class="ml-2 img-fluid img-circle"></span>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <!-- <nav-bar></nav-bar> -->
-                                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
-                                        <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </div>
-                        @endguest
-                    </ul>
-                </div>
-            </nav>
-            @else
-            <nav id="navbar" class="navbar navbar-expand navbar-light" style="background-color: #941c18 !important">
-                <div class="container">
-                    <a href="/" class="navbar-brand">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
-                    </a>
-                    <!-- SEARCH FORM -->
-                    @if(Request::is('/'))
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Add Business</a>
-                        </li>
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link">Promote Business</a>
-                        </li>
-                    </ul>
-                    @else
-                    <ul class="navbar-nav d-none d-sm-block">
-                        <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="index3.html" class="nav-link">Add Business</a>
-                        </li>
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link">Promote Business</a>
-                        </li>
-                    </ul>
-                    <div class="row mx-auto">
-                        <div class="col-md-12">
-                            <div id="dropdown_lists">
-                                <form class="form-inline ml-3" method="get" action="">
-                                    {{ csrf_field() }}
-                                    <span class="w-50">
-                                        <div class="input-group input-group-md">
-                                            <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="tb_location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
-                                            <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
-                                            <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
-                                                <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                <li value="Delhi"><a href="#">Delhi</a></li>
-                                                <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                            </ul>
-                                        </div>
-                                    </span>
-                                    <span class="w-50">
-                                        <div class="input-group input-group-md">
-                                            <input id="tb_service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
-                                            <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
-                                                <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/sale.png"></span> Sales</a></li>
-                                                <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
-                                                <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/event.png"></span> Events</a></li>
-                                                <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/job.png"></span> Jobs</a></li>
-                                                <li value="Services"><a href="#"><span class="mr-2"><img src="/img/service.png"></span> Services</a></li>
-                                                <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/restaurant.png"></span> Restaurants</a></li>
-                                            </ul>
-                                            <div class="input-group-append">
-                                                <button id="link" class="btn btn-navbar" type="submit">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </span>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    <!-- Right navbar links -->
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                        <li class="nav-item d-sm-inline-block">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
-                        </li>
-                        @else
-                        <div id="avatar" style="z-index: 1000;">
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
-                                    <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <!-- <nav-bar></nav-bar> -->
-                                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
-                                        <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </div>
-                        @endguest
-                    </ul>
-                </div>
-            </nav>
-            @endif
-            @if(!Request::is('/'))
-            <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
-                <button class="btn btn-warning">Add Business</button>
-                <button class="btn btn-warning">Promote Business</button>
-                <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
         @endif
-        <!-- content -->
-        @yield('content')
-        <footer>
-            <div class="container">
-                <div class="row py-2">
-                    <div class="col-md-12">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
-                    </div>
-                </div>
-                <div class=" divider"></div>
-                <div class="row py-2">
-                    <div class="col-md-12">
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <div class="divider"></div>
-                    <div class="col-md-2 col-sm-4 col-4">
-                        <ul>
-                            <li>Miao</li>
-                            <li>Tezu</li>
-                            <li>Kollegal</li>
-                            <li>Bylakuppe</li>
-                            <li>Herbertpur</li>
-                            <li>Mungod</li>
+        @if(!Request::is('/'))
+        <div id="tibetanbusiness-details">
+            @endif
+            <div class="wrapper">
+                <!-- Navbar -->
+                @if(Request::is('/'))
+                <nav id="navbar" class="navbar navbar-expand navbar-light position-fixed w-100 p-1">
+                    <div class="container">
+                        <a href="/" class="navbar-brand">
+                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="elevation-3" style="opacity:.8;height:35px;width:35px">
+                        </a>
+                        <!-- SEARCH FORM -->
+                        @if(Request::is('/'))
+                        <!-- Left navbar links -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="index3.html" class="nav-link">Add Business</a>
+                            </li>
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link">Promote Business</a>
+                            </li>
+                        </ul>
+                        @else
+                        <ul class="navbar-nav d-none d-sm-block">
+                            <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="index3.html" class="nav-link">Add Business</a>
+                            </li>
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link">Promote Business</a>
+                            </li>
+                        </ul>
+                        <div class="row mx-auto">
+                            <div class="col-md-12">
+                                <div id="dropdown_lists">
+                                    <form class="form-inline ml-3" method="get" action="">
+                                        {{ csrf_field() }}
+                                        <span class="w-50">
+                                            <div class="input-group input-group-md">
+                                                <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
+                                                <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
+                                                <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
+                                                    <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                </ul>
+                                            </div>
+                                        </span>
+                                        <span class="w-50">
+                                            <div class="input-group input-group-md">
+                                                <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
+                                                <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
+                                                    <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
+                                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
+                                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
+                                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/opportunity.png"></span> Jobs</a></li>
+                                                    <li value="Services"><a href="#"><span class="mr-2"><img src="/img/mechanic.png"></span> Services</a></li>
+                                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/chef.png"></span> Restaurants</a></li>
+                                                </ul>
+                                                <div class="input-group-append">
+                                                    <button id="link" class="btn btn-navbar" type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <!-- Right navbar links -->
+                        <ul class="navbar-nav ml-auto">
+                            @guest
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
+                            </li>
+                            @else
+                            <div id="avatar">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle p-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
+                                        <span><img src="{{Auth::user()->avatar}}" alt="" class="ml-2 img-fluid img-circle"></span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <!-- <nav-bar></nav-bar> -->
+                                        <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
+                                            <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </div>
+                            @endguest
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Ravangala</li>
-                            <li>Bandara</li>
-                            <li>Mainpat</li>
-                            <li>Odisha</li>
-                            <li>Hunsur</li>
-                            <li>Ladak</li>
+                </nav>
+                @else
+                <nav id="navbar" class="navbar navbar-expand navbar-light" style="background-color: #941c18 !important">
+                    <div class="container">
+                        <a href="/" class="navbar-brand">
+                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
+                        </a>
+                        <!-- SEARCH FORM -->
+                        @if(Request::is('/'))
+                        <!-- Left navbar links -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="index3.html" class="nav-link">Add Business</a>
+                            </li>
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link">Promote Business</a>
+                            </li>
+                        </ul>
+                        @else
+                        <ul class="navbar-nav d-none d-sm-block">
+                            <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="index3.html" class="nav-link">Add Business</a>
+                            </li>
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link">Promote Business</a>
+                            </li>
+                        </ul>
+                        <div class="row mx-auto">
+                            <div class="col-md-12">
+                                <div id="dropdown_lists">
+                                    <form class="form-inline ml-3" method="get" action="">
+                                        {{ csrf_field() }}
+                                        <span class="w-50">
+                                            <div class="input-group input-group-md">
+                                                <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="tb_location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
+                                                <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
+                                                <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
+                                                    <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
+                                                    <li value="Delhi"><a href="#">Delhi</a></li>
+                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
+                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
+                                                </ul>
+                                            </div>
+                                        </span>
+                                        <span class="w-50">
+                                            <div class="input-group input-group-md">
+                                                <input id="tb_service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
+                                                <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
+                                                    <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/sale.png"></span> Sales</a></li>
+                                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
+                                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/event.png"></span> Events</a></li>
+                                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/job.png"></span> Jobs</a></li>
+                                                    <li value="Services"><a href="#"><span class="mr-2"><img src="/img/service.png"></span> Services</a></li>
+                                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/restaurant.png"></span> Restaurants</a></li>
+                                                </ul>
+                                                <div class="input-group-append">
+                                                    <button id="link" class="btn btn-navbar" type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <!-- Right navbar links -->
+                        <ul class="navbar-nav ml-auto">
+                            @guest
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
+                            </li>
+                            @else
+                            <div id="avatar" style="z-index: 1000;">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
+                                        <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <!-- <nav-bar></nav-bar> -->
+                                        <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
+                                            <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </div>
+                            @endguest
                         </ul>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Tuting</li>
-                            <li>Bir</li>
-                            <li>Dalhousie</li>
-                            <li>Kamrao</li>
-                            <li>Kham karto</li>
-                            <li>Ponta</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Puruwala</li>
-                            <li>Shimla</li>
-                            <li>Bomdila</li>
-                            <li>Dharamsala</li>
-                            <li>Darjeeling</li>
-                            <li>Clement Town</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Gangtok</li>
-                            <li>Kalimpong</li>
-                            <li>Munduwala</li>
-                            <li>Manali</li>
-                            <li>Delhi</li>
-                            <li>Shilong</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Dekyiling</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row py-1">
-                    <div class="col-12">
-                        <p class="copyright text-center">Tibetanbusiness © Copyright <?php echo date('Y'); ?></p>
-                        <p class="copyright text-center">
-                            <span><i class="fab fa-facebook fa-2x mr-2 text-primary"></i></span>
-                            <span><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></span>
-                            <span><i class="fab fa-twitter mr-2 fa-2x text-info"></i></span>
-                        </p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                    <div class="col-12 my-3">
-                        <p class="copyright text-center">Policy and Terms</p>
-                    </div>
+                </nav>
+                @endif
+                @if(!Request::is('/'))
+                <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
+                    <button class="btn btn-warning">Add Business</button>
+                    <button class="btn btn-warning">Promote Business</button>
+                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             </div>
-        </footer>
-    </div>
+            @endif
+            <!-- content -->
+            @yield('content')
+            <footer>
+                <div class="container">
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
+                        </div>
+                    </div>
+                    <div class=" divider"></div>
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="divider"></div>
+                        <div class="col-md-2 col-sm-4 col-4">
+                            <ul>
+                                <li>Miao</li>
+                                <li>Tezu</li>
+                                <li>Kollegal</li>
+                                <li>Bylakuppe</li>
+                                <li>Herbertpur</li>
+                                <li>Mungod</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Ravangala</li>
+                                <li>Bandara</li>
+                                <li>Mainpat</li>
+                                <li>Odisha</li>
+                                <li>Hunsur</li>
+                                <li>Ladak</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Tuting</li>
+                                <li>Bir</li>
+                                <li>Dalhousie</li>
+                                <li>Kamrao</li>
+                                <li>Kham karto</li>
+                                <li>Ponta</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Puruwala</li>
+                                <li>Shimla</li>
+                                <li>Bomdila</li>
+                                <li>Dharamsala</li>
+                                <li>Darjeeling</li>
+                                <li>Clement Town</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Gangtok</li>
+                                <li>Kalimpong</li>
+                                <li>Munduwala</li>
+                                <li>Manali</li>
+                                <li>Delhi</li>
+                                <li>Shilong</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Dekyiling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row py-1">
+                        <div class="col-12">
+                            <p class="copyright text-center">Tibetanbusiness © Copyright <?php echo date('Y'); ?></p>
+                            <p class="copyright text-center">
+                                <span><i class="fab fa-facebook fa-2x mr-2 text-primary"></i></span>
+                                <span><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></span>
+                                <span><i class="fab fa-twitter mr-2 fa-2x text-info"></i></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col-12 my-3">
+                            <p class="copyright text-center">Policy and Terms</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
     <!-- login Modal -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -480,11 +486,15 @@
     </div>
     </div>
     <!-- Scripts -->
+    @if(Request::is('/'))
+    <!-- <script src="/js/main.js"></script> -->
     <script rel="preload" src="{{ asset('js/app.min.js') }}"></script>
-    <!-- jquery UI -->
+    @endif
+    @if(!Request::is('/'))
+    <script rel="preload" src="{{ asset('js/detail.min.js') }}"></script>
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
     <script src="{{ asset('js/share.js') }}"></script>
+    @endif
     <script>
         // Fixed Navbar
         // Background change on
