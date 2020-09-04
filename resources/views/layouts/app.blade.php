@@ -28,7 +28,8 @@
     <!-- fontawesome -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
-    <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css"> -->
+    <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <!-- rating star -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <!-- Slick Slider -->
@@ -42,7 +43,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="tibetanbusiness">
         <div class="wrapper">
             <!-- Navbar -->
             @if(Request::is('/'))
@@ -479,7 +480,7 @@
     </div>
     </div>
     <!-- Scripts -->
-    <script rel="preload" src="{{ asset('js/app.js') }}"></script>
+    <script rel="preload" src="{{ asset('js/app.min.js') }}"></script>
     <!-- jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->

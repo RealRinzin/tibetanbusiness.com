@@ -1,5 +1,5 @@
 {
-    "/dashboard.min.js": "/dashboard.min.js",
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.min.js": "/js/app.min.js",
+    "/css/app.css": "/css/app.css",
+    "/js/dashboard.min.js": "/js/dashboard.min.js"
 }

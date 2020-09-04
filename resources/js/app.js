@@ -57,9 +57,9 @@ Vue.use(VueLazyLoad)
  * Datetime picker
  * 
  *  */ 
-import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
-import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
-Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
+// import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
+// import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
+// Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
 
 /**
  * 
@@ -133,8 +133,8 @@ Vue.use(VeeValidate, {
  window.toast = toast;
 
 // Toggles
- import ToggleButton from "vue-js-toggle-button";
- Vue.use(ToggleButton);
+//  import ToggleButton from "vue-js-toggle-button";
+//  Vue.use(ToggleButton);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -200,46 +200,46 @@ Vue.component('event-show', require('./components/Event/Show.vue').default);
 Vue.component('sale-show', require('./components/Sale/Show.vue').default);
 Vue.component('service-show', require('./components/Service/Show.vue').default);
 
-/**
- *     DASHBOARD COMPONENTS
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-// Restaurant Dashboard
-Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
-Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
-Vue.component('dashboard-restaurant-overview', require('./components/Dashboard/Restaurant/Overview.vue').default);
-Vue.component('dashboard-restaurant-menu-photo', require('./components/Dashboard/Restaurant/MenuPhoto.vue').default);
-Vue.component('dashboard-restaurant-food-photo', require('./components/Dashboard/Restaurant/FoodPhoto.vue').default);
-Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Restaurant/Comment.vue').default);
-Vue.component('dashboard-restaurant-add', require('./components/Dashboard/Restaurant/AddNew.vue').default);
+// /**
+//  *     DASHBOARD COMPONENTS
+//  * First we will load all of this project's JavaScript dependencies which
+//  * includes Vue and other libraries. It is a great starting point when
+//  * building robust, powerful web applications using Vue and Laravel.
+//  */
+// // Restaurant Dashboard
+// Vue.component('dashboard-restaurant-index', require('./components/Dashboard/Restaurant/Index.vue').default);
+// Vue.component('dashboard-restaurant-edit', require('./components/Dashboard/Restaurant/Edit.vue').default);
+// Vue.component('dashboard-restaurant-overview', require('./components/Dashboard/Restaurant/Overview.vue').default);
+// Vue.component('dashboard-restaurant-menu-photo', require('./components/Dashboard/Restaurant/MenuPhoto.vue').default);
+// Vue.component('dashboard-restaurant-food-photo', require('./components/Dashboard/Restaurant/FoodPhoto.vue').default);
+// Vue.component('dashboard-restaurant-comment', require('./components/Dashboard/Restaurant/Comment.vue').default);
+// Vue.component('dashboard-restaurant-add', require('./components/Dashboard/Restaurant/AddNew.vue').default);
 
-// Rent Dashboard
-Vue.component('dashboard-rent-index', require('./components/Dashboard/Rent/Index.vue').default);
-Vue.component('dashboard-rent-edit', require('./components/Dashboard/Rent/Edit.vue').default);
-Vue.component('dashboard-rent-overview', require('./components/Dashboard/Rent/Overview.vue').default);
-Vue.component('dashboard-rent-room-photo', require('./components/Dashboard/Rent/RoomPhoto.vue').default);
-Vue.component('dashboard-rent-view-photo', require('./components/Dashboard/Rent/ViewPhoto.vue').default);
-Vue.component('dashboard-rent-comment', require('./components/Dashboard/Rent/Comment.vue').default);
-Vue.component('dashboard-rent-add', require('./components/Dashboard/Rent/AddNew.vue').default);
+// // Rent Dashboard
+// Vue.component('dashboard-rent-index', require('./components/Dashboard/Rent/Index.vue').default);
+// Vue.component('dashboard-rent-edit', require('./components/Dashboard/Rent/Edit.vue').default);
+// Vue.component('dashboard-rent-overview', require('./components/Dashboard/Rent/Overview.vue').default);
+// Vue.component('dashboard-rent-room-photo', require('./components/Dashboard/Rent/RoomPhoto.vue').default);
+// Vue.component('dashboard-rent-view-photo', require('./components/Dashboard/Rent/ViewPhoto.vue').default);
+// Vue.component('dashboard-rent-comment', require('./components/Dashboard/Rent/Comment.vue').default);
+// Vue.component('dashboard-rent-add', require('./components/Dashboard/Rent/AddNew.vue').default);
 
-// Job Dashboard
-Vue.component('dashboard-job-index', require('./components/Dashboard/Job/Index.vue').default);
-Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue').default);
+// // Job Dashboard
+// Vue.component('dashboard-job-index', require('./components/Dashboard/Job/Index.vue').default);
+// Vue.component('dashboard-job-edit', require('./components/Dashboard/Job/Edit.vue').default);
 
 
-// Event Dashboard
-Vue.component('dashboard-event-index', require('./components/Dashboard/Event/Index.vue').default);
-Vue.component('dashboard-event-edit', require('./components/Dashboard/Event/Edit.vue').default);
+// // Event Dashboard
+// Vue.component('dashboard-event-index', require('./components/Dashboard/Event/Index.vue').default);
+// Vue.component('dashboard-event-edit', require('./components/Dashboard/Event/Edit.vue').default);
 
-// Sale Dashboard
-Vue.component('dashboard-sale-index', require('./components/Dashboard/Sale/Index.vue').default);
-Vue.component('dashboard-sale-edit', require('./components/Dashboard/Sale/Edit.vue').default);
+// // Sale Dashboard
+// Vue.component('dashboard-sale-index', require('./components/Dashboard/Sale/Index.vue').default);
+// Vue.component('dashboard-sale-edit', require('./components/Dashboard/Sale/Edit.vue').default);
 
-// Service Dashboard
-Vue.component('dashboard-service-index', require('./components/Dashboard/Service/Index.vue').default);
-Vue.component('dashboard-service-edit', require('./components/Dashboard/Service/Edit.vue').default);
+// // Service Dashboard
+// Vue.component('dashboard-service-index', require('./components/Dashboard/Service/Index.vue').default);
+// Vue.component('dashboard-service-edit', require('./components/Dashboard/Service/Edit.vue').default);
 
 
 // Search Result
@@ -257,7 +257,7 @@ Vue.component("event-search", require("./components/Event/Search.vue").default);
  */
 // Vue.component("event-list", require("./components/Home/List/Event.vue").default);
 const app = new Vue({
-    el: '#app',
+    el: '#tibetanbusiness',
     // Data
     data() {
         return {

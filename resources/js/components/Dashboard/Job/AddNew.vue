@@ -269,7 +269,6 @@ export default {
             // base64 data
             fileReader.readAsDataURL(event.target.files[0]);
         },
-
        add_job(){
                this.$validator.validateAll('job_validate_add_form').then((result) => {
                     if(result){
