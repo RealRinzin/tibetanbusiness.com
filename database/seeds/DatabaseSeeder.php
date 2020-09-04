@@ -41,10 +41,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->create();
+        factory(User::class, 10)->create();
         
         // Restaurant DB Seed
-        factory(RestaurantBasicInfo::class, 2)->create();
+        factory(RestaurantBasicInfo::class, 10)->create();
         factory(RestaurantFacility::class, 2)->create();
         factory(RestaurantOperationDay::class, 2)->create();
         factory(RestaurantFoodPhoto::class, 2)->create();
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         factory(RestaurantComment::class, 2)->create();
         factory(RestaurantCommentReply::class,2)->create();
         // Rent DB Seed
-        factory(RentBasicInfo::class, 3)->create();
+        factory(RentBasicInfo::class, 10)->create();
         factory(RentComment::class, 3)->create();
         factory(RentCommentReply::class,5)->create();
         factory(RentRoomPhoto::class, 2)->create();
@@ -67,16 +67,16 @@ class DatabaseSeeder extends Seeder
         factory(JobInterest::class,10);
 
         // Event
-        factory(EventBasicInfo::class,2)->create();
+        factory(EventBasicInfo::class,10)->create();
         factory(EventPhoto::class,2)->create();
         factory(EventReview::class,2)->create();
         factory(EventReviewReply::class, 2)->create();
         // SALE
-        factory(SaleBasicInfo::class,2)->create();
+        factory(SaleBasicInfo::class,10)->create();
         factory(SalePhoto::class,2)->create();
 
         // SERVICE
-        factory(ServiceBasicInfo::class, 2)->create();
+        factory(ServiceBasicInfo::class, 10)->create();
         factory(ServicePhoto::class, 2)->create();
         factory(ServiceReview::class, 2)->create();
         factory(ServiceWorkingDay::class, 2)->create();

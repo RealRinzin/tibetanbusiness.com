@@ -1,31 +1,32 @@
 <template>
     <div>
-        <div v-if="!load" style="min-height:400px">
+        <!-- <div v-if="!load" style="min-height:400px">
             <loading :active.sync="isLoading"></loading>
         </div>
-        <div v-else>
+        <div v-else> -->
+            <div>
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3" style="min-height:400px">
-                    <!-- Restaurant -->
-                    <swiper class="col-md-4 col-sm-6 col-12 swiper" :options="settings" v-if="restaurants">
-                        <swiper-slide v-for="(restaurant,index) in restaurants" :key="index">
+                    <!-- Sale -->
+                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales">
+                        <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
-                                <a v-bind:href="'restaurant/'+restaurant.id">
-                                <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto">
+                                <a v-bind:href="'sale/'+sale.id">
+                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner +' 100w'"  data-sizes="auto">
+                                        <ul>
+                                            <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
+                                            <li class="btn btn-xs btn-danger small">Type:{{sale.type}}</li>
+                                        </ul>
                                     </div>
                                 </a>
-                                <div class="likes" v-if="restaurant.rate > 0">
-                                    <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
-                                </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
+                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button>
                                 </div>
                                 <div class="card-body text-truncate">
-                                    <h5>{{restaurant.name}}</h5>
-                                    <h6>{{restaurant.mobile_no}}</h6>
-                                    <h6>{{restaurant.location}}</h6>
+                                    <h5>{{sale.name}}</h5>
+                                    <h6>{{sale.mobile_no}}</h6>
+                                    <h6>{{sale.location}}</h6>
                                 </div>
                             </div>
                         </swiper-slide>
@@ -38,7 +39,7 @@
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner +' 100w'"  data-sizes="auto">
                                         <ul>
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
                                             <li class="btn btn-xs btn-danger small">{{event.start_date | date}}</li>
@@ -70,7 +71,7 @@
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner+' 100w'"  data-sizes="auto">
                                         <ul>
                                             <li class="btn btn-xs btn-danger small">Rent:₹{{rent.fare}}/-</li>
                                             <li class="btn btn-xs btn-danger small">Size: {{rent.accomodation_size}} Person</li>
@@ -99,7 +100,7 @@
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner+' 100w'"  data-sizes="auto">
                                         <ul>
                                             <li v-if="job.salary" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
                                             <li class="btn btn-xs btn-danger small">Type:{{job.profession}}</li>
@@ -123,38 +124,13 @@
                         <div class="swiper-button-next" slot="button-next"></div>
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
-                    <!-- Sale -->
-                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales">
-                        <swiper-slide v-for="(sale,index) in sales" :key="index">
-                            <div class="card">
-                                <a v-bind:href="'sale/'+sale.id">
-                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
-                                        <ul>
-                                            <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
-                                            <li class="btn btn-xs btn-danger small">Type:{{sale.type}}</li>
-                                        </ul>
-                                    </div>
-                                </a>
-                                <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button>
-                                </div>
-                                <div class="card-body text-truncate">
-                                    <h5>{{sale.name}}</h5>
-                                    <h6>{{sale.mobile_no}}</h6>
-                                    <h6>{{sale.location}}</h6>
-                                </div>
-                            </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
                     <!-- Service -->
                     <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="services">
                         <swiper-slide v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
+                                    <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner+' 100w'"  data-sizes="auto"></div>
                                 </a>
                                 <div class="likes" v-if="service.rate > 0">
                                     <p v-if="service" v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
@@ -172,13 +148,39 @@
                         <div class="swiper-button-next" slot="button-next"></div>
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
+                    <!-- Restaurant -->
+                    <swiper class="col-md-4 col-sm-6 col-12 swiper" :options="settings">
+                        <swiper-slide v-for="(restaurant,index) in restaurants" :key="index">
+                            <div class="card">
+                                <a v-bind:href="'restaurant/'+restaurant.id">
+                                <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
+                                    <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner+' 100w'"  data-sizes="auto">
+                                    </div>
+                                </a>
+                                <div class="likes" v-if="restaurant.rate > 0">
+                                    <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
+                                </div>
+                                <div class="types">
+                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
+                                </div>
+                                <div class="card-body text-truncate">
+                                    <h5>{{restaurant.name}}</h5>
+                                    <h6>{{restaurant.mobile_no}}</h6>
+                                    <h6>{{restaurant.location}}</h6>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                        <div class="swiper-button-next" slot="button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
+                    </swiper>
                 </div>
             </div>
         </div>
         <!-- Business Listing -->
         <div class="bg-white" style="min-height:140vh">
             <div class="container py-3" id="business_list">
-                <home-list></home-list>
+                <!-- <home-list></home-list> -->
+                <home-list-fast></home-list-fast>
                 <!-- <search></search> -->
                 <!-- <event-list></event-list>
                 <sale-list></sale-list>
@@ -262,12 +264,13 @@
         methods:{
             // Featured business
             load_business(){
-                this.isLoading = true; //Loading true
+                // this.isLoading = true; //Loading true
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
                     if(response.data.length > 0){
                         this.restaurants = response.data;
+                        this.restaurants.total = response.data.total;
                         // rate background
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -288,6 +291,7 @@
                     axios.get('/api/restaurant/list/all')
                         .then(response=>{
                             this.restaurants = response.data; 
+                            this.restaurants.total = response.data.total;
                             // rate background
                             for (let index = 0; index < response.data.length; index++) {
                                 if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -305,6 +309,8 @@
                             }
                         })
                     }
+                        // this.isLoading = false; //Loading true
+                        // this.load = true;
                 })
                 // Featured Event
                 axios.get('/api/event/list/featured_ad')
@@ -464,8 +470,8 @@
                         })
                     }
                     //  // loading success
-                        this.isLoading = false; //Loading true
-                        this.load = true;
+                        // this.isLoading = false; //Loading true
+                        // this.load = true;
                 })
             },
         },

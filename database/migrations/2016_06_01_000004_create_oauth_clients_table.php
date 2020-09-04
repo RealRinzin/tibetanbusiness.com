@@ -13,7 +13,7 @@ class CreateOauthClientsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('oauth_clients', function (Blueprint $table) {
+        Schema::create('oauth_clients', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id')->index()->nullable();
             $table->string('name');
@@ -33,6 +33,6 @@ class CreateOauthClientsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('oauth_clients');
+        Schema::dropIfExists('oauth_clients');
     }
 }

@@ -253,6 +253,7 @@ class RestaurantBasicInfoController extends Controller
     {
         $restaurants =  RestaurantBasicInfo::where('status', '=', true)
             ->inRandomOrder()
+            ->limit('4')
             ->orderBy('created_at', 'desc')->get();
         return $restaurants->toArray($restaurants);
     }
@@ -260,6 +261,7 @@ class RestaurantBasicInfoController extends Controller
     public function featured_ad(){
         $restaurants =  RestaurantBasicInfo::where('featured_ad', '=', true)
             ->inRandomOrder()
+            ->limit('4')
             ->orderBy('created_at','desc')->get();
         return $restaurants->toArray($restaurants);
         // return RestaurantBasicInfoResource::collection(RestaurantBasicInfo::where('featured_ad', '=', true)->get());
@@ -268,6 +270,7 @@ class RestaurantBasicInfoController extends Controller
     public function home_ad(){
         $restaurants =  RestaurantBasicInfo::where('home_ad', '=', true)
             ->orderBy('created_at', 'desc')
+            ->limit('4')
             ->inRandomOrder()->get();
         return $restaurants->toArray($restaurants);
     }
@@ -275,6 +278,7 @@ class RestaurantBasicInfoController extends Controller
     public function sidebar_ad(){
         $restaurants =  RestaurantBasicInfo::where('sidebar_ad', '=', true)
             ->inRandomOrder()
+            ->limit('4')
             ->orderBy('created_at', 'desc')->get();
         return $restaurants->toArray($restaurants);
 

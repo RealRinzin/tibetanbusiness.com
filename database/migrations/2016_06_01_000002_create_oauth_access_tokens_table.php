@@ -13,7 +13,7 @@ class CreateOauthAccessTokensTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('oauth_access_tokens', function (Blueprint $table) {
+        Schema::create('oauth_access_tokens', function (Blueprint $table) {
             $table->string('id', 100)->primary();
             $table->uuid('user_id')->index()->nullable();
             $table->unsignedInteger('client_id');
@@ -32,6 +32,6 @@ class CreateOauthAccessTokensTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('oauth_access_tokens');
+        Schema::dropIfExists('oauth_access_tokens');
     }
 }

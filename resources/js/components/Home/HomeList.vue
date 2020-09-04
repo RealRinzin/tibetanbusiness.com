@@ -9,7 +9,7 @@
                     <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
-                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner"  data-sizes="auto">
+                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner+'200w'"   data-sizes="auto">
                                 <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-success  price p-1 m-0">Entry Free</p>
                                 <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
                             </div>

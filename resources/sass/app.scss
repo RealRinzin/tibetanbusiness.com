@@ -1,8 +1,8 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+// @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -212,6 +212,7 @@ body{
         height:100px;
         position: relative;
         background-size: cover;
+        background-position: center center !important;
         background-image: url('/img/loading-img.svg') no-repeat center;
         .price{
             bottom:2px;
