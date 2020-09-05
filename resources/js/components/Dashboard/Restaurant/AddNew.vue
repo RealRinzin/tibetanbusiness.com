@@ -219,7 +219,8 @@ export default {
         },
         // Create Restauratn
         create_restaurant(){
-            if(this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == null || this.restaurant.opening_hour === undefined || this.restaurant.closing_hour == null){
+            console.log();
+            if(this.restaurant.closing_hour === undefined || this.restaurant.opening_hour == undefined){
                 alert("Please enter the opening or closing hour")
             }else{
                 this.$validator.validateAll('validate_add_form').then((result) => {

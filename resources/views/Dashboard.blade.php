@@ -14,18 +14,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.min.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <link rel="icon" sizes="72x72" href="{{asset('/tibetanbusiness.png')}}">
-
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css"> -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -160,8 +157,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-    <!-- File upload script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.js"></script>
     <!-- Custom components vue -->
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     <script src="{{ asset('js/dashboard.min.js') }}"></script>

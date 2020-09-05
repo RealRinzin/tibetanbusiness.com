@@ -1,19 +1,13 @@
 // Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-// @import 'variables';
+@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'restaurant.scss';
 @import 'universe.scss';
-@import 'dashboard.scss';
-@import 'job.scss';
-// @import 'event.scss';
-// @import 'hotel.scss';
-// @import 'rent.scss';
-// @import 'sale.scss';
+@import 'detail.scss';
 // body
 body{
     font-family: 'Source Sans Pro', sans-serif;

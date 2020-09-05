@@ -5,13 +5,11 @@
     <meta charset="utf-8">
     <title>Tibetanbusiness.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('description')">
+    <meta name="Description" content="Put your description here.">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
-    <!-- Fonts -->
-
     <!-- META -->
     <meta property="og:title" content="" />
     <meta property="og:url" content="" />
@@ -20,26 +18,25 @@
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <!-- @if(Request::is('/')) -->
+    <!-- @endif -->
     @if(!Request::is('/'))
-        <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
     @endif
-        <!-- JQUERY UI -->
-
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- fontawesome -->
-        <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
-        <!-- Adminlte -->
-        <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-        <!-- rating star -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
-        <!-- jquery UI -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
-        <!-- CSRF TOKEN -->
-        <script>
-            window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
-        </script>
+    <!-- JQUERY UI -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- fontawesome -->
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    <!-- Adminlte -->
+    <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- rating star -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
+    <!-- jquery UI -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script>
+    <!-- CSRF TOKEN -->
+    <script>
+        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+    </script>
 </head>
 
 <body>

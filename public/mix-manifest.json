@@ -1,6 +1,8 @@
 {
     "/js/app.min.js": "/js/app.min.js",
     "/css/app.css": "/css/app.css",
+    "/css/dashboard.min.css": "/css/dashboard.min.css",
+    "/css/detail.min.css": "/css/detail.min.css",
     "/js/dashboard.min.js": "/js/dashboard.min.js",
     "/js/detail.min.js": "/js/detail.min.js"
 }
