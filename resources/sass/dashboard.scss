@@ -112,13 +112,13 @@
             font-size: 90%;
         }
     }
-/*
-Upload Image
-Universal
-Image / Banner / food / Menu
-Rent / Hotel etc 
-CSS style
-*/
+    /*
+    Upload Image
+    Universal
+    Image / Banner / food / Menu
+    Rent / Hotel etc 
+    CSS style
+    */
     #image_upload {
         width: 100%;
         background: #2196F3;
@@ -221,38 +221,55 @@ CSS style
             }
         }
     }
-/* 
-  Dashboard navtabs
-  Overview
-  Photos
-  Comments etc
-  */
-
+    /* 
+    Dashboard navtabs
+    Overview
+    Photos
+    Comments etc
+    */
     #nav-tab{
-    .nav-tabs{
-        .nav-item{
-        padding: 0px 10px !important;
-        // background-color: red;
-        transition: .5s ease;
-        }
-    .nav-item:first-child{
-    padding-left: 0px !important;
-    text-align: center;
-        }
+        .nav-tabs{
+            .nav-item{
+            padding: 0px 10px !important;
+            // background-color: red;
+            transition: .5s ease;
+            }
+        .nav-item:first-child{
+        padding-left: 0px !important;
+        text-align: center;
+            }
+            a{
+            color:#6c757d!important;
+            font-weight: bold;
+            }
+            .nav-item.show .nav-link,.nav-link.active{
+            background-color: transparent !important;
+            border-bottom: solid 2px#dc3545!important;
+            color:#343a40!important;
+            font-weight: bold;
+            }
+            .nav-link{
+            border: none !important;
+            }
+        } 
+    }
+    // Dashboard Carousel Photos
+    /** Animate css  */
+    .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    }
+    /* Carousel */
+    .carousel{
         a{
-        color:#6c757d!important;
-        font-weight: bold;
+            // margin:10% 0px;
+            background-color: rgba(0,0,0,0.5);
         }
-        .nav-item.show .nav-link,.nav-link.active{
-        background-color: transparent !important;
-        border-bottom: solid 2px#dc3545!important;
-        color:#343a40!important;
-        font-weight: bold;
+        .slide{
+            // height: 55vh;
+            width: 100%;
+            background-position: center center;
+            background-size: cover;
         }
-        .nav-link{
-        border: none !important;
-        }
-    } 
-
     }
 }

@@ -9,17 +9,12 @@
                             <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
                         </div>
                         <div class="col-md-6 mb-5 col-11 mx-auto" id="tb_search_dropdown">
-                            <!-- <form method="get" action="#"> -->
-                                <!-- {{ csrf_field() }} -->
-                            <!-- <form method="get"> -->
                                 <div class="row">
                                     <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_location">
                                         <div class="input-group mb-3 input-group-lg">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted"></i></span>
                                             </div>
-                                            <!-- <input type="text" name="location" id="location_search"  onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required> -->
-                                            <!-- <input type="text" name="location" id="location_search" @focusin="location_dropdown()"  v-model="place"  class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required> -->
                                             <input type="text" id="location_search" @focusin="location_dropdown()"  v-model="place"  :keyup="location_selected()" class="form-control" readonly="readonly" placeholder="Service" aria-label="Location" required>
                                             <ul id="location_list" style="display:none;transition:1s">
                                                 <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +42,7 @@
                                     </div>
                                     <div class="col-md-2 px-0 col-sm-2 col-12">
                                         <div class="input-group-append">
-                                            <button  type="submit" @click="search" class="btn btn-danger w-75">
+                                            <button  type="submit" @click="search" name="search" class="btn btn-danger w-75">
                                                 <i class="fas fa-search fa-2x"></i>
                                             </button>
                                         </div>
@@ -155,7 +150,6 @@ import 'swiper/css/swiper.css'
             } else {
                 let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.place;
                 window.location.href = url;
-                // $('form').attr('action','/search/'+this.service+'?_token=IuURkc415IfrxTHoRHxPSgPIPrGvUhldRyAAsfCJ&location='+this.place);
             };
         }
       },

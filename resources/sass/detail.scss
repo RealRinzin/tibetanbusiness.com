@@ -154,4 +154,17 @@ View individual show CSS
             }
         }
     }
+    /* Carousel */
+    .carousel{
+        a{
+            // margin:10% 0px;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .slide{
+            // height: 55vh;
+            width: 100%;
+            background-position: center center;
+            background-size: cover;
+        }
+    }
 }

@@ -83,15 +83,9 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.restaurant') }}" class="nav-link">
-                                <i class="fa fa-calendar-alt mr-2"></i>
-                                <p>Restaurants<span class="right badge badge-danger">New</span></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.rent') }}" class="nav-link">
-                                <i class="fa fa-calendar-alt mr-2"></i>
-                                <p>Rents<span class="right badge badge-danger">New</span></p>
+                            <a href="{{route('dashboard.sale')}}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Sales<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -101,21 +95,28 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('dashboard.rent') }}" class="nav-link">
+                                <i class="fa fa-calendar-alt mr-2"></i>
+                                <p>Rents<span class="right badge badge-danger">New</span></p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{route('dashboard.event')}}" class="nav-link">
                                 <i class="fas fa-hotel mr-2 "></i>
                                 <p>Event<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('dashboard.sale')}}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Sales<span class="right badge badge-danger">New</span></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('dashboard.service')}}" class="nav-link">
                                 <i class="fas fa-home mr-2 text-danger"></i>
                                 <p>Services<span class="right badge badge-danger">New</span></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.restaurant') }}" class="nav-link">
+                                <i class="fa fa-calendar-alt mr-2"></i>
+                                <p>Restaurants<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                     </ul>
@@ -136,20 +137,15 @@
             <!-- /.content-header -->
         </div>
         <!-- /.content-wrapper -->
-
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
         <footer class="main-footer text-center p-3 small">
             <strong>Copyright &copy; <?php echo date("Y") ?> <a href="https://www.tibetanbusiness.com">Tibetanbusiness Co</a></strong>
             All rights reserved.
-            <!-- <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.4
-            </div> -->
         </footer>
     </div>
     <!-- REQUIRED SCRIPTS -->

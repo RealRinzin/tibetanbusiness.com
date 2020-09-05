@@ -66,7 +66,7 @@
                 @drop="onDrop"
                 :class="{ dragging: isDragging }">
                 <div class="upload-control" v-show="images.length">
-                    <label for="file" class="btn btn-primary btn-md">Select a file</label>
+                    <button class="btn btn-success btn-md" @click="clear_all()">Clear All</button>
                     <button class="btn btn-warning btn-md" @click="upload(id)">Upload</button>
                 </div>
 
@@ -257,6 +257,7 @@
         },
         // Clear all files
         clear_all(){
+          console.log("hellow");
             this.images = [];
             this.files = [];
             this.valid_image =[]

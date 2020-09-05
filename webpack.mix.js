@@ -24,7 +24,6 @@ mix.js([
 // Restaurant
 mix.js([
    'resources/js/detail.min.js',
-], 'public/js/detail.min.js')
-.sass('resources/sass/detail.scss','public/css/detail.min.css');
+], 'public/js/detail.min.js');
 
 

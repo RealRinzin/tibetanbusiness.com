@@ -80,7 +80,7 @@
                     <div class="img-wrapper" v-for="(image, index) in fp_images" :key="index">
                         <img :src="image" :alt="`Image Uplaoder ${index}`">
                         <div class="remove_item">
-                                <i @click="fp_destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
+                                <i @click="destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
                         </div>
                         <div class="details">
                             <span class="name" v-text="fp_files[index].name"></span>
@@ -141,7 +141,7 @@
        * Removing Photo
        *  */
       remove(id,index){
-        
+
         let confirmBox = confirm('Are you sure want to Delete!!!');
         if(confirmBox == true){
           axios.delete('/api/restaurant_food_photos/'+id,{
@@ -227,12 +227,12 @@
             return `${(Math.round(size * 100) / 100)} ${fSExt[i]}`;
         },
         /* Remove image */
-        fp_destory(index){
+        destory(index){
             // Removing image
-            this.$delete(this.images,index);
+            this.$delete(this.fp_images,index);
             this.$delete(this.valid_image,index);
             // Removing the image files
-            this.$delete(this.files,index);
+            this.$delete(this.fp_files,index);
         },
         // Upload photos
         fp_upload(id) {
@@ -264,8 +264,8 @@
         },
         // Clear all files
         clear_all(){
-            this.images = [];
-            this.files = [];
+            this.fp_images = [];
+            this.fp_files = [];
             this.valid_image =[]
         }
 

@@ -411,7 +411,6 @@
                                             </span>
                                             @enderror
                                         </div>
-
                                         <div class="input-group mb-4">
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                                             <div class="input-group-append">
@@ -598,7 +597,6 @@
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js"></script> -->
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/bgset/ls.bgset.min.js"></script>
 </body>
 

@@ -12,7 +12,7 @@
                     <swiper class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales">
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
-                                <a v-bind:href="'sale/'+sale.id">
+                                <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner +' 100w'"  data-sizes="auto">
                                         <ul>
                                             <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
@@ -37,7 +37,7 @@
                     <swiper class="col-md-4 col-sm-6 col-12 swiper info" :options="settings" v-if="events">
                         <swiper-slide v-for="(event,index) in events" :key="index">
                             <div class="card">
-                                <a v-bind:href="'event/'+event.id">
+                                <a v-bind:href="'event/'+event.id" role="button">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner +' 100w'"  data-sizes="auto">
                                         <ul>
