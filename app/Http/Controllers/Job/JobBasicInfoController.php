@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Job\JobApplyResource;
 use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Http\Resources\Job\JobBasicInfoResourceCollection;
+use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -137,10 +138,18 @@ class JobBasicInfoController extends Controller
         $job = JobBasicInfo::find($id);
         $unlink = public_path() . '/storage/Job/Banner/' . $job->banner;
         unlink($unlink);
+        // Photos Delete
+        $documents = JobApply::where('job_basic_info_id', $id)->get();
+        for ($i = 0; $i < $documents->count(); $i++) {
+            $documents[$i]->delete();
+            $documents_detach = public_path() . '/storage/Job/' . $documents[$i]->document;
+            unlink($documents_detach);
+        }
+        // Delete
         $job->delete();
+        $job->job_interests()->delete();
         $job->job_questions()->delete();
         $job->job_applies()->delete();
-
     }
     /**
      * Get all Rent 
@@ -200,7 +209,7 @@ class JobBasicInfoController extends Controller
     }
     /**
      * 
-     * Restaurant Advertisment
+     * Job Ads
      * Home Featured
      * Sidebar
      * Banner etc

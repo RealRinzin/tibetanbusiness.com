@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Sale\SaleBasicInfoResource;
 use App\Sale\SaleBasicInfo;
+use App\Sale\SalePhoto;
 use Illuminate\Support\Facades\Auth;
 
 class SaleBasicInfoController extends Controller
@@ -121,11 +122,20 @@ class SaleBasicInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
         $sale = SaleBasicInfo::find($id);
-        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
-        // unlink($unlink);
+        $unlink = public_path() . '/storage/Sale/Banner/' . $sale->banner;
+        unlink($unlink);
+        // Photo Deletes
+        $photo = SalePhoto::where('sale_basic_info_id', $id)->get();
+        // Looping through all the photos
+        for ($i=0; $i < $photo->count(); $i++) { 
+            $photo[$i]->delete();
+            $photos_detach = public_path() . '/storage/Sale/Photos/' . $photo[$i]->path;
+            unlink($photos_detach);
+        }
+        // Delete
         $sale->delete();
+        $sale->sale_photos()->delete();
     }
 
     // CUSTOM API
@@ -220,8 +230,8 @@ class SaleBasicInfoController extends Controller
         }
         // upate
         $banner = SaleBasicInfo::find($id);
-        // $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
-        // unlink($unlink);
+        $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
+        unlink($unlink);
         $banner->update(['banner' => $name]);
     }
     // Search View

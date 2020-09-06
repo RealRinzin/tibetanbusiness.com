@@ -157,6 +157,7 @@ export default {
                     headers : { Authorization : localStorage.getItem("token")}
                     }).then(response=>{
                         this.load_questions();
+                        location.reload();
                         toast.fire({
                             icon:'success',
                             title:'Comment Posted',

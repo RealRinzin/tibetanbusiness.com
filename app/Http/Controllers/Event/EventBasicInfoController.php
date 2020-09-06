@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Event;
 
 use App\Event\EventBasicInfo;
+use App\Event\EventPhoto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Event\EventInfoBasicResource;
@@ -134,14 +135,19 @@ class EventBasicInfoController extends Controller
     {
         
         $event = EventBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
+        unlink($unlink);
+        // Photos Delete
+        $photos = EventPhoto::where('event_basic_info_id', $id)->get();
+        for ($i = 0; $i < $photos->count(); $i++) {
+            $photos[$i]->delete();
+            $photos_detach = public_path() . '/storage/Event/Photos/' . $photos[$i]->path;
+            unlink($photos_detach);
+        }
         $event->delete();
         $event->event_interests()->delete();
         $event->event_reviews()->delete();
         $event->event_photos()->delete();
-        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
-        // unlink($unlink);
-        // $interest->job_questions()->delete();
-        // $review->job_applies()->delete();
     }
 
     /**

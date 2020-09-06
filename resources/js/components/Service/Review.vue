@@ -227,6 +227,7 @@ export default {
                         headers : { Authorization : localStorage.getItem("token")}
                         }).then(response=>{
                             this.load_review();
+                            location.reload();
                             // Reset form
                             // this.review = [];
                             toast.fire({

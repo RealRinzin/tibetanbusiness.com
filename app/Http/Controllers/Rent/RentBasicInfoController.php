@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Rent\RentBasicInfoResource;
 use App\Rent\RentBasicInfo;
+use App\Rent\RentRoomPhoto;
+use App\Rent\RentViewPhoto;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -132,6 +134,20 @@ class RentBasicInfoController extends Controller
         $rent = RentBasicInfo::find($id);
         $unlink = public_path() . '/storage/Rent/Banner/' . $rent->banner;
         unlink($unlink);
+        // View Photos
+        $view_photos = RentViewPhoto::where('rent_basic_info_id', $id)->get();
+        for ($i = 0; $i < $view_photos->count(); $i++) {
+            $view_photos[$i]->delete();
+            $view_detach = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->path;
+            unlink($view_detach);
+        }
+        // Room Photos
+        $room_photos = RentRoomPhoto::where('rent_basic_info_id', $id)->get();
+        for ($i = 0; $i < $room_photos->count(); $i++) {
+            $room_photos[$i]->delete();
+            $room_detach = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->path;
+            unlink($room_detach);
+        }
         $rent->delete();
         $rent->rent_comments()->delete();
         $rent->rent_facilities()->delete();
@@ -228,6 +244,8 @@ class RentBasicInfoController extends Controller
         }
         // upate
         $banner = RentBasicInfo::find($id);
+        $unlink = public_path() . '/storage/Rent/Banner/' . $banner->banner;
+        unlink($unlink);
         $banner->update(['banner' => $name]);
     }
     /**

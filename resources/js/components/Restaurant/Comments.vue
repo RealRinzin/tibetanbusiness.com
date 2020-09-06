@@ -70,11 +70,11 @@
                     </div>
                     </div>
                 </div>
-                <div class="col-md-12 text-center" v-if="load_more_button">
-                    <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
-                </div>
             </div>
-
+        </div>
+        <!-- Load more -->
+        <div class="col-md-12 text-center" v-if="load_more_button">
+            <button @click="load_comments()" class="btn btn-danger btn-sm">Load more</button>
         </div>
 <!-- Edit Modal -->
 <!-- Modal -->
@@ -298,6 +298,7 @@ export default {
                             headers : { Authorization : localStorage.getItem("token")}
                             }).then(response=>{
                             });
+                            location.reload();
                     }
                 })
             }else{

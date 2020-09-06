@@ -272,6 +272,7 @@ export default {
                             headers : { Authorization : localStorage.getItem("token")}
                             }).then(response=>{
                             });
+                            location.reload();
                         })
                     }
                 })

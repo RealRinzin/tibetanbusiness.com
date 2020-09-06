@@ -9,6 +9,8 @@ use App\Http\Resources\Restaurant\RestaurantBasicInfoResourceCollection;
 use Illuminate\Support\Facades\DB;
 use App\Restaurant\RestaurantBasicInfo;
 use App\Restaurant\RestaurantFacility;
+use App\Restaurant\RestaurantFoodPhoto;
+use App\Restaurant\RestaurantMenuPhoto;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -121,18 +123,29 @@ class RestaurantBasicInfoController extends Controller
     public function destroy($id,RestaurantBasicInfo $restaurantBasicInfo)
     {
         $restaurant = RestaurantBasicInfo::find($id);
-        $restaurant->delete();
         $unlink = public_path() . '/storage/Restaurant/Banner/' . $restaurant->banner;
         unlink($unlink);
+        // Food Photos
+        $food_photos = RestaurantFoodPhoto::where('restaurant_basic_info_id', $id)->get();
+        for ($i = 0; $i < $food_photos->count(); $i++) {
+            $food_photos[$i]->delete();
+            $food_detach = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->path;
+            unlink($food_detach);
+        }
+        // Menu
+        $menu_photos = RestaurantMenuPhoto::where('restaurant_basic_info_id', $id)->get();
+        for ($i = 0; $i < $menu_photos->count(); $i++) {
+            $menu_photos[$i]->delete();
+            $menu_detach = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->path;
+            unlink($menu_detach);
+        }
+        // Delete
+        $restaurant->delete();
         $restaurant->restaurant_comments()->delete();
         $restaurant->restaurant_facilities()->delete();
         $restaurant->restaurant_food_photos()->delete();
         $restaurant->restaurant_menu_photos()->delete();
         $restaurant->restaurant_operation_days()->delete();
-        // if(auth()->user()->can('delete', $restaurantBasicInfo)){
-        //     $$restaurantBasicInfo->delete();
-        // }
-
     }
     /**
      * Display a listing of the resource.
@@ -237,8 +250,8 @@ class RestaurantBasicInfoController extends Controller
         }
         // upate
         $banner = RestaurantBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
-        unlink($unlink);
+        // $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
+        // unlink($unlink);
         $banner->update(['banner' => $name]);
     }
 

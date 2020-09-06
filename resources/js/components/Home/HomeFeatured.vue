@@ -181,13 +181,6 @@
             <div class="container py-3" id="business_list">
                 <!-- <home-list></home-list> -->
                 <home-list-fast></home-list-fast>
-                <!-- <search></search> -->
-                <!-- <event-list></event-list>
-                <sale-list></sale-list>
-                <rent-list></rent-list>
-                <job-list></job-list>
-                <service-list></service-list>
-                <restaurant-list></restaurant-list> -->
             </div>
 
         </div>
@@ -200,12 +193,6 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-    import EventList from './List/Event.vue';
-    import JobList from './List/Job.vue';
-    import RentList from './List/Rent.vue';
-    import RestaurantList from './List/Restaurant.vue';
-    import SaleList from './List/Sale.vue';
-    import ServiceList from './List/Service.vue';
     // import format from 'date-fns/format';
     import { compareAsc, format } from 'date-fns';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
@@ -479,8 +466,8 @@
          * 
          * Components
          *  */  
-        components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList,Swiper,SwiperSlide},
-    // components: {Swiper,SwiperSlide},
+        // components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList,Swiper,SwiperSlide},
+    components: {Loading,Swiper,SwiperSlide},
         /**
          * Mounted
          *  */ 

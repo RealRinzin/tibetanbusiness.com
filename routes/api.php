@@ -243,6 +243,7 @@ use Illuminate\Http\Request;
     Route::get('categories/sale', 'Category\CategoryController@sale');
     Route::get('categories/service', 'Category\CategoryController@service');
 
+// Landing Carousel
+Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 
-// Testing
-Route::get('test', 'Restaurant\RestaurantBasicInfoController@test');
+

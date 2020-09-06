@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Service\ServiceBasicInfoResource;
 use App\Service\ServiceBasicInfo;
+use App\Service\ServicePhoto;
+use App\Service\ServiceReviewReply;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceBasicInfoController extends Controller
@@ -122,11 +124,22 @@ class ServiceBasicInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
         $service = ServiceBasicInfo::find($id);
-        // $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
-        // unlink($unlink);
+        $unlink = public_path() . '/storage/Service/Banner/' . $service->banner;
+        unlink($unlink);
+        // Photos Delete
+        $photos = ServicePhoto::where('service_basic_info_id', $id)->get();
+        for ($i = 0; $i < $photos->count(); $i++) {
+            $photos[$i]->delete();
+            $photos_detach = public_path() . '/storage/Service/Photos/' . $photos[$i]->path;
+            unlink($photos_detach);
+        }
+        // Delete
         $service->delete();
+        $service->service_photos()->delete();
+        $service->service_reviews()->delete();
+        $service->service_working_days()->delete();
     }
     /**
      *  Updating Star rating
