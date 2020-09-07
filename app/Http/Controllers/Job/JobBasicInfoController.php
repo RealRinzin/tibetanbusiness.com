@@ -48,6 +48,7 @@ class JobBasicInfoController extends Controller
     public function store(Request $request)
     {
         //
+
         $name = '';
         // Image upload script in php
         if ($request->banner) {
@@ -60,7 +61,9 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+                return $name;
+            \Image::make($request->banner)->save(public_path('storage/Job/Banner/') . $name);
+            
         }
         // return $name;
         $job = JobBasicInfo::create([

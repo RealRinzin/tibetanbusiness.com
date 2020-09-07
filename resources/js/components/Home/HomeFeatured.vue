@@ -39,7 +39,7 @@
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner +' 100w'"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
                                         <ul>
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
                                             <li class="btn btn-xs btn-danger small">{{event.start_date | date}}</li>

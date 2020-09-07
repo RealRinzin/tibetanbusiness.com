@@ -28,6 +28,8 @@ class EventInfoBasicResource extends JsonResource
             'interested' => $this->event_interests->count(),
             'name' => $this->name,
             'banner' => $this->banner,
+            'card' => $this->card,
+            'thumb' => $this->thumb,
             'email' => $this->email,
             'location' => $this->location,
             'category'=>$this->category,

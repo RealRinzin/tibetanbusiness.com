@@ -74,7 +74,7 @@
                     <div>OR</div>
                     <div class="file-input">
                         <label for="rent_room_photo">Select a file</label>
-                        <input type="file" id="rent_room_photo" @change="onInputChange" multiple>
+                        <input type="file"  id="rent_room_photo" @change="onInputChange" multiple>
                     </div>
                 </div>
 

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPSTORM_META\type;
+
 class EventPhotoController extends Controller
 {
     /**
@@ -38,17 +40,34 @@ class EventPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // return $request;
+        $name = "";
+        $file_name = $_FILES['images']["tmp_name"][0];
+        // $ext = $_FILES["images"]["type"][0];
+        $extension = explode("/", $_FILES["images"]["type"][0]);
+        $name = time().'.'.$extension[1];
+        return $name;
+        die();
+
+        // Working script
+        \Image::make($file_name)->save(public_path('/storage/Event/Photos/') ."testing.jpg");
+        // card
+       $Original =  \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . "testing.jpg");
+        $Original->resize(500, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        \Image::make($Original)->save(public_path('/storage/Event/Photos/') ."testing-card.jpg");
+        
+        // die();
+        // Original Script
         if (count($request->images)) {
             foreach ($request->images as $image) {
                 $restaurant = EventPhoto::create([
                     'event_basic_info_id' => $request->id,
-                    'path' => $image->store(''),
+                    // 'path' => $image->store(''),
+                    'path' => 'testing.jpg',
                     'user_id' => Auth::user()->id,
                 ]);
-                // $image->store('public\images');
-                $image->store('public\Event\Photos');
+                // $image->store('public\Event\Photos');
             }
         }
         return response()->json([

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Event\EventInfoBasicResource;
 use App\Http\Resources\Event\EventInfoBasicResourceCollection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 
 class EventBasicInfoController extends Controller
@@ -43,6 +44,7 @@ class EventBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $name = '';
         // Image upload script in php
         if ($request->banner) {
@@ -55,13 +57,48 @@ class EventBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Original
             \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $thumb);
+
         }
         // return $name;
         $job = EventBasicInfo::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'banner' => $name,
+            'card' => $card,
+            'thumb' => $thumb,
             'email' => $request->email,
             'entry_free'=>$request->entry_free,
             'location' => $request->location,
@@ -210,13 +247,51 @@ class EventBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+                // Store Image
             \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $thumb);
         }
         // upate
         $banner = EventBasicInfo::find($id);
+        // Remove old photos
         $unlink = public_path() . '/storage/Event/Banner/' . $banner->banner;
+        $unlink_card = public_path() . '/storage/Event/Banner/' . $banner->card;
+        $unlink_thumb = public_path() . '/storage/Event/Banner/' . $banner->thumb;
         unlink($unlink);
-        $banner->update(['banner' => $name]);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
+        // Update fields
+        $banner->update(['banner' => $name,'card'=>$card,'thumb'=>$thumb]);
     }
     // Update status
     public function status_update(Request $request, $id)

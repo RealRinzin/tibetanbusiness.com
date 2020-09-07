@@ -54,12 +54,12 @@ class DatabaseSeeder extends Seeder
         // factory(RestaurantCommentReply::class,10)->create();
 
         // Rent DB Seed
-        factory(RentBasicInfo::class, 10)->create();
-        factory(RentComment::class, 10)->create();
-        factory(RentCommentReply::class,10)->create();
-        factory(RentRoomPhoto::class, 10)->create();
-        factory(RentViewPhoto::class, 10)->create();
-        factory(RentFacility::class, 10)->create();
+        // factory(RentBasicInfo::class, 10)->create();
+        // factory(RentComment::class, 10)->create();
+        // factory(RentCommentReply::class,10)->create();
+        // factory(RentRoomPhoto::class, 10)->create();
+        // factory(RentViewPhoto::class, 10)->create();
+        // factory(RentFacility::class, 10)->create();
 
         // Job DB Seed
         // factory(JobBasicInfo::class,15)->create();

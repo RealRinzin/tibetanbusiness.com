@@ -20,6 +20,8 @@ class CreateEventsBasicInfoTable extends Migration
             $table->string('rate_color')->nullable();
             $table->string('name', 160);
             $table->string('banner', 80);
+            $table->string('card', 80);
+            $table->string('thumb', 80);
             $table->string('email', 100);
             $table->boolean('entry_free')->nullable();
             $table->string('location', 30);
