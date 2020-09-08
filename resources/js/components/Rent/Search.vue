@@ -77,7 +77,7 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(rent,index) in rents">
                                         <a v-bind:href="'/rent/'+rent.id">
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
-                                        <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto">
+                                        <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
                                             <ul>
                                                 <li class="ng-binding btn btn-danger btn-md small">Rent:₹{{rent.fare}}/-</li>
                                                 <li class="ng-binding btn btn-danger btn-md small">Size: {{rent.accomodation_size}} Person</li>

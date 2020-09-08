@@ -17,7 +17,9 @@ class CreateRentRoomPhotosTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('rent_basic_info_id');
             $table->uuid('user_id');
-            $table->string('path');
+            $table->string('path',100);
+            $table->string('card',100);
+            $table->string('thumb',100);
             $table->timestamps();
         });
     }

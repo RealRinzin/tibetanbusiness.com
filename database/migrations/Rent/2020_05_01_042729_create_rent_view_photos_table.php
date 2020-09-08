@@ -18,6 +18,8 @@ class CreateRentViewPhotosTable extends Migration
             $table->uuid('rent_basic_info_id');
             $table->uuid('user_id');
             $table->string('path');
+            $table->string('card',100);
+            $table->string('thumb',100);
             $table->timestamps();
         });
     }

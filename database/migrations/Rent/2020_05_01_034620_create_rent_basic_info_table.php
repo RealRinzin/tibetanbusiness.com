@@ -17,7 +17,9 @@ class CreateRentBasicInfoTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('name', 50);
-            $table->string('banner', 80);
+            $table->string('banner', 100);
+            $table->string('card', 100);
+            $table->string('thumb', 100);
             $table->decimal('fare', 10, 0);
             $table->decimal('rate', 5, 1)->nullable();
             $table->string('rate_color', 100)->nullable();

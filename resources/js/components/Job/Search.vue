@@ -97,7 +97,7 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(job,index) in jobs">
                                         <a v-bind:href="'/job/'+job.id">
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
-                                        <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto">
+                                        <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                             <ul>
                                                 <li v-if="job.salary > 0" class="btn btn-danger btn-md small">Salary:₹{{job.salary}}/-</li>
                                                 <li v-else class="btn btn-secondary btn-md small">Salary: Not Disclosed</li>

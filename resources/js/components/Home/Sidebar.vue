@@ -68,7 +68,7 @@
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6> -->
                         <swiper-slide  class="col-6" v-for="(rent,index) in rents" :key="index">
                             <a v-bind:href="'/rent/'+rent.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb"  data-sizes="auto"></div>
 
                             <div class="rate" v-if="rent.rate !=null"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
                             </a>
@@ -95,7 +95,7 @@
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> job</h6> -->
                         <swiper-slide  class="col-6" v-for="(job,index) in jobs" :key="index">
                             <a v-bind:href="'/job/'+job.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto"></div>
 
                             <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                             </a>

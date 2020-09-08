@@ -388,7 +388,6 @@ export default {
                 if(!this.status){
                     this.job.salary = 0;
                 }
-                console.log(this.status);
                 this.$validator.validateAll('job_validate_update_form').then((result) => {
                     if (result) {
                         axios.patch('/api/job/'+id,this.job,{

@@ -68,8 +68,6 @@ export default {
     methods:{
         // load Comments
         load_questions(){
-            console.log(this.job_id);
-            
         axios.get('/api/job/'+this.job_id+'/questions')
             .then(response=>{ 
                 this.questions = response.data.data;

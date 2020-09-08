@@ -5,7 +5,7 @@
                 <h6 class="text-dark">View Photos({{total_photos}})</h6>
             </div>
             <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(view_photo,index) in view_photos" v-if="index < 7">
-                <div class="photo" @click="view_photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Rent/View-Photos/${view_photo.path})`}'></div>
+                <div class="photo lazyload" @click="view_photo_modal(index)" :data-bgset="'/storage/Rent/View-Photos/'+view_photo.thumb"  data-sizes="auto"></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">
@@ -23,8 +23,7 @@
                         <div id="show_food_photo_carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in view_photos" :class="{ active: index==0 }">
-                                    <div class="slide" style="height:55vh" v-bind:style='{ backgroundImage: `url(/storage/Rent/View-Photos/${photo.path})`}'></div>
-                                    <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
+                                    <div class="slide lazyload" style="height:55vh" :data-bgset="'/storage/Rent/Room-Photos/'+photo.path"  data-sizes="auto"></div>
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#show_food_photo_carousel" role="button" data-slide="prev">

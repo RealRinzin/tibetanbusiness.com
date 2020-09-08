@@ -38,19 +38,41 @@ class RentRoomPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        //
-        if (count($request->images)) {
-            foreach ($request->images as $image) {
-                $restaurant = RentRoomPhoto::create([
-                    'rent_basic_info_id' => $request->id,
-                    'path' => $image->store(''),
-                    'user_id' => Auth::user()->id,
-                ]);
-                // $image->store('public\images');
-                $image->store('public\Rent\Room-Photos');
-            }
+        // Counting the photos
+        $countPhotos = count($_FILES['images']['name']);
+        // Looping the files
+        for ($i = 0; $i < $countPhotos; $i++) {
+            // File Loop
+            $file_name = $_FILES['images']["tmp_name"][$i];
+            // image extension extraction
+            $extension = explode("/", $_FILES["images"]["type"][$i]);
+            $name = time() . '.' . $extension[1];
+            $card = time() . '-card.' . $extension[1];
+            $thumb = time() . '-thumb.' . $extension[1];
+            // Original
+            \Image::make($file_name)->save(public_path('/storage/Rent/Room-Photos/') . $name);
+            $Original =  \Image::make($file_name)->save(public_path('/storage/Rent/Room-Photos/') . $name);
+            // card
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Rent/Room-Photos/') . $card);
+            // thumb
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Rent/Room-Photos/') . $thumb);
+            // Inserting
+            // Recording in Database
+            $restaurant = RentRoomPhoto::create([
+                'rent_basic_info_id' => $request->id,
+                'path' => $name,
+                'card' => $card,
+                'thumb' => $thumb,
+                'user_id' => Auth::user()->id,
+            ]);
         }
+
         return response()->json([
             "message" => "Done"
         ]);
@@ -100,6 +122,14 @@ class RentRoomPhotoController extends Controller
     {
         //
         $photos = RentRoomPhoto::find($id);
+        // Delete
+        $unlink = public_path() . '/storage/Rent/Room-Photos/' . $photos->path;
+        $card = public_path() . '/storage/Rent/Room-Photos/' . $photos->card;
+        $thumb = public_path() . '/storage/Rent/Room-Photos/' . $photos->thumb;
+        // Unlinking all the photos
+        unlink($unlink);
+        unlink($card);
+        unlink($thumb);
         $photos->delete();
     }
     /**

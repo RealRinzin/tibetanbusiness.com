@@ -71,7 +71,7 @@
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner+' 100w'"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
                                         <ul>
                                             <li class="btn btn-xs btn-danger small">Rent:₹{{rent.fare}}/-</li>
                                             <li class="btn btn-xs btn-danger small">Size: {{rent.accomodation_size}} Person</li>
@@ -100,7 +100,7 @@
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner+' 100w'"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                         <ul>
                                             <li v-if="job.salary" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
                                             <li class="btn btn-xs btn-danger small">Type:{{job.profession}}</li>

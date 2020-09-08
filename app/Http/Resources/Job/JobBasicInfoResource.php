@@ -19,6 +19,8 @@ class JobBasicInfoResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'banner' => $this->banner,
+            'card' => $this->card,
+            'thumb' => $this->thumb,
             'title' => $this->title,
             'organization' => $this->organization,
             'profession' => $this->profession,

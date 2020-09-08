@@ -58,8 +58,6 @@ export default {
     // Methods
     methods:{
         load_replies(){
-            console.log(this.replies.next_page_url);
-            
             // axios.get('/api/job/'+this.questions.id+'/replies/?page='+this.nextPage)
             axios.get(this.replies.next_page_url)
             .then(({data})=>{

@@ -13,7 +13,6 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                     <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 300px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
-                                        <!-- <img :src="bannerPreview" alt="" class="img-fluid"> -->
                                     </div>
                                 <div class="row">
                                         <div class="col-md-4 col-sm-6">
@@ -283,7 +282,7 @@ export default {
                                     icon:'success',
                                     title:'Updated',
                                 });
-                                location.reload();
+                                // location.reload();
                                 this.$emit('load_job');
                         })
                     }

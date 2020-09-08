@@ -17,6 +17,8 @@ class CreateJobBasicInfoTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('banner', 80);
+            $table->string('card', 80);
+            $table->string('thumb', 80);
             $table->string('title', 255);
             $table->string('organization', 255);
             $table->string('profession', 100);

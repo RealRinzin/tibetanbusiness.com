@@ -47,9 +47,6 @@ class JobBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        $name = '';
         // Image upload script in php
         if ($request->banner) {
             $name = time() . '.'
@@ -61,14 +58,47 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-                return $name;
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Original
             \Image::make($request->banner)->save(public_path('storage/Job/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $thumb);
             
         }
         // return $name;
         $job = JobBasicInfo::create([
             'user_id' => Auth::user()->id,
             'banner' => $name,
+            'card' => $card,
+            'thumb' => $thumb,
             'title' => $request->title,
             'organization' => $request->organization,
             'salary' => $request->salary,
@@ -140,7 +170,11 @@ class JobBasicInfoController extends Controller
         //
         $job = JobBasicInfo::find($id);
         $unlink = public_path() . '/storage/Job/Banner/' . $job->banner;
+        $unlink_card = public_path() . '/storage/Job/Banner/' . $job->card;
+        $unlink_thumb = public_path() . '/storage/Job/Banner/' . $job->thumb;
         unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
         // Photos Delete
         $documents = JobApply::where('job_basic_info_id', $id)->get();
         for ($i = 0; $i < $documents->count(); $i++) {
@@ -194,13 +228,49 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+
             \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $thumb);
         }
         // upate
         $banner = JobBasicInfo::find($id);
         $unlink = public_path() . '/storage/Job/Banner/' . $banner->banner;
+        $unlink_card = public_path() . '/storage/Job/Banner/' . $banner->card;
+        $unlink_thumb = public_path() . '/storage/Job/Banner/' . $banner->thumb;
         unlink($unlink);
-        $banner->update(['banner' => $name]);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
+        $banner->update(['banner' => $name,'card'=>$card,'thumb'=>$thumb]);
     }
     /**
      * Showing restaurant without relationship

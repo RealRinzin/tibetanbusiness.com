@@ -9,7 +9,7 @@
                     <div class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
-                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.banner+' 100w'"   data-sizes="auto">
+                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
                                 <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-success  price p-1 m-0">Entry Free</p>
                                 <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
                             </div>
@@ -32,7 +32,7 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner+ ' 100w'"  data-sizes="auto">
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
                             <p v-if="sale.price" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Price:&#x20B9 {{sale.price}}</p>
                         </div>
                         </a>
@@ -54,7 +54,7 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.banner+' 100w'"  data-sizes="auto">
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb+' 100w'"  data-sizes="auto">
                             <p v-if="rent.fare" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Rent:&#x20B9 {{rent.fare}}</p>
                         </div>
                         </a>
@@ -76,7 +76,7 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.banner+' 100w'"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{job.title}}</h5>
@@ -96,7 +96,7 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner+' 100w'"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{service.name}}</h5>
