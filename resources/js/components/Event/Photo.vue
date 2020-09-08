@@ -33,7 +33,7 @@
                         <div id="show_food_photo_carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                                    <div class="slide" style="height:55vh" v-bind:style='{ backgroundImage: `url(/storage/Event/Photos/${photo.path})`}'></div>
+                                    <div class="slide lazyload" style="height:55vh" :data-bgset="'/storage/Event/Photos/'+photo.path"  data-sizes="auto"></div>
                                     <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
                                 </div>
                             </div>

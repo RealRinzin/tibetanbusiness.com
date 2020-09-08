@@ -44,8 +44,10 @@ class EventBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        $name = '';
+        // Check the entry Fee
+        if($request->entry_fee == null){
+            $request->entry_fee = 0;
+        }
         // Image upload script in php
         if ($request->banner) {
             $name = time() . '.'
