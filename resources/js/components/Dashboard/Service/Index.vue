@@ -23,7 +23,7 @@
                     <tbody>
                         <tr v-for="(service,index) in services">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="service.banner !==''" :href="'/service/'+service.id"><img :src="'/storage/Service/Banner/'+service.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="service.banner !==''" :href="'/service/'+service.id"><img :src="'/storage/Service/Banner/'+service.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{service.name}}</td>
                             <td>{{service.type}}</td>
                             <td>{{service.location}}</td>

@@ -39,9 +39,7 @@ class SaleBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //
-        $name = '';
+
         // Image upload script in php
         if ($request->banner) {
             $name = time() . '.'
@@ -53,13 +51,48 @@ class SaleBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Images
             \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $thumb);
         }
-        // return $name;
+        // Database Record
+        // Insertion
         $sale = SaleBasicInfo::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'banner' => $name,
+            'card' => $card,
+            'thumb' => $thumb,
             'type' => $request->type,
             'location' => $request->location,
             'total_item' => $request->total_item,
@@ -124,14 +157,22 @@ class SaleBasicInfoController extends Controller
     {
         $sale = SaleBasicInfo::find($id);
         $unlink = public_path() . '/storage/Sale/Banner/' . $sale->banner;
+        $unlink_card= public_path() . '/storage/Sale/Banner/' . $sale->card;
+        $unlink_thumb = public_path() . '/storage/Sale/Banner/' . $sale->thumb;
         unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
         // Photo Deletes
         $photo = SalePhoto::where('sale_basic_info_id', $id)->get();
         // Looping through all the photos
         for ($i=0; $i < $photo->count(); $i++) { 
             $photo[$i]->delete();
             $photos_detach = public_path() . '/storage/Sale/Photos/' . $photo[$i]->path;
+            $photos_card = public_path() . '/storage/Sale/Photos/' . $photo[$i]->card;
+            $photos_thumb = public_path() . '/storage/Sale/Photos/' . $photo[$i]->thumb;
             unlink($photos_detach);
+            unlink($photos_card);
+            unlink($photos_thumb);
         }
         // Delete
         $sale->delete();
@@ -226,13 +267,48 @@ class SaleBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
             \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $thumb);
         }
         // upate
         $banner = SaleBasicInfo::find($id);
         $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
+        $unlink_card = public_path() . '/storage/Sale/Banner/' . $banner->card;
+        $unlink_thumb = public_path() . '/storage/Sale/Banner/' . $banner->thumb;
         unlink($unlink);
-        $banner->update(['banner' => $name]);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
+        $banner->update(['banner' => $name,'card'=>$card,'thumb'=>$thumb]);
     }
     // Search View
     public function search_engine(Request $request)

@@ -2,10 +2,10 @@
     <div>
         <div class="row p-3">
             <div class="col-md-12">
-                <h6 class="text-dark">Event Photo ({{total_photos}})</h6>
+                <h6 class="text-dark">Photo ({{total_photos}})</h6>
             </div>
-            <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(event_photo,index) in photos" v-if="index < 7">
-                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Service/Photos/${event_photo.path})`}'></div>
+            <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(photo,index) in photos" v-if="index < 7">
+                <div class="photo lazyload" @click="photo_modal(index)" :data-bgset="'/storage/Service/Photos/'+photo.thumb" data-sizes="auto"></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">

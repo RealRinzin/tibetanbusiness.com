@@ -5,7 +5,7 @@
                 <h6 class="text-dark">Product Photo ({{total_photos}})</h6>
             </div>
             <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(photo,index) in photos" v-if="index < 7">
-                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Sale/Photos/${photo.path})`}'></div>
+                <div class="photo lazyload" @click="photo_modal(index)" :data-bgset="'/storage/Sale/Photos/'+photo.thumb"  data-sizes="auto"></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">

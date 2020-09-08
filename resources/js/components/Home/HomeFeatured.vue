@@ -13,7 +13,7 @@
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
-                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner +' 100w'"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
                                         <ul>
                                             <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
                                             <li class="btn btn-xs btn-danger small">Type:{{sale.type}}</li>
@@ -129,8 +129,7 @@
                         <swiper-slide v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
-                                <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner+' 100w'"  data-sizes="auto"></div>
+                                    <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto"></div>
                                 </a>
                                 <div class="likes" v-if="service.rate > 0">
                                     <p v-if="service" v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>

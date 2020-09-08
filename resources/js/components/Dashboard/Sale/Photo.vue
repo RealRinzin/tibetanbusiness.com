@@ -12,12 +12,11 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <button class="btn btn-danger btn-xs position-absolute delete_btn" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-        <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo"  v-bind:style='{ backgroundImage: `url(/storage/Sale/Photos/${photo.path})`}'>
+        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" :data-bgset="'/storage/Sale/Photos/'+photo.thumb"  data-sizes="auto">
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">
             </div>
           </div>
-              <!-- div. -->
         </div>
     </div>
   </div>
@@ -29,7 +28,7 @@
                     <div id="photo" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
-                                <div style="height:55vh" class="slide" v-bind:style='{ backgroundImage: `url(/storage/Sale/Photos/${photo.path})`}'></div>
+                                <div style="height:55vh" class="slide lazyload" :data-bgset="'/storage/Sale/Photos/'+photo.path"  data-sizes="auto"></div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#photo" role="button" data-slide="prev">

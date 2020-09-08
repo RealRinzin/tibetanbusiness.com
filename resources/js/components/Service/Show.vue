@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <!-- Banner -->
                                         <div class="col-md-12">
-                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'>
+                                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner" data-sizes="auto">
                                             <div class="overlay title">
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{service.name}}</h6>
                                                 <ul>

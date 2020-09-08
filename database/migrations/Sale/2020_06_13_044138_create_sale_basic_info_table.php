@@ -17,7 +17,9 @@ class CreateSaleBasicInfoTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('name', 50);
-            $table->string('banner', 80);
+            $table->string('banner', 100);
+            $table->string('card', 100);
+            $table->string('thumb', 100);
             $table->decimal('price', 10, 0);
             $table->string('total_item', 2);
             $table->string('address', 250)->nullable();

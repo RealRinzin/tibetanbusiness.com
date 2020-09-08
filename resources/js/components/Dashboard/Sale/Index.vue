@@ -24,7 +24,7 @@
                     <tbody>
                         <tr v-for="(sale,index) in sales">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="sale.banner" :href="'/sale/'+sale.id"><img :src="'/storage/Sale/Banner/'+sale.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="sale.banner" :href="'/sale/'+sale.id"><img :src="'/storage/Sale/Banner/'+sale.thumb" class="ladyload img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{sale.name}}</td>
                             <td>Rs: {{sale.price}}</td>
                             <td>{{sale.total_item}}</td>

@@ -20,7 +20,9 @@ class CreateServiceBasicInfosTable extends Migration
             $table->text('type', 30);
             $table->decimal('rate', 5, 1)->nullable();
             $table->string('rate_color', 100)->nullable();
-            $table->string('banner', 80);
+            $table->string('banner', 100);
+            $table->string('card', 100);
+            $table->string('thumb', 100);
             $table->string('address', 250)->nullable();
             $table->text('location', 30);
             $table->string('email', 250)->nullable();

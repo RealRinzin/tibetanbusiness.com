@@ -14,7 +14,7 @@
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6> -->
                         <swiper-slide  class="col-6" v-for="(sale,index) in sales" :key="index">
                             <a v-bind:href="'/sale/'+sale.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto"></div>
 
                             <div class="rate" v-if="sale.rate !=null"><span v-bind:class="sale.rate_color" class="btn">{{sale.rate}}</span></div>
                             </a>
@@ -121,7 +121,7 @@
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(service,index) in services" :key="index">
                             <a v-bind:href="'/service/'+service.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto"></div>
 
                             <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>
                             </a>

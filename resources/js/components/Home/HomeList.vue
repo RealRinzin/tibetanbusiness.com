@@ -34,7 +34,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
                             <p v-if="sale.price" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Price:&#x20B9 {{sale.price}}</p>
                         </div>
                         </a>
@@ -104,7 +104,7 @@
                 <swiper-slide class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">
                             <h5>{{service.name}}</h5>

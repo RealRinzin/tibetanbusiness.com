@@ -53,13 +53,46 @@ class ServiceBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
             \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+        // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $card);
+        // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $thumb);
         }
         // return $name;
         $service = ServiceBasicInfo::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
             'banner' => $name,
+            'card' => $card,
+            'thumb' => $thumb,
             'email' => $request->email,
             'location' => $request->location,
             'type' => $request->type,
@@ -127,13 +160,21 @@ class ServiceBasicInfoController extends Controller
         
         $service = ServiceBasicInfo::find($id);
         $unlink = public_path() . '/storage/Service/Banner/' . $service->banner;
+        $unlink_card = public_path() . '/storage/Service/Banner/' . $service->card;
+        $unlink_thumb = public_path() . '/storage/Service/Banner/' . $service->thumb;
         unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
         // Photos Delete
         $photos = ServicePhoto::where('service_basic_info_id', $id)->get();
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
             $photos_detach = public_path() . '/storage/Service/Photos/' . $photos[$i]->path;
+            $photos_card = public_path() . '/storage/Service/Photos/' . $photos[$i]->card;
+            $photos_thumb = public_path() . '/storage/Service/Photos/' . $photos[$i]->thumb;
             unlink($photos_detach);
+            unlink($photos_card);
+            unlink($photos_thumb);
         }
         // Delete
         $service->delete();
@@ -223,13 +264,48 @@ class ServiceBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
             \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $thumb);
         }
         // upate
         $banner = ServiceBasicInfo::find($id);
         $unlink = public_path() . '/storage/Service/Banner/' . $banner->banner;
+        $unlink_card = public_path() . '/storage/Service/Banner/' . $banner->card;
+        $unlink_thumb = public_path() . '/storage/Service/Banner/' . $banner->thumb;
         unlink($unlink);
-        $banner->update(['banner' => $name]);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
+        $banner->update(['banner' => $name,'card'=>$card,'thumb'=>$thumb]);
     }
     // Status update
     public function status_update(Request $request, $id)

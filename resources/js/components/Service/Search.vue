@@ -74,8 +74,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(service,index) in services">
                                         <a v-bind:href="'/service/'+service.id">
-                                        <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.banner})`}'> -->
-                                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.banner"  data-sizes="auto">
+                                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto">
                                                 <ul>
                                                     <li class="font-weight-bold btn btn-danger btn-md small">Service type: {{service.type}}</li>
                                                 </ul>
