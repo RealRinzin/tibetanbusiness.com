@@ -168,6 +168,20 @@
             localStorage.removeItem('user_avatar');
         });
     </script>
+    <script>
+        function loadJS(u) {
+            var r = document.getElementsByTagName("script")[0],
+                s = document.createElement("script");
+            s.src = u;
+            r.parentNode.insertBefore(s, r);
+        }
+
+        if (!window.HTMLPictureElement || !('sizes' in document.createElement('img'))) {
+            loadJS("ls.respimg.min.js");
+        }
+    </script>
+    <script src="{{ asset('js/lazysizes.min.js') }}"></script>
+    <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
 </body>
 
 </html>

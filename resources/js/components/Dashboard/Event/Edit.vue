@@ -10,7 +10,7 @@
                         <div class="col-md-6">
                             <!-- banner -->
                             <div class="card text-center">
-                                <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
+                                <div v-if="bannerPreview == null" class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
                                     <div class="overlay">
                                         <div class="row">
                                             <div class="col-md-12">

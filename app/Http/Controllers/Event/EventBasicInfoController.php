@@ -173,13 +173,21 @@ class EventBasicInfoController extends Controller
         
         $event = EventBasicInfo::find($id);
         $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
+        $unlink_card= public_path() . '/storage/Event/Banner/' . $event->card;
+        $unlink_thumb = public_path() . '/storage/Event/Banner/' . $event->thumb;
         unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
         // Photos Delete
         $photos = EventPhoto::where('event_basic_info_id', $id)->get();
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
             $photos_detach = public_path() . '/storage/Event/Photos/' . $photos[$i]->path;
+            $photos_card = public_path() . '/storage/Event/Photos/' . $photos[$i]->card;
+            $photos_thumb = public_path() . '/storage/Event/Photos/' . $photos[$i]->thumb;
             unlink($photos_detach);
+            unlink($photos_card);
+            unlink($photos_thumb);
         }
         $event->delete();
         $event->event_interests()->delete();

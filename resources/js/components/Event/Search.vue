@@ -90,7 +90,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(event,index) in events">
                                         <a v-bind:href="'/event/'+event.id">
-                                        <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
+                                        <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
                                             <ul>
                                                 <li class="btn btn-danger btn-md small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
                                                 <li class="btn small btn-success btn-md " v-else>Free Entry</span></li>

@@ -25,9 +25,9 @@
                     <tbody>
                         <tr v-for="(event,index) in events">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="event.banner !==''" :href="'/event/'+event.id"><img :src="'/storage/Event/Banner/'+event.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="event.banner !==''" :href="'/event/'+event.id"><img :src="'/storage/Event/Banner/'+event.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{event.name}}</td>
-                            <td>Rs: {{event.entry_fee}}</td>
+                            <td> <span v-if="event.entry_fee > 0">Rs: {{event.entry_fee}}</span> <span v-else class="text-success font-weight-bolder">Entry Free</span></td>
                             <td>{{event.start_date}}</td>
                             <td>{{event.start_time}}<span v-if="event.start_time"> a.m</span></td>
                             <td>{{event.location}}</td>

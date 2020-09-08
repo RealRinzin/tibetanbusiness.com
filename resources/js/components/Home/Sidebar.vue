@@ -41,7 +41,7 @@
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(event,index) in events" :key="index">
                             <a v-bind:href="'/event/'+event.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.thumb"  data-sizes="auto"></div>
 
                             <div class="rate" v-if="event.rate !=null"><span v-bind:class="event.rate_color" class="btn">{{event.rate}}</span></div>
                             </a>

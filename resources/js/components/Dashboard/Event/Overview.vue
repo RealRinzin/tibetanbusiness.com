@@ -24,7 +24,8 @@
                                     <h6 class="text-dark">Entry Fee:</h6>
                                 </div>
                                 <div class="col-md-6 col-sm-8">
-                                    <h6 class="text-muted font-weight-bold">Rs {{event.entry_fee}}/-</h6>
+                                    <h6 class="text-muted font-weight-bold" v-if="event.entry_fee > 0">Rs {{event.entry_fee}}/-</h6>
+                                    <h6 class="text-muted font-weight-bold" v-else>Entry Free</h6>
                                 </div>
                             </div>
                             <div class="row py-1">
