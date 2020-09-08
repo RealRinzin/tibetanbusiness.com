@@ -50,8 +50,39 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Original
             \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
         }
         // Store
         $restaurant = RestaurantBasicInfo::create([
@@ -61,6 +92,8 @@ class RestaurantBasicInfoController extends Controller
             'location' => $request->location,
             'email' => $request->email,
             'banner' => $name,
+            'card' => $card,
+            'thumb' => $thumb,
             'address' => $request->address,
             'longitude' => '4.5',
             'latitude' => '3.1',
@@ -124,20 +157,34 @@ class RestaurantBasicInfoController extends Controller
     {
         $restaurant = RestaurantBasicInfo::find($id);
         $unlink = public_path() . '/storage/Restaurant/Banner/' . $restaurant->banner;
+        $unlink_card = public_path() . '/storage/Restaurant/Banner/' . $restaurant->card;
+        $unlink_thumb = public_path() . '/storage/Restaurant/Banner/' . $restaurant->thumb;
         unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
         // Food Photos
         $food_photos = RestaurantFoodPhoto::where('restaurant_basic_info_id', $id)->get();
         for ($i = 0; $i < $food_photos->count(); $i++) {
             $food_photos[$i]->delete();
             $food_detach = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->path;
+            $food_card = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->card;
+            $food_thumb = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->thumb;
             unlink($food_detach);
+            unlink($food_card);
+            unlink($food_thumb);
         }
         // Menu
         $menu_photos = RestaurantMenuPhoto::where('restaurant_basic_info_id', $id)->get();
         for ($i = 0; $i < $menu_photos->count(); $i++) {
             $menu_photos[$i]->delete();
+            // path
             $menu_detach = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->path;
+            $menu_card = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->card;
+            $menu_thumb = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->thumb;
+            // unlink
             unlink($menu_detach);
+            unlink($menu_card);
+            unlink($menu_thumb);
         }
         // Delete
         $restaurant->delete();
@@ -246,13 +293,48 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
+            // Card
+            $card = time() . '-card.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
+            // Thumb
+            $thumb = time() . '-thumb.'
+                . explode('/', explode(
+                    ':',
+                    substr(
+                        $request->banner,
+                        0,
+                        strpos($request->banner, ';')
+                    )
+                )[1])[1];
             \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // Card 500 X
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            // Thumbnail 240 X 
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
         }
         // upate
         $banner = RestaurantBasicInfo::find($id);
-        // $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
-        // unlink($unlink);
-        $banner->update(['banner' => $name]);
+        $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
+        $unlink_card = public_path() . '/storage/Restaurant/Banner/' . $banner->card;
+        $unlink_thumb = public_path() . '/storage/Restaurant/Banner/' . $banner->thumb;
+        unlink($unlink);
+        unlink($unlink_card);
+        unlink($unlink_thumb);
+        $banner->update(['banner' => $name,'card'=>$card,'thumb'=>$thumb]);
     }
 
     /**

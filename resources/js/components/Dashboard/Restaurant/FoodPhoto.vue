@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
           <button class="btn btn-danger btn-sm delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-          <div class="card gallery_view" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'>
+          <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal" :data-bgset="'/storage/Restaurant/Food-Pictures/'+photo.thumb"  data-sizes="auto">
                 <div class="overlay">
                   <div class="d-flex mt-auto ml-auto p-2">
                   </div>

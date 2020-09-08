@@ -25,7 +25,7 @@
                     <tbody>
                         <tr v-for="(restaurant,index) in restaurants">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="restaurant.banner !==''" :href="'/restaurant/'+restaurant.id"><img :src="'/storage/Restaurant/Banner/'+restaurant.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="restaurant.banner !==''" :href="'/restaurant/'+restaurant.id"><img :src="'/storage/Restaurant/Banner/'+restaurant.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{restaurant.name}}</td>
                             <td>{{restaurant.address}}</td>
                             <td>{{restaurant.location}}</td>

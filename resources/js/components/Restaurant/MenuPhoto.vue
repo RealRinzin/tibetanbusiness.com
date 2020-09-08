@@ -6,7 +6,7 @@
             </div>
             <!-- Single photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(menu_photo,index) in photos" v-if="index < 7">
-                <div @click="photo_modal(index)" class="photo" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${menu_photo.path})`}'></div>
+                <div @click="photo_modal(index)" class="photo lazyload" :data-bgset="'/storage/Restaurant/Menu-Pictures/'+menu_photo.thumb"  data-sizes="auto"></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">
@@ -24,8 +24,6 @@
                         <div id="show_menu_photo_carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                                    <!-- <div class="slide" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${photo.path})`}'></div> -->
-                                    <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
                                     <img :src="'/storage/Restaurant/Menu-Pictures/'+photo.path" alt="" class="w-100">
                                 </div>
                             </div>

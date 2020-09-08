@@ -63,7 +63,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12" v-for="(restaurant,index) in restaurants">
                                         <a v-bind:href="'/restaurant/'+restaurant.id">
-                                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
+                                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto"></div>
                                         <div class="rate" v-if="restaurant.rate >0">
                                             <button class="btn btn-sm small" v-bind:class="restaurant.rate_color">
                                             <i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}

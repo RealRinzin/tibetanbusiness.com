@@ -146,7 +146,7 @@
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(restaurant,index) in restaurants" :key="index">
                             <a v-bind:href="'/restaurant/'+restaurant.id">
-                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner"  data-sizes="auto"></div>
+                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.thumb"  data-sizes="auto"></div>
                             <div class="rate" v-if="restaurant.rate > 0"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
                             </a>
                             <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
@@ -234,7 +234,8 @@
                             // loading
                         }
                     }else{
-                        axios.get('/restaurants/list/all').then(response=>{
+                        axios.get('/api/restaurant/list/all').then(response=>{
+                            this.restaurant_loading = true;
                             this.restaurants = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -248,10 +249,7 @@
                             }
                             else{
                                 this.restaurants[index].rate_color = 'bg-secondary';
-                            }
-                            // loading
-                            this.restaurant_loading = true;
-                        }
+                            }                        }
                         })
                     }
                 })

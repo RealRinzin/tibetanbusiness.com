@@ -19,16 +19,39 @@ class RestaurantFoodPhotoController extends Controller
     public function store(Request $request)
     {
         //
-        if (count($request->images)) {
-            foreach ($request->images as $image) {
-                $restaurant = RestaurantFoodPhoto::create([
-                    'restaurant_basic_info_id' => $request->id,
-                    'path' => $image->store(''),
-                    'user_id' => Auth::user()->id,
-                ]);
-                // $image->store('public\images');
-                $image->store('public\Restaurant\Food-Pictures');
-            }
+        // Counting the photos
+        $countPhotos = count($_FILES['images']['name']);
+        // Looping the files
+        for ($i = 0; $i < $countPhotos; $i++) {
+            // File Loop
+            $file_name = $_FILES['images']["tmp_name"][$i];
+            // image extension extraction
+            $extension = explode("/", $_FILES["images"]["type"][$i]);
+            $name = time() . '.' . $extension[1];
+            $card = time() . '-card.' . $extension[1];
+            $thumb = time() . '-thumb.' . $extension[1];
+            // Original
+            \Image::make($file_name)->save(public_path('/storage/Restaurant/Food-Pictures/') . $name);
+            $Original =  \Image::make($file_name)->save(public_path('/storage/Restaurant/Food-Pictures/') . $name);
+            // card
+            $Original->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Food-Pictures/') . $card);
+            // thumb
+            $Original->resize(240, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            \Image::make($Original)->save(public_path('/storage/Restaurant/Food-Pictures/') . $thumb);
+            // Inserting
+            // Recording in Database
+            $restaurant = RestaurantFoodPhoto::create([
+                'restaurant_basic_info_id' => $request->id,
+                'path' => $name,
+                'card' => $card,
+                'thumb' => $thumb,
+                'user_id' => Auth::user()->id,
+            ]);
         }
         return response()->json([
             "message" => "Done"
@@ -44,11 +67,16 @@ class RestaurantFoodPhotoController extends Controller
     {
         //
         $photos = RestaurantFoodPhoto::find($id);
+        // Delete
+        $unlink = public_path() . '/storage/Restaurant/Food-Pictures/' . $photos->path;
+        $card = public_path() . '/storage/Restaurant/Food-Pictures/' . $photos->card;
+        $thumb = public_path() . '/storage/Restaurant/Food-Pictures/' . $photos->thumb;
+        // Unlinking all the photos
+        unlink($unlink);
+        unlink($card);
+        unlink($thumb);
         $photos->delete();
-        // Deleting the file too
-        // if($photos->path){
-        //     unlink('img/' . $photos->path);
-        // }
+
     }
 
     /**

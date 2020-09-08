@@ -5,7 +5,7 @@
                 <h6 class="text-dark">Food Photo ({{total_photos}})</h6>
             </div>
             <div class="col-md-3 col-sm-4 col-6 py-2" v-for="(food_photo,index) in photos" v-if="index < 7">
-                <div class="photo" @click="photo_modal(index)" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${food_photo.path})`}'></div>
+                <div class="photo lazyload" @click="photo_modal(index)" :data-bgset="'/storage/Restaurant/Food-Pictures/'+food_photo.thumb"  data-sizes="auto"></div>
             </div>
             <!-- More Photos -->
             <div class="col-md-3 col-sm-4 col-6 py-2" v-if="total_photos >7">
@@ -23,7 +23,7 @@
                         <div id="show_food_photo_carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==0 }">
-                                    <div class="slide" style="height:55vh" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.path})`}'></div>
+                                    <div class="slide lazyload" style="height:55vh" :data-bgset="'/storage/Restaurant/Food-Pictures/'+photo.path"  data-sizes="auto"></div>
                                     <!-- <img :src="'/img/'+photo.path" alt="" class="img-fluid"> -->
                                 </div>
                             </div>

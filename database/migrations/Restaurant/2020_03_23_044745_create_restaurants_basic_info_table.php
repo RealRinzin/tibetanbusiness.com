@@ -16,7 +16,9 @@ class CreateRestaurantsBasicInfoTable extends Migration
         Schema::connection('restaurant')->create('restaurant_basic_infos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->string('name',50);
+            $table->string('name',100);
+            $table->string('card',100);
+            $table->string('thumb', 100);
             $table->string('banner',80);
             $table->decimal('rate',5,1)->nullable();
             $table->string('rate_color', 15)->nullable();

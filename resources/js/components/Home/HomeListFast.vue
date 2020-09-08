@@ -116,7 +116,7 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner+' 100w'"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-2">
                             <h5>{{restaurant.name}}</h5>

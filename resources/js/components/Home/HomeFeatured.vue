@@ -153,7 +153,7 @@
                             <div class="card">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
-                                    <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.banner+' 100w'"  data-sizes="auto">
+                                    <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
                                     </div>
                                 </a>
                                 <div class="likes" v-if="restaurant.rate > 0">
