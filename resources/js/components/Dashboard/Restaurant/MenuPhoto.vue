@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <button class="btn btn-danger btn-sm delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#exampleModal" :data-bgset="'/storage/Restaurant/Menu-Pictures/'+photo.thumb"  data-sizes="auto">
+        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#exampleModal" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Menu-Pictures/${photo.thumb})`}' data-sizes="auto">
               <div class="overlay">
                 <div class="d-flex mt-auto ml-auto p-2">
                 </div>
@@ -57,6 +57,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="m-3">
+                <vue-progress-bar></vue-progress-bar>
           </div>
           <div class="modal-body">
             <div id="image_upload"
@@ -239,6 +242,9 @@
             // Append the ID of restaurant
                 formData.append('id',id);
             });
+            // Progress
+            this.$Progress.start();
+            // Upload
             axios.post('/api/restaurant_menu_photos', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
@@ -252,7 +258,10 @@
                   this.files = [];
                   this.valid_image=[];
                   $("#upload_menu_photos_modal").modal("hide"); 
+                //  load
                   this.load_photo();
+                //   Progress complete
+                this.$Progress.finish();
               })
         },
         // Clear all files

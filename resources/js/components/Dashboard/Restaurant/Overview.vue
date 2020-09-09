@@ -36,7 +36,7 @@
                                         <h6 class="text-muted">{{restaurant.mobile_no}}</h6>
                                     </div>
                                 </div>
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="restaurant.email">
                                     <div class="col-md-3 col-sm-4">
                                         <h6 class="text-dark">Email:</h6>
                                     </div>
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="restaurant.address">
                                     <div class="col-md-3 col-sm-4">
                                         <h6 class="text-dark">Address:</h6>
                                     </div>
@@ -78,7 +78,7 @@
                                         <h6 class="text-muted">{{restaurant.address}}</h6>
                                     </div>
                                 </div>
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="restaurant.description">
                                     <div class="col-md-3 col-sm-4">
                                         <h6 class="text-dark">Description:</h6>
                                     </div>
@@ -368,16 +368,6 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|max:45|email'" v-model="restaurant.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('validate_update_form.email')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('validate_update_form.email')">{{ error }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Opening Hour<span class="text-danger p-1">*</span></label>
                                                     <VueCtkDateTimePicker id="opening"
                                                     v-model="restaurant.opening_hour"
@@ -406,6 +396,16 @@
                                                     :formatted="'hh:mm a'"
                                                     >
                                                    </VueCtkDateTimePicker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email<small class="text-success p-1">(Optional)</small></label>
+                                                <input type="text" v-validate="'max:45|email'" v-model="restaurant.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('validate_update_form.email')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('validate_update_form.email')">{{ error }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-6">

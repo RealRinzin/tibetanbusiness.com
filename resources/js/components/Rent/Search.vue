@@ -83,7 +83,7 @@
                                                 <li class="ng-binding btn btn-danger btn-md small">Size: {{rent.accomodation_size}} Person</li>
                                             </ul>
                                         </div>
-                                        <div class="rate" v-if="rent.rate >0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>
+                                        <div class="rate" v-if="rent.rate > 0.0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{rent.name}}</h6>

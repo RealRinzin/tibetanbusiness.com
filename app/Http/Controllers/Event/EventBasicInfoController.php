@@ -101,6 +101,7 @@ class EventBasicInfoController extends Controller
             'banner' => $name,
             'card' => $card,
             'thumb' => $thumb,
+            'rate' =>0,
             'email' => $request->email,
             'entry_free'=>$request->entry_free,
             'location' => $request->location,

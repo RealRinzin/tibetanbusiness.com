@@ -195,14 +195,6 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="entry_fee">Entry Fee<small class="text-success p-1">Optional</small></label>
-                                            <input type="text" v-validate="'numeric|max:6'" v-model="event.entry_fee" name="entry_fee" class="form-control" id="entry_fee" aria-describedby="emailHelp" placeholder="Entry Fee">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_update_form.entry_fee')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_update_form.entry_fee')">{{ error }}</span>
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
@@ -229,8 +221,8 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
-                                            <label for="email">Email<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                            <label for="email">Email<small class="text-success p-1">(Optional)</small></label>
+                                            <input type="text" v-validate="'max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.email')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.email')">{{ error }}</span>
@@ -281,19 +273,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
+                                    <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="address">Address<span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'required|max:150'" v-model="event.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
+                                            <label for="address">Address<small class="text-success p-1">(Optional)</small></label>
+                                            <textarea rows="4" cols="50" v-validate="'max:150'" v-model="event.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.address')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.address')">{{ error }}</span>
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="col-md-12 col-sm-12">
+                                        <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label for="description">Event Description <span class="text-danger p-1">*</span></label>
+                                                <label for="description">Event Description <small class="text-success p-1">(Optional)</small></label>
                                                 <textarea rows="5" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('event_validate_update_form.description')" class="invalid-feedback">

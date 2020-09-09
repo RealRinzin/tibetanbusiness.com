@@ -27,7 +27,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->decimal('latitude',10,6);
             $table->text('location',30);
             $table->string('mobile_no',12);
-            $table->string('email',100);
+            $table->string('email',100)->nullable();
             $table->string('opening_hour',10);
             $table->string('closing_hour',10);
             $table->string('instagram',100)->nullable();

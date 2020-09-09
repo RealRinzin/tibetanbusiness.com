@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
           <button class="btn btn-danger btn-sm delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-          <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal" :data-bgset="'/storage/Restaurant/Food-Pictures/'+photo.thumb"  data-sizes="auto">
+          <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#food_photo_modal"  v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Food-Pictures/${photo.thumb})`}' data-sizes="auto">
                 <div class="overlay">
                   <div class="d-flex mt-auto ml-auto p-2">
                   </div>
@@ -50,9 +50,14 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="upload_menu_photos_modal">Upload Food Photos</h5>
+          <div>
+          </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="m-3">
+                <vue-progress-bar></vue-progress-bar>
           </div>
           <div class="modal-body">
             <div id="image_upload"
@@ -242,11 +247,13 @@
             // Append the ID of restaurant
                 formData.append('id',id);
             });
+            // Progress
+            this.$Progress.start();
+            // Upload
             axios.post('/api/restaurant_food_photos', formData,{
-              headers : { Authorization : localStorage.getItem("token")}
+                headers : { Authorization : localStorage.getItem("token")}
             })
               .then(response => {
-
                 //  Flash Message  
                   toast.fire({
                     icon:'success',
@@ -255,12 +262,14 @@
                   this.fp_images = [];
                   this.fp_files = [];
                   this.valid_image = [];
+                  this.$Progress.finish(); 
                   $("#upload_food_photos_modal").modal("hide");  
                   // callback
                   this.load_photo();
-
-                  // this.$emit('load');
+                //   Progress complete
+                this.$Progress.finish();
               })
+
         },
         // Clear all files
         clear_all(){

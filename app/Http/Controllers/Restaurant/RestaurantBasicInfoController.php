@@ -93,6 +93,7 @@ class RestaurantBasicInfoController extends Controller
             'email' => $request->email,
             'banner' => $name,
             'card' => $card,
+            'rate'=>0,
             'thumb' => $thumb,
             'address' => $request->address,
             'longitude' => '4.5',

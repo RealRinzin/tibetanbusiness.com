@@ -93,6 +93,7 @@ class ServiceBasicInfoController extends Controller
             'banner' => $name,
             'card' => $card,
             'thumb' => $thumb,
+            'rate'=>0,
             'email' => $request->email,
             'location' => $request->location,
             'type' => $request->type,

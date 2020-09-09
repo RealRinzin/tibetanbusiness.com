@@ -100,6 +100,7 @@ class RentBasicInfoController extends Controller
             'email' => $request->email,
             'fare' => $request->fare,
             'banner' => $name,
+            'rate'=>0,
             'card' => $card,
             'thumb' => $thumb,
             'accomodation_size' => $request->accomodation_size,

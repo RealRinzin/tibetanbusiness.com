@@ -13,6 +13,9 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 250px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'></div>
+                                <div class="my-3">
+                                    <vue-progress-bar></vue-progress-bar>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
@@ -37,6 +40,71 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
+                                            <input type="text" v-validate="'required|max:10|digits:10'" v-model="event.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
+                                            <div class="valid-feedback"></div>
+                                            <div v-if="errors.has('event_validate_add_form.mobile_no')" class="invalid-feedback">
+                                                <span v-for="error in errors.collect('event_validate_add_form.mobile_no')">{{ error }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
+                                                <div class="custom-file">
+                                                    <label class="custom-file-label" for="banner">Choose file</label>
+                                                    <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="avatar" class="custom-file-input" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.banner')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.banner')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="location">Location<span class="text-danger p-1">*</span></label>
+                                                <select v-validate="'required'" v-model="event.location" name="location" class="form-control" id="location">
+                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
+                                                </select>
+                                            <div class="valid-feedback"></div>
+                                            <div v-if="errors.has('event_validate_add_form.location')" class="invalid-feedback">
+                                                <span v-for="error in errors.collect('event_validate_add_form.location')">{{ error }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="start_date">Starting Date<span class="text-danger p-1">*</span></label>
+                                            <input type="date" v-validate="'required'" v-model="event.start_date" name="start_date" class="form-control" id="start_date" aria-describedby="emailHelp" placeholder="Starting Date">
+                                            <div class="valid-feedback"></div>
+                                            <div v-if="errors.has('event_validate_add_form.start_date')" class="invalid-feedback">
+                                                <span v-for="error in errors.collect('event_validate_add_form.start_date')">{{ error }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="end_date">End Date<small class="text-success p-1">Optional</small></label>
+                                            <input type="date" v-validate="''" v-model="event.end_date" name="end_date" class="form-control" id="end_date" aria-describedby="emailHelp" placeholder="Starting Date">
+                                            <div class="valid-feedback"></div>
+                                            <div v-if="errors.has('event_validate_add_form.end_date')" class="invalid-feedback">
+                                                <span v-for="error in errors.collect('event_validate_add_form.end_date')">{{ error }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">Email<small class="text-success p-1">Optional</small></label>
+                                                <input type="text" v-validate="'max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('event_validate_add_form.email')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('event_validate_add_form.email')">{{ error }}</span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
                                         <div class="row">
                                             <div class="col-7" v-show="status">
                                                 <div class="form-group">
@@ -56,48 +124,6 @@
                                                         <div class="invalid-feedback"></div>
                                                     </div>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <select v-validate="'required'" v-model="event.location" name="location" class="form-control" id="location">
-                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
-                                                </select>
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.location')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.location')">{{ error }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|max:10|digits:10'" v-model="event.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.mobile_no')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.mobile_no')">{{ error }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'max:45|email'" v-model="event.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.email')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.email')">{{ error }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="start_date">Starting Date<span class="text-danger p-1">*</span></label>
-                                            <input type="date" v-validate="'required'" v-model="event.start_date" name="start_date" class="form-control" id="start_date" aria-describedby="emailHelp" placeholder="Starting Date">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.start_date')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.start_date')">{{ error }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -125,47 +151,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="end_date">End Date<small class="text-success p-1">Optional</small></label>
-                                            <input type="date" v-validate="''" v-model="event.end_date" name="end_date" class="form-control" id="end_date" aria-describedby="emailHelp" placeholder="Starting Date">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.end_date')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.end_date')">{{ error }}</span>
-                                            </div>
-                                        </div>
+                                   <div class="col-12">
+                                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Optional Fields</button> <span class="text-muted small">You can fill the additional fields</span>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
-                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="avatar" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('event_validate_add_form.banner')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('event_validate_add_form.banner')">{{ error }}</span>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="row p-1">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="address">Address<span class="text-danger p-1">*</span></label>
+                                                    <textarea rows="4" cols="50" v-validate="'max:255'" v-model="event.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.address')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.address')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="description">Event Description <span class="text-danger p-1">*</span></label>
+                                                    <textarea rows="4" cols="50" v-validate="'max:255'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.description')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.description')">{{ error }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="address">Address<span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'required|max:150'" v-model="event.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('event_validate_add_form.address')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('event_validate_add_form.address')">{{ error }}</span>
-                                            </div>
-                                        </div>
                                     </div>
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <label for="description">Event Description <span class="text-danger p-1">*</span></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('event_validate_add_form.description')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('event_validate_add_form.description')">{{ error }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -230,17 +242,19 @@ export default {
        add_event(){ 
         // Undefined check
            if(this.event.entry_fee === undefined){
-               this.event.entry_fee = 0
+               this.event.entry_fee = 0;
            }
         // Checking the entry free status
-            if(this.event.entry_free){
+            if(this.event.entry_fee === 0){
                 this.event.entry_free = true;
             }else{
                 this.event.entry_free = false;
             }
+            console.log(this.event);
         // Adding new event
             this.$validator.validateAll('event_validate_add_form').then((result) => {                  
                 if(result){
+                    this.$Progress.start()
                     axios.post('/api/event',this.event,{
                     headers : { Authorization : localStorage.getItem("token")}
                     })
@@ -253,6 +267,7 @@ export default {
                                 title:'Updated',
                             });
                             this.$emit('load_event');
+                    this.$Progress.finish();
                     })
                 }
             })

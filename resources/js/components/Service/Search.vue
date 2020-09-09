@@ -79,7 +79,7 @@
                                                     <li class="font-weight-bold btn btn-danger btn-md small">Service type: {{service.type}}</li>
                                                 </ul>
                                             </div>
-                                        <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</span></div>
+                                        <div class="rate" v-if="service.rate > 0.0"><span v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{service.name}}</h6>

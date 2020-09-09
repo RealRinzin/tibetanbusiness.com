@@ -78,7 +78,7 @@
                                         </ul>
                                     </div>
                                 </a>
-                                <div class="likes" v-if="rent.rate >0">
+                                <div class="likes" v-if="rent.rate > 0.0">
                                     <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                                 </div>
                                 <div class="types">

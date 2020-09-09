@@ -22,12 +22,12 @@ class CreateEventsBasicInfoTable extends Migration
             $table->string('banner', 80);
             $table->string('card', 80);
             $table->string('thumb', 80);
-            $table->string('email', 100);
+            $table->string('email', 100)->nullable();
             $table->boolean('entry_free')->nullable();
             $table->string('location', 30);
             $table->decimal('entry_fee',10,0)->nullable();
             $table->string('category', 50);
-            $table->string('address', 150);
+            $table->string('address', 150)->nullable();
             $table->string('mobile_no', 12);
             $table->date('start_date');
             $table->date('end_date')->nullable();
