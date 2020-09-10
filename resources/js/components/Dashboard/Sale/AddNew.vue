@@ -3,16 +3,19 @@
         <div class="modal fade add_edit_label" id="sale_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Event</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <div class="modal-header bg-gradient-danger">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add New Sale</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <form @submit.prevent="add_sale()"  data-vv-scope="sale_validate_add_form">
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 250px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'></div>
+                                <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 220px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'></div>
+                                <div class="my-1">
+                                    <vue-progress-bar></vue-progress-bar>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
@@ -83,30 +86,40 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
-                                            <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="avatar" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('sale_validate_add_form.banner')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('sale_validate_add_form.banner')">{{ error }}</span>
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" for="banner">Choose file</label>
+                                                <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="avatar" class="custom-file-input" id="banner" aria-describedby="emailHelp" placeholder="Website Address">
+                                                <div class="valid-feedback"></div>
+                                                <div v-if="errors.has('sale_validate_add_form.banner')" class="invalid-feedback">
+                                                    <span v-for="error in errors.collect('sale_validate_add_form.banner')">{{ error }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="address">Address<span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'required|max:150'" v-model="sale.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('sale_validate_add_form.address')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('sale_validate_add_form.address')">{{ error }}</span>
-                                            </div>
-                                        </div>
+                                   <div class="col-12">
+                                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Optional Fields</button> <span class="text-muted small">You can fill the additional fields</span>
                                     </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="description">Sale Description <span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'max:150'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
-                                            <div class="valid-feedback"></div>
-                                            <div v-if="errors.has('sale_validate_add_form.description')" class="invalid-feedback">
-                                                <span v-for="error in errors.collect('sale_validate_add_form.description')">{{ error }}</span>
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="address">Address<small class="text-success p-1">(Optional)</small></label>
+                                                    <textarea rows="4" cols="50" v-validate="'max:150'" v-model="sale.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('sale_validate_add_form.address')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('sale_validate_add_form.address')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="description">Sale Description <small class="text-success p-1">(Optional)</small></label>
+                                                    <textarea rows="4" cols="50" v-validate="'max:150'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('sale_validate_add_form.description')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('sale_validate_add_form.description')">{{ error }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -114,8 +127,8 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger btn-md" placeholder="Write your comment">Create</button>
                         </div>
                     </form>
                 </div>
@@ -160,6 +173,7 @@ export default {
        add_sale(){ 
             this.$validator.validateAll('sale_validate_add_form').then((result) => {                  
                 if(result){
+                    this.$Progress.start()
                     axios.post('/api/sale',this.sale,{
                     headers : { Authorization : localStorage.getItem("token")}
                     })
@@ -172,6 +186,7 @@ export default {
                                 title:'Updated',
                             });
                             this.$emit('load_sale');
+                    this.$Progress.finish()
                     })
                 }
             })

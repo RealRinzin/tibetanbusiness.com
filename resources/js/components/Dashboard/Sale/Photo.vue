@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <button class="btn btn-danger btn-xs position-absolute delete_btn" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" :data-bgset="'/storage/Sale/Photos/'+photo.thumb"  data-sizes="auto">
+        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" v-bind:style='{ backgroundImage: `url(/storage/Sale/Photos/${photo.thumb})`}' data-sizes="auto">
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">
             </div>
@@ -55,6 +55,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <div class="m-3">
+                <vue-progress-bar></vue-progress-bar>
+          </div>
           <div class="modal-body">
             <div id="image_upload"
                 @dragenter="OnDragEnter"
@@ -84,7 +87,7 @@
                                 <i @click="destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
                         </div>
                         <div class="details">
-                            <span class="name" v-text="files[index].name"></span>
+                            <!-- <span class="name" v-text="files[index].name"></span> -->
                             <span class="size" v-text="getFileSize(files[index].size)"></span>
                         </div>
                     </div>
@@ -242,6 +245,7 @@
             // Append the ID of restaurant
                 formData.append('id',id);
             });
+            this.$Progress.start();
             axios.post('/api/sale_photo', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
@@ -256,6 +260,7 @@
                   this.valid_image = [];
                   $("#upload_photos_modal").modal("hide"); 
                   this.load_photo();
+                this.$Progress.finish();
               })
         },
         // Clear all files

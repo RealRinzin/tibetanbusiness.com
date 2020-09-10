@@ -3,7 +3,7 @@
         <div class="modal fade add_edit_label" id="event_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
+                <div class="modal-header bg-gradient-danger">
                     <h5 class="modal-title" id="exampleModalLongTitle">Add New Event</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 250px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'></div>
-                                <div class="my-3">
+                                <div class="mt-1">
                                     <vue-progress-bar></vue-progress-bar>
                                 </div>
                                 <div class="row">
@@ -158,7 +158,7 @@
                                         <div class="row p-1">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="address">Address<span class="text-danger p-1">*</span></label>
+                                                    <label for="address">Address<small class="text-success p-1">(Optional)</small></label>
                                                     <textarea rows="4" cols="50" v-validate="'max:255'" v-model="event.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
                                                     <div class="valid-feedback"></div>
                                                     <div v-if="errors.has('event_validate_add_form.address')" class="invalid-feedback">
@@ -168,7 +168,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="description">Event Description <span class="text-danger p-1">*</span></label>
+                                                    <label for="description">Event Description <small class="text-success p-1">(Optional)</small></label>
                                                     <textarea rows="4" cols="50" v-validate="'max:255'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                     <div class="valid-feedback"></div>
                                                     <div v-if="errors.has('event_validate_add_form.description')" class="invalid-feedback">
@@ -182,8 +182,8 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Create</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger btn-md" placeholder="Write your comment">Create</button>
                         </div>
                     </form>
                 </div>

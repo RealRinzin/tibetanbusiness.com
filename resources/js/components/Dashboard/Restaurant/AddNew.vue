@@ -4,8 +4,8 @@
         <div class="modal fade add_edit_label" id="restaurant_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title mx-auto" id="exampleModalLongTitle">Add New Restaurant</h5>
+                <div class="modal-header bg-gradient-danger">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Restaurant</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -17,7 +17,7 @@
                                     <div v-if="bannerPreview" class="col-md-12" style="background-size: cover;height: 220px;background-position: center;" v-bind:style='{ backgroundImage: `url(${bannerPreview})`}'>
                                         <!-- <img :src="bannerPreview" alt="" class="img-fluid"> -->
                                     </div>
-                                    <div class="col-12 my-3">
+                                    <div class="col-12 mt-1">
                                         <vue-progress-bar></vue-progress-bar>
                                     </div>
                                         <div class="col-md-4 col-sm-6">

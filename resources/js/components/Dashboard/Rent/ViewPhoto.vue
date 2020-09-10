@@ -13,7 +13,7 @@
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <button class="btn btn-danger btn-sm delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
         <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#rent-view-photo"
-        :data-bgset="'/storage/Rent/View-Photos/'+photo.thumb"  data-sizes="auto">
+        v-bind:style='{ backgroundImage: `url(/storage/Rent/View-Photos/${photo.thumb})`}' data-sizes="auto">
               <div class="overlay">
                 <div class="d-flex mt-auto ml-auto p-2">
                 </div>
@@ -56,6 +56,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="m-3">
+                <vue-progress-bar></vue-progress-bar>
           </div>
           <div class="modal-body">
             <div id="image_upload"
@@ -237,6 +240,7 @@
             // Append the ID of restaurant
                 formData.append('id',id);
             });
+            this.$Progress.start();
             axios.post('/api/rent_view_photos', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
@@ -252,6 +256,8 @@
                   $("#upload_view_photos_modal").modal("hide"); 
                 // callback function
                 this.load_photo();
+            this.$Progress.finish();
+
               })
         },
         // Clear all files

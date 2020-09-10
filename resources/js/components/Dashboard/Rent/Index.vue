@@ -6,7 +6,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
-                <button class="btn btn-info btn-md my-3" @click="add_rent()">Add New Restaurant</button>
+                <button class="btn btn-info btn-md my-3" @click="add_rent()">Add New Rent</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>

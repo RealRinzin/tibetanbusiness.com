@@ -12,12 +12,11 @@
     <div class="row">
       <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
         <button class="btn btn-danger btn-xs delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" :data-bgset="'/storage/Service/Photos/'+photo.thumb"  data-sizes="auto">
+        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" v-bind:style='{ backgroundImage: `url(/storage/Service/Photos/${photo.thumb})`}' data-sizes="auto">
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">
             </div>
           </div>
-              <!-- div. -->
         </div>
     </div>
   </div>
@@ -55,6 +54,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="m-3">
+                <vue-progress-bar></vue-progress-bar>
           </div>
           <div class="modal-body">
             <div id="image_upload"
@@ -236,6 +238,7 @@
 
         // Upload
         upload(id) {
+            this.$Progress.start();
             const formData = new FormData();
             this.files.forEach(file => {
                 formData.append('images[]', file, file.name);
@@ -256,9 +259,8 @@
                   this.valid_image = [];
                   $("#upload_photos_modal").modal("hide"); 
                 // callback function
-                // this.$root.$emit(...)
-                  // this.$emit('event_load');
                   this.load_photo();
+                this.$Progress.finish();
               })
         },
         // Clear all files

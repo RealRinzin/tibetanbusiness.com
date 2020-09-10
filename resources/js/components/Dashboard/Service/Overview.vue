@@ -32,7 +32,7 @@
                                     <h6 class="text-dark">Opening hour:</h6>
                                 </div>
                                 <div class="col-md-8 col-sm-8">
-                                    <h6 class="text-muted">{{service.opening_hour}}</h6>
+                                    <h6 class="text-muted">{{service.opening_hour}} a.m</h6>
                                 </div>
                             </div>
                             <div class="row py-1">
@@ -40,7 +40,7 @@
                                     <h6 class="text-dark">Closing hour:</h6>
                                 </div>
                                 <div class="col-md-8 col-sm-8">
-                                    <h6 class="text-muted">{{service.closing_hour}}</h6>
+                                    <h6 class="text-muted">{{service.closing_hour}} p.m</h6>
                                 </div>
                             </div>
                             <div class="row py-1">
@@ -51,7 +51,7 @@
                                     <h6 class="text-muted">{{service.location}}</h6>
                                 </div>
                             </div>
-                            <div class="row py-1">
+                            <div class="row py-1" v-if="service.address">
                                 <div class="col-md-4 col-sm-4">
                                     <h6 class="text-dark">Address:</h6>
                                 </div>
@@ -71,7 +71,7 @@
                                     <h6 class="text-muted">{{service.mobile_no}}</h6>
                                 </div>
                             </div>
-                            <div class="row py-1">
+                            <div class="row py-1" v-if="service.email">
                                 <div class="col-md-4 col-sm-4">
                                     <h6 class="text-dark">Email:</h6>
                                 </div>
@@ -104,7 +104,7 @@
                                         <h6 class="text-muted">{{service.website}}</h6>
                                     </div>
                                 </div>
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="service.description">
                                     <div class="col-md-4 col-sm-4">
                                         <h6 class="text-dark">Description:</h6>
                                     </div>
@@ -217,8 +217,8 @@
         <div class="modal fade add_edit_label" id="service_overview_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Update Event</h5>
+                <div class="modal-header bg-gradient-danger">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Service</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -296,8 +296,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="deadline">Email<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:10|max:40'" v-model="service.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name">
+                                                <label for="deadline">Email<small class="text-success">(optional)</small></label>
+                                                <input type="text" v-validate="'min:10|max:40'" v-model="service.email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.email')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.email')">{{ error }}</span>
@@ -306,8 +306,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="deadline">Address<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name">
+                                                <label for="deadline">Address<small class="text-success">(optional)</small></label>
+                                                <textarea row="5" cols="50" v-validate="'min:2|max:40'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name"></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.address')">{{ error }}</span>
@@ -346,7 +346,7 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label for="description">Service Description <span class="text-danger p-1">*</span></label>
+                                                <label for="description">Service Description <small class="text-success">(optional)</small></label>
                                                 <textarea rows="5" cols="50" v-validate="'max:150'" v-model="service.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.description')" class="invalid-feedback">
@@ -358,8 +358,8 @@
                             </div>
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary w-25" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger btn-md w-25" placeholder="Write your comment">Update</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger btn-md" placeholder="Write your comment">Update</button>
                         </div>
                     </form>
                 </div>

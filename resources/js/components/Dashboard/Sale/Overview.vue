@@ -71,7 +71,7 @@
                                         <h6 class="text-muted">{{sale.mobile_no}}</h6>
                                     </div>
                                 </div>    
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="sale.address">
                                     <div class="col-md-4 col-sm-4">
                                         <h6 class="text-dark">Address:</h6>
                                     </div>
@@ -79,7 +79,7 @@
                                         <h6 class="text-muted">{{sale.address}}</h6>
                                     </div>
                                 </div>
-                                <div class="row py-1">
+                                <div class="row py-1" v-if="sale.description">
                                     <div class="col-md-4 col-sm-4">
                                         <h6 class="text-dark">Description:</h6>
                                     </div>
@@ -181,20 +181,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
+                                    <div class="col-12"></div>
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="address">Address<span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'required|max:150'" v-model="sale.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
+                                            <label for="address">Address<small class="text-success p-1">(Optional)</small></label>
+                                            <textarea rows="4" cols="50" v-validate="'max:255'" v-model="sale.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address" ></textarea>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_update_form.address')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_update_form.address')">{{ error }}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="description">Sale Description <span class="text-danger p-1">*</span></label>
-                                            <textarea rows="4" cols="50" v-validate="'max:150'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                            <label for="description">Sale Description <small class="text-success p-1">(Optional)</small></label>
+                                            <textarea rows="4" cols="50" v-validate="'max:255'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_update_form.description')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_update_form.description')">{{ error }}</span>
