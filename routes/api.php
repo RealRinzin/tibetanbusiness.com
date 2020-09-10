@@ -24,7 +24,7 @@ use Illuminate\Http\Request;
 // Route::group(['prefix' => 'auth'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         // RESTAURANT API 
-        Route::apiResource('restaurant', 'Restaurant\RestaurantBasicInfoController');
+        Route::apiResource('restaurant', 'Restaurant\RestaurantBasicInfoController',['except'=>['index','create','edit']]);
         Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController');
         Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityController');
         Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
@@ -32,7 +32,6 @@ use Illuminate\Http\Request;
         Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
         Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController',['except' => ['index','show']]);
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
-        // Route::get('restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
         Route::get('restaurant/individual/{id}', 'Restaurant\RestaurantBasicInfoController@show_individual');
         Route::patch('restaurants/rating/{id}', 'Restaurant\RestaurantBasicInfoController@update_rate');
         Route::patch('restaurant/status_update/{id}', 'Restaurant\RestaurantBasicInfoController@status_update');
@@ -63,11 +62,11 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
-        Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create']]);
-        Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show']]);
-        Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['show','index','create']]);
-        Route::apiResource('job_question_reply', 'Job\JobQuestionReplyController', ['except' => ['show', 'index']]);
-        Route::apiResource('job_interest', 'Job\JobInterestController', ['except' => ['index', 'show', 'edit', 'update']]);
+        Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create','show','edit']]);
+        Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show','update','edit']]);
+        Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['create','edit']]);
+        Route::apiResource('job_question_reply', 'Job\JobQuestionReplyController', ['except' => ['show', 'index','create','edit']]);
+        Route::apiResource('job_interest', 'Job\JobInterestController',['except' => ['index', 'show', 'edit', 'update','create']]);
         Route::get('user/jobs', 'Job\JobBasicInfoController@user_job');
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
@@ -79,11 +78,11 @@ use Illuminate\Http\Request;
          * Event API
          * Authorization
          */
-        Route::apiResource('event', 'Event\EventBasicInfoController');
-        Route::apiResource('event_photo', 'Event\EventPhotoController');
-        Route::apiResource('event_review', 'Event\EventReviewController');
-        Route::apiResource('event_interest', 'Event\EventInterestController',['except'=>['index','show','edit','update']]);
-        Route::apiResource('event_review_replies', 'Event\EventReviewReplyController', ['except' => ['index', 'show']]);
+        Route::apiResource('event', 'Event\EventBasicInfoController',['except'=>['index','create','edit']]);
+        Route::apiResource('event_photo', 'Event\EventPhotoController',['except'=>['index','show','edit','create','update']]);
+        Route::apiResource('event_review', 'Event\EventReviewController',['except'=>['index','show','edit','create']]);
+        Route::apiResource('event_interest', 'Event\EventInterestController',['except'=>['index','show','edit','create','update']]);
+        Route::apiResource('event_review_replies', 'Event\EventReviewReplyController',['except' => ['index','edit','create']]);
         Route::get('user/events', 'Event\EventBasicInfoController@user_event');
         Route::patch('event/status_update/{id}', 'Event\EventBasicInfoController@status_update');
         Route::patch('event/banner_update/{id}', 'Event\EventBasicInfoController@banner_update');
@@ -121,7 +120,6 @@ use Illuminate\Http\Request;
         // Other API
         // List API
         Route::apiResource('location', 'Location\LocationController', ['except' => ['index']]);
-        Route::apiResource('profession', 'Profession\ProfessionController', ['except' => ['index']]);
         Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job']]);
 
     });
@@ -237,7 +235,6 @@ use Illuminate\Http\Request;
 
 // Other API
     Route::get('location', 'Location\LocationController@index');
-    Route::get('profession', 'Profession\ProfessionController@index');
     Route::get('categories/job', 'Category\CategoryController@job');
     Route::get('categories/event', 'Category\CategoryController@event');
     Route::get('categories/sale', 'Category\CategoryController@sale');

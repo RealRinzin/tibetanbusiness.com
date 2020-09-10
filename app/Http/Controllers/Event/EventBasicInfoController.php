@@ -14,27 +14,6 @@ use Illuminate\Support\Facades\URL;
 
 class EventBasicInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        
-        echo URL::current();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -132,23 +111,10 @@ class EventBasicInfoController extends Controller
      */
     public function show($id)
     {
-        //
         // return new EventInfoBasicResource(EventBasicInfo::find($id));
         $event = EventBasicInfo::find($id);
         return $event->toArray($event);
 
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

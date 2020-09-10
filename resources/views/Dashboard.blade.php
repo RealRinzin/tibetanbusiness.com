@@ -19,7 +19,7 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
-    <link rel="icon" sizes="72x72" href="{{asset('/tibetanbusiness.png')}}">
+    <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- Datetime picker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

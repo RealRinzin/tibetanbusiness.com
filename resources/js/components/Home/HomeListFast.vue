@@ -5,7 +5,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" alt="">POPULAR - UPCOMING EVENTS</a>
             </h6>
-            <div class="row" :options="settings">
+            <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                         <div class="card">
                             <a v-bind:href="'event/'+event.id">
@@ -28,7 +28,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Sales'"><img src="/img/sale.png" class="mr-2" alt="">POPULAR SALES</a>
             </h6>
-            <div class="row" :options="settings">
+            <div class="row">
                 <div class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
@@ -50,7 +50,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Rents'"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</a>
             </h6>
-            <div class="row" :options="settings" >
+            <div class="row">
                 <div class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
@@ -72,7 +72,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</a>
             </h6>
-            <div class="row" :options="settings">
+            <div class="row">
                 <div class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
@@ -92,7 +92,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Services'"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</a>
             </h6>
-            <div class="row" :options="settings">
+            <div class="row">
                 <div class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
@@ -112,7 +112,7 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</a>
             </h6>
-            <div class="row swiper" :options="settings">
+            <div class="row swiper">
                 <div class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
@@ -148,41 +148,6 @@ export default {
             job_loading:false,
             service_loading:false,
             restaurant_loading:false,
-            // Swiper Carousel
-            settings:{
-                // slidesPerView: 4,
-                spaceBetween: 10,
-                slidesPerGroup: 2,
-                loop: true,
-                breakpoints: {
-                    1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 10
-                    },
-                    768: {
-                    slidesPerView: 3,
-                    spaceBetween: 10
-                    },
-                    640: {
-                    slidesPerView: 2,
-                    spaceBetween: 10
-                    },
-                    320: {
-                    slidesPerView: 1,
-                    spaceBetween: 5,
-                    slidesPerGroup: 1,
-                    }
-                },
-                // loopFillGroupWithBlank: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                }
-            }
         }
     },
     // methods / Functions

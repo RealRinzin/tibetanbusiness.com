@@ -12,26 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class JobQuestionReplyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -63,16 +43,6 @@ class JobQuestionReplyController extends Controller
         return $reply->toArray($reply);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -99,7 +69,7 @@ class JobQuestionReplyController extends Controller
         $reply = JobQuestionReply::find($id);
         $reply->delete();
     }
-
+    // Check
     public function reply(JobQuestion $jobQuestion)
     {
         return $jobQuestion->job_question_replies()->orderBy('created_at', 'desc')->paginate('2');

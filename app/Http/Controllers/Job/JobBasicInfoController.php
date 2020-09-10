@@ -9,37 +9,11 @@ use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Http\Resources\Job\JobBasicInfoResourceCollection;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class JobBasicInfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // return JobBasicInfoResource::collection(JobBasicInfo::all());
-
-        // return "asdfdas";
-        // //
-        // $jobs =  JobBasicInfo::all();
-        // return $jobs->toArray($jobs);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
+   /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -129,22 +103,8 @@ class JobBasicInfoController extends Controller
      */
     public function show($id)
     {
-        //
         return new JobBasicInfoResource(JobBasicInfo::find($id));
-
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *

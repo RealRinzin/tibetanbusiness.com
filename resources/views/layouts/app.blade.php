@@ -149,7 +149,6 @@
                                         <!-- <nav-bar></nav-bar> -->
                                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
                                             <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
                                             @csrf
                                         </form>
@@ -510,6 +509,10 @@
             localStorage.removeItem('user_name');
             localStorage.removeItem('user_id');
             localStorage.removeItem('user_avatar');
+            axios.get('/api/restaurant/list/all')
+                .then(response => {
+                    console.log(response);
+                })
         });
         /**@abstract
          * Search 
@@ -581,6 +584,7 @@
             };
         });
     </script>
+
     <!-- Lazy loading image -->
     <script>
         function loadJS(u) {

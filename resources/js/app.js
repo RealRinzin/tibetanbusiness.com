@@ -43,10 +43,10 @@ Vue.use(Loading);
 Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('search', require('./components/Home/Search.vue').default);
 Vue.component('home-featured', require('./components/Home/HomeFeatured.vue').default);
-Vue.component('home-list', require('./components/Home/HomeList.vue').default);
 Vue.component('home-list-fast', require('./components/Home/HomeListFast.vue').default);
-Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
-Vue.component('featured-job', require('./components/Home/Featured/Job.vue').default);
+// Vue.component('home-list', require('./components/Home/HomeList.vue').default);
+// Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
+// Vue.component('featured-job', require('./components/Home/Featured/Job.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -76,7 +76,7 @@ const app = new Vue({
         login_status() {
             axios.get('/login_status').then(response => {
                 const data = {
-                    name: 'Token Name',
+                    name: 'Personal Token',
                     scopes: []
                 };
                 /**
@@ -108,6 +108,7 @@ const app = new Vue({
     },
     // Mounted
     mounted(){
+        
         this.login_status(); 
         // Mobile device size  
         if(screen.width < 767){
