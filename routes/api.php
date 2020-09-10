@@ -25,12 +25,12 @@ use Illuminate\Http\Request;
     Route::group(['middleware' => 'auth:api'], function () {
         // RESTAURANT API 
         Route::apiResource('restaurant', 'Restaurant\RestaurantBasicInfoController',['except'=>['index','create','edit']]);
-        Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController');
-        Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityController');
-        Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController');
-        Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController');
-        Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController');
-        Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController',['except' => ['index','show']]);
+        Route::apiResource('restaurant_operation_days', 'Restaurant\RestaurantOperationDayController',['except' => ['index','show','create','edit','destory']]);
+        Route::apiResource('restaurant_facilities', 'Restaurant\RestaurantFacilityController',['except' => ['index','show','create','edit','destory']]);
+        Route::apiResource('restaurant_comments', 'Restaurant\RestaurantCommentController',['except' =>['show','edit']]);
+        Route::apiResource('restaurant_food_photos', 'Restaurant\RestaurantFoodPhotoController',['except' => ['index','show','create','edit']]);
+        Route::apiResource('restaurant_menu_photos', 'Restaurant\RestaurantMenuPhotoController',['except' => ['index','show','create','edit']]);
+        Route::apiResource('restaurant_comment_replies', 'Restaurant\RestaurantCommentReplyController',['except' => ['index','create','show','edit']]);
         Route::get('restaurant/{restaurant_basic_info}/facility', 'Restaurant\RestaurantFacilityController@facility');
         Route::get('restaurant/individual/{id}', 'Restaurant\RestaurantBasicInfoController@show_individual');
         Route::patch('restaurants/rating/{id}', 'Restaurant\RestaurantBasicInfoController@update_rate');
@@ -45,10 +45,10 @@ use Illuminate\Http\Request;
          * Authorization
          */
         Route::apiResource('rent','Rent\RentBasicInfoController',['except' =>['create']]);
-        Route::apiResource('rent_comments', 'Rent\RentCommentController',['except' =>['index','create','show','edit']);
-        Route::apiResource('rent_facilities', 'Rent\RentFacilityController',['except'=>['index','create','show','edit']);
+        Route::apiResource('rent_comments', 'Rent\RentCommentController',['except' =>['index','create','show','edit']]);
+        Route::apiResource('rent_facilities', 'Rent\RentFacilityController',['except'=>['index','create','show','edit']]);
         Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController',['except'=>['index','show','create','edit','update']]);
-        Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController','except'=>['index','show','create','edit','update']]);
+        Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController',['except'=>['index','show','create','edit','update']]);
         Route::apiResource('rent_comment_replies', 'Rent\RentCommentReplyController',['except' =>['index','edit','create']]);
         Route::get('user/rents', 'Rent\RentBasicInfoController@user_rent');
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
@@ -94,8 +94,8 @@ use Illuminate\Http\Request;
          * Sale API
          * Authorization
          */
-        Route::apiResource('sale', 'Sale\SaleBasicInfoController');
-        Route::apiResource('sale_photo', 'Sale\SalePhotoController');
+        Route::apiResource('sale', 'Sale\SaleBasicInfoController',['except'=>['index','create','edit']]);
+        Route::apiResource('sale_photo', 'Sale\SalePhotoController',['except'=>['index','show','edit','create','update']]);
         Route::get('user/sales', 'Sale\SaleBasicInfoController@user_sale');
         Route::patch('sale/status_update/{id}', 'Sale\SaleBasicInfoController@status_update');
         Route::patch('sale/banner_update/{id}', 'Sale\SaleBasicInfoController@banner_update');
@@ -107,11 +107,11 @@ use Illuminate\Http\Request;
          * Service API
          * Authorization
          */
-        Route::apiResource('service', 'Service\ServiceBasicInfoController');
-        Route::apiResource('service_photo', 'Service\ServicePhotoController');
-        Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController');
-        Route::apiResource('service_review', 'Service\ServiceReviewController');
-        Route::apiResource('service_review_replies', 'Service\ServiceReviewReplyController',['except' =>['index','show']]);
+        Route::apiResource('service', 'Service\ServiceBasicInfoController',['except' =>['index','create','edit']]);
+        Route::apiResource('service_photo', 'Service\ServicePhotoController',['except' =>['index','show','edit','create','update']]);
+        Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController',['except'=>['index','show','edit','create','update','destory']]);
+        Route::apiResource('service_review', 'Service\ServiceReviewController',['except'=>['index','show','edit','create']]);
+        Route::apiResource('service_review_replies', 'Service\ServiceReviewReplyController',['except'=>['index','show','edit','create']]);
         Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');
         Route::patch('service/banner_update/{id}', 'Service\ServiceBasicInfoController@banner_update');
         Route::patch('service/status_update/{id}', 'Service\ServiceBasicInfoController@status_update');
