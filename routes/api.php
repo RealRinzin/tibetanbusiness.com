@@ -44,12 +44,12 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
-        Route::apiResource('rent','Rent\RentBasicInfoController');
-        Route::apiResource('rent_comments', 'Rent\RentCommentController');
-        Route::apiResource('rent_facilities', 'Rent\RentFacilityController');
-        Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController');
-        Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController');
-        Route::apiResource('rent_comment_replies', 'Rent\RentCommentReplyController',['except' =>['index','show']]);
+        Route::apiResource('rent','Rent\RentBasicInfoController',['except' =>['create']]);
+        Route::apiResource('rent_comments', 'Rent\RentCommentController',['except' =>['index','create','show','edit']);
+        Route::apiResource('rent_facilities', 'Rent\RentFacilityController',['except'=>['index','create','show','edit']);
+        Route::apiResource('rent_room_photos', 'Rent\RentRoomPhotoController',['except'=>['index','show','create','edit','update']]);
+        Route::apiResource('rent_view_photos', 'Rent\RentViewPhotoController','except'=>['index','show','create','edit','update']]);
+        Route::apiResource('rent_comment_replies', 'Rent\RentCommentReplyController',['except' =>['index','edit','create']]);
         Route::get('user/rents', 'Rent\RentBasicInfoController@user_rent');
         Route::patch('rent/status_update/{id}', 'Rent\RentBasicInfoController@status_update');
         Route::get('rent/individual/{id}', 'Rent\RentBasicInfoController@show_individual');
