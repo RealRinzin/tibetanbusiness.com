@@ -21,7 +21,7 @@
                                     </div>
                                 </a>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{sale.name}}</h5>
@@ -44,7 +44,7 @@
                                             <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
                                             <li class="btn btn-xs btn-danger small">{{event.start_date | date}}</li>
                                             <!-- <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li> -->
-                                            <li class="btn btn-xs bg-success small" v-if="event.entry_free">Entry Fee</li>
+                                            <li class="btn btn-xs bg-warning small" v-if="event.entry_free">Entry Fee</li>
                                             <li class="btn btn-xs btn-danger small" v-else>Entry Fee:₹{{event.entry_fee}}/-</li>
                                         </ul>
                                     </div>
@@ -53,7 +53,7 @@
                                     <p v-bind:class="event.rate_color" class="btn"><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</p>
                                 </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{event.name}}</h5>
@@ -82,7 +82,7 @@
                                     <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Rent</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Rent</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{rent.name}}</h5>
@@ -112,7 +112,7 @@
                                     <p v-if="job.applied>0" class="btn btn-success btn-sm small"><i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</p>
                                 </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{job.title}}</h5>
@@ -135,7 +135,7 @@
                                     <p v-if="service" v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{service.name}}</h5>
@@ -160,7 +160,7 @@
                                     <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button>
+                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button> -->
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{restaurant.name}}</h5>

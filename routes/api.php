@@ -62,7 +62,7 @@ use Illuminate\Http\Request;
          * Rent API
          * Authorization
          */
-        Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create','show','edit']]);
+        Route::apiResource('job','Job\JobBasicInfoController',['except'=>['index','create','edit']]);
         Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show','update','edit']]);
         Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['create','edit']]);
         Route::apiResource('job_question_reply', 'Job\JobQuestionReplyController', ['except' => ['show', 'index','create','edit']]);

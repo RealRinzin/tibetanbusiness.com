@@ -1,7 +1,8 @@
 <template>
     <div class="w-100 bg-danger">
         <swiper class="swiper p-0" :options="carousel" style="height:70vh">
-            <swiper-slide v-for="(event,index) in events" :key="index" v-bind:style="{ backgroundImage: 'url(/storage/Restaurant/Banner/' + event.banner + ')' }" style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
+            <swiper-slide class="lazyload" v-for="(event,index) in events"  v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${event.banner})`}' data-sizes="auto"
+            :key="index"  style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
             <div class="position-absolute" style="z-index: 200">
                 <div id="home_search" class="container">
                     <div class="row py-1">

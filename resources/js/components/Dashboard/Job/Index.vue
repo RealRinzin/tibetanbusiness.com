@@ -5,7 +5,7 @@
         </div>
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
-                <button class="btn btn-info btn-md my-3" @click="add_job()">Announce New Job</button>
+                <button class="btn btn-info btn-md my-3" @click="add_job()">ADD NEW JOB</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>

@@ -143,8 +143,8 @@ export default {
                 name:'',
                 location:this.location,
                 rate:'',
-                fare_max:'',
-                fare_min:'',
+                fare_min:0,
+                fare_max:90000,
                 accomodation_size:'',
             },
             // loading
@@ -177,8 +177,8 @@ export default {
                 $( "#slider-range" ).slider({
                 range: true,
                 min: 0,
-                max:5681,
-                values: [0, 8999 ],
+                max:90000,
+                values: [0, 90000 ],
                 slide: function( event, ui ) {
                     $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
                 }

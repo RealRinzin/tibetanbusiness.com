@@ -24,10 +24,10 @@ class CreateJobBasicInfoTable extends Migration
             $table->string('profession', 100);
             $table->string('experience', 35);
             $table->string('nature', 100);
-            $table->string('address', 100);
+            $table->string('address', 255)->nullable();
             $table->decimal('salary', 8, 0)->nullable();
             $table->string('location', 30);
-            $table->string('mobile_no', 12);
+            $table->string('mobile_no', 12)->nullable();
             $table->string('email', 100);
             $table->string('instagram', 100)->nullable();
             $table->string('facebook', 100)->nullable();
@@ -40,7 +40,7 @@ class CreateJobBasicInfoTable extends Migration
             $table->date('home_ad_expire_date')->nullable();
             $table->boolean('sidebar_ad')->nullable();
             $table->date('sidebar_ad_expire_date')->nullable();
-            $table->text('description', 225)->nullable();
+            $table->text('description', 255)->nullable();
             $table->timestamps();
         });
     }

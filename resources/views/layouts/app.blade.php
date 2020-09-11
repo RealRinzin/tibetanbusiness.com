@@ -17,7 +17,6 @@
     <meta property="og:description" content="" />
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- @if(Request::is('/')) -->
     <!-- @endif -->
     @if(!Request::is('/'))
@@ -29,6 +28,8 @@
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
     <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- rating star -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
     <!-- jquery UI -->

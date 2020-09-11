@@ -378,6 +378,7 @@ class RentBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
+        // return $request;
         $rents =  RentBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('rate','like',"$request->rate%")

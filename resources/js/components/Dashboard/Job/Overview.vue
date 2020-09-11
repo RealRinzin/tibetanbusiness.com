@@ -286,8 +286,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="deadline">Mobile no<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <label for="deadline">Mobile no<small class="text-success">(optional)</small></label>
+                                                <input type="text" v-validate="'numeric|max:10|min:10'" v-model="job.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.mobile_no')">{{ error }}</span>
@@ -296,8 +296,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="deadline">Address<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|min:2|max:40'" v-model="job.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address">
+                                                <label for="deadline">Address<small class="text-success">(optional)</small></label>
+                                                <input type="text" v-validate="'min:2|max:40'" v-model="job.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Address">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.address')">{{ error }}</span>
@@ -336,8 +336,8 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
-                                                <label for="description">Job Description <span class="text-danger p-1">*</span></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                <label for="description">Job Description <small class="text-success">(optional)</small></label>
+                                                <textarea rows="4" cols="50" v-validate="'max:255'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('job_validate_update_form.description')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('job_validate_update_form.description')">{{ error }}</span>

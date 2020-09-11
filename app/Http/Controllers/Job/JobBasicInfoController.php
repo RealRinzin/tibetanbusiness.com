@@ -52,8 +52,8 @@ class JobBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            // Original
-            \Image::make($request->banner)->save(public_path('storage/Job/Banner/') . $name);
+                // Saving Images
+            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
             $Original = \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
@@ -322,17 +322,5 @@ class JobBasicInfoController extends Controller
                 ->where('deadline', '>=', date('Y-m-d'))
                 ->where('status', '=', true)
                 ->orderBy('created_at', 'desc')->paginate('3'));
-
-        // Original
-        // $jobs = JobBasicInfo::where('title', 'like', "$request->title%")
-        // ->where('location', 'like', "%$request->location%")
-        // ->where('profession', 'like', "$request->profession%")
-        // ->where('nature', 'like', "$request->nature%")
-        // ->where('experience', 'like', "$request->experience%")
-        // ->whereBetween('salary', [$request->salary_min, $request->salary_max])
-        // ->where('deadline','>=',date('Y-m-d'))
-        // ->where('status', '=', '1')
-        // ->orderBy('created_at', 'desc')->paginate('3');
-        // return $jobs->toArray($jobs);
     }
 }
