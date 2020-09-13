@@ -8,11 +8,12 @@ use App\Http\Resources\Sale\SaleBasicInfoResource;
 use App\Sale\SaleBasicInfo;
 use App\Sale\SalePhoto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class SaleBasicInfoController extends Controller
 {
 
-
+    private $name = "RInizn";
     /**
      * Store a newly created resource in storage.
      *
@@ -21,7 +22,7 @@ class SaleBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-
+// return $this->name;
         // Image upload script in php
         if ($request->banner) {
             $name = time() . '.'

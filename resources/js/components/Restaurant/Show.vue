@@ -7,59 +7,6 @@
         :description="restaurant.location"
         lang="langauge"
         />
-<div class="fb-share-button" data-href="ttps://tibetanbusiness.com:8890" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
- <social-sharing 
-                      inline-template>
-  <div>
-
-      <network network="email">
-           Email
-      </network>
-      <network network="facebook">
-         Facebook
-      </network>
-      <network network="googleplus">
-         Google +
-      </network>
-      <network network="line">
-         Line
-      </network>
-      <network network="linkedin">
-         LinkedIn
-      </network>
-      <network network="odnoklassniki">
-         Odnoklassniki
-      </network>
-      <network network="pinterest">
-         Pinterest
-      </network>
-      <network network="reddit">
-         Reddit
-      </network>
-      <network network="skype">
-         Skype
-      </network>
-      <network network="sms">
-         SMS
-      </network>
-      <network network="telegram">
-         Telegram
-      </network>
-      <network network="twitter">
-         Twitter
-      </network>
-      <network network="vk">
-         VKontakte
-      </network>
-      <network network="weibo">
-         Weibo
-      </network> 
-      <network network="whatsapp">
-         Whatsapp
-      </network>
-  </div>
-</social-sharing>
-
         <div id="restaurant" style="min-height:80vh">
             <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>

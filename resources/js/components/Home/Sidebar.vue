@@ -33,13 +33,25 @@
         <div class="card p-3" v-if="events">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/event.png" class="mr-2" alt="">UPCOMING EVENTS</h6>
             <div v-if="!event_loading" class="text-center">
-                    <div class="spinner-border m-5" role="status">
-                    <span class="sr-only">Loading...</span>
+                <div class="ph-item p-0 border-0">
+                    <div class="ph-col-12">
+                        <div class="ph-picture"></div>
+                        <div class="ph-row">
+                            <div class="ph-col-6 big"></div>
+                            <div class="ph-col-4 empty big"></div>
+                            <div class="ph-col-2 big"></div>
+                            <div class="ph-col-4"></div>
+                            <div class="ph-col-8 empty"></div>
+                            <div class="ph-col-6"></div>
+                            <div class="ph-col-6 empty"></div>
+                            <div class="ph-col-12"></div>
+                        </div>
                     </div>
                 </div>
+            </div>
             <div class="row" v-else>
                 <swiper class="swiper" :options="settings">
-                        <swiper-slide  class="col-6" v-for="(event,index) in events" :key="index">
+                        <swiper-slide  class="col-6"  v-for="(event,index) in events" :key="index">
                             <a v-bind:href="'/event/'+event.id">
                             <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.thumb"  data-sizes="auto"></div>
                             </a>

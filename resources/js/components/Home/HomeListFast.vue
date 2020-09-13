@@ -1,13 +1,16 @@
 <template>
     <div class="row">
         <!-- Event -->
-        <div class="col-md-10 mx-auto my-4" v-if="event_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" alt="">POPULAR - UPCOMING EVENTS</a>
             </h6>
-            <div class="row">
+            <div class="row" style="min-height:100px">
                     <div class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
-                        <div class="card">
+                        <div class="card" v-if="!event_loading">
+                            <lazy-loading></lazy-loading>
+                        </div>
+                        <div class="card" v-else>
                             <a v-bind:href="'event/'+event.id">
                             <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
                                 <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0">Entry Free</p>

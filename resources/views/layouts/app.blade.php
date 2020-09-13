@@ -30,6 +30,8 @@
     <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Loading -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
     <!-- rating star -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
     <!-- jquery UI -->

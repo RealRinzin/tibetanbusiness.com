@@ -1,15 +1,22 @@
 <template>
     <div>
-        <!-- <div v-if="!load" style="min-height:400px">
-            <loading :active.sync="isLoading"></loading>
+        <div v-if="!load" style="min-height:400px" class="text-center">
+            <!-- <loading :active.sync="isLoading"></loading> -->
+            <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
+                    <span class="sr-only">Loading...</span>
+            </div>
         </div>
-        <div v-else> -->
-            <div>
+         <div v-else>
+            <!-- <div> -->
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3" style="min-height:400px">
+                    <div class="col-md-4" v-if="placeholder">
+                        <lazy-loading></lazy-loading>
+                    </div>
                     <!-- Sale -->
-                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales">
+                    <!-- <swiper  class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales"> -->
+                    <swiper  class="col-md-4 col-sm-6 swiper info" :options="settings"  v-else>
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
@@ -225,6 +232,7 @@
                 sales:{total:0},
                 services:{total:0},
                 // total
+                placeholder:true,
                 //  Swiper slider
                 settings:{
                     slidesPerView: 1,
@@ -250,7 +258,7 @@
         methods:{
             // Featured business
             load_business(){
-                // this.isLoading = true; //Loading true
+                this.isLoading = true; //Loading true
                 // Featured restaurant
                 axios.get('/api/restaurant/list/featured_ad')
                 .then(response=>{
@@ -295,8 +303,8 @@
                             }
                         })
                     }
-                        // this.isLoading = false; //Loading true
-                        // this.load = true;
+                        this.isLoading = false; //Loading true
+                        this.load = true;
                 })
                 // Featured Event
                 axios.get('/api/event/list/featured_ad')
@@ -405,12 +413,16 @@
                 // Featured Sale
                 axios.get('/api/sale/list/featured_ad')
                 .then(response=>{
+                    this.placeholder = true;
                     if (response.data.length > 0) {
                         this.sales = response.data;
+                    this.placeholder = false;
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
+                        this.placeholder = true;
                             this.sales = response.data;
+                        this.placeholder = false
                         })
                     }
                 })
@@ -455,9 +467,6 @@
                             }
                         })
                     }
-                    //  // loading success
-                        // this.isLoading = false; //Loading true
-                        // this.load = true;
                 })
             },
         },
