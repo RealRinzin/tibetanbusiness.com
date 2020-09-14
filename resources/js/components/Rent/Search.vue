@@ -69,8 +69,10 @@
                                 <small v-if="filter.fare_min || filter.fare_min" class="badge badge-secondary mb-1">Price:₹ {{filter.fare_min}} - {{filter.fare_max}}</small>
                             </div>
                             <!-- Result -->
-                            <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
+                            <div class="col-12" v-if="loading_placeholder">
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
@@ -125,7 +127,7 @@ export default {
         return{
             max:50000,
             // min:'',
-            loading: false,
+            loading_placeholder:true,
             load_more_button : false,
             total:0,
             rating:0,
@@ -191,7 +193,7 @@ export default {
             axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
              .then(response=>{ 
                 this.rents = response.data.data;
-                this.loading = true;
+                this.loading_placeholder = false,
                 this.total = response.data.total;
                 // Load more button
                 if(response.data.total == 0){
@@ -221,6 +223,7 @@ export default {
         },
         // search result
         search_result(){
+            this.isLoading = true; //Loading true
             // Desktop
             if(screen.width < 767){
                 $("#search_collapse").removeClass("show");
@@ -231,7 +234,6 @@ export default {
             this.filter.fare_min = parseInt(this.number[0]);
             this.filter.fare_max = parseInt(this.number[1]);
             // End 
-            this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/rents?name='+this.filter.name+
             '&location='+this.filter.location+
@@ -242,8 +244,8 @@ export default {
             '&page=1')
             .then((response)=>{ 
                 this.rents = response.data.data;
-                this.loading = true;
                 this.total = response.data.total;
+                this.isLoading = false; //Loading true
                 // check for empty result
                 if(response.data.total == 0){
                     this.empty_result = "We don't found the search item"

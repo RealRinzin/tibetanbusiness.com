@@ -1,7 +1,6 @@
 <template>
     <div>
         <div v-if="!load" style="min-height:400px" class="text-center">
-            <!-- <loading :active.sync="isLoading"></loading> -->
             <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
                     <span class="sr-only">Loading...</span>
             </div>

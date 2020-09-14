@@ -67,8 +67,10 @@
                                 <small v-if="filter.rate" class="badge badge-secondary">Rate: {{filter.rate}} <small class="fas fa-star text-warning"></small></small>
                             </div>
                             <!-- Result -->
-                            <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
+                            <div class="col-12" v-if="loading_placeholder">
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
@@ -119,7 +121,6 @@ export default {
     // Data
     data(){
         return{
-            loading: false,
             load_more_button : false,
             total:0,
             rating:0,
@@ -140,6 +141,7 @@ export default {
                 type:'',
             },
             // loading
+            loading_placeholder:true,
             isLoading : false,//Lazy loading
             // lazy:false,
             result:[],
@@ -171,8 +173,8 @@ export default {
             axios.get('/api/search/services?location='+this.filter.location)
              .then(response=>{ 
                 this.services = response.data.data;
-                this.loading = true;
                 this.total = response.data.total;
+                this.loading_placeholder = false;
                 // Load more button
                 if(response.data.total == 0){
                     this.empty_result="We don't found the search item";
@@ -201,12 +203,12 @@ export default {
         },
         // search result
         search_result(){
+            this.isLoading = true; //Loading true
             // Desktop resize
             if(screen.width < 767){
                 $("#search_collapse").removeClass("show");
             }
             // 
-            this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/services?name='+this.filter.name+
             '&location='+this.filter.location+
@@ -215,8 +217,8 @@ export default {
             '&page=1')
             .then((response)=>{ 
                 this.services = response.data.data;
-                this.loading = true;
                 this.total = response.data.total;
+                this.isLoading = false; //Loading true
                 // check for empty result
                 if(response.data.total == 0){
                     this.empty_result = "We don't found the search item"
@@ -264,7 +266,6 @@ export default {
                     }else{
                         this.load_more_button = true; 
                     }
-                    // this.lazy = true;
                     /**
                      * Comments 
                      * data Distribution

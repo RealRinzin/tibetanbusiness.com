@@ -6,32 +6,47 @@
                 <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" alt="">POPULAR - UPCOMING EVENTS</a>
             </h6>
             <div class="row" style="min-height:100px">
-                    <div class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
-                        <div class="card" v-if="!event_loading">
-                            <lazy-loading></lazy-loading>
-                        </div>
-                        <div class="card" v-else>
-                            <a v-bind:href="'event/'+event.id">
-                            <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
-                                <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0">Entry Free</p>
-                                <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
-                            </div>
-                            </a>
-                            <div class="info p-2">
-                                <h5>{{event.name}}</h5>
-                                <h6 class="pt-1">{{event.mobile_no}}</h6>
-                                <h6>{{event.location}}</h6>
+                <div v-if="event_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div  v-else class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
+                    <div class="card" >
+                        <a v-bind:href="'event/'+event.id">
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
+                            <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0">Entry Free</p>
+                            <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
+                        </div>
+                        </a>
+                        <div class="info p-2">
+                            <h5>{{event.name}}</h5>
+                            <h6 class="pt-1">{{event.mobile_no}}</h6>
+                            <h6>{{event.location}}</h6>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Sales -->
-        <div class="col-md-10 mx-auto my-4" v-if="sale_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Sales'"><img src="/img/sale.png" class="mr-2" alt="">POPULAR SALES</a>
             </h6>
             <div class="row">
+                <div v-if="sale_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-6 col-6" v-for="(sale,index) in sales" :key="index">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
@@ -49,11 +64,20 @@
             </div>
         </div>
         <!-- Rents -->
-        <div class="col-md-10 mx-auto my-4" v-if="rent_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Rents'"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</a>
             </h6>
             <div class="row">
+                <div v-if="rent_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-6 col-6" v-for="(rent,index) in rents" :key="index">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
@@ -71,11 +95,20 @@
             </div>
         </div>
         <!-- Jobs -->
-        <div class="col-md-10 mx-auto my-4" v-if="job_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</a>
             </h6>
             <div class="row">
+                <div v-if="job_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-6 col-6" v-for="(job,index) in jobs" :key="index">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
@@ -91,11 +124,20 @@
             </div>
         </div>
         <!-- Services -->
-        <div class="col-md-10 mx-auto my-4" v-if="service_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Services'"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</a>
             </h6>
             <div class="row">
+                <div v-if="service_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
@@ -115,7 +157,16 @@
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</a>
             </h6>
-            <div class="row swiper">
+            <div class="row">
+                <div v-if="restaurant_loading" class="col-12">
+                    <div class="row">
+                        <div class="col-md-3" v-for="x in 4">
+                            <div class="card">
+                                <lazy-loading class="mb-0"></lazy-loading>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
@@ -137,6 +188,7 @@ import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 export default {
     data(){
         return{
+            total:4,
             // object
             events:{},
             rents:{},
@@ -145,12 +197,12 @@ export default {
             services:{},
             restaurants:{},
             // loading
-            event_loading:false,
-            sale_loading:false,
-            rent_loading:false,
-            job_loading:false,
-            service_loading:false,
-            restaurant_loading:false,
+            event_loading:true,
+            sale_loading:true,
+            rent_loading:true,
+            job_loading:true,
+            service_loading:true,
+            restaurant_loading:true,
         }
     },
     // methods / Functions
@@ -163,12 +215,12 @@ export default {
                 // this.isLoading = true; //Loading true
                 this.events = response.data;
                 if(response.data.length > 0){
-                    this.event_loading = true;
+                    this.event_loading = false;
                     this.events = response.data;
 
                 }else{
                     axios.get('/api/event/list/all').then(response=>{
-                        this.event_loading = true;
+                        this.event_loading = false;
                         this.events = response.data;
                     })
                 }
@@ -179,13 +231,13 @@ export default {
             // home advertisment
             axios.get('api/sale/list/home_ad')
             .then(response=>{
-                this.sale_loading = true;
                 if(response.data.length > 0){
+                    this.event_loading = false;
                     this.sales = response.data;
                 }else{
                     axios.get('/api/sale/list/all').then(response=>{
                         this.sales = response.data;
-                        this.sale_loading = true;
+                        this.sale_loading = false;
                     })
                 }
             })
@@ -195,11 +247,11 @@ export default {
             axios.get('api/rent/list/home_ad')
             .then(response=>{
                 if(response.data.length > 0){
-                    this.rent_loading = true;
+                    this.rent_loading = false;
                     this.rents = response.data;
                 }else{
                     axios.get('/api/rent/list/all').then(response=>{
-                        this.rent_loading = true;
+                        this.rent_loading = false;
                         this.rents = response.data;
                     })
                 }
@@ -211,12 +263,12 @@ export default {
             axios.get('api/job/list/home_ad')
             .then(response=>{
                 if(response.data.length > 0){
-                    this.job_loading = true;
+                    this.job_loading = false;
                     this.jobs = response.data;
                 }else{
                     axios.get('/api/job/list/all').then(response=>{
                         this.jobs = response.data;
-                        this.job_loading = true;
+                        this.job_loading = false;
                     })
                 }
             })
@@ -226,11 +278,11 @@ export default {
             axios.get('api/service/list/home_ad')
             .then(response=>{
                 if(response.data.length > 0){                    
-                    this.service_loading = true;
+                    this.service_loading = false;
                     this.services = response.data;
                 }else{
                     axios.get('/api/service/list/all').then(response=>{
-                        this.service_loading = true;
+                        this.service_loading = false;
                         this.services = response.data;
                     })
                 }
@@ -242,10 +294,10 @@ export default {
             .then(response=>{
                 if(response.data.length > 0){
                     this.restaurants = response.data;
-                    this.restaurant_loading = true;
+                    this.restaurant_loading = false;
                 }else{
                     axios.get('/api/restaurant/list/all').then(response=>{
-                        this.restaurant_loading = true;
+                        this.restaurant_loading = false;
                         this.restaurants = response.data;
                     })
                 }

@@ -89,8 +89,10 @@
                                 <small v-if="filter.experience" class="badge badge-secondary mb-1">Experience: {{filter.experience}}</small>
                             </div>
                             <!-- Result -->
-                            <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
+                            <div class="col-12" v-if="loading_placeholder">
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
+                                <lazy-loading></lazy-loading>
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
@@ -149,8 +151,7 @@ export default {
     // Data
     data(){
         return{
-            
-            loading: false,
+            loading_placeholder:true,
             load_more_button : false,
             total:0,
             rating:0,
@@ -204,7 +205,6 @@ export default {
                 if(response.data.status === true){
                     this.is_logged = true
                 }
-            console.log(this.is_logged);
             })
             // filter paramater
             // Slider Range
@@ -222,13 +222,12 @@ export default {
                 " - " + $( "#slider-range" ).slider( "values", 1 ) );
                     // console.log(this.number);
             } );
-            console.log(this.is_logged);
             // End Range
             // Get the result
             axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
              .then(response=>{ 
                 this.jobs = response.data.data;
-                this.loading = true;
+                this.loading_placeholder = false,
                 this.total = response.data.meta.total;
                 // Load more button
                 if(response.data.meta.total == 0){
@@ -245,7 +244,7 @@ export default {
         },
         // search result
         search_result(){
-            console.log(this.is_logged);
+            this.isLoading = true; //Loading true
             // Salary Range
             var salary = document.getElementById("salary");
             this.number = salary.value.split("-");
@@ -264,8 +263,8 @@ export default {
             '&page=1')
             .then((response)=>{ 
                 this.jobs = response.data.data;
-                this.loading = true;
                 this.total = response.data.meta.total;
+                this.isLoading = false; //Loading true
                 // check for empty result
                 if(response.data.meta.total == 0){
                     this.empty_result = "We don't found the search item"
@@ -286,7 +285,6 @@ export default {
         // load more button
         
         load_more(nextPage){
-            console.log(this.is_logged);
                 // this.loading = false;
             this.isLoading = true; //Loading true
             axios.get('/api/search/jobs?title='+this.filter.title+

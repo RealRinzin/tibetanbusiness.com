@@ -10,7 +10,7 @@
                 <div class="ph-col-8 empty"></div>
                 <div class="ph-col-6"></div>
                 <div class="ph-col-6 empty"></div>
-                <div class="ph-col-12"></div>
+                <div class="ph-col-12 mb-0"></div>
             </div>
         </div>
     </div>
@@ -18,7 +18,6 @@
 <script>
 export default {
 mounted(){
-    console.log("check");
 }
 }
 </script>
