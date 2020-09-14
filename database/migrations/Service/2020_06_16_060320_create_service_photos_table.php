@@ -18,7 +18,6 @@ class CreateServicePhotosTable extends Migration
             $table->uuid('service_basic_info_id');
             $table->uuid('user_id');
             $table->string('path',100);
-            $table->string('card',100);
             $table->string('thumb',100);
             $table->timestamps();
         });

@@ -25,18 +25,12 @@ class ServicePhotoController extends Controller
             // image extension extraction
             $extension = explode("/", $_FILES["images"]["type"][$i]);
             $name = time() . '.' . $extension[1];
-            $card = time() . '-card.' . $extension[1];
             $thumb = time() . '-thumb.' . $extension[1];
             // Original
             \Image::make($file_name)->save(public_path('/storage/Service/Photos/') . $name);
             $Original =  \Image::make($file_name)->save(public_path('/storage/Service/Photos/') . $name);
-            // card
-            $Original->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            \Image::make($Original)->save(public_path('/storage/Service/Photos/') . $card);
             // thumb
-            $Original->resize(240, null, function ($constraint) {
+            $Original->resize(120, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Service/Photos/') . $thumb);
@@ -45,7 +39,6 @@ class ServicePhotoController extends Controller
             $photo = ServicePhoto::create([
                 'service_basic_info_id' => $request->id,
                 'path' => $name,
-                'card' => $card,
                 'thumb' => $thumb,
                 'user_id' => Auth::user()->id,
             ]);
@@ -65,10 +58,8 @@ class ServicePhotoController extends Controller
         //
         $photo = ServicePhoto::find($id);
         $unlink = public_path() . '/storage/Service/Photos/' . $photo->path;
-        $unlink_card = public_path() . '/storage/Service/Photos/' . $photo->card;
         $unlink_thumb = public_path() . '/storage/Service/Photos/' . $photo->thumb;
         unlink($unlink);
-        unlink($unlink_card);
         unlink($unlink_thumb);
         $photo->delete();
     }

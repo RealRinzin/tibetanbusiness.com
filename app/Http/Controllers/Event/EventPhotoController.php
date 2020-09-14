@@ -35,13 +35,8 @@ class EventPhotoController extends Controller
             // Original
                 \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
                 $Original =  \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
-            // card
-                $Original->resize(500, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                \Image::make($Original)->save(public_path('/storage/Event/Photos/') . $card);
             // thumb
-                $Original->resize(240, null, function ($constraint) {
+                $Original->resize(200, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
                 \Image::make($Original)->save(public_path('/storage/Event/Photos/') . $thumb);
@@ -51,7 +46,6 @@ class EventPhotoController extends Controller
                     'event_basic_info_id' => $request->id,
                     // 'path' => $image->store(''),
                     'path' => $name,
-                    'card' => $card,
                     'thumb' => $thumb,
                     'user_id' => Auth::user()->id,
                 ]);

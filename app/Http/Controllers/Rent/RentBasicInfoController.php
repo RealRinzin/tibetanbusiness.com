@@ -300,12 +300,12 @@ class RentBasicInfoController extends Controller
             \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
             $Original = \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
             // Card 500 X
-            $Original->resize(500, null, function ($constraint) {
+            $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $card);
             // Thumbnail 240 X 
-            $Original->resize(240, null, function ($constraint) {
+            $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $thumb);

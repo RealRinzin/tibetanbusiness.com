@@ -18,7 +18,6 @@ class CreateSalePhotoTable extends Migration
             $table->uuid('sale_basic_info_id');
             $table->uuid('user_id');
             $table->string('path');
-            $table->string('card');
             $table->string('thumb');
             $table->timestamps();
         });

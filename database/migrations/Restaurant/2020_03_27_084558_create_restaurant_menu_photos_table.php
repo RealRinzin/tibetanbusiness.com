@@ -18,7 +18,6 @@ class CreateRestaurantMenuPhotosTable extends Migration
             $table->uuid('restaurant_basic_info_id');
             $table->uuid('user_id');
             $table->string('path',100);
-            $table->string('card', 100);
             $table->string('thumb', 100);
             $table->timestamps();
         });

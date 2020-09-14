@@ -62,12 +62,12 @@ class EventBasicInfoController extends Controller
             \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
             $Original = \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
             // Card 500 X
-            $Original->resize(500, null, function ($constraint) {
+            $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $card);
             // Thumbnail 240 X 
-            $Original->resize(240, null, function ($constraint) {
+            $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $thumb);

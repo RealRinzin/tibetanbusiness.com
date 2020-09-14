@@ -1,20 +1,18 @@
 <template>
     <div>
-        <div v-if="!load" style="min-height:400px" class="text-center">
+        <!-- <div v-if="!load" style="min-height:400px" class="text-center">
             <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
                     <span class="sr-only">Loading...</span>
             </div>
         </div>
-         <div v-else>
-            <!-- <div> -->
+         <div v-else> -->
+            <div>
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
-                <div class="row py-3" style="min-height:400px">
-                    <div class="col-md-4" v-if="placeholder">
+                <div class="row py-3">
+                    <div class="col-md-4" v-if="sale_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <!-- Sale -->
-                    <!-- <swiper  class="col-md-4 col-sm-6 swiper info" :options="settings"  v-if="sales"> -->
                     <swiper  class="col-md-4 col-sm-6 swiper info" :options="settings"  v-else>
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
@@ -40,7 +38,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Events -->
-                    <swiper class="col-md-4 col-sm-6 col-12 swiper info" :options="settings" v-if="events">
+                    <div class="col-md-4" v-if="event_loading">
+                        <lazy-loading></lazy-loading>
+                    </div>
+                    <swiper class="col-md-4 col-sm-6 col-12 swiper info" :options="settings" v-else>
                         <swiper-slide v-for="(event,index) in events" :key="index">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
@@ -72,7 +73,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Rents -->
-                    <swiper class="swiper col-md-4 col-sm-6 info" :options="settings" v-if="rents">
+                    <div class="col-md-4" v-if="rent_loading">
+                        <lazy-loading></lazy-loading>
+                    </div>
+                    <swiper v-else class="swiper col-md-4 col-sm-6 info" :options="settings">
                         <swiper-slide v-for="(rent,index) in rents" :key="index">
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
@@ -101,7 +105,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Job -->
-                    <swiper class="col-md-4 col-sm-6 swiper info" :options="settings" v-if="jobs">
+                    <div class="col-md-4" v-if="job_loading">
+                        <lazy-loading></lazy-loading>
+                    </div>
+                    <swiper v-else class="col-md-4 col-sm-6 swiper info" :options="settings">
                         <swiper-slide v-for="(job,index) in jobs" :key="index">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
@@ -131,7 +138,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Service -->
-                    <swiper class="col-md-4 col-sm-6 swiper" :options="settings" v-if="services">
+                    <div class="col-md-4" v-if="service_loading">
+                        <lazy-loading></lazy-loading>
+                    </div>
+                    <swiper v-else class="col-md-4 col-sm-6 swiper" :options="settings">
                         <swiper-slide v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
@@ -154,7 +164,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Restaurant -->
-                    <swiper class="col-md-4 col-sm-6 col-12 swiper" :options="settings">
+                    <div class="col-md-4" v-if="restaurant_loading">
+                        <lazy-loading></lazy-loading>
+                    </div>
+                    <swiper v-else class="col-md-4 col-sm-6 col-12 swiper" :options="settings">
                         <swiper-slide v-for="(restaurant,index) in restaurants" :key="index">
                             <div class="card">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
@@ -231,7 +244,13 @@
                 sales:{total:0},
                 services:{total:0},
                 // total
-                placeholder:true,
+                // Loading
+                event_loading:true,
+                sale_loading:true,
+                job_loading:true,
+                rent_loading:true,
+                service_loading:true,
+                restaurant_loading:true,
                 //  Swiper slider
                 settings:{
                     slidesPerView: 1,
@@ -264,6 +283,7 @@
                     if(response.data.length > 0){
                         this.restaurants = response.data;
                         this.restaurants.total = response.data.total;
+                        this.restaurant_loading = false;
                         // rate background
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -285,6 +305,7 @@
                         .then(response=>{
                             this.restaurants = response.data; 
                             this.restaurants.total = response.data.total;
+                            this.restaurant_loading = false;
                             // rate background
                             for (let index = 0; index < response.data.length; index++) {
                                 if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -309,6 +330,7 @@
                 axios.get('/api/event/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
+                        this.event_loading = false;
                         this.events = response.data;
                         // Background color
                         for (let index = 0; index < response.data.length; index++) {
@@ -332,6 +354,7 @@
                         axios.get('/api/event/list/all')
                         .then(response=>{
                         this.events = response.data;
+                        this.event_loading = false;
                         // Background color
                         for (let index = 0; index < response.data.length; index++) {
                             // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
@@ -357,6 +380,7 @@
                 .then(response=>{
                     if (response.data.length > 0) {
                         this.rents = response.data;
+                        this.rent_loading =false;
                         // Background color
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
@@ -377,6 +401,7 @@
                         axios.get('/api/rent/list/all')
                         .then(response => {
                             this.rents = response.data;
+                            this.rent_loading =false;
                             // Background color
                             for (let index = 0; index < response.data.length; index++) {
                                 // bg
@@ -400,28 +425,29 @@
                 axios.get('/api/job/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
+                        this.job_loading =false;
                         this.jobs = response.data;
                         // Background color
                     }else{
                         axios.get('/api/job/list/all')
                         .then(response => {
                             this.jobs = response.data;
+                            this.job_loading =false;
                         })
                     }
                 })
                 // Featured Sale
                 axios.get('/api/sale/list/featured_ad')
                 .then(response=>{
-                    this.placeholder = true;
                     if (response.data.length > 0) {
+                        this.sale_loading =false,
                         this.sales = response.data;
                     this.placeholder = false;
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
-                        this.placeholder = true;
+                        this.sale_loading=false,
                             this.sales = response.data;
-                        this.placeholder = false
                         })
                     }
                 })
@@ -430,6 +456,8 @@
                 .then(response=>{
                     if (response.data.length > 0) {
                         this.services = response.data;
+                        this.service_loading =false;
+
                         for (let index = 0; index < response.data.length; index++) {
                         // bg
                             if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
@@ -449,6 +477,7 @@
                         axios.get('/api/service/list/all')
                         .then(response => {
                         this.services = response.data;
+                        this.service_loading =false;
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
                                 if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){

@@ -18,7 +18,6 @@ class CreatePhotosTable extends Migration
             $table->uuid('user_id');
             $table->uuid('event_basic_info_id');
             $table->string('path',50);
-            $table->string('card',50);
             $table->string('thumb', 50);
             $table->timestamps();
         });

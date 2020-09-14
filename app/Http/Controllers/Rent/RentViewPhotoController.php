@@ -29,18 +29,12 @@ class RentViewPhotoController extends Controller
             // image extension extraction
             $extension = explode("/", $_FILES["images"]["type"][$i]);
             $name = time() . '.' . $extension[1];
-            $card = time() . '-card.' . $extension[1];
             $thumb = time() . '-thumb.' . $extension[1];
             // Original
             \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);
             $Original =  \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);
-            // card
-            $Original->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            \Image::make($Original)->save(public_path('/storage/Rent/View-Photos/') . $card);
             // thumb
-            $Original->resize(240, null, function ($constraint) {
+            $Original->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
             \Image::make($Original)->save(public_path('/storage/Rent/View-Photos/') . $thumb);
@@ -49,7 +43,6 @@ class RentViewPhotoController extends Controller
             $restaurant = RentViewPhoto::create([
                 'rent_basic_info_id' => $request->id,
                 'path' => $name,
-                'card' => $card,
                 'thumb' => $thumb,
                 'user_id' => Auth::user()->id,
             ]);
@@ -71,11 +64,9 @@ class RentViewPhotoController extends Controller
         //
         $photos = RentViewPhoto::find($id);
         $unlink = public_path() . '/storage/Rent/View-Photos/' . $photos->path;
-        $card = public_path() . '/storage/Rent/View-Photos/' . $photos->card;
         $thumb = public_path() . '/storage/Rent/View-Photos/' . $photos->thumb;
         // Unlinking all the photos
         unlink($unlink);
-        unlink($card);
         unlink($thumb);
         $photos->delete();
     }

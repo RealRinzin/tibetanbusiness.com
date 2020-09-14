@@ -25,18 +25,12 @@ class SalePhotoController extends Controller
                 // image extension extraction
                 $extension = explode("/", $_FILES["images"]["type"][$i]);
                 $name = time() . '.' . $extension[1];
-                $card = time() . '-card.' . $extension[1];
                 $thumb = time() . '-thumb.' . $extension[1];
             // Original
                 \Image::make($file_name)->save(public_path('/storage/Sale/Photos/') . $name);
                 $Original =  \Image::make($file_name)->save(public_path('/storage/Sale/Photos/') . $name);
-            // card
-                $Original->resize(500, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                \Image::make($Original)->save(public_path('/storage/Sale/Photos/') . $card);
             // thumb
-                $Original->resize(240, null, function ($constraint) {
+                $Original->resize(200, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
                 \Image::make($Original)->save(public_path('/storage/Sale/Photos/') . $thumb);
@@ -45,7 +39,6 @@ class SalePhotoController extends Controller
             $photo = SalePhoto::create([
                 'sale_basic_info_id' => $request->id,
                 'path' => $name,
-                'card' => $card,
                 'thumb' => $thumb,
                 'user_id' => Auth::user()->id,
             ]);
@@ -67,10 +60,8 @@ class SalePhotoController extends Controller
         //
         $photo = SalePhoto::find($id);
         $unlink = public_path() . '/storage/Sale/Photos/' . $photo->path;
-        $unlink_card = public_path() . '/storage/Sale/Photos/' . $photo->card;
         $unlink_thumb = public_path() . '/storage/Sale/Photos/' . $photo->thumb;
         unlink($unlink);
-        unlink($unlink_card);
         unlink($unlink_thumb);
         $photo->delete();
     }
