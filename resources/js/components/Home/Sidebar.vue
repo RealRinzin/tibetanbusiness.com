@@ -2,14 +2,12 @@
 <div>
     <div id="sidebar">
         <!-- Sales -->
-        <div class="card p-3" v-if="sales">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/sale.png" class="mr-2" alt="">TRENDING SALES</h6>
-            <div v-if="!sale_loading" class="text-center">
-                <div class="spinner-border m-5" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>
+            <div v-if="sale_loading" class="text-center">
+                <lazy-loading></lazy-loading>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-else style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6> -->
                         <swiper-slide  class="col-6" v-for="(sale,index) in sales" :key="index">
@@ -30,26 +28,12 @@
             </div>
         </div>
         <!-- Events -->
-        <div class="card p-3" v-if="events">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/event.png" class="mr-2" alt="">UPCOMING EVENTS</h6>
-            <div v-if="!event_loading" class="text-center">
-                <div class="ph-item p-0 border-0">
-                    <div class="ph-col-12">
-                        <div class="ph-picture"></div>
-                        <div class="ph-row">
-                            <div class="ph-col-6 big"></div>
-                            <div class="ph-col-4 empty big"></div>
-                            <div class="ph-col-2 big"></div>
-                            <div class="ph-col-4"></div>
-                            <div class="ph-col-8 empty"></div>
-                            <div class="ph-col-6"></div>
-                            <div class="ph-col-6 empty"></div>
-                            <div class="ph-col-12"></div>
-                        </div>
-                    </div>
-                </div>
+            <div v-if="event_loading" class="text-center">
+                <lazy-loading></lazy-loading>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-else style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6"  v-for="(event,index) in events" :key="index">
                             <a v-bind:href="'/event/'+event.id">
@@ -66,14 +50,12 @@
             </div>
         </div>
         <!-- Rents -->
-        <div class="card p-3" v-if="rents">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/rent.png" class="mr-2" alt="">AVAILABE RENTS</h6>
-            <div v-if="!rent_loading" class="text-center">
-                    <div class="spinner-border m-5" role="status">
-                    <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-            <div class="row" v-else>
+            <div v-if="rent_loading" class="text-center">
+                <lazy-loading></lazy-loading>
+            </div>
+            <div class="row" v-else style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> Restaurant</h6> -->
                         <swiper-slide  class="col-6" v-for="(rent,index) in rents" :key="index">
@@ -93,14 +75,12 @@
             </div>
         </div>
         <!--Jobs  -->
-        <div class="card p-3" v-if="jobs">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/job.png" class="mr-2" alt="">TRENDING JOBS</h6>
-            <div v-if="!job_loading" class="text-center">
-                <div class="spinner-border m-5" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>
+            <div v-if="job_loading" class="text-center">
+                <lazy-loading></lazy-loading>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-else  style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                 <!-- <h6 class="py-2"> <span><i class="fas fa-utensils mr-2 text-danger"></i></span> job</h6> -->
                         <swiper-slide  class="col-6" v-for="(job,index) in jobs" :key="index">
@@ -109,7 +89,7 @@
 
                             <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                             </a>
-                            <h6 class="text-dark pt-3">{{job.name}}</h6>
+                            <h6 class="text-dark pt-3">{{job.title}}</h6>
                             <p class="text-muted my-0">{{job.mobile_no}}</p>
                             <p class="text-muted my-0">{{job.location}}</p>
                         </swiper-slide>
@@ -120,14 +100,12 @@
             </div>
         </div>
         <!-- Services -->
-        <div class="card p-3" v-if="services">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</h6>
-            <div v-if="!service_loading" class="text-center">
-                <div class="spinner-border m-5" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>
+            <div v-if="service_loading" class="text-center">
+                <lazy-loading></lazy-loading>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-else style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(service,index) in services" :key="index">
                             <a v-bind:href="'/service/'+service.id">
@@ -145,14 +123,12 @@
             </div>
         </div>
         <!-- restaurant -->
-        <div class="card p-3" v-if="restaurants">
+        <div class="card p-3">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/restaurant.png" class="mr-2" alt="">TRENDING RESTAURANTS</h6>
-            <div v-if="!restaurant_loading" class="text-center">
-                <div class="spinner-border m-5" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>
+            <div v-if="restaurant_loading" class="text-center">
+                <lazy-loading></lazy-loading>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-else style="min-height:120px">
                 <swiper class="swiper" :options="settings">
                         <swiper-slide  class="col-6" v-for="(restaurant,index) in restaurants" :key="index">
                             <a v-bind:href="'/restaurant/'+restaurant.id">
@@ -176,6 +152,7 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+    // lazyloading
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 
     export default {
@@ -183,12 +160,12 @@
         data(){
             return{
                 loading: false,
-                restaurant_loading:false,
-                event_loading:false,
-                job_loading:false,
-                sale_loading:false,
-                service_loading:false,
-                rent_loading:false,
+                restaurant_loading:true,
+                event_loading:true,
+                job_loading:true,
+                sale_loading:true,
+                service_loading:true,
+                rent_loading:true,
                 // Objects
                 restaurants:{}, 
                 events:{}, 
@@ -196,6 +173,7 @@
                 rents:{}, 
                 sales:{}, 
                 services:{},
+                // loading
                 // Swiper Carousel
                 settings:{
                     slidesPerView: 2,
@@ -224,8 +202,8 @@
                  *  */ 
                 axios.get('/api/restaurant/list/sidebar_ad')
                 .then(response=>{
-                    this.restaurant_loading = true; //Loading true
                     if(response.data.length > 0){
+                        this.restaurant_loading = false; //Loading true
                         this.restaurants = response.data;
                         // background color
                         for (let index = 0; index < response.data.length; index++) {
@@ -245,7 +223,7 @@
                         }
                     }else{
                         axios.get('/api/restaurant/list/all').then(response=>{
-                            this.restaurant_loading = true;
+                            this.restaurant_loading = false;
                             this.restaurants = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
@@ -268,9 +246,9 @@
                  *  */ 
                 axios.get('/api/event/list/sidebar_ad')
                 .then(response=>{
-                    this.event_loading = true; //Loading true
                     if (response.data.length > 0) {
                         this.events = response.data;
+                        this.event_loading = false; //Loading true
                         for (let index = 0; index < response.data.length; index++) {
                             // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
@@ -291,8 +269,8 @@
                     }else{
                         axios.get('/api/event/list/all')
                         .then(response=>{
-                            this.event_loading = true; //Loading true
                             this.events = response.data;
+                            this.event_loading = false; //Loading true
                             for (let index = 0; index < response.data.length; index++) {
                                 // bg
                                 if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
@@ -317,13 +295,13 @@
                  *  */ 
                 axios.get('/api/job/list/sidebar_ad')
                 .then(response=>{
-                    this.job_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.job_loading = false; //Loading true
                         this.jobs = response.data;
                     }else{
                         axios.get('/api/job/list/all')
                         .then(response => {
-                            this.job_loading = true; //Loading true
+                            this.job_loading = false; //Loading true
                             this.jobs = response.data;
                         })
                     }
@@ -334,8 +312,8 @@
                  *  */ 
                 axios.get('/api/rent/list/sidebar_ad')
                 .then(response=>{
-                    this.rent_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.rent_loading = false; //Loading true
                         this.rents = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
@@ -355,7 +333,7 @@
                     }else{
                         axios.get('/api/rent/list/all')
                         .then(response => {
-                            this.rent_loading = true; //Loading true
+                            this.rent_loading = false; //Loading true
                             this.rents = response.data;
                             for (let index = 0; index < response.data.length; index++) {
                                 // bg
@@ -380,13 +358,13 @@
                  *  */ 
                 axios.get('/api/sale/list/sidebar_ad')
                 .then(response=>{
-                    this.sale_loading = true; //Loading true
                     this.sales = response.data;
                     if (response.data.length > 0) {
+                        this.sale_loading = false; //Loading true
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
-                            this.sale_loading = true; //Loading true
+                            this.sale_loading = false; //Loading true
                             this.sales = response.data;
                         })
                     }
@@ -396,8 +374,8 @@
                  *  */ 
                 axios.get('/api/service/list/sidebar_ad')
                 .then(response=>{
-                    this.service_loading = true; //Loading true
                     if (response.data.length > 0) {
+                        this.service_loading = false; //Loading true
                         this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                             // rate color
@@ -416,7 +394,7 @@
                     }else{
                         axios.get('/api/service/list/all')
                         .then(response => {
-                        this.service_loading = true; //Loading true
+                        this.service_loading = false; //Loading true
                         this.services = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                                 // rate color
