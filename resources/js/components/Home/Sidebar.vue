@@ -89,7 +89,7 @@
 
                             <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                             </a>
-                            <h6 class="text-dark pt-3">{{job.title}}</h6>
+                            <h6 class="text-dark pt-3">{{job.name}}</h6>
                             <p class="text-muted my-0">{{job.mobile_no}}</p>
                             <p class="text-muted my-0">{{job.location}}</p>
                         </swiper-slide>
@@ -296,7 +296,7 @@
                 axios.get('/api/job/list/sidebar_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
-                        this.job_loading = false; //Loading true
+                    this.job_loading = false; //Loading true
                         this.jobs = response.data;
                     }else{
                         axios.get('/api/job/list/all')

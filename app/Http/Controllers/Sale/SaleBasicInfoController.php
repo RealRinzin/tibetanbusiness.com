@@ -289,6 +289,7 @@ class SaleBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
+        // return $request;
         $sales =  SaleBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('type', 'like',"$request->type%")

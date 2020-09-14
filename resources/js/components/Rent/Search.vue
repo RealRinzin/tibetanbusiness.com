@@ -228,8 +228,8 @@ export default {
             // Range
             var fare = document.getElementById("fare");
             this.number = fare.value.split("-");
-            this.filter.fare_min = this.number[0];
-            this.filter.fare_max = this.number[1];
+            this.filter.fare_min = parseInt(this.number[0]);
+            this.filter.fare_max = parseInt(this.number[1]);
             // End 
             this.loading = false;
             this.nextPage = 2;

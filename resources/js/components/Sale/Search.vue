@@ -62,26 +62,26 @@
                                 <small v-if="filter.price_min || filter.price_max" class="badge badge-secondary mb-1">Price:₹ {{filter.price_min}} - {{filter.price_max}}</small>
                             </div>
                             <!-- Result -->
-                            <div v-if="!loading" class="mx-auto bg-white text-center mx-3" style="height:100vh">
-                            <img src="/img/loading-gray.svg" alt="" style="margin-top:50%;">
-                            </div>
-                            <div v-else>
-                                <div class="row" id="result">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(sale,index) in sales">
-                                        <a v-bind:href="'/sale/'+sale.id">
-                                            <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
-                                                <ul>
-                                                    <li class="ng-binding btn btn-danger btn-md small">Price:₹{{sale.price}}/-</li>
-                                                    <li class="ng-binding btn btn-danger btn-md small">Total items: {{sale.total_item}}</li>
-                                                    <li class="ng-binding btn btn-danger btn-md small">Category: {{sale.type}}</li>
-                                                </ul>
-                                            </div>
-                                        </a>
-                                        <div class="card px-2">
-                                            <h6 class="text-dark pt-3">{{sale.name}}</h6>
-                                            <p class="text-muted my-0">{{sale.mobile_no}}</p>
-                                            <p class="text-muted my-0">{{sale.location}}</p>
+                            <div class="row" id="result">
+                                <div class="col-12" v-if="loading_placeholder">
+                                    <lazy-loading></lazy-loading>
+                                    <lazy-loading></lazy-loading>
+                                    <lazy-loading></lazy-loading>
+                                </div>
+                                <div v-else class="col-md-12 col-sm-12 col-xs-12 info" v-for="(sale,index) in sales">
+                                    <a v-bind:href="'/sale/'+sale.id">
+                                        <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
+                                            <ul>
+                                                <li class="ng-binding btn btn-danger btn-md small">Price:₹{{sale.price}}/-</li>
+                                                <li class="ng-binding btn btn-danger btn-md small">Total items: {{sale.total_item}}</li>
+                                                <li class="ng-binding btn btn-danger btn-md small">Category: {{sale.type}}</li>
+                                            </ul>
                                         </div>
+                                    </a>
+                                    <div class="card px-2">
+                                        <h6 class="text-dark pt-3">{{sale.name}}</h6>
+                                        <p class="text-muted my-0">{{sale.mobile_no}}</p>
+                                        <p class="text-muted my-0">{{sale.location}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +115,11 @@ export default {
     // Data
     data(){
         return{
-            loading: false,
+            // loading: false,
             load_more_button : false,
+            // loading
+            isLoading : false,//Lazy loading
+            loading_placeholder:true,
             total:0,
             empty_result:'',
             // sale:[], // Restaurants Object
@@ -134,8 +137,7 @@ export default {
                 price_min:0,
                 price_max:10000000,
             },
-            // loading
-            isLoading : false,//Lazy loading
+
             // lazy:false,
             result:[],
             /**
@@ -157,10 +159,11 @@ export default {
                 this.filter.location = ""
             };
             // axios.get('/api/search/sales')
-            axios.get('/api/search/sales?price_min=0&price_max=500000&location='+this.filter.location)
+            axios.get('/api/search/sales?price_min=0&price_max=10000000&location='+this.filter.location)
              .then(response=>{ 
+            this.loading_placeholder=false,
                 this.sales = response.data.data;
-                this.loading = true;
+                // this.loading = true;
                 this.total = response.data.total;
                 // Load more button
                 if(response.data.total == 0){
@@ -178,19 +181,20 @@ export default {
             $( function() {
                 $( "#slider-range" ).slider({
                 range: true,
-                min: 0,
-                max: 100000,
-                values: [ 0, 300000],
+                min:0,
+                max:1000000,
+                values: [0,10000000],
                 slide: function( event, ui ) {
-                    $( "#price" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                    $("#price").val(+ui.values[0]+ "-"+ui.values[1] );
                 }
                 });
-                $( "#price" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                $("#price").val(+$("#slider-range").slider("values",0) +
+                " - "+$( "#slider-range").slider( "values",1));
             } );
         },
         // search result
         search_result(){
+            this.isLoading = true; //Loading true
             // hidding collapse after 
             // clicking the search button hit
             // Mobile screensize
@@ -200,21 +204,20 @@ export default {
             // Range
             var price = document.getElementById("price");
             this.price = price.value.split("-");
-            this.filter.price_min = this.price[0];
-            this.filter.price_max = this.price[1];
+            this.filter.price_min =parseInt(this.price[0]);
+            this.filter.price_max =parseInt(this.price[1]);
             // Range
-            this.loading = false;
+            // this.loading = false;
             this.nextPage = 2;
             axios.get('/api/search/sales?name='+this.filter.name+
             '&location='+this.filter.location+
-            '&type='+this.filter.type+
-            '&price_min='+this.filter.price_min+
-            '&price_max='+this.filter.price_max+
+            '&type='+this.filter.type+'&price_min='+this.filter.price_min+'&price_max='+this.filter.price_max+
             '&page=1')
             .then((response)=>{ 
                 this.sales = response.data.data;
                 this.loading = true;
                 this.total = response.data.total;
+                this.isLoading = false; //Loading true
                 // check for empty result
                 if(response.data.total == 0){
                     this.empty_result = "We don't found the search item"
@@ -234,9 +237,7 @@ export default {
             this.isLoading = true; //Loading true
             axios.get('/api/search/sales?name='+this.filter.name+
             '&location='+this.filter.location+
-            '&type='+this.filter.type+
-            '&price_min='+this.filter.price_min+
-            '&price_max='+this.filter.price_max+
+            '&type='+this.filter.type+'&price_min='+this.filter.price_min+'&price_max='+this.filter.price_max+
             '&page='+this.nextPage)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){
@@ -276,7 +277,7 @@ export default {
                     type:'',
                     // fare:50000,
                     price_min:0,
-                    price_max:1000000,
+                    price_max:10000000,
                 }
             if(screen.width < 767){
                 $("#search_collapse").removeClass("show");
