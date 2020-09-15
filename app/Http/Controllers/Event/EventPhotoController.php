@@ -29,9 +29,8 @@ class EventPhotoController extends Controller
                 $file_name = $_FILES['images']["tmp_name"][$i];
                 // image extension extraction
                 $extension = explode("/", $_FILES["images"]["type"][$i]);
-                $name = time() . '.' . $extension[1];
-                $card = time() . '-card.' . $extension[1];
-                $thumb = time() . '-thumb.' . $extension[1];
+                $name = time() .$i. '.' . $extension[1];
+                $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
                 \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
                 $Original =  \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
@@ -67,11 +66,9 @@ class EventPhotoController extends Controller
         $photo = EventPhoto::find($id);
         // return $photo->path;
         $unlink = public_path() . '/storage/Event/Photos/' . $photo->path;
-        $card = public_path() . '/storage/Event/Photos/' . $photo->card;
         $thumb = public_path() . '/storage/Event/Photos/' . $photo->thumb;
         // Unlinking all the photos
         unlink($unlink);
-        unlink($card);
         unlink($thumb);
         // Deleting records
         $photo->delete();
