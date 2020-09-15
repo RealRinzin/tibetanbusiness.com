@@ -28,8 +28,8 @@ class RentViewPhotoController extends Controller
             $file_name = $_FILES['images']["tmp_name"][$i];
             // image extension extraction
             $extension = explode("/", $_FILES["images"]["type"][$i]);
-            $name = time() . '.' . $extension[1];
-            $thumb = time() . '-thumb.' . $extension[1];
+            $name = time() .$i. '.' . $extension[1];
+            $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
             \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);
             $Original =  \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);

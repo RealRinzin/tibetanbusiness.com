@@ -4,7 +4,7 @@
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
           <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="RoomPhotoModal()">Upload New photos</button></div>
-          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
+          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos </h6></div>
         </div>
       </div>
     </div>
@@ -249,12 +249,12 @@
                     icon:'success',
                       title:'Updated',
                   });
-                  this.images = [];
-                  this.files = [];
-                  this.valid_image = [];
                   $("#upload_rent_room_photos_modal").modal("hide"); 
                 // callback function
                   this.load_photo()
+                  this.images = [];
+                  this.files = [];
+                  this.valid_image = [];
             this.$Progress.finish();
 
               })

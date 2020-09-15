@@ -4,7 +4,7 @@
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
           <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="ViewPhotoModal()">Upload New photos</button></div>
-          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
+          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos</h6></div>
         </div>
       </div>
     </div>
