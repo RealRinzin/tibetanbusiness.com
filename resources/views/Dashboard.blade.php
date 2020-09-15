@@ -83,39 +83,39 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="{{route('dashboard.sale')}}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Sales<span class="right badge badge-danger">New</span></p>
+                                <i class="fas fa-tags mr-2"></i>
+                                <p>Sales</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('dashboard.job')}}" class="nav-link">
-                                <i class="fas fa-utensils mr-2"></i>
-                                <p>Job<span class="right badge badge-danger">New</span></p>
+                                <i class="fas fa-briefcase mr-2"></i>
+                                <p>Job</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard.rent') }}" class="nav-link">
-                                <i class="fa fa-calendar-alt mr-2"></i>
-                                <p>Rents<span class="right badge badge-danger">New</span></p>
+                                <i class="fa fa-bed mr-2"></i>
+                                <p>Rents</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="{{route('dashboard.event')}}" class="nav-link">
-                                <i class="fas fa-hotel mr-2 "></i>
-                                <p>Event<span class="right badge badge-danger">New</span></p>
+                                <i class="fas fa-calendar-alt mr-2 "></i>
+                                <p>Event</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('dashboard.service')}}" class="nav-link">
-                                <i class="fas fa-home mr-2 text-danger"></i>
-                                <p>Services<span class="right badge badge-danger">New</span></p>
+                                <i class="fas fa-tools mr-2"></i>
+                                <p>Services</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard.restaurant') }}" class="nav-link">
-                                <i class="fa fa-calendar-alt mr-2"></i>
-                                <p>Restaurants<span class="right badge badge-danger">New</span></p>
+                                <i class="fa fa-hamburger mr-2"></i>
+                                <p>Restaurants</p>
                             </a>
                         </li>
                     </ul>

@@ -16,7 +16,8 @@ class LocationController extends Controller
     public function index()
     {
         //
-        $restaurants =  Location::all();
+        $restaurants =  Location::orderBy('name', 'asc')->get();
+
         return $restaurants->toArray($restaurants);
     }
 

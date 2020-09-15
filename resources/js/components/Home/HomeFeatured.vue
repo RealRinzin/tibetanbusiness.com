@@ -1,12 +1,12 @@
 <template>
     <div>
-        <!-- <div v-if="!load" style="min-height:400px" class="text-center">
+        <div v-if="!load" style="min-height:400px" class="text-center">
             <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
                     <span class="sr-only">Loading...</span>
             </div>
         </div>
-         <div v-else> -->
-            <div>
+         <div v-else>
+            <!-- <div> -->
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
@@ -507,7 +507,7 @@
         /**
          * Mounted
          *  */ 
-        mounted() {
+        async mounted() {
             // Featured Restaurant
             this.load_business();
         },

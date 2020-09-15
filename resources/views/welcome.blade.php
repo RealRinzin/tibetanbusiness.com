@@ -8,7 +8,7 @@
     <home-featured></home-featured>
 </div>
 <!-- Total counts  -->
-<div class="container">
+<!-- <div class="container">
     <h5 class="py-2 text-center font-weight-bolder m-0">Businesses Listed </h5>
     <p class="text-center text-dark font-weight-bolder small m-0 py-1">Count 120+<p>
             <div class="row">
@@ -55,5 +55,5 @@
                     </div>
                 </div>
             </div>
-</div>
+</div> -->
 @endsection

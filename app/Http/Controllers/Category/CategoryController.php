@@ -92,28 +92,28 @@ class CategoryController extends Controller
     // Job profession
     public function job(){
         $jobs = Category::where('category','=','job')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('name', 'asc')->get();
         return $jobs->toArray($jobs);
     }
     // Events category
     public function event()
     {
         $events = Category::where('category', '=', 'event')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('name', 'asc')->get();
         return $events->toArray($events);
     }
     // Sales category
     public function sale()
     {
         $sales = Category::where('category', '=', 'sale')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('name', 'asc')->get();
         return $sales->toArray($sales);
     }
     // Sales category
     public function service()
     {
         $services = Category::where('category', '=', 'service')
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('name', 'asc')->get();
         return $services->toArray($services);
     }
 

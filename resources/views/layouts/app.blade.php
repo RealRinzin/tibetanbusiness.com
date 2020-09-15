@@ -150,7 +150,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <!-- <nav-bar></nav-bar> -->
-                                        <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                        <a class="dropdown-item" href="/dashboard/event">Dashboard</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                             <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
                                             @csrf
