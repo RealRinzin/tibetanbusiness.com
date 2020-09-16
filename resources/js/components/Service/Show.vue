@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Brief</h5>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <!--  Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <photo :service_id="id"></photo>
                                 </div>
                                 <!-- comments -->

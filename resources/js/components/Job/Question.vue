@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-md-12">
                     <h6 class="text-muted">Ask Questions?</h6>
@@ -34,7 +34,7 @@
         </div>
        <!-- Comment View -->
         <!-- <div class="card p-3"> -->
-            <div class="card" v-for="(question,index) in questions">
+            <div class="card my-2" v-for="(question,index) in questions">
                 <div class="row p-3">
                     <div class="col-md-12">
                         <div class="media animated fadeIn duration-1s">
@@ -44,7 +44,7 @@
                                 <small class="text-muted">
                                 <timeago :datetime="question.created_at" />
                                     <span v-if="question.user_id === user_id" class="p-2">
-                                        <span class="btn btn-xs btn-danger" @click="destory(question.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                        <span class="btn btn-sm btn-danger" @click="destory(question.id,index)"><i class="fas fa-trash-alt"></i></span>
                                     </span>
                                 </small>
                             </h6>

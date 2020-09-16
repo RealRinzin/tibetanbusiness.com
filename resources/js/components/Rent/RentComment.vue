@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
@@ -44,7 +44,7 @@
             </div>
         </div>
        <!-- Comments -->
-        <div class="card" v-for="(comment,index) in comments">
+        <div class="card my-2" v-for="(comment,index) in comments">
             <div class="row p-3">
                 <div class="col-md-12">
                     <div class="media animated fadeIn duration-1s">
@@ -54,8 +54,8 @@
                                 <small>
                                     <span  v-bind:class="comment.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comment.rate}}</span>
                                     <span v-if="comment.user_id === user_id" class="p-2">
-                                        <span class="btn btn-xs btn-secondary" @click="edit(comment.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                        <span class="btn btn-xs btn-danger" @click="destory(comment.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                        <span class="btn btn-sm btn-secondary" @click="edit(comment.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                        <span class="btn btn-sm btn-danger" @click="destory(comment.id,index)"><i class="fas fa-trash-alt"></i></span>
                                     </span>
                                 </small>
                                 </h6>

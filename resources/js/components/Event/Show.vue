@@ -16,7 +16,7 @@
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <div class="row">
                                         <!-- Banner -->
                                         <div class="col-md-12">
@@ -26,8 +26,8 @@
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
                                                     <li class="btn btn-danger btn-md mr-2" v-if="event.start_time"><i class="far fa-clock mr-2"></i>{{event.start_time}} <span v-if="event.start_time"> a.m </span>-{{event.end_time}} <span v-if="event.end_time"> p.m</span></li>
-                                                    <li v-if="event.entry_free" class="btn btn-success btn-md">Entry Free</li>
-                                                    <li v-else class="btn btn-success btn-md">Entry Fee:&#x20B9 {{event.entry_fee}}/</li>
+                                                    <li v-if="event.entry_free > 0" class="btn btn-success btn-md">Entry Free</li>
+                                                    <li v-else class="btn btn-warning btn-md">Entry Fee:&#x20B9 {{event.entry_fee}}/</li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Brief</h5>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <!--  Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <photo :event_id="id"></photo>
                                 </div>
                                 <!-- comments -->

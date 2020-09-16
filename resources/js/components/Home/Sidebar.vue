@@ -28,7 +28,7 @@
             </div>
         </div>
         <!-- Events -->
-        <div class="card p-3">
+        <div class="card p-3 my-2">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/event.png" class="mr-2" alt="">UPCOMING EVENTS</h6>
             <div v-if="event_loading" class="text-center">
                 <lazy-loading class="mb-0"></lazy-loading>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <!-- Rents -->
-        <div class="card p-3">
+        <div class="card p-3 my-2">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/rent.png" class="mr-2" alt="">AVAILABE RENTS</h6>
             <div v-if="rent_loading" class="text-center">
                 <lazy-loading class="mb-0"></lazy-loading>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <!--Jobs  -->
-        <div class="card p-3">
+        <div class="card p-3 my-2">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/job.png" class="mr-2" alt="">TRENDING JOBS</h6>
             <div v-if="job_loading" class="text-center">
                 <lazy-loading class="mb-0"></lazy-loading>
@@ -100,7 +100,7 @@
             </div>
         </div>
         <!-- Services -->
-        <div class="card p-3">
+        <div class="card p-3 my-2">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</h6>
             <div v-if="service_loading" class="text-center">
                 <lazy-loading class="mb-0"></lazy-loading>
@@ -123,7 +123,7 @@
             </div>
         </div>
         <!-- restaurant -->
-        <div class="card p-3">
+        <div class="card p-3 my-2">
             <h6 class="small text-muted py-2 font-weight-bolder"><img src="/img/restaurant.png" class="mr-2" alt="">TRENDING RESTAURANTS</h6>
             <div v-if="restaurant_loading" class="text-center">
                 <lazy-loading class="mb-0"></lazy-loading>

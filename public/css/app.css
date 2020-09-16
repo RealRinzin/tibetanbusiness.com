@@ -11186,7 +11186,7 @@ Background resource loading
 }
 
 #featured .card {
-  min-height: 250px;
+  min-height: 230px;
 }
 
 #featured .info ul {
@@ -11492,6 +11492,10 @@ body {
   min-height: 100%;
 }
 
+a:hover {
+  list-style: none !important;
+}
+
 .sticky_header {
   background-color: #941c18 !important;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25) !important;
@@ -11662,14 +11666,15 @@ body {
 }
 
 #business_list .info h5 {
-  font-size: 12px !important;
-  color: #747677 !important;
+  font-size: 14px !important;
+  color: #343a40 !important;
   font-weight: bolder;
+  padding-top: 5px;
 }
 
 #business_list .info h6 {
   color: #747677 !important;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bolder;
 }
 

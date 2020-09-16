@@ -10,18 +10,18 @@
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
-                    <div class="col-md-4" v-if="sale_loading">
+                    <div class="col-md-4 my-2" v-if="sale_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper  class="col-md-4 col-sm-6 swiper info" :options="settings"  v-else>
+                    <swiper  class="col-md-4 col-sm-6 swiper info my-2" :options="settings"  v-else>
                         <swiper-slide v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
-                                        <ul>
-                                            <li class="btn btn-xs btn-danger small">Price:₹{{sale.price}}/-</li>
-                                            <li class="btn btn-xs btn-danger small">Type:{{sale.type}}</li>
-                                        </ul>
+                                        <div class="detail position-absolute ml-2" style="bottom:5px">
+                                            <p class="btn btn-sm btn-danger small my-0">Price:₹{{sale.price}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0">{{sale.type}}</p>
+                                        </div>
                                     </div>
                                 </a>
                                 <div class="types">
@@ -38,22 +38,20 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Events -->
-                    <div class="col-md-4" v-if="event_loading">
+                    <div class="col-md-4 my-2" v-if="event_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper class="col-md-4 col-sm-6 col-12 swiper info" :options="settings" v-else>
+                    <swiper class="col-md-4 my-2 col-sm-6 col-12 swiper info" :options="settings" v-else>
                         <swiper-slide v-for="(event,index) in events" :key="index">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
-                                        <ul>
-                                            <!-- <li class="ng-binding">{{event.start_date | date}}</li> -->
-                                            <li class="btn btn-xs btn-danger small">{{event.start_date | date}}</li>
-                                            <!-- <li class="ng-binding" v-if="event.start_time">{{event.start_time}}a.m</li> -->
-                                            <li class="btn btn-xs bg-warning small" v-if="event.entry_free">Entry Fee</li>
-                                            <li class="btn btn-xs btn-danger small" v-else>Entry Fee:₹{{event.entry_fee}}/-</li>
-                                        </ul>
+                                        <div class="detail position-absolute ml-2" style="bottom:5px">
+                                            <p class="btn btn-sm btn-danger small my-0">{{event.start_date | date}}</p>
+                                            <p class="btn btn-sm bg-warning small my-0 text-dark" v-if="event.entry_free">Entry Fee</p>
+                                            <p class="btn btn-sm btn-danger small my-0" v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
+                                        </div>
                                     </div>
                                 </a>
                                 <div class="likes" v-if="event.interested >0">
@@ -73,19 +71,19 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Rents -->
-                    <div class="col-md-4" v-if="rent_loading">
+                    <div class="col-md-4 my-2" v-if="rent_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="swiper col-md-4 col-sm-6 info" :options="settings">
+                    <swiper v-else class="swiper my-2 col-md-4 col-sm-6 info" :options="settings">
                         <swiper-slide v-for="(rent,index) in rents" :key="index">
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
-                                        <ul>
-                                            <li class="btn btn-xs btn-danger small">Rent:₹{{rent.fare}}/-</li>
-                                            <li class="btn btn-xs btn-danger small">Size: {{rent.accomodation_size}} Person</li>
-                                        </ul>
+                                        <div class="detail position-absolute ml-2" style="bottom:5px">
+                                            <p class="btn btn-sm btn-danger small my-0">Rent:₹{{rent.fare}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0">Size: {{rent.accomodation_size}} Person</p>
+                                        </div>
                                     </div>
                                 </a>
                                 <div class="likes" v-if="rent.rate > 0.0">
@@ -105,20 +103,20 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Job -->
-                    <div class="col-md-4" v-if="job_loading">
+                    <div class="col-md-4 my-2" v-if="job_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 col-sm-6 swiper info" :options="settings">
+                    <swiper v-else class="col-md-4 my-2 col-sm-6 swiper info" :options="settings">
                         <swiper-slide v-for="(job,index) in jobs" :key="index">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                                        <ul>
-                                            <li v-if="job.salary >0" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
-                                            <li v-else class="btn btn-xs btn-warning small text-dark">salary: Not Disclosed</li>
-                                            <li class="btn btn-xs btn-danger small">Type:{{job.profession}}</li>
-                                        </ul>
+                                        <div class="detail position-absolute ml-2" style="bottom:5px">
+                                            <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0">Salary:₹{{job.salary}}/-</li>
+                                            <li v-else class="btn btn-sm btn-warning small text-dark my-0">Salary: Not Disclosed</li>
+                                            <li class="btn btn-sm btn-danger small my-0">{{job.profession}}</li>
+                                        </div>
                                     </div>
                                 </a>
                                 <div class="likes">
@@ -139,10 +137,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Service -->
-                    <div class="col-md-4" v-if="service_loading">
+                    <div class="col-md- my-2 my-2" v-if="service_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 col-sm-6 swiper" :options="settings">
+                    <swiper v-else class="col-md-4 my-2 col-sm-6 swiper" :options="settings">
                         <swiper-slide v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
@@ -165,10 +163,10 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Restaurant -->
-                    <div class="col-md-4" v-if="restaurant_loading">
+                    <div class="col-md-4 my-2" v-if="restaurant_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 col-sm-6 col-12 swiper" :options="settings">
+                    <swiper v-else class="col-md-4 my-2 col-sm-6 col-12 swiper" :options="settings">
                         <swiper-slide v-for="(restaurant,index) in restaurants" :key="index">
                             <div class="card">
                                 <a v-bind:href="'restaurant/'+restaurant.id">

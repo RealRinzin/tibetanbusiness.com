@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Brief</h5>
@@ -100,11 +100,11 @@
                                     </div>
                                 </div>
                                 <!-- Menu Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <menu-photo v-bind:menu_photos="restaurant.menu_photos"></menu-photo>
                                 </div>
                                 <!-- Food Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <food-photo v-bind:food_photos="restaurant.food_photos"></food-photo>
                                 </div>
                                 <!-- comments -->

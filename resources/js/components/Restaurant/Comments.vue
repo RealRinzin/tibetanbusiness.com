@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <!-- Count -->
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-12">
                     <h5 class="text-dark">Reviews<span class="text-muted ml-2" style="font-size:14px">({{total_comments}})</span></h5>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <!-- Comments -->
-        <div class="card" v-for="(comments,index) in comments">
+        <div class="card my-2" v-for="(comments,index) in comments">
             <div class="row">
                 <div class="col-md-12 p-3">
                     <div class="media animated fadeIn duration-1s">
@@ -59,8 +59,8 @@
                             <small>
                                 <span v-bind:class="comments.rate_color" class="p-1 rounded"><i class="fas fa-star pr-1"></i>{{comments.rate}}</span>
                                 <span v-if="comments.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-secondary" @click="edit(comments.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                    <span class="btn btn-xs btn-danger" @click="destory(comments.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    <span class="btn btn-sm btn-secondary" @click="edit(comments.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                    <span class="btn btn-sm btn-danger" @click="destory(comments.id,index)"><i class="fas fa-trash-alt"></i></span>
                                 </span>
                             </small>
                             </h6>

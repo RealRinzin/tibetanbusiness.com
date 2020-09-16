@@ -19,8 +19,8 @@
                     <div class="card" >
                         <a v-bind:href="'event/'+event.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
-                            <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0">Entry Free</p>
-                            <p v-else class="text-dark small position-absolute rounded bg-danger  price p-1 m-0">Entry:&#x20B9 {{event.entry_fee}}</p>
+                            <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder">Entry Free</p>
+                            <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder">Entry:&#x20B9 {{event.entry_fee}}</p>
                         </div>
                         </a>
                         <div class="info p-2">
@@ -51,7 +51,7 @@
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
-                            <p v-if="sale.price" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Price:&#x20B9 {{sale.price}}</p>
+                            <p v-if="sale.price" class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Price:&#x20B9 {{sale.price}}</p>
                         </div>
                         </a>
                         <div class="info p-1">
@@ -82,7 +82,7 @@
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb+' 100w'"  data-sizes="auto">
-                            <p v-if="rent.fare" class="text-dark small position-absolute rounded bg-danger price p-1 m-0">Rent:&#x20B9 {{rent.fare}}</p>
+                            <p v-if="rent.fare" class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Rent:&#x20B9 {{rent.fare}}</p>
                         </div>
                         </a>
                         <div class="info p-2">
@@ -116,7 +116,7 @@
                         </a>
                         <div class="info p-1">
                             <h5>{{job.title}}</h5>
-                            <h6 class="pt-1">{{job.mobile_no}}</h6>
+                            <h6 class="pt-1" v-if="job.mobile_no !=null">{{job.mobile_no}}</h6>
                             <h6>{{job.location}}</h6>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
             </div>
         </div>
         <!-- Restaurants -->
-        <div class="col-md-10 mx-auto my-4" v-if="restaurant_loading">
+        <div class="col-md-10 mx-auto my-4">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</a>
             </h6>
@@ -170,7 +170,9 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(restaurant,index) in restaurants" :key="index">
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
+                            <p v-if="restaurant.rate > 0.0" v-bind:class="restaurant.rate_color" class="btn btn-sm mt-1 mr-1 float-right"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
+                        </div>
                         </a>
                         <div class="info p-2">
                             <h5>{{restaurant.name}}</h5>
@@ -293,12 +295,43 @@ export default {
             axios.get('api/restaurant/list/home_ad')
             .then(response=>{
                 if(response.data.length > 0){
+                    console.log("home ad");
                     this.restaurants = response.data;
                     this.restaurant_loading = false;
+                    //  rating
+                        for (let index = 0; index < response.data.length; index++) {
+                            if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
+                                this.restaurants[index].rate_color = 'bg-danger';
+                            }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
+                                this.restaurants[index].rate_color = 'bg-warning';
+                            }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
+                                this.restaurants[index].rate_color = 'bg-info';
+                            }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
+                                this.restaurants[index].rate_color = 'bg-success';
+                            }
+                            else{
+                                this.restaurants[index].rate_color = 'bg-secondary';
+                            }
+                        }
                 }else{
                     axios.get('/api/restaurant/list/all').then(response=>{
                         this.restaurant_loading = false;
                         this.restaurants = response.data;
+                        // Star Rating
+                        for (let index = 0; index < response.data.length; index++) {
+                            if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
+                                this.restaurants[index].rate_color = 'bg-danger';
+                            }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
+                                this.restaurants[index].rate_color = 'bg-warning';
+                            }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
+                                this.restaurants[index].rate_color = 'bg-info';
+                            }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
+                                this.restaurants[index].rate_color = 'bg-success';
+                            }
+                            else{
+                                this.restaurants[index].rate_color = 'bg-secondary';
+                            }
+                        }
                     })
                 }
             })

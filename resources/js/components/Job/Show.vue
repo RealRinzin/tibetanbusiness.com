@@ -111,7 +111,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card">
+                                <div class="card py-2">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Job Descriptions</h5>

@@ -70,7 +70,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6" id="search">
+                        <div class="col-md-5" id="search">
                             <div class="alert alert-light" role="alert">
                                 Total Result : {{total}} {{empty_result}}
                             </div>
@@ -90,7 +90,7 @@
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
-                                    <div class="col-md-12 col-sm-12 col-xs-12 info" v-for="(event,index) in events">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(event,index) in events">
                                         <a v-bind:href="'/event/'+event.id">
                                         <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
                                             <ul>
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4">
                             <sidebar></sidebar>
                         </div>
                     </div>

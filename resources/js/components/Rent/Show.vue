@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Brief</h5>
@@ -89,11 +89,11 @@
                                     </div>
                                 </div>
                                 <!-- Room Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <rent-room-photo v-bind:rent_room_photos="rent.room_photos"></rent-room-photo>
                                 </div>
                                 <!-- Room Photo -->
-                                <div class="card">
+                                <div class="card my-2">
                                     <rent-view-photo v-bind:rent_view_photos="rent.view_photos"></rent-view-photo>
                                 </div>
                                 <!-- comments -->

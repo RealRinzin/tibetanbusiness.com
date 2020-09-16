@@ -29,8 +29,8 @@
                 <h6 class="mt-0">{{reply.name}} 
                     <small class="text-muted"><timeago :datetime="reply.created_at" />
                         <span v-if="reply.user_id === user_id" class="p-2">
-                            <span class="btn btn-xs btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                            <span class="btn btn-xs btn-danger" @click="destory(reply.id)"><i class="fas fa-trash-alt"></i></span>
+                            <span class="btn btn-sm btn-secondary" @click="edit(reply.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                            <span class="btn btn-sm btn-danger" @click="destory(reply.id)"><i class="fas fa-trash-alt"></i></span>
                         </span>
                     </small>
                 </h6>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-md-12">
                     <h5>Write Reviews</h5>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <!-- Reviews / Comments -->
-        <div class="card" v-for="(event,index) in reviews">
+        <div class="card my-1" v-for="(event,index) in reviews">
             <div class="row p-3">
                 <div class="col-12">
                     <div class="media animated fadeIn duration-1s">
@@ -54,10 +54,10 @@
                         <div class="media-body border-0">
                             <h6 class="mt-0">{{event.name}} 
                                 <small>
-                                    <span  v-bind:class="event.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{event.rate}}</span>
+                                    <span  v-bind:class="event.rate_color" class="p-1 rounded justify-content-start"><i class="text-white fas fa-star pr-1"></i>{{event.rate}}</span>
                                     <span v-if="event.user_id === user_id" class="p-2">
-                                        <span class="btn btn-xs btn-secondary" @click="edit(event.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                        <span class="btn btn-xs btn-danger" @click="destory(event.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                        <span class="btn btn-sm btn-secondary" @click="edit(event.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                        <span class="btn btn-sm btn-danger" @click="destory(event.id,index)"><i class="fas fa-trash-alt"></i></span>
                                     </span>
                                 </small>
                             </h6>

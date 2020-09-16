@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card my-2">
             <div class="row p-3">
                 <div class="col-md-12">
                     <h6 class="text-dark">Write Reviews</h6>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <!-- loop -->
-        <div class="card" v-for="(service,index) in reviews">
+        <div class="card my-2" v-for="(service,index) in reviews">
             <div class="row p-3">
                 <div class="col-md-12">
                     <div class="media animated fadeIn duration-1s">
@@ -58,8 +58,8 @@
                             <small>
                                 <span  v-bind:class="service.rate_color" class="p-1 rounded justify-content-start"><i class="fas fa-star pr-1"></i>{{service.rate}}</span>
                                 <span v-if="service.user_id === user_id" class="p-2">
-                                    <span class="btn btn-xs btn-secondary" @click="edit(service.id,index)"><i class="fas fa-pencil-alt "></i></span>
-                                    <span class="btn btn-xs btn-danger" @click="destory(service.id,index)"><i class="fas fa-trash-alt"></i></span>
+                                    <span class="btn btn-sm btn-secondary" @click="edit(service.id,index)"><i class="fas fa-pencil-alt "></i></span>
+                                    <span class="btn btn-sm btn-danger" @click="destory(service.id,index)"><i class="fas fa-trash-alt"></i></span>
                                 </span>
                             </small>
                         </h6>

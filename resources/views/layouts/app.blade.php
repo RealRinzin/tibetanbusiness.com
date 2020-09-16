@@ -27,7 +27,8 @@
     <!-- fontawesome -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
     <!-- Adminlte -->
-    <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <!-- <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Loading -->
