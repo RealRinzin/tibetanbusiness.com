@@ -16,6 +16,7 @@ class CreateCarouselsTable extends Migration
         Schema::connection('other')->create('carousels', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('link');
+            $table->string('quote',255); //event,job,restaurant,rent etc
             $table->string('type',30); //event,job,restaurant,rent etc
             $table->string('name',50); //Contributer name
             $table->string('photo',60);

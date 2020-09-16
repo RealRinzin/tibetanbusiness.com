@@ -11,6 +11,7 @@ $factory->define(Carousel::class, function (Faker $faker) {
         //
         'type' => $faker->word(),
         'link' => $faker->word(),
+        'quote' => $faker->word(),
         'name' => $faker->word(),
         'photo' => $faker->word(),
     ];
