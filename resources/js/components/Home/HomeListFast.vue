@@ -141,7 +141,9 @@
                 <div class="col-md-3 col-sm-6 col-6" v-for="(service,index) in services" :key="index">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto">
+                            <p v-if="service.rate > 0.0" v-bind:class="service.rate_color" class="btn btn-sm mt-1 mr-1 float-right"><i class="fas fa-star fa-1x mr-1"></i>{{service.rate}}</p>
+                        </div>
                         </a>
                         <div class="info p-1">
                             <h5>{{service.name}}</h5>
@@ -275,6 +277,7 @@ export default {
                 }
             })
         },
+        // Service
         service_list(){
             // home advertisment
             axios.get('api/service/list/home_ad')
@@ -282,14 +285,47 @@ export default {
                 if(response.data.length > 0){                    
                     this.service_loading = false;
                     this.services = response.data;
+
+                        for (let index = 0; index < response.data.length; index++) {
+                        // bg
+                            if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
+                                this.services[index].rate_color = 'btn-danger';
+                            }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
+                                this.services[index].rate_color = 'btn-warning';
+                            }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
+                                this.services[index].rate_color = 'btn-info';
+                            }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
+                                this.services[index].rate_color = 'btn-success';
+                            }
+                            else{
+                                this.services[index].rate_color = 'btn-secondary';
+                            }
+                        }
                 }else{
                     axios.get('/api/service/list/all').then(response=>{
                         this.service_loading = false;
                         this.services = response.data;
+
+                        for (let index = 0; index < response.data.length; index++) {
+                        // bg
+                            if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
+                                this.services[index].rate_color = 'btn-danger';
+                            }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
+                                this.services[index].rate_color = 'btn-warning';
+                            }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
+                                this.services[index].rate_color = 'btn-info';
+                            }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
+                                this.services[index].rate_color = 'btn-success';
+                            }
+                            else{
+                                this.services[index].rate_color = 'btn-secondary';
+                            }
+                        }
                     })
                 }
             })
         },
+        // Restaurant
         restaurant_list(){
             // home advertisment
             axios.get('api/restaurant/list/home_ad')
@@ -301,16 +337,16 @@ export default {
                     //  rating
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                this.restaurants[index].rate_color = 'bg-danger';
+                                this.restaurants[index].rate_color = 'btn-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                this.restaurants[index].rate_color = 'bg-warning';
+                                this.restaurants[index].rate_color = 'btn-warning';
                             }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                this.restaurants[index].rate_color = 'bg-info';
+                                this.restaurants[index].rate_color = 'btn-info';
                             }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                this.restaurants[index].rate_color = 'bg-success';
+                                this.restaurants[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.restaurants[index].rate_color = 'bg-secondary';
+                                this.restaurants[index].rate_color = 'btn-secondary';
                             }
                         }
                 }else{
@@ -320,16 +356,16 @@ export default {
                         // Star Rating
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                this.restaurants[index].rate_color = 'bg-danger';
+                                this.restaurants[index].rate_color = 'btn-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                this.restaurants[index].rate_color = 'bg-warning';
+                                this.restaurants[index].rate_color = 'btn-warning';
                             }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                this.restaurants[index].rate_color = 'bg-info';
+                                this.restaurants[index].rate_color = 'btn-info';
                             }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                this.restaurants[index].rate_color = 'bg-success';
+                                this.restaurants[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.restaurants[index].rate_color = 'bg-secondary';
+                                this.restaurants[index].rate_color = 'btn-secondary';
                             }
                         }
                     })

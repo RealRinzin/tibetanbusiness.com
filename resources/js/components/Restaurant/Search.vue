@@ -156,15 +156,15 @@ export default {
                 // Looping to assign rating values
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
-                        this.restaurants[index].rate_color = 'bg-danger';
+                        this.restaurants[index].rate_color = 'btn-danger';
                     }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
-                        this.restaurants[index].rate_color = 'bg-warning';
+                        this.restaurants[index].rate_color = 'btn-warning';
                     }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
-                        this.restaurants[index].rate_color = 'bg-info';
+                        this.restaurants[index].rate_color = 'btn-info';
                     }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
-                        this.restaurants[index].rate_color = 'bg-success';
+                        this.restaurants[index].rate_color = 'btn-success';
                     }else{
-                        this.restaurants[index].rate_color = 'bg-secondary';
+                        this.restaurants[index].rate_color = 'btn-secondary';
                     }
                 }
                 // If not result at all
@@ -211,15 +211,15 @@ export default {
                 // Rating values
                 for (let index = 0; index < this.restaurants.length; index++) {
                     if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
-                        this.restaurants[index].rate_color = 'bg-danger';
+                        this.restaurants[index].rate_color = 'btn-danger';
                     }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
-                        this.restaurants[index].rate_color = 'bg-warning';
+                        this.restaurants[index].rate_color = 'btn-warning';
                     }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
-                        this.restaurants[index].rate_color = 'bg-info';
+                        this.restaurants[index].rate_color = 'btn-info';
                     }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
-                        this.restaurants[index].rate_color = 'bg-success';
+                        this.restaurants[index].rate_color = 'btn-success';
                     }else{
-                        this.restaurants[index].rate_color = 'bg-secondary';
+                        this.restaurants[index].rate_color = 'btn-secondary';
                     }
                 }
             })
@@ -258,15 +258,15 @@ export default {
                     // Rate Background
                     for (let index = 0; index < this.restaurants.length; index++) {
                         if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
-                            this.restaurants[index].rate_color = 'bg-danger';
+                            this.restaurants[index].rate_color = 'btn-danger';
                         }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
-                            this.restaurants[index].rate_color = 'bg-warning';
+                            this.restaurants[index].rate_color = 'btn-warning';
                         }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
-                            this.restaurants[index].rate_color = 'bg-info';
+                            this.restaurants[index].rate_color = 'btn-info';
                         }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
-                            this.restaurants[index].rate_color = 'bg-success';
+                            this.restaurants[index].rate_color = 'btn-success';
                         }else{
-                            this.restaurants[index].rate_color = 'bg-secondary';
+                            this.restaurants[index].rate_color = 'btn-secondary';
                         }
                     }                
                 }else{

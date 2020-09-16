@@ -188,15 +188,15 @@ export default {
                 // Rating values
                 for (let index = 0; index < this.services.length; index++) {
                     if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
-                        this.services[index].rate_color = 'bg-danger';
+                        this.services[index].rate_color = 'btn-danger';
                     }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
-                        this.services[index].rate_color = 'bg-warning';
+                        this.services[index].rate_color = 'btn-warning';
                     }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
-                        this.services[index].rate_color = 'bg-info';
+                        this.services[index].rate_color = 'btn-info';
                     }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
-                        this.services[index].rate_color = 'bg-success';
+                        this.services[index].rate_color = 'btn-success';
                     }else{
-                        this.services[index].rate_color = 'bg-secondary';
+                        this.services[index].rate_color = 'btn-secondary';
                     }
                 }
             })
@@ -232,15 +232,15 @@ export default {
                 // rating values
                 for (let index = 0; index < this.services.length; index++) {
                     if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
-                        this.services[index].rate_color = 'bg-danger';
+                        this.services[index].rate_color = 'btn-danger';
                     }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
-                        this.services[index].rate_color = 'bg-warning';
+                        this.services[index].rate_color = 'btn-warning';
                     }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
-                        this.services[index].rate_color = 'bg-info';
+                        this.services[index].rate_color = 'btn-info';
                     }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
-                        this.services[index].rate_color = 'bg-success';
+                        this.services[index].rate_color = 'btn-success';
                     }else{
-                        this.services[index].rate_color = 'bg-secondary';
+                        this.services[index].rate_color = 'btn-secondary';
                     }
                 }
             })
@@ -277,15 +277,15 @@ export default {
                     // Rate Background
                     for (let index = 0; index < this.services.length; index++) {
                         if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
-                            this.services[index].rate_color = 'bg-danger';
+                            this.services[index].rate_color = 'btn-danger';
                         }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
-                            this.services[index].rate_color = 'bg-warning';
+                            this.services[index].rate_color = 'btn-warning';
                         }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
-                            this.services[index].rate_color = 'bg-info';
+                            this.services[index].rate_color = 'btn-info';
                         }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
-                            this.services[index].rate_color = 'bg-success';
+                            this.services[index].rate_color = 'btn-success';
                         }else{
-                            this.services[index].rate_color = 'bg-secondary';
+                            this.services[index].rate_color = 'btn-secondary';
                         }
                     }                
                 }else{
