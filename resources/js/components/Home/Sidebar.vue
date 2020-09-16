@@ -62,7 +62,7 @@
                             <a v-bind:href="'/rent/'+rent.id">
                             <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb"  data-sizes="auto"></div>
 
-                            <div class="rate" v-if="rent.rate !=null"><span v-bind:class="rent.rate_color" class="btn">{{rent.rate}}</span></div>
+                            <div class="rate" v-if="rent.rate > 0.0"><span v-bind:class="rent.rate_color" class="btn"> <i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>
                             </a>
                             <h6 class="text-dark pt-3">{{rent.name}}</h6>
                             <p class="text-muted my-0">{{rent.mobile_no}}</p>
@@ -111,7 +111,7 @@
                             <a v-bind:href="'/service/'+service.id">
                             <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto"></div>
 
-                            <div class="rate" v-if="service.rate !=null"><span v-bind:class="service.rate_color" class="btn">{{service.rate}}</span></div>
+                            <div class="rate" v-if="service.rate >0.0"><span v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</span></div>
                             </a>
                             <h6 class="text-dark pt-3">{{service.name}}</h6>
                             <p class="text-muted my-0">{{service.mobile_no}}</p>
@@ -133,7 +133,7 @@
                         <swiper-slide  class="col-6" v-for="(restaurant,index) in restaurants" :key="index">
                             <a v-bind:href="'/restaurant/'+restaurant.id">
                             <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.thumb"  data-sizes="auto"></div>
-                            <div class="rate" v-if="restaurant.rate > 0"><span v-bind:class="restaurant.rate_color" class="btn">{{restaurant.rate}}</span></div>
+                            <div class="rate" v-if="restaurant.rate > 0.0"><span v-bind:class="restaurant.rate_color" class="btn"> <i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</span></div>
                             </a>
                             <h6 class="text-dark pt-3">{{restaurant.name}}</h6>
                             <p class="text-muted my-0">{{restaurant.mobile_no}}</p>

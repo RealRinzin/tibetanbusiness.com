@@ -9,7 +9,7 @@ class Carousel extends Model
 {
     //
     //
-    protected $connection = 'mysql';
+    protected $connection = 'other';
     public $incrementing = false;
     protected static function boot()
     {

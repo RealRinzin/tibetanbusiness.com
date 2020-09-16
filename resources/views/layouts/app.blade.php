@@ -84,51 +84,7 @@
                                 <div id="dropdown_lists">
                                     <form class="form-inline ml-3" method="get" action="">
                                         {{ csrf_field() }}
-                                        <span class="w-50">
-                                            <div class="input-group input-group-md">
-                                                <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
-                                                <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
-                                                <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
-                                                    <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                </ul>
-                                            </div>
-                                        </span>
-                                        <span class="w-50">
-                                            <div class="input-group input-group-md">
-                                                <input id="service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
-                                                <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
-                                                    <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/money.png"></span> Sales</a></li>
-                                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
-                                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/birthday.png"></span> Events</a></li>
-                                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/opportunity.png"></span> Jobs</a></li>
-                                                    <li value="Services"><a href="#"><span class="mr-2"><img src="/img/mechanic.png"></span> Services</a></li>
-                                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/chef.png"></span> Restaurants</a></li>
-                                                </ul>
-                                                <div class="input-group-append">
-                                                    <button id="link" class="btn btn-navbar" type="submit">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                        </span>
+                                        <nav-search></nav-search>
                                     </form>
                                 </div>
                             </div>
@@ -152,7 +108,7 @@
                                         <!-- <nav-bar></nav-bar> -->
                                         <a class="dropdown-item" href="/dashboard/event">Dashboard</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
+                                            <button id="clear_storage" type="submit" class="dropdown-item p-1">Logout</button>
                                             @csrf
                                         </form>
                                     </div>
@@ -163,113 +119,46 @@
                     </div>
                 </nav>
                 @else
-                <nav id="navbar" class="navbar navbar-expand navbar-light" style="background-color: #941c18 !important">
+                <nav id="navbar" class=" navbar navbar-expand navbar-light" style="background-color: #941c18 !important">
                     <div class="container">
-                        <a href="/" class="navbar-brand">
-                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="img-circle elevation-3" style="opacity: .8;height:30px;width:30px">
-                        </a>
-                        <!-- SEARCH FORM -->
-                        @if(Request::is('/'))
-                        <!-- Left navbar links -->
-                        <ul class="navbar-nav">
-                            <li class="nav-item d-sm-inline-block">
-                                <a href="index3.html" class="nav-link">Add Business</a>
-                            </li>
-                            <li class="nav-item d-sm-inline-block">
-                                <a href="#" class="nav-link">Promote Business</a>
-                            </li>
-                        </ul>
-                        @else
-                        <ul class="navbar-nav d-none d-sm-block">
-                            <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
-                            <li class="nav-item d-sm-inline-block">
-                                <a href="index3.html" class="nav-link">Add Business</a>
-                            </li>
-                            <li class="nav-item d-sm-inline-block">
-                                <a href="#" class="nav-link">Promote Business</a>
-                            </li>
-                        </ul>
-                        <div class="row mx-auto">
-                            <div class="col-md-12">
-                                <div id="dropdown_lists">
-                                    <form class="form-inline ml-3" method="get" action="">
-                                        {{ csrf_field() }}
-                                        <span class="w-50">
-                                            <div class="input-group input-group-md">
-                                                <input style="border-radius:3px 0px 0px 3px" type="text" name="location" id="tb_location_search" onfocusin="location_dropdown()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
-                                                <!-- <input style="border-radius:3px 0px 0px 3px" id="location_search" onfocusin="location_dropdown()" readonly="readonly" class="form-control form-control-navbar" type="search" placeholder="Location" aria-label="Location"> -->
-                                                <ul id="location_list" style="display:none;transition:1s" class="position-absolute rounded">
-                                                    <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dharamsala</a></li>
-                                                    <li value="Delhi"><a href="#">Delhi</a></li>
-                                                    <li value="Dehradun"><a href="#">Dehradun</a></li>
-                                                    <li value="Dharamsala"><a href="#">Dehradun</a></li>
-                                                </ul>
-                                            </div>
-                                        </span>
-                                        <span class="w-50">
-                                            <div class="input-group input-group-md">
-                                                <input id="tb_service_search" class="rounded-0 form-control form-control-navbar" onfocusin="service_dropdown()" readonly="readonly" type="search" placeholder="Service" aria-label="Service type">
-                                                <ul id="service_list" style="display:none;transition:1s" class="position-absolute rounded overflow-hidden">
-                                                    <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <li value="Sales"><a href="#"> <span class="mr-2"><img src="/img/sale.png"></span> Sales</a></li>
-                                                    <li value="Rents"><a href="#"> <span class="mr-2"><img src="/img/rent.png"></span> Rents</a></li>
-                                                    <li value="Events"><a href="#"> <span class="mr-2"><img src="/img/event.png"></span> Events</a></li>
-                                                    <li value="Jobs"><a href="#"> <span class="mr-2"><img src="/img/job.png"></span> Jobs</a></li>
-                                                    <li value="Services"><a href="#"><span class="mr-2"><img src="/img/service.png"></span> Services</a></li>
-                                                    <li value="Restaurants"><a href="#"> <span class="mr-2"><img src="/img/restaurant.png"></span> Restaurants</a></li>
-                                                </ul>
-                                                <div class="input-group-append">
-                                                    <button id="link" class="btn btn-navbar" type="submit">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                        </span>
-                                    </form>
+                        <div class="row w-100">
+                            <div class="col-2">
+                                <a href="/" class="navbar-brand">
+                                    <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness.com logo" class="elevation-3" style="opacity: .8;height:30px;width:30px">
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <div class="row mx-auto">
+                                    <nav-search></nav-search>
                                 </div>
                             </div>
-                        </div>
-                        @endif
-                        <!-- Right navbar links -->
-                        <ul class="navbar-nav ml-auto">
-                            @guest
-                            <li class="nav-item d-sm-inline-block">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
-                            </li>
-                            @else
-                            <div id="avatar" style="z-index: 1000;">
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
-                                        <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <!-- <nav-bar></nav-bar> -->
-                                        <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                            <!-- <a class="dropdown-item" @click="logout()" v-bind:href="logout">logout</a> -->
-                                            <button id="clear_storage" type="submit" class="dropdown-item">Logout</button>
-                                            @csrf
-                                        </form>
+                            <div class="col-2">
+                                <ul class="navbar-nav float-right">
+                                    @guest
+                                    <li class="nav-item d-sm-inline-block">
+                                        <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
+                                    </li>
+                                    @else
+                                    <div id="avatar" style="z-index: 1000;">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
+                                                <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <!-- <nav-bar></nav-bar> -->
+                                                <a class="dropdown-item" href="/dashboard/event">Dashboard</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                    <button id="clear_storage" type="submit" class="dropdown-item p-1">Logout</button>
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
                                     </div>
-                                </li>
+                                    @endguest
+                                </ul>
                             </div>
-                            @endguest
-                        </ul>
+                        </div>
                     </div>
                 </nav>
                 @endif
@@ -522,70 +411,15 @@
          * Filter
          * Find
          *  */
-        var locate = "";
-        var service = "";
-        // location
-        function location_dropdown() {
-            $("#location_list").css("display", "block")
-            $("#service_list").css("display", "none");
-        }
-        $("#location_list li").click(function() {
-            let term = $(this).attr("value")
-            $("#tb_location_search").val(term);
 
-            locate = term;
-            // Closing the dropdown
-            $("#location_list").css("display", "none");
-            // removing required class
-            $("#tb_location_search").removeClass("required");
-
-        });
         // location close
         $("#location_close").click(function() {
             $("#location_list").css("display", "none");
         })
-        // Service
-        function service_dropdown() {
-            $("#service_list").css("display", "block")
-            $("#location_list").css("display", "none")
-        }
         // service close
         $("#service_close").click(function() {
             $("#service_list").css("display", "none");
         })
-        $("#service_list li").click(function() {
-            let term = $(this).attr("value")
-            $("#tb_service_search").val(term);
-            service = term;
-            // Closing the dropdown
-            $("#service_list").css("display", "none");
-            // Removing required class
-            $("#tb_service_search").removeClass("required");
-        })
-        // Adding text
-        $("#link").click(function(event) {
-            if (!service || !locate) {
-                // console.log("empty");
-                if (service) {
-                    $("#tb_service_search").removeClass("required");
-                } else {
-                    // Required Service
-                    $("#tb_service_search").addClass("required");
-                    $("#tb_service_search").attr("placeholder", "Select Service");
-                }
-                // location required
-                if (locate) {
-                    $("#location_search").removeClass("required");
-                } else {
-                    // Required Location
-                    $("#tb_location_search").addClass("required");
-                    $("#tb_location_search").attr("placeholder", "Select Location");
-                }
-                event.preventDefault();
-            } else {
-                $('form').attr('action', '/search/' + service + "?location=" + locate);
-            };
-        });
     </script>
 
     <!-- Lazy loading image -->

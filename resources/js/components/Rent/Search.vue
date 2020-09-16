@@ -363,6 +363,8 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
+        // fare
+
         // API
         axios.get('/api/location')
         .then(response => {

@@ -7,10 +7,11 @@ use Webpatser\Uuid\Uuid;
 class Location extends Model
 {
     //
-    protected $connection = 'mysql';
+    protected $connection = 'other';
     public $incrementing = false;
     protected static function boot()
     {
+        
         parent::boot();
         static::creating(function ($mode) {
             $mode->id = str_replace("-", "", Uuid::generate(4));

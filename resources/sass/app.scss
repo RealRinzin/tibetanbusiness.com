@@ -56,17 +56,9 @@ body{
         // .nav-item{
         //     border:0px !important;
         // }
-        .nav-item:hover{
-            background-color: transparent;
-            transition: .6s;
-            color:#941c18;
-            a{
-                color:#941c18 !important;
-            }
-        }
         .dropdown-menu{
             a{
-                color: #941c18;
+                color:#000000!important;
             }
         }
     }

@@ -88,7 +88,6 @@
                                 <i @click="destory(index)" class="fas fa-times-circle bg-danger p-2"></i>
                         </div>
                         <div class="details">
-                            <span class="name" v-text="fp_files[index].name"></span>
                             <span class="size" v-text="fp_getFileSize(fp_files[index].size)"></span>
                         </div>
                     </div>

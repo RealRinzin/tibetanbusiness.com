@@ -13,7 +13,7 @@ class CreateCarouselsTable extends Migration
      */
     public function up()
     {
-        Schema::create('carousels', function (Blueprint $table) {
+        Schema::connection('other')->create('carousels', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('link');
             $table->string('type',30); //event,job,restaurant,rent etc
@@ -30,6 +30,6 @@ class CreateCarouselsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carousels');
+        Schema::connection('other')->dropIfExists('carousels');
     }
 }

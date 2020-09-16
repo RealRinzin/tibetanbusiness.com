@@ -115,7 +115,8 @@
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                         <ul>
-                                            <li v-if="job.salary" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
+                                            <li v-if="job.salary >0" class="btn btn-xs btn-danger small">salary:₹{{job.salary}}/-</li>
+                                            <li v-else class="btn btn-xs btn-warning small text-dark">salary: Not Disclosed</li>
                                             <li class="btn btn-xs btn-danger small">Type:{{job.profession}}</li>
                                         </ul>
                                     </div>

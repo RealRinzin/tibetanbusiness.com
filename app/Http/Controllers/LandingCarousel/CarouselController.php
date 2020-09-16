@@ -15,13 +15,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $restaurants =  Carousel::orderBy('created_at', 'desc')->get();
-        return $restaurants->toArray($restaurants);
-        //
-        // $jobs = Carousel::where('category', '=', 'job')
-        // ->orderBy('created_at', 'desc')->get();
-        // return $jobs->toArray($jobs);
-
+        $carousels =  Carousel::orderBy('created_at', 'desc')->get();
+        return $carousels->toArray($carousels);
     }
 
 }

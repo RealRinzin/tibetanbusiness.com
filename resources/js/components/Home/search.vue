@@ -1,7 +1,7 @@
 <template>
     <div class="w-100 bg-danger">
         <swiper class="swiper p-0" :options="carousel" style="height:70vh">
-            <swiper-slide class="lazyload" v-for="(event,index) in events"  v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${event.banner})`}' data-sizes="auto"
+            <swiper-slide class="lazyload" v-for="(slider,index) in sliders"  v-bind:style='{ backgroundImage: `url(/storage/Carousel/${slider.link})`}' data-sizes="auto"
             :key="index"  style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
             <div class="position-absolute" style="z-index: 200">
                 <div id="home_search" class="container">
@@ -84,7 +84,7 @@ import 'swiper/css/swiper.css'
                 {'name':'Services','img':'/img/service.png'},
                 {'name':'Restaurants','img':'/img/restaurant.png'},
             ],
-            events:'',
+            sliders:'',
             // swiper setting
             carousel:{
                 slidesPerView: 1,
@@ -167,9 +167,10 @@ import 'swiper/css/swiper.css'
 
         });
         // Slider
-        axios.get('/api/restaurant/list/all')
+        axios.get('/api/carousel')
         .then((response) => {
-            this.events = response.data;
+            this.sliders = response.data;
+            console.log(response.data);
         }).catch((err) => {
             
         });

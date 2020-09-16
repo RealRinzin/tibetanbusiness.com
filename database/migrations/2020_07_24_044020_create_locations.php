@@ -13,7 +13,7 @@ class CreateLocations extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::connection('other')->create('locations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateLocations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::connection('other')->dropIfExists('locations');
     }
 }
