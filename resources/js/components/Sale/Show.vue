@@ -23,9 +23,7 @@
                                             <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner" data-sizes="auto">
                                             <div class="overlay title">
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{sale.name}}</h6>
-                                                <ul class="detail">
-                                                    <li class="btn btn-danger btn-md">Price: <i class="fas fa-rupee-sign mr-1"></i>{{sale.price}}/</li>
-                                                </ul>
+                                                <button class="btn btn-warning position-absolute float-right font-weight-bolder" style="bottom:10px;right:10px">Price:₹{{sale.price}}</button>
                                             </div>
                                             </div>                                
                                         </div>

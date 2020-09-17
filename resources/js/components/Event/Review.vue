@@ -50,7 +50,7 @@
             <div class="row p-3">
                 <div class="col-12">
                     <div class="media animated fadeIn duration-1s">
-                        <img class="mr-2 img-circle" :src="event.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                        <img class="mr-2 rounded-circle" :src="event.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body border-0">
                             <h6 class="mt-0">{{event.name}} 
                                 <small>
@@ -161,15 +161,15 @@ export default {
                  *  */ 
                 for (let index = 0; index < this.reviews.length; index++) {
                     if(this.reviews[index].rate >= 0.0 && this.reviews[index].rate <= 1.0){
-                        this.reviews[index].rate_color = 'bg-danger';
+                        this.reviews[index].rate_color = 'btn-danger';
                     }else if(this.reviews[index].rate >= 1.1 && this.reviews[index].rate <= 2.0 ){
-                        this.reviews[index].rate_color = 'bg-warning';
+                        this.reviews[index].rate_color = 'btn-warning';
                     }else if(this.reviews[index].rate >= 2.1 && this.reviews[index].rate <= 3.0 ){
-                        this.reviews[index].rate_color = 'bg-info';
+                        this.reviews[index].rate_color = 'btn-info';
                     }else if(this.reviews[index].rate >= 3.1 && this.reviews[index].rate <= 5.0 ){
-                        this.reviews[index].rate_color = 'bg-success';
+                        this.reviews[index].rate_color = 'btn-success';
                     }else{
-                        this.reviews[index].rate_color = 'bg-secondary';
+                        this.reviews[index].rate_color = 'btn-secondary';
                     }
                 }
 
@@ -195,15 +195,15 @@ export default {
                  *  */ 
                 for (let index = 0; index < this.reviews.length; index++) {
                     if(this.reviews[index].rate >= 0.0 && this.reviews[index].rate <= 1.0){
-                        this.reviews[index].rate_color = 'bg-danger';
+                        this.reviews[index].rate_color = 'btn-danger';
                     }else if(this.reviews[index].rate >= 1.1 && this.reviews[index].rate <= 2.0 ){
-                        this.reviews[index].rate_color = 'bg-warning';
+                        this.reviews[index].rate_color = 'btn-warning';
                     }else if(this.reviews[index].rate >= 2.1 && this.reviews[index].rate <= 3.0 ){
-                        this.reviews[index].rate_color = 'bg-info';
+                        this.reviews[index].rate_color = 'btn-info';
                     }else if(this.reviews[index].rate >= 3.1 && this.reviews[index].rate <= 5.0 ){
-                        this.reviews[index].rate_color = 'bg-success';
+                        this.reviews[index].rate_color = 'btn-success';
                     }else{
-                        this.reviews[index].rate_color = 'bg-secondary';
+                        this.reviews[index].rate_color = 'btn-secondary';
                     }
                 }
 

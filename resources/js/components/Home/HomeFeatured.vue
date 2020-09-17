@@ -19,8 +19,8 @@
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0">Price:₹{{sale.price}}/-</p>
-                                            <p class="btn btn-sm btn-danger small my-0">{{sale.type}}</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Price:₹{{sale.price}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{sale.type}}</p>
                                         </div>
                                     </div>
                                 </a>
@@ -48,14 +48,14 @@
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0">{{event.start_date | date}}</p>
-                                            <p class="btn btn-sm bg-warning small my-0 text-dark" v-if="event.entry_free">Entry Fee</p>
-                                            <p class="btn btn-sm btn-danger small my-0" v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{event.start_date | date}}</p>
+                                            <p class="btn btn-sm bg-warning small my-0 font-weight-bolder text-dark" v-if="event.entry_free">Entry Fee</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder" v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="likes" v-if="event.interested >0">
-                                    <p v-bind:class="event.rate_color" class="btn"><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</p>
+                                    <p  class="btn btn-warning btn-sm"><i class="far fa-thumbs-up  mr-1"></i>{{event.interested}} Interested</p>
                                 </div>
                                 <div class="types">
                                     <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button> -->
@@ -81,8 +81,8 @@
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0">Rent:₹{{rent.fare}}/-</p>
-                                            <p class="btn btn-sm btn-danger small my-0">Size: {{rent.accomodation_size}} Person</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Rent:₹{{rent.fare}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Size: {{rent.accomodation_size}} Person</p>
                                         </div>
                                     </div>
                                 </a>
@@ -113,9 +113,9 @@
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0">Salary:₹{{job.salary}}/-</li>
-                                            <li v-else class="btn btn-sm btn-warning small text-dark my-0">Salary: Not Disclosed</li>
-                                            <li class="btn btn-sm btn-danger small my-0">{{job.profession}}</li>
+                                            <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0 font-weight-bolder">Salary:₹{{job.salary}}/-</li>
+                                            <li v-else class="btn btn-sm btn-warning small text-dark my-0 font-weight-bolder">Salary: Not Disclosed</li>
+                                            <li class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{job.profession}}</li>
                                         </div>
                                     </div>
                                 </a>
@@ -137,7 +137,7 @@
                         <div class="swiper-button-prev" slot="button-prev"></div>
                     </swiper>
                     <!-- Service -->
-                    <div class="col-md- my-2 my-2" v-if="service_loading">
+                    <div class="col-md-4 my-2 my-2" v-if="service_loading">
                         <lazy-loading></lazy-loading>
                     </div>
                     <swiper v-else class="col-md-4 my-2 col-sm-6 swiper" :options="settings">
@@ -146,8 +146,8 @@
                                 <a v-bind:href="'service/'+service.id">
                                     <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto"></div>
                                 </a>
-                                <div class="likes" v-if="service.rate > 0">
-                                    <p v-if="service" v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
+                                <div class="likes" v-if="service.rate > 0.0">
+                                    <p v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
                                 </div>
                                 <div class="types">
                                     <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button> -->
@@ -286,16 +286,16 @@
                         // rate background
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                this.restaurants[index].rate_color = 'bg-danger';
+                                this.restaurants[index].rate_color = 'btn-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                this.restaurants[index].rate_color = 'bg-warning';
+                                this.restaurants[index].rate_color = 'btn-warning';
                             }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                this.restaurants[index].rate_color = 'bg-info';
+                                this.restaurants[index].rate_color = 'btn-info';
                             }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                this.restaurants[index].rate_color = 'bg-success';
+                                this.restaurants[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.restaurants[index].rate_color = 'bg-secondary';
+                                this.restaurants[index].rate_color = 'btn-secondary';
                             }
                         }
             
@@ -308,16 +308,16 @@
                             // rate background
                             for (let index = 0; index < response.data.length; index++) {
                                 if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                    this.restaurants[index].rate_color = 'bg-danger';
+                                    this.restaurants[index].rate_color = 'btn-danger';
                                 }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                    this.restaurants[index].rate_color = 'bg-warning';
+                                    this.restaurants[index].rate_color = 'btn-warning';
                                 }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                    this.restaurants[index].rate_color = 'bg-info';
+                                    this.restaurants[index].rate_color = 'btn-info';
                                 }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                    this.restaurants[index].rate_color = 'bg-success';
+                                    this.restaurants[index].rate_color = 'btn-success';
                                 }
                                 else{
-                                    this.restaurants[index].rate_color = 'bg-secondary';
+                                    this.restaurants[index].rate_color = 'btn-secondary';
                                 }
                             }
                         })
@@ -384,16 +384,16 @@
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
                             if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
-                                this.rents[index].rate_color = 'bg-danger';
+                                this.rents[index].rate_color = 'btn-danger';
                             }else if(this.rents[index].rate >= 2.6 && this.rents[index].rate <= 3.5 ){
-                                this.rents[index].rate_color = 'bg-warning';
+                                this.rents[index].rate_color = 'btn-warning';
                             }else if(this.rents[index].rate >= 3.6 && this.rents[index].rate <= 4.0 ){
-                                this.rents[index].rate_color = 'bg-info';
+                                this.rents[index].rate_color = 'btn-info';
                             }else if(this.rents[index].rate >= 4.1 && this.rents[index].rate <= 5.0 ){
-                                this.rents[index].rate_color = 'bg-success';
+                                this.rents[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.rents[index].rate_color = 'bg-secondary';
+                                this.rents[index].rate_color = 'btn-secondary';
                             }
                         }
                     }else{
@@ -405,16 +405,16 @@
                             for (let index = 0; index < response.data.length; index++) {
                                 // bg
                                 if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
-                                    this.rents[index].rate_color = 'bg-danger';
+                                    this.rents[index].rate_color = 'btn-danger';
                                 }else if(this.rents[index].rate >= 2.6 && this.rents[index].rate <= 3.5 ){
-                                    this.rents[index].rate_color = 'bg-warning';
+                                    this.rents[index].rate_color = 'btn-warning';
                                 }else if(this.rents[index].rate >= 3.6 && this.rents[index].rate <= 4.0 ){
-                                    this.rents[index].rate_color = 'bg-info';
+                                    this.rents[index].rate_color = 'btn-info';
                                 }else if(this.rents[index].rate >= 4.1 && this.rents[index].rate <= 5.0 ){
-                                    this.rents[index].rate_color = 'bg-success';
+                                    this.rents[index].rate_color = 'btn-success';
                                 }
                                 else{
-                                    this.rents[index].rate_color = 'bg-secondary';
+                                    this.rents[index].rate_color = 'btn-secondary';
                                 }
                             }
                         })
@@ -460,16 +460,16 @@
                         for (let index = 0; index < response.data.length; index++) {
                         // bg
                             if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
-                                this.services[index].rate_color = 'bg-danger';
+                                this.services[index].rate_color = 'btn-danger';
                             }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
-                                this.services[index].rate_color = 'bg-warning';
+                                this.services[index].rate_color = 'btn-warning';
                             }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
-                                this.services[index].rate_color = 'bg-info';
+                                this.services[index].rate_color = 'btn-info';
                             }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
-                                this.services[index].rate_color = 'bg-success';
+                                this.services[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.services[index].rate_color = 'bg-secondary';
+                                this.services[index].rate_color = 'btn-secondary';
                             }
                         }
                     }else{
@@ -480,16 +480,16 @@
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
                                 if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
-                                    this.services[index].rate_color = 'bg-danger';
+                                    this.services[index].rate_color = 'btn-danger';
                                 }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
-                                    this.services[index].rate_color = 'bg-warning';
+                                    this.services[index].rate_color = 'btn-warning';
                                 }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
-                                    this.services[index].rate_color = 'bg-info';
+                                    this.services[index].rate_color = 'btn-info';
                                 }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
-                                    this.services[index].rate_color = 'bg-success';
+                                    this.services[index].rate_color = 'btn-success';
                                 }
                                 else{
-                                    this.services[index].rate_color = 'bg-secondary';
+                                    this.services[index].rate_color = 'btn-secondary';
                                 }
                             }
                         })

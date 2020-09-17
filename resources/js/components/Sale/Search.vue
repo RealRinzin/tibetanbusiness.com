@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-3" id="search_mobile">
+                        <div class="col-md-3 my-1" id="search_mobile">
                             <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1 fa-1x"></i></small>
@@ -74,7 +74,7 @@
                                             <ul>
                                                 <li class="ng-binding btn btn-danger btn-md small">Price:₹{{sale.price}}/-</li>
                                                 <li class="ng-binding btn btn-danger btn-md small">Total items: {{sale.total_item}}</li>
-                                                <li class="ng-binding btn btn-danger btn-md small">Category: {{sale.type}}</li>
+                                                <li class="ng-binding btn btn-danger btn-md small">{{sale.type}}</li>
                                             </ul>
                                         </div>
                                     </a>

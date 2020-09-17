@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 my-1">
                             <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
@@ -78,7 +78,7 @@
                                         <a v-bind:href="'/service/'+service.id">
                                             <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto">
                                                 <ul>
-                                                    <li class="font-weight-bold btn btn-danger btn-md small">Service type: {{service.type}}</li>
+                                                    <li class="font-weight-bold btn btn-danger btn-md small">{{service.type}}</li>
                                                 </ul>
                                             </div>
                                         <div class="rate" v-if="service.rate > 0.0"><span v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</span></div>

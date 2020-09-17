@@ -26,7 +26,7 @@
         </div>
         <div class="media mt-3" v-for="(reply,index) in replies">
             <a class="pr-3" href="#">
-                <img class="mr-2 img-circle" :src="reply.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                <img class="mx-2 rounded-circle" :src="reply.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
             </a>
             <div class="media-body border-0">
                 <h6 class="mt-0">{{reply.name}} 

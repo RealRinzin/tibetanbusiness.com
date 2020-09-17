@@ -208,16 +208,16 @@
                         // background color
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                this.restaurants[index].rate_color = 'bg-danger';
+                                this.restaurants[index].rate_color = 'btn-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                this.restaurants[index].rate_color = 'bg-warning';
+                                this.restaurants[index].rate_color = 'btn-warning';
                             }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                this.restaurants[index].rate_color = 'bg-info';
+                                this.restaurants[index].rate_color = 'btn-info';
                             }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                this.restaurants[index].rate_color = 'bg-success';
+                                this.restaurants[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.restaurants[index].rate_color = 'bg-secondary';
+                                this.restaurants[index].rate_color = 'btn-secondary';
                             }
                             // loading
                         }
@@ -227,16 +227,16 @@
                             this.restaurants = response.data;
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                this.restaurants[index].rate_color = 'bg-danger';
+                                this.restaurants[index].rate_color = 'btn-danger';
                             }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                this.restaurants[index].rate_color = 'bg-warning';
+                                this.restaurants[index].rate_color = 'btn-warning';
                             }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                this.restaurants[index].rate_color = 'bg-info';
+                                this.restaurants[index].rate_color = 'btn-info';
                             }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                this.restaurants[index].rate_color = 'bg-success';
+                                this.restaurants[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.restaurants[index].rate_color = 'bg-secondary';
+                                this.restaurants[index].rate_color = 'btn-secondary';
                             }                        }
                         })
                     }
@@ -253,16 +253,16 @@
                             // this.events.push(response.data[Math.floor(Math.random() *response.data.length)]);
                             // bg
                             if(this.events[index].rate >=0.0 && this.events[index].rate <= 2.5){
-                                this.events[index].rate_color = 'bg-danger';
+                                this.events[index].rate_color = 'btn-danger';
                             }else if(this.events[index].rate >= 2.6 && this.events[index].rate <= 3.5 ){
-                                this.events[index].rate_color = 'bg-warning';
+                                this.events[index].rate_color = 'btn-warning';
                             }else if(this.events[index].rate >= 3.6 && this.events[index].rate <= 4.0 ){
-                                this.events[index].rate_color = 'bg-info';
+                                this.events[index].rate_color = 'btn-info';
                             }else if(this.events[index].rate >= 4.1 && this.events[index].rate <= 5.0 ){
-                                this.events[index].rate_color = 'bg-success';
+                                this.events[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.events[index].rate_color = 'bg-secondary';
+                                this.events[index].rate_color = 'btn-secondary';
                             }
                         }
         
@@ -318,16 +318,16 @@
                         for (let index = 0; index < response.data.length; index++) {
                             // bg
                             if(this.rents[index].rate >=0.0 && this.rents[index].rate <= 2.5){
-                                this.rents[index].rate_color = 'bg-danger';
+                                this.rents[index].rate_color = 'btn-danger';
                             }else if(this.rents[index].rate >= 2.6 && this.rents[index].rate <= 3.5 ){
-                                this.rents[index].rate_color = 'bg-warning';
+                                this.rents[index].rate_color = 'btn-warning';
                             }else if(this.rents[index].rate >= 3.6 && this.rents[index].rate <= 4.0 ){
-                                this.rents[index].rate_color = 'bg-info';
+                                this.rents[index].rate_color = 'btn-info';
                             }else if(this.rents[index].rate >= 4.1 && this.rents[index].rate <= 5.0 ){
-                                this.rents[index].rate_color = 'bg-success';
+                                this.rents[index].rate_color = 'btn-success';
                             }
                             else{
-                                this.rents[index].rate_color = 'bg-secondary';
+                                this.rents[index].rate_color = 'btn-secondary';
                             }
                         }
                     }else{
@@ -380,15 +380,15 @@
                         for (let index = 0; index < response.data.length; index++) {
                             // rate color
                             if(this.services[index].rate >= 0.0 && this.services[index].rate <= 2.5){
-                                this.services[index].rate_color = 'bg-danger';
+                                this.services[index].rate_color = 'btn-danger';
                             }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
-                                this.services[index].rate_color = 'bg-warning';
+                                this.services[index].rate_color = 'btn-warning';
                             }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
-                                this.services[index].rate_color = 'bg-info';
+                                this.services[index].rate_color = 'btn-info';
                             }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
-                                this.services[index].rate_color = 'bg-success';
+                                this.services[index].rate_color = 'btn-success';
                             }else{
-                                this.services[index].rate_color = 'bg-secondary';
+                                this.services[index].rate_color = 'btn-secondary';
                             }
                         }
                     }else{
@@ -399,15 +399,15 @@
                         for (let index = 0; index < response.data.length; index++) {
                                 // rate color
                                 if(this.services[index].rate >= 0.0 && this.services[index].rate <= 2.5){
-                                    this.services[index].rate_color = 'bg-danger';
+                                    this.services[index].rate_color = 'btn-danger';
                                 }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
-                                    this.services[index].rate_color = 'bg-warning';
+                                    this.services[index].rate_color = 'btn-warning';
                                 }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
-                                    this.services[index].rate_color = 'bg-info';
+                                    this.services[index].rate_color = 'btn-info';
                                 }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
-                                    this.services[index].rate_color = 'bg-success';
+                                    this.services[index].rate_color = 'btn-success';
                                 }else{
-                                    this.services[index].rate_color = 'bg-secondary';
+                                    this.services[index].rate_color = 'btn-secondary';
                                 }
                             }
                         })

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12 mx-auto">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-3 my-1">
                             <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
                                     <small class="btn text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">
@@ -83,7 +83,7 @@
                                 <small v-if="filter.from || filter.to" class="badge badge-secondary mb-1">Date: {{filter.from}} - {{filter.to}}</small>
                             </div>
                             <!-- Result -->
-                         <div class="col-12" v-if="loading_placeholder">
+                            <div class="col-12" v-if="loading_placeholder">
                                 <lazy-loading></lazy-loading>
                                 <lazy-loading></lazy-loading>
                                 <lazy-loading></lazy-loading>
@@ -96,8 +96,8 @@
                                             <ul>
                                                 <li class="btn btn-danger btn-md small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
                                                 <li class="btn small btn-success btn-md " v-else>Free Entry</span></li>
-                                                <li class="btn small btn-danger btn-md ">Date: {{event.start_date |date}}</li>
-                                                <li class="btn small btn-danger btn-md ">Type:{{event.category}}</li>
+                                                <li class="btn small btn-danger btn-md">{{event.start_date |date}}</li>
+                                                <li class="btn small btn-danger btn-md">{{event.category}}</li>
                                             </ul>
                                         </div>
                                         <div class="rate btn btn-warning btn-sm small" v-if="event.interested >0"><span><i class="far fa-thumbs-up text-white  mr-1"></i>{{event.interested}} Interested</span></div>

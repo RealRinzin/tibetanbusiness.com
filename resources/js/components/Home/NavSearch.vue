@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-2 px-0">
                     <div class="input-group-append">
-                        <button  type="submit" @click="search" name="search" class="btn btn-light px-0 rounded-0 w-50">
+                        <button  type="submit" @click="search" name="search" class="btn btn-light border-left rounded-0 w-50" style="padding:4.5px !important">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>

@@ -102,7 +102,7 @@
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle p-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
-                                        <span><img src="{{Auth::user()->avatar}}" alt="" class="ml-2 img-fluid img-circle"></span>
+                                        <span><img src="{{Auth::user()->avatar}}" alt="" class="ml-2 img-fluid rounded-circle"></span>
                                         <span class="caret"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -143,7 +143,7 @@
                                     <div id="avatar" style="z-index: 1000;">
                                         <li class="nav-item dropdown">
                                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid img-circle">
+                                                <img src="{{Auth::user()->avatar}}" alt="" class="img-fluid rounded-circle">
                                                 <!-- {{ Auth::user()->name }} --> <span class="caret"></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -167,7 +167,7 @@
                 <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
                     <button class="btn btn-warning">Add Business</button>
                     <button class="btn btn-warning">Promote Business</button>
-                    <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

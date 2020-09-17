@@ -38,7 +38,7 @@
                 <div class="row p-3">
                     <div class="col-md-12">
                         <div class="media animated fadeIn duration-1s">
-                        <img class="mr-2 img-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                        <img class="mr-2 rounded-circle" :src="question.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body border-0">
                             <h6 class="mt-0">{{question.name}} 
                                 <small class="text-muted">

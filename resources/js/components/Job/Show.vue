@@ -1,5 +1,12 @@
 <template>
     <div style="min-height:80vh">
+        <vue-headful
+        :title="job.title"
+        :description="job.location"
+        :image="job.banner"
+        lang="langauge"
+        url="https://tibetanbusiness.com"
+        />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>

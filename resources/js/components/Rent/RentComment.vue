@@ -48,7 +48,7 @@
             <div class="row p-3">
                 <div class="col-md-12">
                     <div class="media animated fadeIn duration-1s">
-                    <img class="mr-2 img-circle" :src="comment.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
+                    <img class="mr-2 rounded-circle" :src="comment.avatar" alt="Generic placeholder image" style="height:50px;width:50px">
                         <div class="media-body border-0">
                             <h6 class="mt-0">{{comment.name}}
                                 <small>
@@ -179,15 +179,15 @@ export default {
                  *  */ 
                 for (let index = 0; index < this.comments.length; index++) {
                     if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 1.0){
-                        this.comments[index].rate_color = 'bg-danger';
+                        this.comments[index].rate_color = 'btn-danger';
                     }else if(this.comments[index].rate >= 1.1 && this.comments[index].rate <= 2.0 ){
-                        this.comments[index].rate_color = 'bg-warning';
+                        this.comments[index].rate_color = 'btn-warning';
                     }else if(this.comments[index].rate >= 2.1 && this.comments[index].rate <= 3.0 ){
-                        this.comments[index].rate_color = 'bg-info';
+                        this.comments[index].rate_color = 'btn-info';
                     }else if(this.comments[index].rate >= 3.1 && this.comments[index].rate <= 5.0 ){
-                        this.comments[index].rate_color = 'bg-success';
+                        this.comments[index].rate_color = 'btn-success';
                     }else{
-                        this.comments[index].rate_color = 'bg-secondary';
+                        this.comments[index].rate_color = 'btn-secondary';
                     }
                 }
             })
@@ -223,15 +223,15 @@ export default {
                      *  */ 
                     for (let index = 0; index < this.comments.length; index++) {
                         if(this.comments[index].rate >= 0.0 && this.comments[index].rate <= 1.0){
-                            this.comments[index].rate_color = 'bg-danger';
+                            this.comments[index].rate_color = 'btn-danger';
                         }else if(this.comments[index].rate >= 1.1 && this.comments[index].rate <= 2.0 ){
-                            this.comments[index].rate_color = 'bg-warning';
+                            this.comments[index].rate_color = 'btn-warning';
                         }else if(this.comments[index].rate >= 2.1 && this.comments[index].rate <= 3.0 ){
-                            this.comments[index].rate_color = 'bg-info';
+                            this.comments[index].rate_color = 'btn-info';
                         }else if(this.comments[index].rate >= 3.1 && this.comments[index].rate <= 5.0 ){
-                            this.comments[index].rate_color = 'bg-success';
+                            this.comments[index].rate_color = 'btn-success';
                         }else{
-                            this.comments[index].rate_color = 'bg-secondary';
+                            this.comments[index].rate_color = 'btn-secondary';
                         }
                     }
                     
