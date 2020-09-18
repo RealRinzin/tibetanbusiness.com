@@ -7,7 +7,7 @@
                         <div class="col-md-3 my-1">
                             <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
-                                    <small class="text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
+                                    <small class="text-muted font-weight-bolder" style="cursor:pointer" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">Filter: <i class="fas fa-sliders-h mx-1"></i></small>
                                     <div class="collapse" id="search_collapse">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 py-1">
@@ -100,12 +100,12 @@
                                         <a v-bind:href="'/job/'+job.id">
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                                            <ul>
-                                                <li v-if="job.salary > 0" class="btn btn-danger btn-md small">Salary:₹{{job.salary}}/-</li>
-                                                <li v-else class="btn btn-warning text-dark btn-md small">Salary: Not Disclosed</li>
-                                                <li class="btn btn-danger btn-md small">{{job.nature}}</li>
-                                                <li class="btn btn-danger btn-md small">Exp: {{job.experience}}</li>
-                                            </ul>
+                                            <div class="position-absolute ml-2" style="bottom:10px">
+                                                <button v-if="job.salary > 0" class="btn btn-danger btn-sm font-weight-bolder">Salary:₹ {{job.salary}}-/</button>
+                                                <button v-else class="btn btn-warning btn-sm font-weight-bolder">Salary: Not disclosed</button>
+                                                <button class="btn btn-danger btn-sm font-weight-bolder">{{job.nature}}</button>
+                                                <button class="btn btn-danger btn-sm font-weight-bolder">Exp: {{job.experience}}</button>
+                                            </div>
                                         </div>
                                         <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                                         </a>

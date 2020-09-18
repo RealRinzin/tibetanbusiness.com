@@ -3,10 +3,11 @@
         <vue-headful
         :title="event.name"
         :description="event.location"
-        :image="event.banner"
+        :image="'https://demo.tibetanbusiness.com/storage/Event/Banner/'+event.banner"
         lang="langauge"
-        url="https://tibetanbusiness.com"
+        :url="'https://demo.tibetanbusiness.com/event/'+event.id"
         />
+
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -22,6 +23,10 @@
                                         <div class="col-md-12">
                                             <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <div class="overlay title">
+                                                <share-it 
+                                                class="bg-light p-0 rounded-1 float-right"
+                                                :icons="true" 
+                                                /> 
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{event.name}}</h6>
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
@@ -96,6 +101,8 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 import EventReview from './Review.vue';
+// import shareIt from "vue-share-it";
+
 // import format from 'date-fns/format';
 import { compareAsc, format } from 'date-fns';
 export default {
@@ -114,7 +121,8 @@ export default {
             // participate like
             audience:{},
             liked:false,
-            liked_id:''
+            liked_id:'',
+            // Social Share
         }
     },
     methods:{

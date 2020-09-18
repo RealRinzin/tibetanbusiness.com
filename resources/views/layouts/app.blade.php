@@ -11,10 +11,10 @@
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
     <!-- META -->
-    <meta property="og:title" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:description" content="" />
+    <meta property="og:title" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:description" content=""/>
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- @if(Request::is('/')) -->
@@ -39,12 +39,12 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script> -->
     <!-- CSRF TOKEN -->
     <script>
-        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
+        window.Laravel = <?php
+echo json_encode(['csrfToken' => csrf_token()]); ?>
     </script>
 </head>
 
 <body>
-
     @if(Request::is('/'))
     <div id="tibetanbusiness">
         @endif

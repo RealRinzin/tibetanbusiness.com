@@ -7,7 +7,7 @@
                         <div class="col-md-3 my-1">
                             <div class="card p-3" style="padding-bottom:0px !important" id="dropdown_lists">
                                 <form @submit.prevent="search_result()">
-                                    <small class="btn text-muted" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">
+                                    <small class="text-muted font-weight-bolder" style="cursor:pointer" data-toggle="collapse" data-target="#search_collapse" aria-expanded="false" aria-controls="collapseExample">
                                         Filter: <i class="fas fa-sliders-h mx-1"></i>
                                     </small>
                                     <div class="collapse" id="search_collapse">

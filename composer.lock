@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a31102f3d8be5cbe17049ca50b03a695",
+    "content-hash": "0cf067bf7fae9d4938381cf9366eccf4",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -842,16 +842,16 @@
         },
         {
             "name": "jorenvanhocht/laravel-share",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jorenvh/laravel-share.git",
-                "reference": "c82c43b654a48964a8949195c5f48c9e7cb1ec95"
+                "reference": "63b8c46e66e060e651e6d1647dfed2bb1409151e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jorenvh/laravel-share/zipball/c82c43b654a48964a8949195c5f48c9e7cb1ec95",
-                "reference": "c82c43b654a48964a8949195c5f48c9e7cb1ec95",
+                "url": "https://api.github.com/repos/jorenvh/laravel-share/zipball/63b8c46e66e060e651e6d1647dfed2bb1409151e",
+                "reference": "63b8c46e66e060e651e6d1647dfed2bb1409151e",
                 "shasum": ""
             },
             "require": {
@@ -897,7 +897,7 @@
                 "social links",
                 "social share links"
             ],
-            "time": "2019-12-30T20:39:14+00:00"
+            "time": "2020-09-11T19:22:28+00:00"
         },
         {
             "name": "laravel/framework",
