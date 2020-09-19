@@ -12,11 +12,11 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Added on</th>
+                            <th scope="col" class="sm-table-info-hide">Address</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Email</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Added on</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -27,11 +27,11 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="job.banner !==''" :href="'/job/'+job.id"><img :src="'/storage/Job/Banner/'+job.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{job.title}}</td>
-                            <td>{{job.address}}</td>
-                            <td>{{job.location}}</td>
-                            <td>{{job.email}}</td>
-                            <td>{{job.mobile_no}}</td>
-                            <td><timeago :datetime="job.created_at" /></td>
+                            <td class="sm-table-info-hide">{{job.address}}</td>
+                            <td class="sm-table-info-hide">{{job.location}}</td>
+                            <td class="sm-table-info-hide">{{job.email}}</td>
+                            <td class="sm-table-info-hide">{{job.mobile_no}}</td>
+                            <td class="sm-table-info-hide"><timeago :datetime="job.created_at" /></td>
                             <td>
                                 <toggle-button 
                                  :value="job.status"

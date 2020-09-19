@@ -13,11 +13,11 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Added on</th>
+                            <th scope="col" class="sm-table-info-hide">Address</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Email</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Added on</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -28,11 +28,11 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="rent.banner !==''" :href="'/rent/'+rent.id"><img :src="'/storage/Rent/Banner/'+rent.banner" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{rent.name}}</td>
-                            <td>{{rent.address}}</td>
-                            <td>{{rent.location}}</td>
-                            <td>{{rent.email}}</td>
-                            <td>{{rent.mobile_no}}</td>
-                            <td><timeago :datetime="rent.created_at" /></td>
+                            <td class="sm-table-info-hide">{{rent.address}}</td>
+                            <td class="sm-table-info-hide">{{rent.location}}</td>
+                            <td class="sm-table-info-hide">{{rent.email}}</td>
+                            <td class="sm-table-info-hide">{{rent.mobile_no}}</td>
+                            <td class="sm-table-info-hide"><timeago :datetime="rent.created_at" /></td>
                             <td>
                                 <toggle-button 
                                  :value="rent.status"

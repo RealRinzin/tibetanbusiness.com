@@ -8,7 +8,13 @@
 @import '~bootstrap/scss/bootstrap';
 
 #dashboard{
-    // Restaurant
+    // Hide the table heading
+    // and table data from small device
+        @media only screen and (max-width: 767px) {
+            .sm-table-info-hide{
+                display: none;
+            }
+        }
     #restaurant{
         // Banner
         .banner{

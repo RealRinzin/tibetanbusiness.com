@@ -12,11 +12,11 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Entry Fee</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Entry Fee</th>
+                            <th scope="col" class="sm-table-info-hide">Date</th>
+                            <th scope="col" class="sm-table-info-hide">Time</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -27,11 +27,11 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="event.banner !==''" :href="'/event/'+event.id"><img :src="'/storage/Event/Banner/'+event.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{event.name}}</td>
-                            <td> <span v-if="event.entry_fee > 0">Rs: {{event.entry_fee}}</span> <span v-else class="text-success font-weight-bolder">Entry Free</span></td>
-                            <td>{{event.start_date}}</td>
-                            <td>{{event.start_time}}<span v-if="event.start_time"> a.m</span></td>
-                            <td>{{event.location}}</td>
-                            <td>{{event.mobile_no}}</td>
+                            <td class="sm-table-info-hide"> <span v-if="event.entry_fee > 0">Rs: {{event.entry_fee}}</span> <span v-else class="text-success font-weight-bolder">Entry Free</span></td>
+                            <td class="sm-table-info-hide">{{event.start_date}}</td>
+                            <td class="sm-table-info-hide">{{event.start_time}}<span v-if="event.start_time"> a.m</span></td>
+                            <td class="sm-table-info-hide">{{event.location}}</td>
+                            <td class="sm-table-info-hide">{{event.mobile_no}}</td>
                             <td>
                                 <toggle-button 
                                  :value="event.status"

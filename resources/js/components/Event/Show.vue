@@ -23,10 +23,10 @@
                                         <div class="col-md-12">
                                             <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <div class="overlay title">
-                                                <share-it 
+                                                <!-- <share-it 
                                                 class="bg-light p-0 rounded-1 float-right"
                                                 :icons="true" 
-                                                /> 
+                                                />  -->
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{event.name}}</h6>
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>

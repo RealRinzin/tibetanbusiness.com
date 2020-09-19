@@ -10932,6 +10932,12 @@ a.text-dark:focus {
   /* Carousel */
 }
 
+@media only screen and (max-width: 767px) {
+  #dashboard .sm-table-info-hide {
+    display: none;
+  }
+}
+
 #dashboard #restaurant .banner {
   height: 250px;
   width: 100%;

@@ -12,10 +12,10 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Total Item</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Price</th>
+                            <th scope="col" class="sm-table-info-hide">Total Item</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -26,10 +26,10 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="sale.banner" :href="'/sale/'+sale.id"><img :src="'/storage/Sale/Banner/'+sale.thumb" class="ladyload img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{sale.name}}</td>
-                            <td>Rs: {{sale.price}}</td>
-                            <td>{{sale.total_item}}</td>
-                            <td>{{sale.location}}</td>
-                            <td>{{sale.mobile_no}}</td>
+                            <td class="sm-table-info-hide">Rs: {{sale.price}}</td>
+                            <td class="sm-table-info-hide">{{sale.total_item}}</td>
+                            <td class="sm-table-info-hide">{{sale.location}}</td>
+                            <td class="sm-table-info-hide">{{sale.mobile_no}}</td>
                             <td>
                                 <toggle-button 
                                  :value="sale.status"

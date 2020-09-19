@@ -12,11 +12,11 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Added on</th>
+                            <th scope="col" class="sm-table-info-hide">Address</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Email</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Added on</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -27,11 +27,11 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="restaurant.banner !==''" :href="'/restaurant/'+restaurant.id"><img :src="'/storage/Restaurant/Banner/'+restaurant.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{restaurant.name}}</td>
-                            <td>{{restaurant.address}}</td>
-                            <td>{{restaurant.location}}</td>
-                            <td>{{restaurant.email}}</td>
-                            <td>{{restaurant.mobile_no}}</td>
-                            <td><timeago :datetime="restaurant.created_at" /></td>
+                            <td class="sm-table-info-hide">{{restaurant.address}}</td>
+                            <td class="sm-table-info-hide">{{restaurant.location}}</td>
+                            <td class="sm-table-info-hide">{{restaurant.email}}</td>
+                            <td class="sm-table-info-hide">{{restaurant.mobile_no}}</td>
+                            <td class="sm-table-info-hide"><timeago :datetime="restaurant.created_at" /></td>
                             <td>
                                 <toggle-button 
                                  :value="restaurant.status"

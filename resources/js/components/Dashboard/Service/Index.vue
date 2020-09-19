@@ -12,9 +12,9 @@
                             <th scope="col">S.No</th>
                             <th scope="col">Banner</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Mobile</th>
+                            <th scope="col" class="sm-table-info-hide">Type</th>
+                            <th scope="col" class="sm-table-info-hide">Location</th>
+                            <th scope="col" class="sm-table-info-hide">Mobile</th>
                             <th scope="col">Status</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
@@ -25,9 +25,9 @@
                             <th scope="row">{{index +1}}</th>
                             <td><a v-if="service.banner !==''" :href="'/service/'+service.id"><img :src="'/storage/Service/Banner/'+service.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{service.name}}</td>
-                            <td>{{service.type}}</td>
-                            <td>{{service.location}}</td>
-                            <td>{{service.mobile_no}}</td>
+                            <td class="sm-table-info-hide">{{service.type}}</td>
+                            <td class="sm-table-info-hide">{{service.location}}</td>
+                            <td class="sm-table-info-hide">{{service.mobile_no}}</td>
                             <td>
                                 <toggle-button 
                                  :value="service.status"
