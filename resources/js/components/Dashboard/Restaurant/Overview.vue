@@ -7,7 +7,7 @@
                         <div class="card">
                             <div class="p-2">
                                 <div>
-                                    <button class="btn btn-info btn-sm ">Basic Information</button>
+                                    <button class="btn btn-dark btn-sm ">Basic Information</button>
                                     <button class="btn btn-warning btn-sm d-flex-justify-content-end" @click="edit()">Edit</button>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="col-md-12" v-if="operation != null">
                                 <div class="card facility">
                                     <div class="p-2">
-                                    <button class="btn btn-info btn-sm">Operating Days</button>
+                                    <button class="btn btn-dark btn-sm">Operating Days</button>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -190,10 +190,12 @@
                                 </div>
                             </div>
                         <!-- Facilities day -->
-                            <div class="col-md-12" v-if="facilities != null">
+                            <add-facility v-if="facilities == null" :id="restaurant.id"></add-facility>
+                            <!-- <div class="col-md-12" v-if="facilities != null"> -->
+                            <div class="col-md-12" v-else>
                                 <div class="card facility">
                                 <div class="p-2">
-                                <button class="btn btn-info btn-sm">Facilities</button>
+                                <button class="btn btn-dark btn-sm">Facilities</button>
                                 </div>
                                 <div class="card-body">
                                     <!-- <ul> -->
@@ -475,6 +477,8 @@
 <script>
 // Form validation
 import { Validator } from 'vee-validate';
+// facility
+import AddFacility from './AddFacility.vue';
 export default {
     // Data
     props:['restaurant','facilities','operation'],
@@ -537,10 +541,9 @@ export default {
             })
         }
     },
-
+    components:{AddFacility},
     // Mounted
     mounted(){
-        // this.load();
         // locations api
         axios.get('/api/location')
         .then(response=>{

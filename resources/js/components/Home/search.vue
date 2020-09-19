@@ -16,7 +16,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted"></i></span>
                                             </div>
-                                            <input type="text" id="location_search" @focusin="location_dropdown()"  v-model="place"  :keyup="location_selected()" class="form-control" readonly="readonly" placeholder="Service" aria-label="Location" required>
+                                            <input type="text" id="location_search" @focusin="location_dropdown()"  v-model="place"  :keyup="location_selected()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
                                             <ul id="location_list" style="display:none;transition:1s">
                                                 <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>

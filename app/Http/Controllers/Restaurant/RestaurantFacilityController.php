@@ -19,6 +19,7 @@ class RestaurantFacilityController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $facilities = RestaurantFacility::create($request->all());
     }
 

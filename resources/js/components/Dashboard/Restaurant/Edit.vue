@@ -220,68 +220,69 @@ export default {
                         this.operation.sunday = false;
                     }
                 });
-
                 // facitilies
                 this.facilities = this.restaurant.facility[0]; 
-                    // Home Delivery
-                    if(this.facilities.home_delivery == 1){
-                        this.facilities.home_delivery = true;
-                    }else{
-                        this.facilities.home_delivery = false;
-                    }
-                    // wifi
-                    if(this.facilities.wifi == 1){
-                        this.facilities.wifi = true;
-                    }else{
-                        this.facilities.wifi = false;
-                    }
-                    // party booking
-                    if(this.facilities.party_booking == 1){
-                        this.facilities.party_booking = true;
-                    }else{
-                        this.facilities.party_booking = false;
-                    }
-                    // Roof Top
-                    if(this.facilities.roof_top == 1){
-                        this.facilities.roof_top = true;
-                    }else{
-                        this.facilities.roof_top = false;
-                    }
-                    // AC
-                    if(this.facilities.ac == 1){
-                        this.facilities.ac = true;
-                    }else{
-                        this.facilities.ac = false;
-                    }
-                    // veg
-                    if(this.facilities.veg == 1){
-                        this.facilities.veg = true;
-                    }else{
-                        this.facilities.veg = false;
-                    }
-                    // none_veg
-                    if(this.facilities.none_veg == 1){
-                        this.facilities.none_veg = true;
-                    }else{
-                        this.facilities.none_veg = false;
-                    }
-                    // Beverage
-                    if(this.facilities.beverage == 1){
-                        this.facilities.beverage = true;
-                    }else{
-                        this.facilities.beverage = false;
-                    }
-                    // Parking Lot
-                    if(this.facilities.parking_lot == 1){
-                        this.facilities.parking_lot = true;
-                    }else{
-                        this.facilities.parking_lot = false;
-                    }
-                    // Credit Card
-                    if(this.facilities.card_payment == 1){
-                        this.facilities.card_payment = true;
-                    }else{
-                        this.facilities.card_payment = false;
+                    if(this.facilities != null){
+                        // Home Delivery
+                        if(this.facilities.home_delivery == 1){
+                            this.facilities.home_delivery = true;
+                        }else{
+                            this.facilities.home_delivery = false;
+                        }
+                        // wifi
+                        if(this.facilities.wifi == 1){
+                            this.facilities.wifi = true;
+                        }else{
+                            this.facilities.wifi = false;
+                        }
+                        // party booking
+                        if(this.facilities.party_booking == 1){
+                            this.facilities.party_booking = true;
+                        }else{
+                            this.facilities.party_booking = false;
+                        }
+                        // Roof Top
+                        if(this.facilities.roof_top == 1){
+                            this.facilities.roof_top = true;
+                        }else{
+                            this.facilities.roof_top = false;
+                        }
+                        // AC
+                        if(this.facilities.ac == 1){
+                            this.facilities.ac = true;
+                        }else{
+                            this.facilities.ac = false;
+                        }
+                        // veg
+                        if(this.facilities.veg == 1){
+                            this.facilities.veg = true;
+                        }else{
+                            this.facilities.veg = false;
+                        }
+                        // none_veg
+                        if(this.facilities.none_veg == 1){
+                            this.facilities.none_veg = true;
+                        }else{
+                            this.facilities.none_veg = false;
+                        }
+                        // Beverage
+                        if(this.facilities.beverage == 1){
+                            this.facilities.beverage = true;
+                        }else{
+                            this.facilities.beverage = false;
+                        }
+                        // Parking Lot
+                        if(this.facilities.parking_lot == 1){
+                            this.facilities.parking_lot = true;
+                        }else{
+                            this.facilities.parking_lot = false;
+                        }
+                        // Credit Card
+                        if(this.facilities.card_payment == 1){
+                            this.facilities.card_payment = true;
+                        }else{
+                            this.facilities.card_payment = false;
+                        }
                     }
 
                 // comments
