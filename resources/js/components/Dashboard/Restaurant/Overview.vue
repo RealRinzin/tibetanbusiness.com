@@ -100,7 +100,8 @@
                     <!-- toggles -->
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-12" v-if="operation != null">
+                            <add-day v-if="operation == null" :id="restaurant.id"></add-day>
+                            <div class="col-md-12" v-else>
                                 <div class="card facility">
                                     <div class="p-2">
                                     <button class="btn btn-dark btn-sm">Operating Days</button>
@@ -116,7 +117,6 @@
                                                         :v-model="operation.monday"
                                                         :color="{checked:'#28a745',unchecked:'#dc4245'}"
                                                         :labels="{checked: 'On', unchecked: 'Off'}"/>
-
                                                 </li>
                                             </div>
                                             <div class="col-md-4 col-sm-6">
@@ -479,6 +479,8 @@
 import { Validator } from 'vee-validate';
 // facility
 import AddFacility from './AddFacility.vue';
+// operation day
+import AddDay from './AddDay.vue';
 export default {
     // Data
     props:['restaurant','facilities','operation'],
@@ -541,7 +543,7 @@ export default {
             })
         }
     },
-    components:{AddFacility},
+    components:{AddFacility,AddDay},
     // Mounted
     mounted(){
         // locations api

@@ -280,17 +280,17 @@ export default {
     
                                 }
                         // Create Operation day
-                            axios.post('/api/restaurant_operation_days',this.operation_days,{
-                                headers : { Authorization : localStorage.getItem("token")}
-                                })
-                                .then(response=>{
-                                })
+                            // axios.post('/api/restaurant_operation_days',this.operation_days,{
+                            //     headers : { Authorization : localStorage.getItem("token")}
+                            //     })
+                            //     .then(response=>{
+                            //     })
                         // Create facilities
-                            axios.post('/api/restaurant_facilities',this.facilities,{
-                                headers : { Authorization : localStorage.getItem("token")}
-                                })
-                                .then(response=>{
-                                })
+                            // axios.post('/api/restaurant_facilities',this.facilities,{
+                            //     headers : { Authorization : localStorage.getItem("token")}
+                            //     })
+                            //     .then(response=>{
+                            //     })
                             this.$Progress.finish()
                                 this.$emit('load_restaurant');
     

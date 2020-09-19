@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="col-12">
+    <div class="col-12 my-2">
         <button class="btn btn-danger btn-sm" @click="open_modal()"><i class="fas fa-plus mr-2"></i>Add Facilities</button>
     </div>
     <!-- Open Modal -->

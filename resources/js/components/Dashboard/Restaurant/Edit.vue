@@ -174,52 +174,54 @@ export default {
                 // Assigning Restaurant object
                 this.restaurant = response.data.data;
                 // Operation Day
-                // this.operation = this.restaurant.operation[0];
-                this.restaurant.operation.forEach(element => {
-                    this.operation = element;
-                    // monday
-                    if(this.operation.monday == 1){
-                        this.operation.monday = true;
-                    }else{
-                        this.operation.monday = false;
+                this.operation = this.restaurant.operation[0];
+                // this.restaurant.operation.forEach(element => {
+                    if(this.operation != null){
+                        // this.operation = element;
+                        // monday
+                        if(this.operation.monday == 1){
+                            this.operation.monday = true;
+                        }else{
+                            this.operation.monday = false;
+                        }
+                        // wednesday
+                        if(this.operation.tuesday == 1){
+                            this.operation.tuesday = true;
+                        }else{
+                            this.operation.tuesday = false;
+                        }
+                        // wednesday
+                        if(this.operation.wednesday == 1){
+                            this.operation.wednesday = true;
+                        }else{
+                            this.operation.wednesday = false;
+                        }
+                        // wednesday
+                        if(this.operation.thursday == 1){
+                            this.operation.thursday = true;
+                        }else{
+                            this.operation.thursday = false;
+                        }
+                        // wednesday
+                        if(this.operation.friday == 1){
+                            this.operation.friday = true;
+                        }else{
+                            this.operation.friday = false;
+                        }
+                        // wednesday
+                        if(this.operation.saturday == 1){
+                            this.operation.saturday = true;
+                        }else{
+                            this.operation.saturday = false;
+                        }
+                        // wednesday
+                        if(this.operation.sunday == 1){
+                            this.operation.sunday = true;
+                        }else{
+                            this.operation.sunday = false;
+                        }
                     }
-                    // wednesday
-                    if(this.operation.tuesday == 1){
-                        this.operation.tuesday = true;
-                    }else{
-                        this.operation.tuesday = false;
-                    }
-                    // wednesday
-                    if(this.operation.wednesday == 1){
-                        this.operation.wednesday = true;
-                    }else{
-                        this.operation.wednesday = false;
-                    }
-                    // wednesday
-                    if(this.operation.thursday == 1){
-                        this.operation.thursday = true;
-                    }else{
-                        this.operation.thursday = false;
-                    }
-                    // wednesday
-                    if(this.operation.friday == 1){
-                        this.operation.friday = true;
-                    }else{
-                        this.operation.friday = false;
-                    }
-                    // wednesday
-                    if(this.operation.saturday == 1){
-                        this.operation.saturday = true;
-                    }else{
-                        this.operation.saturday = false;
-                    }
-                    // wednesday
-                    if(this.operation.sunday == 1){
-                        this.operation.sunday = true;
-                    }else{
-                        this.operation.sunday = false;
-                    }
-                });
+                // });
                 // facitilies
                 this.facilities = this.restaurant.facility[0]; 
                     if(this.facilities != null){
