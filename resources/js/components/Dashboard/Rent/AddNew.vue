@@ -171,9 +171,6 @@ export default {
             // Restaurant Object
             rent:{},
             // operational days
-            operation_days:{},
-            // ADD facilities 
-            facilities:{},
             // Banner Preview
             bannerPreview:'',
             // Locations
@@ -204,7 +201,7 @@ export default {
         },
         // Create Restauratn
         create_rent(){
-                this.$validator.validateAll('rent_validate_add_form').then((result) => {
+            this.$validator.validateAll('rent_validate_add_form').then((result) => {
                     if(result){
                     this.$Progress.start()
                         // post api
@@ -220,33 +217,8 @@ export default {
                                     icon:'success',
                                     title:'Updated',
                                 });
-    
-                                // Facilities
-                                this.facilities = {
-                                    geyser : false,
-                                    wifi:false,
-                                    ac:false,
-                                    washing_machine:false,
-                                    single_room:true,
-                                    double_room:true,
-                                    bathroom_attached:true,
-                                    fridge:true,
-                                    pet_allowed:false,
-                                    gym:true,
-                                    garden:true,
-                                    parking_space:true,
-                                    rent_basic_info_id : this.id
-    
-                                }
-                        // Create facilities
-                            axios.post('/api/rent_facilities',this.facilities,{
-                                headers : { Authorization : localStorage.getItem("token")}
-                                })
-                                .then(response=>{
-                                })
-                                this.$emit('load_rent');
+                            this.$emit('load_rent');
                             this.$Progress.finish()
-    
                         })
                     }
                 })

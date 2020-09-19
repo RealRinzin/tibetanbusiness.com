@@ -107,8 +107,9 @@
                     <!-- toggles -->
                     <div class="col-md-6">
                         <div class="row">
+                            <add-facility v-if="facilities == null" :id="rent.id"></add-facility>
                             <!-- Facilities day -->
-                                <div class="col-md-12">
+                                <div class="col-md-12" v-else>
                                     <div class="card facility">
                                     <div class="p-2">
                                     <button class="btn btn-info btn-sm">Facilities</button>
@@ -393,6 +394,7 @@
 <script>
 // Form validation
 import { Validator } from 'vee-validate';
+import AddFacility from './AddFacility.vue';
 export default {
     // Data
     props:['rent','facilities'],
@@ -437,6 +439,7 @@ export default {
             }).then(response=>{})
         },
     },
+    components:{AddFacility},
     mounted(){
         // this.facility();
         // locations api
