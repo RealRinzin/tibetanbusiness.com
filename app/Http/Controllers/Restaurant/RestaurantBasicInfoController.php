@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantBasicInfoController extends Controller
 {
-    
+    protected $path = '/Project Directory/tibetanbusiness.com/public/storage/Restaurant/Banner/';
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +37,7 @@ class RestaurantBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-
+        // return $this->path;
         $name = '';
         // Image upload script in php
         if ($request->banner) {
@@ -71,18 +71,24 @@ class RestaurantBasicInfoController extends Controller
                     )
                 )[1])[1];
             // Original
-            \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // return public_path();
+            \Image::make($request->banner)->save($this->path. $name);
+            // $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            // \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
+            // \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
+
         }
         // Store
         $restaurant = RestaurantBasicInfo::create([

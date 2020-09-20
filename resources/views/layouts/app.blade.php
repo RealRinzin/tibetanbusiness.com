@@ -11,10 +11,10 @@
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
     <!-- META -->
-    <meta property="og:title" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:description" content=""/>
+    <meta property="og:title" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="" />
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- @if(Request::is('/')) -->
@@ -40,7 +40,7 @@
     <!-- CSRF TOKEN -->
     <script>
         window.Laravel = <?php
-echo json_encode(['csrfToken' => csrf_token()]); ?>
+                            echo json_encode(['csrfToken' => csrf_token()]); ?>
     </script>
 </head>
 
@@ -63,12 +63,18 @@ echo json_encode(['csrfToken' => csrf_token()]); ?>
                         @if(Request::is('/'))
                         <!-- Left navbar links -->
                         <ul class="navbar-nav">
+                            @guest
                             <li class="nav-item d-sm-inline-block">
-                                <a href="index3.html" class="nav-link">Add Business</a>
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Add Business</a>
                             </li>
+                            @else
                             <li class="nav-item d-sm-inline-block">
+                                <a href="/dashboard/event" class="nav-link">Add Business</a>
+                            </li>
+                            @endguest
+                            <!-- <li class="nav-item d-sm-inline-block">
                                 <a href="#" class="nav-link">Promote Business</a>
-                            </li>
+                            </li> -->
                         </ul>
                         @else
                         <ul class="navbar-nav d-none d-sm-block">
@@ -166,7 +172,7 @@ echo json_encode(['csrfToken' => csrf_token()]); ?>
                 @if(!Request::is('/'))
                 <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
                     <button class="btn btn-warning">Add Business</button>
-                    <button class="btn btn-warning">Promote Business</button>
+                    <button class="btn btn-warning d-none">Promote Business</button>
                     <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -354,11 +360,11 @@ echo json_encode(['csrfToken' => csrf_token()]); ?>
                                                 <i class="fab fa-github mr-2"></i> Github
                                             </a>
                                         </div>
-                                        <div class="col-6 py-2">
+                                        <!-- <div class="col-6 py-2">
                                             <a href="{{url('login/twitter')}}" class="btn btn-block" style="background-color:#329deb;color:white">
                                                 <i class="fab fa-twitter mr-2"></i> Twitter
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- Create new password -->
