@@ -15,9 +15,7 @@
                 <div  class="container py-4">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
-                                <!-- <div class="d-flex justify-content-center">
-                                    <button data-toggle="modal" data-target="#apply_job" class="btn btn-info btn-md w-25 position-fixed btn-flat" style="z-index:1000;bottom:20px">APPLY JOB</button>
-                                </div> -->
+
                                 <!-- basic -->
                                 <div class="card">
                                     <div class="row">
@@ -118,7 +116,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card py-2">
+                                <div class="card py-2" v-if="job.description !=null">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Job Descriptions</h5>

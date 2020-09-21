@@ -149,11 +149,11 @@
 </template>
 <script>
 export default {
-    props:['id'],
+    props:['restaurant_id'],
     data(){
         return{
             facilities:{
-                restaurant_basic_info_id:this.id,
+                restaurant_basic_info_id:this.restaurant_id,
                 home_delivery:false,
                 wifi:false,
                 party_booking:false,

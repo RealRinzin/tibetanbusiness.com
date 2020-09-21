@@ -203,7 +203,7 @@ export default {
                         title:'Facility Added',
                     });
                     // reload
-                    location.reload();
+                    // location.reload();
                 })
         },
     },

@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
-                                            <label for="banner">Banner Image <span class="text-danger p-1">*</span></label>
+                                            <label for="banner">Banner Image <span class="text-danger p-1">*</span><span class="small text-danger">(Less than 1MB)</span></label>
                                             <div class="custom-file">
                                                 <label class="custom-file-label" for="banner">Choose file</label>
                                                 <input type="file" v-validate="'required|image|ext:jpeg,jpg,png,gif|size:1000'" name="banner" @change="banner" class="custom-file-input" id="banner" aria-describedby="emailHelp" placeholder="Website Address">

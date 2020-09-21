@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                         <!-- Facilities day -->
-                            <add-facility v-if="facilities == null" :id="restaurant.id"></add-facility>
+                            <add-facility v-if="facilities == null" :restaurant_id="restaurant.id"></add-facility>
                             <!-- <div class="col-md-12" v-if="facilities != null"> -->
                             <div class="col-md-12" v-else>
                                 <div class="card facility">

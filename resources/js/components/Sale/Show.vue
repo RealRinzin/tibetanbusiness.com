@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card my-2">
+                                <div class="card my-2" v-if="sale.description !=null">
                                     <div class="row p-3">
                                         <div class="col-md-6">
                                             <h5 class="text-dark">Brief</h5>
