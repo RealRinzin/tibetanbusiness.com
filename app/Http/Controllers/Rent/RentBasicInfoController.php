@@ -168,10 +168,8 @@ class RentBasicInfoController extends Controller
         for ($i = 0; $i < $view_photos->count(); $i++) {
             $view_photos[$i]->delete();
             $view_detach = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->path;
-            $view_card = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->card;
             $view_thumb = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->thumb;
             unlink($view_detach);
-            unlink($view_card);
             unlink($view_thumb);
         }
         // Room Photos
@@ -179,10 +177,8 @@ class RentBasicInfoController extends Controller
         for ($i = 0; $i < $room_photos->count(); $i++) {
             $room_photos[$i]->delete();
             $room_detach = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->path;
-            $room_card = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->card;
             $room_thumb = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->thumb;
             unlink($room_detach);
-            unlink($room_card);
             unlink($room_thumb);
         }
         $rent->delete();

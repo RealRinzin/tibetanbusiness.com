@@ -152,10 +152,8 @@ class EventBasicInfoController extends Controller
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
             $photos_detach = public_path() . '/storage/Event/Photos/' . $photos[$i]->path;
-            $photos_card = public_path() . '/storage/Event/Photos/' . $photos[$i]->card;
             $photos_thumb = public_path() . '/storage/Event/Photos/' . $photos[$i]->thumb;
             unlink($photos_detach);
-            unlink($photos_card);
             unlink($photos_thumb);
         }
         $event->delete();
@@ -356,13 +354,5 @@ class EventBasicInfoController extends Controller
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }
 
-        // return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
-        //     ->where('location', 'like', "$request->location%")
-        //     ->where('category', 'like', "$request->category%")
-        //     ->whereBetween('start_date', [$request->from, $request->to])
-        //     ->where('entry_free', false)
-        //     ->whereBetween('entry_fee', [$min, $max])
-        //     ->where('start_date', '>=', date('Y-m-d'))
-        //     ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
     }
 }

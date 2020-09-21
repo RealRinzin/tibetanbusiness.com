@@ -18,7 +18,7 @@
                 <div  v-else class="col-md-3 col-sm-6 col-6" v-for="(event,index) in events" :key="index">
                     <div class="card" >
                         <a v-bind:href="'event/'+event.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/event/Banner/'+event.thumb"   data-sizes="auto">
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Event/Banner/'+event.thumb"   data-sizes="auto">
                             <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder">Entry Free</p>
                             <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder">Entry:&#x20B9 {{event.entry_fee}}</p>
                         </div>

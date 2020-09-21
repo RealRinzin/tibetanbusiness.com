@@ -139,10 +139,8 @@ class SaleBasicInfoController extends Controller
         for ($i=0; $i < $photo->count(); $i++) { 
             $photo[$i]->delete();
             $photos_detach = public_path() . '/storage/Sale/Photos/' . $photo[$i]->path;
-            $photos_card = public_path() . '/storage/Sale/Photos/' . $photo[$i]->card;
             $photos_thumb = public_path() . '/storage/Sale/Photos/' . $photo[$i]->thumb;
             unlink($photos_detach);
-            unlink($photos_card);
             unlink($photos_thumb);
         }
         // Delete

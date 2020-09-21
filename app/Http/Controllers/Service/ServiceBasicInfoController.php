@@ -141,10 +141,8 @@ class ServiceBasicInfoController extends Controller
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
             $photos_detach = public_path() . '/storage/Service/Photos/' . $photos[$i]->path;
-            $photos_card = public_path() . '/storage/Service/Photos/' . $photos[$i]->card;
             $photos_thumb = public_path() . '/storage/Service/Photos/' . $photos[$i]->thumb;
             unlink($photos_detach);
-            unlink($photos_card);
             unlink($photos_thumb);
         }
         // Delete
