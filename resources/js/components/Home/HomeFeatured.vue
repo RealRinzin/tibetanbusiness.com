@@ -25,7 +25,9 @@
                                     </div>
                                 </a>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Sale</button> -->
+                                    <a href="/search/Sales">
+                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-tags mx-1"></i> Deals</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{sale.name}}</h5>
@@ -45,7 +47,6 @@
                         <swiper-slide v-for="(event,index) in events" :key="index">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
-                                    <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
                                             <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{event.start_date | date}}</p>
@@ -58,7 +59,9 @@
                                     <p  class="btn btn-warning btn-sm"><i class="far fa-thumbs-up  mr-1"></i>{{event.interested}} Interested</p>
                                 </div>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Event</button> -->
+                                    <a href="/search/Events">
+                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-calendar-alt mx-1"></i> Events</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{event.name}}</h5>
@@ -90,7 +93,9 @@
                                     <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Rent</button> -->
+                                    <a href="/search/Rents">
+                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-bed mx-1"></i> Rents</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{rent.name}}</h5>
@@ -124,7 +129,9 @@
                                     <p v-if="job.applied>0" class="btn btn-success btn-sm small"><i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</p>
                                 </div>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Job</button> -->
+                                    <a href="/search/Jobs">
+                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{job.title}}</h5>
@@ -150,7 +157,9 @@
                                     <p v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Service</button> -->
+                                    <a href="/search/Services">
+                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-tools mx-1"></i> Services</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{service.name}}</h5>
@@ -178,7 +187,9 @@
                                     <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <!-- <button class="btn btn-outline-info btn-xs py-1"><i class="fas fa-mug-hot mx-1"></i>Restuarant</button> -->
+                                    <a href="/search/Restaurants">
+                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-pizza-slice mx-1"></i> Restaurants</p>
+                                    </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{restaurant.name}}</h5>

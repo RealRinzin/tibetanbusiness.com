@@ -208,6 +208,11 @@ export default {
             this.filter.from = from;
             // Slider Range
             $( function() {
+                // axios.get('https://tibetanbusiness.com:8890/api/rent/list/max_fare')
+                // .then(response=>{
+                //    const max_price = response.data;
+                // });
+                // console.log(max_price);
                 $( "#slider-range" ).slider({
                 range: true,
                 min: 0,

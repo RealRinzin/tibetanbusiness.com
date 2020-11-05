@@ -21,6 +21,7 @@ class RestaurantOperationDayController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request;
         $operation_days = RestaurantOperationDay::create($request->all());
 
     }

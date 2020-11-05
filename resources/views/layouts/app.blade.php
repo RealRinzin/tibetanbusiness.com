@@ -171,7 +171,12 @@
                 @endif
                 @if(!Request::is('/'))
                 <div class="alert alert-secondary alert-dismissible fade show m-1 rounded-0 text-center w-100 d-block d-sm-none" role="alert" id="mobile_add_promote_link">
-                    <button class="btn btn-warning">Add Business</button>
+                    @guest
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#login">Add Business</button>
+                    @else
+                    <a class="btn btn-warning" href="/dashboard/event">Add Business</a>
+                    @endguest
+
                     <button class="btn btn-warning d-none">Promote Business</button>
                     <button type="button" class="close text-dark" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

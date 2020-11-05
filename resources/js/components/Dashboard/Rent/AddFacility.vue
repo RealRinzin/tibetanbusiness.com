@@ -165,7 +165,7 @@ export default {
     data(){
         return{
             facilities:{
-                rent_basic_info_id:this.id,
+                rent_basic_info_id:'',
                 wifi:false,
                 geyser:false,
                 ac:false,
@@ -192,6 +192,7 @@ export default {
         // Create New Facility
         // For Restaurant
         create(){
+            this.facilities.rent_basic_info_id = this.id;
             axios.post('/api/rent_facilities',this.facilities,{
                 headers : { Authorization : localStorage.getItem("token")}
                 })
@@ -203,7 +204,7 @@ export default {
                         title:'Facility Added',
                     });
                     // reload
-                    // location.reload();
+                    location.reload();
                 })
         },
     },

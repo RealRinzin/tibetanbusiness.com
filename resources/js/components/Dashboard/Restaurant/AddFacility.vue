@@ -153,7 +153,7 @@ export default {
     data(){
         return{
             facilities:{
-                restaurant_basic_info_id:this.restaurant_id,
+                restaurant_basic_info_id:'',
                 home_delivery:false,
                 wifi:false,
                 party_booking:false,
@@ -178,6 +178,7 @@ export default {
         // Create New Facility
         // For Restaurant
         create(){
+            this.facilities.restaurant_basic_info_id = this.restaurant_id,
             axios.post('/api/restaurant_facilities',this.facilities,{
                 headers : { Authorization : localStorage.getItem("token")}
                 })

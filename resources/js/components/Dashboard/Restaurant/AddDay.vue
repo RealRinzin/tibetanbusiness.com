@@ -110,7 +110,7 @@ export default {
     data(){
         return{
             operation:{
-                restaurant_basic_info_id:this.id,
+                restaurant_basic_info_id:'',
                 monday:false,
                 tuesday:false,
                 wednesday:false,
@@ -129,9 +129,12 @@ export default {
         update_operation_days(day){
             this.operation[day] =! this.operation[day];
         },
+
         // Create New Facility
         // For Restaurant
         create(){
+            this.operation.restaurant_basic_info_id = this.id;
+            console.log(this.operation);
             axios.post('/api/restaurant_operation_days',this.operation,{
                 headers : { Authorization : localStorage.getItem("token")}
                 })
