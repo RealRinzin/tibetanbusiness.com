@@ -15,6 +15,8 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 5, $max = 1), // 48.8932,
         'entry_free' => $faker->randomElement([true,false]),
         'rate_color' => $faker->word(),
+        'card' => 'card',
+        'thumb' => 'thumb',
         'email' => $faker->email(),
         'location' => $faker->word(),
         'category' => $faker->word(),

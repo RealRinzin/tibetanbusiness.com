@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // factory(User::class, 1)->create();
+        factory(User::class, 1)->create();
         // ce015fe555df43a0848cf48cecee26ed
         // Restaurant DB Seed
         // factory(RestaurantBasicInfo::class, 10)->create();
@@ -70,11 +70,11 @@ class DatabaseSeeder extends Seeder
         // factory(JobInterest::class,10);
 
         // Event
-        // factory(EventBasicInfo::class,10)->create();
-        // factory(EventPhoto::class,20)->create();
-        // factory(EventInterest::class, 20)->create();
-        // factory(EventReview::class,20)->create();
-        // factory(EventReviewReply::class, 20)->create();
+        factory(EventBasicInfo::class,10)->create();
+        factory(EventPhoto::class,20)->create();
+        factory(EventInterest::class, 20)->create();
+        factory(EventReview::class,20)->create();
+        factory(EventReviewReply::class, 20)->create();
 
         // SALE
         // factory(SaleBasicInfo::class,10)->create();

@@ -12,6 +12,8 @@ $factory->define(JobBasicInfo::class, function (Faker $faker) {
         'banner' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg']),
         'organization' => $faker->word(),
         'title' => $faker->word(),
+        'thumb' => 'thumb',
+        'card' => 'card',
         'profession' => $faker->word(),
         'experience' => $faker->randomElement(['Not Required', '6 Months', '1 Yrs', '2 Yrs', '3 Yrs', '4 Yrs', '5 Yrs', '6 Yrs above']),
         'nature' => $faker->word(),

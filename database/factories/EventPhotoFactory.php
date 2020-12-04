@@ -14,6 +14,7 @@ $factory->define(EventPhoto::class, function (Faker $faker) {
         'event_basic_info_id' =>  function(){
             return EventBasicInfo::all()->random();
         },
+        'thumb' => 'thumb',
         // 'event_basic_info_id' => "23432432safasdf sadf",
         'user_id' => function () {
             return User::all()->random();

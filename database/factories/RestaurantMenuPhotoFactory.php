@@ -14,6 +14,7 @@ $factory->define(RestaurantMenuPhoto::class, function (Faker $faker) {
         'user_id' => function () {
             return User::all()->random();
         },
+        'thumb' => 'thumb',
         'restaurant_basic_info_id' => function () {
             return RestaurantBasicInfo::all()->random();
         }

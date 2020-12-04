@@ -13,6 +13,8 @@ $factory->define(RentBasicInfo::class, function (Faker $faker) {
         'fare' => $faker->numberBetween($min = 0, $max = 99999),
         'rate' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 5), // 48.8932,
         'rate_color' =>$faker->word(),
+        'thumb' => 'thumb',
+        'card' => 'card',
         'address' => $faker->address(),
         'banner' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg']),
         'location' => $faker->word(),
