@@ -13,6 +13,8 @@ $factory->define(SaleBasicInfo::class, function (Faker $faker) {
         'banner' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg']),
         'price' => $faker->numberBetween($min = 0, $max = 99999),
         'total_item' => $faker->randomDigit(),
+        'card' => 'card',
+        'thumb' => 'thumb',
         'address' => $faker->address(), // 48.8932,
         'location' => $faker->word(),
         'type' => $faker->word(),

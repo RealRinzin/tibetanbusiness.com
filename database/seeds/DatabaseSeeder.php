@@ -70,21 +70,21 @@ class DatabaseSeeder extends Seeder
         // factory(JobInterest::class,10);
 
         // Event
-        factory(EventBasicInfo::class,10)->create();
-        factory(EventPhoto::class,20)->create();
-        factory(EventInterest::class, 20)->create();
-        factory(EventReview::class,20)->create();
-        factory(EventReviewReply::class, 20)->create();
+        // factory(EventBasicInfo::class,10)->create();
+        // factory(EventPhoto::class,20)->create();
+        // factory(EventInterest::class, 20)->create();
+        // factory(EventReview::class,20)->create();
+        // factory(EventReviewReply::class, 20)->create();
 
         // SALE
         // factory(SaleBasicInfo::class,10)->create();
         // factory(SalePhoto::class,30)->create();
 
         // SERVICE
-        // factory(ServiceBasicInfo::class, 10)->create();
-        // factory(ServicePhoto::class, 10)->create();
-        // factory(ServiceReview::class, 10)->create();
-        // factory(ServiceWorkingDay::class, 10)->create();
-        // factory(ServiceReviewReply::class,10)->create();
+        factory(ServiceBasicInfo::class, 10)->create();
+        factory(ServicePhoto::class, 10)->create();
+        factory(ServiceReview::class, 10)->create();
+        factory(ServiceWorkingDay::class, 10)->create();
+        factory(ServiceReviewReply::class,10)->create();
     }
 }

@@ -15,6 +15,7 @@ $factory->define(ServicePhoto::class, function (Faker $faker) {
         'user_id' => function () {
             return User::all()->random();
         },
+        'thumb' => 'thumb',
         'service_basic_info_id' => function () {
             return ServiceBasicInfo::all()->random();
         }

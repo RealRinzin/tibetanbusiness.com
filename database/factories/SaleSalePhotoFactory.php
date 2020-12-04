@@ -14,6 +14,7 @@ $factory->define(SalePhoto::class, function (Faker $faker) {
         'user_id' => function () {
             return User::all()->random();
         },
+        'thumb' => 'thumb',
         'sale_basic_info_id' => function () {
             return SaleBasicInfo::all()->random();
         }
