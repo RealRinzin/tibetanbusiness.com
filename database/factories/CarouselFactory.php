@@ -1,8 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-// RInzin
-// making last setups
+// Seems like its working
 use App\Model;
 use App\LandingCarousel\Carousel;
 use Faker\Generator as Faker;
