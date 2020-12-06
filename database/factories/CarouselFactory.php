@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
+// RInzin
 use App\Model;
 use App\LandingCarousel\Carousel;
 use Faker\Generator as Faker;
