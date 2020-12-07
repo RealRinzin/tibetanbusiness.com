@@ -32,6 +32,8 @@ use App\Service\ServiceReview;
 use App\Service\ServiceReviewReply;
 use App\Service\ServiceWorkingDay;
 use App\User;
+use App\Location\Location;
+use App\Category\Category;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
@@ -42,7 +44,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 1)->create();
+        // factory(User::class, 1)->create();
+        // location
+        factory(Location::class,10)->create();
+        // category
+        factory(Category::class,30)->create();
+
         // ce015fe555df43a0848cf48cecee26ed
         // Restaurant DB Seed
         // factory(RestaurantBasicInfo::class, 10)->create();
@@ -81,10 +88,10 @@ class DatabaseSeeder extends Seeder
         // factory(SalePhoto::class,30)->create();
 
         // SERVICE
-        factory(ServiceBasicInfo::class, 10)->create();
-        factory(ServicePhoto::class, 10)->create();
-        factory(ServiceReview::class, 10)->create();
-        factory(ServiceWorkingDay::class, 10)->create();
-        factory(ServiceReviewReply::class,10)->create();
+        // factory(ServiceBasicInfo::class, 10)->create();
+        // factory(ServicePhoto::class, 10)->create();
+        // factory(ServiceReview::class, 10)->create();
+        // factory(ServiceWorkingDay::class, 10)->create();
+        // factory(ServiceReviewReply::class,10)->create();
     }
 }
