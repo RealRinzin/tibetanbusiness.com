@@ -153,7 +153,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('status', '=', true)
             ->inRandomOrder()
-            ->limit('4')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
             
         return $sales->toArray($sales);
@@ -162,7 +162,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('featured_ad', '=', true)
             ->inRandomOrder()
-            ->limit('4')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
@@ -171,7 +171,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('home_ad', '=', true)
             ->orderBy('created_at', 'desc')
-            ->limit('4')
+            ->limit('1')
             ->inRandomOrder()->get();
         return $sales->toArray($sales);
     }
@@ -180,7 +180,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('sidebar_ad', '=', true)
             ->inRandomOrder()
-            ->limit('4')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }

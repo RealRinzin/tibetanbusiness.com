@@ -13,8 +13,8 @@
                     <div class="col-md-4 my-2" v-if="sale_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper  class="col-md-4 col-sm-6 swiper info my-2" :options="settings"  v-else>
-                        <swiper-slide v-for="(sale,index) in sales" :key="index">
+                    <div class="col-md-4 col-sm-6 info my-2" v-else>
+                        <div v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
@@ -35,16 +35,14 @@
                                     <h6>{{sale.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                        </div>
+                    </div>
                     <!-- Events -->
                     <div class="col-md-4 my-2" v-if="event_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper class="col-md-4 my-2 col-sm-6 col-12 swiper info" :options="settings" v-else>
-                        <swiper-slide v-for="(event,index) in events" :key="index">
+                    <div class="col-md-4 my-2 col-sm-6 col-12 info"  v-else>
+                        <div v-for="(event,index) in events" :key="index">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
@@ -69,16 +67,14 @@
                                     <h6>{{event.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                        </div>
+                    </div>
                     <!-- Rents -->
                     <div class="col-md-4 my-2" v-if="rent_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="swiper my-2 col-md-4 col-sm-6 info" :options="settings">
-                        <swiper-slide v-for="(rent,index) in rents" :key="index">
+                    <div v-else class="my-2 col-md-4 col-sm-6 info">
+                        <div v-for="(rent,index) in rents" :key="index">
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
@@ -103,16 +99,14 @@
                                     <h6>{{rent.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                        </div>
+                    </div>
                     <!-- Job -->
                     <div class="col-md-4 my-2" v-if="job_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 my-2 col-sm-6 swiper info" :options="settings">
-                        <swiper-slide v-for="(job,index) in jobs" :key="index">
+                    <div v-else class="col-md-4 my-2 col-sm-6 info">
+                        <div v-for="(job,index) in jobs" :key="index">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
@@ -139,16 +133,14 @@
                                     <h6>{{job.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                        </div>
+                    </div>
                     <!-- Service -->
                     <div class="col-md-4 my-2 my-2" v-if="service_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 my-2 col-sm-6 swiper" :options="settings">
-                        <swiper-slide v-for="(service,index) in services" :key="index">
+                    <div v-else class="col-md-4 my-2 col-sm-6">
+                        <div v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
                                     <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto"></div>
@@ -167,17 +159,14 @@
                                     <h6>{{service.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                        </div>
+                    </div>
                     <!-- Restaurant -->
                     <div class="col-md-4 my-2" v-if="restaurant_loading">
                         <lazy-loading></lazy-loading>
                     </div>
-                    <swiper v-else class="col-md-4 my-2 col-sm-6 col-12 swiper" :options="settings">
-                        <swiper-slide v-for="(restaurant,index) in restaurants" :key="index">
-                            <div class="card">
+                    <div class="col-md-4 my-2 col-sm-6 col-12" v-else>
+                            <div class="card" v-for="(restaurant,index) in restaurants" :key="index">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
@@ -197,10 +186,7 @@
                                     <h6>{{restaurant.location}}</h6>
                                 </div>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-button-next" slot="button-next"></div>
-                        <div class="swiper-button-prev" slot="button-prev"></div>
-                    </swiper>
+                    </div>
                 </div>
             </div>
         </div>
@@ -294,6 +280,7 @@
                         this.restaurants = response.data;
                         this.restaurants.total = response.data.total;
                         this.restaurant_loading = false;
+                        console.log(this.restaurants);
                         // rate background
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){

@@ -335,7 +335,7 @@ class RentBasicInfoController extends Controller
     public function all(){
     $rents =  RentBasicInfo::where('status', '=', true)
         ->orderBy('created_at', 'desc')
-        ->limit(4)
+        ->limit('1')
         ->inRandomOrder()->get();
     return $rents->toArray($rents);
     }
@@ -344,7 +344,7 @@ class RentBasicInfoController extends Controller
     {
         $rents =  RentBasicInfo::where('featured_ad', '=', true)
             ->orderBy('created_at', 'desc')
-            ->limit(4)
+            ->limit('1')
             ->inRandomOrder()->get();
         return $rents->toArray($rents);
     }
@@ -353,7 +353,7 @@ class RentBasicInfoController extends Controller
     {
         $rents =  RentBasicInfo::where('home_ad', '=', true)
             ->inRandomOrder()
-            ->limit(4)
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
@@ -362,7 +362,7 @@ class RentBasicInfoController extends Controller
     {
         $rents =  RentBasicInfo::where('sidebar_ad', '=', true)
             ->inRandomOrder()
-            ->limit(4)
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
