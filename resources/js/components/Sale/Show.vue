@@ -61,6 +61,7 @@
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
+                                <side-bar :location="location"></side-bar>
                                 <sidebar></sidebar>
                             </div>
                     </div>
@@ -75,6 +76,7 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
+import SideBar from '../Sidebar/Sidebar.vue'
 // import EventReview from './Review.vue';
 // import format from 'date-fns/format';
 import { compareAsc, format } from 'date-fns';
@@ -88,6 +90,7 @@ export default {
             isLoading : false,//Lazy loading
             loading:false, //loading
             rating:0,
+            location:'',
         }
     },
     methods:{
@@ -98,17 +101,18 @@ export default {
                 this.sale = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
+                this.location = this.sale.location;
             })
         },
     },
-    // Filer
+    // Filter
     filters:{
         date(str){
             return format(new Date(str), 'EE, MMM dd, yyyy');
         }
     },
     // Components
-    components:{Loading,Photo},
+    components:{Loading,Photo,SideBar},
     mounted(){
         this.load_sale();
     }
