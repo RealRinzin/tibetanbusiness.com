@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <!-- Event -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="events !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" alt="">POPULAR - UPCOMING EVENTS</a>
             </h6>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- Sales -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="sales !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Sales'"><img src="/img/sale.png" class="mr-2" alt="">POPULAR SALES</a>
             </h6>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <!-- Rents -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="rents !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Rents'"><img src="/img/rent.png" class="mr-2" alt="">POPULAR RENTS</a>
             </h6>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <!-- Jobs -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="jobs !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</a>
             </h6>
@@ -124,7 +124,7 @@
             </div>
         </div>
         <!-- Services -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="services !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Services'"><img src="/img/service.png" class="mr-2" alt="">POPULAR SERVICES</a>
             </h6>
@@ -155,7 +155,7 @@
             </div>
         </div>
         <!-- Restaurants -->
-        <div class="col-md-10 mx-auto my-4">
+        <div class="col-md-10 mx-auto my-4" v-if="restaurants !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" alt="">POPULAR RESTAURANTS</a>
             </h6>

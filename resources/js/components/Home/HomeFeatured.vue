@@ -10,10 +10,10 @@
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
-                    <div class="col-md-4 my-2" v-if="sale_loading">
+                    <!-- <div class="col-md-4 my-2" v-if="sale_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div class="col-md-4 col-sm-6 info my-2" v-else>
+                    </div> -->
+                    <div class="col-md-4 col-sm-6 info my-2" v-if="sales != ''">
                         <div v-for="(sale,index) in sales" :key="index">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
@@ -38,10 +38,10 @@
                         </div>
                     </div>
                     <!-- Events -->
-                    <div class="col-md-4 my-2" v-if="event_loading">
+                    <!-- <div class="col-md-4 my-2" v-if="event_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div class="col-md-4 my-2 col-sm-6 col-12 info"  v-else>
+                    </div> -->
+                    <div class="col-md-4 my-2 col-sm-6 col-12 info" v-if="events !=''">
                         <div v-for="(event,index) in events" :key="index">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
@@ -70,10 +70,10 @@
                         </div>
                     </div>
                     <!-- Rents -->
-                    <div class="col-md-4 my-2" v-if="rent_loading">
+                    <!-- <div class="col-md-4 my-2" v-if="rent_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div v-else class="my-2 col-md-4 col-sm-6 info">
+                    </div> -->
+                    <div class="my-2 col-md-4 col-sm-6 info" v-if="rents !=''">
                         <div v-for="(rent,index) in rents" :key="index">
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
@@ -102,10 +102,10 @@
                         </div>
                     </div>
                     <!-- Job -->
-                    <div class="col-md-4 my-2" v-if="job_loading">
+                    <!-- <div class="col-md-4 my-2" v-if="job_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div v-else class="col-md-4 my-2 col-sm-6 info">
+                    </div> -->
+                    <div  class="col-md-4 my-2 col-sm-6 info" v-if="jobs !=''">
                         <div v-for="(job,index) in jobs" :key="index">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
@@ -136,10 +136,10 @@
                         </div>
                     </div>
                     <!-- Service -->
-                    <div class="col-md-4 my-2 my-2" v-if="service_loading">
+                    <!-- <div class="col-md-4 my-2 my-2" v-if="service_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div v-else class="col-md-4 my-2 col-sm-6">
+                    </div> -->
+                    <div  class="col-md-4 my-2 col-sm-6" v-if="services !=''">
                         <div v-for="(service,index) in services" :key="index">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
@@ -162,10 +162,10 @@
                         </div>
                     </div>
                     <!-- Restaurant -->
-                    <div class="col-md-4 my-2" v-if="restaurant_loading">
+                    <!-- <div class="col-md-4 my-2" v-if="restaurant_loading">
                         <lazy-loading></lazy-loading>
-                    </div>
-                    <div class="col-md-4 my-2 col-sm-6 col-12" v-else>
+                    </div> -->
+                    <div class="col-md-4 my-2 col-sm-6 col-12" v-if="restaurants!=''">
                             <div class="card" v-for="(restaurant,index) in restaurants" :key="index">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
@@ -280,7 +280,6 @@
                         this.restaurants = response.data;
                         this.restaurants.total = response.data.total;
                         this.restaurant_loading = false;
-                        console.log(this.restaurants);
                         // rate background
                         for (let index = 0; index < response.data.length; index++) {
                             if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){

@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantBasicInfoController extends Controller
 {
-    protected $path = '/Project Directory/tibetanbusiness.com/public/storage/Restaurant/Banner/';
+    protected $path = '../public/storage/Restaurant/Banner/';
+    // protected $path = $_SERVER['DOCUMENT_ROOT'].'/storage/Restaurant/Banner/';
+
+    
     /**
      * Display a listing of the resource.
      *
