@@ -281,7 +281,7 @@ class EventBasicInfoController extends Controller
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('status', '=', true)
             ->where('start_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -313,6 +313,14 @@ class EventBasicInfoController extends Controller
             ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
+    }
+    // sidebar location
+    public function sidebar(Request $request,$location){
+        $sales =  EventBasicInfo::where('location', 'like', "$location%")
+        ->inRandomOrder()
+        ->orderBy('created_at', 'desc')->paginate('4');
+        return $sales->toArray($sales);
+
     }
     // Search View
     public function search_engine(Request $request)

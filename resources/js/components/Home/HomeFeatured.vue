@@ -42,7 +42,7 @@
                         <lazy-loading></lazy-loading>
                     </div> -->
                     <div class="col-md-4 my-2 col-sm-6 col-12 info" v-if="events !=''">
-                        <div v-for="(event,index) in events" :key="index">
+                        <div v-for="(event,index) in events" :key="index"  v-if="index <= 0">
                             <div class="card">
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
@@ -74,7 +74,7 @@
                         <lazy-loading></lazy-loading>
                     </div> -->
                     <div class="my-2 col-md-4 col-sm-6 info" v-if="rents !=''">
-                        <div v-for="(rent,index) in rents" :key="index">
+                        <div v-for="(rent,index) in rents" :key="index" v-if="index <= 0">
                             <div class="card">
                                 <a v-bind:href="'rent/'+rent.id">
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
@@ -106,7 +106,7 @@
                         <lazy-loading></lazy-loading>
                     </div> -->
                     <div  class="col-md-4 my-2 col-sm-6 info" v-if="jobs !=''">
-                        <div v-for="(job,index) in jobs" :key="index">
+                        <div v-for="(job,index) in jobs" :key="index" v-if="index <= 0">
                             <div class="card">
                                 <a v-bind:href="'job/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
@@ -140,7 +140,7 @@
                         <lazy-loading></lazy-loading>
                     </div> -->
                     <div  class="col-md-4 my-2 col-sm-6" v-if="services !=''">
-                        <div v-for="(service,index) in services" :key="index">
+                        <div v-for="(service,index) in services" :key="index" v-if="index <= 0">
                             <div class="card">
                                 <a v-bind:href="'service/'+service.id">
                                     <div class="list lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto"></div>
@@ -165,8 +165,8 @@
                     <!-- <div class="col-md-4 my-2" v-if="restaurant_loading">
                         <lazy-loading></lazy-loading>
                     </div> -->
-                    <div class="col-md-4 my-2 col-sm-6 col-12" v-if="restaurants!=''">
-                            <div class="card" v-for="(restaurant,index) in restaurants" :key="index">
+                    <div class="col-md-4 my-2 col-sm-6 col-12" v-if="restaurants !=''">
+                            <div class="card" v-for="(restaurant,index) in restaurants" :key="index" v-if="index <= 0">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
@@ -233,12 +233,14 @@
                 load:false,
                 isLoading : false,//Lazy loading
                 // Objects
-                restaurants:{total:0},
-                events:{total:0},
-                rents:{total:0},
-                jobs:{total:0},
-                sales:{total:0},
-                services:{total:0},
+                // restaurants:{total:0},
+                restaurants:[],
+                events:[],
+                rents:[],
+                jobs:[],
+                // sales:{total:0},
+                sales:[],
+                services:[],
                 // total
                 // Loading
                 event_loading:true,
@@ -437,13 +439,13 @@
                 .then(response=>{
                     if (response.data.length > 0) {
                         this.sale_loading =false,
-                        this.sales = response.data;
+                        this.sales = response.data[0];
                     this.placeholder = false;
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
                         this.sale_loading=false,
-                            this.sales = response.data;
+                            this.sales.push(response.data[0]);
                         })
                     }
                 })

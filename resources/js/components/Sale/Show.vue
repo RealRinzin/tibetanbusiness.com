@@ -31,7 +31,7 @@
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
                                                     <div class="col-md-6 col-sm-6">
-                                                        <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{sale.name}}</h6>
+                                                        <h6 class="text-dark py-1 font-weight-bolder"><i class="fas fa-calendar-alt mr-2"></i>{{sale.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{sale.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{sale.location}}</h6>
                                                     </div>
@@ -61,7 +61,7 @@
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
-                                <side-bar :location="location"></side-bar>
+                                <side-bar :location="location" :sale_id="id"></side-bar>
                                 <sidebar></sidebar>
                             </div>
                     </div>

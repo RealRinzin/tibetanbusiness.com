@@ -388,6 +388,14 @@ class RestaurantBasicInfoController extends Controller
         return $restaurants->toArray($restaurants);
 
     }
+    // Sidebar
+    public function sidebar(Request $request,$location){
+        $restaurants =  RestaurantBasicInfo::where('location', 'like', "$location%")
+        ->inRandomOrder()
+        ->orderBy('created_at', 'desc')->paginate('4');
+        return $restaurants->toArray($restaurants);
+
+    }
 
     // Search View
     public function search_engine(Request $request){

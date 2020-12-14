@@ -11,7 +11,6 @@
                     <a v-bind:href="'/sale/'+sale.id">
                     <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                     <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"></div>
-
                     </a>
                     <h6 class="text-dark pt-3">{{sale.name}}</h6>
                     <p class="text-muted my-0">{{sale.mobile_no}}</p>

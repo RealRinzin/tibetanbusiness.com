@@ -153,7 +153,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('status', '=', true)
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get();
             
         return $sales->toArray($sales);
@@ -183,6 +183,14 @@ class SaleBasicInfoController extends Controller
             ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
+    }
+    // sidebar location
+    public function sidebar(Request $request,$location){
+        $sales =  SaleBasicInfo::where('location', 'like', "$location%")
+        ->inRandomOrder()
+        ->orderBy('created_at', 'desc')->paginate('3');
+        return $sales->toArray($sales);
+
     }
     // User Job
     public function user_sale()

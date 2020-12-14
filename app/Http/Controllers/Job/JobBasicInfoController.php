@@ -298,6 +298,14 @@ class JobBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
+    // Sidebar
+    public function sidebar(Request $request,$location){
+        $jobs=  JobBasicInfo::where('location', 'like', "$location%")
+        ->inRandomOrder()
+        ->orderBy('created_at', 'desc')->paginate('4');
+        return $jobs->toArray($jobs);
+
+    }
     // User Job
     public function user_job()
     {

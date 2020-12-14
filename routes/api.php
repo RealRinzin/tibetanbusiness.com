@@ -142,6 +142,8 @@ use Illuminate\Http\Request;
     Route::get('restaurant/{restaurant_basic_info}/food_photos', 'Restaurant\RestaurantFoodPhotoController@photos');
     Route::get('restaurant/{restaurant_basic_info}/menu_photos', 'Restaurant\RestaurantMenuPhotoController@photos');
     Route::get('restaurant_comment_replies/{id}', 'Restaurant\RestaurantCommentReplyController@show');
+    Route::get('restaurant/list/sidebar/{location}', 'Restaurant\RestaurantBasicInfoController@sidebar');
+
 
 
 /**
@@ -161,6 +163,8 @@ use Illuminate\Http\Request;
     Route::get('rent_comment_replies/{id}', 'Rent\RentCommentReplyController@show');
     Route::get('rent/list/max_fare', 'Rent\RentBasicInfoController@max_fare');
     Route::get('rent/list/min_fare', 'Rent\RentBasicInfoController@min_fare');
+    Route::get('rent/list/sidebar/{location}', 'Rent\RentBasicInfoController@sidebar');
+
 
         // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
 
@@ -179,6 +183,7 @@ use Illuminate\Http\Request;
     Route::get('job/list/home_ad', 'Job\JobBasicInfoController@home_ad');
     Route::get('job/{job_question}/reply', 'Job\JobQuestionReplyController@reply');
     Route::get('job_question_reply/{id}', 'Job\JobQuestionReplyController@show');
+    Route::get('job/list/sidebar/{location}', 'Job\JobBasicInfoController@sidebar');
 
     /**
      * Event API 
@@ -194,6 +199,7 @@ use Illuminate\Http\Request;
     Route::get('event/{event_basic_info}/reviews', 'Event\EventReviewController@review');
     Route::get('event/{event_review}/reply', 'Event\EventReviewReplyController@reply');
     Route::get('event_review_replies/{id}', 'Event\EventReviewReplyController@show');
+    Route::get('event/list/sidebar/{location}', 'Event\EventBasicInfoController@sidebar');
 
     /**
      * SALE API 
@@ -206,6 +212,7 @@ use Illuminate\Http\Request;
     Route::get('sale/list/home_ad', 'Sale\SaleBasicInfoController@home_ad');
     Route::get('sale/{sale_basic_info}/photos', 'Sale\SalePhotoController@photo');
     Route::get('sale/view/{id}', 'Sale\SaleBasicInfoController@display');
+    Route::get('sale/list/sidebar/{location}', 'Sale\SaleBasicInfoController@sidebar');
 
     /**
      * SERVICE API 
