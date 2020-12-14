@@ -62,7 +62,7 @@
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12">
                                 <side-bar :location="location" :sale_id="id"></side-bar>
-                                <sidebar></sidebar>
+                                <!-- <sidebar></sidebar> -->
                             </div>
                     </div>
                 </div>

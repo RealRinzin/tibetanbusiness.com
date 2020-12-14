@@ -182,7 +182,7 @@ class ServiceBasicInfoController extends Controller
     {
         $service =  ServiceBasicInfo::where('status', '=', true)
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
@@ -190,7 +190,7 @@ class ServiceBasicInfoController extends Controller
     {
         $service =  ServiceBasicInfo::where('featured_ad', '=', true)
             ->inRandomOrder()
-            ->limit('1')
+            ->limit('4')
             ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
@@ -199,7 +199,7 @@ class ServiceBasicInfoController extends Controller
     {
         $services =  ServiceBasicInfo::where('home_ad', '=', true)
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $services->toArray($services);
     }
@@ -211,6 +211,14 @@ class ServiceBasicInfoController extends Controller
             ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
+    }
+    // sidebar
+    public function sidebar(Request $request,$location){
+        $services =  ServiceBasicInfo::where('location', 'like', "$location%")
+        ->inRandomOrder()
+        ->orderBy('created_at', 'desc')->paginate('4');
+        return $services->toArray($services);
+
     }
     // user service
     public function user_service()

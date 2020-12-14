@@ -229,6 +229,8 @@ use Illuminate\Http\Request;
     Route::get('service/view/{id}', 'Service\ServiceBasicInfoController@display');
     Route::get('service/{service_review}/reply', 'Service\ServiceReviewReplyController@reply');
     Route::get('service_review_replies/{id}', 'Service\ServiceReviewReplyController@show');
+    Route::get('service/list/sidebar/{location}', 'Service\ServiceBasicInfoController@sidebar');
+
 
 
 // Search Result
