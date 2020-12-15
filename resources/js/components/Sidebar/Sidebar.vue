@@ -19,7 +19,7 @@
     </div>
     <!-- Events -->
     <div class="card p-2 my-2" v-if="events != ''">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Event - {{event_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Events - {{event_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(event,index) in events" v-if="index <= 3">
                 <a v-bind:href="'/event/'+event.id">
@@ -37,7 +37,7 @@
     </div>
     <!-- Rents -->
     <div class="card p-2 my-2" v-if="rents != ''">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rent - {{rent_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents - {{rent_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(rent,index) in rents" v-if="index <= 3">
                 <a v-bind:href="'/rent/'+rent.id">
@@ -54,7 +54,7 @@
     </div>
     <!-- Jobs -->
     <div class="card p-2 my-2" v-if="jobs != ''">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> job - {{job_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Jobs - {{job_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
                 <a v-bind:href="'/job/'+job.id">
@@ -70,7 +70,7 @@
     </div>
     <!-- Restaurant -->
     <div class="card p-2 my-2" v-if="restaurants != ''">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> restaurant - {{restaurant_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Restarants - {{restaurant_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(restaurant,index) in restaurants" v-if="index <= 3">
                 <a v-bind:href="'/restaurant/'+restaurant.id">
@@ -105,6 +105,8 @@
 </div>
 </template>
 <script>
+import Sidebar from '../Home/Sidebar.vue';
+import SaleSidebar from './Sale.vue';
 export default {
     props:['sale_id','location'],
     data(){
@@ -296,6 +298,7 @@ export default {
         }
 
     },
+    components:{SaleSidebar},
     mounted(){
         this.sale();
         this.event();

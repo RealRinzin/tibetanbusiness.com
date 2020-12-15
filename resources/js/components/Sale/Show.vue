@@ -60,9 +60,14 @@
                                 </div>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
-                                <side-bar :location="location" :sale_id="id"></side-bar>
-                                <!-- <sidebar></sidebar> -->
+                            <div class="col-md-4 col-sm-12" id="sidebar">
+                                <sale-sidebar :location="location" :sale_id="id"></sale-sidebar>
+                                <event-sidebar :location="location"></event-sidebar>
+                                <job-sidebar :location="location"></job-sidebar>
+                                <rent-sidebar :location="location"></rent-sidebar>
+                                <restaurant-sidebar :location="location"></restaurant-sidebar>
+                                <service-sidebar :location="location"></service-sidebar>
+                                <!-- <side-bar :location="location" :sale_id="id"></side-bar> -->
                             </div>
                     </div>
                 </div>
@@ -77,9 +82,16 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 import SideBar from '../Sidebar/Sidebar.vue'
-// import EventReview from './Review.vue';
-// import format from 'date-fns/format';
+// Sidebars
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
+// Date
 import { compareAsc, format } from 'date-fns';
+import Rent from '../Home/Featured/Rent.vue';
 
 export default {
     props:['sale_id'],
@@ -112,7 +124,7 @@ export default {
         }
     },
     // Components
-    components:{Loading,Photo,SideBar},
+    components:{Loading,Photo,SideBar,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_sale();
     }
