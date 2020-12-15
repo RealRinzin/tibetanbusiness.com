@@ -2,7 +2,7 @@
 <div id="sidebar" class="py-2" >
     <!-- sales -->
     <div class="card p-2" v-if="sales != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Sales - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Sales - {{place}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(sale,index) in sales" v-if="index <= 3">
                 <a v-bind:href="'/sale/'+sale.id">
@@ -19,7 +19,7 @@
     </div>
     <!-- Events -->
     <div class="card p-2 my-2" v-if="events != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Event - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Event - {{event_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(event,index) in events" v-if="index <= 3">
                 <a v-bind:href="'/event/'+event.id">
@@ -37,7 +37,7 @@
     </div>
     <!-- Rents -->
     <div class="card p-2 my-2" v-if="rents != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rent - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rent - {{rent_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(rent,index) in rents" v-if="index <= 3">
                 <a v-bind:href="'/rent/'+rent.id">
@@ -54,7 +54,7 @@
     </div>
     <!-- Jobs -->
     <div class="card p-2 my-2" v-if="jobs != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> job - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> job - {{job_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
                 <a v-bind:href="'/job/'+job.id">
@@ -70,7 +70,7 @@
     </div>
     <!-- Restaurant -->
     <div class="card p-2 my-2" v-if="restaurants != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> restaurant - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> restaurant - {{restaurant_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(restaurant,index) in restaurants" v-if="index <= 3">
                 <a v-bind:href="'/restaurant/'+restaurant.id">
@@ -87,7 +87,7 @@
     </div>
     <!-- Service -->
     <div class="card p-2 my-2" v-if="services != ''">
-        <h6 class="py-2 font-weight-bolder text-dark"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services - {{place}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services - {{service_location}}</h6>
         <div class="row">
             <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 3">
                 <a v-bind:href="'/service/'+service.id">
@@ -116,6 +116,12 @@ export default {
             services:[],
             restaurants:[],
             jobs:[],
+            //Location
+            event_location:'Other Places',
+            rent_location:'Other Places',
+            service_location:'Other Places',
+            restaurant_location:'Other Places',
+            job_location:'Other Places',
             
         }
     },
@@ -179,6 +185,7 @@ export default {
             .then(response=>{
                 if(response.data.data.length > 0){
                     this.rents = response.data.data;
+                    this.event_location = this.location;
                 }else{
                     axios.get('/api/rent/list/sidebar_ad')
                     .then(response=>{
@@ -199,6 +206,7 @@ export default {
             .then(response=>{
                 if(response.data.data.length > 0){
                     this.jobs = response.data.data;
+                    this.job_location = this.location;
                 }else{
                     axios.get('/api/job/list/sidebar_ad')
                     .then(response=>{
@@ -218,7 +226,8 @@ export default {
             axios.get('/api/restaurant/list/sidebar/'+this.location)
             .then(response=>{
                 if(response.data.data.length > 0){
-                    // this.restaurants = response.data.data;
+                    this.restaurants = response.data.data;
+                    this.restaurant_location = this.location;
                 }else{
                     axios.get('/api/restaurant/list/sidebar_ad')
                     .then(response=>{
@@ -254,7 +263,8 @@ export default {
             axios.get('/api/service/list/sidebar/'+this.location)
             .then(response=>{
                 if(response.data.data.length > 0){
-                    // this.services = response.data.data;
+                    this.services = response.data.data;
+                    this.service_location = this.location;
                 }else{
                     axios.get('/api/service/list/sidebar_ad')
                     .then(response=>{
