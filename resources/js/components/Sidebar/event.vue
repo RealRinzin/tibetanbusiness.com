@@ -18,13 +18,14 @@
     </div>
 </template>
 <script>
+import { lastDayOfDecade } from 'date-fns';
 export default {
-    props:['location'],
+    props:['location','id'],
      data(){
         return{
             place:this.location,
             events:[],
-            event_location:'other places'
+            event_location:"Other Places"
         }
     },
     methods:{
@@ -32,19 +33,67 @@ export default {
         event(){
             axios.get('/api/event/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length > 0){
-                    this.events = response.data.data;
-                }else{
-                    axios.get('/api/event/list/sidebar_ad')
-                    .then(response=>{
-                        if(response.data.length > 0){
-                            this.events = response.data;
-                        }else{
-                            axios.get('/api/event/list/all').then(response=>{
-                                this.events = response.data;
-                            })
+                if(this.id !== undefined){
+                    if(response.data.data.length > 1){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.events.push(response.data.data[i]);
+                            }
                         }
-                    })
+                    this.event_location = this.location;
+                    }else{
+                        axios.get('/api/event/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.events.push(response.data[i]);
+                                        this.event_location = this.location
+                                    }
+                            }}
+                            else{
+                            axios.get('/api/event/list/all').then(response=>{
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.events.push(response.data[i]);
+                                        this.event_location = this.location
+                                    }
+                                }
+                            })}
+                        })
+                    }
+                // Else part for
+                // other businesses
+                }else{
+                    if(response.data.data.length > 1){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.events.push(response.data.data[i]);
+                            }
+                        }
+                    this.event_location = this.location;
+                
+                    }else{
+                        axios.get('/api/event/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.events.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                                axios.get('/api/event/list/all').then(response=>{
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        if(response.data[i].id != this.id){
+                                            this.events.push(response.data[i]);
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             })
         },

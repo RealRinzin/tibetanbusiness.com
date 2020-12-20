@@ -290,7 +290,7 @@ class EventBasicInfoController extends Controller
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('featured_ad', '=', true)
             ->where('start_date', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')
-            ->limit('1')
+            // ->limit('1')
             ->inRandomOrder()->get());
         return $events->toArray($events);
     }
@@ -300,7 +300,7 @@ class EventBasicInfoController extends Controller
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_ad', '=', true)
             ->where('start_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -310,7 +310,7 @@ class EventBasicInfoController extends Controller
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('sidebar_ad', '=', true)
             ->where('start_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }

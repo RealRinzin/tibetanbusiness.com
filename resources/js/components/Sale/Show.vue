@@ -67,7 +67,6 @@
                                 <rent-sidebar :location="location"></rent-sidebar>
                                 <restaurant-sidebar :location="location"></restaurant-sidebar>
                                 <service-sidebar :location="location"></service-sidebar>
-                                <!-- <side-bar :location="location" :sale_id="id"></side-bar> -->
                             </div>
                     </div>
                 </div>

@@ -84,9 +84,15 @@
                                 <event-review :event_id="id" :rating="rating" :avg_rating="event.rating"></event-review>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
+                            <div class="col-md-4 col-sm-12" id="sidebar">
                                 <!-- sidebar -->
-                                <sidebar></sidebar>
+                                <event-sidebar :location="event.location" :id="event.id"></event-sidebar>
+                               <sale-sidebar :location="event.location"></sale-sidebar>
+                                <job-sidebar :location="event.location"></job-sidebar>
+                                <rent-sidebar :location="event.location"></rent-sidebar>
+                                <restaurant-sidebar :location="event.location"></restaurant-sidebar>
+                                <service-sidebar :location="event.location"></service-sidebar>
+                                <!-- <sidebar></sidebar> -->
                             </div>
                     </div>
                 </div>
@@ -102,7 +108,13 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 import EventReview from './Review.vue';
 // import shareIt from "vue-share-it";
-
+// Sidebar
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
 // import format from 'date-fns/format';
 import { compareAsc, format } from 'date-fns';
 export default {
@@ -186,7 +198,7 @@ export default {
         }
     },
     // Components
-    components:{Loading,Photo,EventReview},
+    components:{Loading,Photo,EventReview,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_event();
     }

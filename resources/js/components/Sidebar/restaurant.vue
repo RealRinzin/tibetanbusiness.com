@@ -62,7 +62,6 @@ export default {
                     })
                 }
             })
-            console.log(this.restaurants);
         },
     },
     mounted(){
