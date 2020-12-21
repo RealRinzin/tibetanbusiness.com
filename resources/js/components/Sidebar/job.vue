@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-    props:['location'],
+    props:['location','id'],
          data(){
         return{
             place:this.location,
@@ -30,20 +30,66 @@ export default {
         job(){
             axios.get('/api/job/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length > 0){
-                    this.jobs = response.data.data;
-                    this.job_location = this.location;
-                }else{
-                    axios.get('/api/job/list/sidebar_ad')
-                    .then(response=>{
-                        if(response.data.length > 0){
-                            this.jobs = response.data;
-                        }else{
-                            axios.get('/api/job/list/all').then(response=>{
-                                this.jobs = response.data;
-                            })
+                if(this.id !== undefined){
+                    if(response.data.data.length > 1){
+                    console.log(response.data);
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.jobs.push(response.data.data[i]);
+                                this.job_location = this.location
+                            }
                         }
-                    })
+                    }else{
+                        axios.get('/api/job/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.jobs.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                            axios.get('/api/job/list/all').then(response=>{
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.jobs.push(response.data[i]);
+                                    }
+                                }
+                            })}
+                        })
+                    }
+                // Else part for
+                // other businesses
+                }else{
+                    if(response.data.data.length > 0){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.jobs.push(response.data.data[i]);
+                                    this.job_location = this.location
+                            }
+                        }
+                    }else{
+                        axios.get('/api/job/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.jobs.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                                axios.get('/api/job/list/all').then(response=>{
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        if(response.data[i].id != this.id){
+                                            this.jobs.push(response.data[i]);
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             })
         },

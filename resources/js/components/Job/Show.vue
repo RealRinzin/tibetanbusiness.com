@@ -134,9 +134,14 @@
                                 <job-question :job_uuid="job.id"></job-question>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
+                            <div class="col-md-4 col-sm-12" id="sidebar">
                                 <!-- sidebar -->
-                                <sidebar></sidebar>
+                                <job-sidebar :location="location" :id="id"></job-sidebar>
+                                <rent-sidebar :location="location"></rent-sidebar>
+                                <sale-sidebar :location="location"></sale-sidebar>
+                                <event-sidebar :location="location"></event-sidebar>
+                                <restaurant-sidebar :location="location"></restaurant-sidebar>
+                                <service-sidebar :location="location"></service-sidebar>
                             </div>
                     </div>
                 </div>
@@ -150,6 +155,13 @@
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+// Sidebars
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
 import Apply from './Apply.vue';
 export default {
     props:['job_id'],
@@ -166,6 +178,7 @@ export default {
             applied_id:'',
             interested:false,
             interested_id:'',
+            location:'',
         }
     },
     methods:{
@@ -177,6 +190,7 @@ export default {
                 this.job = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
+                this.location = this.job.location;
                 // Check Login Status
                 axios.get('/login_status').then(response => {
                     if(response.data.status == true){
@@ -241,7 +255,7 @@ export default {
      * 
      * Components
      *  */  
-    components:{Loading,Apply},
+    components:{Loading,Apply,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_job();
     }

@@ -265,7 +265,7 @@ class JobBasicInfoController extends Controller
         $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('status', '=', true)
             ->where('deadline', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')
-            ->limit('1')
+            // ->limit('1')
             ->inRandomOrder()->get());    
         return $jobs->toArray($jobs);
 
@@ -284,7 +284,7 @@ class JobBasicInfoController extends Controller
     {
         $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('home_ad', '=', true)
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
@@ -294,7 +294,7 @@ class JobBasicInfoController extends Controller
         $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('sidebar_ad', '=', true)
             ->where('deadline', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            ->limit('1')
+            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
