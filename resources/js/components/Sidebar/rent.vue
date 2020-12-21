@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    props:['location'],
+    props:['location','id'],
          data(){
         return{
             place:this.location,
@@ -27,24 +27,69 @@ export default {
         }
     },
     methods:{
-        // Rent API
+        // Rent API'
         rent(){
             axios.get('/api/rent/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length > 0){
-                    this.rents = response.data.data;
-                    this.event_location = this.location;
-                }else{
-                    axios.get('/api/rent/list/sidebar_ad')
-                    .then(response=>{
-                        if(response.data.length > 0){
-                            this.rents = response.data;
-                        }else{
-                            axios.get('/api/rent/list/all').then(response=>{
-                                this.rents = response.data;
-                            })
+                if(this.id !== undefined){
+                    if(response.data.data.length > 1){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.rents.push(response.data.data[i]);
+                                this.rent_location = this.location
+                            }
                         }
-                    })
+                    }else{
+                        axios.get('/api/rent/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.rents.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                            axios.get('/api/rent/list/all').then(response=>{
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.rents.push(response.data[i]);
+                                    }
+                                }
+                            })}
+                        })
+                    }
+                // Else part for
+                // other businesses
+                }else{
+                    if(response.data.data.length > 0){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.rents.push(response.data.data[i]);
+                                    this.rent_location = this.location
+                            }
+                        }
+                    }else{
+                        axios.get('/api/rent/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.rents.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                                axios.get('/api/rent/list/all').then(response=>{
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        if(response.data[i].id != this.id){
+                                            this.rents.push(response.data[i]);
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             })
         },

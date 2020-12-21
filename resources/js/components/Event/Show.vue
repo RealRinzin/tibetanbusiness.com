@@ -88,8 +88,8 @@
                                 <!-- sidebar -->
                                 <event-sidebar :location="event.location" :id="event.id"></event-sidebar>
                                <sale-sidebar :location="event.location"></sale-sidebar>
-                                <job-sidebar :location="event.location"></job-sidebar>
                                 <rent-sidebar :location="event.location"></rent-sidebar>
+                                <job-sidebar :location="event.location"></job-sidebar>
                                 <restaurant-sidebar :location="event.location"></restaurant-sidebar>
                                 <service-sidebar :location="event.location"></service-sidebar>
                                 <!-- <sidebar></sidebar> -->

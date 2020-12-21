@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    props:['location'],
+    props:['location','id'],
          data(){
         return{
             place:this.location,
@@ -31,35 +31,65 @@ export default {
         restaurant(){
             axios.get('/api/restaurant/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length > 0){
-                    this.restaurants = response.data.data;
-                    this.restaurant_location = this.location;
-                }else{
-                    axios.get('/api/restaurant/list/sidebar_ad')
-                    .then(response=>{
-                        if(response.data.length > 0){
-                            this.restaurants = response.data;
-                        }else{
-                            axios.get('/api/restaurant/list/all').then(response=>{
-                                this.restaurants = response.data;
-                                for (let index = 0; index < response.data.length; index++) {
-                                    if(this.restaurants[index].rate >=0.0 && this.restaurants[index].rate <= 2.5){
-                                        this.restaurants[index].rate_color = 'btn-danger';
-                                    }else if(this.restaurants[index].rate >= 2.6 && this.restaurants[index].rate <= 3.5 ){
-                                        this.restaurants[index].rate_color = 'btn-warning';
-                                    }else if(this.restaurants[index].rate >= 3.6 && this.restaurants[index].rate <= 4.0 ){
-                                        this.restaurants[index].rate_color = 'btn-info';
-                                    }else if(this.restaurants[index].rate >= 4.1 && this.restaurants[index].rate <= 5.0 ){
-                                        this.restaurants[index].rate_color = 'btn-success';
-                                    }
-                                    else{
-                                        this.restaurants[index].rate_color = 'btn-secondary';
-                                    }
-                                    // loading
-                                }
-                            })
+                if(this.id !== undefined){
+                    if(response.data.data.length > 1){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.restaurants.push(response.data.data[i]);
+                                this.restaurant_location = this.location
+                            }
                         }
-                    })
+                    }else{
+                        axios.get('/api/restaurant/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.restaurants.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                            axios.get('/api/restaurant/list/all').then(response=>{
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.restaurants.push(response.data[i]);
+                                    }
+                                }
+                            })}
+                        })
+                    }
+                // Else part for
+                // other businesses
+                }else{
+                    if(response.data.data.length > 0){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                this.restaurants.push(response.data.data[i]);
+                                    this.restaurant_location = this.location
+                            }
+                        }
+                    }else{
+                        axios.get('/api/restaurant/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        this.restaurants.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                                axios.get('/api/restaurant/list/all').then(response=>{
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        if(response.data[i].id != this.id){
+                                            this.restaurants.push(response.data[i]);
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             })
         },

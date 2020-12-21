@@ -100,9 +100,13 @@
                                     <rent-comment v-bind:rent_uuid="rent.id" :avg_rating="rent.rating"></rent-comment>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
-                                <!-- sidebar -->
-                                <sidebar></sidebar>
+                            <div class="col-md-4 col-sm-12" id="sidebar">
+                                <rent-sidebar :location="location" :id="id"></rent-sidebar>
+                                <sale-sidebar :location="location"></sale-sidebar>
+                                <event-sidebar :location="location"></event-sidebar>
+                                <job-sidebar :location="location"></job-sidebar>
+                                <restaurant-sidebar :location="location"></restaurant-sidebar>
+                                <service-sidebar :location="location"></service-sidebar>
                             </div>
                     </div>
                 </div>
@@ -115,6 +119,13 @@
 import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
+// Sidebars
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
 export default {
     props:['rent_id'],
     data(){
@@ -123,6 +134,7 @@ export default {
             rent:{}, //rent objects
             isLoading : false,//Lazy loading
             loading:false, //loading
+            location:''
         }
     },
     methods:{
@@ -133,6 +145,8 @@ export default {
                 this.rent = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
+                this.location = this.rent.location;
+
             })
         }
     },
@@ -140,7 +154,7 @@ export default {
      * 
      * Components
      *  */  
-    components:{Loading},
+    components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_rent();
     }

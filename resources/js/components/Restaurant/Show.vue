@@ -111,8 +111,14 @@
                                     <restaurant-comment v-bind:restaurant="restaurant.id" :avg_rate="restaurant.rating"></restaurant-comment>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
-                                <sidebar></sidebar>
+                            <div class="col-md-4 col-sm-12" id="sidebar">
+                                <!-- <sidebar></sidebar> -->
+                                <restaurant-sidebar :location="location" :id="restaurant.id"></restaurant-sidebar>
+                                <rent-sidebar :location="location"></rent-sidebar>
+                                <sale-sidebar :location="location"></sale-sidebar>
+                                <event-sidebar :location="location"></event-sidebar>
+                                <job-sidebar :location="location"></job-sidebar>
+                                <service-sidebar :location="location"></service-sidebar>
                             </div>
                     </div>
                 </div>
@@ -125,6 +131,13 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+// Sidebars
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
         // Map
     export default {
         // props:['rating'],
@@ -139,6 +152,7 @@
                 isLoading : false,//Lazy loading
                 // Object
                 restaurant:{}, //individual show
+                location:'',
                 // /**
                 //  * Comments
                 //  * Current Page 
@@ -164,7 +178,7 @@
          * 
          * Components
          *  */  
-        components:{Loading},
+        components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
         /**
          * Methods
          *  */ 
@@ -173,6 +187,8 @@
                 this.isLoading = true; //Loading true
                 axios.get('/view'+window.location.pathname).then(response=>{
                     this.restaurant = response.data.data;
+                    // location
+                    this.location = this.restaurant.location;
                     // loading
                     this.isLoading = false; //Loading true
                     this.loading = true;

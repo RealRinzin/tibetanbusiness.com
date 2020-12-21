@@ -34,7 +34,6 @@ export default {
             .then(response=>{
                 if(this.sale_id !== undefined){
                     if(response.data.data.length > 1){
-                        console.log("inside loop");
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
@@ -67,6 +66,7 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
+                                this.sale_location = this.location
                             }
                         }
                     }else{
