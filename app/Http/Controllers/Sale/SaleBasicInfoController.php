@@ -188,7 +188,7 @@ class SaleBasicInfoController extends Controller
     public function sidebar(Request $request,$location){
         $sales =  SaleBasicInfo::where('location', 'like', "$location%")
         ->inRandomOrder()
-        ->orderBy('created_at', 'desc')->paginate('3');
+        ->orderBy('created_at', 'desc')->paginate('4');
         return $sales->toArray($sales);
 
     }
