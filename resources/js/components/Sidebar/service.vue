@@ -19,7 +19,7 @@
 </template>
 <script>
 export default {
-    props:['location'],
+    props:['location','id'],
          data(){
         return{
             place:this.location,
@@ -32,38 +32,141 @@ export default {
         service(){
             axios.get('/api/service/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length > 0){
-                    this.services = response.data.data;
-                    this.service_location = this.location;
-                }else{
-                    axios.get('/api/service/list/sidebar_ad')
-                    .then(response=>{
-                        if(response.data.length > 0){
-                            this.services = response.data;
-                        }else{
-                            axios.get('/api/service/list/all').then(response=>{
-                                this.services = response.data;
-                                for (let index = 0; index < response.data.length; index++) {
-                                    if(this.services[index].rate >=0.0 && this.services[index].rate <= 2.5){
-                                        this.services[index].rate_color = 'btn-danger';
-                                    }else if(this.services[index].rate >= 2.6 && this.services[index].rate <= 3.5 ){
-                                        this.services[index].rate_color = 'btn-warning';
-                                    }else if(this.services[index].rate >= 3.6 && this.services[index].rate <= 4.0 ){
-                                        this.services[index].rate_color = 'btn-info';
-                                    }else if(this.services[index].rate >= 4.1 && this.services[index].rate <= 5.0 ){
-                                        this.services[index].rate_color = 'btn-success';
-                                    }
-                                    else{
-                                        this.services[index].rate_color = 'btn-secondary';
-                                    }
-                                    // loading
+                if(this.id !== undefined){
+                    if(response.data.data.length > 1){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
+                                    response.data.data[i].rate_color = 'btn-danger';
+                                }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
+                                    response.data.data[i].rate_color = 'btn-warning';
+                                }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
+                                    response.data.data[i].rate_color = 'btn-info';
+                                }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
+                                    response.data.data[i].rate_color = 'btn-success';
                                 }
-                            })
+                                else{
+                                    response.data.data[i].rate_color = 'btn-secondary';
+                                }
+                                this.services.push(response.data.data[i]);
+                                this.service_location = this.location
+                            }
                         }
-                    })
+                    }else{
+                        axios.get('/api/service/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
+                                            response.data.data[i].rate_color = 'btn-danger';
+                                        }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
+                                            response.data.data[i].rate_color = 'btn-warning';
+                                        }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
+                                            response.data.data[i].rate_color = 'btn-info';
+                                        }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
+                                            response.data.data[i].rate_color = 'btn-success';
+                                        }
+                                        else{
+                                            response.data.data[i].rate_color = 'btn-secondary';
+                                        }
+                                        this.services.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                            axios.get('/api/service/list/all').then(response=>{
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
+                                            response.data[i].rate_color = 'btn-danger';
+                                        }else if(response.data[i].rate >= 2.6 && response.data[i].rate <= 3.5 ){
+                                            response.data[i].rate_color = 'btn-warning';
+                                        }else if(response.data[i].rate >= 3.6 && response.data[i].rate <= 4.0 ){
+                                            response.data[i].rate_color = 'btn-info';
+                                        }else if(response.data[i].rate >= 4.1 && response.data[i].rate <= 5.0 ){
+                                            response.data[i].rate_color = 'btn-success';
+                                        }
+                                        else{
+                                            response.data[i].rate_color = 'btn-secondary';
+                                        }
+                                        this.services.push(response.data[i]);
+                                    }
+                                }
+                            })}
+                        })
+                    }
+                // Else part for
+                // other businesses
+                }else{
+                    console.log("undefined");
+                    if(response.data.data.length > 0){
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if(response.data.data[i].id != this.id){
+                                if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
+                                    response.data.data[i].rate_color = 'btn-danger';
+                                }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
+                                    response.data.data[i].rate_color = 'btn-warning';
+                                }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
+                                    response.data.data[i].rate_color = 'btn-info';
+                                }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
+                                    response.data.data[i].rate_color = 'btn-success';
+                                }
+                                else{
+                                    response.data.data[i].rate_color = 'btn-secondary';
+                                }
+                                this.services.push(response.data.data[i]);
+                                this.service_location = this.location;
+                            }
+                        }
+                    }else{
+                        axios.get('/api/service/list/sidebar_ad')
+                        .then(response=>{
+                            if(response.data.length > 0){
+                                for (let i = 0; i < response.data.length; i++) {
+                                    if(response.data[i].id != this.id){
+                                        if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
+                                            response.data.data[i].rate_color = 'btn-danger';
+                                        }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
+                                            response.data.data[i].rate_color = 'btn-warning';
+                                        }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
+                                            response.data.data[i].rate_color = 'btn-info';
+                                        }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
+                                            response.data.data[i].rate_color = 'btn-success';
+                                        }
+                                        else{
+                                            response.data.data[i].rate_color = 'btn-secondary';
+                                        }
+                                        this.services.push(response.data[i]);
+                                    }
+                                }
+                            }
+                            else{
+                                axios.get('/api/service/list/all').then(response=>{
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        if(response.data[i].id != this.id){
+                                            if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
+                                                response.data[i].rate_color = 'btn-danger';
+                                            }else if(response.data[i].rate >= 2.6 && response.data[i].rate <= 3.5 ){
+                                                response.data[i].rate_color = 'btn-warning';
+                                            }else if(response.data[i].rate >= 3.6 && response.data[i].rate <= 4.0 ){
+                                                response.data[i].rate_color = 'btn-info';
+                                            }else if(response.data[i].rate >= 4.1 && response.data[i].rate <= 5.0 ){
+                                                response.data[i].rate_color = 'btn-success';
+                                            }
+                                            else{
+                                                response.data[i].rate_color = 'btn-secondary';
+                                            }
+                                            this.services.push(response.data[i]);
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
                 }
             })
-        }
+        },
     },
     mounted(){
         this.service()

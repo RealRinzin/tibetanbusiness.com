@@ -83,9 +83,13 @@
                                 <review :service_id="id" :rating="rating" :avg_rating="service.rating"></review>
                             </div>
                         <!-- Sidebar -->
-                            <div class="col-md-4 col-sm-12">
-                                <!-- sidebar -->
-                                <sidebar></sidebar>
+                            <div class="col-md-4 col-sm-12" id="sidebar">
+                                <service-sidebar :location="location" :id="service.id"></service-sidebar>
+                                <sale-sidebar :location="location" :sale_id="id"></sale-sidebar>
+                                <event-sidebar :location="location"></event-sidebar>
+                                <job-sidebar :location="location"></job-sidebar>
+                                <rent-sidebar :location="location"></rent-sidebar>
+                                <restaurant-sidebar :location="location"></restaurant-sidebar>
                             </div>
                     </div>
                 </div>
@@ -101,6 +105,13 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
 import Review from './Review.vue';
 import format from 'date-fns/format';
+// Sidebars
+import SaleSidebar  from '../Sidebar/Sale.vue';
+import EventSidebar from '../Sidebar/event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
 export default {
     props:['service_id'],
     data(){
@@ -109,6 +120,7 @@ export default {
             service:{}, //service objects
             isLoading : false,//Lazy loading
             loading:false, //loading
+            location:'',
             rating:0,
             working_day:{},
         }
@@ -118,6 +130,7 @@ export default {
             this.isLoading = true;
             axios.get('/api/service/view/'+this.id)
             .then(response=>{
+                this.location = response.data.data.location;
                 this.service = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
@@ -137,7 +150,7 @@ export default {
         }
     },
     // Components
-    components:{Loading,Photo,Review},
+    components:{Loading,Photo,Review,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_service();
         this.operation_day();
