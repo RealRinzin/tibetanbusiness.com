@@ -30,9 +30,11 @@ export default {
     methods:{
         // Sales API
         sale(){
+            console.log(this.sale_id);
             axios.get('/api/sale/list/sidebar/'+this.location)
             .then(response=>{
                 if(this.sale_id !== undefined){
+                    console.log("sale defined");
                     if(response.data.data.length > 1){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
@@ -62,6 +64,7 @@ export default {
                 // Else part for
                 // other businesses
                 }else{
+                    console.log("sale undefined");
                     if(response.data.data.length > 0){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){

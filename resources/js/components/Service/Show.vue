@@ -85,7 +85,7 @@
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
                                 <service-sidebar :location="location" :id="service.id"></service-sidebar>
-                                <sale-sidebar :location="location" :sale_id="id"></sale-sidebar>
+                                <sale-sidebar :location="location"></sale-sidebar>
                                 <event-sidebar :location="location"></event-sidebar>
                                 <job-sidebar :location="location"></job-sidebar>
                                 <rent-sidebar :location="location"></rent-sidebar>

@@ -99,7 +99,6 @@ export default {
                 // Else part for
                 // other businesses
                 }else{
-                    console.log("undefined");
                     if(response.data.data.length > 0){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
