@@ -94,8 +94,15 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4">
-                            <sidebar></sidebar>
+                        <div class="col-md-4" id="sidebar">
+                                <event-sidebar :location="search_location"></event-sidebar>
+                            <!-- <search-sidebar :location="search_location"></search-sidebar> -->
+                            <!-- <sidebar></sidebar> -->
+                                <!-- <sale-sidebar :location="search_location"></sale-sidebar> -->
+                                <!-- <job-sidebar :location="location"></job-sidebar> -->
+                                <!-- <rent-sidebar :location="location"></rent-sidebar> -->
+                                <!-- <restaurant-sidebar :location="location"></restaurant-sidebar> -->
+                                <!-- <service-sidebar :location="location"></service-sidebar> -->
                         </div>
                     </div>
                 </div>
@@ -109,6 +116,15 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
+// Sidebars
+import SaleSidebar  from '../Search/Sale.vue';
+import EventSidebar from '../Search/Event.vue';
+import JobSidebar from '../Sidebar/job.vue';
+import RentSidebar from '../Sidebar/rent.vue';
+import RestaurantSidebar from '../Sidebar/restaurant.vue';
+import ServiceSidebar from '../Sidebar/service.vue';
+import SearchSidebar from '../Sidebar/SearchSidebar.vue';
+// 
 export default {
     props:['location'],
     // Data
@@ -144,6 +160,7 @@ export default {
              * location
              *  */  
             locations:{},
+            search_location:'',
             categories:{},
 
         }
@@ -155,8 +172,10 @@ export default {
         // loading
         load_result(){
             if(this.location == null){
-                this.filter.location = ""
+                this.filter.location = "";
             };
+            // Search location
+            this.search_location = this.filter.location;
             // axios.get('/api/search/sales')
             axios.get('/api/search/sales?price_min=0&price_max=10000000&location='+this.filter.location)
              .then(response=>{ 
@@ -193,6 +212,7 @@ export default {
         },
         // search result
         search_result(){
+            this.search_location = this.filter.location;
             this.isLoading = true; //Loading true
             // hidding collapse after 
             // clicking the search button hit
@@ -277,7 +297,8 @@ export default {
                     // fare:50000,
                     price_min:0,
                     price_max:10000000,
-                }
+                };
+                this.search_location = '';
             if(screen.width < 767){
                 $("#search_collapse").removeClass("show");
             }
@@ -311,7 +332,7 @@ export default {
     },
 
     // Components
-    components:{Loading},
+    components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,SearchSidebar},
     // Mounted
     mounted(){
         this.load_result();

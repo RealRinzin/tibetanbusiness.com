@@ -30,7 +30,6 @@ export default {
     methods:{
         // Sales API
         sale(){
-            console.log(this.sale_id);
             axios.get('/api/sale/list/sidebar/'+this.location)
             .then(response=>{
                 if(this.sale_id !== undefined){

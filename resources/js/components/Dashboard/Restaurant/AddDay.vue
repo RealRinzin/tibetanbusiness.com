@@ -134,7 +134,6 @@ export default {
         // For Restaurant
         create(){
             this.operation.restaurant_basic_info_id = this.id;
-            console.log(this.operation);
             axios.post('/api/restaurant_operation_days',this.operation,{
                 headers : { Authorization : localStorage.getItem("token")}
                 })
