@@ -5,9 +5,9 @@
             <div class="col-6 py-2" v-for="(event,index) in events" v-if="index <= 3">
                 <a v-bind:href="'/event/'+event.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
-                <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
-                    <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:2px;right:2px">Entry Free</p>
-                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:2px;right:2px">Entry:&#x20B9 {{event.entry_fee}}</p>
+                <div class="banner lazyload position-relative" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
+                    <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Entry Free</p>
+                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Entry:&#x20B9 {{event.entry_fee}}</p>
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{event.name}}</h6>
@@ -48,7 +48,9 @@ export default{
                 .then(response=>{
                     if(response.data.data.length >0){
                         this.events = response.data.data;
+                        this.place = value;
                     }else{
+                        this.place = 'Other Places';
                         axios.get('/api/event/list/sidebar_ad')
                         .then(response=>{
                             if(response.data.length > 0){
@@ -64,10 +66,6 @@ export default{
         },
     },
     // methods
-    methods:{
-        load(){
-        }
-    },
     mounted(){
         this.load();
     }

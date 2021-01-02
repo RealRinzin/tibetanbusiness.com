@@ -179,7 +179,7 @@ export default {
             // axios.get('/api/search/sales')
             axios.get('/api/search/sales?price_min=0&price_max=10000000&location='+this.filter.location)
              .then(response=>{ 
-            this.loading_placeholder=false,
+                this.loading_placeholder=false,
                 this.sales = response.data.data;
                 // this.loading = true;
                 this.total = response.data.total;
