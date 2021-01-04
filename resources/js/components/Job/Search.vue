@@ -132,8 +132,12 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4">
-                            <sidebar></sidebar>
+                        <div class="col-md-4" id="sidebar">
+                                <sale-sidebar :location="search_location"></sale-sidebar>
+                                <event-sidebar :location="search_location"></event-sidebar>
+                                <rent-sidebar :location="search_location"></rent-sidebar>
+                                <service-sidebar :location="search_location"></service-sidebar>
+                                <restaurant-sidebar :location="search_location"></restaurant-sidebar>
                         </div>
                     </div>
                 </div>
@@ -147,274 +151,284 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-export default {
-    props:['location'],
-    // Data
-    data(){
-        return{
-            loading_placeholder:true,
-            load_more_button : false,
-            total:0,
-            rating:0,
-            empty_result:'',
-            // job:[], // Restaurants Object
-            jobs:{
-                data:[],
-                next_page_url:`/api/search/jobs`,
+    // sidebar
+    import SaleSidebar  from '../Search/Sale.vue';
+    import EventSidebar from '../Search/Event.vue';
+    import RentSidebar from '../Search/Rent.vue';
+    import RestaurantSidebar from '../Search/Restaurant.vue';
+    import ServiceSidebar from '../Search/Service.vue';
+    export default {
+        props:['location'],
+        // Data
+        data(){
+            return{
+                loading_placeholder:true,
+                load_more_button : false,
+                total:0,
+                rating:0,
+                empty_result:'',
+                // job:[], // Restaurants Object
+                jobs:{
+                    data:[],
+                    next_page_url:`/api/search/jobs`,
+                    },
+                    nextPage:2,
+                    search_next_page:2,
+                // filter
+                filter:{
+                    title:'',
+                    location:this.location,
+                    nature:'',
+                    experience:'',
+                    profession:'',
+                    salary_min:0,
+                    salary_max:5000000,
                 },
-                nextPage:2,
-                search_next_page:2,
-            // filter
-            filter:{
-                title:'',
-                location:this.location,
-                nature:'',
-                experience:'',
-                profession:'',
-                salary_min:0,
-                salary_max:5000000,
+                // loading
+                isLoading : false,//Lazy loading
+                // lazy:false,
+                result:[],
+                // Login status
+                is_logged:false,
+                /**
+                 * Dropdown List
+                 * location
+                 *  */  
+                locations:{},
+                search_location:'',
+                professions:{},
+            }
+        },
+        /**
+         *  Methods
+         *  */ 
+        methods:{
+            // star
+            setRating: function(rating){
+            this.rating= rating;
             },
             // loading
-            isLoading : false,//Lazy loading
-            // lazy:false,
-            result:[],
+            load_result(){
+                if(this.location == null){
+                    this.filter.location = ""
+                };
+                this.search_location = this.filter.location;
             // Login status
-            is_logged:false,
-            /**
-             * Dropdown List
-             * location
-             *  */  
-            locations:{},
-            professions:{},
-        }
-    },
-    /**
-     *  Methods
-     *  */ 
-    methods:{
-        // star
-        setRating: function(rating){
-        this.rating= rating;
-        },
-        // loading
-        load_result(){
-            if(this.location == null){
-                this.filter.location = ""
-            };
-        // Login status
-            axios.get('/login_status').then(response => {
-                if(response.data.status === true){
-                    this.is_logged = true
-                }
-            })
-            // filter paramater
-            // Slider Range
-            $( function() {
-                $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 100000,
-                values: [ 0, 300000],
-                slide: function( event, ui ) {
-                    $( "#salary" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-                }
-                });
-                $( "#salary" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                " - " + $( "#slider-range" ).slider( "values", 1 ) );
-                    // console.log(this.number);
-            } );
-            // End Range
-            // Get the result
-            axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
-             .then(response=>{ 
-                this.jobs = response.data.data;
-                this.loading_placeholder = false,
-                this.total = response.data.meta.total;
-                // Load more button
-                if(response.data.meta.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // if response it there
-                if (response.data.meta.current_page == response.data.meta.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                    // this.empty_result='';
-                }
-            })
-        },
-        // search result
-        search_result(){
-            this.isLoading = true; //Loading true
-            // Salary Range
-            var salary = document.getElementById("salary");
-            this.number = salary.value.split("-");
-            this.filter.salary_min = this.number[0];
-            this.filter.salary_max = this.number[1];
-            // Salary Range End
-            this.loading = false;
-            this.nextPage = 2;
-            axios.get('/api/search/jobs?title='+this.filter.title+
-            '&location='+this.filter.location+
-            '&salary_min='+this.filter.salary_min+
-            '&salary_max='+this.filter.salary_max+
-            '&profession='+this.filter.profession+
-            '&experience='+this.filter.experience+
-            '&nature='+this.filter.nature+
-            '&page=1')
-            .then((response)=>{ 
-                this.jobs = response.data.data;
-                this.total = response.data.meta.total;
-                this.isLoading = false; //Loading true
-                // check for empty result
-                if(response.data.meta.total == 0){
-                    this.empty_result = "We don't found the search item"
-                }
-                // Check the load more button
-                if(response.data.meta.current_page == response.data.meta.last_page){
-                    this.load_more_button = false; 
-                }else{
-                    this.load_more_button = true; 
-                }
-                // Desktop
-                if(screen.width < 767){
-                    $("#search_collapse").removeClass("show");
-                }
-            })
-
-        },
-        // load more button
-        
-        load_more(nextPage){
-                // this.loading = false;
-            this.isLoading = true; //Loading true
-            axios.get('/api/search/jobs?title='+this.filter.title+
-            '&location='+this.filter.location+
-            '&salary_min='+this.filter.salary_min+
-            '&salary_max='+this.filter.salary_max+
-            '&experience='+this.filter.experience+
-            '&profession='+this.filter.profession+
-            '&nature='+this.filter.nature+
-            '&page='+this.nextPage)
-            // axios.get('/api/search/jobs?page='+)
-            .then(response=>{
-                if(response.data.meta.current_page <= response.data.meta.last_page){
-                    this.nextPage = response.data.meta.current_page + 1;
+                axios.get('/login_status').then(response => {
+                    if(response.data.status === true){
+                        this.is_logged = true
+                    }
+                })
+                // filter paramater
+                // Slider Range
+                $( function() {
+                    $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 100000,
+                    values: [ 0, 300000],
+                    slide: function( event, ui ) {
+                        $( "#salary" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                    }
+                    });
+                    $( "#salary" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                    " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                        // console.log(this.number);
+                } );
+                // End Range
+                // Get the result
+                axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
+                .then(response=>{ 
+                    this.jobs = response.data.data;
+                    this.loading_placeholder = false,
+                    this.total = response.data.meta.total;
+                    // Load more button
+                    if(response.data.meta.total == 0){
+                        this.empty_result="We don't found the search item";
+                    }
+                    // if response it there
+                    if (response.data.meta.current_page == response.data.meta.last_page) {
+                        this.load_more_button = false;
+                    }else{
+                        this.load_more_button = true;
+                        // this.empty_result='';
+                    }
+                })
+            },
+            // search result
+            search_result(){
+                this.isLoading = true; //Loading true
+                this.search_location = this.filter.location;
+                // Salary Range
+                var salary = document.getElementById("salary");
+                this.number = salary.value.split("-");
+                this.filter.salary_min = this.number[0];
+                this.filter.salary_max = this.number[1];
+                // Salary Range End
+                this.loading = false;
+                this.nextPage = 2;
+                axios.get('/api/search/jobs?title='+this.filter.title+
+                '&location='+this.filter.location+
+                '&salary_min='+this.filter.salary_min+
+                '&salary_max='+this.filter.salary_max+
+                '&profession='+this.filter.profession+
+                '&experience='+this.filter.experience+
+                '&nature='+this.filter.nature+
+                '&page=1')
+                .then((response)=>{ 
+                    this.jobs = response.data.data;
+                    this.total = response.data.meta.total;
                     this.isLoading = false; //Loading true
-                    // loadmore Button
+                    // check for empty result
+                    if(response.data.meta.total == 0){
+                        this.empty_result = "We don't found the search item"
+                    }
+                    // Check the load more button
                     if(response.data.meta.current_page == response.data.meta.last_page){
                         this.load_more_button = false; 
                     }else{
                         this.load_more_button = true; 
                     }
-                    // this.lazy = true;
-                    /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.jobs = [
-                        ...this.jobs,
-                        ...response.data.data
-                    ];    
-               
-                }else{
-                    // this.lazy = false;
-                    this.isLoading = false; //Loading true
-                }
-            })
-        },
-        // Reset the search form
-        reset(){
-            this.empty_result='';
-            // Reset form
-            this.filter ={
-                title:'',
-                location:'',
-                nature:'',
-                experience:'',
-                profession:'',
-                salary_min:'',
-                salary_max:'',
-                // fare:50000,
-                salary:200000,
-            };
-            // Desktop
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-       job_location_dropdown() {
-            $("#job_location_list").css("display", "block");
-            $("#job_profession_list").css("display", "none");
-            $("#job_experience_list").css("display", "none");
-            $("#job_nature_list").css("display", "none");
-        },
-        set_location(location){
-            this.filter.location = location;
-            $("#job_location_list").css("display", "none");
-        },
-        close(){
-            $("#job_location_list").css("display", "none");
-            $("#job_profession_list").css("display", "none");
-            $("#job_experience_list").css("display", "none");
-            $("#job_nature_list").css("display", "none");
-        },
-        // profession
-       job_profession_dropdown() {
-            $("#job_profession_list").css("display", "block");
-            $("#job_location_list").css("display", "none");
-            $("#job_experience_list").css("display", "none");
-            $("#job_nature_list").css("display", "none");
-        },
-        set_profession(profession){
-            this.filter.profession = profession;
-            $("#job_profession_list").css("display", "none");
-        },
-        // profession
-       job_experience_dropdown() {
-            $("#job_experience_list").css("display", "block");
-            $("#job_location_list").css("display", "none");
-            $("#job_profession_list").css("display", "none");
-            $("#job_nature_list").css("display", "none");
-        },
-        set_experience(experience){
-            this.filter.experience = experience;
-            $("#job_experience_list").css("display", "none");
-        },
-        // Nature
-        job_nature_dropdown(){
-            $("#job_nature_list").css("display", "block");
-            $("#job_experience_list").css("display", "none");
-            $("#job_location_list").css("display", "none");
-            $("#job_profession_list").css("display", "none");
-        },
-        set_nature(nature){
-            this.filter.nature = nature;
-            $("#job_nature_list").css("display", "none");
-        }
+                    // Desktop
+                    if(screen.width < 767){
+                        $("#search_collapse").removeClass("show");
+                    }
+                })
 
-    },
-    // Components
-    components:{Loading},
-    // Mounted
-    mounted(){
-        this.load_result();
-        // location
-            // locations api
-            axios.get('/api/location')
-            .then(response => {
-                this.locations = response.data;
-            })
-            // Profession
-            axios.get('/api/categories/job')
-            .then(response=>{
-                this.professions = response.data;
-            })
+            },
+            // load more button
+            
+            load_more(nextPage){
+                    // this.loading = false;
+                this.isLoading = true; //Loading true
+                axios.get('/api/search/jobs?title='+this.filter.title+
+                '&location='+this.filter.location+
+                '&salary_min='+this.filter.salary_min+
+                '&salary_max='+this.filter.salary_max+
+                '&experience='+this.filter.experience+
+                '&profession='+this.filter.profession+
+                '&nature='+this.filter.nature+
+                '&page='+this.nextPage)
+                // axios.get('/api/search/jobs?page='+)
+                .then(response=>{
+                    if(response.data.meta.current_page <= response.data.meta.last_page){
+                        this.nextPage = response.data.meta.current_page + 1;
+                        this.isLoading = false; //Loading true
+                        // loadmore Button
+                        if(response.data.meta.current_page == response.data.meta.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
+                        // this.lazy = true;
+                        /**
+                         * Comments 
+                         * data Distribution
+                         *  */  
+                        this.jobs = [
+                            ...this.jobs,
+                            ...response.data.data
+                        ];    
+                
+                    }else{
+                        // this.lazy = false;
+                        this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // Reset the search form
+            reset(){
+                this.empty_result='';
+                // Reset form
+                this.filter ={
+                    title:'',
+                    location:'',
+                    nature:'',
+                    experience:'',
+                    profession:'',
+                    salary_min:'',
+                    salary_max:'',
+                    // fare:50000,
+                    salary:200000,
+                };
+                // Desktop
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.search_location = '';
+                this.load_result();
+            },
+            /**
+             * SEARCH LIST
+             * DROPDOWN
+             *  */ 
+        job_location_dropdown() {
+                $("#job_location_list").css("display", "block");
+                $("#job_profession_list").css("display", "none");
+                $("#job_experience_list").css("display", "none");
+                $("#job_nature_list").css("display", "none");
+            },
+            set_location(location){
+                this.filter.location = location;
+                $("#job_location_list").css("display", "none");
+            },
+            close(){
+                $("#job_location_list").css("display", "none");
+                $("#job_profession_list").css("display", "none");
+                $("#job_experience_list").css("display", "none");
+                $("#job_nature_list").css("display", "none");
+            },
+            // profession
+        job_profession_dropdown() {
+                $("#job_profession_list").css("display", "block");
+                $("#job_location_list").css("display", "none");
+                $("#job_experience_list").css("display", "none");
+                $("#job_nature_list").css("display", "none");
+            },
+            set_profession(profession){
+                this.filter.profession = profession;
+                $("#job_profession_list").css("display", "none");
+            },
+            // profession
+        job_experience_dropdown() {
+                $("#job_experience_list").css("display", "block");
+                $("#job_location_list").css("display", "none");
+                $("#job_profession_list").css("display", "none");
+                $("#job_nature_list").css("display", "none");
+            },
+            set_experience(experience){
+                this.filter.experience = experience;
+                $("#job_experience_list").css("display", "none");
+            },
+            // Nature
+            job_nature_dropdown(){
+                $("#job_nature_list").css("display", "block");
+                $("#job_experience_list").css("display", "none");
+                $("#job_location_list").css("display", "none");
+                $("#job_profession_list").css("display", "none");
+            },
+            set_nature(nature){
+                this.filter.nature = nature;
+                $("#job_nature_list").css("display", "none");
+            }
+
+        },
+        // Components
+        components:{Loading,SaleSidebar,EventSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+        // Mounted
+        mounted(){
+            this.load_result();
+            // location
+                // locations api
+                axios.get('/api/location')
+                .then(response => {
+                    this.locations = response.data;
+                })
+                // Profession
+                axios.get('/api/categories/job')
+                .then(response=>{
+                    this.professions = response.data;
+                })
+        }
     }
-}
 </script>

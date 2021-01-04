@@ -90,8 +90,12 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4 col-sm-6">
-                            <sidebar></sidebar>
+                        <div class="col-md-4 col-sm-6" id="sidebar">
+                            <sale-sidebar :location="search_location"></sale-sidebar>
+                            <rent-sidebar :location="search_location"></rent-sidebar>
+                            <event-sidebar :location="search_location"></event-sidebar>
+                            <job-sidebar :location="search_location"></job-sidebar>
+                            <service-sidebar :location="search_location"></service-sidebar>
                         </div>
                     </div>
                 </div>
@@ -105,157 +109,63 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-export default {
-    props: ['location'],
-    // Data
-    data(){
-        return{
-            loading_placeholder:true,
-            load_more_button : false,
-            total:'',
-            empty_result:'',
-            // restaurant:[], // Restaurants Object
-            restaurants:{
-                data:[],
-                next_page_url:`/api/search/restaurants`,
+    // Sidebar
+    import SaleSidebar  from '../Search/Sale.vue';
+    import JobSidebar from '../Search/Job.vue';
+    import EventSidebar from '../Search/Event.vue';
+    import RentSidebar from '../Search/Rent.vue';
+    import ServiceSidebar from '../Search/Service.vue';
+    export default {
+        props: ['location'],
+        // Data
+        data(){
+            return{
+                loading_placeholder:true,
+                load_more_button : false,
+                total:'',
+                empty_result:'',
+                // restaurant:[], // Restaurants Object
+                restaurants:{
+                    data:[],
+                    next_page_url:`/api/search/restaurants`,
+                    },
+                    nextPage:2,
+                    search_next_page:2,
+                    restaurant_active:[],
+                // filter
+                filter:{
+                    name:'',
+                    location:this.location,
+                    rate:''
                 },
-                nextPage:2,
-                search_next_page:2,
-                restaurant_active:[],
-            // filter
-            filter:{
-                name:'',
-                location:this.location,
-                rate:''
-            },
-            // loading
-            isLoading : false,//Lazy loading
-            // lazy:false,
-            locations:{},
-        }
-    },
-
-    /**
-     *  Methods
-     *  */ 
-    methods:{
-        setRating: function(rating){
-        this.rating= rating;
-        },
-        
-        load_result(){
-            if(this.location == null){
-                this.filter.location = ""
-            };
-            // axios.get('/api/search/restaurants')
-            axios.get('/api/search/restaurants?location='+this.filter.location)
-             .then(response=>{ 
-                this.restaurants = response.data.data;
-                this.loading_placeholder=false,
-                this.total = response.data.total;
-                // Looping to assign rating values
-                for (let index = 0; index < this.restaurants.length; index++) {
-                    if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
-                        this.restaurants[index].rate_color = 'btn-danger';
-                    }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
-                        this.restaurants[index].rate_color = 'btn-warning';
-                    }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
-                        this.restaurants[index].rate_color = 'btn-info';
-                    }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
-                        this.restaurants[index].rate_color = 'btn-success';
-                    }else{
-                        this.restaurants[index].rate_color = 'btn-secondary';
-                    }
-                }
-                // If not result at all
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // Load more button
-                if (response.data.current_page == response.data.last_page) {
-                    this.load_more_button = false;
-
-                }else{
-                    this.load_more_button = true;
-                }
-            })
-        },
-        // search result
-        search_result(){
-            this.isLoading = true;
-            // Desktop resize
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
+                // loading
+                isLoading : false,//Lazy loading
+                // lazy:false,
+                locations:{},
+                search_location:'',
             }
-            this.loading = false;
-            this.nextPage = 2;
-            axios.get('/api/search/restaurants?name='+
-            this.filter.name+'&location='+
-            this.filter.location+
-            '&rate='+this.filter.rate+
-            '&page=1')
-            .then((response)=>{ 
-                this.restaurants = response.data.data;
-                this.total = response.data.total;
-                this.isLoading = false;
-                // check for empty result
-                if(response.data.total == 0){
-                    this.empty_result = "We don't found the search item"
-                }
-                // Check the load more button
-                if(response.data.current_page == response.data.last_page){
-                    this.load_more_button = false; 
-                }else{
-                    this.load_more_button = true; 
-                }
-                // Rating values
-                for (let index = 0; index < this.restaurants.length; index++) {
-                    if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
-                        this.restaurants[index].rate_color = 'btn-danger';
-                    }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
-                        this.restaurants[index].rate_color = 'btn-warning';
-                    }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
-                        this.restaurants[index].rate_color = 'btn-info';
-                    }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
-                        this.restaurants[index].rate_color = 'btn-success';
-                    }else{
-                        this.restaurants[index].rate_color = 'btn-secondary';
-                    }
-                }
-            })
-
         },
-        // load more button
-        
-        load_more(nextPage){
-                // this.loading = false;
-            this.isLoading = true; //Loading true
-            axios.get('/api/search/restaurants?name='+
-            this.filter.name+
-            '&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&page='+this.nextPage)
-            // axios.get('/api/search/restaurants?page='+)
-            .then(response=>{
-                if(response.data.current_page <= response.data.last_page){
-                    this.nextPage = response.data.current_page + 1;
-                    this.isLoading = false; //Loading true
-                    // this.lazy = true;
-                    /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.restaurants = [
-                        ...this.restaurants,
-                        ...response.data.data
-                    ]; 
-                    // loadmore Button
-                    if(response.data.current_page == response.data.last_page){
-                        this.load_more_button = false; 
-                    }else{
-                        this.load_more_button = true; 
-                    }
-                    // Rate Background
+
+        /**
+         *  Methods
+         *  */ 
+        methods:{
+            setRating: function(rating){
+            this.rating= rating;
+            },
+            
+            load_result(){
+                if(this.location == null){
+                    this.filter.location = ""
+                };
+                this.search_location = this.filter.location;
+                // axios.get('/api/search/restaurants')
+                axios.get('/api/search/restaurants?location='+this.filter.location)
+                .then(response=>{ 
+                    this.restaurants = response.data.data;
+                    this.loading_placeholder=false,
+                    this.total = response.data.total;
+                    // Looping to assign rating values
                     for (let index = 0; index < this.restaurants.length; index++) {
                         if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
                             this.restaurants[index].rate_color = 'btn-danger';
@@ -268,54 +178,158 @@ export default {
                         }else{
                             this.restaurants[index].rate_color = 'btn-secondary';
                         }
-                    }                
-                }else{
-                    // this.lazy = false;
-                    this.isLoading = false; //Loading true
-                    // this.load_more_button = false;
-                }
-            })
-        },
-        // Reset the search form
-        reset(){
-            this.empty_result = '';
-            this.filter = {
-                name:'',
-                location:'',
-                rate:'',
-            };
-            // Desktop resize
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-        restaurant_location_dropdown() {
-            $("#restaurant_location_list").css("display", "block");
-        },
-        set_location(location){
-            this.filter.location = location;
-            $("#restaurant_location_list").css("display", "none");
-        },
-        close(){
-            $("#restaurant_location_list").css("display", "none");
-        },
-    },
+                    }
+                    // If not result at all
+                    if(response.data.total == 0){
+                        this.empty_result="We don't found the search item";
+                    }
+                    // Load more button
+                    if (response.data.current_page == response.data.last_page) {
+                        this.load_more_button = false;
 
-    // Components
-    components:{Loading},
-    // Mounted
-    mounted(){
-        this.load_result();
-        // this.filter.location = this.location;
-        axios.get('/api/location')
-        .then(response => {
-            this.locations = response.data;
-        })
+                    }else{
+                        this.load_more_button = true;
+                    }
+                })
+            },
+            // search result
+            search_result(){
+                this.isLoading = true;
+                this.search_location = this.filter.location;
+                // Desktop resize
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.loading = false;
+                this.nextPage = 2;
+                axios.get('/api/search/restaurants?name='+
+                this.filter.name+'&location='+
+                this.filter.location+
+                '&rate='+this.filter.rate+
+                '&page=1')
+                .then((response)=>{ 
+                    this.restaurants = response.data.data;
+                    this.total = response.data.total;
+                    this.isLoading = false;
+                    // check for empty result
+                    if(response.data.total == 0){
+                        this.empty_result = "We don't found the search item"
+                    }
+                    // Check the load more button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
+                    // Rating values
+                    for (let index = 0; index < this.restaurants.length; index++) {
+                        if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
+                            this.restaurants[index].rate_color = 'btn-danger';
+                        }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
+                            this.restaurants[index].rate_color = 'btn-warning';
+                        }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
+                            this.restaurants[index].rate_color = 'btn-info';
+                        }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
+                            this.restaurants[index].rate_color = 'btn-success';
+                        }else{
+                            this.restaurants[index].rate_color = 'btn-secondary';
+                        }
+                    }
+                })
+
+            },
+            // load more button
+            
+            load_more(nextPage){
+                    // this.loading = false;
+                this.isLoading = true; //Loading true
+                axios.get('/api/search/restaurants?name='+
+                this.filter.name+
+                '&location='+this.filter.location+
+                '&rate='+this.filter.rate+
+                '&page='+this.nextPage)
+                // axios.get('/api/search/restaurants?page='+)
+                .then(response=>{
+                    if(response.data.current_page <= response.data.last_page){
+                        this.nextPage = response.data.current_page + 1;
+                        this.isLoading = false; //Loading true
+                        // this.lazy = true;
+                        /**
+                         * Comments 
+                         * data Distribution
+                         *  */  
+                        this.restaurants = [
+                            ...this.restaurants,
+                            ...response.data.data
+                        ]; 
+                        // loadmore Button
+                        if(response.data.current_page == response.data.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
+                        // Rate Background
+                        for (let index = 0; index < this.restaurants.length; index++) {
+                            if(this.restaurants[index].rate >= 0.0 && this.restaurants[index].rate <= 1.0){
+                                this.restaurants[index].rate_color = 'btn-danger';
+                            }else if(this.restaurants[index].rate >= 1.1 && this.restaurants[index].rate <= 2.0 ){
+                                this.restaurants[index].rate_color = 'btn-warning';
+                            }else if(this.restaurants[index].rate >= 2.1 && this.restaurants[index].rate <= 3.0 ){
+                                this.restaurants[index].rate_color = 'btn-info';
+                            }else if(this.restaurants[index].rate >= 3.1 && this.restaurants[index].rate <= 5.0 ){
+                                this.restaurants[index].rate_color = 'btn-success';
+                            }else{
+                                this.restaurants[index].rate_color = 'btn-secondary';
+                            }
+                        }                
+                    }else{
+                        // this.lazy = false;
+                        this.isLoading = false; //Loading true
+                        // this.load_more_button = false;
+                    }
+                })
+            },
+            // Reset the search form
+            reset(){
+                this.empty_result = '';
+                this.filter = {
+                    name:'',
+                    location:'',
+                    rate:'',
+                };
+                // Desktop resize
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.search_location = '';
+                this.load_result();
+            },
+            /**
+             * SEARCH LIST
+             * DROPDOWN
+             *  */ 
+            restaurant_location_dropdown() {
+                $("#restaurant_location_list").css("display", "block");
+            },
+            set_location(location){
+                this.filter.location = location;
+                $("#restaurant_location_list").css("display", "none");
+            },
+            close(){
+                $("#restaurant_location_list").css("display", "none");
+            },
+        },
+
+        // Components
+        components:{Loading,SaleSidebar,JobSidebar,EventSidebar,RentSidebar,ServiceSidebar},
+        // Mounted
+        mounted(){
+            this.load_result();
+            // this.filter.location = this.location;
+            axios.get('/api/location')
+            .then(response => {
+                this.locations = response.data;
+            })
+        }
     }
-}
 </script>

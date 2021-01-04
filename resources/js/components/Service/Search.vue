@@ -101,8 +101,12 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4">
-                            <sidebar></sidebar>
+                        <div class="col-md-4" id="sidebar">
+                            <sale-sidebar :location="search_location"></sale-sidebar>
+                            <rent-sidebar :location="search_location"></rent-sidebar>
+                            <event-sidebar :location="search_location"></event-sidebar>
+                            <job-sidebar :location="search_location"></job-sidebar>
+                            <restaurant-sidebar :location="search_location"></restaurant-sidebar>
                         </div>
                     </div>
                 </div>
@@ -116,165 +120,84 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-export default {
-    props:['location'],
-    // Data
-    data(){
-        return{
-            load_more_button : false,
-            total:0,
-            rating:0,
-            empty_result:'',
-            // service:[], // Restaurants Object
-            services:{
-                data:[],
-                next_page_url:`/api/search/services`,
+    // sidebar
+    import SaleSidebar  from '../Search/Sale.vue';
+    import JobSidebar from '../Search/Job.vue';
+    import EventSidebar from '../Search/Event.vue';
+    import RentSidebar from '../Search/Rent.vue';
+    import RestaurantSidebar from '../Search/Restaurant.vue';
+    export default {
+        props:['location'],
+        // Data
+        data(){
+            return{
+                load_more_button : false,
+                total:0,
+                rating:0,
+                empty_result:'',
+                // service:[], // Restaurants Object
+                services:{
+                    data:[],
+                    next_page_url:`/api/search/services`,
+                    },
+                    nextPage:2,
+                    search_next_page:2,
+                restaurant_active:[],
+                // filter
+                filter:{
+                    name:'',
+                    location:this.location,
+                    rate:'',
+                    type:'',
                 },
-                nextPage:2,
-                search_next_page:2,
-            restaurant_active:[],
-            // filter
-            filter:{
-                name:'',
-                location:this.location,
-                rate:'',
-                type:'',
+                // loading
+                loading_placeholder:true,
+                isLoading : false,//Lazy loading
+                // lazy:false,
+                result:[],
+                /**
+                    * Dropdown List
+                    * location
+                    * profession
+                    * nature
+                    *  */  
+                locations:{},
+                search_location:'',
+                categories:{},
+
+            }
+        },
+        /**
+            *  Methods
+            *  */ 
+        methods:{
+            // star
+            setRating: function(rating){
+            this.rating= rating;
             },
             // loading
-            loading_placeholder:true,
-            isLoading : false,//Lazy loading
-            // lazy:false,
-            result:[],
-            /**
-             * Dropdown List
-             * location
-             * profession
-             * nature
-             *  */  
-            locations:{},
-            categories:{},
-
-        }
-    },
-    /**
-     *  Methods
-     *  */ 
-    methods:{
-        // star
-        setRating: function(rating){
-        this.rating= rating;
-        },
-        // loading
-        load_result(){
-            if(this.location == null){
-                this.filter.location = ""
-            };
-            // axios.get('/api/search/services')
-            axios.get('/api/search/services?location='+this.filter.location)
-             .then(response=>{ 
-                this.services = response.data.data;
-                this.total = response.data.total;
-                this.loading_placeholder = false;
-                // Load more button
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // if response it there
-                if (response.data.current_page == response.data.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                }
-                // Rating values
-                for (let index = 0; index < this.services.length; index++) {
-                    if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
-                        this.services[index].rate_color = 'btn-danger';
-                    }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
-                        this.services[index].rate_color = 'btn-warning';
-                    }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
-                        this.services[index].rate_color = 'btn-info';
-                    }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
-                        this.services[index].rate_color = 'btn-success';
-                    }else{
-                        this.services[index].rate_color = 'btn-secondary';
+            load_result(){
+                if(this.location == null){
+                    this.filter.location = ""
+                };
+                this.search_location = this.filter.location;
+                // axios.get('/api/search/services')
+                axios.get('/api/search/services?location='+this.filter.location)
+                .then(response=>{ 
+                    this.services = response.data.data;
+                    this.total = response.data.total;
+                    this.loading_placeholder = false;
+                    // Load more button
+                    if(response.data.total == 0){
+                        this.empty_result="We don't found the search item";
                     }
-                }
-            })
-        },
-        // search result
-        search_result(){
-            this.isLoading = true; //Loading true
-            // Desktop resize
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            // 
-            this.nextPage = 2;
-            axios.get('/api/search/services?name='+this.filter.name+
-            '&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&type='+this.filter.type+
-            '&page=1')
-            .then((response)=>{ 
-                this.services = response.data.data;
-                this.total = response.data.total;
-                this.isLoading = false; //Loading true
-                // check for empty result
-                if(response.data.total == 0){
-                    this.empty_result = "We don't found the search item"
-                }
-                // Check the load more button
-                if(response.data.current_page == response.data.last_page){
-                    this.load_more_button = false; 
-                }else{
-                    this.load_more_button = true; 
-                }
-                // rating values
-                for (let index = 0; index < this.services.length; index++) {
-                    if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
-                        this.services[index].rate_color = 'btn-danger';
-                    }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
-                        this.services[index].rate_color = 'btn-warning';
-                    }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
-                        this.services[index].rate_color = 'btn-info';
-                    }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
-                        this.services[index].rate_color = 'btn-success';
+                    // if response it there
+                    if (response.data.current_page == response.data.last_page) {
+                        this.load_more_button = false;
                     }else{
-                        this.services[index].rate_color = 'btn-secondary';
+                        this.load_more_button = true;
                     }
-                }
-            })
-
-        },
-        // load more button
-        
-        load_more(nextPage){
-                // this.loading = false;
-            this.isLoading = true; //Loading true
-            axios.get('/api/search/services?name='+this.filter.name+'&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&type='+this.filter.type+
-            '&page='+this.nextPage)
-            // axios.get('/api/search/services?page='+)
-            .then(response=>{
-                if(response.data.current_page <= response.data.last_page){
-                    this.nextPage = response.data.current_page + 1;
-                    this.isLoading = false; //Loading true
-                    // loadmore Button
-                    if(response.data.current_page == response.data.last_page){
-                        this.load_more_button = false; 
-                    }else{
-                        this.load_more_button = true; 
-                    }
-                    /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.services = [
-                        ...this.services,
-                        ...response.data.data
-                    ];    
-                    // Rate Background
+                    // Rating values
                     for (let index = 0; index < this.services.length; index++) {
                         if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
                             this.services[index].rate_color = 'btn-danger';
@@ -287,68 +210,160 @@ export default {
                         }else{
                             this.services[index].rate_color = 'btn-secondary';
                         }
-                    }                
-                }else{
-                    // this.lazy = false;
-                    this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // search result
+            search_result(){
+                this.isLoading = true; //Loading true
+                this.search_location = this.filter.location;
+
+                // Desktop resize
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
                 }
-            })
+                // 
+                this.nextPage = 2;
+                axios.get('/api/search/services?name='+this.filter.name+
+                '&location='+this.filter.location+
+                '&rate='+this.filter.rate+
+                '&type='+this.filter.type+
+                '&page=1')
+                .then((response)=>{ 
+                    this.services = response.data.data;
+                    this.total = response.data.total;
+                    this.isLoading = false; //Loading true
+                    // check for empty result
+                    if(response.data.total == 0){
+                        this.empty_result = "We don't found the search item"
+                    }
+                    // Check the load more button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
+                    // rating values
+                    for (let index = 0; index < this.services.length; index++) {
+                        if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
+                            this.services[index].rate_color = 'btn-danger';
+                        }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
+                            this.services[index].rate_color = 'btn-warning';
+                        }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
+                            this.services[index].rate_color = 'btn-info';
+                        }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
+                            this.services[index].rate_color = 'btn-success';
+                        }else{
+                            this.services[index].rate_color = 'btn-secondary';
+                        }
+                    }
+                })
+
+            },
+            // load more button
+            
+            load_more(nextPage){
+                    // this.loading = false;
+                this.isLoading = true; //Loading true
+                axios.get('/api/search/services?name='+this.filter.name+'&location='+this.filter.location+
+                '&rate='+this.filter.rate+
+                '&type='+this.filter.type+
+                '&page='+this.nextPage)
+                // axios.get('/api/search/services?page='+)
+                .then(response=>{
+                    if(response.data.current_page <= response.data.last_page){
+                        this.nextPage = response.data.current_page + 1;
+                        this.isLoading = false; //Loading true
+                        // loadmore Button
+                        if(response.data.current_page == response.data.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
+                        /**
+                            * Comments 
+                            * data Distribution
+                            *  */  
+                        this.services = [
+                            ...this.services,
+                            ...response.data.data
+                        ];    
+                        // Rate Background
+                        for (let index = 0; index < this.services.length; index++) {
+                            if(this.services[index].rate >= 0.0 && this.services[index].rate <= 1.0){
+                                this.services[index].rate_color = 'btn-danger';
+                            }else if(this.services[index].rate >= 1.1 && this.services[index].rate <= 2.0 ){
+                                this.services[index].rate_color = 'btn-warning';
+                            }else if(this.services[index].rate >= 2.1 && this.services[index].rate <= 3.0 ){
+                                this.services[index].rate_color = 'btn-info';
+                            }else if(this.services[index].rate >= 3.1 && this.services[index].rate <= 5.0 ){
+                                this.services[index].rate_color = 'btn-success';
+                            }else{
+                                this.services[index].rate_color = 'btn-secondary';
+                            }
+                        }                
+                    }else{
+                        // this.lazy = false;
+                        this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // Reset the search form
+            reset(){
+                this.empty_result = '';
+                // Reset filter
+                this.filter ={
+                    name:'',
+                    location:'',
+                    rate:'',
+                    type:'',
+                };
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.search_location = '';
+                this.load_result();
+            },
+            /**
+                * SEARCH LIST
+                * DROPDOWN
+                *  */ 
+            service_location_dropdown() {
+                $("#service_location_list").css("display", "block");
+                $("#service_category_list").css("display", "none");
+            },
+            set_location(location){
+                this.filter.location = location;
+                $("#service_location_list").css("display", "none");
+            },
+            service_category_dropdown() {
+                $("#service_category_list").css("display", "block");
+                $("#service_locaiton_list").css("display", "none");
+            },
+            set_category(type){
+                this.filter.type = type;
+                $("#service_category_list").css("display", "none");
+            },
+            close(){
+                $("#service_location_list").css("display", "none");
+                $("#service_category_list").css("display", "none");
+            },
         },
-        // Reset the search form
-        reset(){
-            this.empty_result = '';
-            // Reset filter
-            this.filter ={
-                name:'',
-                location:'',
-                rate:'',
-                type:'',
-            };
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
+        // Components
+        components:{Loading,SaleSidebar,JobSidebar,EventSidebar,RentSidebar,RestaurantSidebar},
+        // Mounted
+        mounted(){
             this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-        service_location_dropdown() {
-            $("#service_location_list").css("display", "block");
-            $("#service_category_list").css("display", "none");
-        },
-        set_location(location){
-            this.filter.location = location;
-            $("#service_location_list").css("display", "none");
-        },
-        service_category_dropdown() {
-            $("#service_category_list").css("display", "block");
-            $("#service_locaiton_list").css("display", "none");
-        },
-        set_category(type){
-            this.filter.type = type;
-            $("#service_category_list").css("display", "none");
-        },
-        close(){
-            $("#service_location_list").css("display", "none");
-            $("#service_category_list").css("display", "none");
-        },
-    },
-    // Components
-    components:{Loading},
-    // Mounted
-    mounted(){
-        this.load_result();
-        // locations api
-        axios.get('/api/location')
-        .then(response => {
-            this.locations = response.data;
-        })
-        // Profession
-        axios.get('/api/categories/service')
-        .then(response=>{
-            this.categories = response.data;
-        })
+            // locations api
+            axios.get('/api/location')
+            .then(response => {
+                this.locations = response.data;
+            })
+            // Profession
+            axios.get('/api/categories/service')
+            .then(response=>{
+                this.categories = response.data;
+            })
+        }
     }
-}
 </script>

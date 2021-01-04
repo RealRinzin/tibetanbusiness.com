@@ -1,6 +1,5 @@
 <template>
     <div style="min-height:80vh">
-
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-12 mx-auto">
@@ -105,8 +104,12 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4">
-                            <sidebar></sidebar>
+                        <div class="col-md-4" id="sidebar">
+                            <sale-sidebar :location="search_location"></sale-sidebar>
+                            <event-sidebar :location="search_location"></event-sidebar>
+                            <job-sidebar :location="search_location"></job-sidebar>
+                            <service-sidebar :location="search_location"></service-sidebar>
+                            <restaurant-sidebar :location="search_location"></restaurant-sidebar>
                         </div>
                     </div>
                 </div>
@@ -120,192 +123,100 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-export default {
-    props:['location'],
-    // Data
-    data(){
-        return{
-            max:50000,
-            // min:'',
-            loading_placeholder:true,
-            load_more_button : false,
-            total:0,
-            rating:0,
-            empty_result:'',
-            // rent:[], // Restaurants Object
-            rents:{
-                data:[],
-                next_page_url:`/api/search/rents`,
+    // Sidebar
+    import SaleSidebar  from '../Search/Sale.vue';
+    import JobSidebar from '../Search/Job.vue';
+    import EventSidebar from '../Search/Event.vue';
+    import RestaurantSidebar from '../Search/Restaurant.vue';
+    import ServiceSidebar from '../Search/Service.vue';
+    export default {
+        props:['location'],
+        // Data
+        data(){
+            return{
+                max:50000,
+                // min:'',
+                loading_placeholder:true,
+                load_more_button : false,
+                total:0,
+                rating:0,
+                empty_result:'',
+                // rent:[], // Restaurants Object
+                rents:{
+                    data:[],
+                    next_page_url:`/api/search/rents`,
+                    },
+                    nextPage:2,
+                    search_next_page:2,
+                restaurant_active:[],
+                // filter
+                filter:{
+                    name:'',
+                    location:this.location,
+                    rate:'',
+                    fare_min:0,
+                    fare_max:90000,
+                    accomodation_size:'',
                 },
-                nextPage:2,
-                search_next_page:2,
-            restaurant_active:[],
-            // filter
-            filter:{
-                name:'',
-                location:this.location,
-                rate:'',
-                fare_min:0,
-                fare_max:90000,
-                accomodation_size:'',
+                // loading
+                isLoading : false,//Lazy loading
+                // lazy:false,
+                result:[],
+                // Dropdown list
+                locations:{},
+                // Max and Min
+                search_location:'',
+                fare_max:{},
+            }
+        },
+        /**
+         *  Methods
+         *  */ 
+        methods:{
+            // star
+            setRating: function(rating){
+            this.rating= rating;
             },
             // loading
-            isLoading : false,//Lazy loading
-            // lazy:false,
-            result:[],
-            // Dropdown list
-            locations:{},
-            // Max and Min
-            fare_max:{},
-        }
-    },
-    /**
-     *  Methods
-     *  */ 
-    methods:{
-        // star
-        setRating: function(rating){
-        this.rating= rating;
-        },
-        // loading
-        load_result(){
-            // location set
-            if(this.location == null){
-                this.filter.location = ""
-            };
-            // Slider Range
-            $( function() {
-                // Range setting
-                $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max:90000,
-                values: [0, 90000 ],
-                slide: function( event, ui ) {
-                    $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-                }
-                });
-                $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                " - " + $( "#slider-range" ).slider( "values", 1 ) );
-            } );
-            // End Range
-            // axios.get('/api/search/rents')
-            axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
-             .then(response=>{ 
-                this.rents = response.data.data;
-                this.loading_placeholder = false,
-                this.total = response.data.total;
-                // Load more button
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // if response it there
-                if (response.data.current_page == response.data.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                }
-                // rating values
-                for (let index = 0; index < this.rents.length; index++) {
-                    if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
-                        this.rents[index].rate_color = 'btn-danger';
-                    }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
-                        this.rents[index].rate_color = 'btn-warning';
-                    }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
-                        this.rents[index].rate_color = 'btn-info';
-                    }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
-                        this.rents[index].rate_color = 'btn-success';
-                    }else{
-                        this.rents[index].rate_color = 'btn-secondary';
+            load_result(){
+                // location set
+                if(this.location == null){
+                    this.filter.location = ""
+                };
+                this.search_location = this.filter.location;
+                // Slider Range
+                $( function() {
+                    // Range setting
+                    $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max:90000,
+                    values: [0, 90000 ],
+                    slide: function( event, ui ) {
+                        $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
                     }
-                }
-            })
-        },
-        // search result
-        search_result(){
-            this.isLoading = true; //Loading true
-            // Desktop
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            // Range
-            var fare = document.getElementById("fare");
-            this.number = fare.value.split("-");
-            this.filter.fare_min = parseInt(this.number[0]);
-            this.filter.fare_max = parseInt(this.number[1]);
-            // End 
-            this.nextPage = 2;
-            axios.get('/api/search/rents?name='+this.filter.name+
-            '&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&fare_min='+this.filter.fare_min+
-            '&fare_max='+this.filter.fare_max+
-            '&accomodation_size='+this.filter.accomodation_size+
-            '&page=1')
-            .then((response)=>{ 
-                this.rents = response.data.data;
-                this.total = response.data.total;
-                this.isLoading = false; //Loading true
-                // check for empty result
-                if(response.data.total == 0){
-                    this.empty_result = "We don't found the search item"
-                }
-                // Check the load more button
-                if(response.data.current_page == response.data.last_page){
-                    this.load_more_button = false; 
-                }else{
-                    this.load_more_button = true; 
-                }
-                // Rating values
-                for (let index = 0; index < this.rents.length; index++) {
-                    if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
-                        this.rents[index].rate_color = 'btn-danger';
-                    }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
-                        this.rents[index].rate_color = 'btn-warning';
-                    }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
-                        this.rents[index].rate_color = 'btn-info';
-                    }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
-                        this.rents[index].rate_color = 'btn-success';
-                    }else{
-                        this.rents[index].rate_color = 'btn-secondary';
+                    });
+                    $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
+                    " - " + $( "#slider-range" ).slider( "values", 1 ) );
+                } );
+                // End Range
+                // axios.get('/api/search/rents')
+                axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
+                .then(response=>{ 
+                    this.rents = response.data.data;
+                    this.loading_placeholder = false,
+                    this.total = response.data.total;
+                    // Load more button
+                    if(response.data.total == 0){
+                        this.empty_result="We don't found the search item";
                     }
-                }
-            })
-
-        },
-        // load more button
-        
-        load_more(nextPage){
-                // this.loading = false;
-            this.isLoading = true; //Loading true
-            axios.get('/api/search/rents?name='+this.filter.name+
-            '&location='+this.filter.location+
-            '&rate='+this.filter.rate+
-            '&fare_min='+this.filter.fare_min+
-            '&fare_max='+this.filter.fare_max+
-            '&accomodation_size='+this.filter.accomodation_size+
-            '&page='+this.nextPage)
-            // axios.get('/api/search/rents?page='+)
-            .then(response=>{
-                if(response.data.current_page <= response.data.last_page){
-                    this.nextPage = response.data.current_page + 1;
-                    // loadmore Button
-                    if(response.data.current_page == response.data.last_page){
-                        this.load_more_button = false; 
+                    // if response it there
+                    if (response.data.current_page == response.data.last_page) {
+                        this.load_more_button = false;
                     }else{
-                        this.load_more_button = true; 
+                        this.load_more_button = true;
                     }
-                    this.isLoading = false; //Loading true
-                    // this.lazy = true;
-                    /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.rents = [
-                        ...this.rents,
-                        ...response.data.data
-                    ];    
-                    // Rate Background
+                    // rating values
                     for (let index = 0; index < this.rents.length; index++) {
                         if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
                             this.rents[index].rate_color = 'btn-danger';
@@ -318,60 +229,162 @@ export default {
                         }else{
                             this.rents[index].rate_color = 'btn-secondary';
                         }
-                    }                
-                }else{
-                    // this.lazy = false;
-                    this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // search result
+            search_result(){
+                this.isLoading = true; //Loading true
+                this.search_location = this.filter.location;
+                // Desktop
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
                 }
-            })
-        },
-        // Reset the search form
-        reset(){
-            this.empty_result='';
-            // reset form
-            this.filter = {
-                name:'',
-                location:'',
-                rate:'',
-                fare_min:0,
-                fare_max:5000000,
-                accomodation_size:'',
-            };
-            // Desktop size
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-        rent_location_dropdown() {
-            $("#rent_location_list").css("display", "block");
-        },
-        set_location(location){
-            this.filter.location = location;
-            $("#rent_location_list").css("display", "none");
-        },
-        close(){
-            $("#rent_location_list").css("display", "none");
-        },
-    },
-    // Components
-    components:{Loading},
-    // Mounted
-    mounted(){
-        this.load_result();
-        // fare
+                // Range
+                var fare = document.getElementById("fare");
+                this.number = fare.value.split("-");
+                this.filter.fare_min = parseInt(this.number[0]);
+                this.filter.fare_max = parseInt(this.number[1]);
+                // End 
+                this.nextPage = 2;
+                axios.get('/api/search/rents?name='+this.filter.name+
+                '&location='+this.filter.location+
+                '&rate='+this.filter.rate+
+                '&fare_min='+this.filter.fare_min+
+                '&fare_max='+this.filter.fare_max+
+                '&accomodation_size='+this.filter.accomodation_size+
+                '&page=1')
+                .then((response)=>{ 
+                    this.rents = response.data.data;
+                    this.total = response.data.total;
+                    this.isLoading = false; //Loading true
+                    // check for empty result
+                    if(response.data.total == 0){
+                        this.empty_result = "We don't found the search item"
+                    }
+                    // Check the load more button
+                    if(response.data.current_page == response.data.last_page){
+                        this.load_more_button = false; 
+                    }else{
+                        this.load_more_button = true; 
+                    }
+                    // Rating values
+                    for (let index = 0; index < this.rents.length; index++) {
+                        if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
+                            this.rents[index].rate_color = 'btn-danger';
+                        }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
+                            this.rents[index].rate_color = 'btn-warning';
+                        }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
+                            this.rents[index].rate_color = 'btn-info';
+                        }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
+                            this.rents[index].rate_color = 'btn-success';
+                        }else{
+                            this.rents[index].rate_color = 'btn-secondary';
+                        }
+                    }
+                })
 
-        // API
-        axios.get('/api/location')
-        .then(response => {
-            this.locations = response.data;
-        })
+            },
+            // load more button
+            
+            load_more(nextPage){
+                    // this.loading = false;
+                this.isLoading = true; //Loading true
+                axios.get('/api/search/rents?name='+this.filter.name+
+                '&location='+this.filter.location+
+                '&rate='+this.filter.rate+
+                '&fare_min='+this.filter.fare_min+
+                '&fare_max='+this.filter.fare_max+
+                '&accomodation_size='+this.filter.accomodation_size+
+                '&page='+this.nextPage)
+                // axios.get('/api/search/rents?page='+)
+                .then(response=>{
+                    if(response.data.current_page <= response.data.last_page){
+                        this.nextPage = response.data.current_page + 1;
+                        // loadmore Button
+                        if(response.data.current_page == response.data.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
+                        this.isLoading = false; //Loading true
+                        // this.lazy = true;
+                        /**
+                         * Comments 
+                         * data Distribution
+                         *  */  
+                        this.rents = [
+                            ...this.rents,
+                            ...response.data.data
+                        ];    
+                        // Rate Background
+                        for (let index = 0; index < this.rents.length; index++) {
+                            if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
+                                this.rents[index].rate_color = 'btn-danger';
+                            }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
+                                this.rents[index].rate_color = 'btn-warning';
+                            }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
+                                this.rents[index].rate_color = 'btn-info';
+                            }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
+                                this.rents[index].rate_color = 'btn-success';
+                            }else{
+                                this.rents[index].rate_color = 'btn-secondary';
+                            }
+                        }                
+                    }else{
+                        // this.lazy = false;
+                        this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // Reset the search form
+            reset(){
+                this.empty_result='';
+                // reset form
+                this.filter = {
+                    name:'',
+                    location:'',
+                    rate:'',
+                    fare_min:0,
+                    fare_max:5000000,
+                    accomodation_size:'',
+                };
+                // Desktop size
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.search_location = '';
+                this.load_result();
+            },
+            /**
+             * SEARCH LIST
+             * DROPDOWN
+             *  */ 
+            rent_location_dropdown() {
+                $("#rent_location_list").css("display", "block");
+            },
+            set_location(location){
+                this.filter.location = location;
+                $("#rent_location_list").css("display", "none");
+            },
+            close(){
+                $("#rent_location_list").css("display", "none");
+            },
+        },
+        // Components
+        components:{Loading,SaleSidebar,JobSidebar,EventSidebar,RestaurantSidebar,ServiceSidebar},
+        // Mounted
+        mounted(){
+            this.load_result();
+            // fare
+
+            // API
+            axios.get('/api/location')
+            .then(response => {
+                this.locations = response.data;
+            })
+        }
     }
-}
 
 </script>
 

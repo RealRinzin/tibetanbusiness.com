@@ -118,8 +118,12 @@
                             </div>
                         </div>
                         <!-- sidebar -->
-                        <div class="col-md-4">
-                            <sidebar></sidebar>
+                        <div class="col-md-4" id="sidebar">
+                                <sale-sidebar :location="search_location"></sale-sidebar>
+                                <rent-sidebar :location="search_location"></rent-sidebar>
+                                <job-sidebar :location="search_location"></job-sidebar>
+                                <service-sidebar :location="search_location"></service-sidebar>
+                                <restaurant-sidebar :location="search_location"></restaurant-sidebar>
                         </div>
                     </div>
                 </div>
@@ -135,281 +139,290 @@
     import 'vue-loading-overlay/dist/vue-loading.css';
     // date
     import format from 'date-fns/format';
-
-export default {
-    props: ['location'],
-    // Data
-    data(){
-        return{
-            load_more_button : false,
-            loading_placeholder:true,
-            total:0,
-            rating:0,
-            status:true,
-            empty_result:'',
-            // event:[], // Restaurants Object
-            events:{
-                data:[],
-                next_page_url:`/api/search/events`,
+    // Sidebar
+    import SaleSidebar  from '../Search/Sale.vue';
+    import JobSidebar from '../Search/Job.vue';
+    import RentSidebar from '../Search/Rent.vue';
+    import RestaurantSidebar from '../Search/Restaurant.vue';
+    import ServiceSidebar from '../Search/Service.vue';
+    export default {
+        props: ['location'],
+        // Data
+        data(){
+            return{
+                load_more_button : false,
+                loading_placeholder:true,
+                total:0,
+                rating:0,
+                status:true,
+                empty_result:'',
+                // event:[], // Restaurants Object
+                events:{
+                    data:[],
+                    next_page_url:`/api/search/events`,
+                    },
+                    nextPage:2,
+                    search_next_page:2,
+                // filter
+                filter:{
+                    name:'',
+                    location:this.location,
+                    category:'',
+                    entry_status:false,
+                    fee_min:0,
+                    fee_max:10000000,
+                    from:'',
+                    to:'2020-12-22'
                 },
-                nextPage:2,
-                search_next_page:2,
-            // filter
-            filter:{
-                name:'',
-                location:this.location,
-                category:'',
-                entry_status:false,
-                fee_min:0,
-                fee_max:10000000,
-                from:'',
-                to:'2020-12-22'
+                // loading
+                isLoading : false,//Lazy loading
+                // lazy:false,
+                result:[],
+                /**
+                 * Dropdown List
+                 * location
+                 * profession
+                 * nature
+                 *  */  
+                locations:{},
+                search_location:'',
+                categories:{},
+
+            }
+        },
+        /**
+         *  Methods
+         *  */ 
+        methods:{
+            // star
+            setRating: function(rating){
+            this.rating= rating;
+            },
+            // Entry Free Chekc
+            entry_free_status(status){
+                if(status){
+                    this.status = false;
+                    this.search_result();
+                }else{
+                    this.status = true
+                    this.search_result();
+                }
             },
             // loading
-            isLoading : false,//Lazy loading
-            // lazy:false,
-            result:[],
-            /**
-             * Dropdown List
-             * location
-             * profession
-             * nature
-             *  */  
-            locations:{},
-            categories:{},
-
-        }
-    },
-    /**
-     *  Methods
-     *  */ 
-    methods:{
-        // star
-        setRating: function(rating){
-        this.rating= rating;
-        },
-        // Entry Free Chekc
-        entry_free_status(status){
-            if(status){
-                this.status = false;
-                this.search_result();
-            }else{
-                this.status = true
-                this.search_result();
-            }
-        },
-        // loading
-        load_result(){
-            if(this.location == null){
-                this.filter.location = ""
-            };
-            let today = new Date();
-            let from = format(new Date(today), 'yyyy-MM-dd');
-            this.filter.from = from;
-            // Slider Range
-            $( function() {
-                // axios.get('https://tibetanbusiness.com:8890/api/rent/list/max_fare')
-                // .then(response=>{
-                //    const max_price = response.data;
-                // });
-                // console.log(max_price);
-                $( "#slider-range" ).slider({
-                range: true,
-                min: 0,
-                max: 100000,
-                values: [ 0, 100000],
-                slide: function( event, ui ) {
-                    $( "#entry_fee" ).val(+ui.values[0]+"-"+ui.values[ 1 ] );
+            load_result(){
+                if(this.location == null){
+                    this.filter.location = ""
+                };
+                let today = new Date();
+                let from = format(new Date(today), 'yyyy-MM-dd');
+                this.filter.from = from;
+                this.search_location = this.filter.location;
+                // Slider Range
+                $( function() {
+                    // axios.get('https://tibetanbusiness.com:8890/api/rent/list/max_fare')
+                    // .then(response=>{
+                    //    const max_price = response.data;
+                    // });
+                    // console.log(max_price);
+                    $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 100000,
+                    values: [ 0, 100000],
+                    slide: function( event, ui ) {
+                        $( "#entry_fee" ).val(+ui.values[0]+"-"+ui.values[ 1 ] );
+                    }
+                    });
+                    $( "#entry_fee" ).val( +$("#slider-range" ).slider( "values", 0 )+
+                    "-"+$("#slider-range").slider( "values", 1 ) );
+                        // console.log(this.number);
+                } );
+                // Get the result
+                axios.get('/api/search/events?from='
+                +this.filter.from+
+                '&to='+this.filter.to+
+                '&fee_min='+this.filter.fee_min+
+                '&fee_max='+this.filter.fee_max+
+                '&entry_free='+this.filter.entry_status+
+                '&location='+this.filter.location
+                )
+                .then(response=>{ 
+                    this.events = response.data.data;
+                    this.loading_placeholder = false,
+                    this.total = response.data.meta.total;
+                    // Load more button
+                    if(response.data.total == 0){
+                        this.empty_result="We don't found the search item";
+                    }
+                    // if response it there
+                    if (response.data.meta.current_page == response.data.meta.last_page) {
+                        this.load_more_button = false;
+                    }else{
+                        this.load_more_button = true;
+                    }
+                })
+            },
+            // search result
+            search_result(){
+            this.search_location = this.filter.location;
+                // Desktop
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
                 }
-                });
-                $( "#entry_fee" ).val( +$("#slider-range" ).slider( "values", 0 )+
-                "-"+$("#slider-range").slider( "values", 1 ) );
-                    // console.log(this.number);
-            } );
-            // Get the result
-            axios.get('/api/search/events?from='
-            +this.filter.from+
-            '&to='+this.filter.to+
-            '&fee_min='+this.filter.fee_min+
-            '&fee_max='+this.filter.fee_max+
-            '&entry_free='+this.filter.entry_status+
-            '&location='+this.filter.location
-            )
-             .then(response=>{ 
-                this.events = response.data.data;
-                this.loading_placeholder = false,
-                this.total = response.data.meta.total;
-                // Load more button
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // if response it there
-                if (response.data.meta.current_page == response.data.meta.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                }
-            })
-        },
-        // search result
-        search_result(){
-            // Desktop
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            // Range
-            this.isLoading = true; //Loading true
-            // check
-            var fee = document.getElementById("entry_fee");
-            this.number = fee.value.split("-");
-            this.filter.fee_min = this.number[0];
-            this.filter.fee_max = this.number[1];
-            //  variables
-            this.nextPage = 2;
-            axios.get('/api/search/events?name='+this.filter.name+
-            '&location='+this.filter.location+
-            '&category='+this.filter.category+
-            '&from='+this.filter.from+
-            '&to='+this.filter.to+
-            '&entry_free='+this.filter.entry_status+
-            '&fee_min='+this.filter.fee_min+
-            '&fee_max='+this.filter.fee_max
-            +'&page=1')
-            .then((response)=>{ 
-                this.events = response.data.data;
-                this.total = response.data.meta.total;
-                this.isLoading = false; //Loading true
-                // check for empty result
-                if(response.data.meta.total == 0){
-                    this.empty_result = "We don't found the search item"
-                }
-                // Check the load more button
-                if(response.data.meta.current_page == response.data.meta.last_page){
-                    this.load_more_button = false; 
-                }else{
-                    this.load_more_button = true; 
-                }
-
-            })
-
-        },
-        // load more button
-        
-        load_more(nextPage){
-                // this.loading = false;
-            this.isLoading = true; //Loading true
-            axios.get('/api/search/events?name='+this.filter.name+
-            '&location='+this.filter.location+
-            '&category='+this.filter.category+
-            '&from='+this.filter.from+
-            '&to='+this.filter.to+
-            '&entry_free='+this.filter.entry_status+
-            '&fee_min='+this.filter.fee_min+
-            '&fee_max='+this.filter.fee_max+
-            '&page='+this.nextPage)
-            // axios.get('/api/search/events?page='+)
-            .then(response=>{
-                if(response.data.meta.current_page <= response.data.meta.last_page){
-                    this.nextPage = response.data.meta.current_page + 1;
+                // Range
+                this.isLoading = true; //Loading true
+                // check
+                var fee = document.getElementById("entry_fee");
+                this.number = fee.value.split("-");
+                this.filter.fee_min = this.number[0];
+                this.filter.fee_max = this.number[1];
+                //  variables
+                this.nextPage = 2;
+                axios.get('/api/search/events?name='+this.filter.name+
+                '&location='+this.filter.location+
+                '&category='+this.filter.category+
+                '&from='+this.filter.from+
+                '&to='+this.filter.to+
+                '&entry_free='+this.filter.entry_status+
+                '&fee_min='+this.filter.fee_min+
+                '&fee_max='+this.filter.fee_max
+                +'&page=1')
+                .then((response)=>{ 
+                    this.events = response.data.data;
+                    this.total = response.data.meta.total;
                     this.isLoading = false; //Loading true
-                    // loadmore Button
+                    // check for empty result
+                    if(response.data.meta.total == 0){
+                        this.empty_result = "We don't found the search item"
+                    }
+                    // Check the load more button
                     if(response.data.meta.current_page == response.data.meta.last_page){
                         this.load_more_button = false; 
                     }else{
                         this.load_more_button = true; 
                     }
-                    /**
-                     * Comments 
-                     * data Distribution
-                     *  */  
-                    this.events = [
-                        ...this.events,
-                        ...response.data.data
-                    ];    
-               
-                }else{
-                    // this.lazy = false;
-                    this.isLoading = false; //Loading true
-                }
-            })
-        },
-        // Reset the search form
-        reset(){
-            let today = new Date();
-            let from = format(new Date(today), 'yyyy-MM-dd');
-            this.status = true;
-            // Reset
-            this.empty_result='';
-            // filter paramater
-            this.filter = {
-                name:'',
-                location:'',
-                category:'',
-                entry_status:false,
-                fee_min:0,
-                fee_max:1000000,
-                from:from,
-                to:'2022-10-20'
-            };
-            // Desktop
-            if(screen.width < 767){
-                $("#search_collapse").removeClass("show");
-            }
-            this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-       event_location_dropdown() {
-            $("#event_location_list").css("display", "block");
-            $("#event_category_list").css("display", "none");
-            // $("#job_profession_list").css("display", "none");
-            // $("#job_experience_list").css("display", "none");
-            // $("#job_nature_list").css("display", "none");
-        },
-        set_location(location){
-            this.filter.location = location;
-            $("#event_location_list").css("display", "none");
-        },
-        // categoryu
-        event_category_dropdown() {
-            $("#event_category_list").css("display", "block");
-            $("#event_location_list").css("display", "none");
-        },
-        set_category(category){
-            this.filter.category = category;
-            $("#event_category_list").css("display", "none");
-        },
-        close(){
-            $("#event_location_list").css("display", "none");
-            $("#event_category_list").css("display", "none");
-        },
 
-    },
-    // Components
-    components:{Loading},
-    /**
-     * Filter
-     *  */ 
-    filters:{
-        date(str){
-            return format(new Date(str), 'EE, MMM dd, yyyy');
+                })
+
+            },
+            // load more button
+            
+            load_more(nextPage){
+                    // this.loading = false;
+                this.isLoading = true; //Loading true
+                axios.get('/api/search/events?name='+this.filter.name+
+                '&location='+this.filter.location+
+                '&category='+this.filter.category+
+                '&from='+this.filter.from+
+                '&to='+this.filter.to+
+                '&entry_free='+this.filter.entry_status+
+                '&fee_min='+this.filter.fee_min+
+                '&fee_max='+this.filter.fee_max+
+                '&page='+this.nextPage)
+                // axios.get('/api/search/events?page='+)
+                .then(response=>{
+                    if(response.data.meta.current_page <= response.data.meta.last_page){
+                        this.nextPage = response.data.meta.current_page + 1;
+                        this.isLoading = false; //Loading true
+                        // loadmore Button
+                        if(response.data.meta.current_page == response.data.meta.last_page){
+                            this.load_more_button = false; 
+                        }else{
+                            this.load_more_button = true; 
+                        }
+                        /**
+                         * Comments 
+                         * data Distribution
+                         *  */  
+                        this.events = [
+                            ...this.events,
+                            ...response.data.data
+                        ];    
+                
+                    }else{
+                        // this.lazy = false;
+                        this.isLoading = false; //Loading true
+                    }
+                })
+            },
+            // Reset the search form
+            reset(){
+                let today = new Date();
+                let from = format(new Date(today), 'yyyy-MM-dd');
+                this.status = true;
+                // Reset
+                this.empty_result='';
+                // filter paramater
+                this.filter = {
+                    name:'',
+                    location:'',
+                    category:'',
+                    entry_status:false,
+                    fee_min:0,
+                    fee_max:1000000,
+                    from:from,
+                    to:'2022-10-20'
+                };
+                // Desktop
+                if(screen.width < 767){
+                    $("#search_collapse").removeClass("show");
+                }
+                this.search_location = '';
+                this.load_result();
+            },
+            /**
+             * SEARCH LIST
+             * DROPDOWN
+             *  */ 
+        event_location_dropdown() {
+                $("#event_location_list").css("display", "block");
+                $("#event_category_list").css("display", "none");
+                // $("#job_profession_list").css("display", "none");
+                // $("#job_experience_list").css("display", "none");
+                // $("#job_nature_list").css("display", "none");
+            },
+            set_location(location){
+                this.filter.location = location;
+                $("#event_location_list").css("display", "none");
+            },
+            // categoryu
+            event_category_dropdown() {
+                $("#event_category_list").css("display", "block");
+                $("#event_location_list").css("display", "none");
+            },
+            set_category(category){
+                this.filter.category = category;
+                $("#event_category_list").css("display", "none");
+            },
+            close(){
+                $("#event_location_list").css("display", "none");
+                $("#event_category_list").css("display", "none");
+            },
+
+        },
+        // Components
+        components:{Loading,SaleSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+        /**
+         * Filter
+         *  */ 
+        filters:{
+            date(str){
+                return format(new Date(str), 'EE, MMM dd, yyyy');
+            }
+        },
+        // Mounted
+        mounted(){
+            this.load_result();
+            // locations api
+            axios.get('/api/location')
+            .then(response => {
+                this.locations = response.data;
+            })
+            // Profession
+            axios.get('/api/categories/event')
+            .then(response=>{
+                this.categories = response.data;
+            })
         }
-    },
-    // Mounted
-    mounted(){
-        this.load_result();
-        // locations api
-        axios.get('/api/location')
-        .then(response => {
-            this.locations = response.data;
-        })
-        // Profession
-        axios.get('/api/categories/event')
-        .then(response=>{
-            this.categories = response.data;
-        })
     }
-}
 </script>

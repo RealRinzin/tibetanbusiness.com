@@ -100,7 +100,6 @@
                                 <job-sidebar :location="search_location"></job-sidebar>
                                 <service-sidebar :location="search_location"></service-sidebar>
                                 <restaurant-sidebar :location="search_location"></restaurant-sidebar>
-                            <!-- <sidebar></sidebar> -->
                         </div>
                     </div>
                 </div>
@@ -115,13 +114,12 @@
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
 // Sidebars
-import SaleSidebar  from '../Search/Sale.vue';
+// import SaleSidebar  from '../Search/Sale.vue';
 import EventSidebar from '../Search/Event.vue';
 import JobSidebar from '../Search/Job.vue';
 import RentSidebar from '../Search/Rent.vue';
 import RestaurantSidebar from '../Search/Restaurant.vue';
 import ServiceSidebar from '../Search/Service.vue';
-import SearchSidebar from '../Sidebar/SearchSidebar.vue';
 // 
 export default {
     props:['location'],
@@ -330,7 +328,7 @@ export default {
     },
 
     // Components
-    components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,SearchSidebar},
+    components:{Loading,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     // Mounted
     mounted(){
         this.load_result();
