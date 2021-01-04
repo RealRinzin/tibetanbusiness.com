@@ -67,7 +67,7 @@ export default{
     },
     // methods
     mounted(){
-        this.load();
+        // this.load();
     }
 }
 </script>

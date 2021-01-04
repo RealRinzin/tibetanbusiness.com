@@ -96,13 +96,11 @@
                         <!-- sidebar -->
                         <div class="col-md-4" id="sidebar">
                                 <event-sidebar :location="search_location"></event-sidebar>
-                            <!-- <search-sidebar :location="search_location"></search-sidebar> -->
+                                <rent-sidebar :location="search_location"></rent-sidebar>
+                                <job-sidebar :location="search_location"></job-sidebar>
+                                <service-sidebar :location="search_location"></service-sidebar>
+                                <restaurant-sidebar :location="search_location"></restaurant-sidebar>
                             <!-- <sidebar></sidebar> -->
-                                <!-- <sale-sidebar :location="search_location"></sale-sidebar> -->
-                                <!-- <job-sidebar :location="location"></job-sidebar> -->
-                                <!-- <rent-sidebar :location="location"></rent-sidebar> -->
-                                <!-- <restaurant-sidebar :location="location"></restaurant-sidebar> -->
-                                <!-- <service-sidebar :location="location"></service-sidebar> -->
                         </div>
                     </div>
                 </div>
@@ -119,10 +117,10 @@
 // Sidebars
 import SaleSidebar  from '../Search/Sale.vue';
 import EventSidebar from '../Search/Event.vue';
-import JobSidebar from '../Sidebar/job.vue';
-import RentSidebar from '../Sidebar/rent.vue';
-import RestaurantSidebar from '../Sidebar/restaurant.vue';
-import ServiceSidebar from '../Sidebar/service.vue';
+import JobSidebar from '../Search/Job.vue';
+import RentSidebar from '../Search/Rent.vue';
+import RestaurantSidebar from '../Search/Restaurant.vue';
+import ServiceSidebar from '../Search/Service.vue';
 import SearchSidebar from '../Sidebar/SearchSidebar.vue';
 // 
 export default {
