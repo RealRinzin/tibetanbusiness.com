@@ -1,5 +1,6 @@
 <template>
     <div>
+        <auto-complete></auto-complete>
         <div v-if="!load" style="min-height:400px" class="text-center">
             <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
                     <span class="sr-only">Loading...</span>
@@ -193,7 +194,6 @@
         <!-- Business Listing -->
         <div class="bg-white" style="min-height:140vh">
             <div class="container py-3" id="business_list">
-                <!-- <home-list></home-list> -->
                 <home-list-fast></home-list-fast>
             </div>
 
@@ -210,6 +210,8 @@
     // import format from 'date-fns/format';
     import { compareAsc, format } from 'date-fns';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+    // Map Autocomplete Test
+    import AutoComplete from '../Autocomplete.vue';
     
     export default {
         /**
@@ -501,7 +503,7 @@
          * Components
          *  */  
         // components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList,Swiper,SwiperSlide},
-    components: {Loading,Swiper,SwiperSlide},
+    components: {Loading,Swiper,SwiperSlide,AutoComplete},
         /**
          * Mounted
          *  */ 
