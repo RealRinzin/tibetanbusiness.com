@@ -1,9 +1,10 @@
 <template>
     <div class="w-100 bg-danger">
-        <swiper class="swiper p-0" :options="carousel" style="height:70vh">
+        <!-- <search-test></search-test> -->
+        <swiper class="swiper p-0" :options="carousel" style="height:70vh;width:100%">
             <swiper-slide class="lazyload" v-for="(slider,index) in sliders"  v-bind:style='{ backgroundImage: `url(/storage/Carousel/${slider.link})`}' data-sizes="auto"
             :key="index"  style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
-            <div class="position-absolute" style="z-index: 200">
+            <div class="position-absolute w-100" style="z-index: 200">
                 <div id="home_search" class="container">
                     <div class="row py-1">
                         <div class="col-md-8 mx-auto py-4">
@@ -69,7 +70,9 @@
 <script>
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 // import 'swiper/swiper-bundle.css';
+// import SearchTest from '/SearchTest.vue';
 import 'swiper/css/swiper.css'
+import SearchTest from './SearchTest.vue';
   export default {
       data(){
           return{
@@ -155,7 +158,7 @@ import 'swiper/css/swiper.css'
         }
       },
     //   Components
-    components: {Swiper,SwiperSlide},
+    components: {Swiper,SwiperSlide,SearchTest},
     // Mounted
     mounted(){
 
