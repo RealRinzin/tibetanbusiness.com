@@ -1,6 +1,6 @@
 <template>
     <div class="w-100 bg-danger">
-        <!-- <search-test></search-test> -->
+        <search-test></search-test>
         <swiper class="swiper p-0" :options="carousel" style="height:70vh;width:100%">
             <swiper-slide class="lazyload" v-for="(slider,index) in sliders"  v-bind:style='{ backgroundImage: `url(/storage/Carousel/${slider.link})`}' data-sizes="auto"
             :key="index"  style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
