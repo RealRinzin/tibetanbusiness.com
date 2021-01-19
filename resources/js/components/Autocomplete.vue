@@ -1,9 +1,8 @@
 <template>
     <div>
   <input type="text" class="form-control" @keyup="check()" v-model="word">
-  checking
   <ul class="p-0">
-    <li style="list-style:none;" class="py-1" v-for="place in places">{{place.place_name}}</li>
+    <li style="list-style:none;" class="py-1 text-muted" v-for="place in places">{{place.text}}, {{place.context[0].text}}</li>
   </ul>
     </div>
 </template>
@@ -25,10 +24,8 @@ export default {
         axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.word+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&country=in&worldview=in&limit=10')
           .then(response=>{
             this.places =  response.data.features;
-            console.log(response.data);
           }) 
         }
-  
       }
     }
   },
