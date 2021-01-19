@@ -1,9 +1,9 @@
 <template>
     <div>
-  <input type="text" @keyup="check()" v-model="word">
+  <input type="text" class="form-control" @keyup="check()" v-model="word">
   checking
-  <ul>
-    <li v-for="place in places">{{place.place_name}}</li>
+  <ul class="p-0">
+    <li style="list-style:none;" class="py-1" v-for="place in places">{{place.place_name}}</li>
   </ul>
     </div>
 </template>
