@@ -1,6 +1,7 @@
 <template>
     <div>
   <input type="text" @keyup="check()" v-model="word">
+  checking
   <ul>
     <li v-for="place in places">{{place.place_name}}</li>
   </ul>
