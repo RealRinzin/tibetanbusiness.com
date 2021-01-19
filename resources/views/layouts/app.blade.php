@@ -449,10 +449,6 @@
     </script>
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
-    <script src="https://apis.mapmyindia.com/advancedmaps/v1/b26z3h8ijubhswa1o73rmmgirc3tpx9z/map_load?v=1.3"></script>
-    <script type="text/javascript">
-	var map=new MapmyIndia.Map("map",{ center:[32.219044, 76.323402],zoomControl: false,hybrid:true });
-</script>
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/bgset/ls.bgset.min.js"></script> -->
 </body>
 
