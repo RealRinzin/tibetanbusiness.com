@@ -1,8 +1,8 @@
 <template>
     <div>
-  <input type="text" class="form-control" @keyup="check()" v-model="word">
+  <input type="text"  class="form-control" @keyup="load_location()" v-model="word">
   <ul class="p-0">
-    <li style="list-style:none;" class="py-1 text-muted" v-for="place in places">{{place.text}}, {{place.context[0].text}}</li>
+    <li style="list-style:none;"  class="py-1 text-muted" v-for="place in places" @click="set_location(place.text)">{{place.text}}, {{place.context[0].text}}</li>
   </ul>
     </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     }
   },
   methods:{
-    check(){
+    load_location(){
       if(this.word ==''){
         this.word = '';
         this.places ={};
@@ -27,6 +27,10 @@ export default {
           }) 
         }
       }
+    },
+    // Set Location
+    set_location(location){
+      this.word = location;
     }
   },
     mounted(){
