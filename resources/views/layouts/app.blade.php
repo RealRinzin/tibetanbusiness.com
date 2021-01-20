@@ -39,8 +39,7 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZUKCfCsYwHBgUalqcKyrdhmLTCsjBj2M&callback=myMap"></script> -->
     <!-- CSRF TOKEN -->
     <script>
-        window.Laravel = <?php
-                            echo json_encode(['csrfToken' => csrf_token()]); ?>
+        window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
     </script>
 </head>
 

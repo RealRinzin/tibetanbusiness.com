@@ -1,6 +1,5 @@
 <template>
     <div>
-        <auto-complete></auto-complete>
         <div v-if="!load" style="min-height:400px" class="text-center">
             <div class="spinner-border text-secondary spinner-border-md" style="margin-top:160px" role="status">
                     <span class="sr-only">Loading...</span>
