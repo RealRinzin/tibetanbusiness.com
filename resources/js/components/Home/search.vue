@@ -9,7 +9,7 @@
                         <div class="col-md-8 mx-auto py-4">
                             <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
                         </div>
-                        <div class="col-md-6 mb-5 col-11 mx-auto" id="tb_search_dropdown">
+                        <div class="col-md-8 mb-5 col-11 mx-auto" id="tb_search_dropdown">
                         <auto-complete></auto-complete>
                                 <!-- <div class="row"> -->
                                     <!-- <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_location">
@@ -63,6 +63,9 @@
                 </div>
             </div>
         </swiper>
+        <div>
+            testing
+        </div>
     </div>
 </template>
 
