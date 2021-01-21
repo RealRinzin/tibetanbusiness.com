@@ -63,9 +63,6 @@
                 </div>
             </div>
         </swiper>
-        <div>
-            testing
-        </div>
     </div>
 </template>
 
