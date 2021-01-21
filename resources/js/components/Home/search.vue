@@ -1,18 +1,18 @@
 <template>
-    <div class="w-100 bg-danger">
+    <!-- <div class="w-100 bg-danger">
         <swiper class="swiper p-0" :options="carousel" style="height:70vh;width:100%">
             <swiper-slide class="lazyload" v-for="(slider,index) in sliders"  v-bind:style='{ backgroundImage: `url(/storage/Carousel/${slider.link})`}' data-sizes="auto"
             :key="index"  style="background-size:cover;background-position:center center; background-repeat:no-repeat"></swiper-slide>
-            <div class="position-absolute w-100" style="z-index: 200">
+            <div class="position-absolute w-100" style="z-index: 99999">
                 <div id="home_search" class="container">
                     <div class="row py-1">
                         <div class="col-md-8 mx-auto py-4">
                             <h3 class="text-white text-center">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
                         </div>
-                        <div class="col-md-8 mb-5 col-11 mx-auto" id="tb_search_dropdown">
+                        <div class="col-md-8 mb-5 col-11 mx-auto" id="tb_search_dropdown"> -->
                         <auto-complete></auto-complete>
-                                <!-- <div class="row"> -->
-                                    <!-- <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_location">
+                                <!-- <div class="row">
+                                    <div class="col-md-5 px-0 col-sm-5 col-12" id="tb_location">
                                         <div class="input-group mb-3 input-group-lg">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin text-muted"></i></span>
@@ -48,9 +48,9 @@
                                                 <i class="fas fa-search fa-2x"></i>
                                             </button>
                                         </div>
-                                    </div> -->
-                                <!-- </div> -->
-                            <div id="list" class="text-left small text-muted font-weight-bold py-2">
+                                    </div> 
+                                </div> -->
+                            <!-- <div id="list" class="text-left small text-muted font-weight-bold py-2">
                                 <span class="d-inline p-2 text-white"><a href="search/Events"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
                                 <span class="d-inline p-2 text-white"><a href="search/Sales"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
                                 <span class="d-inline p-2 text-white"><a href="search/Rents"><i class="fas fa-bed"></i> RENTS</a></span>
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </swiper>
-    </div>
+    </div> -->
 </template>
 
 <script>

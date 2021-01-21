@@ -1,43 +1,63 @@
 <template>
-    <div class="row">
+<section class="w-100 py-5" style="background:rgba(0,0,0,0.6)">
+  <div class="container">
+    <div class="row pt-5">
+          <div class="col-md-12 mx-auto py-3">
+              <h3 class="text-white text-center  d-none d-sm-block">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
+              <h3 class="text-white text-center  d-block d-sm-none"> Find Rents,Jobs and More - Tibetanbusiness.com</h3>
+          </div>
       <!-- location  -->
-      <div class="col-md-5 pr-0 col-sm-5 col-12">
-          <div class="input-group input-group-lg" >
-              <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-map-pin text-muted"></i></span>
-              </div>
-              <input type="text" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location">
+        <div class="col-md-8 mb-5 col-11 mx-auto py-5" id="tb_search_dropdown">
+          <div class="row">
+            <div class="col-md-5 px-0 py-1 col-sm-5 col-12">
+                <div class="input-group input-group-lg" >
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map-pin text-muted"></i></span>
+                    </div>
+                    <input type="text" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location">
+                </div>
+                <ul class="w-100" style="position: absolute;z-index:100">
+                  <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                </ul>
+            </div>
+            <!-- Services -->
+            <div class="col-md-5 px-0 py-1 col-sm-5 col-12">
+                <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-tools"></i>
+                        </span>
+                    </div>
+                    <input type="text" id="service_search" @focusin="service_dropdown()" :keyup="service_selected()" v-model="service" class="form-control"  placeholder="Service" aria-label="service type" required>
+                </div>
+                    <ul id="service_list" class="w-100" style="display:none;position:absolute;transition:1s;z-index:100">
+                        <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <li style="list-style:none;cursor:pointer" class="py-2 text-dark border-bottom bg-light" v-for="type in types" :value="type.name" @click="set_service(type.name)"><a href="#"><span class="mr-2"><img :src="type.img"></span>{{type.name}}</a></li>
+                    </ul>
+            </div>
+            <!-- Search Button -->
+            <div class="col-md-2 px-0 py-1 col-sm-2 col-12">
+                <div class="input-group-append">
+                    <button  type="submit" @click="search" name="search" class="btn btn-danger w-75">
+                        <i class="fas fa-search fa-2x"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="list" class="text-left small text-muted font-weight-bold py-2">
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Events"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Sales"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Rents"><i class="fas fa-bed"></i> RENTS</a></span>
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Jobs"><i class="fas fa-briefcase"></i> JOBS</a></span>
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Services"><i class="fas fa-tools"></i> SERVICES</a></span>
+                  <span class="d-inline p-2 text-white"><a class="text-white" href="search/Restaurants"><i class="fas fa-pizza-slice"></i> RESTAURANTS</a></span>
+            </div>
           </div>
-          <ul>
-            <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
-          </ul>
-      </div>
-      <!-- Services -->
-      <div class="col-md-5 px-0 col-sm-5 col-12">
-          <div class="input-group input-group-lg">
-              <div class="input-group-prepend">
-                  <span class="input-group-text">
-                      <i class="fas fa-tools"></i>
-                  </span>
-              </div>
-              <input type="text" id="service_search" @focusin="service_dropdown()" :keyup="service_selected()" v-model="service" class="form-control"  placeholder="Service" aria-label="service type" required>
-          </div>
-              <ul id="service_list" style="display:none;transition:1s">
-                  <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-                  <li style="list-style:none;cursor:pointer" class="py-2 text-dark border-bottom bg-light" v-for="type in types" :value="type.name" @click="set_service(type.name)"><a href="#"><span class="mr-2"><img :src="type.img"></span>{{type.name}}</a></li>
-              </ul>
-      </div>
-      <!-- Search Button -->
-      <div class="col-md-2 px-0 col-sm-2 col-12">
-          <div class="input-group-append">
-              <button  type="submit" @click="search" name="search" class="btn btn-danger w-75">
-                  <i class="fas fa-search fa-2x"></i>
-              </button>
-          </div>
-      </div>
+        </div>
     </div>
+  </div>
+</section>
 </template>
 <script>
 export default {
@@ -66,7 +86,7 @@ export default {
         this.places ={};
       }else{
         if(this.keyword_location.length > 2){
-        axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=30')
+        axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
           .then(response=>{
             this.places =  response.data.features;
           }) 
@@ -108,6 +128,9 @@ export default {
           $("#service_search").removeClass("border-danger");
         }
       }else{
+        if(this.selected_location ===''){
+          this.selected_location = this.keyword_location;
+        }
         let url = '/search/Rents?_token='+window.Laravel.csrfToken+'&location='+this.selected_location;
           window.location.href = url;
       }
