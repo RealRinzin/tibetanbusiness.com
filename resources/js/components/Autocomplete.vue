@@ -1,6 +1,6 @@
 <template>
-<div class="bg-danger" style="min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
-  <section class="w-100 py-5" style="background:rgba(0,0,0,0.6)">
+<div class="bg-danger" style="transition:background 3s ease-in-out;min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
+  <section class="w-100 py-5" style="background:rgba(0,0,0,0.5)">
     <div class="container">
       <div class="row pt-5">
             <div class="col-md-12 mx-auto py-3">
@@ -15,7 +15,7 @@
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-map-pin text-muted"></i></span>
                       </div>
-                      <input type="text" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location">
+                      <input type="text" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                   </div>
                   <ul class="w-100" style="position: absolute;z-index:100">
                     <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
@@ -46,7 +46,7 @@
                       </button>
                   </div>
               </div>
-              <div id="list" class="text-left small text-muted font-weight-bold py-2">
+              <div id="list" class="text-left small text-muted font-weight-bold py-3">
                     <span class="d-inline p-2 text-white"><a class="text-white" href="search/Events"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
                     <span class="d-inline p-2 text-white"><a class="text-white" href="search/Sales"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
                     <span class="d-inline p-2 text-white"><a class="text-white" href="search/Rents"><i class="fas fa-bed"></i> RENTS</a></span>
@@ -69,7 +69,7 @@ export default {
       keyword_location:'', //selected place
       selected_location:'',
       service:'', //service
-      hero_image:{},
+      hero_image:'3.jpg',
       // Services types
         types:[
             {'name':'Events','img':'/img/event.png'},
@@ -137,20 +137,33 @@ export default {
         let url = '/search/Rents?_token='+window.Laravel.csrfToken+'&location='+this.selected_location;
           window.location.href = url;
       }
-    }
-  },
-    mounted(){
+    },
+    // load carousel image
+    load_carousel(){
         axios.get('/api/carousel')
         .then((response) => {
-          this.hero_image = response.data[0].link;
+          console.log("interval");
+          this.hero_image = response.data[0].photo;
         }).catch((err) => {
             
         });
-      // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/dharamsala.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&country=in&worldview=in&limit=10')
-      // .then(response=>{
-      //   this.places =  response.data.features[0].text;
-      //   console.log(response.data.features);
-      // })
+    },
+    ready() {
+        window.setInterval(() => {
+            this.load_carousel();
+        },2500);
+    },
+  },
+    mounted(){
+      // setInterval(this.load_carousel(), 1000);
+        axios.get('/api/carousel')
+        .then((response) => {
+          this.hero_image = response.data[0].photo;
+        }).catch((err) => {
+        });
+        // Interval for images
+      this.ready();
+
     }
 }
 </script>
