@@ -134,7 +134,7 @@ export default {
         if(this.selected_location ===''){
           this.selected_location = this.keyword_location;
         }
-        let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.selected_location;
+        let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.keyword_location;
           window.location.href = url;
       }
     },
@@ -144,9 +144,7 @@ export default {
         .then((response) => {
           console.log("interval");
           this.hero_image = response.data[0].photo;
-        }).catch((err) => {
-            
-        });
+        })
     },
     ready() {
         window.setInterval(() => {

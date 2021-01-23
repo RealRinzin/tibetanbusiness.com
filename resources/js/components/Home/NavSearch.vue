@@ -4,12 +4,9 @@
             <div class="row">
                 <div class="px-0 col-5" id="tb_location">
                     <div class="input-group mb-3 input-group-md">
-                        <input type="text" style="border-radius:3px 0px 0px 3px"  id="location_search" @focusin="location_dropdown()"  v-model="place"  :keyup="location_selected()" class="form-control" readonly="readonly" placeholder="Location" aria-label="Location" required>
-                        <ul id="location_list" style="display:none;transition:1s;min-height:250px" class="position-absolute" >
-                            <button type="button" id="location_close" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <li v-for="location in locations" :value="location.name" @click="set_location(location.name)"><a href="#">{{location.name}}</a></li>
+                      <input type="text" style="font-size:14px" id="location_search"  class="form-control" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
+                        <ul class="w-100" style="position: absolute;z-index:100;height:auto">
+                            <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
                         </ul>
                     </div>
                 </div>
@@ -41,6 +38,8 @@ export default {
         return{
             locations:{},
             place:'',
+            keyword_location:'', //selected place
+            places:'',
             service:'',
             types:[
                 {'name':'Events','img':'/img/event.png'},
@@ -53,38 +52,44 @@ export default {
             }
     },
       methods:{
+        //   load palces
+            load_location(){
+            if(this.keyword_location ==''){
+                this.keyword_location = '';
+                this.places ={};
+            }else{
+                if(this.keyword_location.length > 2){
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                .then(response=>{
+                    this.places =  response.data.features;
+                }) 
+                }
+            }
+            },
         /**
          * SEARCH LIST
          * DROPDOWN
          *  */ 
-        location_dropdown() {
-            $("#location_list").css("display", "block");
-            $("#service_list").css("display", "none");
+        // Set Location
+        set_location(location,city){
+        this.keyword_location = location+', '+city;
+        this.selected_location = location;
+        this.places = {};
         },
-       set_location(place){
-            this.place = place;
-            $("#location_list").css("display", "none");
-        },
-        service_dropdown(service){
+        service_dropdown(){
             $("#service_list").css("display", "block");
-            $("#location_list").css("display", "none");
         },
        set_service(type){
             this.service = type;
             $("#service_list").css("display", "none");
         },
-        // check field 
-        // empty
-        location_selected(){
-            $("#location_search").removeClass("required");
-            // $("#location_search").css("border",'solid 1px green');
-        },
+
         service_selected(){
             $("#service_search").removeClass("required");
         },
         // Submit search
         search(e){
-            if (!this.service || !this.place) {
+            if (!this.service || !this.keyword_location) {
                 // console.log("empty");
                 if (this.service) {
                     // $("#service_search").removeClass("required");
@@ -94,8 +99,7 @@ export default {
                     $("#service_search").attr("placeholder", "Select Service");
                 }
                 // location required
-                if (this.place) {
-                    // $("#location_search").removeClass("required");
+                if (this.keyword_location) {
                 } else {
                     // Required Location
                     $("#location_search").addClass("required");
@@ -103,19 +107,13 @@ export default {
                 }
                 e.preventDefault();
             } else {
-                let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.place;
+                let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.keyword_location;
                 window.location.href = url;
             };
         }
       },
     mounted(){
-        // location
-        axios.get('/api/location')
-        .then((response) => {
-            this.locations = response.data;
-        }).catch((err) => {
 
-        });
     }
 }
 </script>
