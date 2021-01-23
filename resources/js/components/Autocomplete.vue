@@ -134,7 +134,7 @@ export default {
         if(this.selected_location ===''){
           this.selected_location = this.keyword_location;
         }
-        let url = '/search/Rents?_token='+window.Laravel.csrfToken+'&location='+this.selected_location;
+        let url = '/search/'+this.service+'?_token='+window.Laravel.csrfToken+'&location='+this.selected_location;
           window.location.href = url;
       }
     },
