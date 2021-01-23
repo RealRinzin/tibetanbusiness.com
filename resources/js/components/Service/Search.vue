@@ -14,12 +14,9 @@
                                                 <input type="text"  v-model="filter.name" class="form-control" placeholder="Name">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <input type="text" @focusin="service_location_dropdown()" v-model="filter.location" class="rounded form-control " readonly="readonly" placeholder="Location" aria-label="Location">
-                                                        <ul id="service_location_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
-                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <li v-for="location in locations" :value="location.name" @click="set_location(location.name)">{{location.name}}</li>
+                                                    <input type="text" @keyup="load_location()"  v-model="filter.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                    <ul class="w-100" style="position: absolute;z-index:100;height:auto">
+                                                        <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
@@ -134,6 +131,7 @@
                 load_more_button : false,
                 total:0,
                 rating:0,
+                places:'',
                 empty_result:'',
                 // service:[], // Restaurants Object
                 services:{
@@ -174,6 +172,20 @@
             // star
             setRating: function(rating){
             this.rating= rating;
+            },
+            // load places
+            load_location(){
+                if(this.filter.location ==''){
+                    this.filter.location = '';
+                    this.places ={};
+                }else{
+                    if(this.filter.location.length > 2){
+                    axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.filter.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                    .then(response=>{
+                        this.places =  response.data.features;
+                    }) 
+                    }
+                }
             },
             // loading
             load_result(){
@@ -325,27 +337,20 @@
                 this.load_result();
             },
             /**
-                * SEARCH LIST
-                * DROPDOWN
-                *  */ 
-            service_location_dropdown() {
-                $("#service_location_list").css("display", "block");
-                $("#service_category_list").css("display", "none");
-            },
-            set_location(location){
-                this.filter.location = location;
-                $("#service_location_list").css("display", "none");
+             * Set Location
+             *  */ 
+            set_location(location,city){
+                this.filter.location = location+', '+city;;
+                this.places = {};
             },
             service_category_dropdown() {
                 $("#service_category_list").css("display", "block");
-                $("#service_locaiton_list").css("display", "none");
             },
             set_category(type){
                 this.filter.type = type;
                 $("#service_category_list").css("display", "none");
             },
             close(){
-                $("#service_location_list").css("display", "none");
                 $("#service_category_list").css("display", "none");
             },
         },
