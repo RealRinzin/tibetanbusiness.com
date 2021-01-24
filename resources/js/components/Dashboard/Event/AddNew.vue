@@ -212,7 +212,6 @@ export default {
     methods:{
         // load places
         load_location(){
-            console.log("log");
             if(this.event.location ==''){
                 this.event.location = '';
                 this.places ={};
@@ -231,7 +230,6 @@ export default {
         set_location(location,city,index){
             this.event.location = location+', '+city;;
             this.event.address = this.places[index].place_name;
-            console.log(this.places[index]);
             this.places = {};
         },
         // Entry free check

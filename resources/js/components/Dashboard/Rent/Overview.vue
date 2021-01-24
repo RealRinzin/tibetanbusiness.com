@@ -296,10 +296,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <select v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location">
-                                                    <option :value="rent.location">{{rent.location}}</option>
-                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
-                                                </select>
+                                                <input type="text" name="location" v-validate="'required'" @keyup="load_location()"  v-model="rent.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                <ul class="w-100 pl-0" style="position: absolute;z-index:100">
+                                                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                </ul>
                                                 <!-- <input type="text" v-validate="'required'" v-model="rent.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.location')" class="invalid-feedback">
@@ -360,7 +360,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="address">Address <small class="text-success">(optional)</small></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="rent.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Enter Address | less than 250 word" ></textarea>
+                                                <textarea rows="4" cols="50" v-validate="'max:255'" v-model="rent.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="Enter Address | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_add_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_add_form.address')">{{ error }}</span>
@@ -370,7 +370,7 @@
                                         <div class="col-md-8 col-sm-6">
                                             <div class="form-group">
                                                 <label for="address">Description <small class="text-success">(optional)</small></label>
-                                                <textarea rows="4" cols="50" v-validate="'max:150'" v-model="rent.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                <textarea rows="4" cols="50" v-validate="'max:255'" v-model="rent.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_add_form.description')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_add_form.description')">{{ error }}</span>
@@ -400,10 +400,32 @@ export default {
     props:['rent','facilities'],
     data(){
         return {
-            locations:{},
+            places:{},
         }
     },
     methods:{
+        // load places
+        load_location(){
+            if(this.rent.location ==''){
+                this.rent.location = '';
+                this.places ={};
+            }else{
+                if(this.rent.location.length > 2){
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.rent.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                .then(response=>{
+                    this.places =  response.data.features;
+                }) 
+                }
+            }
+        },
+        /**
+            * Set Location
+            *  */ 
+        set_location(location,city,index){
+            this.rent.location = location+', '+city;;
+            this.rent.address = this.places[index].place_name;
+            this.places = {};
+        },
         // Overview edit
         edit(){
             $("#rent_overview_update_modal").modal("show");           
@@ -441,12 +463,6 @@ export default {
     },
     components:{AddFacility},
     mounted(){
-        // this.facility();
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
     }
 }
 </script>

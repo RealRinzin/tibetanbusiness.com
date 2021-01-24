@@ -320,7 +320,6 @@ export default {
     methods:{
         // load places
         load_location(){
-            console.log("log");
             if(this.event.location ==''){
                 this.event.location = '';
                 this.places ={};

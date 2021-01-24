@@ -253,10 +253,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <select v-validate="'required'" v-model="service.location" name="location" class="form-control" id="location">
-                                                    <option :value="service.location">{{service.location}}</option>
-                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
-                                                </select>
+                                                 <input type="text" name="location" v-validate="'required'" @keyup="load_location()"  v-model="service.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                <ul class="w-100 pl-0" style="position: absolute;z-index:100">
+                                                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                </ul>
                                                 <!-- <input type="text" v-validate="'required|min:2|max:40'" v-model="service.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="name"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.location')" class="invalid-feedback">
@@ -307,7 +307,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="deadline">Address<small class="text-success">(optional)</small></label>
-                                                <textarea row="5" cols="50" v-validate="'min:2|max:40'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name"></textarea>
+                                                <textarea row="5" cols="50" v-validate="'min:2|max:255'" v-model="service.address" name="address" class="form-control" id="address" aria-describedby="emailHelp" placeholder="name"></textarea>
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('service_validate_add_form.address')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('service_validate_add_form.address')">{{ error }}</span>
@@ -374,12 +374,33 @@ export default {
     data(){
         return{
             id:this.service.id,
-            locations:{},
+            places:{},
             categories:{},
         }
     },
     methods:{
-    
+            // load places
+        load_location(){
+            if(this.service.location ==''){
+                this.service.location = '';
+                this.places ={};
+            }else{
+                if(this.service.location.length > 2){
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.service.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                .then(response=>{
+                    this.places =  response.data.features;
+                }) 
+                }
+            }
+        },
+        /**
+            * Set Location
+            *  */ 
+        set_location(location,city,index){
+            this.service.location = location+', '+city;;
+            this.service.address = this.places[index].place_name;
+            this.places = {};
+        },
         // editing
         edit(){
             $("#service_overview_update_modal").modal("show");           

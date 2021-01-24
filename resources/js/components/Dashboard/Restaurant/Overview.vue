@@ -347,10 +347,10 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <select v-validate="'required'" v-model="restaurant.location" name="location" class="form-control" id="location">
-                                                    <option :value="restaurant.location" selected>{{restaurant.location}}</option>
-                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
-                                                </select>
+                                                <input type="text" name="location" v-validate="'required'" @keyup="load_location()"  v-model="restaurant.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                <ul class="w-100 pl-0" style="position: absolute;z-index:100">
+                                                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                </ul>
                                                 <!-- <input type="text" v-validate="'required'" v-model="restaurant.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_update_form.location')" class="invalid-feedback">
@@ -486,12 +486,33 @@ export default {
     props:['restaurant','facilities','operation'],
     data(){
         return {
-            locations:{},
+            places:{},
         }
     },
 
     methods:{
-
+        // load places
+        load_location(){
+            if(this.restaurant.location ==''){
+                this.restaurant.location = '';
+                this.places ={};
+            }else{
+                if(this.restaurant.location.length > 2){
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.restaurant.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                .then(response=>{
+                    this.places =  response.data.features;
+                }) 
+                }
+            }
+        },
+        /**
+            * Set Location
+            *  */ 
+        set_location(location,city,index){
+            this.restaurant.location = location+', '+city;;
+            this.restaurant.address = this.places[index].place_name;
+            this.places = {};
+        },
         // Overview edit
         edit(){
             $("#overview_update_modal").modal("show");           
@@ -546,11 +567,6 @@ export default {
     components:{AddFacility,AddDay},
     // Mounted
     mounted(){
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
     }
 }
 </script>
