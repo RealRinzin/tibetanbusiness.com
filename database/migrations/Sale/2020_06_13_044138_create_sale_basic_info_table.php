@@ -24,6 +24,8 @@ class CreateSaleBasicInfoTable extends Migration
             $table->string('total_item', 2);
             $table->string('address', 250)->nullable();
             $table->text('location', 30);
+            $table->double('longitude',5,2);
+            $table->double('latitude',5,2);
             $table->text('type', 30);
             $table->string('mobile_no', 12);
             $table->boolean('status');

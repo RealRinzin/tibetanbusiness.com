@@ -511,6 +511,10 @@ export default {
         set_location(location,city,index){
             this.restaurant.location = location+', '+city;;
             this.restaurant.address = this.places[index].place_name;
+            //longitude
+            this.restaurant.longitude = this.places[index].center[0];
+            // latitude
+            this.restaurant.latitude = this.places[index].center[1];
             this.places = {};
         },
         // Overview edit

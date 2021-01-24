@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // factory(User::class, 1)->create();
+        factory(User::class, 1)->create();
         // location
         factory(Location::class,10)->create();
         // category

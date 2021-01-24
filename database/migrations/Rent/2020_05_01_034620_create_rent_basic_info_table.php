@@ -24,7 +24,9 @@ class CreateRentBasicInfoTable extends Migration
             $table->decimal('rate', 5, 1)->nullable();
             $table->string('rate_color', 100)->nullable();
             $table->string('address', 250)->nullable();
-            $table->text('location', 30);
+            $table->text('location', 100);
+            $table->double('longitude',5,2);
+            $table->double('latitude',5,2);
             $table->string('mobile_no', 12);
             $table->string('email', 100)->nullable();
             $table->string('accomodation_size',2);

@@ -87,6 +87,8 @@ class RentBasicInfoController extends Controller
             'name' => $request->name,
             'mobile_no' => $request->mobile_no,
             'location' => $request->location,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
             'email' => $request->email,
             'fare' => $request->fare,
             'banner' => $name,

@@ -399,6 +399,10 @@ export default {
         set_location(location,city,index){
             this.service.location = location+', '+city;;
             this.service.address = this.places[index].place_name;
+            //longitude
+            this.service.longitude = this.places[index].center[0];
+            // latitude
+            this.service.latitude = this.places[index].center[1];
             this.places = {};
         },
         // editing
@@ -446,11 +450,6 @@ export default {
         }
     },
     mounted(){
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
         axios.get('/api/categories/service')
         .then(response=>{
             this.categories = response.data;

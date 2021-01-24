@@ -19,6 +19,8 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
         'thumb' => 'thumb',
         'email' => $faker->email(),
         'location' => $faker->word(),
+        'longitude' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 5, $max = 2), // 48.8932,
+        'latitude' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 5, $max = 2), // 48.8932,
         'category' => $faker->word(),
         'address' => $faker->address(),
         'mobile_no' => $faker->numberBetween($min = 8000000000, $max = 9999999999),

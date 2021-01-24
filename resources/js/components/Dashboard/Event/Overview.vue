@@ -338,6 +338,10 @@ export default {
         set_location(location,city,index){
             this.event.location = location+', '+city
             this.event.address = this.places[index].place_name;
+            //longitude
+            this.event.longitude = this.places[index].center[0];
+            // latitude
+            this.event.latitude = this.places[index].center[1];
             this.places = {};
         },
         // modal
@@ -351,6 +355,7 @@ export default {
             if(this.event.entry_free){
                 this.event.entry_fee = 0;
             }
+            console.log(this.event);
             // Update Information
             this.$validator.validateAll('event_validate_update_form').then((result) => {
                 if (result) {

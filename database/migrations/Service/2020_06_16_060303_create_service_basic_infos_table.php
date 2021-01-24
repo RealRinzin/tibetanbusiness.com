@@ -24,8 +24,10 @@ class CreateServiceBasicInfosTable extends Migration
             $table->string('card', 100);
             $table->string('thumb', 100);
             $table->string('address', 250)->nullable();
-            $table->text('location', 30);
-            $table->string('email', 250)->nullable();
+            $table->text('location', 100);
+            $table->double('longitude',5,2);
+            $table->double('latitude',5,2);
+            $table->string('email', 100)->nullable();
             $table->string('mobile_no', 12);
             $table->string('opening_hour', 10);
             $table->string('closing_hour', 10);

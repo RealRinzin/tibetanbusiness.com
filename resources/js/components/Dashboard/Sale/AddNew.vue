@@ -143,7 +143,10 @@ export default {
     props:['load_sale'],
     data(){
         return{
-            sale:{},
+            sale:{
+                'longitude':20.96,
+                'latitude':78.78
+            },
             bannerPreview:'',
             // today : 
             places:{},
@@ -171,6 +174,11 @@ export default {
         set_location(location,city,index){
             this.sale.location = location+', '+city;;
             this.sale.address = this.places[index].place_name;
+            //longitude
+            this.sale.longitude = this.places[index].center[0];
+            // latitude
+            this.sale.latitude = this.places[index].center[1];
+            // Reset location
             this.places = {};
         },
         /**

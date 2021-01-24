@@ -196,7 +196,10 @@ export default {
             // restaurant Id
             id:'',
             // Restaurant Object
-            restaurant:{},
+            restaurant:{
+                'longitude':20.96,
+                'latitude':78.78
+            },
             // operational days
             operation_days:{},
             // ADD facilities 
@@ -232,6 +235,10 @@ export default {
         set_location(location,city,index){
             this.restaurant.location = location+', '+city;;
             this.restaurant.address = this.places[index].place_name;
+            //longitude
+            this.restaurant.longitude = this.places[index].center[0];
+            // latitude
+            this.restaurant.latitude = this.places[index].center[1];
             this.places = {};
         },
         /**

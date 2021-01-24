@@ -391,6 +391,10 @@ export default {
         set_location(location,city,index){
             this.job.location = location+', '+city
             this.job.address = this.places[index].place_name;
+            //longitude
+            this.job.longitude = this.places[index].center[0];
+            // latitude
+            this.job.latitude = this.places[index].center[1];
             this.places = {};
         },
         // Salary Disclose

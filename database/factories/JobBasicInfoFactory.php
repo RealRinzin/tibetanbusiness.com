@@ -21,6 +21,8 @@ $factory->define(JobBasicInfo::class, function (Faker $faker) {
         'mobile_no' => $faker->numberBetween($min = 8000000000, $max = 9999999999),
         'address' => $faker->address(1),
         'location' => $faker->word(1),
+        'longitude' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 5, $max = 2), // 48.8932,
+        'latitude' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 5, $max = 2), // 48.8932,
         'email' => $faker->email(),
         'instagram' => $faker->url(100),
         'facebook' => $faker->url(100),

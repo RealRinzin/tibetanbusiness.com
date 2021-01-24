@@ -78,6 +78,8 @@ class SaleBasicInfoController extends Controller
             'thumb' => $thumb,
             'type' => $request->type,
             'location' => $request->location,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
             'total_item' => $request->total_item,
             'address' => $request->address,
             'mobile_no' => $request->mobile_no,

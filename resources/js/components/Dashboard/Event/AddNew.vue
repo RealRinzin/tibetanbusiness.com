@@ -199,7 +199,10 @@ export default {
     props:['load_event'],
     data(){
         return{
-            event:{},
+            event:{
+                'longitude':20.96,
+                'latitude':78.78
+            },
             bannerPreview:'',
             places:{},
             // today :
@@ -230,6 +233,11 @@ export default {
         set_location(location,city,index){
             this.event.location = location+', '+city;;
             this.event.address = this.places[index].place_name;
+            //longitude
+            this.event.longitude = this.places[index].center[0];
+            // latitude
+            this.event.latitude = this.places[index].center[1];
+            // Reset location
             this.places = {};
         },
         // Entry free check

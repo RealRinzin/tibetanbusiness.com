@@ -81,6 +81,8 @@ class JobBasicInfoController extends Controller
             'experience' => $request->experience,
             'deadline' => $request->deadline,
             'location' => $request->location,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
             'mobile_no' => $request->mobile_no,
             'email' => $request->email,
             'address' => $request->address,

@@ -77,6 +77,8 @@ class ServiceBasicInfoController extends Controller
             'rate'=>0,
             'email' => $request->email,
             'location' => $request->location,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
             'type' => $request->type,
             'opening_hour' => $request->opening_hour,
             'closing_hour' => $request->closing_hour,

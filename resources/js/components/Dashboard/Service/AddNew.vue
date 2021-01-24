@@ -184,7 +184,10 @@ export default {
     props:['load_service'],
     data(){
         return{
-            service:{},
+            service:{
+                'longitude':20.96,
+                'latitude':78.78
+            },
             id:'',
             bannerPreview:'',
             places:{},
@@ -212,6 +215,11 @@ export default {
         set_location(location,city,index){
             this.service.location = location+', '+city;;
             this.service.address = this.places[index].place_name;
+            //longitude
+            this.service.longitude = this.places[index].center[0];
+            // latitude
+            this.service.latitude = this.places[index].center[1];
+            // Reset location
             this.places = {};
         },
         /**

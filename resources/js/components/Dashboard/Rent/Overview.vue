@@ -424,6 +424,10 @@ export default {
         set_location(location,city,index){
             this.rent.location = location+', '+city;;
             this.rent.address = this.places[index].place_name;
+            //longitude
+            this.rent.longitude = this.places[index].center[0];
+            // latitude
+            this.rent.latitude = this.places[index].center[1];
             this.places = {};
         },
         // Overview edit

@@ -241,7 +241,10 @@ export default {
     props:['load_job'],
     data(){
         return{
-            job:{},
+            job:{
+                'longitude':20.96,
+                'latitude':78.78
+            },
             bannerPreview:'',
             places:{},
             // today : 
@@ -270,8 +273,13 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.job.location = location+', '+city;;
+            this.job.location = location+', '+city;
+            // address
             this.job.address = this.places[index].place_name;
+            //longitude
+            this.job.longitude = this.places[index].center[0];
+            // latitude
+            this.job.latitude = this.places[index].center[1];
             this.places = {};
         },
         // Salary Disclose
@@ -301,36 +309,32 @@ export default {
             // base64 data
             fileReader.readAsDataURL(event.target.files[0]);
         },
+        // Add Job
        add_job(){
-               this.$validator.validateAll('job_validate_add_form').then((result) => {
-                    if(result){
-                    this.$Progress.start()
-                     axios.post('/api/job',this.job,{
-                        headers : { Authorization : localStorage.getItem("token")}
-                        })
-                        .then(response=>{
-                            // closing modal
-                                $("#job_add_modal").modal("hide");  
-                                //  Flash Message  
-                                toast.fire({
-                                    icon:'success',
-                                    title:'Updated',
-                                });
-                                // location.reload();
-                                this.$emit('load_job');
-                                // Progress
-                            this.$Progress.finish()
-                        })
-                    }
-               })
+            this.$validator.validateAll('job_validate_add_form').then((result) => {
+                if(result){
+                this.$Progress.start()
+                    axios.post('/api/job',this.job,{
+                    headers : { Authorization : localStorage.getItem("token")}
+                    })
+                    .then(response=>{
+                        // closing modal
+                            $("#job_add_modal").modal("hide");  
+                            //  Flash Message  
+                            toast.fire({
+                                icon:'success',
+                                title:'Updated',
+                            });
+                            // location.reload();
+                            this.$emit('load_job');
+                            // Progress
+                        this.$Progress.finish()
+                    })
+                }
+            })
         }
     },
     mounted(){
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
         // profession
         axios.get('/api/categories/job')
         .then(response => {

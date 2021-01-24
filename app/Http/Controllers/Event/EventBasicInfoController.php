@@ -84,6 +84,8 @@ class EventBasicInfoController extends Controller
             'email' => $request->email,
             'entry_free'=>$request->entry_free,
             'location' => $request->location,
+            'longitude' => $request->longitude,
+            'latitude' => $request->latitude,
             'category' => $request->category,
             'address' => $request->address,
             'mobile_no' => $request->mobile_no,
