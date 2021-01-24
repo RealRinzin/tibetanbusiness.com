@@ -199,10 +199,10 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <select v-validate="'required'" v-model="event.location" name="location" class="form-control" id="location">
-                                                    <option :value="event.location">{{event.location}}</option>
-                                                    <option v-for="location in locations" :value="location.name">{{location.name}}</option>
-                                                </select>
+                                                <input type="text" name="location" v-validate="'required'" @keyup="load_location()"  v-model="event.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                <ul class="w-100 pl-0" style="position: absolute;z-index:100">
+                                                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                </ul>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.location')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.location')">{{ error }}</span>
@@ -313,11 +313,34 @@ export default {
     data(){
         return{
             // event:{},
-            locations:{},
+            places:{},
             categories:{},
         }
     },
     methods:{
+        // load places
+        load_location(){
+            console.log("log");
+            if(this.event.location ==''){
+                this.event.location = '';
+                this.places ={};
+            }else{
+                if(this.event.location.length > 2){
+                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.event.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                .then(response=>{
+                    this.places =  response.data.features;
+                }) 
+                }
+            }
+        },
+        /**
+            * Set Location
+            *  */ 
+        set_location(location,city,index){
+            this.event.location = location+', '+city
+            this.event.address = this.places[index].place_name;
+            this.places = {};
+        },
         // modal
         edit(){
             $("#event_overview_update_modal").modal("show");           
@@ -358,11 +381,6 @@ export default {
         }
     },
     mounted(){
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
         // Events
         axios.get('/api/categories/event')
         .then(response=>{
