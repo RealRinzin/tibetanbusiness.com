@@ -46,6 +46,7 @@ Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('search', require('./components/Home/Search.vue').default);
 Vue.component('auto-complete', require('./components/Autocomplete.vue').default);
 Vue.component('home-list-fast', require('./components/Home/HomeListFast.vue').default);
+
 // Vue.component('home-list', require('./components/Home/HomeList.vue').default);
 // Vue.component('featured-rent', require('./components/Home/Featured/Rent.vue').default);
 // Vue.component('featured-job', require('./components/Home/Featured/Job.vue').default);

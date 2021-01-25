@@ -9,7 +9,7 @@
         <div v-else>
             <div class="row">
                 <div class="col-md-10 mx-auto">
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="card text-center">
                                 <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'>
@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <img src="/img/map.jpeg" alt="" height="250">
+                                <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-md-12" id="nav-tab">
                             <div class="width-25">

@@ -36,7 +36,7 @@
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
                                                 <div class="col-md-6 col-sm-6 col-12">
-                                                    <h6 class="text-muted py-1"><i class="fas fa-clock mr-2"></i>{{restaurant.opening_hour}} a.m - {{restaurant.closing_hour}}p.m</h6>
+                                                    <h6 class="text-muted py-1"><i class="fas fa-clock mr-2"></i>{{restaurant.opening_hour}}- {{restaurant.closing_hour}}</h6>
                                                     <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{restaurant.mobile_no}}</h6>
                                                     <h6 class="text-muted"><i class="fas fa-map-marker-alt mr-2"></i>{{restaurant.location}}</h6>
                                                     <h6 class="text-muted pt-1" v-if="restaurant.operation[0] != null">
@@ -87,15 +87,14 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card my-2" v-if="restaurant.description != null">
+                                <div class="card my-2">
                                     <div class="row p-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" v-if="restaurant.description">
                                             <h5 class="text-dark">Brief</h5>
                                             <p class="text-muted">Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
                                         </div>
-                                        <div class="col-md-6"> 
-                                            <h6>Location</h6>
-                                            <geo-map v-bind:longitude="restaurant.longitude" :latitude="restaurant.latitude"></geo-map>
+                                        <div class="col-md-6">
+                                            <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
                                         </div>
                                     </div>
                                 </div>
@@ -131,79 +130,79 @@
     import Loading from 'vue-loading-overlay';
     // Import stylesheet
     import 'vue-loading-overlay/dist/vue-loading.css';
-// Sidebars
-import SaleSidebar  from '../Sidebar/Sale.vue';
-import EventSidebar from '../Sidebar/event.vue';
-import JobSidebar from '../Sidebar/job.vue';
-import RentSidebar from '../Sidebar/rent.vue';
-import RestaurantSidebar from '../Sidebar/restaurant.vue';
-import ServiceSidebar from '../Sidebar/service.vue';
-        // Map
+    // Sidebars
+    import SaleSidebar  from '../Sidebar/Sale.vue';
+    import EventSidebar from '../Sidebar/event.vue';
+    import JobSidebar from '../Sidebar/job.vue';
+    import RentSidebar from '../Sidebar/rent.vue';
+    import RestaurantSidebar from '../Sidebar/restaurant.vue';
+    import ServiceSidebar from '../Sidebar/service.vue';
+    // Map
     export default {
-        // props:['rating'],
-        /**
-         * Data
-         *  */ 
-        data(){
-            return{
-                rate:0,
-                // Loading
-                loading:false,
-                isLoading : false,//Lazy loading
-                // Object
-                restaurant:{}, //individual show
-                location:'',
-                // /**
-                //  * Comments
-                //  * Current Page 
-                //  * pagination
-                //  * last page
-                //  *  */ 
-                // comments:{},
-                // nextPage:2,
-                // load_more_button : true,
-                // total_comments:0,
-                // comments_lazy_load:false,
-                sharing: {
-                    url: '',
-                    title: '',
-                    description: ''
-                },
-                networks: [
-                        { network: 'facebook', name: 'Facebook', icon: 'fab fah fa-lg fa-facebook-f', color: '#1877f2' },
-                    ]
-            }
+            // props:['rating'],
+            /**
+             * Data
+             *  */ 
+            data(){
+                return{
+                    rate:0,
+                    // Loading
+                    loading:false,
+                    isLoading : false,//Lazy loading
+                    // Object
+                    restaurant:{}, //individual show
+                    location:'',
+                    // /**
+                    //  * Comments
+                    //  * Current Page 
+                    //  * pagination
+                    //  * last page
+                    //  *  */ 
+                    // comments:{},
+                    // nextPage:2,
+                    // load_more_button : true,
+                    // total_comments:0,
+                    // comments_lazy_load:false,
+                    sharing: {
+                        url: '',
+                        title: '',
+                        description: ''
+                    },
+                    networks: [
+                            { network: 'facebook', name: 'Facebook', icon: 'fab fah fa-lg fa-facebook-f', color: '#1877f2' },
+                        ]
+                }
+            },
+            /**
+             * 
+             * Components
+             *  */  
+            components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+            /**
+             * Methods
+             *  */ 
+            methods:{
+                show(){  
+                    this.isLoading = true; //Loading true
+                    axios.get('/view'+window.location.pathname).then(response=>{
+                        this.restaurant = response.data.data;
+                        // location
+                        this.location = this.restaurant.location;
+                        // loading
+                        this.isLoading = false; //Loading true
+                        this.loading = true;
+                        // sharing
+                        this.sharing={
+                            url:this.restaurant.name,
+                            title:this.restaurant.name,
+                        }
+                    })
+                }
         },
-        /**
-         * 
-         * Components
-         *  */  
-        components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
-        /**
-         * Methods
-         *  */ 
-        methods:{
-            show(){  
-                this.isLoading = true; //Loading true
-                axios.get('/view'+window.location.pathname).then(response=>{
-                    this.restaurant = response.data.data;
-                    // location
-                    this.location = this.restaurant.location;
-                    // loading
-                    this.isLoading = false; //Loading true
-                    this.loading = true;
-                    // sharing
-                    this.sharing={
-                        url:this.restaurant.name,
-                        title:this.restaurant.name,
-                    }
-                })
-            }
-    },
 
-    // Mounted
-    mounted(){
-        this.show();
+        // Mounted
+        mounted(){
+            this.show();
+        }
     }
-}
 </script>
