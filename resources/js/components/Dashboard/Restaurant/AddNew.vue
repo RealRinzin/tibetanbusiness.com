@@ -33,7 +33,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="location">Location<span class="text-danger p-1">*</span></label>
-                                                <input type="text" name="location" v-validate="'required'" @keyup="load_location()"  v-model="restaurant.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
+                                                <input type="text" autocomplete="off" name="location" v-validate="'required'" @keyup="load_location()"  v-model="restaurant.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
                                                 <ul class="w-100 pl-0" style="position: absolute;z-index:100">
                                                     <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
                                                 </ul>
