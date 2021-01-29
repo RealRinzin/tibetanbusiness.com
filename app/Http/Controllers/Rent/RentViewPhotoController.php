@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class RentViewPhotoController extends Controller
 {
 
-
+    protected $path = '../public/storage/Rent/View-Photos/';
     /**
      * Store a newly created resource in storage.
      *
@@ -31,13 +31,13 @@ class RentViewPhotoController extends Controller
             $name = time() .$i. '.' . $extension[1];
             $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
-            \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);
-            $Original =  \Image::make($file_name)->save(public_path('/storage/Rent/View-Photos/') . $name);
+            \Image::make($file_name)->save($this->path. $name);
+            $Original =  \Image::make($file_name)->save($this->path. $name);
             // thumb
             $Original->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Rent/View-Photos/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
             // Inserting
             // Recording in Database
             $restaurant = RentViewPhoto::create([
@@ -63,8 +63,8 @@ class RentViewPhotoController extends Controller
         //
         //
         $photos = RentViewPhoto::find($id);
-        $unlink = public_path() . '/storage/Rent/View-Photos/' . $photos->path;
-        $thumb = public_path() . '/storage/Rent/View-Photos/' . $photos->thumb;
+        $unlink = $this->path . $photos->path;
+        $thumb = $this->path . $photos->thumb;
         // Unlinking all the photos
         unlink($unlink);
         unlink($thumb);

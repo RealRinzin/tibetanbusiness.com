@@ -12,6 +12,7 @@ use function PHPSTORM_META\type;
 
 class EventPhotoController extends Controller
 {
+    protected $path = '../public/storage/Event/Photos/';
 
     /**
      * Store a newly created resource in storage.
@@ -32,13 +33,13 @@ class EventPhotoController extends Controller
                 $name = time() .$i. '.' . $extension[1];
                 $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
-                \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
-                $Original =  \Image::make($file_name)->save(public_path('/storage/Event/Photos/') . $name);
+                \Image::make($file_name)->save($this->path. $name);
+                $Original =  \Image::make($file_name)->save($this->path. $name);
             // thumb
                 $Original->resize(200, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
-                \Image::make($Original)->save(public_path('/storage/Event/Photos/') . $thumb);
+                \Image::make($Original)->save($this->path. $thumb);
             // Inserting
             // Recording in Database
                 $restaurant = EventPhoto::create([
@@ -65,8 +66,8 @@ class EventPhotoController extends Controller
         //
         $photo = EventPhoto::find($id);
         // return $photo->path;
-        $unlink = public_path() . '/storage/Event/Photos/' . $photo->path;
-        $thumb = public_path() . '/storage/Event/Photos/' . $photo->thumb;
+        $unlink = $this->path. $photo->path;
+        $thumb = $this->path. $photo->thumb;
         // Unlinking all the photos
         unlink($unlink);
         unlink($thumb);

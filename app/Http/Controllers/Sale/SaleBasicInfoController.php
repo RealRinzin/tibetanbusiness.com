@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\URL;
 class SaleBasicInfoController extends Controller
 {
 
-    private $name = "RInizn";
+    protected $path = '../public/storage/Sale/Banner/';
+    protected $path_photo = '../public/storage/Sale/Photos/';
+
     /**
      * Store a newly created resource in storage.
      *
@@ -55,18 +57,18 @@ class SaleBasicInfoController extends Controller
                     )
                 )[1])[1];
             // Images
-            \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path . $name);
+            $Original = \Image::make($request->banner)->save($this->path . $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path . $thumb);
         }
         // Database Record
         // Insertion
@@ -129,9 +131,9 @@ class SaleBasicInfoController extends Controller
     public function destroy($id)
     {
         $sale = SaleBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Sale/Banner/' . $sale->banner;
-        $unlink_card= public_path() . '/storage/Sale/Banner/' . $sale->card;
-        $unlink_thumb = public_path() . '/storage/Sale/Banner/' . $sale->thumb;
+        $unlink = $this->path . $sale->banner;
+        $unlink_card= $this->path . $sale->card;
+        $unlink_thumb = $this->path . $sale->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -140,8 +142,8 @@ class SaleBasicInfoController extends Controller
         // Looping through all the photos
         for ($i=0; $i < $photo->count(); $i++) { 
             $photo[$i]->delete();
-            $photos_detach = public_path() . '/storage/Sale/Photos/' . $photo[$i]->path;
-            $photos_thumb = public_path() . '/storage/Sale/Photos/' . $photo[$i]->thumb;
+            $photos_detach = $this->path_photo . $photo[$i]->path;
+            $photos_thumb = $this->path_photo . $photo[$i]->thumb;
             unlink($photos_detach);
             unlink($photos_thumb);
         }
@@ -266,24 +268,24 @@ class SaleBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path . $name);
+            $Original = \Image::make($request->banner)->save($this->path . $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Sale/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path . $thumb);
         }
         // upate
         $banner = SaleBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Sale/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Sale/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Sale/Banner/' . $banner->thumb;
+        $unlink = $this->path . $banner->banner;
+        $unlink_card = $this->path . $banner->card;
+        $unlink_thumb = $this->path . $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);

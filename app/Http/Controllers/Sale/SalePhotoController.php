@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class SalePhotoController extends Controller
 {
+    protected $path = '../public/storage/Sale/Photos/';
+
     /**
      * Store a newly created resource in storage.
      *
@@ -27,13 +29,13 @@ class SalePhotoController extends Controller
                 $name = time() .$i. '.' . $extension[1];
                 $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
-                \Image::make($file_name)->save(public_path('/storage/Sale/Photos/') . $name);
-                $Original =  \Image::make($file_name)->save(public_path('/storage/Sale/Photos/') . $name);
+                \Image::make($file_name)->save($this->path . $name);
+                $Original =  \Image::make($file_name)->save($this->path . $name);
             // thumb
                 $Original->resize(200, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
-                \Image::make($Original)->save(public_path('/storage/Sale/Photos/') . $thumb);
+                \Image::make($Original)->save($this->path . $thumb);
             // Insert record
             // to Database
             $photo = SalePhoto::create([
@@ -59,8 +61,8 @@ class SalePhotoController extends Controller
     {
         //
         $photo = SalePhoto::find($id);
-        $unlink = public_path() . '/storage/Sale/Photos/' . $photo->path;
-        $unlink_thumb = public_path() . '/storage/Sale/Photos/' . $photo->thumb;
+        $unlink = $this->path . $photo->path;
+        $unlink_thumb = $this->path . $photo->thumb;
         unlink($unlink);
         unlink($unlink_thumb);
         $photo->delete();

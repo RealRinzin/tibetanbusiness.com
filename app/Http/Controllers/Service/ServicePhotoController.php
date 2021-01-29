@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ServicePhotoController extends Controller
 {
+    protected $path = '../public/storage/Service/Photos/';
 
     /**
      * Store a newly created resource in storage.
@@ -27,13 +28,13 @@ class ServicePhotoController extends Controller
             $name = time() .$i. '.' . $extension[1];
             $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
-            \Image::make($file_name)->save(public_path('/storage/Service/Photos/') . $name);
-            $Original =  \Image::make($file_name)->save(public_path('/storage/Service/Photos/') . $name);
+            \Image::make($file_name)->save($this->path. $name);
+            $Original =  \Image::make($file_name)->save($this->path. $name);
             // thumb
             $Original->resize(120, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Service/Photos/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
             // Insert record
             // to Database
             $photo = ServicePhoto::create([
@@ -57,8 +58,8 @@ class ServicePhotoController extends Controller
     {
         //
         $photo = ServicePhoto::find($id);
-        $unlink = public_path() . '/storage/Service/Photos/' . $photo->path;
-        $unlink_thumb = public_path() . '/storage/Service/Photos/' . $photo->thumb;
+        $unlink = $this->path . $photo->path;
+        $unlink_thumb = $this->path . $photo->thumb;
         unlink($unlink);
         unlink($unlink_thumb);
         $photo->delete();

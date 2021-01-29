@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class RentBasicInfoController extends Controller
 {
+    protected $path = '../public/storage/Rent/Banner/';
+    protected $path_view = '../public/storage/Rent/View-Photos/';
+    protected $path_room = '../public/storage/Rent/Room-Photos/';
     /**
      * Display a listing of the resource.
      *
@@ -69,18 +72,18 @@ class RentBasicInfoController extends Controller
                     )
                 )[1])[1];
             // Original
-            \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         $rent = RentBasicInfo::create([
             'user_id' => Auth::user()->id,
@@ -159,9 +162,9 @@ class RentBasicInfoController extends Controller
     {
         //
         $rent = RentBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Rent/Banner/' . $rent->banner;
-        $unlink_card = public_path() . '/storage/Rent/Banner/' . $rent->card;
-        $unlink_thumb = public_path() . '/storage/Rent/Banner/' . $rent->thumb;
+        $unlink = $this->path. $rent->banner;
+        $unlink_card = $this->path. $rent->card;
+        $unlink_thumb = $this->path. $rent->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -169,8 +172,8 @@ class RentBasicInfoController extends Controller
         $view_photos = RentViewPhoto::where('rent_basic_info_id', $id)->get();
         for ($i = 0; $i < $view_photos->count(); $i++) {
             $view_photos[$i]->delete();
-            $view_detach = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->path;
-            $view_thumb = public_path() . '/storage/Rent/View-Photos/' . $view_photos[$i]->thumb;
+            $view_detach = $this->path_view. $view_photos[$i]->path;
+            $view_thumb = $this->path_view. $view_photos[$i]->thumb;
             unlink($view_detach);
             unlink($view_thumb);
         }
@@ -178,8 +181,8 @@ class RentBasicInfoController extends Controller
         $room_photos = RentRoomPhoto::where('rent_basic_info_id', $id)->get();
         for ($i = 0; $i < $room_photos->count(); $i++) {
             $room_photos[$i]->delete();
-            $room_detach = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->path;
-            $room_thumb = public_path() . '/storage/Rent/Room-Photos/' . $room_photos[$i]->thumb;
+            $room_detach = $this->path_room. $room_photos[$i]->path;
+            $room_thumb = $this->path_room. $room_photos[$i]->thumb;
             unlink($room_detach);
             unlink($room_thumb);
         }
@@ -295,24 +298,24 @@ class RentBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Rent/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Rent/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         // upate
         $banner = RentBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Rent/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Rent/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Rent/Banner/' . $banner->thumb;
+        $unlink = $this->path. $banner->banner;
+        $unlink_card = $this->path. $banner->card;
+        $unlink_thumb = $this->path. $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);

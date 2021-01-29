@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantFoodPhotoController extends Controller
 {
+    protected $path = '../public/storage/Restaurant/Food-Pictures/';
+
     /**
      * Store a newly created resource in storage.
      *
@@ -30,13 +32,13 @@ class RestaurantFoodPhotoController extends Controller
             $name = time() .$i. '.' . $extension[1];
             $thumb = time() .$i. '-thumb.' . $extension[1];
             // Original
-            \Image::make($file_name)->save(public_path('/storage/Restaurant/Food-Pictures/') . $name);
-            $Original =  \Image::make($file_name)->save(public_path('/storage/Restaurant/Food-Pictures/') . $name);
+            \Image::make($file_name)->save($this->path. $name);
+            $Original =  \Image::make($file_name)->save($this->path. $name);
             // thumb
             $Original->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Restaurant/Food-Pictures/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
             // Inserting
             // Recording in Database
             $restaurant = RestaurantFoodPhoto::create([
@@ -61,8 +63,8 @@ class RestaurantFoodPhotoController extends Controller
         //
         $photos = RestaurantFoodPhoto::find($id);
         // Delete
-        $unlink = public_path() . '/storage/Restaurant/Food-Pictures/' . $photos->path;
-        $thumb = public_path() . '/storage/Restaurant/Food-Pictures/' . $photos->thumb;
+        $unlink = $this->path . $photos->path;
+        $thumb = $this->path. $photos->thumb;
         // Unlinking all the photos
         unlink($unlink);
         unlink($thumb);

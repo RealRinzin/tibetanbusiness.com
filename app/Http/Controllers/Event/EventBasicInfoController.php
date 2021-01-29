@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\URL;
 
 class EventBasicInfoController extends Controller
 {
-
+    protected $path = '../public/storage/Event/Banner/';
+    protected $path_photo = '../public/storage/Event/Photos/';
     /**
      * Store a newly created resource in storage.
      *
@@ -59,18 +60,18 @@ class EventBasicInfoController extends Controller
                     )
                 )[1])[1];
             // Original
-            \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
 
         }
         // return $name;
@@ -143,9 +144,9 @@ class EventBasicInfoController extends Controller
     {
         
         $event = EventBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Event/Banner/' . $event->banner;
-        $unlink_card= public_path() . '/storage/Event/Banner/' . $event->card;
-        $unlink_thumb = public_path() . '/storage/Event/Banner/' . $event->thumb;
+        $unlink = $this->path. $event->banner;
+        $unlink_card= $this->path. $event->card;
+        $unlink_thumb = $this->path. $event->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -153,8 +154,8 @@ class EventBasicInfoController extends Controller
         $photos = EventPhoto::where('event_basic_info_id', $id)->get();
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
-            $photos_detach = public_path() . '/storage/Event/Photos/' . $photos[$i]->path;
-            $photos_thumb = public_path() . '/storage/Event/Photos/' . $photos[$i]->thumb;
+            $photos_detach = $this->path_photo . $photos[$i]->path;
+            $photos_thumb = $this->path_photo . $photos[$i]->thumb;
             unlink($photos_detach);
             unlink($photos_thumb);
         }
@@ -245,25 +246,25 @@ class EventBasicInfoController extends Controller
                     )
                 )[1])[1];
                 // Store Image
-            \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Event/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Event/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         // upate
         $banner = EventBasicInfo::find($id);
         // Remove old photos
-        $unlink = public_path() . '/storage/Event/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Event/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Event/Banner/' . $banner->thumb;
+        $unlink = $this->path. $banner->banner;
+        $unlink_card = $this->path. $banner->card;
+        $unlink_thumb = $this->path. $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);

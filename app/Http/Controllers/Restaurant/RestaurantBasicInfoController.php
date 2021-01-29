@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Auth;
 class RestaurantBasicInfoController extends Controller
 {
     protected $path = '../public/storage/Restaurant/Banner/';
-    // protected $path = $_SERVER['DOCUMENT_ROOT'].'/storage/Restaurant/Banner/';
+    protected $path_food = '../public/storage/Restaurant/Food-Pictures/';
+    protected $path_menu = '../public/storage/Restaurant/Menu-Pictures/';
+    // protected $path = $_SERVER['DOCUMENT_ROOT'].$this->path;
 
     
     /**
@@ -74,22 +76,22 @@ class RestaurantBasicInfoController extends Controller
                     )
                 )[1])[1];
             // Original
-            // \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // \Image::make($request->banner)->save(public_path($this->path) . $name);
             // return public_path();
             \Image::make($request->banner)->save($this->path. $name);
-            // $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            // $Original = \Image::make($request->banner)->save(public_path($this->path) . $name);
             $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            // \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            // \Image::make($Original)->save(public_path($this->path) . $card);
             \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            // \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
+            // \Image::make($Original)->save(public_path($this->path) . $thumb);
             \Image::make($Original)->save($this->path. $thumb);
 
         }
@@ -166,9 +168,9 @@ class RestaurantBasicInfoController extends Controller
     public function destroy($id,RestaurantBasicInfo $restaurantBasicInfo)
     {
         $restaurant = RestaurantBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Restaurant/Banner/' . $restaurant->banner;
-        $unlink_card = public_path() . '/storage/Restaurant/Banner/' . $restaurant->card;
-        $unlink_thumb = public_path() . '/storage/Restaurant/Banner/' . $restaurant->thumb;
+        $unlink = $this->path . $restaurant->banner;
+        $unlink_card = $this->path . $restaurant->card;
+        $unlink_thumb = $this->path . $restaurant->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -176,11 +178,9 @@ class RestaurantBasicInfoController extends Controller
         $food_photos = RestaurantFoodPhoto::where('restaurant_basic_info_id', $id)->get();
         for ($i = 0; $i < $food_photos->count(); $i++) {
             $food_photos[$i]->delete();
-            $food_detach = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->path;
-            $food_card = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->card;
-            $food_thumb = public_path() . '/storage/Restaurant/Food-Pictures/' . $food_photos[$i]->thumb;
+            $food_detach = $this->path_food. $food_photos[$i]->path;
+            $food_thumb = $this->path_food. $food_photos[$i]->thumb;
             unlink($food_detach);
-            unlink($food_card);
             unlink($food_thumb);
         }
         // Menu
@@ -188,12 +188,10 @@ class RestaurantBasicInfoController extends Controller
         for ($i = 0; $i < $menu_photos->count(); $i++) {
             $menu_photos[$i]->delete();
             // path
-            $menu_detach = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->path;
-            $menu_card = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->card;
-            $menu_thumb = public_path() . '/storage/Restaurant/Menu-Pictures/' . $menu_photos[$i]->thumb;
+            $menu_detach = $this->path_menu . $menu_photos[$i]->path;
+            $menu_thumb = $this->path_menu . $menu_photos[$i]->thumb;
             // unlink
             unlink($menu_detach);
-            unlink($menu_card);
             unlink($menu_thumb);
         }
         // Delete
@@ -323,24 +321,24 @@ class RestaurantBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Restaurant/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path . $name);
+            $Original = \Image::make($request->banner)->save($this->path . $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Restaurant/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         // upate
         $banner = RestaurantBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Restaurant/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Restaurant/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Restaurant/Banner/' . $banner->thumb;
+        $unlink = $this->path . $banner->banner;
+        $unlink_card =  $this->path . $banner->card;
+        $unlink_thumb =  $this->path . $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);

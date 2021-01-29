@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 class JobBasicInfoController extends Controller
 {
+    protected $path = '../public/storage/Job/Banner/';
+    protected $document= '../public/storage/Job/';
    /**
      * Store a newly created resource in storage.
      *
@@ -53,18 +55,18 @@ class JobBasicInfoController extends Controller
                     )
                 )[1])[1];
                 // Saving Images
-            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path . $name);
+            $Original = \Image::make($request->banner)->save($this->path . $name);
             // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path . $thumb);
             
         }
         // return $name;
@@ -131,9 +133,9 @@ class JobBasicInfoController extends Controller
     {
         //
         $job = JobBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Job/Banner/' . $job->banner;
-        $unlink_card = public_path() . '/storage/Job/Banner/' . $job->card;
-        $unlink_thumb = public_path() . '/storage/Job/Banner/' . $job->thumb;
+        $unlink = $this->path. $job->banner;
+        $unlink_card = $this->path. $job->card;
+        $unlink_thumb = $this->path. $job->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -141,7 +143,7 @@ class JobBasicInfoController extends Controller
         $documents = JobApply::where('job_basic_info_id', $id)->get();
         for ($i = 0; $i < $documents->count(); $i++) {
             $documents[$i]->delete();
-            $documents_detach = public_path() . '/storage/Job/' . $documents[$i]->document;
+            $documents_detach = $this->document. $documents[$i]->document;
             unlink($documents_detach);
         }
         // Delete
@@ -210,24 +212,24 @@ class JobBasicInfoController extends Controller
                     )
                 )[1])[1];
 
-            \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Job/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path . $name);
+            $Original = \Image::make($request->banner)->save($this->path . $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $card);
+            \Image::make($Original)->save($this->path . $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Job/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path . $thumb);
         }
         // upate
         $banner = JobBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Job/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Job/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Job/Banner/' . $banner->thumb;
+        $unlink = $this->path. $banner->banner;
+        $unlink_card = $this->path. $banner->card;
+        $unlink_thumb = $this->path. $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);

@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceBasicInfoController extends Controller
 {
-
+    protected $path = '../public/storage/Service/Banner/';
+    protected $path_photo = '../public/storage/Service/Photos/';
     /**
      * Store a newly created resource in storage.
      *
@@ -54,18 +55,18 @@ class ServiceBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
             $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
         // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
         // Thumbnail 240 X 
             $Original->resize(220, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         // return $name;
         $service = ServiceBasicInfo::create([
@@ -132,9 +133,9 @@ class ServiceBasicInfoController extends Controller
     {
         
         $service = ServiceBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Service/Banner/' . $service->banner;
-        $unlink_card = public_path() . '/storage/Service/Banner/' . $service->card;
-        $unlink_thumb = public_path() . '/storage/Service/Banner/' . $service->thumb;
+        $unlink = $this->path . $service->banner;
+        $unlink_card = $this->path . $service->card;
+        $unlink_thumb = $this->path . $service->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
@@ -142,8 +143,8 @@ class ServiceBasicInfoController extends Controller
         $photos = ServicePhoto::where('service_basic_info_id', $id)->get();
         for ($i = 0; $i < $photos->count(); $i++) {
             $photos[$i]->delete();
-            $photos_detach = public_path() . '/storage/Service/Photos/' . $photos[$i]->path;
-            $photos_thumb = public_path() . '/storage/Service/Photos/' . $photos[$i]->thumb;
+            $photos_detach = $this->path_photo. $photos[$i]->path;
+            $photos_thumb = $this->path_photo. $photos[$i]->thumb;
             unlink($photos_detach);
             unlink($photos_thumb);
         }
@@ -262,24 +263,24 @@ class ServiceBasicInfoController extends Controller
                         strpos($request->banner, ';')
                     )
                 )[1])[1];
-            \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Service/Banner/') . $name);
+            \Image::make($request->banner)->save($this->path. $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
             // Card 500 X
             $Original->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $card);
+            \Image::make($Original)->save($this->path. $card);
             // Thumbnail 240 X 
             $Original->resize(240, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            \Image::make($Original)->save(public_path('/storage/Service/Banner/') . $thumb);
+            \Image::make($Original)->save($this->path. $thumb);
         }
         // upate
         $banner = ServiceBasicInfo::find($id);
-        $unlink = public_path() . '/storage/Service/Banner/' . $banner->banner;
-        $unlink_card = public_path() . '/storage/Service/Banner/' . $banner->card;
-        $unlink_thumb = public_path() . '/storage/Service/Banner/' . $banner->thumb;
+        $unlink = $this->path . $banner->banner;
+        $unlink_card = $this->path . $banner->card;
+        $unlink_thumb = $this->path . $banner->thumb;
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
