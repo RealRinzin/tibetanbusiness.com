@@ -176,8 +176,7 @@ class ServiceBasicInfoController extends Controller
         if (Auth::user()->id === ServiceBasicInfo::find($id)->user_id) {
             return view('dashboard.service.edit', ['id' => ServiceBasicInfo::find($id)]);
         } else {
-            // $this->authorize('rent_auth', $rentBasicInfo);
-            // return redirect('/');
+            $this->authorize('service_edit', $serviceBasicInfo);
         }
     }
     public function all()

@@ -219,8 +219,8 @@ class SaleBasicInfoController extends Controller
         if (Auth::user()->id === SaleBasicInfo::find($id)->user_id) {
             return view('dashboard.sale.edit', ['id' => SaleBasicInfo::find($id)]);
         } else {
-            // $this->authorize('rent_auth', $rentBasicInfo);
-            // return redirect('/');
+            $this->authorize('sale_edit', $saleBasicInfo);
+            return redirect('/');
         }
     }
     // Display page

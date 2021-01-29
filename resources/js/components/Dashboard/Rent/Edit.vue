@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-10 mx-auto">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <!-- banner -->
                             <div class="card text-center">
                                 <div v-if="bannerPreview == null" class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
@@ -40,11 +40,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="card">
-                                <img src="/img/map.jpeg" alt="" height="250">
+                                <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12" id="nav-tab">

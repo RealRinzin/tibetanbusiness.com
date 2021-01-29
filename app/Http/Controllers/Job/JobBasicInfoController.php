@@ -171,8 +171,7 @@ class JobBasicInfoController extends Controller
         if (Auth::user()->id === JobBasicInfo::find($id)->user_id) {
             return view('dashboard.job.edit', ['id' => JobBasicInfo::find($id)]);
         } else {
-            // $this->authorize('rent_auth', $rentBasicInfo);
-            // return redirect('/');
+            $this->authorize('job_edit', $rentBasicInfo);
         }
     }
     public function banner_update(Request $request, $id)

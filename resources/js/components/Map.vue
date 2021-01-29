@@ -15,7 +15,7 @@ export default {
             container: 'geo-coordinator',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [this.longitude, this.latitude],
-            zoom: 12
+            zoom: 13
             });
             let marker = new mapboxgl.Marker()
             .setLngLat([this.longitude, this.latitude])

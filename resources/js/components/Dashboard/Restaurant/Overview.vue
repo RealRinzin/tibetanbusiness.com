@@ -351,7 +351,6 @@
                                                 <ul class="w-100 pl-0" style="position: absolute;z-index:100">
                                                     <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
                                                 </ul>
-                                                <!-- <input type="text" v-validate="'required'" v-model="restaurant.location" name="location" class="form-control" id="location" aria-describedby="emailHelp" placeholder="Location"> -->
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('validate_update_form.location')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('validate_update_form.location')">{{ error }}</span>

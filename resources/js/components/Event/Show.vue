@@ -7,13 +7,12 @@
         lang="langauge"
         :url="'https://demo.tibetanbusiness.com/event/'+event.id"
         />
-
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div  class="container py-4" id="event">
+                <div  class="container py-1" id="event">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
@@ -62,17 +61,16 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card my-2" v-if="event.description != null">
+                                <div class="card my-2">
                                     <div class="row p-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" v-if="event.description">
                                             <h5 class="text-dark">Brief</h5>
                                             <p class="text-muted">
                                                 {{event.description}}
                                             </p>
                                         </div>
                                         <div class="col-md-6"> 
-                                            <h6>Location</h6>
-                                            <geo-map></geo-map>
+                                            <map-location :longitude="event.longitude" :latitude="event.latitude"></map-location>
                                         </div>
                                     </div>
                                 </div>

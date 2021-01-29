@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <img src="/img/map.jpeg" alt="" height="250">
+                                <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
                             </div>
                         </div>
                     </div>

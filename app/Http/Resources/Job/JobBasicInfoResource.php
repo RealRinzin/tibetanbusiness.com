@@ -29,6 +29,8 @@ class JobBasicInfoResource extends JsonResource
             'address' => $this->address,
             'salary' => $this->salary,
             'location' => $this->location,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
             'mobile_no' => $this->mobile_no,
             'email' => $this->email,
             'instagram' => $this->instagram,

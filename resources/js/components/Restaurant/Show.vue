@@ -1,9 +1,9 @@
 <template>
     <div>
         <vue-headful
-        :url="'https://tibetanbusiness.com/restaurant/'+restaurant.id"
+        :url="'https://demo.tibetanbusiness.com/restaurant/'+restaurant.id"
         :title="restaurant.name"
-        :image="'/storage/Restaurant/Banner/'+restaurant.banner"
+        :image="'https://demo.tibetanbusiness.com/storage/Restaurant/Banner/'+restaurant.banner"
         :description="restaurant.location"
         lang="langauge"
         />
@@ -12,7 +12,7 @@
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div class="container py-4">
+                <div class="container py-1">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
@@ -21,15 +21,15 @@
                                         <!-- Banner -->
                                         <div class="col-md-12">
                                             <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.banner})`}'>
-                                            <div class="overlay">
-                                                <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
-                                                <ul>
-                                                    <li v-if="restaurant.rating > 0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
-                                                    <li v-if="restaurant.facebook != null"><a :href="'//'+restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                    <li v-if="restaurant.website != null"><a :href="'//'+restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
-                                                    <li v-if="restaurant.instagram != null"><a :href="'//'+restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
-                                                </ul>
-                                            </div>
+                                                <div class="overlay">
+                                                    <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
+                                                    <ul>
+                                                        <li v-if="restaurant.rating > 0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
+                                                        <li v-if="restaurant.facebook != null"><a :href="'//'+restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                        <li v-if="restaurant.website != null"><a :href="'//'+restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                        <li v-if="restaurant.instagram != null"><a :href="'//'+restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>                                
                                         </div>
                                         <!-- Overview -->

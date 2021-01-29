@@ -28,6 +28,8 @@ class RentBasicInfoResource extends JsonResource
             'banner' => $this->banner,
             'address' => $this->address,
             'location' => $this->location,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
             'mobile_no' => $this->mobile_no,
             'email' => $this->email,
             'instagram' => $this->instagram,

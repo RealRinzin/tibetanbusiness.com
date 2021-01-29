@@ -15,7 +15,7 @@
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-map-pin text-muted"></i></span>
                       </div>
-                      <input type="text" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
+                      <input type="text" autocomplete="off" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                   </div>
                   <ul class="w-100" style="position: absolute;z-index:100">
                     <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>

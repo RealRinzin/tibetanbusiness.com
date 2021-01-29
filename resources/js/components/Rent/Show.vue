@@ -2,18 +2,17 @@
 
     <div style="min-height:80vh">
         <vue-headful
-        :title="rent.name"
+        :title="rent.title"
         :description="rent.location"
-        :image="rent.banner"
-        lang="langauge"
-        url="https://tibetanbusiness.com"
+        :image="'https://demo.tibetanbusiness.com/storage/Rent/Banner/'+rent.banner"
+        :url="'https://demo.tibetanbusiness.com/rent/'+rent.id"
         />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div  class="container py-4">
+                <div  class="container py-1">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
@@ -74,9 +73,9 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card my-2" v-if="rent.description != null">
+                                <div class="card my-2">
                                     <div class="row p-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" v-if="rent.description">
                                             <h5 class="text-dark">Brief</h5>
                                             <p class="text-muted">
                                                 {{rent.description}}
@@ -84,7 +83,7 @@
                                         </div>
                                         <div class="col-md-6"> 
                                             <h6>Location</h6>
-                                            <geo-map></geo-map>
+                                            <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
                                         </div>
                                     </div>
                                 </div>

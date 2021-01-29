@@ -1,18 +1,17 @@
 <template>
     <div style="min-height:80vh">
         <vue-headful
-        :title="sale.name"
+        :title="sale.title"
         :description="sale.location"
-        :image="sale.banner"
-        lang="langauge"
-        url="https://tibetanbusiness.com"
+        :image="'https://demo.tibetanbusiness.com:/storage/Sale/Banner/'+sale.banner"
+        :url="'https://demo.tibetanbusiness.com/sale/'+sale.id"
         />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div  class="container py-4" id="sale">
+                <div  class="container py-1" id="sale">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
                                 <!-- basic -->
@@ -40,9 +39,9 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card my-2" v-if="sale.description !=null">
+                                <div class="card my-2">
                                     <div class="row p-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" v-if="sale.description">
                                             <h5 class="text-dark">Brief</h5>
                                             <p class="text-muted">
                                                 {{sale.description}}
@@ -50,7 +49,7 @@
                                         </div>
                                         <div class="col-md-6"> 
                                             <h6>Location</h6>
-                                            <!-- <geo-map></geo-map> -->
+                                            <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
                                         </div>
                                     </div>
                                 </div>

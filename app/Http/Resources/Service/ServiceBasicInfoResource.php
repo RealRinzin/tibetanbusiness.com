@@ -25,6 +25,8 @@ class ServiceBasicInfoResource extends JsonResource
             'banner' => $this->banner,
             'address' => $this->address,
             'location' => $this->location,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
             'email' => $this->email,
             'mobile_no' => $this->mobile_no,
             'opening_hour'=> $this->opening_hour,

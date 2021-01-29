@@ -38,6 +38,9 @@
     <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- social Sharing -->
+    <link rel="stylesheet" href="{{asset('css/social-share-kit.css')}}">
+    <script src="{{asset('js/social-share-kit.min.js')}}"></script>
     <!-- CSRF TOKEN -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
@@ -449,6 +452,10 @@
     </script>
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
+    <!-- socialsharing -->
+    <script type="text/javascript">
+        SocialShareKit.init({ reinitialize: true });
+    </script>
     <!-- mapbox -->
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/bgset/ls.bgset.min.js"></script> -->
 </body>

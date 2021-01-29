@@ -192,8 +192,8 @@ class EventBasicInfoController extends Controller
         if (Auth::user()->id === EventBasicInfo::find($id)->user_id) {
             return view('dashboard.event.edit', ['id' => EventBasicInfo::find($id)]);
         } else {
-            // $this->authorize('rent_auth', $rentBasicInfo);
-            // return redirect('/');
+            $this->authorize('event_edit', $eventBasicInfo);
+
         }
     }
     // Display page

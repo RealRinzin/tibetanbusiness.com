@@ -32,6 +32,8 @@ class EventInfoBasicResource extends JsonResource
             'thumb' => $this->thumb,
             'email' => $this->email,
             'location' => $this->location,
+            'longitude' => $this->longitude,
+            'latitude' => $this->latitude,
             'category'=>$this->category,
             'address' => $this->address,
             'mobile_no' => $this->mobile_no,

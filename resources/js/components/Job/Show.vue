@@ -3,16 +3,15 @@
         <vue-headful
         :title="job.title"
         :description="job.location"
-        :image="job.banner"
-        lang="langauge"
-        url="https://tibetanbusiness.com"
+        :image="'https://demo.tibetanbusiness.com:/storage/Job/Banner/'+job.banner"
+        :url="'https://demo.tibetanbusiness.com/job/'+job.id"
         />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>
             <div v-else>
-                <div  class="container py-4">
+                <div  class="container py-1">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
 
@@ -67,7 +66,7 @@
                                                     <h6 class="text-muted text-left">: {{job.experience}}</h6>
                                                 </div>
                                             </div>
-                                            <div class="row p-2">
+                                            <div class="row p-2" v-if="job.mobile_no">
                                                 <div class="col-md-3 col-6">
                                                     <h6 class="text-dark">Mobile no </h6>
                                                 </div>
@@ -116,17 +115,16 @@
                                     </div>
                                 </div>
                                 <!-- Info -->
-                                <div class="card py-2" v-if="job.description !=null">
+                                <div class="card py-2">
                                     <div class="row p-3">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" v-if="job.description">
                                             <h5 class="text-dark">Job Descriptions</h5>
                                             <p class="text-muted">
                                                 {{job.description}}
                                             </p>
                                         </div>
                                         <div class="col-md-6"> 
-                                            <h6>Address</h6>
-                                            <!-- <geo-map></geo-map> -->
+                                            <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
                                         </div>
                                     </div>
                                 </div>
