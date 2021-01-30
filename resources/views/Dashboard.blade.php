@@ -127,7 +127,6 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" id="dashboard">
             <!-- Content Header (Page header) -->

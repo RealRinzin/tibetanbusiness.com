@@ -56,7 +56,7 @@ class ServiceBasicInfoController extends Controller
                     )
                 )[1])[1];
             \Image::make($request->banner)->save($this->path. $name);
-            $Original = \Image::make($request->banner)->save(public_path('/storage/Sale/Banner/') . $name);
+            $Original = \Image::make($request->banner)->save($this->path. $name);
         // Card 500 X
             $Original->resize(420, null, function ($constraint) {
                 $constraint->aspectRatio();

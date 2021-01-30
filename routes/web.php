@@ -21,7 +21,7 @@ Auth::routes();
 // Middleware Auth
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard',function(){
-        return view('dashboard');
+        return view('dashboard.index');
     })->name('dashboard');
 
     /*  */
