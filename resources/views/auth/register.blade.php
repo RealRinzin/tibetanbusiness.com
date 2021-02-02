@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6 mx-auto m-5 card">
             <div class="row">
-                <div class="col-4 text-center" style="background-image: url('/img/food6.jpg');
+                <div class="col-4 text-center" style="background-image: url('/img/food12.jpg');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;

@@ -432,6 +432,7 @@ export default {
         },
         // Toggle day update
         day_update(day,id){
+            console.log(day,id);
             // Day reverse toggle
             this.operation[day] =! this.operation[day];
             // Update function

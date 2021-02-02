@@ -10,11 +10,8 @@
             <div class="container" id="featured">
                 <button class="btn btn-warning">Latest Featured </button>
                 <div class="row py-3">
-                    <!-- <div class="col-md-4 my-2" v-if="sale_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
-                    <div class="col-md-4 col-sm-6 info my-2" v-if="sales != ''">
-                        <div v-for="(sale,index) in sales" :key="index">
+                    <div class="col-md-4 col-sm-6 info my-2" v-if="sales!= ''">
+                        <div v-for="(sale,index) in sales" :key="index" v-if="index <= 0">
                             <div class="card">
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
@@ -38,9 +35,6 @@
                         </div>
                     </div>
                     <!-- Events -->
-                    <!-- <div class="col-md-4 my-2" v-if="event_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
                     <div class="col-md-4 my-2 col-sm-6 col-12 info" v-if="events !=''">
                         <div v-for="(event,index) in events" :key="index"  v-if="index <= 0">
                             <div class="card">
@@ -70,9 +64,6 @@
                         </div>
                     </div>
                     <!-- Rents -->
-                    <!-- <div class="col-md-4 my-2" v-if="rent_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
                     <div class="my-2 col-md-4 col-sm-6 info" v-if="rents !=''">
                         <div v-for="(rent,index) in rents" :key="index" v-if="index <= 0">
                             <div class="card">
@@ -102,9 +93,6 @@
                         </div>
                     </div>
                     <!-- Job -->
-                    <!-- <div class="col-md-4 my-2" v-if="job_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
                     <div  class="col-md-4 my-2 col-sm-6 info" v-if="jobs !=''">
                         <div v-for="(job,index) in jobs" :key="index" v-if="index <= 0">
                             <div class="card">
@@ -136,9 +124,6 @@
                         </div>
                     </div>
                     <!-- Service -->
-                    <!-- <div class="col-md-4 my-2 my-2" v-if="service_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
                     <div  class="col-md-4 my-2 col-sm-6" v-if="services !=''">
                         <div v-for="(service,index) in services" :key="index" v-if="index <= 0">
                             <div class="card">
@@ -162,9 +147,6 @@
                         </div>
                     </div>
                     <!-- Restaurant -->
-                    <!-- <div class="col-md-4 my-2" v-if="restaurant_loading">
-                        <lazy-loading></lazy-loading>
-                    </div> -->
                     <div class="col-md-4 my-2 col-sm-6 col-12" v-if="restaurants !=''">
                             <div class="card" v-for="(restaurant,index) in restaurants" :key="index" v-if="index <= 0">
                                 <a v-bind:href="'restaurant/'+restaurant.id">
@@ -424,8 +406,8 @@
                 axios.get('/api/job/list/featured_ad')
                 .then(response=>{
                     if (response.data.length > 0) {
-                        this.job_loading =false;
                         this.jobs = response.data;
+                        this.job_loading =false;
                         // Background color
                     }else{
                         axios.get('/api/job/list/all')
@@ -438,15 +420,16 @@
                 // Featured Sale
                 axios.get('/api/sale/list/featured_ad')
                 .then(response=>{
+                    console.log(response.data);
                     if (response.data.length > 0) {
                         this.sale_loading =false,
-                        this.sales = response.data[0];
+                        this.sales = response.data;
                     this.placeholder = false;
                     }else{
                         axios.get('/api/sale/list/all')
                         .then(response => {
                         this.sale_loading=false,
-                            this.sales.push(response.data[0]);
+                        this.sales = response.data;
                         })
                     }
                 })

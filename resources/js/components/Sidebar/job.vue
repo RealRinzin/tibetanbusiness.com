@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
                 <a v-bind:href="'/job/'+job.id">
-                <div class="banner lazyload" :data-bgset="'/storage/job/Banner/'+job.card"  data-sizes="auto">
+                <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                     <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{job.salary}}</p> -->
                 </div>
                 </a>

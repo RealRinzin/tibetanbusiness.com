@@ -109,7 +109,7 @@ use Illuminate\Http\Request;
          */
         Route::apiResource('service', 'Service\ServiceBasicInfoController',['except' =>['index','create','edit']]);
         Route::apiResource('service_photo', 'Service\ServicePhotoController',['except' =>['index','show','edit','create','update']]);
-        Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController',['except'=>['index','show','edit','create','update','destory']]);
+        Route::apiResource('service_working_day', 'Service\ServiceWorkingDayController',['except'=>['index','show','edit','create','destroy']]);
         Route::apiResource('service_review', 'Service\ServiceReviewController',['except'=>['index','show','edit','create']]);
         Route::apiResource('service_review_replies', 'Service\ServiceReviewReplyController',['except'=>['index','show','edit','create']]);
         Route::get('user/services', 'Service\ServiceBasicInfoController@user_service');

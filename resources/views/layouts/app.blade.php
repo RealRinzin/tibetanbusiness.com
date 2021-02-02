@@ -287,7 +287,7 @@
                 <div class="row" class="modal-content">
                     <div class="col-md-12 mx-auto m-5 card" style="margin: 0px auto !important;">
                         <div class="row">
-                            <div class="col-4 text-center" style="background-image: url('/img/food6.jpg');
+                            <div class="col-4 text-center" style="background-image: url('/img/food12.jpg');
                                 background-repeat: no-repeat;
                                 background-position: center;
                                 background-size: cover;

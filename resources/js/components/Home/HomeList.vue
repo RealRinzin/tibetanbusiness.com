@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        Rinzin
         <!-- Event -->
         <div class="col-md-10 mx-auto my-4" v-if="event_loading">
             <h6 class="small text-muted py-2 font-weight-bolder">

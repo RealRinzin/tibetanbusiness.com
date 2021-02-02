@@ -1,11 +1,11 @@
 <template>
-<div class="bg-danger" style="transition:background 3s ease-in-out;min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
+<div class="bg-danger" style="transition:background 4s ease-in;min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
   <section class="w-100 py-5" style="background:rgba(0,0,0,0.5)">
     <div class="container">
       <div class="row pt-5">
             <div class="col-md-12 mx-auto py-3">
-                <h3 class="text-white text-center  d-none d-sm-block">Find the best Tibetan Restaurants,Food corner and cafe shop in India</h3>
-                <h3 class="text-white text-center  d-block d-sm-none"> Find Rents,Jobs and More - Tibetanbusiness.com</h3>
+                <h3 class="text-white text-center  d-none d-sm-block">Find the best Tibetan Restaurants,Rents, Events and Deals in India</h3>
+                <h3 class="text-white text-center  d-block d-sm-none"> Find Rents,Jobs,Restaurants & Events and More - Tibetanbusiness.com</h3>
             </div>
         <!-- location  -->
           <div class="col-md-8 mb-5 col-11 mx-auto py-5" id="tb_search_dropdown">

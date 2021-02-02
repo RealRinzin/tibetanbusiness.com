@@ -41,7 +41,6 @@ class ServiceWorkingDayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         // fetch ID
         $service = ServiceWorkingDay::find($id);
         // udpate function
