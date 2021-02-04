@@ -25,7 +25,7 @@ $factory->define(EventBasicInfo::class, function (Faker $faker) {
         'address' => $faker->address(),
         'mobile_no' => $faker->numberBetween($min = 8000000000, $max = 9999999999),
         'entry_fee' => $faker->randomFloat($max=999999),
-        'start_date' => $faker->date('2020-12-12'),
+        'start_date' => $faker->date('2022-12-12'),
         'end_date' => $faker->date(),
         'description' => $faker->sentence(),
         'start_time' => $faker->time($format = 'h:i', $max = 'now'),

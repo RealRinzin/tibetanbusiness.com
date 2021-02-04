@@ -236,7 +236,7 @@ export default {
             axios.get('api/sale/list/home_ad')
             .then(response=>{
                 if(response.data.length > 0){
-                    this.event_loading = false;
+                    this.sale_loading = false;
                     this.sales = response.data;
                 }else{
                     axios.get('/api/sale/list/all').then(response=>{

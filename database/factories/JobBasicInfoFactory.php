@@ -32,7 +32,7 @@ $factory->define(JobBasicInfo::class, function (Faker $faker) {
         'home_ad' => $faker->boolean(),
         'sidebar_ad' => $faker->boolean(),
         'description' => $faker->sentence(),
-        'deadline'=>$faker->date('2020-12-12'),
+        'deadline'=>$faker->date('2022-12-12'),
         'user_id' => function () {
             return User::all()->random();
         }
