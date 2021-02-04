@@ -1,7 +1,15 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" prefix="og: https://ogp.me/ns#">
 
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8T4TQ72G81"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8T4TQ72G81');
+    </script>
     <meta charset="utf-8">
     <title>Tibetanbusiness.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +22,7 @@
     <meta property="og:title" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
-    <meta property="og:description" content="" />
+    <meta property="og:description" content="Find the best Tibetan Restaurants,Rents,Jobs and more in India"/>
     <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- @if(Request::is('/')) -->
@@ -143,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <ul class="navbar-nav float-right">
+                                <ul class="navbar-nav">
                                     @guest
                                     <li class="nav-item d-sm-inline-block">
                                         <a href="#" class="nav-link" data-toggle="modal" data-target="#login">Login </a>
@@ -281,7 +289,7 @@
         </div>
     </div>
     <!-- login Modal -->
-    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="px-4 modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="row" class="modal-content">
@@ -368,11 +376,11 @@
                                                 <i class="fab fa-github mr-2"></i> Github
                                             </a>
                                         </div>
-                                        <!-- <div class="col-6 py-2">
+                                        <div class="col-6 py-2">
                                             <a href="{{url('login/twitter')}}" class="btn btn-block" style="background-color:#329deb;color:white">
                                                 <i class="fab fa-twitter mr-2"></i> Twitter
                                             </a>
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Create new password -->

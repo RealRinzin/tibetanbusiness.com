@@ -1,7 +1,7 @@
 <template>
     <div style="min-height:80vh">
         <vue-headful
-        :title="service.title"
+        :title="service.name"
         :description="service.location"
         :image="'https://demo.tibetanbusiness.com:/storage/Service/Banner/'+service.banner"
         :url="'https://demo.tibetanbusiness.com/service/'+service.id"

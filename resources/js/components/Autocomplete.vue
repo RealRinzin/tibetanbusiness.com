@@ -47,12 +47,12 @@
                   </div>
               </div>
               <div id="list" class="text-left small text-muted font-weight-bold py-3">
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Events"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Sales"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Rents"><i class="fas fa-bed"></i> RENTS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Jobs"><i class="fas fa-briefcase"></i> JOBS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Services"><i class="fas fa-tools"></i> SERVICES</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="search/Restaurants"><i class="fas fa-pizza-slice"></i> RESTAURANTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-bed"></i> RENTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-briefcase"></i> JOBS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-tools"></i> SERVICES</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-pizza-slice"></i> RESTAURANTS</a></span>
               </div>
             </div>
           </div>
@@ -69,17 +69,16 @@ export default {
       keyword_location:'', //selected place
       selected_location:'',
       service:'', //service
-      hero_image:'3.jpg',
+      hero_image:'food12.jpg',
       // Services types
-        types:[
-            {'name':'Events','img':'/img/event.png'},
-            {'name':'Sales','img':'/img/sale.png'},
-            {'name':'Rents','img':'/img/rent.png'},
-            {'name':'Jobs','img':'/img/job.png'},
-            {'name':'Services','img':'/img/service.png'},
-            {'name':'Restaurants','img':'/img/restaurant.png'},
-        ],
-
+      types:[
+          {'name':'Events','img':'/img/event.png'},
+          {'name':'Sales','img':'/img/sale.png'},
+          {'name':'Rents','img':'/img/rent.png'},
+          {'name':'Jobs','img':'/img/job.png'},
+          {'name':'Services','img':'/img/service.png'},
+          {'name':'Restaurants','img':'/img/restaurant.png'},
+      ],
     }
   },
   methods:{
@@ -139,28 +138,28 @@ export default {
       }
     },
     // load carousel image
-    load_carousel(){
-        axios.get('/api/carousel')
-        .then((response) => {
-          console.log("interval");
-          this.hero_image = response.data[0].photo;
-        })
-    },
-    ready() {
-        window.setInterval(() => {
-            this.load_carousel();
-        },2500);
-    },
+    // load_carousel(){
+    //     axios.get('/api/carousel')
+    //     .then((response) => {
+    //       this.hero_image = response.data[0].photo;
+    //     })
+    // },
+    // ready() {
+    //     window.setInterval(() => {
+    //         this.load_carousel();
+    //     },2500);
+    // },
   },
     mounted(){
+      // this.hero_image = '/storage/Carousel/food10.jpg'
       // setInterval(this.load_carousel(), 1000);
-        axios.get('/api/carousel')
-        .then((response) => {
-          this.hero_image = response.data[0].photo;
-        }).catch((err) => {
-        });
+        // axios.get('/api/carousel')
+        // .then((response) => {
+        //   this.hero_image = response.data[0].photo;
+        // }).catch((err) => {
+        // });
         // Interval for images
-      this.ready();
+      // this.ready();
 
     }
 }

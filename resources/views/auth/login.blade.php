@@ -82,11 +82,11 @@
                                     <i class="fab fa-google-plus mr-2"></i>Google
                                 </a>
                             </div>
-                            <div class="col-6 py-2">
+                            <!-- <div class="col-6 py-2">
                                 <a href="{{url('login/github')}}" class="btn btn-block btn-secondary">
                                     <i class="fab fa-github mr-2"></i> Github
                                 </a>
-                            </div>
+                            </div> -->
                             <!-- <div class="col-6 py-2">
                                 <a href="{{url('login/twitter')}}" class="btn btn-block" style="background-color:#329deb;color:white">
                                     <i class="fab fa-twitter mr-2"></i> Twitter

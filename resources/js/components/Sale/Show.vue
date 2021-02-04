@@ -1,7 +1,7 @@
 <template>
     <div style="min-height:80vh">
         <vue-headful
-        :title="sale.title"
+        :title="sale.name"
         :description="sale.location"
         :image="'https://demo.tibetanbusiness.com:/storage/Sale/Banner/'+sale.banner"
         :url="'https://demo.tibetanbusiness.com/sale/'+sale.id"

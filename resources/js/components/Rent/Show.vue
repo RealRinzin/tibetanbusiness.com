@@ -1,8 +1,7 @@
 <template>
-
     <div style="min-height:80vh">
         <vue-headful
-        :title="rent.title"
+        :title="rent.name"
         :description="rent.location"
         :image="'https://demo.tibetanbusiness.com/storage/Rent/Banner/'+rent.banner"
         :url="'https://demo.tibetanbusiness.com/rent/'+rent.id"

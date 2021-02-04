@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div  v-else class="col-md-3 col-sm-6 col-6 py-1" v-for="(event,index) in events">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(event,index) in events" v-if="index <= 3">
                     <div class="card" >
                         <a v-bind:href="'event/'+event.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Event/Banner/'+event.thumb"   data-sizes="auto">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(sale,index) in sales" :key="index">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(sale,index) in sales" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(rent,index) in rents" :key="index">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(rent,index) in rents" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb+' 100w'"  data-sizes="auto">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(job,index) in jobs" :key="index">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(job,index) in jobs" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'job/'+job.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto"></div>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(service,index) in services" :key="index">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(service,index) in services" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'service/'+service.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Service/Banner/'+service.thumb"  data-sizes="auto">
@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(restaurant,index) in restaurants" :key="index">
+                <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(restaurant,index) in restaurants" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-6 py-2" v-for="(restaurant,i) in restaurants" v-if="i <= 3">
                 <a v-bind:href="'/restaurant/'+restaurant.id">
-                <div class="banner lazyload small" :data-bgset="'/storage/restaurant/Banner/'+restaurant.card"  data-sizes="auto">
+                <div class="banner lazyload small" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
                     <span  v-if="restaurant.rate > 0.0" v-bind:class="restaurant.rate_color" class="btn p-0 px-1 position-absolute" style="bottom:2px;right:2px"> <i class="fas fa-star text-white fa-1x mr-1 small" ></i>{{restaurant.rate}}</span>
 
                 </div>

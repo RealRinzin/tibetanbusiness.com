@@ -32,61 +32,61 @@
                                             </div>
                                             </div>                                
                                         </div>
-                                        <div class="col-sm-7 p-1">
+                                        <div class="col-sm-7">
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Salary</h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 v-if="job.salary > 0" class="text-muted text-left">: Rs <span class="font-weight-bold">{{job.salary}} /-</span></h6>
                                                     <h6 v-else class="text-muted text-left">:Not Disclosed</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Profession </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted text-left">: {{job.profession}}</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Nature </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted text-left">: {{job.nature}}</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Experience </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted text-left">: {{job.experience}}</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2" v-if="job.mobile_no">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Mobile no </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted text-left">: {{job.mobile_no}}</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Location </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted text-left">: {{job.location}}</h6>
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Deadline </h6>
                                                 </div>
-                                                <div class="col-md-9 col-6">
+                                                <div class="col-md-8 col-6">
                                                     <h6 class="text-muted font-weight-bold text-left">: {{job.deadline}}</h6>
                                                 </div>
                                             </div>
