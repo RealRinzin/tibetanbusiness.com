@@ -23,12 +23,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <!-- @if(Request::is('/')) -->
-    <!-- @endif -->
-    @if(!Request::is('/'))
+    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Jobs')))
+    <!-- JQUERY UI -->
     <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
     @endif
-    <!-- JQUERY UI -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
@@ -45,7 +43,10 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
     <!-- social Sharing -->
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script>
-
+    <!-- AOS -->
+    @if(Request::is('promote-business'))
+    <link href="{{ asset('css/aos.min.css') }}" rel="stylesheet">
+    @endif
     <!-- CSRF TOKEN -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
@@ -394,6 +395,9 @@
     @endif
     @if(!Request::is('/'))
     <script rel="preload" src="{{ asset('js/detail.min.js') }}"></script>
+    @endif
+    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Jobs')))
+    <!-- Jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
     @endif
     <script>
@@ -435,7 +439,17 @@
             $("#service_list").css("display", "none");
         })
     </script>
-
+    <!-- AOC -->
+    @if(Request::is('promote-business'))
+    <script src="{{ asset('js/aos.min.js') }}"></script>
+    <script>
+            AOS.init({
+				easing: 'ease-out-back',
+				duration: 1000
+			});
+		
+    </script>
+    @endif
     <!-- Lazy loading image -->
     <script>
         function loadJS(u) {
@@ -449,6 +463,7 @@
             loadJS("ls.respimg.min.js");
         }
     </script>
+    <!-- Lazy loading -->
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
     <!-- mapbox -->
