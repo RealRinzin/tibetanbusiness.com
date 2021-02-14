@@ -11,7 +11,7 @@ use App\Http\Resources\Event\EventInfoBasicResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
-
+use MetaTag;
 class EventBasicInfoController extends Controller
 {
     protected $path = '../public/storage/Event/Banner/';
@@ -185,6 +185,19 @@ class EventBasicInfoController extends Controller
     // Event View page
     public function view(EventBasicInfo $eventBasicInfo, $id)
     {
+        // Meta Description
+        $meta = EventBasicInfo::find($id);
+        if($meta->entry_fee ==0){
+            $meta->entry_fee = 'Entry Free';
+        }else{
+            $meta->entry_fee = 'Rs: '.$meta->entry_fee;
+        };
+        // Date with Day of the week
+        $start_date = date_create($meta->start_date);
+        MetaTag::set('title', $meta->name. ' | '. date_format($start_date,"l\,jS F Y"));
+        MetaTag::set('description', $meta->location. ' - ' . $meta->entry_fee);
+        MetaTag::set('image', asset('storage/Event/Banner/'.$meta->banner));
+        // Meta Description End
         return view('event.show', ['id' => EventBasicInfo::find($id)]);
     }
     // Dashboard Edit

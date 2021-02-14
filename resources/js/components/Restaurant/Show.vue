@@ -1,12 +1,5 @@
 <template>
     <div>
-        <vue-headful
-        :url="'https://demo.tibetanbusiness.com/restaurant/'+restaurant.id"
-        :title="restaurant.name"
-        :image="'https://demo.tibetanbusiness.com/storage/Restaurant/Banner/'+restaurant.banner"
-        :description="restaurant.location"
-        lang="langauge"
-        />
         <div id="restaurant" style="min-height:80vh">
             <div v-if="!loading" style="min-height:500px">
                 <loading :active.sync="isLoading"></loading>
@@ -139,7 +132,7 @@
     import ServiceSidebar from '../Sidebar/service.vue';
     // Map
     export default {
-            // props:['rating'],
+            props:['restaurant_id'],
             /**
              * Data
              *  */ 
@@ -152,6 +145,7 @@
                     // Object
                     restaurant:{}, //individual show
                     location:'',
+                    id:this.restaurant_id.id,
                     // /**
                     //  * Comments
                     //  * Current Page 
@@ -183,23 +177,20 @@
              *  */ 
             methods:{
                 show(){  
+                    console.log(this.restaurant_id.id);
                     this.isLoading = true; //Loading true
-                    axios.get('/view'+window.location.pathname).then(response=>{
+                    axios.get('/api/restaurant/view/'+this.id)
+                    .then(response=>{
+                        console.log(response.data);
                         this.restaurant = response.data.data;
                         // location
                         this.location = this.restaurant.location;
                         // loading
                         this.isLoading = false; //Loading true
                         this.loading = true;
-                        // sharing
-                        this.sharing={
-                            url:this.restaurant.name,
-                            title:this.restaurant.name,
-                        }
                     })
                 }
         },
-
         // Mounted
         mounted(){
             this.show();

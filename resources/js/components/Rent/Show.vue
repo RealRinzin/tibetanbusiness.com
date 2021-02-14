@@ -1,11 +1,5 @@
 <template>
     <div style="min-height:80vh">
-        <vue-headful
-        :title="rent.name"
-        :description="rent.location"
-        :image="'https://demo.tibetanbusiness.com/storage/Rent/Banner/'+rent.banner"
-        :url="'https://demo.tibetanbusiness.com/rent/'+rent.id"
-        />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -148,6 +142,23 @@ export default {
             })
         }
     },
+    // Meta
+    // metaInfo() {
+    //     return { 
+    //         title: this.rent.name,
+    //         meta: [
+    //             {name: 'description', content:  this.rent.location+'Epiloge is about connecting in your field of interest. Our vision is to help people share their knowledge, work, projects, papers and ideas and build their network through what they do rather where they live, study or work.'},
+    //             {property: 'og:title', content: this.rent.name},
+    //             {property: 'og:url', content: 'https://'+window.location.hostname+'/rent/'+this.rent.id}, 
+    //             {property: 'og:site_name', content: 'tibetanbusiness.com'},
+    //             {property: 'og:type', content: 'website'}, 
+    //             {property: 'og:image', content: 'https://'+window.location.hostname+'/storage/Rent/Banner/'+this.rent.banner},
+    //             {property:'og:image:alt', content: this.rent.name},
+    //             {property:'og:image:height', content: "400"},
+    //             {property:'og:image:width', content: "600"}
+    //         ]
+    //     }
+    // },
     /**
      * 
      * Components

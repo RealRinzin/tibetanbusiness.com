@@ -138,6 +138,7 @@ use Illuminate\Http\Request;
     Route::get('restaurant/list/sidebar_ad/', 'Restaurant\RestaurantBasicInfoController@sidebar_ad');
     Route::get('restaurant/list/home_ad/', 'Restaurant\RestaurantBasicInfoController@home_ad');
     Route::get('restaurant/list/all', 'Restaurant\RestaurantBasicInfoController@all');
+    Route::get('restaurant/view/{id}','Restaurant\RestaurantBasicInfoController@display');
     Route::get( 'restaurant/{restaurant_basic_info}/operation', 'Restaurant\RestaurantOperationDayController@operation');
     Route::get('restaurant/{restaurant_basic_info}/food_photos', 'Restaurant\RestaurantFoodPhotoController@photos');
     Route::get('restaurant/{restaurant_basic_info}/menu_photos', 'Restaurant\RestaurantMenuPhotoController@photos');
@@ -251,5 +252,11 @@ use Illuminate\Http\Request;
 
 // Landing Carousel
 Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+// Occupations
+Route::apiResource('occupations', 'OccupationController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('products', 'ProductController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+
 
 

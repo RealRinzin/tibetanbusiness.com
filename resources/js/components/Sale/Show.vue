@@ -1,12 +1,6 @@
 <template>
     <div style="min-height:80vh">
-        <vue-headful
-        :title="sale.name"
-        :description="sale.location"
-        :image="'https://demo.tibetanbusiness.com:/storage/Sale/Banner/'+sale.banner"
-        :url="'https://demo.tibetanbusiness.com/sale/'+sale.id"
-        />
-        <div id="restaurant">
+        <div id="restaurant" style="min-height:100vh">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
             </div>
@@ -79,7 +73,6 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import Photo from './Photo.vue';
-import SideBar from '../Sidebar/Sidebar.vue'
 // Sidebars
 import SaleSidebar  from '../Sidebar/Sale.vue';
 import EventSidebar from '../Sidebar/event.vue';
@@ -121,8 +114,25 @@ export default {
             return format(new Date(str), 'EE, MMM dd, yyyy');
         }
     },
+    // Meta
+    // metaInfo() {
+    //     return { 
+    //         title: this.sale.name,
+    //         meta: [
+    //             {name: 'description', content:  this.sale.location+'Epiloge is about connecting in your field of interest. Our vision is to help people share their knowledge, work, projects, papers and ideas and build their network through what they do rather where they live, study or work.'},
+    //             {property: 'og:title', content: this.sale.name},
+    //             {property: 'og:url', content: 'https://'+window.location.hostname+'/sale/'+this.sale.id}, 
+    //             {property: 'og:site_name', content: 'tibetanbusiness.com'},
+    //             {property: 'og:type', content: 'website'}, 
+    //             {property: 'og:image', content: 'https://'+window.location.hostname+'/storage/Sale/Banner/'+this.sale.banner},
+    //             {property:'og:image:alt', content: this.sale.name},
+    //             {property:'og:image:height', content: "400"},
+    //             {property:'og:image:width', content: "600"}
+    //         ]
+    //     }
+    // },
     // Components
-    components:{Loading,Photo,SideBar,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+    components:{Loading,Photo,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
     mounted(){
         this.load_sale();
     }

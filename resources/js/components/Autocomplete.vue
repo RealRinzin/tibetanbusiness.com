@@ -1,5 +1,5 @@
 <template>
-<div class="bg-danger" style="transition:background 4s ease-in;min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
+<div class="bg-danger" style="min-height: auto;background-size:cover;background-position:center center" v-bind:style='{ backgroundImage: `url(/storage/Carousel/${hero_image})`}'>
   <section class="w-100 py-5" style="background:rgba(0,0,0,0.5)">
     <div class="container">
       <div class="row pt-5">
@@ -69,7 +69,7 @@ export default {
       keyword_location:'', //selected place
       selected_location:'',
       service:'', //service
-      hero_image:'food12.jpg',
+      hero_image:'',
       // Services types
       types:[
           {'name':'Events','img':'/img/event.png'},
@@ -138,12 +138,12 @@ export default {
       }
     },
     // load carousel image
-    // load_carousel(){
-    //     axios.get('/api/carousel')
-    //     .then((response) => {
-    //       this.hero_image = response.data[0].photo;
-    //     })
-    // },
+    load_carousel(){
+        axios.get('/api/carousel')
+        .then((response) => {
+          this.hero_image = response.data[0].photo;
+        })
+    },
     // ready() {
     //     window.setInterval(() => {
     //         this.load_carousel();
@@ -152,9 +152,11 @@ export default {
   },
     mounted(){
       // this.hero_image = '/storage/Carousel/food10.jpg'
+      this.load_carousel();
       // setInterval(this.load_carousel(), 1000);
         // axios.get('/api/carousel')
         // .then((response) => {
+        //   console.log(response.data);
         //   this.hero_image = response.data[0].photo;
         // }).catch((err) => {
         // });

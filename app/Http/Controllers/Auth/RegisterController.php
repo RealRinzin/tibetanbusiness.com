@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Webpatser\Uuid\Uuid;
+use MetaTag;
 
 class RegisterController extends Controller
 {
@@ -38,6 +39,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        MetaTag::set('title', 'Register - Tibetanbusiness.com');
+        MetaTag::set('description','Register Your account with Facebook,Google or Github');
+        MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
         $this->middleware('guest');
     }
 

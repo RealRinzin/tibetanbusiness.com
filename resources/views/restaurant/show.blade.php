@@ -3,14 +3,9 @@
 <div class="container py-1">
     <div class="row">
         <div class="col-12">
-        <div class="ssk-group ssk-coun ssk-sm">
-                <a href="" class="ssk ss-icon ssk-facebook"></a>
-                <a href="" class="ssk ssk-twitter"></a>
-                <a href="" class="ssk ssk-pinterest"></a>
-                <a href="" class="ssk ssk-tumblr"></a>
-            </div>
+            <div class="mx-2 sharethis-inline-share-buttons"></div>
         </div>
     </div>
 </div>
-<restaurant-show></restaurant-show>
+<restaurant-show :restaurant_id="{{$id}}"></restaurant-show>
 @endsection

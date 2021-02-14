@@ -11,19 +11,17 @@
     gtag('config', 'G-8T4TQ72G81');
     </script>
     <meta charset="utf-8">
-    <title>Tibetanbusiness.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Description" content="Put your description here.">
+    <title>{{ MetaTag::get('title') }}</title>
+    {!! MetaTag::tag('description') !!}
+    {!! MetaTag::tag('image') !!}
+    <!-- Faceboook share -->
+    {!! MetaTag::openGraph() !!}
+    <!-- Twitter Share -->
+    {!! MetaTag::twitterCard() !!}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
-    <!-- <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title> -->
-    <!-- META -->
-    <meta property="og:title" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:description" content="Find the best Tibetan Restaurants,Rents,Jobs and more in India"/>
-    <!-- META END -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- @if(Request::is('/')) -->
     <!-- @endif -->
@@ -34,9 +32,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
-    <!-- Adminlte -->
-    <!-- <link href=" {{ asset('css/adminlte.min.css') }}" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--bootstrap -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Loading -->
@@ -47,8 +44,8 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
     <!-- social Sharing -->
-    <link rel="stylesheet" href="{{asset('css/social-share-kit.css')}}">
-    <script src="{{asset('js/social-share-kit.min.js')}}"></script>
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script>
+
     <!-- CSRF TOKEN -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
@@ -83,19 +80,15 @@
                                 <a href="/dashboard/event" class="nav-link">Add Business</a>
                             </li>
                             @endguest
-                            <!-- <li class="nav-item d-sm-inline-block">
-                                <a href="#" class="nav-link">Promote Business</a>
-                            </li> -->
                         </ul>
                         @else
                         <ul class="navbar-nav d-none d-sm-block">
-                            <!-- <ul class="navbar-nav d-none d-sm-block" id="desktop_add_promote_link"> -->
                             <li class="nav-item d-sm-inline-block">
                                 <a href="index3.html" class="nav-link">Add Business</a>
                             </li>
-                            <li class="nav-item d-sm-inline-block">
+                            <!-- <li class="nav-item d-sm-inline-block">
                                 <a href="#" class="nav-link">Promote Business</a>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="row mx-auto">
                             <div class="col-md-12">
@@ -397,13 +390,11 @@
     </div>
     <!-- Scripts -->
     @if(Request::is('/'))
-    <!-- <script src="/js/main.js"></script> -->
     <script rel="preload" src="{{ asset('js/app.min.js') }}"></script>
     @endif
     @if(!Request::is('/'))
     <script rel="preload" src="{{ asset('js/detail.min.js') }}"></script>
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
-    <script src="{{ asset('js/share.js') }}"></script>
     @endif
     <script>
         // Fixed Navbar
@@ -460,12 +451,7 @@
     </script>
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
-    <!-- socialsharing -->
-    <script type="text/javascript">
-        SocialShareKit.init({ reinitialize: true });
-    </script>
     <!-- mapbox -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/plugins/bgset/ls.bgset.min.js"></script> -->
 </body>
 
 </html>

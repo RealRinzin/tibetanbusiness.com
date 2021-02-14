@@ -175,9 +175,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Add by Rinzin
         Intervention\Image\ImageServiceProvider::class, //Image upload
-        Jorenvh\Share\Providers\ShareServiceProvider::class,
-
-
+        Jorenvh\Share\Providers\ShareServiceProvider::class, 
+        Torann\LaravelMetaTags\MetaTagsServiceProvider::class, //Meta Tags
 
     ],
 
@@ -232,6 +231,7 @@ return [
         // Added By Rinzin
         'Image' => Intervention\Image\Facades\Image::class, //Image intevention
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'MetaTag'   => Torann\LaravelMetaTags\Facades\MetaTag::class, //Meta Tag
 
     ],
 

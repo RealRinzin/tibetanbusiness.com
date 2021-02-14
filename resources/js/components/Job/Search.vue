@@ -428,7 +428,7 @@
                     this.locations = response.data;
                 })
                 // Profession
-                axios.get('/api/categories/job')
+                axios.get('/api/occupations')
                 .then(response=>{
                     this.professions = response.data;
                 })

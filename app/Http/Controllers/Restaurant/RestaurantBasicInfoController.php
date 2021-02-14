@@ -13,6 +13,7 @@ use App\Restaurant\RestaurantFoodPhoto;
 use App\Restaurant\RestaurantMenuPhoto;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use MetaTag;
 
 class RestaurantBasicInfoController extends Controller
 {
@@ -130,7 +131,7 @@ class RestaurantBasicInfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function show($id)
-    public function show($id)
+    public function show(RestaurantBasicInfo $restaurantBasicInfo,$id)
     {
         // return specific user;
         return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
@@ -214,9 +215,18 @@ class RestaurantBasicInfoController extends Controller
      * without api auth
      * 
      *  */
-    public function view($id)
+    public function view(RestaurantBasicInfo $restaurantBasicInfo, $id)
     {
-        // return specific user;
+        // Meta Description
+        $meta = RestaurantBasicInfo::find($id);
+        MetaTag::set('title', $meta->name);
+        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('image', asset('storage/Restaurant/Banner/'.$meta->banner));
+        // Meta Description End
+        return view('restaurant.show', ['id' => RestaurantBasicInfo::find($id)]);
+    }
+    // Display the restaurant Showv
+    public function display($id){
         return new RestaurantBasicInfoResource(RestaurantBasicInfo::find($id));
     }
     /**
@@ -258,8 +268,9 @@ class RestaurantBasicInfoController extends Controller
     /**
      * Showing restaurant without relationship
      *  */ 
-    public function show_individual($id)
+    public function show_individual(RestaurantBasicInfo $restaurantBasicInfo,$id)
     {
+        return $id;
         $restaurant = RestaurantBasicInfo::find($id);
         return $restaurant;
     }

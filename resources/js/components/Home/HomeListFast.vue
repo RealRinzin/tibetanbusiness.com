@@ -187,8 +187,7 @@
         </div>
     </div>
 </template>
-<script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+<script>;
 export default {
     data(){
         return{
@@ -373,7 +372,6 @@ export default {
             })
         }
     },
-    components: {Swiper,SwiperSlide},
     mounted(){
         this.event_list(); // Restaurant
         this.sale_list();

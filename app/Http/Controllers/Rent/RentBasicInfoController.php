@@ -10,6 +10,7 @@ use App\Rent\RentRoomPhoto;
 use App\Rent\RentViewPhoto;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use MetaTag;
 
 class RentBasicInfoController extends Controller
 {
@@ -212,6 +213,13 @@ class RentBasicInfoController extends Controller
      *  */
     public function view(RentBasicInfo $rentBasicInfo, $id)
     {
+        // Meta Description
+        $meta = RentBasicInfo::find($id);
+        $meta->fare = 'Rs:'.$meta->fare;
+        MetaTag::set('title', $meta->name .' - '. $meta->fare);
+        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('image', asset('storage/Rent/Banner/'.$meta->banner));
+        // Meta Description End
         return view('rent.show', ['id' => RentBasicInfo::find($id)]);
 
     }

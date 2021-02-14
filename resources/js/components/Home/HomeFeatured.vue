@@ -190,7 +190,6 @@
     import 'vue-loading-overlay/dist/vue-loading.css';
     // import format from 'date-fns/format';
     import { compareAsc, format } from 'date-fns';
-    import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     // Map Autocomplete Test
     import AutoComplete from '../Autocomplete.vue';
     
@@ -420,7 +419,6 @@
                 // Featured Sale
                 axios.get('/api/sale/list/featured_ad')
                 .then(response=>{
-                    console.log(response.data);
                     if (response.data.length > 0) {
                         this.sale_loading =false,
                         this.sales = response.data;
@@ -485,7 +483,7 @@
          * Components
          *  */  
         // components:{Loading,EventList,RentList,JobList,RestaurantList,SaleList,ServiceList,Swiper,SwiperSlide},
-    components: {Loading,Swiper,SwiperSlide,AutoComplete},
+    components: {Loading,AutoComplete},
         /**
          * Mounted
          *  */ 

@@ -14,6 +14,9 @@
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
+    MetaTag::set('title', 'Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
+    MetaTag::set('description', 'Find the best Tibetan Restaurants,Rents, Events and Deals in India');
+    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
     return view('welcome');
 });
 
@@ -84,15 +87,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Restaurant Route
  *  */ 
-Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@restaurant');
-Route::get('view/restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
-
+Route::get('restaurant/{id}', 'Restaurant\RestaurantBasicInfoController@view');
 /**
  * Rent View / Show
  *  */ 
 Route::get('rent/{id}','Rent\RentBasicInfoController@view');
-
-
 /**
  * Job View / Show
  *  */
@@ -102,7 +101,19 @@ Route::get('job/{id}', 'Job\JobBasicInfoController@view');
  * View/ Show Page
  *  */  
 Route::get('event/{id}', 'Event\EventBasicInfoController@view');
-
+// Pages
+Route::get('contact-us',function(){
+    MetaTag::set('title', 'Contact US - Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
+    MetaTag::set('description', 'Contact Us for advertisement and other business opportunities');
+    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+    return view('contact');
+});
+Route::get('promote-business',function(){
+    MetaTag::set('title', 'Promote your Business- Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
+    MetaTag::set('description', 'Promote Your business so that customers can  see it');
+    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+    return view('promote');
+});
 /**
  * Event
  * View/ Show Page

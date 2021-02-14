@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\URL;
 
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Redirect;
-
+use MetaTag;
 class LoginController extends Controller
 {
     /*
@@ -42,6 +42,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        MetaTag::set('title', 'Login - Tibetanbusiness.com');
+        MetaTag::set('description','Login Your account with Facebook,Google or Github');
+        MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
         $this->middleware('guest')->except('logout');
         // $this->redirectTo = url()->previous();
     }

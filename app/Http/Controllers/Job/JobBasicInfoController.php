@@ -10,6 +10,7 @@ use App\Http\Resources\Job\JobBasicInfoResourceCollection;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use Illuminate\Support\Facades\Auth;
+use MetaTag;
 
 class JobBasicInfoController extends Controller
 {
@@ -159,6 +160,10 @@ class JobBasicInfoController extends Controller
     // 
     public function view(JobBasicInfo $jobBasicInfo, $id)
     {
+        $meta = JobBasicInfo::find($id);
+        MetaTag::set('title', $meta->title .' - '. $meta->organization);
+        MetaTag::set('description', $meta->location .' - '.$meta->profession);
+        MetaTag::set('image', asset('storage/Job/Banner/'.$meta->banner));
         return view('job.show', ['id' => JobBasicInfo::find($id)]);
     }
     // Display the restaurant Show

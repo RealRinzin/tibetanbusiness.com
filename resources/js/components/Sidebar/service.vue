@@ -58,14 +58,14 @@ export default {
                             if(response.data.length > 0){
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
-                                        if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
-                                            response.data.data[i].rate_color = 'btn-danger';
-                                        }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
-                                            response.data.data[i].rate_color = 'btn-warning';
-                                        }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
-                                            response.data.data[i].rate_color = 'btn-info';
-                                        }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
-                                            response.data.data[i].rate_color = 'btn-success';
+                                        if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
+                                            response.data[i].rate_color = 'btn-danger';
+                                        }else if(response.data[i].rate >= 2.6 && response.data[i].rate <= 3.5 ){
+                                            response.data[i].rate_color = 'btn-warning';
+                                        }else if(response.data[i].rate >= 3.6 && response.data[i].rate <= 4.0 ){
+                                            response.data[i].rate_color = 'btn-info';
+                                        }else if(response.data[i].rate >= 4.1 && response.data[i].rate <= 5.0 ){
+                                            response.data[i].rate_color = 'btn-success';
                                         }
                                         else{
                                             response.data.data[i].rate_color = 'btn-secondary';
@@ -124,14 +124,14 @@ export default {
                             if(response.data.length > 0){
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
-                                        if(response.data.data[i].rate >=0.0 && response.data.data[i].rate <= 2.5){
-                                            response.data.data[i].rate_color = 'btn-danger';
-                                        }else if(response.data.data[i].rate >= 2.6 && response.data.data[i].rate <= 3.5 ){
-                                            response.data.data[i].rate_color = 'btn-warning';
-                                        }else if(response.data.data[i].rate >= 3.6 && response.data.data[i].rate <= 4.0 ){
-                                            response.data.data[i].rate_color = 'btn-info';
-                                        }else if(response.data.data[i].rate >= 4.1 && response.data.data[i].rate <= 5.0 ){
-                                            response.data.data[i].rate_color = 'btn-success';
+                                        if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
+                                            response.data[i].rate_color = 'btn-danger';
+                                        }else if(response.data[i].rate >= 2.6 && response.data[i].rate <= 3.5 ){
+                                            response.data[i].rate_color = 'btn-warning';
+                                        }else if(response.data[i].rate >= 3.6 && response.data[i].rate <= 4.0 ){
+                                            response.data[i].rate_color = 'btn-info';
+                                        }else if(response.data[i].rate >= 4.1 && response.data[i].rate <= 5.0 ){
+                                            response.data[i].rate_color = 'btn-success';
                                         }
                                         else{
                                             response.data.data[i].rate_color = 'btn-secondary';

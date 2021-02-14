@@ -1,12 +1,5 @@
 <template>
     <div style="min-height:80vh">
-        <vue-headful
-        :title="event.name"
-        :description="event.location"
-        :image="'https://demo.tibetanbusiness.com/storage/Event/Banner/'+event.banner"
-        lang="langauge"
-        :url="'https://demo.tibetanbusiness.com/event/'+event.id"
-        />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>

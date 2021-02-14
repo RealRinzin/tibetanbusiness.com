@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-
+use MetaTag;
 class ForgotPasswordController extends Controller
 {
     /*
@@ -27,6 +27,9 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
+        MetaTag::set('title', 'Reset Password - Tibetanbusiness.com');
+        MetaTag::set('description','Reset Your password with Email');
+        MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
         $this->middleware('guest');
     }
 }

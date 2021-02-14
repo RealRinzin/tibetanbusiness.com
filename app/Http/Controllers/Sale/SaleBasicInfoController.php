@@ -9,7 +9,7 @@ use App\Sale\SaleBasicInfo;
 use App\Sale\SalePhoto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
-
+use MetaTag;
 class SaleBasicInfoController extends Controller
 {
 
@@ -213,6 +213,13 @@ class SaleBasicInfoController extends Controller
     // Display
     public function view(SaleBasicInfo $saleBasicInfo, $id)
     {
+        // Meta Description
+        $meta = SaleBasicInfo::find($id);
+        $meta->price = 'Rs:'.$meta->price;
+        MetaTag::set('title', $meta->name.' - '.$meta->price);
+        MetaTag::set('description', $meta->location.' - '.$meta->description);
+        MetaTag::set('image', asset('storage/Sale/Banner/'.$meta->banner));
+        // Meta Description End
         return view('sale.show', ['id' => SaleBasicInfo::find($id)]);
     }
     // Dashboard Edit

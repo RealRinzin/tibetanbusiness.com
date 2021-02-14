@@ -336,7 +336,7 @@ export default {
     },
     mounted(){
         // profession
-        axios.get('/api/categories/job')
+        axios.get('/api/occupations')
         .then(response => {
             this.professions = response.data;
         })

@@ -39,15 +39,15 @@ return [
      *  */ 
     // Github Login
     'github' => [
-        'client_id' => 'af90d1f6d8d6b2d17d8a',
-        'client_secret' => 'd34dfce062e15d755520cf9572ae359187f304b0',
-        'redirect' => 'https://tibetanbusiness.com:8890/login/github/callback',
+        'client_id' => '2975f9fe8f0c66f5aa7b',
+        'client_secret' => 'e4cbd66472e19f57bcda1925460c3a064f6d1656',
+        'redirect' => 'https://demo.tibetanbusiness.com/login/github/callback',
     ],
     // Facebook Login
     'facebook' => [
-        'client_id' =>  '3727328730617726',
-        'client_secret' => '1f8e16bd7bb2d63b1d61dc0a5ede97fd',
-        'redirect' => 'https://tibetanbusiness.com:8890/login/facebook/callback',
+        'client_id' =>  '716233402441348',
+        'client_secret' => 'e48cab5f81eba7e5ad72c9e068a3a094',
+        'redirect' => 'https://demo.tibetanbusiness.com/login/facebook/callback',
 
     ],
     // google login

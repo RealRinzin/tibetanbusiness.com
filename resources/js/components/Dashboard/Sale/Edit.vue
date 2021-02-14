@@ -1,8 +1,5 @@
 <template>
     <div id="restaurant">
-        <vue-headful
-        :title="sale.name+' - Tibetanbusiness.com'"
-        />
         <div v-if="!loading">
             <loading :active.sync="isLoading"></loading>
         </div>

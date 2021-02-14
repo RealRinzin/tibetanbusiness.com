@@ -1,11 +1,5 @@
 <template>
     <div style="min-height:80vh">
-        <vue-headful
-        :title="job.title"
-        :description="job.location"
-        :image="'https://demo.tibetanbusiness.com:/storage/Job/Banner/'+job.banner"
-        :url="'https://demo.tibetanbusiness.com/job/'+job.id"
-        />
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
@@ -94,7 +88,7 @@
                                     </div>
                                 </div>
                                 <!-- Apply -->
-                                <div class="row pb-3">
+                                <!-- <div class="row pb-3">
                                     <div class="col-12">
                                         <span v-if="is_logged"> 
                                                 <button v-if="applied" class="btn btn-info btn-sm small my-1">You have Applied </button>
@@ -113,9 +107,9 @@
                                                 {{job.interested}} Interested</span>
                                         </button>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- Info -->
-                                <div class="card py-2">
+                                <div class="card py-3">
                                     <div class="row p-3">
                                         <div class="col-md-6" v-if="job.description">
                                             <h5 class="text-dark">Job Descriptions</h5>

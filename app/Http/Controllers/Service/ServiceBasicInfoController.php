@@ -9,7 +9,7 @@ use App\Service\ServiceBasicInfo;
 use App\Service\ServicePhoto;
 use App\Service\ServiceReviewReply;
 use Illuminate\Support\Facades\Auth;
-
+use MetaTag;
 class ServiceBasicInfoController extends Controller
 {
     protected $path = '../public/storage/Service/Banner/';
@@ -169,6 +169,12 @@ class ServiceBasicInfoController extends Controller
     // CUSTOM API
     public function view(ServiceBasicInfo $serviceBasicInfo, $id)
     {
+        // Meta Description
+        $meta = ServiceBasicInfo::find($id);
+        MetaTag::set('title', $meta->name);
+        MetaTag::set('description', $meta->location. ' '.$meta->description);
+        MetaTag::set('image', asset('storage/Service/Banner/'.$meta->banner));
+        // Meta Description End
         return view('service.show', ['id' => ServiceBasicInfo::find($id)]);
     }
     // Dashboard Edit
