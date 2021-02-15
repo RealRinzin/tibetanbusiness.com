@@ -9,7 +9,7 @@ class SaleCategory extends Model
 {
     //
     protected $connection = 'other';
-    public $incrementing = false;
+    // public $incrementing = false;
     protected static function boot()
     {
         parent::boot();

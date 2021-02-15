@@ -9,7 +9,7 @@ class EventCategory extends Model
 {
     //
     protected $connection = 'other';
-    public $incrementing = false;
+    // public $incrementing = true;
     protected static function boot()
     {
         parent::boot();
