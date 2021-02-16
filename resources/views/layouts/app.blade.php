@@ -262,20 +262,27 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <div class="row py-1">
-                        <div class="col-12">
-                            <p class="copyright text-center">Tibetanbusiness © Copyright <?php echo date('Y'); ?></p>
-                            <p class="copyright text-center">
-                                <span><i class="fab fa-facebook fa-2x mr-2 text-primary"></i></span>
-                                <span><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></span>
-                                <span><i class="fab fa-twitter mr-2 fa-2x text-info"></i></span>
+                    <div class="row py-3">
+                        <div class="col-6 text-center">
+                            <p>
+                                <span><a href="" class="text-white-50 mx-1">Add Business</a></span>
+                                <span><a href="" class="text-white-50 mx-1">Promote Business</a></span>
                             </p>
+                            <p class="copyright">
+                                <span><a href=""><i class="fab fa-facebook-square fa-2x mr-2 text-primary"></i></a></span>
+                                <span><a href=""><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></a></span>
+                                <span><a href=""><i class="fab fa-twitter mr-2 fa-2x text-info"></i></a></span>
+                                <span><a href=""><i class="fab fa-linkedin mr-2 fa-2x text-primary"></i></a></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <div id='contact-page-map' class="w-100" style="height:200px"></div>
                         </div>
                     </div>
                     <div class="divider"></div>
                     <div class="row">
-                        <div class="col-12 my-3">
-                            <p class="copyright text-center">Policy and Terms</p>
+                        <div class="col-12 my-1">
+                            <p class="copyright text-center"> Tibetanbusiness © Copyright <?php echo date('Y'); ?> | Policy and Terms</p>
                         </div>
                     </div>
                 </div>
@@ -370,11 +377,11 @@
                                                 <i class="fab fa-github mr-2"></i> Github
                                             </a>
                                         </div>
-                                        <div class="col-6 py-2">
+                                        <!-- <div class="col-6 py-2">
                                             <a href="{{url('login/twitter')}}" class="btn btn-block" style="background-color:#329deb;color:white">
                                                 <i class="fab fa-twitter mr-2"></i> Twitter
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- Create new password -->
@@ -467,6 +474,12 @@
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
     <!-- mapbox -->
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ';
+        var map = L.mapbox.map('contact-page-map')
+            .setView([26.681881,80.982727], 9)
+            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+        </script>
 </body>
 
 </html>

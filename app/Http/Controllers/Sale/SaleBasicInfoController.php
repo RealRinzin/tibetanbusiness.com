@@ -225,6 +225,13 @@ class SaleBasicInfoController extends Controller
     // Dashboard Edit
     public function sale_edit(SaleBasicInfo $saleBasicInfo, $id)
     {
+        // Meta Description
+        $meta = SaleBasicInfo::find($id);
+        $meta->price = 'Rs:'.$meta->price;
+        MetaTag::set('title', $meta->name.' - '.$meta->price);
+        MetaTag::set('description', $meta->location.' - '.$meta->description);
+        MetaTag::set('image', asset('storage/Sale/Banner/'.$meta->banner));
+        // Meta Description End
         if (Auth::user()->id === SaleBasicInfo::find($id)->user_id) {
             return view('dashboard.sale.edit', ['id' => SaleBasicInfo::find($id)]);
         } else {

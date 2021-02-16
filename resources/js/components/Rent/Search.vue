@@ -165,6 +165,7 @@
                 // Max and Min
                 search_location:'',
                 fare_max:{},
+                fare:'',
             }
         },
         /**
@@ -189,6 +190,17 @@
                     }
                 }
             },
+            load_fares(){
+            // maximum price
+                axios.get('/api/rent/list/max_fare').then(response=>{
+                    this.fare = response.data;
+                })
+                // minimum Price
+                axios.get('/api/rent/list/min_fare')
+                .then(response=>{
+                    // console.log(response.data);
+                })
+            },
             // loading
             load_result(){
                 // location set
@@ -211,6 +223,7 @@
                     $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
                     " - " + $( "#slider-range" ).slider( "values", 1 ) );
                 } );
+
                 // End Range
                 // axios.get('/api/search/rents')
                 axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
@@ -381,13 +394,6 @@
         // Mounted
         mounted(){
             this.load_result();
-            // fare
-
-            // API
-            axios.get('/api/location')
-            .then(response => {
-                this.locations = response.data;
-            })
         }
     }
 

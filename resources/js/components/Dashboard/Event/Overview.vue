@@ -386,7 +386,7 @@ export default {
     },
     mounted(){
         // Events
-        axios.get('/api/categories/event')
+        axios.get('/api/event-categories')
         .then(response=>{
             this.categories = response.data;
         })

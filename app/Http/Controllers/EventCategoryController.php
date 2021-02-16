@@ -15,7 +15,8 @@ class EventCategoryController extends Controller
     public function index()
     {
         //
-        return "all events";
+        $events =  EventCategory::orderBy('name', 'asc')->get();
+        return $events->toArray($events);
     }
 
     /**

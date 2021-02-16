@@ -257,6 +257,12 @@ class RestaurantBasicInfoController extends Controller
      *  */
     public function restaurant_edit(RestaurantBasicInfo $restaurantBasicInfo, $id)
     {
+        // Meta Description
+        $meta = RestaurantBasicInfo::find($id);
+        MetaTag::set('title', $meta->name);
+        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('image', asset('storage/Restaurant/Banner/'.$meta->banner));
+        // Meta Description End
         if(Auth::user()->id === RestaurantBasicInfo::find($id)->user_id){
             return view('dashboard.restaurant.edit', ['id' => RestaurantBasicInfo::find($id)]);
         }else{

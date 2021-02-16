@@ -203,6 +203,18 @@ class EventBasicInfoController extends Controller
     // Dashboard Edit
     public function event_edit(EventBasicInfo $eventBasicInfo, $id)
     {
+        // Meta Description
+        $meta = EventBasicInfo::find($id);
+        if($meta->entry_fee ==0){
+            $meta->entry_fee = 'Entry Free';
+        }else{
+            $meta->entry_fee = 'Rs: '.$meta->entry_fee;
+        };
+        // Date with Day of the week
+        $start_date = date_create($meta->start_date);
+        MetaTag::set('title', $meta->name. ' | '. date_format($start_date,"l\,jS F Y"));
+        MetaTag::set('description', $meta->location. ' - ' . $meta->entry_fee);
+        MetaTag::set('image', asset('storage/Event/Banner/'.$meta->banner));
         if (Auth::user()->id === EventBasicInfo::find($id)->user_id) {
             return view('dashboard.event.edit', ['id' => EventBasicInfo::find($id)]);
         } else {

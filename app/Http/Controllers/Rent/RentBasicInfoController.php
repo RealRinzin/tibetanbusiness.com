@@ -265,6 +265,12 @@ class RentBasicInfoController extends Controller
      *  */
     public function rent_edit(RentBasicInfo $rentBasicInfo, $id)
     {
+        // Meta Description
+        $meta = RentBasicInfo::find($id);
+        $meta->fare = 'Rs:'.$meta->fare;
+        MetaTag::set('title', $meta->name .' - '. $meta->fare);
+        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('image', asset('storage/Rent/Banner/'.$meta->banner));
         if (Auth::user()->id === RentBasicInfo::find($id)->user_id) {
             return view('dashboard.rent.edit', ['id' => RentBasicInfo::find($id)]);
         } else {

@@ -180,6 +180,12 @@ class ServiceBasicInfoController extends Controller
     // Dashboard Edit
     public function service_edit(ServiceBasicInfo $serviceBasicInfo, $id)
     {
+        // Meta Description
+        $meta = ServiceBasicInfo::find($id);
+        MetaTag::set('title', $meta->name);
+        MetaTag::set('description', $meta->location. ' '.$meta->description);
+        MetaTag::set('image', asset('storage/Service/Banner/'.$meta->banner));
+        // Meta Description End
         if (Auth::user()->id === ServiceBasicInfo::find($id)->user_id) {
             return view('dashboard.service.edit', ['id' => ServiceBasicInfo::find($id)]);
         } else {

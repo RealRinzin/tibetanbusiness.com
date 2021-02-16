@@ -7,8 +7,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Tibetanbusiness.com') }}</title>
+    <title>{{ MetaTag::get('title') }}</title>
+    {!! MetaTag::tag('description') !!}
+    {!! MetaTag::tag('image') !!}
+    <!-- Faceboook share -->
+    {!! MetaTag::openGraph() !!}
+    <!-- Twitter Share -->
+    {!! MetaTag::twitterCard() !!}
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

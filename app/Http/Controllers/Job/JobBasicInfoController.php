@@ -175,6 +175,10 @@ class JobBasicInfoController extends Controller
     // Job
     public function job_edit(JobBasicInfo $rentBasicInfo, $id)
     {
+        $meta = JobBasicInfo::find($id);
+        MetaTag::set('title', $meta->title .' - '. $meta->organization);
+        MetaTag::set('description', $meta->location .' - '.$meta->profession);
+        MetaTag::set('image', asset('storage/Job/Banner/'.$meta->banner));
         if (Auth::user()->id === JobBasicInfo::find($id)->user_id) {
             return view('dashboard.job.edit', ['id' => JobBasicInfo::find($id)]);
         } else {

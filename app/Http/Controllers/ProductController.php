@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return "all products";
+        $products =  Product::orderBy('name', 'asc')->get();
+        return $products->toArray($products);
         //
     }
 

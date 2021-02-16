@@ -337,13 +337,8 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        // locations api
-        axios.get('/api/location')
-        .then(response => {
-            this.locations = response.data;
-        })
-        // Profession
-        axios.get('/api/categories/sale')
+        // Products
+        axios.get('/api/products')
         .then(response=>{
             this.categories = response.data;
         })

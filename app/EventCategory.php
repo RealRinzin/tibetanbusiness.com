@@ -17,7 +17,7 @@ class EventCategory extends Model
             $mode->id = str_replace("-", "", Uuid::generate(4));
         });
     }
-    // mass fill
+    // Mass Fill
     protected $guarded = [];
     //
 }
