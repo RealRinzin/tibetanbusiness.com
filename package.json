@@ -26,7 +26,7 @@
         "webpack": "^4.44.2"
     },
     "dependencies": {
-        "admin-lte": "^3.0.5",
+        "admin-lte": "^3.1.0",
         "date-fns": "^2.16.1",
         "emailjs": "^3.4.0",
         "file-upload-with-preview": "^4.1.0",
