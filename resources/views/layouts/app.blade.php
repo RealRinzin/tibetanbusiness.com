@@ -2,13 +2,16 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" prefix="og: https://ogp.me/ns#">
 
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8T4TQ72G81"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8T4TQ72G81');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-8T4TQ72G81');
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,10 +40,15 @@
     <!-- Loading -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
     <!-- Mapbox -->
-    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+    <link href="{{ asset('js/mapbox/mapbox.min.js') }}" rel="stylesheet">
+    <link href="{{ asset('js/mapbox/mapbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('js/mapbox/mapbox-gl.min.js') }}" rel="stylesheet">
+    <link href="{{ asset('js/mapbox/mapbox-gl.min.css') }}" rel="stylesheet">
+
+    <!-- <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' /> -->
+    <!-- <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script> -->
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script> -->
+    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" /> -->
     <!-- social Sharing -->
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script>
     <!-- AOS -->
@@ -190,7 +198,9 @@
             </div>
             @endif
             <!-- content -->
-            @yield('content')
+            <div style="min-height:100vh">
+                @yield('content')
+            </div>
             <footer>
                 <div class="container">
                     <div class="row py-2">
@@ -399,14 +409,17 @@
     <!-- Scripts -->
     @if(Request::is('/'))
     <script rel="preload" src="{{ asset('js/app.min.js') }}"></script>
+    <link rel="preload" type="text/javascript" as="script" href="{{ asset('js/app.min.js') }}">
     @endif
     @if(!Request::is('/'))
-    <script rel="preload" src="{{ asset('js/detail.min.js') }}"></script>
+    <script rel=" preload" src="{{ asset('js/detail.min.js') }}"></script>
+    <link rel="preload" type="text/javascript" as="script" href="{{ asset('js/detail.min.js') }}">
     @endif
     @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Jobs')))
     <!-- Jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
     @endif
+
     <script>
         // Fixed Navbar
         // Background change on
@@ -450,11 +463,10 @@
     @if(Request::is('promote-business'))
     <script src="{{ asset('js/aos.min.js') }}"></script>
     <script>
-            AOS.init({
-				easing: 'ease-out-back',
-				duration: 1000
-			});
-		
+        AOS.init({
+            easing: 'ease-out-back',
+            duration: 1000
+        });
     </script>
     @endif
     <!-- Lazy loading image -->
@@ -477,9 +489,9 @@
     <script>
         L.mapbox.accessToken = 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ';
         var map = L.mapbox.map('contact-page-map')
-            .setView([26.681881,80.982727], 9)
+            .setView([26.681881, 80.982727], 9)
             .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-        </script>
+    </script>
 </body>
 
 </html>

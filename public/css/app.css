@@ -2155,22 +2155,12 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
-.form-control::-webkit-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -8257,7 +8247,6 @@ button.bg-dark:focus {
 }
 
 .position-sticky {
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -8277,9 +8266,8 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
-@supports ((position: -webkit-sticky) or (position: sticky)) {
+@supports (position: sticky) {
   .sticky-top {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -11032,12 +11020,6 @@ a.text-dark:focus {
   transition: 0.5s;
 }
 
-#tb_search_dropdown .required::-webkit-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #94291a;
-  font-size: 18px !important;
-}
-
 #tb_search_dropdown .required::-moz-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #94291a;
@@ -11045,12 +11027,6 @@ a.text-dark:focus {
 }
 
 #tb_search_dropdown .required:-ms-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #94291a;
-  font-size: 18px !important;
-}
-
-#tb_search_dropdown .required::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #94291a;
   font-size: 18px !important;
@@ -11068,22 +11044,12 @@ a.text-dark:focus {
   outline: none !important;
 }
 
-#dropdown_lists input::-webkit-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-size: 14px;
-}
-
 #dropdown_lists input::-moz-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   font-size: 14px;
 }
 
 #dropdown_lists input:-ms-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-size: 14px;
-}
-
-#dropdown_lists input::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   font-size: 14px;
 }
@@ -11139,12 +11105,6 @@ a.text-dark:focus {
   transition: 0.5s;
 }
 
-#dropdown_lists .required::-webkit-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #94291a;
-  font-size: 18px !important;
-}
-
 #dropdown_lists .required::-moz-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #94291a;
@@ -11152,12 +11112,6 @@ a.text-dark:focus {
 }
 
 #dropdown_lists .required:-ms-input-placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #94291a;
-  font-size: 18px !important;
-}
-
-#dropdown_lists .required::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #94291a;
   font-size: 18px !important;
@@ -11494,7 +11448,7 @@ View individual show CSS
 body {
   font-family: "Source Sans Pro", sans-serif;
   background-color: #edf1f4 !important;
-  min-height: 100%;
+  min-height: 100% !important;
 }
 
 a {

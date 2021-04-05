@@ -253,6 +253,7 @@
                 '&location='+this.filter.location
                 )
                 .then(response=>{ 
+                    console.log(response);
                     this.events = response.data.data;
                     this.loading_placeholder = false,
                     this.total = response.data.meta.total;

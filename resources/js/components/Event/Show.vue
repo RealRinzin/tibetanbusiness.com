@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height:80vh">
+    <div>
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>

@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/dashboard.min.css": "/css/dashboard.min.css",
     "/js/dashboard.min.js": "/js/dashboard.min.js",
-    "/js/detail.min.js": "/js/detail.min.js"
+    "/js/detail.min.js": "/js/detail.min.js",
+    "/js/event.min.js": "/js/event.min.js"
 }

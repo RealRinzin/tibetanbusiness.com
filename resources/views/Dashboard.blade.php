@@ -160,6 +160,8 @@
     <script src="{{ asset('js/datetimepicker.min.js') }}"></script>
     <!-- Custom components vue -->
     <script src="{{ asset('js/dashboard.min.js') }}"></script>
+    <link rel="preload" type="text/javascript" as="script" href="{{ asset('js/dashboard.min.js') }}">
+
     <script src="{{ asset('js/vue-js-toggle.min.js') }}"></script>
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
