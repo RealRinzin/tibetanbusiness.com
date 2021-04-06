@@ -126,6 +126,7 @@
     import EventSidebar from '../Search/Event.vue';
     import RestaurantSidebar from '../Search/Restaurant.vue';
     import ServiceSidebar from '../Search/Service.vue';
+import min from 'date-fns/min';
     export default {
         props:['location'],
         // Data
@@ -191,18 +192,20 @@
                 }
             },
             load_fares(){
-            // maximum price
+            // // maximum price
                 axios.get('/api/rent/list/max_fare').then(response=>{
                     this.fare = response.data;
+                    // console.log(this.fare);
                 })
-                // minimum Price
-                axios.get('/api/rent/list/min_fare')
-                .then(response=>{
-                    // console.log(response.data);
-                })
+            //     // minimum Price
+            //     axios.get('/api/rent/list/min_fare')
+            //     .then(response=>{
+            //         // console.log(response.data);
+            //     })
             },
             // loading
             load_result(){
+                console.log(this.fare);
                 // location set
                 if(this.location == null){
                     this.filter.location = ""
@@ -389,10 +392,34 @@
                 this.places = {};
             },
         },
+        // Computed
+       computed:{
+            fare:{
+                get:function(){
+                    // axios.get('/api/rent/list/max_fare').then(response=>{
+                    //     this.fare = response.data;
+                    // })
+                    return fare;
+                },
+                set:function(val){
+                    return val;
+                }
+            },
+        },
+        watch:{
+            fare:function (value) {
+                axios.get('/api/rent/list/max_fare').then(response=>{
+                    return response.data;
+                })
+                
+            }
+        },
+        // 
         // Components
         components:{Loading,SaleSidebar,JobSidebar,EventSidebar,RestaurantSidebar,ServiceSidebar},
         // Mounted
         mounted(){
+            // this.load_fares();
             this.load_result();
         }
     }

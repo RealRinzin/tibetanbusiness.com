@@ -1,6 +1,7 @@
 <template>
-    <div class="card p-2" v-if="sales != ''">
+    <div class="card p-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/sale.png" alt=""></span> Sales - {{sale_location}}</h6>
+        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(sale,index) in sales" v-if="index <= 3">
                 <a v-bind:href="'/sale/'+sale.id">
@@ -23,7 +24,8 @@ export default {
         return{
             place:this.location,
             sales:[],
-            sale_location:'Other Places'
+            sale_location:'Other Places',
+            loading:true,
 
         }
     },
@@ -38,7 +40,8 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
-                                this.sale_location = this.location
+                                this.sale_location = this.location;
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -48,6 +51,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
+                                        this.loading= false;
                                     }
                             }}
                             else{
@@ -55,6 +59,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             })}
@@ -68,7 +73,8 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
-                                this.sale_location = this.location
+                                this.sale_location = this.location;
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -78,6 +84,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -86,6 +93,7 @@ export default {
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.sale_id){
                                             this.sales.push(response.data[i]);
+                                            this.loading= false;
                                         }
                                     }
                                 })
@@ -95,37 +103,6 @@ export default {
                 }
             })
         },
-        // sale(){
-        //     axios.get('/api/sale/list/sidebar/'+this.place)
-        //     .then(response=>{
-        //         for (let index = 0; index < response.data.data.length; index++) {   
-        //             if(response.data.data[index].id != this.sale_id){
-        //                 this.sales.push(response.data.data[index]);
-        //             }
-        //         }
-        //         if(this.sales.length ==0){
-        //             this.place = "Other Places";
-        //             axios.get('/api/sale/list/sidebar_ad')
-        //             .then(response=>{
-        //                 if(response.data.length >0){
-        //                     for (let index = 0; index < response.data.length; index++) {   
-        //                         if(response.data[index].id != this.sale_id){
-        //                             this.sales.push(response.data[index]);
-        //                         }
-        //                     }
-        //                 }else{
-        //                     axios.get('/api/sale/list/all').then(response=>{
-        //                         for (let index = 0; index < response.data.length; index++) {   
-        //                             if(response.data[index].id != this.sale_id){
-        //                                 this.sales.push(response.data[index]);
-        //                             }
-        //                         }
-        //                     })
-        //                 }
-        //             })
-        //         }
-        //     })
-        // },
     },
     mounted(){
         this.sale();

@@ -1,6 +1,8 @@
 <template>
-    <div class="card p-2 my-2" v-if="jobs != ''">
+    <div class="card p-2 my-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Jobs - {{job_location}}</h6>
+        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
+
         <div class="row">
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
                 <a v-bind:href="'/job/'+job.id">
@@ -22,7 +24,8 @@ export default {
         return{
             place:this.location,
             jobs:[],
-            job_location:'other places'
+            job_location:'other places',
+            loading:true,
         }
     },
     methods:{
@@ -32,11 +35,11 @@ export default {
             .then(response=>{
                 if(this.id !== undefined){
                     if(response.data.data.length > 1){
-                    console.log(response.data);
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
                                 this.jobs.push(response.data.data[i]);
                                 this.job_location = this.location
+                        this.loading = false;
                             }
                         }
                     }else{
@@ -46,17 +49,21 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
+                        this.loading = false;
                                     }
                                 }
+                                
                             }
                             else{
                             axios.get('/api/job/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
+                                this.loading = false;
                                     }
                                 }
                             })}
+
                         })
                     }
                 // Else part for
@@ -67,6 +74,7 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.jobs.push(response.data.data[i]);
                                     this.job_location = this.location
+                                    this.loading = false;
                             }
                         }
                     }else{
@@ -76,6 +84,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
+                                        this.loading = false;
                                     }
                                 }
                             }
@@ -84,11 +93,13 @@ export default {
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.jobs.push(response.data[i]);
+                                            this.loading = false;
                                         }
                                     }
                                 })
                             }
                         })
+                        this.loading = false;
                     }
                 }
             })

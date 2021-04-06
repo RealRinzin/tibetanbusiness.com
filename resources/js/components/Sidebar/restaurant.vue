@@ -1,6 +1,7 @@
 <template>
-    <div class="card p-2 my-2" v-if="restaurants != ''">
+    <div class="card p-2 my-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Restarants - {{restaurant_location}}</h6>
+        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(restaurant,i) in restaurants" v-if="i <= 3">
                 <a v-bind:href="'/restaurant/'+restaurant.id">
@@ -23,7 +24,8 @@ export default {
         return{
             place:this.location,
             restaurants:[],
-            restaurant_location:'other places'
+            restaurant_location:'other places',
+            loading:true,
         }
     },
     methods:{
@@ -49,6 +51,7 @@ export default {
                                 }
                                 this.restaurants.push(response.data.data[i]);
                                 this.restaurant_location = this.location
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -70,6 +73,7 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -90,6 +94,7 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             })}
@@ -114,7 +119,9 @@ export default {
                                     response.data.data[i].rate_color = 'btn-secondary';
                                 }
                                 this.restaurants.push(response.data.data[i]);
-                                    this.restaurant_location = this.location;
+                                this.restaurant_location = this.location;
+                                this.loading= false;
+
                             }
                         }
                     }else{
@@ -136,6 +143,7 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -156,6 +164,7 @@ export default {
                                                 response.data[i].rate_color = 'btn-secondary';
                                             }
                                             this.restaurants.push(response.data[i]);
+                                            this.loading= false;
                                         }
                                     }
                                 })

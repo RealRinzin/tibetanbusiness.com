@@ -169,7 +169,7 @@
                     fee_min:0,
                     fee_max:10000000,
                     from:'',
-                    to:'2020-12-22'
+                    to:'2025-12-22'
                 },
                 // loading
                 isLoading : false,//Lazy loading
@@ -397,6 +397,16 @@
                 $("#event_category_list").css("display", "none");
             },
 
+        },
+        computed:{
+            min:{
+                get:function(){
+                    return 34 + 56
+                },
+                set:function() {
+                    return 34+45
+                }
+            },
         },
         // Components
         components:{Loading,SaleSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},

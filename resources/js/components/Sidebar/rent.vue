@@ -1,6 +1,7 @@
 <template>
-    <div class="card p-2 my-2" v-if="rents != ''">
+    <div class="card p-2 my-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents - {{rent_location}}</h6>
+        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(rent,index) in rents" v-if="index <= 3">
                 <a v-bind:href="'/rent/'+rent.id">
@@ -23,7 +24,8 @@ export default {
         return{
             place:this.location,
             rents:[],
-            rent_location:'other places'
+            rent_location:'other places',
+            loading:true,
         }
     },
     methods:{
@@ -36,7 +38,9 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
                                 this.rents.push(response.data.data[i]);
-                                this.rent_location = this.location
+                                this.rent_location = this.location;
+                                this.loading= false;
+
                             }
                         }
                     }else{
@@ -46,6 +50,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -54,6 +59,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             })}
@@ -66,7 +72,8 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
                                 this.rents.push(response.data.data[i]);
-                                    this.rent_location = this.location
+                                this.rent_location = this.location;
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -76,6 +83,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -84,6 +92,7 @@ export default {
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.rents.push(response.data[i]);
+                                            this.loading= false;
                                         }
                                     }
                                 })

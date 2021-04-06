@@ -1,7 +1,8 @@
 <template>
     <!-- Service -->
-    <div class="card p-2 my-2" v-if="services != ''">
+    <div class="card p-2 my-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services - {{service_location}}</h6>
+        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 3">
                 <a v-bind:href="'/service/'+service.id">
@@ -24,7 +25,8 @@ export default {
         return{
             place:this.location,
             services:[],
-            service_location:'other places'
+            service_location:'other places',
+            loading:true,
         }
     },
     methods:{
@@ -49,7 +51,8 @@ export default {
                                     response.data.data[i].rate_color = 'btn-secondary';
                                 }
                                 this.services.push(response.data.data[i]);
-                                this.service_location = this.location
+                                this.service_location = this.location;
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -71,6 +74,7 @@ export default {
                                             response.data.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -91,6 +95,7 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             })}
@@ -116,6 +121,7 @@ export default {
                                 }
                                 this.services.push(response.data.data[i]);
                                 this.service_location = this.location;
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -137,6 +143,7 @@ export default {
                                             response.data.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -157,6 +164,7 @@ export default {
                                                 response.data[i].rate_color = 'btn-secondary';
                                             }
                                             this.services.push(response.data[i]);
+                                            this.loading= false;
                                         }
                                     }
                                 })

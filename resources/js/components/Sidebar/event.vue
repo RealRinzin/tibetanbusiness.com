@@ -1,7 +1,9 @@
 <template>
-    <div class="card p-2 my-2" v-if="events != ''">
-            <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events - {{event_location}}</h6>
-
+    <div class="card p-2 my-2">
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events - {{event_location}}</h6>
+        <div v-if="loading">
+            <lazy-loading class="mb-0"></lazy-loading>
+        </div>
         <div class="row">
             <div class="col-6 py-2" v-for="(event,index) in events" v-if="index <= 3">
                 <a v-bind:href="'/event/'+event.id">
@@ -26,7 +28,8 @@ export default {
         return{
             place:this.location,
             events:[],
-            event_location:"Other Places"
+            event_location:"Other Places",
+            loading:true,
         }
     },
     methods:{
@@ -40,6 +43,7 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.events.push(response.data.data[i]);
                                 this.event_location = this.location
+                                this.loading= false;
                             }
                         }
                     }else{
@@ -49,6 +53,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
+                                        this.loading= false;
                                     }
                             }}
                             else{
@@ -56,6 +61,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             })}
@@ -68,7 +74,8 @@ export default {
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
                                 this.events.push(response.data.data[i]);
-                                    this.event_location = this.location
+                                this.event_location = this.location
+                                this.loading= false;
                             }
                         }
                 
@@ -79,6 +86,7 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
+                                        this.loading= false;
                                     }
                                 }
                             }
@@ -87,6 +95,7 @@ export default {
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.events.push(response.data[i]);
+                                            this.loading= false;
                                         }
                                     }
                                 })
