@@ -1,6 +1,9 @@
 <template> 
-    <div class="card p-2 my-2" v-if="restaurants != ''">
+    <div class="card p-2 my-2">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/restaurant.png" alt=""></span> Restaurants - {{place}}</h6>
+        <div v-if="loading">
+            <lazy-loading class="mb-0"></lazy-loading>
+        </div>
         <div class="row">
             <div class="col-6 py-2" v-for="(restaurant,index) in restaurants" v-if="index <= 3">
                 <a v-bind:href="'/restaurant/'+restaurant.id">
@@ -49,7 +52,8 @@ export default{
                                 response.data[i].rate_color = 'btn-secondary';
                             } 
                         }
-                            this.restaurants = response.data
+                            this.restaurants = response.data;
+                            this.loading = false;
                     }else{
                     axios.get('/api/restaurant/list/all').then(response=>{
                         for (let i = 0; i < response.data.length; i++) {
@@ -66,7 +70,8 @@ export default{
                                 response.data[i].rate_color = 'btn-secondary';
                             } 
                         }
-                            this.restaurants = response.data
+                            this.restaurants = response.data;
+                            this.loading = false;
                     })}
                 })
         // Else Part
@@ -90,6 +95,8 @@ export default{
                         }
                         this.restaurants = response.data.data;
                         this.place = value;
+                        this.loading = false;
+
                     }else{
                         this.place = 'Other Places';
                         axios.get('/api/restaurant/list/sidebar_ad')
@@ -109,7 +116,9 @@ export default{
                                         response.data[i].rate_color = 'btn-secondary';
                                     } 
                                 }
-                                    this.restaurants = response.data
+                                this.restaurants = response.data;
+                                this.loading = false;
+
                             }else{
                             axios.get('/api/restaurant/list/all').then(response=>{
                                     for (let i = 0; i < response.data.length; i++) {
@@ -126,7 +135,8 @@ export default{
                                             response.data[i].rate_color = 'btn-secondary';
                                         } 
                                     }
-                                    this.restaurants = response.data
+                                this.restaurants = response.data;
+                                this.loading = false;
                             })}
                         })
                     }

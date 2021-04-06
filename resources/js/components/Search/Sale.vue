@@ -1,6 +1,9 @@
 <template> 
-    <div class="card p-2 my-2" v-if="sales != ''">
+    <div class="card p-2 my-2">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/sale.png" alt=""></span> Sales - {{place}}</h6>
+        <div v-if="loading">
+            <lazy-loading class="mb-0"></lazy-loading>
+        </div>
         <div class="row">
             <div class="col-6 py-2" v-for="(sale,index) in sales" v-if="index <= 3">
                 <a v-bind:href="'/sale/'+sale.id">
@@ -25,6 +28,7 @@ export default{
         return{
             sales:[],
             place:'',
+            loading:true,
         }  
     },
     // watch
@@ -36,10 +40,12 @@ export default{
                 axios.get('/api/sale/list/sidebar_ad')
                 .then(response=>{
                     if(response.data.length > 0){
-                            this.sales = response.data
+                        this.sales = response.data;
+                        this.loading = false;
                     }else{
                     axios.get('/api/sale/list/all').then(response=>{
-                            this.sales = response.data
+                        this.sales = response.data;
+                        this.loading = false;
                     })}
                 })
         // Else Part
@@ -49,15 +55,18 @@ export default{
                     if(response.data.data.length >0){
                         this.sales = response.data.data;
                         this.place = value;
+                        this.loading = false;
                     }else{
                         this.place = 'Other Places';
                         axios.get('/api/sale/list/sidebar_ad')
                         .then(response=>{
                             if(response.data.length > 0){
-                                    this.sales = response.data
+                                this.sales = response.data;
+                                this.loading = false;
                             }else{
                             axios.get('/api/sale/list/all').then(response=>{
-                                    this.sales = response.data
+                                this.sales = response.data;
+                                this.loading = false;
                             })}
                         })
                     }

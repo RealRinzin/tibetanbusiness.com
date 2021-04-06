@@ -1,6 +1,9 @@
 <template> 
-    <div class="card p-2 my-2" v-if="services != ''">
+    <div class="card p-2 my-2">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/service.png" alt=""></span> Services - {{place}}</h6>
+        <div v-if="loading">
+            <lazy-loading class="mb-0"></lazy-loading>
+        </div>
         <div class="row">
             <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 3">
                 <a v-bind:href="'/service/'+service.id">
@@ -26,6 +29,7 @@ export default{
         return{
             services:[],
             place:'',
+            loading:true,
         }  
     },
     // watch
@@ -52,6 +56,7 @@ export default{
                             } 
                         }
                             this.services = response.data;
+                            this.loading = false;
                     }else{
                     axios.get('/api/service/list/all').then(response=>{
                         for (let i = 0; i < response.data.length; i++) {
@@ -68,7 +73,9 @@ export default{
                                 response.data[i].rate_color = 'btn-secondary';
                             } 
                         }
-                            this.services = response.data
+                            this.services = response.data;
+                            this.loading = false;
+
                     })}
                 })
         // Else Part
@@ -91,6 +98,7 @@ export default{
                             } 
                         }
                         this.services = response.data.data;
+                        this.loading = false;
                         this.place = value;
                     }else{
                         this.place = 'Other Places';
@@ -111,7 +119,8 @@ export default{
                                         response.data[i].rate_color = 'btn-secondary';
                                     }
                                 }
-                                this.services = response.data
+                                this.services = response.data;
+                                this.loading = false;
                             }else{
                             axios.get('/api/service/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
@@ -128,7 +137,8 @@ export default{
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                     }
-                                    this.services = response.data
+                                    this.services = response.data;
+                            this.loading = false;
                             })}
                         })
                     }

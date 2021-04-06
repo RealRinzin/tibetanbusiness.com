@@ -1,6 +1,9 @@
 <template> 
-    <div class="card p-2 my-2" v-if="rents != ''">
-            <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents - {{place}}</h6>
+    <div class="card p-2 my-2">
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents - {{place}}</h6>
+            <div v-if="loading">
+            <lazy-loading class="mb-0"></lazy-loading>
+        </div>
         <div class="row">
             <div class="col-6 py-2" v-for="(rent,index) in rents" v-if="index <= 3">
                 <a v-bind:href="'/rent/'+rent.id">
@@ -25,6 +28,7 @@ export default{
         return{
             rents:[],
             place:'',
+            loading:true,
         }  
     },
     // watch
@@ -36,10 +40,12 @@ export default{
                 axios.get('/api/rent/list/sidebar_ad')
                 .then(response=>{
                     if(response.data.length > 0){
-                            this.rents = response.data
+                        this.rents = response.data;
+                        this.loading = false;
                     }else{
                     axios.get('/api/rent/list/all').then(response=>{
-                            this.rents = response.data
+                        this.rents = response.data;
+                        this.loading = false;
                     })}
                 })
         // Else Part
@@ -49,15 +55,18 @@ export default{
                     if(response.data.data.length >0){
                         this.rents = response.data.data;
                         this.place = value;
+                        this.loading = false;
                     }else{
                         this.place = 'Other Places';
                         axios.get('/api/rent/list/sidebar_ad')
                         .then(response=>{
                             if(response.data.length > 0){
-                                    this.rents = response.data
+                                this.rents = response.data;
+                                this.loading = false;
                             }else{
                             axios.get('/api/rent/list/all').then(response=>{
-                                    this.rents = response.data
+                                this.rents = response.data;
+                                this.loading = false;
                             })}
                         })
                     }
