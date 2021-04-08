@@ -29,7 +29,7 @@
                               <i class="fas fa-tools"></i>
                           </span>
                       </div>
-                      <input type="text" id="service_search" @focusin="service_dropdown()" :keyup="service_selected()" v-model="service" class="form-control"  placeholder="Service" aria-label="service type" required>
+                      <input type="text" id="service_search" @focusin="service_dropdown()" :keyup="service_selected()" v-model="service" class="form-control"  readonly="readonly" placeholder="Service" aria-label="service type" required>
                   </div>
                       <ul id="service_list" class="w-100" style="display:none;position:absolute;transition:1s;z-index:100">
                           <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">

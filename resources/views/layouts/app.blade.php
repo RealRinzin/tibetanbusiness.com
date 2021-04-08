@@ -40,15 +40,15 @@
     <!-- Loading -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
     <!-- Mapbox -->
-    <link href="{{ asset('js/mapbox/mapbox.min.js') }}" rel="stylesheet">
-    <link href="{{ asset('js/mapbox/mapbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('js/mapbox/mapbox-gl.min.js') }}" rel="stylesheet">
-    <link href="{{ asset('js/mapbox/mapbox-gl.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('js/mapbox/mapbox.min.js') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('js/mapbox/mapbox.min.css') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('js/mapbox/mapbox-gl.min.js') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('js/mapbox/mapbox-gl.min.css') }}" rel="stylesheet"> -->
 
-    <!-- <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' /> -->
-    <!-- <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script> -->
-    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script> -->
-    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" /> -->
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
     <!-- social Sharing -->
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script>
     <!-- AOS -->

@@ -1,7 +1,7 @@
 <template> 
     <div class="card p-2 my-2">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents - {{place}}</h6>
-            <div v-if="loading">
+        <div v-if="loading">
             <lazy-loading class="mb-0"></lazy-loading>
         </div>
         <div class="row">

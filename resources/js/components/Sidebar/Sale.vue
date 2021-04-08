@@ -1,5 +1,5 @@
 <template>
-    <div class="card p-2">
+    <div class="card p-2" >
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/sale.png" alt=""></span> Sales - {{sale_location}}</h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">

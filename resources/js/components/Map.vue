@@ -9,8 +9,9 @@ export default {
     props:['longitude','latitude'],
     methods:{
         goe_map(){
+            
             // Maker
-            mapboxgl.accessToken = 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ';
+            mapboxgl.accessToken = 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJjazhtbWh3eG0wY3R3M2VvMjQwYjRsM2k0In0.D42dDtVsmpkG27aWZ8HTew';
             let map_marker = new mapboxgl.Map({
             container: 'geo-coordinator',
             style: 'mapbox://styles/mapbox/streets-v11',
