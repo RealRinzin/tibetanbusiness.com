@@ -280,7 +280,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/api/categories/service')
+        axios.get('/api/service-categories')
         .then(response=>{
             this.categories = response.data;
         })

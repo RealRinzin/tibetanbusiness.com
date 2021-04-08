@@ -5,7 +5,6 @@ use App\Event\EventInterest;
 use App\Event\EventPhoto;
 use App\Event\EventReview;
 use App\Event\EventReviewReply;
-use App\Job\JobAnswer;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use App\Job\JobInterest;
@@ -32,8 +31,10 @@ use App\Service\ServiceReview;
 use App\Service\ServiceReviewReply;
 use App\Service\ServiceWorkingDay;
 use App\User;
-use App\Location\Location;
-use App\Category\Category;
+use App\EventCategory;
+use App\Occupation;
+use App\SaleCategory;
+use App\ServiceCategory;
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
@@ -45,10 +46,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 1)->create();
-        // location
-        factory(Location::class,10)->create();
-        // category
-        factory(Category::class,30)->create();
+        // Event Category
+        factory(EventCategory::class,10)->create();
+        // Sale Category /Product
+        factory(SaleCategory::class, 10)->create();
+        // Occupation Category
+        factory(Occupation::class, 10)->create();
+        // Service Category
+        factory(ServiceCategory::class, 10)->create();
+
 
         // ce015fe555df43a0848cf48cecee26ed
         // Restaurant DB Seed

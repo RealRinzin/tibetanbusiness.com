@@ -14,7 +14,7 @@ class CreateOccupationsTable extends Migration
     public function up()
     {
         Schema::connection('other')->create('occupations', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('name');
             $table->timestamps();
         });

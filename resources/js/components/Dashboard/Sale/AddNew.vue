@@ -223,7 +223,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/api/products')
+        axios.get('/api/sale-categories')
         .then(response=>{
             this.categories = response.data;
         })

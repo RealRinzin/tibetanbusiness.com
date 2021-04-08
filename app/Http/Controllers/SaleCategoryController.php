@@ -14,7 +14,8 @@ class SaleCategoryController extends Controller
      */
     public function index()
     {
-        return "all sales";
+        $categories =  SaleCategory::orderBy('name', 'asc')->get();
+        return $categories->toArray($categories);
         //
     }
 
@@ -48,6 +49,8 @@ class SaleCategoryController extends Controller
     public function show(SaleCategory $saleCategory)
     {
         //
+        $categories =  SaleCategory::orderBy('name', 'asc')->get();
+        return $categories->toArray($categories);
     }
 
     /**

@@ -243,20 +243,13 @@ use Illuminate\Http\Request;
     Route::get('search/jobs/', 'Job\JobBasicInfoController@search');
     Route::get('search/events/', 'Event\EventBasicInfoController@search');
 
-// Other API
-    Route::get('location', 'Location\LocationController@index');
-    Route::get('categories/job', 'Category\CategoryController@job');
-    Route::get('categories/event', 'Category\CategoryController@event');
-    Route::get('categories/sale', 'Category\CategoryController@sale');
-    Route::get('categories/service', 'Category\CategoryController@service');
-
 // Landing Carousel
 Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 // Occupations
 Route::apiResource('occupations', 'OccupationController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
-Route::apiResource('products', 'ProductController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['store', 'show', 'edit', 'destroy', 'update', 'create']]);
 
 
 

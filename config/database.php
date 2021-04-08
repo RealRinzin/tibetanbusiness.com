@@ -87,7 +87,7 @@ return [
         'rent' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL_RENT'),
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '8889',
             'database' => 'rents',
             'username' => 'root',
@@ -107,7 +107,7 @@ return [
         'job' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL_JOB'),
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '8889',
             'database' => 'jobs',
             'username' => 'root',
@@ -127,7 +127,7 @@ return [
         'event' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL_JOB'),
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '8889',
             'database' => 'events',
             'username' => 'root',
@@ -146,7 +146,7 @@ return [
         'sale' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '8889',
             'database' => 'sales',
             'username' => 'root',
@@ -165,7 +165,7 @@ return [
         'service' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'port' => '8889',
             'database' => 'services',
             'username' => 'root',
@@ -186,7 +186,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => '127.0.0.1',
             'port' => '8889',
-            'database' => 'list_place_carousel',
+            'database' => 'categories',
             'username' => 'root',
             'password' => 'toor',
             'unix_socket' => env('DB_SOCKET', ''),
