@@ -15,6 +15,7 @@ class CarouselController extends Controller
      */
     public function index()
     {
+
         $carousels =  Carousel::orderBy('created_at', 'desc')
         ->inRandomOrder()
         ->limit('1')

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarouselsTable extends Migration
+class LandingCarousels extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateCarouselsTable extends Migration
      */
     public function up()
     {
+        //
         Schema::connection('other')->create('carousels', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('link');
-            $table->string('quote',255); //event,job,restaurant,rent etc
-            $table->string('type',30); //event,job,restaurant,rent etc
-            $table->string('name',50); //Contributer name
-            $table->string('photo',60);
+            $table->uuid('id');
+            $table->string('link');
+            $table->string('type');
+            $table->string('quote');
+            $table->string('name');
+            $table->string('photo');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateCarouselsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('other')->dropIfExists('carousels');
+        //
     }
 }

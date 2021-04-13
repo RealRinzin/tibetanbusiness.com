@@ -8,6 +8,7 @@ use App\Event\EventReviewReply;
 use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use App\Job\JobInterest;
+use App\LandingCarousel\Carousel;
 use App\Job\JobQuestion;
 use App\Job\JobQuestionReply;
 use App\Rent\RentBasicInfo;
@@ -54,6 +55,7 @@ class DatabaseSeeder extends Seeder
         factory(Occupation::class, 10)->create();
         // Service Category
         factory(ServiceCategory::class, 10)->create();
+        factory(Carousel::class, 10)->create();
 
 
         // ce015fe555df43a0848cf48cecee26ed
