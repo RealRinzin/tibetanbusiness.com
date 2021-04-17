@@ -49,8 +49,9 @@
     <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=60222a551e16b800121b009b&product=sop' async='async'></script>
     <!-- social Sharing -->
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script>
+    <!-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script> -->
     <!-- AOS -->
     @if(Request::is('promote-business'))
     <link href="{{ asset('css/aos.min.css') }}" rel="stylesheet">

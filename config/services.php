@@ -52,9 +52,9 @@ return [
     ],
     // google login
     'google' => [
-        'client_id' =>  '399145378972-9s3hth2mlqrl4q1cv3go0090fqal383g.apps.googleusercontent.com',
-        'client_secret' => 'p2XcdJ-aQ-L5th0gHJjdeESP',
-        'redirect' => 'https://demo.tibetanbusiness.com/login/google/callback',
+        'client_id' =>  '694425608507-kdlo4rn3mfucg55f0q2lc191vbd8po2u.apps.googleusercontent.com',
+        'client_secret' => 't7thLrp2t8nzSo0LovnIg_So',
+        'redirect' => 'http://tibetanbusiness.com:8888/login/google/callback',
 
     ],
 

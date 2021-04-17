@@ -307,7 +307,7 @@ Background resource loading
         }
         .banner{
             // background-image: url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif');
-            background-image: url('/img/loading-img.svg') no-repeat center;
+            background-image: url('/img/placeholder-log.png') no-repeat center;
             height: 70px;
             border-radius: 4px;
             background-size: cover;
@@ -316,7 +316,7 @@ Background resource loading
         .lazyloading {
             opacity: 1;
             transition: 600ms opacity;
-            background: #f7f7f7 url('/img/loading-img.svg');
+            background: #f7f7f7 url('/img/placeholder-logo.png');
             min-height: 60px;
             background-size: cover;
             background-position:center;

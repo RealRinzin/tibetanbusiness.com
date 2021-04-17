@@ -97,7 +97,7 @@ class LoginController extends Controller
          * otherwise redirect to the home page
          *  */ 
         $url = url()->previous();
-        if($url == 'https://accounts.google.com.np/accounts/SetSID' || $url == 'https://www.facebook.com/' || $url == 'https://github.com/'){
+        if($url == 'https://google.com' || $url == 'https://www.facebook.com/' || $url == 'https://github.com/'){
             return redirect($this->redirectTo);
         }else{
             return redirect()->back();

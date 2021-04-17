@@ -120,7 +120,7 @@ use Illuminate\Http\Request;
         // Other API
         // List API
         Route::apiResource('location', 'Location\LocationController', ['except' => ['index','create','show']]);
-        Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job','create','show']]);
+        // Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job','create','show']]);
 
     });
 
