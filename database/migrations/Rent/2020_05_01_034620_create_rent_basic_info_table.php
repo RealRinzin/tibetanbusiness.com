@@ -39,6 +39,8 @@ class CreateRentBasicInfoTable extends Migration
             $table->date('home_ad_expire_date')->nullable();
             $table->boolean('sidebar_ad')->nullable();
             $table->date('sidebar_ad_expire_date')->nullable();
+            $table->boolean('popup_ad')->nullable();
+            $table->date('popup_expire_date')->nullable();
             $table->text('description', 225)->nullable();
             $table->timestamps();
         });

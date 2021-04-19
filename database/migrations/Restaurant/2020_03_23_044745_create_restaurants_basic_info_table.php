@@ -35,8 +35,13 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('website',100)->nullable();
             $table->boolean('status');
             $table->boolean('featured_ad')->nullable();
+            $table->date('featured_ad_expire_date')->nullable();
             $table->boolean('home_ad')->nullable();
+            $table->date('home_ad_expire_date')->nullable();
             $table->boolean('sidebar_ad')->nullable();
+            $table->date('sidebar_ad_expire_date')->nullable();
+            $table->boolean('popup_ad')->nullable();
+            $table->date('popup_expire_date')->nullable();
             $table->text('description',225)->nullable();
             $table->timestamps();
         });

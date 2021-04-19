@@ -277,7 +277,7 @@
                         <div class="col-6 text-center">
                             <p>
                                 <span><a href="" class="text-white-50 mx-1">Add Business</a></span>
-                                <span><a href="" class="text-white-50 mx-1">Promote Business</a></span>
+                                <span><a href="promote-business" class="text-white-50 mx-1">Promote Business</a></span>
                                 <span><a href="/contact-us" class="text-white-50 mx-1">Contact Us</a></span>
                             </p>
                             <p class="copyright">
