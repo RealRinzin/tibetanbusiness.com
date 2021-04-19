@@ -27,7 +27,7 @@
                                         <!-- Overview -->
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
-                                                    <div class="col-md-6 col-sm-4 col-4">
+                                                    <div class="col-md-12 col-12">
                                                         <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{rent.location}}</h6>

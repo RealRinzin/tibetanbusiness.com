@@ -17,7 +17,7 @@
                         <div class="col-md-6">
                             <h5 class="text-dark">FEATURED AD</h5>
                             <p class="py-5">
-                                In this business advertisement type, your service advertisement will display at the home page featured section of the website and will get better attention from the visitors.
+                                In this advertisement type, your service advertisement will display at the home page featured section of the website and will get better attention from the visitors.
                             </p>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <h5 class="text-dark">HOME LISTING AD</h5>
                             <p>
-                                In this business advertisement type, your service advertisement will display at the listing section of the home page
+                                In this advertisement type, your service advertisement will display at the listing section of the home page
                             </p>
                         </div>
                         <div class="col-md-6" data-aos="fade-up" data-aos-offset="2" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="false" data-aos-anchor-placement="top-center"><img src="{{ asset('img/Home-Ad.jpg') }}" alt="" class="w-100 rounded"></div>
@@ -52,7 +52,7 @@
                     <div class="col-md-6">
                         <h5 class="text-dark">SIDEBAR AD</h5>
                         <p>
-                            In this business advertisement type, your service advertisement will display at the sidebar of every individual page visitors visit.
+                            In this advertisement type, your service advertisement will display at the sidebar of every individual page visitors visit.
                         </p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="col-md-6">
                         <h5 class="text-dark">POPUP AD</h5>
                         <p class="py-5">
-                            In this business advertisement type, your service advertisement will popup at every individual page visitors visit.
+                            In this advertisement type, your service advertisement will popup at every individual page visitors visit.
                         </p>
                     </div>
                     <div class="col-md-6" data-aos="fade-up" data-aos-offset="2" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="false" data-aos-anchor-placement="top-center"><img src="{{ asset('img/Popup-Ad.jpg') }}" alt="" class="w-100 rounded"></div>

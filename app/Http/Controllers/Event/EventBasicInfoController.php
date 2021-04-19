@@ -101,6 +101,7 @@ class EventBasicInfoController extends Controller
             'sidebar_ad' => false,
             'home_ad' => false,
             'facebook' => $request->facebook,
+            'website' => $request->website,
             'instagram' => $request->instagram,
         ]);
         return $job;

@@ -283,16 +283,47 @@
                                             </div>
                                         </div>
                                     </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="description">Event Description <small class="text-success p-1">(Optional)</small></label>
-                                                <textarea rows="5" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
-                                                <div class="valid-feedback"></div>
-                                                <div v-if="errors.has('event_validate_update_form.description')" class="invalid-feedback">
-                                                    <span v-for="error in errors.collect('event_validate_update_form.description')">{{ error }}</span>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="facebook">Facebook<small class="text-success p-1">(Optional)</small></label>
+                                                    <input  v-validate="'max:255|url'" v-model="event.facebook" name="facebook" class="form-control" id="facebook" aria-describedby="emailHelp" placeholder="Facebook "/>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.facebook')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.facebook')">{{ error }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="instagram">Instagram<small class="text-success p-1">(Optional)</small></label>
+                                                    <input  v-validate="'max:255|url'" v-model="event.instagram" name="instagram" class="form-control" id="instagram" aria-describedby="emailHelp" placeholder="Instagram"/>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.instagram')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.instagram')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="website">website<small class="text-success p-1">(Optional)</small></label>
+                                                    <input  v-validate="'max:255|url'" v-model="event.website" name="website" class="form-control" id="website" aria-describedby="emailHelp" placeholder="Website"/>
+                                                    <div class="valid-feedback"></div>
+                                                    <div v-if="errors.has('event_validate_add_form.website')" class="invalid-feedback">
+                                                        <span v-for="error in errors.collect('event_validate_add_form.website')">{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="description">Event Description <small class="text-success p-1">(Optional)</small></label>
+                                            <textarea rows="5" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                            <div class="valid-feedback"></div>
+                                            <div v-if="errors.has('event_validate_update_form.description')" class="invalid-feedback">
+                                                <span v-for="error in errors.collect('event_validate_update_form.description')">{{ error }}</span>
+                                            </div>
                                         </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -48,6 +48,11 @@
                                                                 {{event.interested}} People Interested
                                                             </p>
                                                         </div>
+                                                <div class="d-flex flex-row justify-content-end">
+                                                    <a v-if="event.facebook" :href="event.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary p-1 rounded"></i></a>
+                                                    <a v-if="event.instagram" :href="event.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger p-1 rounded"></i></a>
+                                                    <a v-if="event.website" :href="event.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary p-1 rounded"></i></a>
+                                                </div>
                                                     </div>
                                             </div>
                                         </div>

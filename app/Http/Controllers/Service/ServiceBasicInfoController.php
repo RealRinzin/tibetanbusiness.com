@@ -92,6 +92,7 @@ class ServiceBasicInfoController extends Controller
             'home_ad' => false,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
+            'website' => $request->website,
         ]);
         return $service;
     }
