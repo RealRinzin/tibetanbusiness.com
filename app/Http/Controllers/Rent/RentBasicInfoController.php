@@ -408,7 +408,7 @@ class RentBasicInfoController extends Controller
         ->whereBetween('fare', [$request->fare_min,$request->fare_max])
         ->where('accomodation_size', 'like', "$request->accomodation_size%")
         ->where('status', '=', '1')
-        ->orderBy('created_at', 'desc')->paginate('3');
+        ->orderBy('created_at', 'desc')->paginate('10');
         return $rents->toArray($rents);
     }
 }

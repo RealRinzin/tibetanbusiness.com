@@ -323,7 +323,7 @@ class ServiceBasicInfoController extends Controller
         ->where('rate', 'like', "$request->rate%")
         ->where('type', 'like', "$request->type%")
         ->where('status', '=', '1')
-            ->orderBy('created_at', 'desc')->paginate('3');
+            ->orderBy('created_at', 'desc')->paginate('10');
         return $services->toArray($services);
     }
 }

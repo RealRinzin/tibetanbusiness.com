@@ -222,7 +222,7 @@ Background resource loading
         height: 140px;
         border-radius: 4px 4px 0px 0px;
         position: relative;
-        background-size: cover;
+        // background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
     }
@@ -230,7 +230,7 @@ Background resource loading
     .lazyloading {
         opacity: 1;
         transition: 600ms opacity;
-        background: #f7f7f7 url('https://afarkas.github.io/lazysizes/assets/imgs/loader.gif') no-repeat center;
+        background: #f7f7f7 url('/img/placeholder-logo.png') no-repeat center;
         min-height: 60px;
     }
     .lazyloaded {

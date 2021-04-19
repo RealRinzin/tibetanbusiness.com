@@ -423,7 +423,7 @@ class RestaurantBasicInfoController extends Controller
             ->where('location','like',"%$request->location%")
             -> where('rate', 'like', "$request->rate%")
             ->where('status','=','1')
-            ->orderBy('created_at', 'desc')->paginate('3');
+            ->orderBy('created_at', 'desc')->paginate('10');
         return $restaurants->toArray($restaurants);
     }
 }

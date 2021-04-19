@@ -341,6 +341,6 @@ class JobBasicInfoController extends Controller
                 ->whereBetween('salary', [$request->salary_min, $request->salary_max])
                 ->where('deadline', '>=', date('Y-m-d'))
                 ->where('status', '=', true)
-                ->orderBy('created_at', 'desc')->paginate('3'));
+                ->orderBy('created_at', 'desc')->paginate('10'));
     }
 }

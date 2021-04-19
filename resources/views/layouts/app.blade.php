@@ -278,6 +278,7 @@
                             <p>
                                 <span><a href="" class="text-white-50 mx-1">Add Business</a></span>
                                 <span><a href="" class="text-white-50 mx-1">Promote Business</a></span>
+                                <span><a href="/contact-us" class="text-white-50 mx-1">Contact Us</a></span>
                             </p>
                             <p class="copyright">
                                 <span><a href=""><i class="fab fa-facebook-square fa-2x mr-2 text-primary"></i></a></span>

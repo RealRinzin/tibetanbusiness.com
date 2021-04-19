@@ -319,7 +319,7 @@ class SaleBasicInfoController extends Controller
         ->where('type', 'like',"$request->type%")
         ->whereBetween('price', [$request->price_min, $request->price_max])
         ->where('status', '=', '1')
-        ->orderBy('created_at', 'desc')->paginate('3');
+        ->orderBy('created_at', 'desc')->paginate('10');
         return $sales->toArray($sales);
     }
 }

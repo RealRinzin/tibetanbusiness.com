@@ -388,7 +388,7 @@ class EventBasicInfoController extends Controller
                 // ->whereBetween('entry_fee', [$min, $max])
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->where('start_date', '>=', date('Y-m-d'))
-                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('10'));
         }
 
     }
