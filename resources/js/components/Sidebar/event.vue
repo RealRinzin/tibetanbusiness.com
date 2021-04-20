@@ -1,6 +1,8 @@
 <template>
     <div class="card p-2 my-2" >
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events - {{event_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events
+            <span class="text-muted" style="font-size:12px">- {{event_location}}</span>
+         </h6>
         <div v-if="loading">
             <lazy-loading class="mb-0"></lazy-loading>
         </div>

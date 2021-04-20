@@ -22,7 +22,7 @@
                     <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
                     <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 5">
                         <!-- <i class="fas fa-map-marker mx-2 text-muted"></i>  -->
-                        <span class="font-weight-bold text-dark">{{place.placeName}}</span>
+                        <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
                         <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
                       </li>
                   </ul>
@@ -106,8 +106,8 @@ export default {
       }
     },
     // Set Location
-    set_location(location,city){
-      this.keyword_location = location+', '+city;
+    set_location(location){
+      this.keyword_location = location;
       this.selected_location = location;
       this.places = {};
     },

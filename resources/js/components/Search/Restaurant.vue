@@ -1,6 +1,9 @@
 <template> 
     <div class="card p-2 my-2">
-            <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/restaurant.png" alt=""></span> Restaurants - {{place}}</h6>
+            <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/restaurant.png" alt=""></span> Restaurants 
+                <span class="text-muted" style="font-size:12px">- {{place}}</span>
+
+            </h6>
         <div v-if="loading">
             <lazy-loading class="mb-0"></lazy-loading>
         </div>

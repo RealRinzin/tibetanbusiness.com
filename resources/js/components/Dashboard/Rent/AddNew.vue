@@ -43,7 +43,11 @@
                                             <label for="location">Location<span class="text-danger p-1">*</span></label>
                                             <input type="text" autocomplete="off" name="location" v-validate="'required'" @keyup="load_location()"  v-model="rent.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
                                             <ul class="w-100 pl-0" style="position: absolute;z-index:100">
-                                                <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
+                                                <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress,index)" v-if="index <= 5">
+                                                    <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
+                                                    <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
+                                                </li>
                                             </ul>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('rent_validate_add_form.location')" class="invalid-feedback">
@@ -187,14 +191,18 @@ export default {
     methods:{
         // load places
         load_location(){
+            let location = "\""+ this.rent.location+  "\"";
             if(this.rent.location ==''){
                 this.rent.location = '';
                 this.places ={};
             }else{
                 if(this.rent.location.length > 2){
-                axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.rent.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.rent.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                axios.get("/api/map?query="+location)
                 .then(response=>{
-                    this.places =  response.data.features;
+                    // this.places =  response.data.features;
+                    this.locations = JSON.parse(response.data.data);
+                    this.places = this.locations.suggestedLocations;
                 }) 
                 }
             }
@@ -204,11 +212,12 @@ export default {
             *  */ 
         set_location(location,city,index){
             this.rent.location = location+', '+city;;
-            this.rent.address = this.places[index].place_name;
+            this.rent.address = this.places[index].placeAddress;
             //longitude
-            this.rent.longitude = this.places[index].center[0];
+            this.rent.longitude = this.places[index].longitude;
             // latitude
-            this.rent.latitude = this.places[index].center[1];
+            this.rent.latitude = this.places[index].latitude;
+            // Reset location
             this.places = {};
         },
         /**

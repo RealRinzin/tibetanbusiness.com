@@ -1,6 +1,8 @@
 <template>
     <div class="card p-2 my-2">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents - {{rent_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents
+            <span class="text-muted" style="font-size:12px">- {{rent_location}}</span>
+         </h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(rent,index) in rents" v-if="index <= 3">

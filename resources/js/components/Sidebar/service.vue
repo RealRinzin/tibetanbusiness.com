@@ -1,7 +1,9 @@
 <template>
     <!-- Service -->
     <div class="card p-2 my-2">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services - {{service_location}}</h6>
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services 
+        <span class="text-muted" style="font-size:12px">- {{service_location}}</span>
+        </h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
             <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 3">

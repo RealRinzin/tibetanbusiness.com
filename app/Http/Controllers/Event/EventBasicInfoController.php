@@ -355,11 +355,17 @@ class EventBasicInfoController extends Controller
     // Search View
     public function search_engine(Request $request)
     {
+        MetaTag::set('title',$request->location);
+
         return view('event.search', ['location' => $request->location]);
     }
     // Search Query
     public function search(Request $request)
     {
+        MetaTag::set('title', $request->location);
+        MetaTag::set('description', $request->location .'Tibetanbusiness.com' );
+        MetaTag::set('image', asset('/img/tibetanbusiness.com'));
+
         // return $request;
         $min = (int)$request->fee_min;
         $max = (int)$request->fee_max;
