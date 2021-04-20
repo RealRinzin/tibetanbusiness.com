@@ -17,7 +17,11 @@
                                                 <div class="col-md-12 py-1">
                                                     <input type="text" @keyup="load_location()"  v-model="filter.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
                                                     <ul class="w-100" style="position: absolute;z-index:100;height:auto">
-                                                        <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                                                        <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
+                                                        <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 10">
+                                                            <span class="font-weight-bold text-dark">{{place.placeName}}</span>
+                                                            <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 pt-1">
@@ -151,15 +155,30 @@
             this.rating= rating;
             },
             // load places
+            // load_location(){
+            //     if(this.filter.location ==''){
+            //         this.filter.location = '';
+            //         this.places ={};
+            //     }else{
+            //         if(this.filter.location.length > 2){
+            //         axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.filter.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+            //         .then(response=>{
+            //             this.places =  response.data.features;
+            //         }) 
+            //         }
+            //     }
+            // },
             load_location(){
+                let location = "\""+ this.filter.location+  "\"";
                 if(this.filter.location ==''){
                     this.filter.location = '';
                     this.places ={};
                 }else{
                     if(this.filter.location.length > 2){
-                    axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.filter.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+                    axios.get("/api/map?query="+location)
                     .then(response=>{
-                        this.places =  response.data.features;
+                        this.locations = JSON.parse(response.data.data);
+                        this.places = this.locations.suggestedLocations;
                     }) 
                     }
                 }

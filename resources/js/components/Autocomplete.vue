@@ -18,7 +18,13 @@
                       <input type="text" autocomplete="off" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                   </div>
                   <ul class="w-100" style="position: absolute;z-index:100">
-                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li>
+                    <!-- {{places}} -->
+                    <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
+                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 5">
+                        <!-- <i class="fas fa-map-marker mx-2 text-muted"></i>  -->
+                        <span class="font-weight-bold text-dark">{{place.placeName}}</span>
+                        <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
+                      </li>
                   </ul>
               </div>
               <!-- Services -->
@@ -66,6 +72,7 @@ export default {
   data(){
     return{
       places:{},//searched places object
+      locations:{},
       keyword_location:'', //selected place
       selected_location:'',
       service:'', //service
@@ -83,14 +90,17 @@ export default {
   },
   methods:{
     load_location(){
+      let location = "\""+ this.keyword_location+  "\""
       if(this.keyword_location ==''){
         this.keyword_location = '';
         this.places ={};
       }else{
-        if(this.keyword_location.length > 2){
-        axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+        if(this.keyword_location.length > 1){
+        // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
+        axios.get("/api/map?query="+location)
           .then(response=>{
-            this.places =  response.data.features;
+            this.locations = JSON.parse(response.data.data);
+            this.places = this.locations.suggestedLocations;
           }) 
         }
       }

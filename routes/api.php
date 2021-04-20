@@ -1,5 +1,6 @@
 <?php
 
+use App\Occupation;
 use Illuminate\Http\Request;
 
 /*
@@ -246,10 +247,10 @@ use Illuminate\Http\Request;
 // Landing Carousel
 Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 // Occupations
-Route::apiResource('occupations', 'OccupationController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('occupations', 'OccupationController', ['except' => ['store','edit', 'destroy','update','create']]);
 Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['store', 'show', 'edit', 'destroy', 'update', 'create']]);
-
+Route::get('map', 'OccupationController@map');
 
 

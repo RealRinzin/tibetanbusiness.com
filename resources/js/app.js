@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 
+import axios from 'axios';
 /**
  * Lazy loading 
  * plugin
@@ -57,6 +58,8 @@ const app = new Vue({
             user_name:'',
             user_avatar:'',
             user_id:'',
+            locations:{},
+            places:{},
         }
     },
     // Methods
@@ -100,7 +103,16 @@ const app = new Vue({
     },
     // Mounted
     mounted(){
-        
+        axios.get('/api/map?query="MC"')
+        .then(response=>{
+            this.locations = JSON.parse(response.data.data);
+            // console.log(response.data.data);
+            // console.log(JSON.parse(response.data.data));
+            // console.log(this.places.suggestedLocations);
+            this.places = this.locations.suggestedLocations;
+            console.log(this.places);
+
+        })
         this.login_status(); 
         // Mobile device size  
         if(screen.width < 767){
