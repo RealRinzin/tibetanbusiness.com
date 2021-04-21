@@ -298,6 +298,7 @@ export default {
             })
             .then(response=>{
                 this.overview = response.data;
+                console.log(this.overview);
             })
         },
         /**

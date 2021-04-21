@@ -154,20 +154,6 @@
             setRating: function(rating){
             this.rating= rating;
             },
-            // load places
-            // load_location(){
-            //     if(this.filter.location ==''){
-            //         this.filter.location = '';
-            //         this.places ={};
-            //     }else{
-            //         if(this.filter.location.length > 2){
-            //         axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.filter.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
-            //         .then(response=>{
-            //             this.places =  response.data.features;
-            //         }) 
-            //         }
-            //     }
-            // },
             load_location(){
                 let location = "\""+ this.filter.location+  "\"";
                 if(this.filter.location ==''){
@@ -182,6 +168,13 @@
                     }) 
                     }
                 }
+            },
+            /**
+             * Set Location
+             *  */ 
+            set_location(location,city){
+                this.filter.location = location;
+                this.places = {};
             },
             // Load Result
             load_result(){
@@ -333,13 +326,6 @@
                 }
                 this.search_location = '';
                 this.load_result();
-            },
-            /**
-             * Set Location
-             *  */ 
-            set_location(location,city){
-                this.filter.location = location+', '+city;;
-                this.places = {};
             },
         },
 

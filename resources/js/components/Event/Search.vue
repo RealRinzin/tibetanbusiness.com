@@ -173,7 +173,8 @@
                     fee_min:0,
                     fee_max:10000000,
                     from:'',
-                    to:'2025-12-22'
+                    to:'2025-12-22',
+                    entry_free:'',
                 },
                 // loading
                 isLoading : false,//Lazy loading
@@ -277,7 +278,7 @@
             },
             // search result
             search_result(){
-            this.search_location = this.filter.location;
+                this.search_location = this.filter.location;
                 // Desktop
                 if(screen.width < 767){
                     $("#search_collapse").removeClass("show");
@@ -387,7 +388,7 @@
              * Set Location
              *  */ 
             set_location(location,city){
-                this.filter.location = location+', '+city;;
+                this.filter.location = location;
                 this.places = {};
             },
             // categoryu

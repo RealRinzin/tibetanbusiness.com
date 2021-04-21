@@ -166,22 +166,30 @@ export default {
      *  Methods
      *  */ 
     methods:{
-        // load places
-            load_location(){
-                let location = "\""+ this.filter.location+  "\"";
-                if(this.filter.location ==''){
-                    this.filter.location = '';
-                    this.places ={};
-                }else{
-                    if(this.filter.location.length > 2){
-                    axios.get("/api/map?query="+location)
-                    .then(response=>{
-                        this.locations = JSON.parse(response.data.data);
-                        this.places = this.locations.suggestedLocations;
-                    }) 
-                    }
+    // load places
+        load_location(){
+            let location = "\""+ this.filter.location+  "\"";
+            if(this.filter.location ==''){
+                this.filter.location = '';
+                this.places ={};
+            }else{
+                if(this.filter.location.length > 2){
+                axios.get("/api/map?query="+location)
+                .then(response=>{
+                    this.locations = JSON.parse(response.data.data);
+                    this.places = this.locations.suggestedLocations;
+                }) 
                 }
-            },
+            }
+        },
+        /**
+         * SEARCH LIST
+         * DROPDOWN
+         *  */ 
+        set_location(location,city){
+            this.filter.location = location;
+            this.places = {};
+        },
         // loading
         load_result(){
             if(this.location == null){
@@ -316,14 +324,6 @@ export default {
                 $("#search_collapse").removeClass("show");
             }
             this.load_result();
-        },
-        /**
-         * SEARCH LIST
-         * DROPDOWN
-         *  */ 
-        set_location(location,city){
-            this.filter.location = location+', '+city;;
-            this.places = {};
         },
         // categoryu
         sale_type_dropdown() {

@@ -81,7 +81,7 @@ export default {
          *  */ 
         // Set Location
         set_location(location,city){
-        this.keyword_location = location+', '+city;
+        this.keyword_location = location;
         this.selected_location = location;
         this.places = {};
         },

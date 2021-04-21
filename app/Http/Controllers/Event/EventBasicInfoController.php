@@ -378,21 +378,18 @@ class EventBasicInfoController extends Controller
 
         if(!$status){
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
-                ->where('location', 'like', "%$request->location")
+                ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->whereBetween('entry_fee', [$min, $max])
-                // ->orWhere('entry_fee','=',NULL)
+                // ->Where('entry_free','=','')
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
         }else{
-            // return "not empty";
-            $fee_charged = true;
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
-                ->where('entry_free', $fee_charged)
-                // ->whereBetween('entry_fee', [$min, $max])
+                ->where('entry_free','=', true)
                 ->whereBetween('start_date', [$request->from, $request->to])
                 ->where('start_date', '>=', date('Y-m-d'))
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('10'));

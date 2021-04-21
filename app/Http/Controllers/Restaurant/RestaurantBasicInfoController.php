@@ -276,7 +276,7 @@ class RestaurantBasicInfoController extends Controller
      *  */ 
     public function show_individual(RestaurantBasicInfo $restaurantBasicInfo,$id)
     {
-        return $id;
+        // return $id;
         $restaurant = RestaurantBasicInfo::find($id);
         return $restaurant;
     }

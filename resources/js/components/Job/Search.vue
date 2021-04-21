@@ -225,6 +225,13 @@
                     }
                 }
             },
+            /**
+             * Set Location
+             *  */ 
+            set_location(location,city){
+                this.filter.location = location;
+                this.places = {};
+            },
             // loading
             load_result(){
                 if(this.location == null){
@@ -377,13 +384,6 @@
                 this.load_result();
             },
 
-            /**
-             * Set Location
-             *  */ 
-            set_location(location,city){
-                this.filter.location = location+', '+city;;
-                this.places = {};
-            },
             close(){
                 $("#job_profession_list").css("display", "none");
                 $("#job_experience_list").css("display", "none");

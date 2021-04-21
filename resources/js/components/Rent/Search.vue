@@ -201,7 +201,7 @@
              * Set Location
              *  */ 
             set_location(location,city){
-                this.filter.location = location+', '+city;;
+                this.filter.location = location;
                 this.places = {};
             },
             load_fares(){

@@ -193,6 +193,13 @@
                     }
                 }
             },
+            /**
+             * Set Location
+             *  */ 
+            set_location(location,city){
+                this.filter.location = location;
+                this.places = {};
+            },
             // loading
             load_result(){
                 if(this.location == null){
@@ -341,13 +348,6 @@
                 }
                 this.search_location = '';
                 this.load_result();
-            },
-            /**
-             * Set Location
-             *  */ 
-            set_location(location,city){
-                this.filter.location = location+', '+city;;
-                this.places = {};
             },
             service_category_dropdown() {
                 $("#service_category_list").css("display", "block");
