@@ -39,6 +39,9 @@ export default {
         event(){
             axios.get('/api/event/list/sidebar/'+this.location)
             .then(response=>{
+                if(response.data.data.length<1){
+                    this.loading = false;
+                }
                 if(this.id !== undefined){
                     if(response.data.data.length > 1){
                         for (let i = 0; i < response.data.data.length; i++) {

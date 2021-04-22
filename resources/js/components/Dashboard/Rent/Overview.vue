@@ -429,7 +429,7 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.rent.location = location+', '+city;;
+            this.rent.location = location;
             this.rent.address = this.places[index].placeAddress;
             //longitude
             this.rent.longitude = this.places[index].longitude;

@@ -78,6 +78,14 @@
                                             </div>
                                             <div class="row p-2">
                                                 <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Address </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.address}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2">
+                                                <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Deadline </h6>
                                                 </div>
                                                 <div class="col-md-8 col-6">

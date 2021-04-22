@@ -1,5 +1,6 @@
 <template>
-    <div class="col-md-12">
+<div class="w-100">
+    <div id="desktopNavSearch" class="col-md-12">
         <div id="dropdown_lists">
             <div class="row">
                 <div class="px-0 col-5" id="tb_location">
@@ -35,6 +36,16 @@
             </div>
         </div>
     </div>
+    <!-- Mobile Search -->
+    <div id="mobileNavSearch"  class="col-12">
+            <div class="input-group-append">
+                <button  type="submit" @click="modalOpen" name="search" class="btn btn-light border-left rounded text-right w-100" style="padding:4.5px !important">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        <mobile-search></mobile-search>
+    </div>
+</div>
 </template>
 <script>
 export default {
@@ -57,9 +68,8 @@ export default {
     },
       methods:{
         //   load palces
-            load_location(){
-      let keyword_location = "\""+ this.keyword_location+  "\""
-
+        load_location(){
+            let keyword_location = "\""+ this.keyword_location+  "\""
             if(this.keyword_location ==''){
                 this.keyword_location = '';
                 this.places ={};
@@ -74,6 +84,10 @@ export default {
                 }) 
                 }
             }
+            },
+            // Mobile Search Modal
+            modalOpen(){
+                $("#searchModal").modal("show");  
             },
         /**
          * SEARCH LIST

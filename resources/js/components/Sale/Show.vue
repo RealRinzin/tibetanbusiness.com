@@ -27,6 +27,7 @@
                                                         <h6 class="text-dark py-1 font-weight-bolder"><i class="fas fa-calendar-alt mr-2"></i>{{sale.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{sale.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{sale.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{sale.address}}</h6>
                                                     </div>
                                             </div>
                                         </div>

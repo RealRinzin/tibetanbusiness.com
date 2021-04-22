@@ -30,7 +30,7 @@ class CreateEventsBasicInfoTable extends Migration
             $table->decimal('entry_fee',10,0)->nullable();
             $table->string('category', 100);
             $table->string('address', 255)->nullable();
-            $table->string('mobile_no', 12);
+            $table->string('mobile_no', 12)->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description', 225)->nullable();

@@ -110,7 +110,6 @@ const app = new Vue({
             // console.log(JSON.parse(response.data.data));
             // console.log(this.places.suggestedLocations);
             this.places = this.locations.suggestedLocations;
-            console.log(this.places);
 
         })
         this.login_status(); 

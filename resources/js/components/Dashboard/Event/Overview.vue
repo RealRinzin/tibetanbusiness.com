@@ -215,7 +215,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|max:10|digits:10'" v-model="event.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
+                                            <input type="text" v-validate="'max:10|digits:10'" v-model="event.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.mobile_no')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.mobile_no')">{{ error }}</span>
@@ -373,7 +373,7 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.event.location = location+', '+city;;
+            this.event.location = location;
             this.event.address = this.places[index].placeAddress;
             //longitude
             this.event.longitude = this.places[index].longitude;

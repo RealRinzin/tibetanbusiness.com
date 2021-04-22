@@ -114,13 +114,13 @@ Route::get('event/{id}', 'Event\EventBasicInfoController@view');
 Route::get('contact-us',function(){
     MetaTag::set('title', 'Contact US - Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
     MetaTag::set('description', 'Contact Us for advertisement and other business opportunities');
-    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+    MetaTag::set('image', asset('/img/contact-us.jpg'));
     return view('contact');
 });
 Route::get('promote-business',function(){
     MetaTag::set('title', 'Promote your Business- Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
     MetaTag::set('description', 'Promote Your business so that customers can  see it');
-    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+    MetaTag::set('image', asset('/img/advertisement.jpg'));
     return view('promote');
 });
 /**

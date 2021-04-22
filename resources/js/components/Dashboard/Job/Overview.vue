@@ -398,7 +398,7 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.job.location = location+', '+city;;
+            this.job.location = location;
             this.job.address = this.places[index].placeAddress;
             //longitude
             this.job.longitude = this.places[index].longitude;

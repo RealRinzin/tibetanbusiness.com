@@ -515,7 +515,7 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.restaurant.location = location+', '+city;;
+            this.restaurant.location = location;
             this.restaurant.address = this.places[index].placeAddress;
             //longitude
             this.restaurant.longitude = this.places[index].longitude;

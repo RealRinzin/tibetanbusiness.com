@@ -14,6 +14,10 @@ body{
     background-color: #edf1f4 !important;
     min-height: 100% !important;
 }
+// modal backdorp
+.modal-backdrop.show {
+    z-index: 200 !important;
+}
 .badge{
     white-space: normal !important;
 }
@@ -68,9 +72,34 @@ a{
             }
         }
     }
+    // Search bar media query
+    #desktopNavSearch{
+        @media (max-width: 767.98px) {
+            display: none !important;
+        }
+    }
+    #mobileNavSearch {
+        @media (min-width: 767.98px) {
+            display: none !important;
+        }
+    }
 }
+#searchModal{
+    .modal-dialog {
+        max-width: 100%;
+        height: 100%;
+        margin: auto;
+        // padding: 0;
+    }
 
-
+    .modal-content {
+        height: auto;
+        min-height: 100%;
+        border-radius: 0;
+        background-color: rgba(148, 29, 25, 0.9) !important;
+        // background-color: #941d19 !important;
+    }
+}
 // Home Search
 #home_search{
     	max-width: 100%;

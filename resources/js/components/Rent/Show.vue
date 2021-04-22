@@ -31,6 +31,7 @@
                                                         <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{rent.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{rent.address}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
                                                     </div>
                                                 <div class="col-md-3 col-sm-4 col-4 facility" v-if="rent.facility[0]!= null">

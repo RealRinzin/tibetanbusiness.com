@@ -404,7 +404,7 @@ export default {
             * Set Location
             *  */ 
         set_location(location,city,index){
-            this.service.location = location+', '+city;;
+            this.service.location = location;
             this.service.address = this.places[index].placeAddress;
             //longitude
             this.service.longitude = this.places[index].longitude;

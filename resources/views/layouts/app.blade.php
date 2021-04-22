@@ -407,6 +407,8 @@
             </div>
         </div>
     </div>
+    <!-- Search Modal -->
+
     </div>
     <!-- Scripts -->
     @if(Request::is('/'))
@@ -421,7 +423,6 @@
     <!-- Jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
     @endif
-
     <script>
         // Fixed Navbar
         // Background change on

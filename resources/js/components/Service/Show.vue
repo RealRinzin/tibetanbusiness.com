@@ -31,8 +31,9 @@
                                                     <div class="col-md-6 col-sm-6">
                                                         <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{service.name}}</h6>
                                                         <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{service.mobile_no}}</h6>
-                                                        <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{service.location}}</h6>
-                                                    <h6 class="text-muted pt-1" v-if="working_day != null">
+                                                        <h6 class="text-muted"><i class="fas fa-map-pin mr-2"></i>{{service.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{service.address}}</h6>
+                                                        <h6 class="text-muted pt-1" v-if="working_day != null">
                                                         <span v-if="working_day.monday" class="text-success btn btn-outline-success" >Mon</span>
                                                         <span v-else class="text-danger btn btn-outline-danger">Mon</span>
                                                         <span v-if="working_day.tuesday" class="text-success btn btn-outline-success" >Tues</span>

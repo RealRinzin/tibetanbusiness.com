@@ -34,8 +34,9 @@
                                             <div class="row p-3 overview">
                                                     <div class="col-6">
                                                         <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{event.name}}</h6>
-                                                        <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{event.mobile_no}}</h6>
+                                                        <h6 class="text-muted py-1" v-if="event.mobile_no"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{event.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{event.location}}</h6>
+                                                        <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{event.address}}</h6>
                                                     </div>
                                                     <div class="col-6 text-right text-muted text-bold interested">
                                                         <div v-if="is_logged">
