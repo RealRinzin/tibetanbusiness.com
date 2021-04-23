@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="px-0 col-5" id="tb_location">
                     <div class="input-group mb-3 input-group-md">
-                      <input type="text" style="font-size:14px" id="location_search"  class="form-control" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
+                      <input type="text" style="font-size:14px" id="location_search" autocomplete="off"  class="form-control" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                         <ul class="w-100" style="position: absolute;z-index:100;height:auto">
                             <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 4">
                                 <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
@@ -74,13 +74,12 @@ export default {
                 this.keyword_location = '';
                 this.places ={};
             }else{
-                if(this.keyword_location.length > 4){
+                if(this.keyword_location.length > 2){
                 // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
                 axios.get("/api/map?query="+keyword_location)
                 .then(response=>{
                     let locations = JSON.parse(response.data.data);
                     this.places = locations.suggestedLocations;
-                    console.log(this.places);
                 }) 
                 }
             }
