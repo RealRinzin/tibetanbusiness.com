@@ -217,7 +217,7 @@ class SaleBasicInfoController extends Controller
         $meta = SaleBasicInfo::find($id);
         $meta->price = 'Rs:'.$meta->price;
         MetaTag::set('title', $meta->name.' - '.$meta->price);
-        MetaTag::set('description', $meta->location.' - '.$meta->description);
+        MetaTag::set('description', $meta->location .$meta->address.' - '.$meta->description);
         MetaTag::set('image', asset('storage/Sale/Banner/'.$meta->banner));
         // Meta Description End
         return view('sale.show', ['id' => SaleBasicInfo::find($id)]);

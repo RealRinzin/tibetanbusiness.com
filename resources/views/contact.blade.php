@@ -15,5 +15,6 @@
             </div>
         </div>
     </div>
+    <div id="map" class="w-50 mx-auto" style="height:450px"></div>
 </div>
 @endsection

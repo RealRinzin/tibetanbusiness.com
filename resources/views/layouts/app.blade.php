@@ -39,18 +39,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Loading -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
-    <!-- Mapbox -->
-    <!-- <link href="{{ asset('js/mapbox/mapbox.min.js') }}" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('js/mapbox/mapbox.min.css') }}" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('js/mapbox/mapbox-gl.min.js') }}" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('js/mapbox/mapbox-gl.min.css') }}" rel="stylesheet"> -->
-
-    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=60222a551e16b800121b009b&product=sop' async='async'></script>
+    <!-- MapMyIndia -->
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/b26z3h8ijubhswa1o73rmmgirc3tpx9z/map_load?v=1.3"></script>
     <!-- social Sharing -->
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=60222a551e16b800121b009b&product=sop' async='async'></script>
     <!-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script> -->
     <!-- AOS -->
     @if(Request::is('promote-business'))
@@ -288,7 +280,7 @@
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <div id='contact-page-map' class="w-100" style="height:200px"></div>
+                        
                         </div>
                     </div>
                     <div class="divider"></div>
@@ -488,13 +480,6 @@
     <!-- Lazy loading -->
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
-    <!-- mapbox -->
-    <script>
-        L.mapbox.accessToken = 'pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ';
-        var map = L.mapbox.map('contact-page-map')
-            .setView([26.681881, 80.982727], 9)
-            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-    </script>
 </body>
 
 </html>

@@ -30,7 +30,7 @@
                                             <div class="px-0" id="tb_type">
                                                 <div class="input-group mb-3 input-group-md">
                                                     <input type="text" id="mobile_service_mobile_search" readonly="readonly" style="padding:25px" @focusin="service_dropdown()" :keyup="service_selected()" v-model="service" class="rounded form-control form-control-navbar"  placeholder="Select Services" aria-label="service type" required>
-                                                    <ul id="service_mobile_list" style="display:none;transition:1s;top:100%;z-index:10" class="position-absolute bg-white rounded overflow-hidden w-100">
+                                                    <ul id="service_mobile_list" style="display:none;transition:1s;top:100%;z-index:10;list-style" class="position-absolute bg-white rounded overflow-hidden w-100 px-1 py-2">
                                                         <button type="button" @click="close()" class="close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -39,10 +39,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-4 mx-auto">
+                                        <div class="col-6 mx-auto">
                                             <div class="px-0">
                                                 <div class="input-group-append">
-                                                    <button type="submit" name="search" class="btn btn-light border-left rounded w-100" style="padding:0px !important">
+                                                    <button type="submit" @click="search" name="search" class="btn btn-light border-left rounded w-100" style="padding:5px 8px  !important">
                                                         <i class="fas fa-search"></i>
                                                     </button>
                                                 </div>
