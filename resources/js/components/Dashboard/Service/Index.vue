@@ -94,7 +94,7 @@ export default {
         
         status_update(id,index){
             // Status toggle true false
-            this.status =! this.services[index].status;
+                this.status =! this.services[index].status;
             // Axios update
                 axios({
                 method: 'patch',
@@ -102,6 +102,7 @@ export default {
                 data: {status: this.status},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
+                    this.load_service();
                 });
         },
         /**

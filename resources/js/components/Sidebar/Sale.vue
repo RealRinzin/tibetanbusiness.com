@@ -1,5 +1,5 @@
 <template>
-    <div class="card p-2" >
+    <div class="card p-2" v-show="show">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/sale.png" alt=""></span> 
         Sales 
         <span class="text-muted" style="font-size:12px">- {{sale_location}}</span>
@@ -29,6 +29,7 @@ export default {
             sales:[],
             sale_location:'Other Places',
             loading:true,
+            show:true,
 
         }
     },
@@ -38,15 +39,14 @@ export default {
             axios.get('/api/sale/list/sidebar/'+this.location)
             .then(response=>{
                 if(this.sale_id !== undefined){
-                    console.log("sale defined");
                     if(response.data.data.length > 1){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
                                 this.sale_location = this.location;
-                                this.loading= false;
                             }
                         }
+                    this.loading= false;
                     }else{
                         axios.get('/api/sale/list/sidebar_ad')
                         .then(response=>{
@@ -54,32 +54,33 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
-                                        this.loading= false;
                                     }
-                            }}
-                            else{
+                                }
+                                this.loading= false;
+                            }else{
                             axios.get('/api/sale/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
-                                        this.loading= false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
+                                this.loading= false;
                             })}
                         })
                     }
                 // Else part for
                 // other businesses
                 }else{
-                    console.log("sale undefined");
                     if(response.data.data.length > 0){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.sale_id){
                                 this.sales.push(response.data.data[i]);
                                 this.sale_location = this.location;
-                                this.loading= false;
                             }
                         }
+                        this.loading= false;
                     }else{
                         axios.get('/api/sale/list/sidebar_ad')
                         .then(response=>{
@@ -87,18 +88,21 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.sale_id){
                                         this.sales.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
+                                this.loading= false;
                             }
                             else{
                                 axios.get('/api/sale/list/all').then(response=>{
+                                    if(response.data.length == 0){
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.sale_id){
                                             this.sales.push(response.data[i]);
-                                            this.loading= false;
                                         }
                                     }
+                                    this.loading= false;
                                 })
                             }
                         })

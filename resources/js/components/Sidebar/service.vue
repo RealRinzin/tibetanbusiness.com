@@ -1,6 +1,6 @@
 <template>
     <!-- Service -->
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Services 
         <span class="text-muted" style="font-size:12px">- {{service_location}}</span>
         </h6>
@@ -10,7 +10,6 @@
                 <a v-bind:href="'/service/'+service.id">
                 <div class="banner lazyload small" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto">
                     <span  v-if="service.rate > 0.0" v-bind:class="service.rate_color" class="btn p-0 px-1 position-absolute" style="bottom:2px;right:2px"> <i class="fas fa-star text-white fa-1x mr-1 small" ></i>{{service.rate}}</span>
-
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{service.name}}</h6>
@@ -29,6 +28,7 @@ export default {
             services:[],
             service_location:'other places',
             loading:true,
+            show:true,
         }
     },
     methods:{
@@ -54,9 +54,9 @@ export default {
                                 }
                                 this.services.push(response.data.data[i]);
                                 this.service_location = this.location;
-                                this.loading= false;
                             }
                         }
+                        this.loading= false;
                     }else{
                         axios.get('/api/service/list/sidebar_ad')
                         .then(response=>{
@@ -76,11 +76,10 @@ export default {
                                             response.data.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
-                            }
-                            else{
+                            this.loading= false;
+                            }else{
                             axios.get('/api/service/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
@@ -97,9 +96,11 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
-                                        this.loading= false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
+                                this.loading= false;
                             })}
                         })
                     }
@@ -123,9 +124,9 @@ export default {
                                 }
                                 this.services.push(response.data.data[i]);
                                 this.service_location = this.location;
-                                this.loading= false;
                             }
                         }
+                    this.loading= false;
                     }else{
                         axios.get('/api/service/list/sidebar_ad')
                         .then(response=>{
@@ -145,12 +146,15 @@ export default {
                                             response.data.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.services.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
+                            this.loading= false;
                             }
                             else{
                                 axios.get('/api/service/list/all').then(response=>{
+                                    if (response.data.length == 0) {
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
@@ -166,9 +170,9 @@ export default {
                                                 response.data[i].rate_color = 'btn-secondary';
                                             }
                                             this.services.push(response.data[i]);
-                                            this.loading= false;
                                         }
                                     }
+                                    this.loading= false;
                                 })
                             }
                         })

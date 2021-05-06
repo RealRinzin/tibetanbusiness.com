@@ -97,6 +97,8 @@ export default {
         status_update(id,index){
             // Status toggle true false
             this.status =! this.sales[index].status;
+            // console.log(this.status);
+            // console.log(this.sales[index].status =! this.sales[index].status);
             // Axios update
                 axios({
                 method: 'patch',
@@ -104,6 +106,7 @@ export default {
                 data: {status: this.status},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
+                    this.load_sale();
                 });
         },
         /**

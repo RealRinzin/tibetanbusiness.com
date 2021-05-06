@@ -346,7 +346,8 @@ class EventBasicInfoController extends Controller
     // sidebar location
     public function sidebar(Request $request,$location){
         $sales =  EventBasicInfo::where('location', 'like', "$location%")
-        // ->where('sidebar_ad', '=', true)
+        ->where('status', '=', true)
+        ->where('start_date', '>=', date('Y-m-d'))
         ->inRandomOrder()
         ->orderBy('created_at', 'desc')->paginate('4');
         return $sales->toArray($sales);

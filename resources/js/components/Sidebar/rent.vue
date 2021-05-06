@@ -1,5 +1,5 @@
 <template>
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents
             <span class="text-muted" style="font-size:12px">- {{rent_location}}</span>
          </h6>
@@ -28,6 +28,7 @@ export default {
             rents:[],
             rent_location:'other places',
             loading:true,
+            show:true,
         }
     },
     methods:{
@@ -41,10 +42,9 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.rents.push(response.data.data[i]);
                                 this.rent_location = this.location;
-                                this.loading= false;
-
                             }
                         }
+                        this.loading= false;
                     }else{
                         axios.get('/api/rent/list/sidebar_ad')
                         .then(response=>{
@@ -52,18 +52,20 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
+                                this.loading= false;
                             }
                             else{
                             axios.get('/api/rent/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
-                                        this.loading= false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
+                                this.loading= false;
                             })}
                         })
                     }
@@ -75,9 +77,9 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.rents.push(response.data.data[i]);
                                 this.rent_location = this.location;
-                                this.loading= false;
                             }
                         }
+                        this.loading= false;
                     }else{
                         axios.get('/api/rent/list/sidebar_ad')
                         .then(response=>{
@@ -85,18 +87,20 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
-                            }
-                            else{
+                                this.loading= false;
+                            }else{
                                 axios.get('/api/rent/list/all').then(response=>{
+                                    if(response.data.length == 0){
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.rents.push(response.data[i]);
-                                            this.loading= false;
                                         }
                                     }
+                                    this.loading= false;
                                 })
                             }
                         })

@@ -280,7 +280,8 @@
                             </p>
                         </div>
                         <div class="col-md-6">
-                        
+                            <map-location :longitude="76.32" :latitude="32.23"></map-location>
+
                         </div>
                     </div>
                     <div class="divider"></div>

@@ -388,6 +388,7 @@ class RentBasicInfoController extends Controller
     // sidebar
     public function sidebar(Request $request,$location){
         $rents =  RentBasicInfo::where('location', 'like', "$location%")
+        ->where('status', '=', true)
         ->inRandomOrder()
         ->orderBy('created_at', 'desc')->paginate('4');
         return $rents->toArray($rents);
@@ -396,6 +397,7 @@ class RentBasicInfoController extends Controller
     // Search View
     public function search_engine(Request $request)
     {
+        MetaTag::set('title', $request->location);
         return view('rent.search', ['location' => $request->location]);
     }
     // Search Query

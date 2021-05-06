@@ -11,6 +11,7 @@ use App\Job\JobApply;
 use App\Job\JobBasicInfo;
 use Illuminate\Support\Facades\Auth;
 use MetaTag;
+use Mockery\Undefined;
 
 class JobBasicInfoController extends Controller
 {
@@ -313,6 +314,9 @@ class JobBasicInfoController extends Controller
     // Sidebar
     public function sidebar(Request $request,$location){
         $jobs=  JobBasicInfo::where('location', 'like', "$location%")
+        ->where('deadline', '>=', date('Y-m-d'))
+        ->where('status', '=', true)
+        ->where('id','!=',"$request->id")
         ->inRandomOrder()
         ->orderBy('created_at', 'desc')->paginate('4');
         return $jobs->toArray($jobs);
@@ -327,6 +331,7 @@ class JobBasicInfoController extends Controller
     // Search View
     public function search_engine(Request $request)
     {
+        MetaTag::set('title', $request->location);
         return view('job.search', ['location' => $request->location]);
     }
     // Search Query

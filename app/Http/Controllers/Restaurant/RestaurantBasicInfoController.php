@@ -406,6 +406,7 @@ class RestaurantBasicInfoController extends Controller
     // Sidebar
     public function sidebar(Request $request,$location){
         $restaurants =  RestaurantBasicInfo::where('location', 'like', "$location%")
+        ->where('status', '=', true)
         ->inRandomOrder()
         ->orderBy('created_at', 'desc')->paginate('4');
         return $restaurants->toArray($restaurants);
@@ -414,6 +415,7 @@ class RestaurantBasicInfoController extends Controller
 
     // Search View
     public function search_engine(Request $request){
+        MetaTag::set('title', $request->location);
         return view('restaurant.search',['location' => $request->location]);
     }
     // Search Query

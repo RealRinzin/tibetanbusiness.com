@@ -1,21 +1,25 @@
 <template>
-    <div class="card p-2 my-2" >
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events
+    <div class="card p-2 my-2" v-show="show">
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Events 
             <span class="text-muted" style="font-size:12px">- {{event_location}}</span>
-         </h6>
-        <div v-if="loading">
-            <lazy-loading class="mb-0"></lazy-loading>
-        </div>
+        </h6>
         <div class="row">
+            <div v-if="loading" class="col-12">
+                <div class="row">
+                    <div class="col-md-12" v-for="x in 1">
+                        <div class="card">
+                            <lazy-loading class="mb-0"></lazy-loading>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-6 py-2" v-for="(event,index) in events" v-if="index <= 3">
                 <a v-bind:href="'/event/'+event.id">
-                <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
-                <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
-                    <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:2px;right:2px">Entry Free</p>
-                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:2px;right:2px">Entry:&#x20B9 {{event.entry_fee}}</p>
+                <div class="banner lazyload" :data-bgset="'/storage/event/Banner/'+event.card"  data-sizes="auto">
+                    <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{event.salary}}</p> -->
                 </div>
                 </a>
-                <h6 class="text-muted pt-3 font-weight-bolder">{{event.name}}</h6>
+                <h6 class="text-muted pt-3 font-weight-bolder">{{event.title}}</h6>
                 <p class="text-muted my-0">{{event.mobile_no}}</p>
                 <p class="text-muted my-0">{{event.location}}</p>
             </div>
@@ -23,34 +27,31 @@
     </div>
 </template>
 <script>
-import { lastDayOfDecade } from 'date-fns';
 export default {
     props:['location','id'],
-     data(){
+         data(){
         return{
             place:this.location,
             events:[],
-            event_location:"Other Places",
+            event_location:'other places',
             loading:true,
+            show:true,
         }
     },
     methods:{
-        // Events API
+        // event API
         event(){
             axios.get('/api/event/list/sidebar/'+this.location)
             .then(response=>{
-                if(response.data.data.length<1){
-                    this.loading = false;
-                }
                 if(this.id !== undefined){
                     if(response.data.data.length > 1){
                         for (let i = 0; i < response.data.data.length; i++) {
                             if(response.data.data[i].id != this.id){
                                 this.events.push(response.data.data[i]);
                                 this.event_location = this.location
-                                this.loading= false;
                             }
                         }
+                        this.loading = false;
                     }else{
                         axios.get('/api/event/list/sidebar_ad')
                         .then(response=>{
@@ -58,18 +59,22 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
-                                        this.loading= false;
                                     }
-                            }}
+                                }
+                            this.loading = false;
+                            }
                             else{
                             axios.get('/api/event/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
-                                        this.loading= false;
+                                        this.loading = false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
                             })}
+
                         })
                     }
                 // Else part for
@@ -80,10 +85,9 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.events.push(response.data.data[i]);
                                 this.event_location = this.location
-                                this.loading= false;
                             }
                         }
-                
+                        this.loading = false;
                     }else{
                         axios.get('/api/event/list/sidebar_ad')
                         .then(response=>{
@@ -91,18 +95,20 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
-                            }
-                            else{
+                                this.loading = false;
+                            }else{
                                 axios.get('/api/event/list/all').then(response=>{
+                                    if(response.data.length == 0){
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.events.push(response.data[i]);
-                                            this.loading= false;
                                         }
                                     }
+                                    this.loading = false;
                                 })
                             }
                         })

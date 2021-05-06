@@ -1,11 +1,18 @@
 <template>
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Jobs 
             <span class="text-muted" style="font-size:12px">- {{job_location}}</span>
         </h6>
-        <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
-
         <div class="row">
+            <div v-if="loading" class="col-12">
+                <div class="row">
+                    <div class="col-md-12" v-for="x in 1">
+                        <div class="card">
+                            <lazy-loading class="mb-0"></lazy-loading>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
                 <a v-bind:href="'/job/'+job.id">
                 <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
@@ -28,12 +35,13 @@ export default {
             jobs:[],
             job_location:'other places',
             loading:true,
+            show :true,
         }
     },
     methods:{
         // Job API
         job(){
-            axios.get('/api/job/list/sidebar/'+this.location)
+            axios.get('/api/job/list/sidebar/'+this.location+'?id='+this.id)
             .then(response=>{
                 if(this.id !== undefined){
                     if(response.data.data.length > 1){
@@ -41,9 +49,9 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.jobs.push(response.data.data[i]);
                                 this.job_location = this.location
-                        this.loading = false;
                             }
                         }
+                        this.loading = false;
                     }else{
                         axios.get('/api/job/list/sidebar_ad')
                         .then(response=>{
@@ -51,19 +59,19 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
-                        this.loading = false;
                                     }
                                 }
-                                
-                            }
-                            else{
+                            this.loading = false;   
+                            }else{
                             axios.get('/api/job/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
-                                this.loading = false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
+                                this.loading = false;
                             })}
 
                         })
@@ -76,8 +84,8 @@ export default {
                             if(response.data.data[i].id != this.id){
                                 this.jobs.push(response.data.data[i]);
                                     this.job_location = this.location
-                                    this.loading = false;
                             }
+                            this.loading = false;
                         }
                     }else{
                         axios.get('/api/job/list/sidebar_ad')
@@ -86,22 +94,23 @@ export default {
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
-                                        this.loading = false;
                                     }
                                 }
-                            }
-                            else{
+                                this.loading = false;
+                            }else{
                                 axios.get('/api/job/list/all').then(response=>{
+                                    if(response.data.length == 0){
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             this.jobs.push(response.data[i]);
-                                            this.loading = false;
                                         }
                                     }
+                                    this.loading = false;
                                 })
                             }
                         })
-                        this.loading = false;
                     }
                 }
             })

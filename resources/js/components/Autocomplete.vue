@@ -96,7 +96,6 @@ export default {
         this.places ={};
       }else{
         if(this.keyword_location.length > 1){
-        // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.keyword_location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
         axios.get("/api/map?query="+location)
           .then(response=>{
             this.locations = JSON.parse(response.data.data);
@@ -151,28 +150,13 @@ export default {
     load_carousel(){
         axios.get('/api/carousel')
         .then((response) => {
+          console.log(response);
           this.hero_image = response.data[0].photo;
         })
     },
-    // ready() {
-    //     window.setInterval(() => {
-    //         this.load_carousel();
-    //     },2500);
-    // },
   },
     mounted(){
-      // this.hero_image = '/storage/Carousel/food10.jpg'
       this.load_carousel();
-      // setInterval(this.load_carousel(), 1000);
-        // axios.get('/api/carousel')
-        // .then((response) => {
-        //   console.log(response.data);
-        //   this.hero_image = response.data[0].photo;
-        // }).catch((err) => {
-        // });
-        // Interval for images
-      // this.ready();
-
     }
 }
 </script>

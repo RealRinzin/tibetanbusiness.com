@@ -8,13 +8,8 @@
             </div>
         </div>
         <email-us></email-us>
-
-        <div class="row">
-            <div class="col-12 bg-light">
-                <!-- <div id='contact-page-map' class="position-relative w-100" style="top:0;bottom:0"></div> -->
-            </div>
-        </div>
     </div>
+
     <div id="map" class="w-50 mx-auto" style="height:450px"></div>
 </div>
 @endsection
