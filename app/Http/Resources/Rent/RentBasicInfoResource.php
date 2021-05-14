@@ -35,6 +35,10 @@ class RentBasicInfoResource extends JsonResource
             'instagram' => $this->instagram,
             'facebook' => $this->facebook,
             'status' => $this->status,
+            'featured_ad' => $this->featured_ad,
+            'home_ad' => $this->home_ad,
+            'sidebar_ad' => $this->sidebar_ad,
+            'popup_ad' => $this->popup_ad,
             'accomodation_size' => $this->accomodation_size,
             'description' => $this->description,
             // counting the review stars

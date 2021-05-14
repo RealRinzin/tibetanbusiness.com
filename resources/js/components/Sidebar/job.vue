@@ -1,6 +1,6 @@
 <template>
     <div class="card p-2 my-2" v-show="show">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Jobs 
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"><span><img src="/img/job.png" alt=""></span> Jobs 
             <span class="text-muted" style="font-size:12px">- {{job_location}}</span>
         </h6>
         <div class="row">
@@ -64,11 +64,12 @@ export default {
                             this.loading = false;   
                             }else{
                             axios.get('/api/job/list/all').then(response=>{
+                                if (response.data.length<=1) {
+                                    this.show = false;
+                                }
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.jobs.push(response.data[i]);
-                                    }else{
-                                        this.show = false;
                                     }
                                 }
                                 this.loading = false;

@@ -179,11 +179,9 @@
              *  */ 
             methods:{
                 show(){  
-                    console.log(this.restaurant_id.id);
                     this.isLoading = true; //Loading true
                     axios.get('/api/restaurant/view/'+this.id)
                     .then(response=>{
-                        console.log(response.data);
                         this.restaurant = response.data.data;
                         // location
                         this.location = this.restaurant.location;

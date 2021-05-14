@@ -117,7 +117,6 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="card">
-                                                <img src="/img/map.jpeg" alt="" height="250">
                                             </div>
                                         </div>
                                     </div>
@@ -298,7 +297,6 @@ export default {
             })
             .then(response=>{
                 this.overview = response.data;
-                console.log(this.overview);
             })
         },
         /**
@@ -344,14 +342,6 @@ export default {
                     // Reload
                 });
         },
-        /**
-         * Update
-         * Facilities
-         *  */  
-        // update_facility(id){
-        //     console.log(id);
-            
-        // }
     },
     components:{Loading},
     mounted(){

@@ -449,11 +449,6 @@ export default {
     },
     mounted(){
 
-        // locations api
-        axios.get('/api/location')
-        .then(response=>{
-            this.locations = response.data;
-        })
         // profession
         axios.get('/api/occupations')
         .then(response => {

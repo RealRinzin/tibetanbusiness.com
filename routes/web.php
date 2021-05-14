@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     MetaTag::set('title', 'Tibetanbusiness.com Find the best Tibetan Restaurants,Rents, Events and Deals in India');
     MetaTag::set('description', 'Find the best Tibetan Restaurants,Rents, Events and Deals in India');
-    MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+    MetaTag::set('image', asset('/img/home-tibetanbusiness.jpg'));
     return view('welcome');
 });
 

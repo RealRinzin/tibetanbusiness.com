@@ -459,7 +459,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/api/categories/service')
+        axios.get('/api/event-categories')
         .then(response=>{
             this.categories = response.data;
         })

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-
+use MetaTag;
 class ResetPasswordController extends Controller
 {
     /*
@@ -34,6 +34,9 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
+        MetaTag::set('title', 'Reset Password - Tibetanbusiness.com');
+        MetaTag::set('description', 'Reset you password');
+        MetaTag::set('image', asset('/img/home-tibetanbusiness.jpg'));
         $this->middleware('guest');
     }
 }

@@ -10,7 +10,11 @@
                 <a v-bind:href="'/sale/'+sale.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                 <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
-                    <button class="btn btn-danger position-absolute btn-sm small py-0 px-1" style="bottom:2px;right:2px">Rs: {{sale.price}}</button>
+                    <button class="btn btn-danger position-absolute btn-sm small py-0 px-1" style="bottom:2px;right:2px">
+                        Price:
+                        <span v-if="sale.price > 0 ">&#x20B9 {{sale.price}}/-</span>
+                        <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                    </button>
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{sale.name}}</h6>
@@ -91,15 +95,16 @@ export default {
                                     }
                                 }
                                 this.loading= false;
-                            }
-                            else{
+                            }else{
                                 axios.get('/api/sale/list/all').then(response=>{
-                                    if(response.data.length == 0){
+                                    if(response.data.length === 0){
                                         this.show = false;
                                     }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.sale_id){
                                             this.sales.push(response.data[i]);
+                                        }else{
+                                            this.show = false;
                                         }
                                     }
                                     this.loading= false;

@@ -43,7 +43,7 @@
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
                                             <label for="entry_fee">Price<span class="text-danger p-1">*</span></label>
-                                            <input type="text" v-validate="'required|numeric|max:6'" v-model="sale.price" name="price" class="form-control" id="price" aria-describedby="emailHelp" placeholder="Price">
+                                            <input type="text" v-validate="'numeric|max:6'" v-model="sale.price" name="price" class="form-control" id="price" aria-describedby="emailHelp" placeholder="Price">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_add_form.price')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_add_form.price')">{{ error }}</span>
@@ -165,7 +165,6 @@ export default {
                 this.places ={};
             }else{
                 if(this.sale.location.length > 2){
-                // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.sale.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
                 axios.get("/api/map?query="+location)
                 .then(response=>{
                     // this.places =  response.data.features;
@@ -208,6 +207,7 @@ export default {
         },
 
        add_sale(){ 
+
             this.$validator.validateAll('sale_validate_add_form').then((result) => {                  
                 if(result){
                     this.$Progress.start()

@@ -1,6 +1,6 @@
 <template>
     <div class="card p-2 my-2" v-show="show">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Events 
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/event.png" alt=""></span> Events 
             <span class="text-muted" style="font-size:12px">- {{event_location}}</span>
         </h6>
         <div class="row">
@@ -19,7 +19,7 @@
                     <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{event.salary}}</p> -->
                 </div>
                 </a>
-                <h6 class="text-muted pt-3 font-weight-bolder">{{event.title}}</h6>
+                <h6 class="text-muted pt-3 font-weight-bolder">{{event.name}}</h6>
                 <p class="text-muted my-0">{{event.mobile_no}}</p>
                 <p class="text-muted my-0">{{event.location}}</p>
             </div>
@@ -62,17 +62,17 @@ export default {
                                     }
                                 }
                             this.loading = false;
-                            }
-                            else{
+                            }else{
                             axios.get('/api/event/list/all').then(response=>{
+                                if (response.data.length<=1) {
+                                    this.show = false;
+                                }
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.events.push(response.data[i]);
-                                        this.loading = false;
-                                    }else{
-                                        this.show = false;
                                     }
                                 }
+                                this.loading = false;
                             })}
 
                         })

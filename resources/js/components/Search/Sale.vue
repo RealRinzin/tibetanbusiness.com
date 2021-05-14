@@ -1,5 +1,5 @@
 <template> 
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/sale.png" alt=""></span> Sales - 
                 <span class="text-muted" style="font-size:12px"> -{{place}}</span>
             </h6>
@@ -11,8 +11,10 @@
                 <a v-bind:href="'/sale/'+sale.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                 <div class="banner lazyload position-relative" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
-                    <p v-if="sale.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Sale</p>
-                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Sale:&#x20B9 {{sale.price}}</p>
+                    <p class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Price:
+                        <span v-if="sale.price > 0">&#x20B9 {{sale.price}}/-</span>
+                        <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                    </p>
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{sale.name}}</h6>
@@ -31,6 +33,7 @@ export default{
             sales:[],
             place:'',
             loading:true,
+            show:true,
         }  
     },
     // watch
@@ -48,6 +51,9 @@ export default{
                     axios.get('/api/sale/list/all').then(response=>{
                         this.sales = response.data;
                         this.loading = false;
+                        if(response.data.length==0){
+                            this.show = false;
+                        }
                     })}
                 })
         // Else Part
@@ -69,6 +75,9 @@ export default{
                             axios.get('/api/sale/list/all').then(response=>{
                                 this.sales = response.data;
                                 this.loading = false;
+                                if(response.data.length==0){
+                                    this.show = false;
+                                }
                             })}
                         })
                     }

@@ -16,7 +16,11 @@
                                             <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner" data-sizes="auto">
                                             <div class="overlay title">
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{sale.name}}</h6>
-                                                <button class="btn btn-warning position-absolute float-right font-weight-bolder" style="bottom:10px;right:10px">Price:₹{{sale.price}}</button>
+                                                <button class="btn btn-warning position-absolute float-right font-weight-bolder" style="bottom:10px;right:10px">
+                                                    Price:
+                                                    <span v-if="sale.price > 0">&#x20B9 {{sale.price}}/-</span>
+                                                    <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                                                </button>
                                             </div>
                                             </div>                                
                                         </div>
@@ -83,7 +87,6 @@ import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
 // Date
 import { compareAsc, format } from 'date-fns';
-import Rent from '../Home/Featured/Rent.vue';
 
 export default {
     props:['sale_id'],

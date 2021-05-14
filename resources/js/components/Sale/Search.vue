@@ -72,7 +72,11 @@
                                     <a v-bind:href="'/sale/'+sale.id">
                                         <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
                                             <ul>
-                                                <li class="ng-binding btn btn-danger btn-md small">Price:₹{{sale.price}}/-</li>
+                                                <li class="ng-binding btn btn-danger btn-md small mr-1">
+                                                    Price:
+                                                    <span v-if="sale.price > 0">&#x20B9 {{sale.price}}/-</span>
+                                                    <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                                                </li>
                                                 <li class="ng-binding btn btn-danger btn-md small">Total items: {{sale.total_item}}</li>
                                                 <li class="ng-binding btn btn-danger btn-md small">{{sale.type}}</li>
                                             </ul>

@@ -16,7 +16,10 @@
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Price:₹{{sale.price}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Price:
+                                                <span v-if="sale.price > 0 ">₹{{sale.price}}/-</span>
+                                                <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                                            </p>
                                             <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{sale.type}}</p>
                                         </div>
                                     </div>

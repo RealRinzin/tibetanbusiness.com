@@ -106,6 +106,7 @@ export default {
                 data: {status: this.status},
                 headers : { Authorization : localStorage.getItem("token")}
                 }).then(response=>{
+                    this.load_job();
                 });
         },
         /**

@@ -1,5 +1,5 @@
 <template> 
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
         <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents
                 <span class="text-muted" style="font-size:12px"> -{{place}}</span>
 
@@ -32,6 +32,7 @@ export default{
             rents:[],
             place:'',
             loading:true,
+            show:true,
         }  
     },
     // watch
@@ -49,6 +50,9 @@ export default{
                     axios.get('/api/rent/list/all').then(response=>{
                         this.rents = response.data;
                         this.loading = false;
+                        if(response.data.length==0){
+                            this.show = false;
+                        }
                     })}
                 })
         // Else Part
@@ -70,6 +74,9 @@ export default{
                             axios.get('/api/rent/list/all').then(response=>{
                                 this.rents = response.data;
                                 this.loading = false;
+                                if(response.data.length==0){
+                                    this.show = false;
+                                }
                             })}
                         })
                     }

@@ -44,7 +44,7 @@ class LoginController extends Controller
     {
         MetaTag::set('title', 'Login - Tibetanbusiness.com');
         MetaTag::set('description','Login Your account with Facebook,Google or Github');
-        MetaTag::set('image', asset('storage/Carousel/food12.jpg'));
+        MetaTag::set('image', asset('/img/home-tibetanbusiness.jpg'));
         $this->middleware('guest')->except('logout');
         // $this->redirectTo = url()->previous();
     }

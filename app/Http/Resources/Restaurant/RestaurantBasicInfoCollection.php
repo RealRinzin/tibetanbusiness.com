@@ -33,6 +33,10 @@ class RestaurantBasicInfoCollection extends ResourceCollection
             'facebook' => $this->facebook,
             'website' => $this->website,
             'status' => $this->status,
+            'featured_ad' => $this->featured_ad,
+            'home_ad' => $this->home_ad,
+            'sidebar_ad' => $this->sidebar_ad,
+            'popup_ad' => $this->popup_ad,
             // counting the review stars
             'rating' => $this->restaurant_comments->count() > 0 ? round($this->restaurant_comments->sum('rate') / $this->restaurant_comments->count(), 1) : null,
             'created_at' => $this->created_at,

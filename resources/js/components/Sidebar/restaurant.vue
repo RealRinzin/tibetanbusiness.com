@@ -1,6 +1,6 @@
 <template>
-    <div class="card p-2 my-2">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Restarants 
+    <div class="card p-2 my-2" v-show="show">
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/restaurant.png" alt=""></span>  Restarants 
                 <span class="text-muted" style="font-size:12px">- {{restaurant_location}}</span>
         </h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
@@ -28,6 +28,7 @@ export default {
             restaurants:[],
             restaurant_location:'other places',
             loading:true,
+            show:true,
         }
     },
     methods:{
@@ -53,9 +54,9 @@ export default {
                                 }
                                 this.restaurants.push(response.data.data[i]);
                                 this.restaurant_location = this.location
-                                this.loading= false;
                             }
                         }
+                    this.loading= false;
                     }else{
                         axios.get('/api/restaurant/list/sidebar_ad')
                         .then(response=>{
@@ -75,11 +76,10 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
-                            }
-                            else{
+                                this.loading= false;
+                            }else{
                             axios.get('/api/restaurant/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
@@ -96,9 +96,11 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
-                                        this.loading= false;
+                                    }else{
+                                        this.show = false;
                                     }
                                 }
+                                this.loading= false;
                             })}
                         })
                     }
@@ -122,10 +124,10 @@ export default {
                                 }
                                 this.restaurants.push(response.data.data[i]);
                                 this.restaurant_location = this.location;
-                                this.loading= false;
 
                             }
                         }
+                    this.loading= false;
                     }else{
                         axios.get('/api/restaurant/list/sidebar_ad')
                         .then(response=>{
@@ -145,12 +147,15 @@ export default {
                                             response.data[i].rate_color = 'btn-secondary';
                                         }
                                         this.restaurants.push(response.data[i]);
-                                        this.loading= false;
                                     }
                                 }
+                            this.loading= false;
                             }
                             else{
                                 axios.get('/api/restaurant/list/all').then(response=>{
+                                    if (response.data.length == 0) {
+                                        this.show = false;
+                                    }
                                     for (let i = 0; i < response.data.length; i++) {
                                         if(response.data[i].id != this.id){
                                             if(response.data[i].rate >=0.0 && response.data[i].rate <= 2.5){
@@ -166,9 +171,9 @@ export default {
                                                 response.data[i].rate_color = 'btn-secondary';
                                             }
                                             this.restaurants.push(response.data[i]);
-                                            this.loading= false;
                                         }
                                     }
+                                    this.loading= false;
                                 })
                             }
                         })

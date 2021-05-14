@@ -20,7 +20,7 @@ class CreateSaleBasicInfoTable extends Migration
             $table->string('banner', 100);
             $table->string('card', 100);
             $table->string('thumb', 100);
-            $table->decimal('price', 10, 0);
+            $table->decimal('price', 10, 0)->nullable();
             $table->string('total_item', 2);
             $table->string('address', 250)->nullable();
             $table->text('location', 30);

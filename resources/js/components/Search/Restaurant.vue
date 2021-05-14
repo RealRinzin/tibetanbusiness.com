@@ -1,5 +1,5 @@
 <template> 
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/restaurant.png" alt=""></span> Restaurants 
                 <span class="text-muted" style="font-size:12px">- {{place}}</span>
 
@@ -31,6 +31,7 @@ export default{
             restaurants:[],
             place:'',
             loading:true,
+            show:true,
         }  
     },
     // watch
@@ -74,6 +75,9 @@ export default{
                                 response.data[i].rate_color = 'btn-secondary';
                             } 
                         }
+                            if(response.data.length==0){
+                                this.show = false;
+                            }
                             this.restaurants = response.data;
                             this.loading = false;
                     })}
@@ -120,6 +124,7 @@ export default{
                                         response.data[i].rate_color = 'btn-secondary';
                                     } 
                                 }
+                                
                                 this.restaurants = response.data;
                                 this.loading = false;
 
@@ -139,6 +144,9 @@ export default{
                                             response.data[i].rate_color = 'btn-secondary';
                                         } 
                                     }
+                                if(response.data.length==0){
+                                    this.show = false;
+                                }
                                 this.restaurants = response.data;
                                 this.loading = false;
                             })}

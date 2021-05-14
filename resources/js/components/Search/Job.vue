@@ -1,5 +1,5 @@
 <template> 
-    <div class="card p-2 my-2">
+    <div class="card p-2 my-2" v-show="show">
             <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/job.png" alt=""></span> Jobs 
                 <span class="text-muted" style="font-size:12px"> - {{place}}</span>
             </h6>
@@ -31,6 +31,8 @@ export default{
             jobs:[],
             place:'',
             loading:true,
+            show:true,
+            
         }  
     },
     // watch
@@ -48,6 +50,9 @@ export default{
                     axios.get('/api/job/list/all').then(response=>{
                         this.jobs = response.data;
                         this.loading = false;
+                        if(response.data.length==0){
+                            this.show = false;
+                        }
                     })}
                 })
         // Else Part
@@ -69,6 +74,9 @@ export default{
                             axios.get('/api/job/list/all').then(response=>{
                                 this.jobs = response.data;
                                 this.loading = false;
+                                if(response.data.length==0){
+                                    this.show = false;
+                                }
                             })}
                         })
                     }

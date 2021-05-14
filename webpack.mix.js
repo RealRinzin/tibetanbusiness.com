@@ -21,14 +21,9 @@ mix.js([
 .sass('resources/sass/dashboard.scss','public/css/dashboard.min.css');
 
 
-// Restaurant
+// Individual Detail
 mix.js([
    'resources/js/detail.min.js',
 ], 'public/js/detail.min.js');
-
-// Events
-mix.js([
-   'resources/js/event.min.js',
-],'public/js/event.min.js')
 
 

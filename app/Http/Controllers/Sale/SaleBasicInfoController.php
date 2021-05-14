@@ -10,6 +10,8 @@ use App\Sale\SalePhoto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use MetaTag;
+use Mockery\Undefined;
+
 class SaleBasicInfoController extends Controller
 {
 
@@ -24,7 +26,9 @@ class SaleBasicInfoController extends Controller
      */
     public function store(Request $request)
     {
-// return $this->name;
+        if($request->price == ''){
+            $request->price = 0;
+        }
         // Image upload script in php
         if ($request->banner) {
             $name = time() . '.'
@@ -216,8 +220,12 @@ class SaleBasicInfoController extends Controller
     {
         // Meta Description
         $meta = SaleBasicInfo::find($id);
-        $meta->price = 'Rs:'.$meta->price;
-        MetaTag::set('title', $meta->name.' - '.$meta->price);
+
+        if($meta->price  > 0){
+            MetaTag::set('title', $meta->name.' - Rs:'.$meta->price);
+        }else{
+            MetaTag::set('title', $meta->name.' - Tibetanbusiness.com');
+        }
         MetaTag::set('description', $meta->location .$meta->address.' - '.$meta->description);
         MetaTag::set('image', asset('storage/Sale/Banner/'.$meta->banner));
         // Meta Description End
@@ -228,7 +236,11 @@ class SaleBasicInfoController extends Controller
     {
         // Meta Description
         $meta = SaleBasicInfo::find($id);
-        $meta->price = 'Rs:'.$meta->price;
+        if ($meta->price > 0) {
+            MetaTag::set('title', $meta->name . ' - Rs:' . $meta->price);
+        } else {
+            MetaTag::set('title', $meta->name . ' - Tibetanbusiness.com');
+        }
         MetaTag::set('title', $meta->name.' - '.$meta->price);
         MetaTag::set('description', $meta->location.' - '.$meta->description);
         MetaTag::set('image', asset('storage/Sale/Banner/'.$meta->banner));
@@ -315,7 +327,6 @@ class SaleBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
-        // return $request;
         $sales =  SaleBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")
         ->where('type', 'like',"$request->type%")

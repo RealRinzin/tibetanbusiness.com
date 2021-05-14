@@ -1,6 +1,6 @@
 <template>
     <div class="card p-2 my-2" v-show="show">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><i class="fas fa-bed fa-1x mr-2 text-dark"></i></span> Rents
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents
             <span class="text-muted" style="font-size:12px">- {{rent_location}}</span>
          </h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
@@ -55,9 +55,8 @@ export default {
                                     }
                                 }
                                 this.loading= false;
-                            }
-                            else{
-                            axios.get('/api/rent/list/all').then(response=>{
+                            }else{
+                                axios.get('/api/rent/list/all').then(response=>{
                                 for (let i = 0; i < response.data.length; i++) {
                                     if(response.data[i].id != this.id){
                                         this.rents.push(response.data[i]);

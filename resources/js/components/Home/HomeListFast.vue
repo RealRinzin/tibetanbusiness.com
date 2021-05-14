@@ -51,7 +51,10 @@
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
-                            <p v-if="sale.price" class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Price:&#x20B9 {{sale.price}}</p>
+                            <p class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Price:
+                                <span v-if="sale.price > 0 ">&#x20B9 {{sale.price}}/-</span>
+                                <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
+                            </p>
                         </div>
                         </a>
                         <div class="info p-1">
