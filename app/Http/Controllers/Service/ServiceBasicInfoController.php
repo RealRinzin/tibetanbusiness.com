@@ -227,6 +227,15 @@ class ServiceBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $services = ServiceBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get();
+        return $services->toArray($services);
+    }
     // sidebar
     public function sidebar(Request $request,$location){
         $services =  ServiceBasicInfo::where('location', 'like', "$location%")

@@ -314,6 +314,15 @@ class JobBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get());
         return $jobs->toArray($jobs);
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $jobs = JobBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get();
+        return $jobs->toArray($jobs);
+    }
     // Sidebar
     public function sidebar(Request $request,$location){
         $jobs=  JobBasicInfo::where('location', 'like', "$location%")

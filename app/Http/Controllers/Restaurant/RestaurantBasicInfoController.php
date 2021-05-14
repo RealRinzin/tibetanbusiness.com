@@ -403,6 +403,15 @@ class RestaurantBasicInfoController extends Controller
         return $restaurants->toArray($restaurants);
 
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $restaurants = RestaurantBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get();
+        return $restaurants->toArray($restaurants);
+    }
     // Sidebar
     public function sidebar(Request $request,$location){
         $restaurants =  RestaurantBasicInfo::where('location', 'like', "$location%")

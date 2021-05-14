@@ -253,4 +253,10 @@ Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['s
 Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['store', 'show', 'edit', 'destroy', 'update', 'create']]);
 Route::get('map', 'OccupationController@map');
 
-
+// PopUp API
+Route::get('event/list/popup_ad', 'Event\EventBasicInfoController@popup_ad');
+Route::get('job/list/popup_ad', 'Job\JobBasicInfoController@popup_ad');
+Route::get('rent/list/popup_ad', 'Rent\RentBasicInfoController@popup_ad');
+Route::get( 'restaurant/list/popup_ad', 'Restaurant\RestaurantBasicInfoController@popup_ad');
+Route::get('sale/list/popup_ad', 'Sale\SaleBasicInfoController@popup_ad');
+Route::get('service/list/popup_ad', 'Service\ServiceBasicInfoController@popup_ad');

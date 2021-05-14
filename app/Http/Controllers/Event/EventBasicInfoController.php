@@ -343,6 +343,15 @@ class EventBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $events = EventInfoBasicResource::collection(EventBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get());
+        return $events->toArray($events);
+    }
     // sidebar location
     public function sidebar(Request $request,$location){
         $sales =  EventBasicInfo::where('location', 'like', "$location%")

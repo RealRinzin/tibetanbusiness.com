@@ -192,6 +192,15 @@ class SaleBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $sales = SaleBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get();
+        return $sales->toArray($sales);
+    }
     // sidebar location
     public function sidebar(Request $request,$location){
         $sales =  SaleBasicInfo::where('location', 'like', "$location%")

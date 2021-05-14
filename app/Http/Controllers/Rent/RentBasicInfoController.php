@@ -385,6 +385,15 @@ class RentBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
     }
+    // Popup ad
+    public function popup_ad()
+    {
+        $rents = RentBasicInfo::where('popup_ad', '=', true)
+            ->inRandomOrder()
+            // ->limit('1')
+            ->orderBy('created_at', 'desc')->get();
+        return $rents->toArray($rents);
+    }
     // sidebar
     public function sidebar(Request $request,$location){
         $rents =  RentBasicInfo::where('location', 'like', "$location%")
