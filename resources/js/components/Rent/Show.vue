@@ -91,6 +91,7 @@
                                 </div>
                                 <!-- comments -->
                                     <rent-comment v-bind:rent_uuid="rent.id" :avg_rating="rent.rating"></rent-comment>
+                                    <PopupAd></PopupAd>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
@@ -119,6 +120,7 @@ import JobSidebar from '../Sidebar/job.vue';
 import RentSidebar from '../Sidebar/rent.vue';
 import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
+import PopupAd from '../PopupAd/Rent';
 export default {
     props:['rent_id'],
     data(){
@@ -144,7 +146,7 @@ export default {
         }
     },
     // Components 
-    components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+    components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
     mounted(){
         this.load_rent();
     }

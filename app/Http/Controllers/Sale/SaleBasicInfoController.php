@@ -188,7 +188,7 @@ class SaleBasicInfoController extends Controller
     {
         $sales =  SaleBasicInfo::where('sidebar_ad', '=', true)
             ->inRandomOrder()
-            // ->limit('1')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }

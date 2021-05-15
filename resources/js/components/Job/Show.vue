@@ -110,6 +110,7 @@
                                 </div>
                                 <!-- Question & Ansert -->
                                 <job-question :job_uuid="job.id"></job-question>
+                                <PopupAd></PopupAd>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
@@ -141,6 +142,7 @@ import RentSidebar from '../Sidebar/rent.vue';
 import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
 import Apply from './Apply.vue';
+import PopupAd from '../PopupAd/Job';
 export default {
     props:['job_id'],
     data(){
@@ -233,7 +235,7 @@ export default {
      * 
      * Components
      *  */  
-    components:{Loading,Apply,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+    components:{Loading,Apply,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
     mounted(){
         this.load_job();
     }

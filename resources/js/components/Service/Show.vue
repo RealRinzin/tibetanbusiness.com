@@ -75,6 +75,8 @@
                                 </div>
                                 <!-- comments -->
                                 <review :service_id="id" :rating="rating" :avg_rating="service.rating"></review>
+                                <!-- Ad -->
+                                <PopupAd></PopupAd>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
@@ -106,6 +108,7 @@ import JobSidebar from '../Sidebar/job.vue';
 import RentSidebar from '../Sidebar/rent.vue';
 import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
+import PopupAd from '../PopupAd/Service';
 export default {
     props:['service_id'],
     data(){
@@ -143,25 +146,8 @@ export default {
             return format(new Date(str), 'EE, MMM dd, yyyy');
         }
     },
-    // // Meta
-    // metaInfo() {
-    //     return { 
-    //         title: this.service_id.name,
-    //         meta: [
-    //             {name: 'description', content:  this.service_id.location+'Epiloge is about connecting in your field of interest. Our vision is to help people share their knowledge, work, projects, papers and ideas and build their network through what they do rather where they live, study or work.'},
-    //             {property: 'og:title', content: this.service_id.name},
-    //             {property: 'og:url', content: 'https://'+window.location.hostname+'/service/'+this.service.id}, 
-    //             {property: 'og:site_name', content: 'tibetanbusiness.com'},
-    //             {property: 'og:type', content: 'website'}, 
-    //             {property: 'og:image', content: 'https://'+window.location.hostname+'/storage/Service/Banner/'+this.service.banner},
-    //             {property:'og:image:alt', content: this.service.name},
-    //             {property:'og:image:height', content: "400"},
-    //             {property:'og:image:width', content: "600"}
-    //         ]
-    //     }
-    // },
     // Components
-    components:{Loading,Photo,Review,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+    components:{Loading,Photo,Review,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
     mounted(){
         this.load_service();
         this.operation_day();

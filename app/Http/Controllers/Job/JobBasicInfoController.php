@@ -319,7 +319,7 @@ class JobBasicInfoController extends Controller
     {
         $jobs = JobBasicInfo::where('popup_ad', '=', true)
             ->inRandomOrder()
-            // ->limit('1')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }

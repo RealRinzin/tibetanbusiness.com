@@ -23,8 +23,8 @@
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
                                                     <li class="btn btn-danger btn-md mr-2" v-if="event.start_time"><i class="far fa-clock mr-2"></i>{{event.start_time}} <span v-if="event.start_time"> a.m </span>-{{event.end_time}} <span v-if="event.end_time"> p.m</span></li>
-                                                    <li v-if="event.entry_free > 0" class="btn btn-success btn-md">Entry Free</li>
-                                                    <li v-else class="btn btn-warning btn-md">Entry Fee:&#x20B9 {{event.entry_fee}}/</li>
+                                                    <li v-if="event.entry_fee > 0" class="btn btn-warning btn-md">Entry Fee:&#x20B9 {{event.entry_fee}}/</li>
+                                                    <li v-else class="btn btn-success btn-md">Entry Free</li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -79,54 +79,7 @@
                                 </div>
                                 <!-- comments -->
                                 <event-review :event_id="id" :rating="rating" :avg_rating="event.rating"></event-review>
-                                <div class="row">
-                                    <div class="col-md-6 mx-auto">
-                                        <a href="">
-                                            <!-- Display for the Mobile -->
-                                            <div class="position-fixed rounded w-75 d-block d-sm-none" style="bottom:10px;z-index:13">
-                                                <div class="alert alert-secondary alert-dismissible fade show m-1 rounded text-center w-100 p-0" role="alert" id="mobile_add_promote_link">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="w-100" style="background-image:url('http://tibetanbusiness.com:8888/storage/Event/Banner/1619443095.jpeg');
-                                                        background-size:cover;
-                                                            height:auto">
-                                                        </div>
-                                                        <div class="w-100 text-left px-1 py-0" style="font-size:10px">
-                                                            <h4 class="m-0">{{event.name}}</h4>
-                                                            <p class="m-0">Free Entry - {{event.start_date | date}}</p>
-                                                            <p class="m-0">{{event.location}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <button type="button" class="close text-white bg-warning rounded p-1" data-dismiss="alert" aria-label="Close"
-                                                    style="font-size:15px;top:-10px;right:-10px;opacity:1"
-                                                    >
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <!-- Display for the Desktop -->
-                                            <div class="position-fixed rounded w-25 d-none d-sm-block" style="bottom:10px;z-index:13">
-                                                <div class="alert alert-secondary alert-dismissible fade show m-1 rounded text-center w-100 p-0" role="alert" id="mobile_add_promote_link">
-                                                    <div class="d-flex flex-row">
-                                                        <div class="w-100" style="background-image:url('http://tibetanbusiness.com:8888/storage/Event/Banner/1619443095.jpeg');
-                                                        background-size:cover;
-                                                            height:auto">
-                                                        </div>
-                                                        <div class="w-100 text-left px-1 py-0" style="font-size:10px">
-                                                            <h4 class="m-0">{{event.name}}</h4>
-                                                            <p class="m-0">Free Entry - {{event.start_date | date}}</p>
-                                                            <p class="m-0">{{event.location}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <button type="button" class="close text-white bg-warning rounded p-1" data-dismiss="alert" aria-label="Close"
-                                                    style="font-size:15px;top:-10px;right:-10px;opacity:1"
-                                                    >
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                                <PopupAd></PopupAd>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
@@ -159,6 +112,7 @@ import JobSidebar from '../Sidebar/job.vue';
 import RentSidebar from '../Sidebar/rent.vue';
 import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
+import PopupAd from '../PopupAd/Event';
 // import format from 'date-fns/format';
 import { compareAsc, format } from 'date-fns';
 export default {
@@ -178,7 +132,7 @@ export default {
             audience:{},
             liked:false,
             liked_id:'',
-            // Social Share
+
         }
     },
     methods:{
@@ -242,9 +196,10 @@ export default {
         }
     },
     // Components
-    components:{Loading,Photo,EventReview,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+    components:{Loading,Photo,EventReview,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
     mounted(){
         this.load_event();
+        // Loading the popup
     }
 }
 </script>

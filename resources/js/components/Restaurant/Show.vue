@@ -102,7 +102,9 @@
                                     <food-photo v-bind:food_photos="restaurant.food_photos"></food-photo>
                                 </div>
                                 <!-- comments -->
-                                    <restaurant-comment v-bind:restaurant="restaurant.id" :avg_rate="restaurant.rating"></restaurant-comment>
+                                <restaurant-comment v-bind:restaurant="restaurant.id" :avg_rate="restaurant.rating"></restaurant-comment>
+                                <!-- ad -->
+                                <PopupAd></PopupAd>
                             </div>
                         <!-- Sidebar -->
                             <div class="col-md-4 col-sm-12" id="sidebar">
@@ -132,6 +134,7 @@
     import RentSidebar from '../Sidebar/rent.vue';
     import RestaurantSidebar from '../Sidebar/restaurant.vue';
     import ServiceSidebar from '../Sidebar/service.vue';
+    import PopupAd from '../PopupAd/Restaurant';
     // Map
     export default {
             props:['restaurant_id'],
@@ -173,7 +176,7 @@
              * 
              * Components
              *  */  
-            components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
+            components:{Loading,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
             /**
              * Methods
              *  */ 

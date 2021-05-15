@@ -348,7 +348,7 @@ class EventBasicInfoController extends Controller
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('popup_ad', '=', true)
             ->inRandomOrder()
-            // ->limit('1')
+            ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
