@@ -114,7 +114,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(job,index) in jobs" :key="index" v-if="index <= 3">
                     <div class="card">
-                        <a v-bind:href="'job/'+job.id">
+                        <a v-bind:href="'/announcement/'+job.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto"></div>
                         </a>
                         <div class="info p-1">

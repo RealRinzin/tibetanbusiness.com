@@ -78,6 +78,8 @@ class JobBasicInfoController extends Controller
             'card' => $card,
             'thumb' => $thumb,
             'title' => $request->title,
+            'types' => $request->types,
+            // Job
             'organization' => $request->organization,
             'salary' => $request->salary,
             'profession' => $request->profession,
@@ -85,6 +87,11 @@ class JobBasicInfoController extends Controller
             'experience' => $request->experience,
             'deadline' => $request->deadline,
             'location' => $request->location,
+            // Scholarshiop
+            'course_name' => $request->course_name,
+            'graduation' => $request->degree,
+            'duration' => $request->duration,
+            'country' => $request->country,
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
             'mobile_no' => $request->mobile_no,
@@ -97,6 +104,7 @@ class JobBasicInfoController extends Controller
             'description' => $request->description,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
+            'website' => $request->website,
         ]);
         return $job;
     }
@@ -162,8 +170,13 @@ class JobBasicInfoController extends Controller
     public function view(JobBasicInfo $jobBasicInfo, $id)
     {
         $meta = JobBasicInfo::find($id);
-        MetaTag::set('title', $meta->title .' - '. $meta->organization);
-        MetaTag::set('description', $meta->location .' - '.$meta->profession);
+        if($meta->types == '2'){
+            MetaTag::set('title', $meta->title .' - '. $meta->country);
+            MetaTag::set('description', $meta->course_name . ' - ' . $meta->graduation . ' -'. $meta->duration);
+        }else{
+            MetaTag::set('title', $meta->title . ' - ' . $meta->organization);
+            MetaTag::set('description', $meta->location .' - '.$meta->profession);
+        }
         MetaTag::set('image', asset('storage/Job/Banner/'.$meta->banner));
         return view('job.show', ['id' => JobBasicInfo::find($id)]);
     }
@@ -177,8 +190,13 @@ class JobBasicInfoController extends Controller
     public function job_edit(JobBasicInfo $rentBasicInfo, $id)
     {
         $meta = JobBasicInfo::find($id);
-        MetaTag::set('title', $meta->title .' - '. $meta->organization);
-        MetaTag::set('description', $meta->location .' - '.$meta->profession);
+        if ($meta->types == '2') {
+            MetaTag::set('title', $meta->title . ' - ' . $meta->country);
+            MetaTag::set('description', $meta->course_name . ' - ' . $meta->graduation . ' -' . $meta->duration);
+        } else {
+            MetaTag::set('title', $meta->title . ' - ' . $meta->organization);
+            MetaTag::set('description', $meta->location . ' - ' . $meta->profession);
+        }
         MetaTag::set('image', asset('storage/Job/Banner/'.$meta->banner));
         if (Auth::user()->id === JobBasicInfo::find($id)->user_id) {
             return view('dashboard.job.edit', ['id' => JobBasicInfo::find($id)]);
@@ -277,9 +295,8 @@ class JobBasicInfoController extends Controller
     {
         $jobs = JobBasicInfoResource::collection(JobBasicInfo::where('status', '=', true)
             ->where('deadline', '>=', date('Y-m-d'))
-            ->orderBy('created_at', 'desc')
-            // ->limit('1')
-            ->inRandomOrder()->get());    
+            ->inRandomOrder()
+            ->orderBy('created_at', 'desc')->get());    
         return $jobs->toArray($jobs);
 
     }

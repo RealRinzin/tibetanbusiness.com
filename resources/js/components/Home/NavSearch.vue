@@ -6,7 +6,7 @@
                 <div class="px-0 col-5" id="tb_location">
                     <div class="input-group mb-3 input-group-md">
                       <input type="text" style="font-size:14px" id="location_search" autocomplete="off"  class="form-control" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
-                        <ul class="w-100" style="position: absolute;z-index:100;height:auto">
+                        <ul class="w-100" id="myMap_location_dropdown" style="position: absolute;z-index:100;height:auto">
                             <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 4">
                                 <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
                                 <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
@@ -60,7 +60,7 @@ export default {
                 {'name':'Events','img':'/img/event.png'},
                 {'name':'Sales','img':'/img/sale.png'},
                 {'name':'Rents','img':'/img/rent.png'},
-                {'name':'Jobs','img':'/img/job.png'},
+                {'name':'Jobs / Announcements','img':'/img/job.png'},
                 {'name':'Services','img':'/img/service.png'},
                 {'name':'Restaurants','img':'/img/restaurant.png'},
             ],

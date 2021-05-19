@@ -24,6 +24,12 @@ body{
 a{
     text-decoration: none !important;
 }
+// Location dropdown hover
+#myMap_location_dropdown{
+    li:hover{
+        background-color: #cccccc !important;
+    }
+}
 // 
 .sticky_header {
     background-color: #941c18 !important;

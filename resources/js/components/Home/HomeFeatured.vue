@@ -99,29 +99,34 @@
                     <div  class="col-md-4 my-2 col-sm-6 info" v-if="jobs !=''">
                         <div v-for="(job,index) in jobs" :key="index" v-if="index <= 0">
                             <div class="card">
-                                <a v-bind:href="'job/'+job.id">
+                                <a v-bind:href="'/announcement/'+job.id">
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                                        <div class="detail position-absolute ml-2" style="bottom:5px">
+                                        <div class="detail position-absolute ml-2" style="bottom:5px" v-if="job.types == 1">
                                             <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0 font-weight-bolder">Salary:₹{{job.salary}}/-</li>
                                             <li v-else class="btn btn-sm btn-warning small text-dark my-0 font-weight-bolder">Salary: Not Disclosed</li>
                                             <li class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{job.profession}}</li>
                                         </div>
+                                        <div class="detail position-absolute ml-2" style="bottom:5px" v-if="job.types == 2">
+                                            <li class="btn btn-sm btn-secondary small my-0 font-weight-bolder">Scholarship Announcements</li>
+                                        </div>
                                     </div>
                                 </a>
-                                <div class="likes">
+                                <div class="likes" v-if="job.types == 1">
                                     <p v-if="job.interested > 0" class="btn btn-secondary btn-sm small"><i class="fas fa-thumbs-up text-white fa-1x mr-1"></i>{{job.interested}} Interested</p>
                                     <p v-if="job.applied>0" class="btn btn-success btn-sm small"><i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</p>
                                 </div>
                                 <div class="types">
                                     <a href="/search/Jobs">
-                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
+                                        <p class="alert alert-warning p-1" role="alert" v-if="job.types == 1"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
+                                        <p class="alert alert-warning p-1" role="alert" v-if="job.types == 2"><i class="fas fa-briefcase mx-1"></i> Announcements</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
                                     <h5>{{job.title}}</h5>
                                     <h6>{{job.mobile_no}}</h6>
-                                    <h6>{{job.location}}</h6>
+                                    <h6  v-if="job.types == 1">{{job.location}}</h6>
+                                    <h6  v-if="job.types == 2">{{job.country}}</h6>
                                 </div>
                             </div>
                         </div>

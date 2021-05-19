@@ -51,11 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('rent/edit/id={id}', 'Rent\RentBasicInfoController@rent_edit');
 
         // JOB
-        Route::get('job',function(){
+        Route::get('announcement',function(){
             MetaTag::set('title', 'Add New Jobs - Tibetanbusiness.com');
             return view('dashboard.job.index');
         })->name('dashboard.job');
-        Route::get('job/edit/id={id}', 'Job\JobBasicInfoController@job_edit');
+        Route::get('announcement/edit/id={id}', 'Job\JobBasicInfoController@job_edit');
         // EVENT
         Route::get('event', function () {
             MetaTag::set('title', 'Add New Evenrts - Tibetanbusiness.com');
@@ -104,7 +104,7 @@ Route::get('rent/{id}','Rent\RentBasicInfoController@view');
 /**
  * Job View / Show
  *  */
-Route::get('job/{id}', 'Job\JobBasicInfoController@view');
+Route::get('announcement/{id}', 'Job\JobBasicInfoController@view');
 /**
  * Event
  * View/ Show Page

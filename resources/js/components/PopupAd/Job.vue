@@ -2,7 +2,7 @@
 <div>
     <div class="row" v-show="show_popup">
         <div  class="col-md-6 mx-auto" v-for="(popup,index) in popup" :key="index">
-            <a v-bind:href="'/job/'+popup.id">
+            <a v-bind:href="'/announcement/'+popup.id">
                 <!-- Display for the Mobile -->
                 <div class="position-fixed rounded w-75 d-block d-sm-none" style="bottom:10px;z-index:13">
                     <div class="alert alert-secondary alert-dismissible fade show m-1 rounded text-center w-100 p-0" role="alert" id="mobile_add_promote_link">

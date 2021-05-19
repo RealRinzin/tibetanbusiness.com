@@ -46,7 +46,7 @@ class ResetPasswordNotification extends Notification
    return ( new MailMessage )
       // ->view('reset.emailer')
       ->view('reset', ['url' => $link, 'data' => $notifiable])
-      ->from('tibetanbusiness@tibetanbusiness.com')
+      ->from('support@tibetanbusiness.com')
       ->subject( 'Reset your password' )
       ->line( "Hey, We've successfully changed the text " )
       ->line( 'Thank you!' );

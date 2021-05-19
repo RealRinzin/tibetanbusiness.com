@@ -6,7 +6,7 @@
         </h6>
         <lazy-loading class="mb-0" v-if="loading"></lazy-loading>
         <div class="row">
-            <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 3">
+            <div class="col-6 py-2" v-for="(service,index) in services" v-if="index <= 1">
                 <a v-bind:href="'/service/'+service.id">
                 <div class="banner lazyload small" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto">
                     <span  v-if="service.rate > 0.0" v-bind:class="service.rate_color" class="btn p-0 px-1 position-absolute" style="bottom:2px;right:2px"> <i class="fas fa-star text-white fa-1x mr-1 small" ></i>{{service.rate}}</span>

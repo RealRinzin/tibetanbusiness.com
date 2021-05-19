@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" v-if="job.types == 1">
                             <div class="card">
                                 <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
                             </div>
@@ -60,9 +60,6 @@
                                     <a class="nav-link active pl-0" id="custom-content-below-overview-tab" data-toggle="pill" href="#custom-content-below-overview" role="tab" aria-controls="custom-content-below-overview" aria-selected="true">Overview</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Applicants</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Questions</a>
                                 </li>
                                 <li class="nav-item">
@@ -74,14 +71,9 @@
                                     <!-- <dashboard-job-overview :job="overview"  :facilities="facilities"></dashboard-job-overview> -->
                                     <overview :job="overview"></overview>
                                 </div>
-                                <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-                                    <!-- <dashboard-job-room-photo v-bind:room_photos="job.room_photos" :id="job.id" @rent_load="rent_load"></dashboard-job-room-photo> -->
-                                    <applicant :job_id="id"></applicant>
-                                </div>
                                 <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                                     <!-- <dashboard-job-view-photo v-bind:view_photos="job.view_photos" :id="job.id" @rent_load="rent_load"></dashboard-job-view-photo> -->
                                     <question :job_id="id"></question>
-
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                                     <!-- <dashboard-job-comment v-bind:comments="comments"></dashboard-job-comment> -->

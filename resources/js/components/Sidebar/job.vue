@@ -13,8 +13,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 3">
-                <a v-bind:href="'/job/'+job.id">
+            <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 1">
+                <a v-bind:href="'/announcement/'+job.id">
                 <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                     <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{job.salary}}</p> -->
                 </div>

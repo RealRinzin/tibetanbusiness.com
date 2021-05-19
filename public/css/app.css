@@ -11463,6 +11463,10 @@ a {
   text-decoration: none !important;
 }
 
+#myMap_location_dropdown li:hover {
+  background-color: #cccccc !important;
+}
+
 .sticky_header {
   background-color: #941c18 !important;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25) !important;

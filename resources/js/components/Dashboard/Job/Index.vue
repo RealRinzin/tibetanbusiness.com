@@ -6,6 +6,7 @@
         <div class="row" v-else>
             <div class="col-md-12 mx-auto">
                 <button class="btn btn-info btn-md my-3" @click="add_job()">ADD NEW JOB</button>
+                <button class="btn btn-warning btn-md my-3 mx-1" @click="add_scholarship()">ADD SCHOLARSHIP ANNOUNCEMENT</button>
                 <table class="table table-striped table-responsive">
                     <thead class="thead-dark">
                         <tr>
@@ -25,7 +26,7 @@
                     <tbody>
                         <tr v-for="(job,index) in jobs">
                             <th scope="row">{{index +1}}</th>
-                            <td><a v-if="job.banner !==''" :href="'/job/'+job.id"><img :src="'/storage/Job/Banner/'+job.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
+                            <td><a v-if="job.banner !==''" :href="'/announcement/'+job.id"><img :src="'/storage/Job/Banner/'+job.thumb" class="img-circle" alt="" style="height:50px;width:50px"></a></td>
                             <td>{{job.title}}</td>
                             <td class="sm-table-info-hide">{{job.address}}</td>
                             <td class="sm-table-info-hide">{{job.location}}</td>
@@ -39,13 +40,14 @@
                                 :color="{checked:'#28a745',unchecked:'#dc4245'}"
                                 :labels="{checked: 'Live', unchecked: 'Off'}"/>
                             </td>
-                            <td><a  :href="'/dashboard/job/edit/id='+job.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
+                            <td><a  :href="'/dashboard/announcement/edit/id='+job.id" class="btn btn-sm btn-info"><i class="fas fa-pencil-alt "></i></a></td>
                             <td><button class="btn btn-sm btn-danger" @click="destory(job.id,index)"><i class="fas fa-trash-alt "></i></button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <add-job @load_job="load_job"></add-job>
+            <add-scholarship @load_job="load_job"></add-scholarship>
         </div>
     </div>
 </template>
@@ -55,6 +57,7 @@ import Loading from 'vue-loading-overlay';
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css';
 import AddJob from './AddNew.vue';
+import AddScholarship from './AddScholarship.vue';
 export default {
     data(){
         return{
@@ -63,6 +66,7 @@ export default {
             isLoading : false,//Lazy loading
             loading:false,
             status:'',
+            countries:{},
 
         }
     },
@@ -91,6 +95,13 @@ export default {
                 }
             })
         },
+        load_countries(){
+        // Countries API
+            axios.get('https://restcountries.eu/rest/v2/all')
+            .then(response => {
+                this.countries = response.data;
+            })
+        },
         /**
          * STATUS
          * update
@@ -115,6 +126,10 @@ export default {
          *  */ 
         add_job(){
             $("#job_add_modal").modal("show");  
+        },
+        // add scholarship
+        add_scholarship(){
+            $("#add_scholarship_modal").modal("show");  
         },
         /**
          * DELETE
@@ -141,9 +156,10 @@ export default {
     /**
      * Components
      *  */ 
-    components:{Loading,AddJob},
+    components:{Loading,AddJob,AddScholarship},
     mounted(){
         this.load_job();
+        this.load_countries();
     }
 }
 </script>

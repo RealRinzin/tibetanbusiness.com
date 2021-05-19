@@ -20,12 +20,12 @@
                                                     <a v-if="job.instagram" :href="job.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger btn"></i></a>
                                                     <a v-if="job.website" :href="job.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary btn"></i></a>
                                                 </div>
-                                                <h5 class="font-weight-bold position-absolute btn btn-danger text-white btn-flat">{{job.organization}}</h5>
+                                                <h5 class="font-weight-bold position-absolute btn btn-danger text-white btn-flat" v-if="job.types ==1">{{job.organization}}</h5>
                                                 <h6 class="font-weight-bold position-absolute btn text-white btn-danger btn-flat">{{job.title}}</h6>
                                             </div>
                                             </div>                                
                                         </div>
-                                        <div class="col-sm-7">
+                                        <div class="col-sm-7" v-if="job.types == 1">
                                             <div class="row p-2">
                                                 <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Salary</h6>
@@ -35,7 +35,7 @@
                                                     <h6 v-else class="text-muted text-left">:Not Disclosed</h6>
                                                 </div>
                                             </div>
-                                            <div class="row p-2">
+                                            <div class="row p-2" >
                                                 <div class="col-md-4 col-6">
                                                     <h6 class="text-dark">Profession </h6>
                                                 </div>
@@ -92,18 +92,76 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-sm-7" v-if="job.types == 2">
+                                            <div class="row p-2" >
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Course Name </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.course_name}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Degree </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.graduation}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Duration </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.duration}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2" v-if="job.mobile_no">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Mobile No</h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.mobile_no}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Country </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.country}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Deadline </h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted font-weight-bold text-left">: {{job.deadline}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row p-2" v-if="job.email">
+                                                <div class="col-md-4 col-6">
+                                                    <h6 class="text-dark">Email</h6>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                    <h6 class="text-muted text-left">: {{job.email}}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Info -->
                                 <div class="card py-3">
                                     <div class="row p-3">
                                         <div class="col-md-6" v-if="job.description">
-                                            <h5 class="text-dark">Job Descriptions</h5>
+                                            <h5 class="text-dark">Descriptions</h5>
                                             <p class="text-muted">
                                                 {{job.description}}
                                             </p>
                                         </div>
-                                        <div class="col-md-6"> 
+                                        <div class="col-md-6" v-if="job.types == 1"> 
                                             <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
                                         </div>
                                     </div>

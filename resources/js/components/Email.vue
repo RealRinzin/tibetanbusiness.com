@@ -24,7 +24,7 @@
                 <p class="m-1">Pin: 34562</p>
                 <p class="m-1">India, H.P</p>
                 <p class="m-1">+91-8353049170</p>
-                <p class="m-1">inquiry@tibetanbusiness.com</p>
+                <p class="m-1">support@tibetanbusiness.com</p>
                 <div class="py-3">
                     <span class="px-1 text-primary"><a href=""><i class="fab fa-facebook-square"></i></a></span>
                     <span class="px-1"><a href=""><i class="fab fa-instagram text-danger"></i></a></span>
@@ -41,7 +41,9 @@ import emailjs from 'emailjs-com';
 export default {
   methods: {
     sendEmail: (e) => {
-      emailjs.sendForm('service_nyp3x39', 'template_w5m2djd', e.target, 'user_KUEPWiHsjxRGX713YMj3h')
+    //   emailjs.sendForm('service_nyp3x39', 'template_w5m2djd', e.target, 'user_KUEPWiHsjxRGX713YMj3h') //geniusbulbs@gmail.com setting
+      emailjs.sendForm('service_g6doc6x', 'template_8r2rn1l', e.target, 'user_4XZM3OoOcJejmW6Zkz0O0') // tibetanbusinesscom@gmail.com
+    //   emailjs.sendForm('service_3b6ji5w', 'template_8r2rn1l', e.target, 'user_xY5Nd6x6FgCCO0iutryOf') // support@tibetanbusiness.com
         .then((result) => {
               toast.fire({
                   icon:'success',

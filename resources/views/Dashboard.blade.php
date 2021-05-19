@@ -98,7 +98,7 @@
                         <li class="nav-item">
                             <a href="{{route('dashboard.job')}}" class="nav-link">
                                 <i class="fas fa-briefcase mr-2"></i>
-                                <p>Job</p>
+                                <p>Jobs / Announcements</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -111,7 +111,7 @@
                         <li class="nav-item">
                             <a href="{{route('dashboard.event')}}" class="nav-link">
                                 <i class="fas fa-calendar-alt mr-2 "></i>
-                                <p>Event</p>
+                                <p>Events</p>
                             </a>
                         </li>
                         <li class="nav-item">

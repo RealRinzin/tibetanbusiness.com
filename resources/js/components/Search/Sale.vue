@@ -7,7 +7,7 @@
             <lazy-loading class="mb-0"></lazy-loading>
         </div>
         <div class="row">
-            <div class="col-6 py-2" v-for="(sale,index) in sales" v-if="index <= 3">
+            <div class="col-6 py-2" v-for="(sale,index) in sales" v-if="index <= 1">
                 <a v-bind:href="'/sale/'+sale.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                 <div class="banner lazyload position-relative" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
