@@ -26,7 +26,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Jobs')))
+    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Announcements')))
     <!-- JQUERY UI -->
     <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
     @endif
@@ -194,111 +194,111 @@
             <div style="min-height:100vh">
                 @yield('content')
             </div>
-        <footer>
-            <div class="container">
-                <div class="row py-2">
-                    <div class="col-md-12">
-                        <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
+            <footer>
+                <div class="container">
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            <img src="{{asset('img/tibetanbusiness.png')}}" alt="Tibetanbusiness logo" class="img-responsive d-flex justify-content-center">
+                        </div>
                     </div>
-                </div>
-                <div class=" divider"></div>
-                <div class="row py-2">
-                    <div class="col-md-12">
+                    <div class=" divider"></div>
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                        </div>
                     </div>
-                </div>
-                <div class="row py-2">
+                    <div class="row py-2">
+                        <div class="divider"></div>
+                        <div class="col-md-2 col-sm-4 col-4">
+                            <ul>
+                                <li>Miao</li>
+                                <li>Tezu</li>
+                                <li>Kollegal</li>
+                                <li>Bylakuppe</li>
+                                <li>Herbertpur</li>
+                                <li>Mungod</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Ravangala</li>
+                                <li>Bandara</li>
+                                <li>Mainpat</li>
+                                <li>Odisha</li>
+                                <li>Hunsur</li>
+                                <li>Ladak</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Tuting</li>
+                                <li>Bir</li>
+                                <li>Dalhousie</li>
+                                <li>Kamrao</li>
+                                <li>Kham karto</li>
+                                <li>Ponta</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Puruwala</li>
+                                <li>Shimla</li>
+                                <li>Bomdila</li>
+                                <li>Dharamsala</li>
+                                <li>Darjeeling</li>
+                                <li>Clement Town</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Gangtok</li>
+                                <li>Kalimpong</li>
+                                <li>Munduwala</li>
+                                <li>Manali</li>
+                                <li>Delhi</li>
+                                <li>Shilong</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-4 my-1">
+                            <ul>
+                                <li>Dekyiling</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="divider"></div>
-                    <div class="col-md-2 col-sm-4 col-4">
-                        <ul>
-                            <li>Miao</li>
-                            <li>Tezu</li>
-                            <li>Kollegal</li>
-                            <li>Bylakuppe</li>
-                            <li>Herbertpur</li>
-                            <li>Mungod</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Ravangala</li>
-                            <li>Bandara</li>
-                            <li>Mainpat</li>
-                            <li>Odisha</li>
-                            <li>Hunsur</li>
-                            <li>Ladak</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Tuting</li>
-                            <li>Bir</li>
-                            <li>Dalhousie</li>
-                            <li>Kamrao</li>
-                            <li>Kham karto</li>
-                            <li>Ponta</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Puruwala</li>
-                            <li>Shimla</li>
-                            <li>Bomdila</li>
-                            <li>Dharamsala</li>
-                            <li>Darjeeling</li>
-                            <li>Clement Town</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Gangtok</li>
-                            <li>Kalimpong</li>
-                            <li>Munduwala</li>
-                            <li>Manali</li>
-                            <li>Delhi</li>
-                            <li>Shilong</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-4 my-1">
-                        <ul>
-                            <li>Dekyiling</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="row py-3">
-                    <div class="col-6 text-center">
-                        <p>
-                            @guest
-                            <a href="#" class="text-white-50 mx-1" data-toggle="modal" data-target="#login">Add Business</a>
+                    <div class="row py-3">
+                        <div class="col-6 text-center">
+                            <p>
+                                @guest
+                                <a href="#" class="text-white-50 mx-1" data-toggle="modal" data-target="#login">Add Business</a>
 
-                            @else
-                            <a href="/dashboard/event" class="text-white-50 mx-1">Add Business</a>
+                                @else
+                                <a href="/dashboard/event" class="text-white-50 mx-1">Add Business</a>
 
-                            @endguest
-                            </span>
-                            <span><a href="/promote-business" class="text-white-50 mx-1">Promote Business</a></span>
-                            <span><a href="/contact-us" class="text-white-50 mx-1">Contact Us</a></span>
-                        </p>
-                        <p class="copyright">
-                            <span><a href="https://www.facebook.com/tibetanbusiness/"><i class="fab fa-facebook-square fa-2x mr-2 text-primary"></i></a></span>
-                            <span><a href="https://www.instagram.com/tibetanbusinesscom/"><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></a></span>
-                            <span><a href="https://twitter.com/Tibetanbusines1"><i class="fab fa-twitter mr-2 fa-2x text-info"></i></a></span>
-                            <span><a href="https://in.linkedin.com/company/tibetanbusiness-com?trk=public_profile_topcard-current-company"><i class="fab fa-linkedin mr-2 fa-2x text-primary"></i></a></span>
-                        </p>
+                                @endguest
+                                </span>
+                                <span><a href="/promote-business" class="text-white-50 mx-1">Promote Business</a></span>
+                                <span><a href="/contact-us" class="text-white-50 mx-1">Contact Us</a></span>
+                            </p>
+                            <p class="copyright">
+                                <span><a href="https://www.facebook.com/tibetanbusiness/"><i class="fab fa-facebook-square fa-2x mr-2 text-primary"></i></a></span>
+                                <span><a href="https://www.instagram.com/tibetanbusinesscom/"><i class="fab fa-instagram mr-2 fa-2x text-danger"></i></a></span>
+                                <span><a href="https://twitter.com/Tibetanbusines1"><i class="fab fa-twitter mr-2 fa-2x text-info"></i></a></span>
+                                <span><a href="https://in.linkedin.com/company/tibetanbusiness-com?trk=public_profile_topcard-current-company"><i class="fab fa-linkedin mr-2 fa-2x text-primary"></i></a></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <map-location :longitude="76.32" :latitude="32.23"></map-location>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <map-location :longitude="76.32" :latitude="32.23"></map-location>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col-12 my-1">
+                            <p class="copyright text-center"> Tibetanbusiness © Copyright <?php echo date('Y'); ?> | Policy and Terms</p>
+                        </div>
                     </div>
                 </div>
-                <div class="divider"></div>
-                <div class="row">
-                    <div class="col-12 my-1">
-                        <p class="copyright text-center"> Tibetanbusiness © Copyright <?php echo date('Y'); ?> | Policy and Terms</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
     </div>
     <!-- login Modal -->
     <div class="px-4 modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -418,7 +418,7 @@
     <script rel=" preload" src="{{ asset('js/detail.min.js') }}"></script>
     <link rel="preload" type="text/javascript" as="script" href="{{ asset('js/detail.min.js') }}">
     @endif
-    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Jobs')))
+    @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Announcements')))
     <!-- Jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
     @endif

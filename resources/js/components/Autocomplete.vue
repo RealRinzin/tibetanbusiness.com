@@ -81,7 +81,7 @@ export default {
           {'name':'Events','img':'/img/event.png'},
           {'name':'Sales','img':'/img/sale.png'},
           {'name':'Rents','img':'/img/rent.png'},
-          {'name':'Jobs','img':'/img/job.png'},
+          {'name':'Announcements','img':'/img/job.png'},
           {'name':'Services','img':'/img/service.png'},
           {'name':'Restaurants','img':'/img/restaurant.png'},
       ],

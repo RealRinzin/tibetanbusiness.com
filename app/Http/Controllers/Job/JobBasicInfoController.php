@@ -366,13 +366,18 @@ class JobBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
-
+        // return $request;
         return new JobBasicInfoResourceCollection(JobBasicInfo::where('title', 'like', "$request->title%")
                 ->where('location', 'like', "%$request->location%")
                 ->where('profession', 'like', "$request->profession%")
                 ->where('nature', 'like', "$request->nature%")
                 ->where('experience', 'like', "$request->experience%")
                 ->whereBetween('salary', [$request->salary_min, $request->salary_max])
+                // ->where('types', 'like', "$request->types%")
+                // ->where('course_name', 'like', "$request->course_name%")
+                // ->where('duration', 'like', "$request->duration%")
+                // ->where('graduation', 'like', "$request->graduation%")
+                // ->where('country', 'like', "$request->country%")
                 ->where('deadline', '>=', date('Y-m-d'))
                 ->where('status', '=', true)
                 ->orderBy('created_at', 'desc')->paginate('10'));

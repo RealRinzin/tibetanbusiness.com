@@ -101,24 +101,29 @@
                                         <a v-bind:href="'/announcement/'+job.id">
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                                            <div class="position-absolute ml-2" style="bottom:10px">
+                                            <div class="position-absolute ml-2" style="bottom:10px" v-if="job.types == 1">
                                                 <button v-if="job.salary > 0" class="btn btn-danger btn-sm font-weight-bolder">Salary:₹ {{job.salary}}-/</button>
                                                 <button v-else class="btn btn-warning btn-sm font-weight-bolder">Salary: Not disclosed</button>
                                                 <button class="btn btn-danger btn-sm font-weight-bolder">{{job.nature}}</button>
                                                 <button class="btn btn-danger btn-sm font-weight-bolder">Exp: {{job.experience}}</button>
                                             </div>
+                                            <div class="position-absolute ml-2" style="bottom:10px" v-if="job.types == 2">
+                                                <button  class="btn btn-secondary btn-sm font-weight-bolder">Scholarship</button>
+                                                <button class="btn btn-secondary btn-sm font-weight-bolder">{{job.graduation}}</button>
+                                            </div>
                                         </div>
                                         <div class="rate" v-if="job.rate !=null"><span v-bind:class="job.rate_color" class="btn">{{job.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
-                                            <p class="my-1">
+                                            <p class="my-1" v-if="job.types == 1">
                                                 <span class="btn btn-sm btn-success mr-1 small" v-if="job.applied >0"> <i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</span>
                                                 <span class="btn btn-sm btn-secondary mr-1 small" v-if="job.interested > 0"> <i class="fas fa-thumbs-up text-warning fa-1x mr-1"></i>{{job.interested}} Interested</span>
                                             </p>
                                             <h6 class="text-dark font-weight-bolder">{{job.title}}</h6>
-                                            <p class="text-muted my-0 font-weight-bolder">{{job.organization}}</p>
+                                            <p class="text-muted my-0 font-weight-bolder" v-if="job.types == 2">{{job.course_name}}</p>
                                             <p class="text-muted my-0" v-if="job.mobile_no != null">{{job.mobile_no}}</p>
-                                            <p class="text-muted my-0">{{job.location}}</p>
+                                            <p class="text-muted my-0" v-if="job.types == 1">{{job.location}}</p>
+                                            <p class="text-muted my-0" v-if="job.types == 2">{{job.country}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -185,6 +190,11 @@
                     profession:'',
                     salary_min:0,
                     salary_max:5000000,
+                    course_name:'',
+                    duration:'',
+                    graduation:'',
+                    types:'',
+                    country:'',
                 },
                 // loading
                 isLoading : false,//Lazy loading
@@ -282,6 +292,7 @@
             },
             // search result
             search_result(){
+                console.log("RInzin");
                 this.isLoading = true; //Loading true
                 this.search_location = this.filter.location;
                 // Salary Range
@@ -427,12 +438,6 @@
         // Mounted
         mounted(){
             this.load_result();
-            // location
-                // locations api
-                axios.get('/api/location')
-                .then(response => {
-                    this.locations = response.data;
-                })
                 // Profession
                 axios.get('/api/occupations')
                 .then(response=>{

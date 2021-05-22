@@ -11,13 +11,14 @@
                 <a v-bind:href="'/announcement/'+job.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                 <div class="banner lazyload position-relative" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                    <p v-if="job.salary > 0"  class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Salary:&#x20B9 {{job.salary}}</p>
-                    <p v-else class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Not Disclosed</p>
+                        <p  v-if="job.types == 1" class="text-white small position-absolute rounded bg-secondary  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Jobs</p>
+                        <p  v-if="job.types == 2" class="text-white small position-absolute rounded bg-success  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Announcements</p>
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{job.title}}</h6>
                 <p class="text-muted my-0">{{job.mobile_no}}</p>
-                <p class="text-muted my-0">{{job.location}}</p>
+                <p class="text-muted my-0" v-if="job.types == 1">{{job.location}}</p>
+                <p class="text-muted my-0" v-if="job.types == 2">{{job.country}}</p>
             </div>
         </div>
     </div>

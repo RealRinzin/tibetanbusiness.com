@@ -1,6 +1,6 @@
 <template>
     <div class="card p-2 my-2" v-show="show">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"><span><img src="/img/job.png" alt=""></span> Jobs 
+        <h6 class="py-2 font-weight-bolder text-dark border-bottom"><span><img src="/img/job.png" alt=""></span> Jobs / Announcements
             <span class="text-muted" style="font-size:12px">- {{job_location}}</span>
         </h6>
         <div class="row">
@@ -16,6 +16,9 @@
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 1">
                 <a v-bind:href="'/announcement/'+job.id">
                 <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
+                            <h6 v-if="job.types == 1" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">ANNOUNCEMENTS</h6>
+                            <h6 v-if="job.types == 2" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">JOBS</h6>
+
                     <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{job.salary}}</p> -->
                 </div>
                 </a>

@@ -100,7 +100,7 @@
         <!-- Jobs -->
         <div class="col-md-10 mx-auto my-4" v-if="jobs !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">AVAILABLE JOBS</a>
+                <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" alt="">JOBS / ANNOUNCEMENTS</a>
             </h6>
             <div class="row">
                 <div v-if="job_loading" class="col-12">
@@ -115,12 +115,20 @@
                 <div class="col-md-3 col-sm-6 col-6 py-1" v-for="(job,index) in jobs" :key="index" v-if="index <= 3">
                     <div class="card">
                         <a v-bind:href="'/announcement/'+job.id">
-                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto"></div>
+                        <div class="banner rounded-top lazyload" :data-bgset="'/storage/Job/Banner/'+job.thumb"  data-sizes="auto">
+                            <h6 v-if="job.types == 1" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">JOBS</h6>
+                            <h6 v-if="job.types == 2" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">ANNOUNCEMENTS</h6>
+                        </div>
                         </a>
-                        <div class="info p-1">
+                        <div class="info p-1" v-if="job.types == 1">
                             <h5>{{job.title}}</h5>
                             <h6 class="pt-1" v-if="job.mobile_no !=null">{{job.mobile_no}}</h6>
                             <h6>{{job.location}}</h6>
+                        </div>
+                        <div class="info p-1" v-if="job.types == 2">
+                            <h5>{{job.title}}</h5>
+                            <h6 class="pt-1" v-if="job.mobile_no">{{job.mobile_no}}</h6>
+                            <h6>{{job.country}}</h6>
                         </div>
                     </div>
                 </div>

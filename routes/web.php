@@ -144,7 +144,7 @@ Route::prefix('search')->group(function () {
     // })->name('dashboard.restaurant');
     Route::get('Restaurants/{location?}', 'Restaurant\RestaurantBasicInfoController@search_engine');
     Route::get('Events/{location?}', 'Event\EventBasicInfoController@search_engine');
-    Route::get('Jobs/{location?}', 'Job\JobBasicInfoController@search_engine');
+    Route::get('Announcements/{location?}', 'Job\JobBasicInfoController@search_engine');
     Route::get('Rents/{location?}', 'Rent\RentBasicInfoController@search_engine');
     Route::get('Sales/{location?}', 'Sale\SaleBasicInfoController@search_engine');
     Route::get('Services/{location?}', 'Service\ServiceBasicInfoController@search_engine');

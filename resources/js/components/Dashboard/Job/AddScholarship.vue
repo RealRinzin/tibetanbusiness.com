@@ -214,6 +214,12 @@ export default {
             bannerPreview:'',
             scholarship:{
                 'types':'2',
+                'salary':0,
+                'organization':'NULL',
+                'profession':'NULL',
+                'experience':'NULL',
+                'nature':'NULL',
+                'location' : 'NULL',
             },
             countries:{}, //Countries object
         }
