@@ -73,7 +73,8 @@
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                                     <!-- <dashboard-job-view-photo v-bind:view_photos="job.view_photos" :id="job.id" @rent_load="rent_load"></dashboard-job-view-photo> -->
-                                    <question :job_id="id"></question>
+                                    <!-- <question :job_id="id"></question> -->
+                                    <Document :job_id="id"></Document>
                                 </div>
                                 <div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
                                     <!-- <dashboard-job-comment v-bind:comments="comments"></dashboard-job-comment> -->
@@ -94,6 +95,7 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import Overview from './Overview.vue';
 import Question from './Question.vue';
 import Applicant from './Applicant.vue';
+import Document from './Document';
 
 export default {
     props:['job_id'],
@@ -189,7 +191,7 @@ export default {
         },
 
     },
-    components:{Loading,Overview,Question,Applicant},
+    components:{Loading,Overview,Question,Applicant,Document},
     mounted(){
         this.job_load();
     }

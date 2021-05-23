@@ -37,6 +37,10 @@ class JobBasicInfo extends Model
     {
         return $this->hasMany(JobInterest::class);
     }
+    public function job_documennts()
+    {
+        return $this->hasMany(JobDocument::class);
+    }
     public function job_questions()
     {
         return $this->hasMany(JobQuestion::class)->whereNull('job_question_id');

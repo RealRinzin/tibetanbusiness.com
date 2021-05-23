@@ -184,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <apply :job_id="id" @close_modal="close_modal"></apply>
+        <!-- <apply :job_id="id" @close_modal="close_modal"></apply> -->
     </div>
 </template>
 <script>

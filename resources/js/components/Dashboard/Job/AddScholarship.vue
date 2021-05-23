@@ -195,6 +195,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
@@ -206,6 +207,7 @@
         </div>
 </template>
 <script>
+import Document from '../../Job/Apply.vue';
 export default {
     props:['load_job'],
     data(){
@@ -271,6 +273,7 @@ export default {
             fileReader.readAsDataURL(event.target.files[0]);
         },
     },
+    components:{Document},
     mounted(){
         // Countries API
             axios.get('https://restcountries.eu/rest/v2/all')

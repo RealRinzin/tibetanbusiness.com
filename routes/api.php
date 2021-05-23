@@ -67,12 +67,13 @@ use Illuminate\Http\Request;
         Route::apiResource('job_apply', 'Job\JobApplyController',['except' => ['index','create','show','update','edit']]);
         Route::apiResource('job_question', 'Job\JobQuestionController', ['except' => ['create','edit']]);
         Route::apiResource('job_question_reply', 'Job\JobQuestionReplyController', ['except' => ['show', 'index','create','edit']]);
-        Route::apiResource('job_interest', 'Job\JobInterestController',['except' => ['index', 'show', 'edit', 'update','create']]);
+        Route::apiResource('job_interest', 'Job\JobInterestController',['except' => ['index', 'show', 'edit', 'update', 'create']]);
+        Route::apiResource('job_document', 'Job\JobDocumentController', ['except' => ['index', 'show', 'edit', 'update','create']]);
         Route::get('user/jobs', 'Job\JobBasicInfoController@user_job');
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
         Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
-        Route::get('job_apply/{job_basic_info}/applicant', 'Job\JobApplyController@applicant');
+        // Route::get('job_apply/{job_basic_info}/applicant', 'Job\JobApplyController@applicant');
    
         // Event API
         /**
@@ -121,8 +122,6 @@ use Illuminate\Http\Request;
         // Other API
         // List API
         Route::apiResource('location', 'Location\LocationController', ['except' => ['index','create','show']]);
-        // Route::apiResource('category', 'Category\CategoryController', ['except' => ['index','job','create','show']]);
-
     });
 
     /**
@@ -251,8 +250,6 @@ Route::apiResource('occupations', 'OccupationController', ['except' => ['store',
 Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
 Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['store', 'show', 'edit', 'destroy', 'update', 'create']]);
-Route::get('map', 'OccupationController@map');
-
 // PopUp API
 Route::get('event/list/popup_ad', 'Event\EventBasicInfoController@popup_ad');
 Route::get('job/list/popup_ad', 'Job\JobBasicInfoController@popup_ad');
