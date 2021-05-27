@@ -62,11 +62,11 @@
                                             </div>
                                         </div>
                                         <div class="row py-2">
-                                            <div class="col-md-12 col-sm-12 py-2" id="range">
+                                            <!-- <div class="col-md-12 col-sm-12 py-2" id="range">
                                                 <small class="text-muted">Salary:₹{{filter.min}} </small>
                                                 <input type="text" id="salary" class="small text-muted my-2" readonly  style="border:0;">
                                                 <div id="slider-range"></div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-12 py-2 text-center">
                                                 <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                 <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
@@ -188,8 +188,6 @@
                     nature:'',
                     experience:'',
                     profession:'',
-                    salary_min:0,
-                    salary_max:5000000,
                     course_name:'',
                     duration:'',
                     graduation:'',
@@ -254,25 +252,9 @@
                         this.is_logged = true
                     }
                 })
-                // filter paramater
-                // Slider Range
-                $( function() {
-                    $( "#slider-range" ).slider({
-                    range: true,
-                    min: 0,
-                    max: 100000,
-                    values: [ 0, 300000],
-                    slide: function( event, ui ) {
-                        $( "#salary" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
-                    }
-                    });
-                    $( "#salary" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
-                    " - " + $( "#slider-range" ).slider( "values", 1 ) );
-                        // console.log(this.number);
-                } );
-                // End Range
                 // Get the result
-                axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
+                // axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
+                axios.get('/api/search/jobs?location='+this.filter.location)
                 .then(response=>{ 
                     this.jobs = response.data.data;
                     this.loading_placeholder = false,
@@ -292,21 +274,12 @@
             },
             // search result
             search_result(){
-                console.log("RInzin");
                 this.isLoading = true; //Loading true
                 this.search_location = this.filter.location;
-                // Salary Range
-                var salary = document.getElementById("salary");
-                this.number = salary.value.split("-");
-                this.filter.salary_min = this.number[0];
-                this.filter.salary_max = this.number[1];
-                // Salary Range End
                 this.loading = false;
                 this.nextPage = 2;
                 axios.get('/api/search/jobs?title='+this.filter.title+
                 '&location='+this.filter.location+
-                '&salary_min='+this.filter.salary_min+
-                '&salary_max='+this.filter.salary_max+
                 '&profession='+this.filter.profession+
                 '&experience='+this.filter.experience+
                 '&nature='+this.filter.nature+
@@ -339,8 +312,6 @@
                 this.isLoading = true; //Loading true
                 axios.get('/api/search/jobs?title='+this.filter.title+
                 '&location='+this.filter.location+
-                '&salary_min='+this.filter.salary_min+
-                '&salary_max='+this.filter.salary_max+
                 '&experience='+this.filter.experience+
                 '&profession='+this.filter.profession+
                 '&nature='+this.filter.nature+
@@ -382,10 +353,7 @@
                     nature:'',
                     experience:'',
                     profession:'',
-                    salary_min:'',
-                    salary_max:'',
-                    // fare:50000,
-                    salary:200000,
+                    rate:0,
                 };
                 // Desktop
                 if(screen.width < 767){

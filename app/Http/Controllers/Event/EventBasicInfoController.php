@@ -104,7 +104,7 @@ class EventBasicInfoController extends Controller
             'website' => $request->website,
             'instagram' => $request->instagram,
         ]);
-        return $job;
+
     }
 
     /**
@@ -342,6 +342,18 @@ class EventBasicInfoController extends Controller
             // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
+    }
+    // Entry Fee
+    public function max_fee()
+    {
+        $max = EventBasicInfo::where('status', '=', true)->max('entry_fee');
+        return $max;
+    }
+    public function  max_date(){
+        $max = EventBasicInfo::where('status', '=', true)->max('start_date');
+        return $max;
+
+
     }
     // Popup ad
     public function popup_ad()

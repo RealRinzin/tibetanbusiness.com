@@ -192,6 +192,12 @@ class SaleBasicInfoController extends Controller
             ->orderBy('created_at', 'desc')->get();
         return $sales->toArray($sales);
     }
+    // Maximum Price
+    public function max_price()
+    {
+        $max = SaleBasicInfo::where('status', '=', true)->max('price');
+        return $max;
+    }
     // Popup ad
     public function popup_ad()
     {

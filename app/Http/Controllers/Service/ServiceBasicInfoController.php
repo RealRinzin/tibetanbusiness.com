@@ -330,6 +330,9 @@ class ServiceBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
+        if($request->rate == "0"){
+            $request->rate = '';
+        }
         $services = ServiceBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "%$request->location%")
         ->where('rate', 'like', "$request->rate%")

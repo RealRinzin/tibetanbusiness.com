@@ -37,7 +37,7 @@ class JobBasicInfo extends Model
     {
         return $this->hasMany(JobInterest::class);
     }
-    public function job_documennts()
+    public function job_documents()
     {
         return $this->hasMany(JobDocument::class);
     }

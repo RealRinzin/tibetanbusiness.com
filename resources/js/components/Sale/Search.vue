@@ -69,7 +69,8 @@
                                 </div>
                                 <div v-else class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(sale,index) in sales">
                                     <a v-bind:href="'/sale/'+sale.id">
-                                        <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto">
+                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'>
+                                        <!-- <div class="banner lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.banner"  data-sizes="auto"> -->
                                             <ul>
                                                 <li class="ng-binding btn btn-danger btn-md small mr-1">
                                                     Price:
@@ -150,7 +151,7 @@ export default {
                 location:this.location,
                 type:'',
                 price_min:0,
-                price_max:10000000,
+                price_max:0,
             },
             places:'',
             // lazy:false,
@@ -200,39 +201,45 @@ export default {
             };
             // Search location
             this.search_location = this.filter.location;
-            // axios.get('/api/search/sales')
-            axios.get('/api/search/sales?price_min=0&price_max=10000000&location='+this.filter.location)
-             .then(response=>{ 
-                this.loading_placeholder=false,
-                this.sales = response.data.data;
-                // this.loading = true;
-                this.total = response.data.total;
-                // Load more button
-                if(response.data.total == 0){
-                    this.empty_result="We don't found the search item";
-                }
-                // if response it there
-                if (response.data.current_page == response.data.last_page) {
-                    this.load_more_button = false;
-                }else{
-                    this.load_more_button = true;
-                    this.empty_result='';
-                }
-            });
+                axios.get('/api/sale/list/max_price').then(response=>{
+                    this.filter.price_max = response.data;
+                    axios.get(`/api/search/sales?price_min=0&price_max=${this.filter.price_max}&location=${this.filter.location}`)
+                    .then(response=>{ 
+                        this.loading_placeholder=false,
+                        this.sales = response.data.data;
+                        // this.loading = true;
+                        this.total = response.data.total;
+                        // Load more button
+                        if(response.data.total == 0){
+                            this.empty_result="We don't found the search item";
+                        }
+                        // if response it there
+                        if (response.data.current_page == response.data.last_page) {
+                            this.load_more_button = false;
+                        }else{
+                            this.load_more_button = true;
+                            this.empty_result='';
+                        }
+                    });
+                });
             // Slider Range
             $( function() {
-                $( "#slider-range" ).slider({
-                range: true,
-                min:0,
-                max:1000000,
-                values: [0,10000000],
-                slide: function( event, ui ) {
-                    $("#price").val(+ui.values[0]+ "-"+ui.values[1] );
-                }
+                axios.get('/api/sale/list/max_price').then(response=>{
+                    const max_price = response.data;
+                    $( "#slider-range" ).slider({
+                    range: true,
+                    min:0,
+                    max:max_price,
+                    values: [0,max_price],
+                    slide: function( event, ui ) {
+                        $("#price").val(+ui.values[0]+ "-"+ui.values[1] );
+                    }
+                    });
+                    $("#price").val(+$("#slider-range").slider("values",0) +
+                    " - "+$( "#slider-range").slider( "values",1));
                 });
-                $("#price").val(+$("#slider-range").slider("values",0) +
-                " - "+$( "#slider-range").slider( "values",1));
-            } );
+            })
+
         },
         // search result
         search_result(){
@@ -280,7 +287,9 @@ export default {
             this.isLoading = true; //Loading true
             axios.get('/api/search/sales?name='+this.filter.name+
             '&location='+this.filter.location+
-            '&type='+this.filter.type+'&price_min='+this.filter.price_min+'&price_max='+this.filter.price_max+
+            '&type='+this.filter.type+
+            '&price_min='+this.filter.price_min+
+            '&price_max='+this.filter.price_max+
             '&page='+this.nextPage)
             .then(response=>{
                 if(response.data.current_page <= response.data.last_page){

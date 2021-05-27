@@ -128,7 +128,7 @@ export default {
             events_lazy_load:false, //lazy loading
             post_review:{
                 service_basic_info_id:this.service_id,
-                rate:'',
+                rate:0,
                 review:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),

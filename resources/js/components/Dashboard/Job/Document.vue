@@ -3,40 +3,55 @@
     <div class="row">
       <div class="col-md-12 py-3">
         <div class="d-flex flex-row">
-          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="upload_photos_modal()">Upload New photos</button></div>
-          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{photos.length}})</h6></div>
+          <div class="p-2"><button class="btn btn-outline-danger d-flex" @click="upload_documents_modal()">Upload New Photos</button></div>
+          <div>
+              <Photo :job_id="id" @load="load_document"/>
+          </div>
+          <div class="pt-3 px-2"><h6 class="text-muted">Total Photos ({{documents.length}})</h6></div>
         </div>
       </div>
     </div>
     <!-- Photo iterations -->
-    <div class="row">
-      <div class="col-md-2 col-sm-4 col-6" v-for="(photo,index) in photos">
-        <button class="btn btn-danger btn-xs delete_btn position-absolute" @click="remove(photo.id,index)"><i class="fas fa-trash-alt "></i></button>
-        <div class="card gallery_view lazyload" @click="photo_view(index)" data-toggle="modal" data-target="#event_photo" v-bind:style='{ backgroundImage: `url(/storage/Event/Photos/${photo.thumb})`}' data-sizes="auto">
+    <div class="row"> 
+      <div class="col-md-2 col-sm-4 col-6" v-for="(document,index) in documents">
+        <button class="btn btn-danger btn-xs delete_btn position-absolute" @click="remove(document.id,index)"><i class="fas fa-trash-alt "></i></button>
+        <div v-if="document.extension == 'image'" class="card gallery_view lazyload" data-toggle="modal" data-target="#event_document" v-bind:style='{ backgroundImage: `url(/storage/Job/Documents/${document.thumb})`}' data-sizes="auto">
           <div class="overlay">
             <div class="d-flex mt-auto ml-auto p-2">
             </div>
           </div>
-              <!-- div. -->
+        </div>
+        <div v-if="document.extension == 'docx'" class="lazyload">
+              <i class="fas fa-file-word fa-5x text-center text-primary"></i>
+        </div>
+        <div v-if="document.extension == 'pdf'" class="lazyload">
+              <i class="fas fa-file-pdf fa-5x text-center text-danger"></i>
         </div>
     </div>
   </div>
     <!-- More Photo Modal -->
-    <div class="modal fade" id="event_photo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="event_document" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body" v-if="modal_status">
-                    <div id="photo" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item animated fadeIn duration-1s" v-for="(photo,index) in photos" :class="{ active: index==active }">
-                                <div style="height:55vh" class="slide lazyload" :data-bgset="'/storage/Event/Photos/'+photo.path"></div>
+                    <div id="document" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">)
+                            <div class="carousel-item animated fadeIn duration-1s" v-for="(document,index) in documents" :class="{ active: index==active }">
+                                <div v-if="document.extension == 'image'" style="height:55vh" class="slide lazyload" :data-bgset="'/storage/Job/Documents/'+document.thumb"></div>
+                                <div v-if="document.extension == 'docx'" style="height:55vh" class="slide lazyload">
+                                  <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div v-if="document.extension === 'pdf'" style="height:55vh" class="slide lazyload">
+                                  asd
+                                  <i class="fas fa-file-pdf fa-3x"></i>
+                                </div>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#photo" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#document" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#photo" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#document" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -47,7 +62,7 @@
     </div>
 
 <!-- Photo upload modal -->
-    <div class="modal fade" id="upload_photos_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="upload_documents_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -76,8 +91,8 @@
                     <p>Drag your images here</p>
                     <div>OR</div>
                     <div class="file-input">
-                        <label for="rent_room_photo">Select a file</label>
-                        <input type="file"  id="rent_room_photo" @change="onInputChange" multiple>
+                        <label for="rent_room_document">Select a file</label>
+                        <input type="file"  id="rent_room_document" @change="onInputChange" multiple>
                     </div>
                 </div>
 
@@ -101,12 +116,13 @@
 </template>
  
 <script>
+import Photo from './Photo';
   export default {
     props:['job_id'],
     data() {
       return {
           id:this.job_id,
-          photos:{},
+          documents:{},
         modal_status: false, //modal status
         active:0,
         // Image Upload datas
@@ -121,20 +137,20 @@
     },
     // Methods
     methods:{
-        load_photo(){
-            axios.get('/api/job_apply/'+this.id+'/applicant')
+        load_document(){
+            axios.get(`/api/job/${this.id}/documents`)
             .then(response=>{
                 // data
-                this.photos = response.data;
+                this.documents = response.data;
                 // length
-                this.total_photos = response.data.length;
+                this.total_documents = response.data.length;
             })
         },
       /**
        * Photo click
        * Function
        *  */ 
-      photo_view(index){
+      document_view(index){
             this.modal_status = true;
             // active class
             this.active = index;   
@@ -145,7 +161,7 @@
       remove(id,index){
         let confirmBox = confirm('Are you sure want to Delete!!!');
         if(confirmBox == true){
-          axios.delete('/api/event_photo/'+id,{
+          axios.delete('/api/job_document/'+id,{
             headers : { Authorization : localStorage.getItem("token")}
           })
           .then(response=>{
@@ -154,13 +170,13 @@
                 icon:'success',
                 title:'Deleted Successfully',
             });
-            this.$delete(this.photos,index);
+            this.$delete(this.documents,index);
           })
         }
       },
       // Menu modal
-      upload_photos_modal(){
-            $("#upload_photos_modal").modal("show");           
+      upload_documents_modal(){
+            $("#upload_documents_modal").modal("show");           
       },
       /**
        * Image Upload 
@@ -194,7 +210,7 @@
                   Array.from(this.valid_image).forEach(file => this.addImage(file));
                   
               }else{
-                alert("select less than 5 photos");
+                alert("select less than 5 documents");
               }
         },
         onDrop(e) {
@@ -247,7 +263,7 @@
                 formData.append('id',id);
             });
             // Progress
-            axios.post('/api/event_photo', formData,{
+            axios.post('/api/job_document', formData,{
               headers : { Authorization : localStorage.getItem("token")}
             })
               .then(response => {
@@ -259,9 +275,9 @@
                   this.images = [];
                   this.files = [];
                   this.valid_image = [];
-                  $("#upload_photos_modal").modal("hide"); 
+                  $("#upload_documents_modal").modal("hide"); 
                 //  loading
-                this.load_photo();
+                this.load_document();
                 // Progress finish
                 this.$Progress.finish();
               })
@@ -274,9 +290,10 @@
         }
         
     },
+    components:{Photo},
     // mounted
     mounted(){
-        this.load_photo();
+        this.load_document();
     }
   };
 </script> 

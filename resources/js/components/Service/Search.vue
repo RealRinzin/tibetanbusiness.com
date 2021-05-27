@@ -76,7 +76,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(service,index) in services">
                                         <a v-bind:href="'/service/'+service.id">
-                                            <div class="banner lazyload" :data-bgset="'/storage/Service/Banner/'+service.card"  data-sizes="auto">
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Service/Banner/${service.card})`}'>
                                                 <ul>
                                                     <li class="font-weight-bold btn btn-danger btn-md small">{{service.type}}</li>
                                                 </ul>
@@ -148,7 +148,7 @@
                 filter:{
                     name:'',
                     location:this.location,
-                    rate:'',
+                    rate:0,
                     type:'',
                 },
                 // loading
@@ -246,6 +246,9 @@
                 if(screen.width < 767){
                     $("#search_collapse").removeClass("show");
                 }
+                // if(this.filter.rate == 0){
+                //     this.filter.rate = ''
+                // }
                 // 
                 this.nextPage = 2;
                 axios.get('/api/search/services?name='+this.filter.name+
@@ -339,7 +342,7 @@
                 this.filter ={
                     name:'',
                     location:'',
-                    rate:'',
+                    rate:0,
                     type:'',
                 };
                 if(screen.width < 767){
@@ -364,11 +367,7 @@
         // Mounted
         mounted(){
             this.load_result();
-            // locations api
-            axios.get('/api/location')
-            .then(response => {
-                this.locations = response.data;
-            })
+
             // Profession
             axios.get('/api/service-categories')
             .then(response=>{

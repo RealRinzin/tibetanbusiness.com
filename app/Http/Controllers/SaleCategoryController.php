@@ -38,6 +38,9 @@ class SaleCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $job = SaleCategory::create([
+            'name' => $request->name
+        ]);
     }
 
     /**

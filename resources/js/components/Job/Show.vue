@@ -152,6 +152,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Documents -->
+                                <Document :file="job.job_document" v-if="job.job_document.length > 0"/>
                                 <!-- Info -->
                                 <div class="card py-3">
                                     <div class="row p-3">
@@ -199,8 +201,9 @@ import JobSidebar from '../Sidebar/job.vue';
 import RentSidebar from '../Sidebar/rent.vue';
 import RestaurantSidebar from '../Sidebar/restaurant.vue';
 import ServiceSidebar from '../Sidebar/service.vue';
-import Apply from './Apply.vue';
+import Document from './Document';
 import PopupAd from '../PopupAd/Job';
+
 export default {
     props:['job_id'],
     data(){
@@ -225,6 +228,7 @@ export default {
             this.isLoading = true;
             axios.get('/api/job/view/'+this.id)
             .then(response=>{
+
                 this.job = response.data.data;
                 this.isLoading = false;
                 this.loading = true;
@@ -236,13 +240,13 @@ export default {
                         this.user_id = response.data.user.id;
                         // Check if user
                         // Applied this Job
-                        for (let index = 0; index < this.job.job_applied.length; index++) {
-                            if(this.job.job_applied[index].user_id == this.user_id){
-                                this.applied = true;
-                                this.applied_id = this.job.job_applied[index].id
-                                break;
-                            }
-                        }
+                        // for (let index = 0; index < this.job.job_applied.length; index++) {
+                        //     if(this.job.job_applied[index].user_id == this.user_id){
+                        //         this.applied = true;
+                        //         this.applied_id = this.job.job_applied[index].id
+                        //         break;
+                        //     }
+                        // }
                         // Check If user
                         // User is interested
                         for (let y = 0; y < this.job.job_interested.length; y++) {
@@ -293,7 +297,7 @@ export default {
      * 
      * Components
      *  */  
-    components:{Loading,Apply,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
+    components:{Loading,Document,SaleSidebar,EventSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar,PopupAd},
     mounted(){
         this.load_job();
     }

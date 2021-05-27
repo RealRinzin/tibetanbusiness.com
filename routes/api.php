@@ -73,7 +73,7 @@ use Illuminate\Http\Request;
         Route::patch('job/status_update/{id}', 'Job\JobBasicInfoController@status_update');
         Route::get('job/individual/{id}', 'Job\JobBasicInfoController@show_individual');
         Route::patch('job/banner_update/{id}', 'Job\JobBasicInfoController@banner_update');
-        // Route::get('job_apply/{job_basic_info}/applicant', 'Job\JobApplyController@applicant');
+        Route::post('job_documents/file', 'Job\JobDocumentController@file');
    
         // Event API
         /**
@@ -163,7 +163,6 @@ use Illuminate\Http\Request;
     Route::get('rent/{rent_comment}/reply', 'Rent\RentCommentReplyController@reply');
     Route::get('rent_comment_replies/{id}', 'Rent\RentCommentReplyController@show');
     Route::get('rent/list/max_fare', 'Rent\RentBasicInfoController@max_fare');
-    Route::get('rent/list/min_fare', 'Rent\RentBasicInfoController@min_fare');
     Route::get('rent/list/sidebar/{location}', 'Rent\RentBasicInfoController@sidebar');
 
 
@@ -177,6 +176,7 @@ use Illuminate\Http\Request;
 
     Route::get('job/list/all', 'Job\JobBasicInfoController@all');
     Route::get('job/{job_basic_info}/questions', 'Job\JobQuestionController@question');
+    Route::get('job/{job_basic_info}/documents', 'Job\JobDocumentController@document');
     // Route::get('job/{job_question}/replies', 'Job\JobQuestionController@replies');
     Route::get('job/view/{id}', 'Job\JobBasicInfoController@display');
     Route::get('job/list/featured_ad', 'Job\JobBasicInfoController@featured_ad');
@@ -201,7 +201,9 @@ use Illuminate\Http\Request;
     Route::get('event/{event_review}/reply', 'Event\EventReviewReplyController@reply');
     Route::get('event_review_replies/{id}', 'Event\EventReviewReplyController@show');
     Route::get('event/list/sidebar/{location}', 'Event\EventBasicInfoController@sidebar');
-
+    Route::get('event/list/max_fee', 'Event\EventBasicInfoController@max_fee');
+    Route::get('event/list/max_date', 'Event\EventBasicInfoController@max_date');
+    
     /**
      * SALE API 
      * Custom 
@@ -214,6 +216,7 @@ use Illuminate\Http\Request;
     Route::get('sale/{sale_basic_info}/photos', 'Sale\SalePhotoController@photo');
     Route::get('sale/view/{id}', 'Sale\SaleBasicInfoController@display');
     Route::get('sale/list/sidebar/{location}', 'Sale\SaleBasicInfoController@sidebar');
+    Route::get('sale/list/max_price', 'Sale\SaleBasicInfoController@max_price');
 
     /**
      * SERVICE API 
@@ -244,12 +247,13 @@ use Illuminate\Http\Request;
     Route::get('search/events/', 'Event\EventBasicInfoController@search');
 
 // Landing Carousel
-Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['store','show','edit', 'destroy','update','create']]);
+Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['show','edit','update','create']]);
 // Occupations
 Route::apiResource('occupations', 'OccupationController', ['except' => ['store','edit', 'destroy','update','create']]);
-Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
-Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['store','show','edit', 'destroy','update','create']]);
-Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['store', 'show', 'edit', 'destroy', 'update', 'create']]);
+Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['show','edit','create']]);
+Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['show','edit','create']]);
+Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['show', 'edit', 'create']]);
+Route::get('map', 'OccupationController@map');
 // PopUp API
 Route::get('event/list/popup_ad', 'Event\EventBasicInfoController@popup_ad');
 Route::get('job/list/popup_ad', 'Job\JobBasicInfoController@popup_ad');

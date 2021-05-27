@@ -125,7 +125,7 @@ export default {
              *  */ 
             review:{
                 rent_basic_info_id:this.rent_uuid,
-                rate:'',
+                rate:0,
                 comment:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),

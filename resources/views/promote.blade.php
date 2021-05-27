@@ -3,14 +3,15 @@
 <div style="min-height:100vh" class="bg-white">
     <h3 class="pt-5 text-center">Advertise on Tibetanbusiness.com</h3>
     <section class="bg-light">
-        <div class="container py-4">
+        <div class="container py-2">
             <div class="row">
-                <div class="col-8 mx-auto py-3">
+                <div class="col-8 mx-auto py-2">
                     <blockquote class="blockquote py-1">
                         <p class="mb-0">
                             “Doing business without advertising is like winking at a girl in the dark. You know what you are doing but nobody else does.”
                         </p>
                         <p class="blockquote-footer"> Steuart Henderson Britt <cite title="Source Title"></cite></footer>
+                        <p class="blockquote-footer"> Contact Us : support@tibetanbusiness.com <cite title="Source Title"></cite></footer>
                     </blockquote>
                     <div class="row">
                         <div class="col-md-6" data-aos="fade-up" data-aos-offset="2" data-aos-delay="50" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-mirror="true" data-aos-once="false" data-aos-anchor-placement="top-center"><img src="{{ asset('img/Featured-Ad.jpg') }}" alt="" class="w-100 rounded"></div>

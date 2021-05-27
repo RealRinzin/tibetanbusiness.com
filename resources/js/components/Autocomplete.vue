@@ -18,8 +18,6 @@
                       <input type="text" autocomplete="off" id="search_places"  class="form-control w-25" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                   </div>
                   <ul class="w-100" id="myMap_location_dropdown" style="position: absolute;z-index:100">
-                    <!-- {{places}} -->
-                    <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
                     <li style="list-style:none;cursor:pointer;"   class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 5">
                         <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
                         <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
@@ -40,7 +38,7 @@
                           <button type="button" id="service_close" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                           </button>
-                          <li style="list-style:none;cursor:pointer" class="py-2 text-dark border-bottom bg-light" v-for="type in types" :value="type.name" @click="set_service(type.name)"><a href="#"><span class="mr-2"><img :src="type.img"></span>{{type.name}}</a></li>
+                          <li style="list-style:none;cursor:pointer" class="py-2 text-dark border-bottom bg-light" v-for="type in types" :value="type.name" @click="set_service(type.name)"><a href="#"><span class="mr-2"><img :src="type.img" alt="Tibetanbusiness.com - Images" width="25px" height="25px"></span>{{type.name}}</a></li>
                       </ul>
               </div>
               <!-- Search Button -->
@@ -149,7 +147,6 @@ export default {
     load_carousel(){
         axios.get('/api/carousel')
         .then((response) => {
-          console.log(response);
           this.hero_image = response.data[0].photo;
         })
     },

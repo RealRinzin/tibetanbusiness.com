@@ -429,9 +429,11 @@ class RestaurantBasicInfoController extends Controller
     }
     // Search Query
     public function search(Request $request){
-
+        if ($request->rate == "0") {
+            $request->rate = '';
+        }
         $restaurants =  RestaurantBasicInfo::where('name', 'like', "$request->name%")
-            ->where('location','like',"%$request->location%")
+            ->where('location','like',"$request->location%")
             -> where('rate', 'like', "$request->rate%")
             ->where('status','=','1')
             ->orderBy('created_at', 'desc')->paginate('10');

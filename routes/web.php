@@ -77,9 +77,10 @@ Route::group(['middleware' => ['auth']], function () {
             return view('dashboard.service.index');
         })->name('dashboard.service');
         Route::get('service/edit/id={id}', 'Service\ServiceBasicInfoController@service_edit');
-
-
-
+        // Add Categories
+        Route::get('add-categories', function () {
+            return view('category');
+        });
     });
     // Route::get('user/restaurants','Restaurant\RestaurantBasicInfoController@user_restaurant');
 });

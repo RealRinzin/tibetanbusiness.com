@@ -346,11 +346,6 @@ class RentBasicInfoController extends Controller
         $max = RentBasicInfo::where('status','=',true)->max('fare');
         return $max;
     }
-    public function min_fare()
-    {
-        $min = RentBasicInfo::where('status', '=', true)->min('fare');
-        return $min;
-    }
     public function all(){
     $rents =  RentBasicInfo::where('status', '=', true)
         ->orderBy('created_at', 'desc')
@@ -412,6 +407,9 @@ class RentBasicInfoController extends Controller
     // Search Query
     public function search(Request $request)
     {
+        if ($request->rate == "0") {
+            $request->rate = '';
+        }
         // return $request;
         $rents =  RentBasicInfo::where('name', 'like', "$request->name%")
         ->where('location', 'like', "$request->location%")

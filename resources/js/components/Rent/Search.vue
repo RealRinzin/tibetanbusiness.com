@@ -23,7 +23,6 @@
                                             </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                                <!-- <small for="" class="text-muted">Size</small> -->
                                                 <input type="number" v-model="filter.accomodation_size" class="form-control" min="1" placeholder="Accomodation Size">
                                             </div>
                                         </div>
@@ -75,16 +74,17 @@
                             </div>
                             <div v-else>
                                 <div class="row" id="result">
+                                    <div>
+                                    </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(rent,index) in rents">
                                         <a v-bind:href="'/rent/'+rent.id">
-                                        <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
-                                        <div class="banner lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
-                                            <ul>
-                                                <li class="ng-binding btn btn-danger btn-md small">Rent:₹{{rent.fare}}/-</li>
-                                                <li class="ng-binding btn btn-danger btn-md small">Size: {{rent.accomodation_size}} Person</li>
-                                            </ul>
-                                        </div>
-                                        <div class="rate" v-if="rent.rate > 0.0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'>
+                                                <ul>
+                                                    <li class="ng-binding btn btn-danger btn-md small">Rent:₹{{rent.fare}}/-</li>
+                                                    <li class="ng-binding btn btn-danger btn-md small">Size: {{rent.accomodation_size}} Person</li>
+                                                </ul>
+                                            </div>
+                                            <div class="rate" v-if="rent.rate > 0.0"><span v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</span></div>
                                         </a>
                                         <div class="card px-2">
                                             <h6 class="text-dark pt-3">{{rent.name}}</h6>
@@ -135,7 +135,6 @@
         // Data
         data(){
             return{
-                max:50000,
                 // min:'',
                 loading_placeholder:true,
                 load_more_button : false,
@@ -155,9 +154,9 @@
                 filter:{
                     name:'',
                     location:this.location,
-                    rate:'',
+                    rate:0,
                     fare_min:0,
-                    fare_max:90000,
+                    fare_max:0,
                     accomodation_size:'',
                 },
                 // loading
@@ -169,7 +168,7 @@
                 // Max and Min
                 search_location:'',
                 fare_max:{},
-                fare:'',
+                fare:0,
             }
         },
         /**
@@ -203,21 +202,9 @@
                 this.filter.location = location;
                 this.places = {};
             },
-            load_fares(){
-            // // maximum price
-                axios.get('/api/rent/list/max_fare').then(response=>{
-                    this.fare = response.data;
-                    // console.log(this.fare);
-                })
-            //     // minimum Price
-            //     axios.get('/api/rent/list/min_fare')
-            //     .then(response=>{
-            //         // console.log(response.data);
-            //     })
-            },
+
             // loading
             load_result(){
-                console.log(this.fare);
                 // location set
                 if(this.location == null){
                     this.filter.location = ""
@@ -225,51 +212,58 @@
                 this.search_location = this.filter.location;
                 // Slider Range
                 $( function() {
+                    axios.get('/api/rent/list/max_fare').then(response=>{
+                    const max_fare = response.data;;
                     // Range setting
                     $( "#slider-range" ).slider({
                     range: true,
                     min: 0,
-                    max:90000,
-                    values: [0, 90000 ],
+                    max:max_fare,
+                    values: [0, max_fare ],
                     slide: function( event, ui ) {
                         $( "#fare" ).val( +ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+                        console.log(ui.values);
                     }
                     });
                     $( "#fare" ).val( + $( "#slider-range" ).slider( "values", 0 ) +
                     " - " + $( "#slider-range" ).slider( "values", 1 ) );
-                } );
+                    })
 
+                } );
+                // Loading the Maximum Fare
+                axios.get('/api/rent/list/max_fare').then(response=>{
+                    this.fare = response.data;
                 // End Range
-                // axios.get('/api/search/rents')
-                axios.get('/api/search/rents?fare_min=0&fare_max=5000000&location='+this.filter.location)
-                .then(response=>{ 
-                    this.rents = response.data.data;
-                    this.loading_placeholder = false,
-                    this.total = response.data.total;
-                    // Load more button
-                    if(response.data.total == 0){
-                        this.empty_result="We don't found the search item";
-                    }
-                    // if response it there
-                    if (response.data.current_page == response.data.last_page) {
-                        this.load_more_button = false;
-                    }else{
-                        this.load_more_button = true;
-                    }
-                    // rating values
-                    for (let index = 0; index < this.rents.length; index++) {
-                        if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
-                            this.rents[index].rate_color = 'btn-danger';
-                        }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
-                            this.rents[index].rate_color = 'btn-warning';
-                        }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
-                            this.rents[index].rate_color = 'btn-info';
-                        }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
-                            this.rents[index].rate_color = 'btn-success';
-                        }else{
-                            this.rents[index].rate_color = 'btn-secondary';
+                    axios.get(`/api/search/rents?fare_min=0&fare_max=${this.fare}&location=${this.filter.location}`)
+                    .then(response=>{ 
+                        this.rents = response.data.data;
+                        this.loading_placeholder = false,
+                        this.total = response.data.total;
+                        // Load more button
+                        if(response.data.total == 0){
+                            this.empty_result="We don't found the search item";
                         }
-                    }
+                        // if response it there
+                        if (response.data.current_page == response.data.last_page) {
+                            this.load_more_button = false;
+                        }else{
+                            this.load_more_button = true;
+                        }
+                        // rating values
+                        for (let index = 0; index < this.rents.length; index++) {
+                            if(this.rents[index].rate >= 0.0 && this.rents[index].rate <= 1.0){
+                                this.rents[index].rate_color = 'btn-danger';
+                            }else if(this.rents[index].rate >= 1.1 && this.rents[index].rate <= 2.0 ){
+                                this.rents[index].rate_color = 'btn-warning';
+                            }else if(this.rents[index].rate >= 2.1 && this.rents[index].rate <= 3.0 ){
+                                this.rents[index].rate_color = 'btn-info';
+                            }else if(this.rents[index].rate >= 3.1 && this.rents[index].rate <= 5.0 ){
+                                this.rents[index].rate_color = 'btn-success';
+                            }else{
+                                this.rents[index].rate_color = 'btn-secondary';
+                            }
+                        }
+                    })
                 })
             },
             // search result
@@ -295,7 +289,11 @@
                 '&accomodation_size='+this.filter.accomodation_size+
                 '&page=1')
                 .then((response)=>{ 
-                    this.rents = response.data.data;
+                    // this.rents = response.data.data;
+                        this.rents = [
+                            // ...this.rents,
+                            ...response.data.data
+                        ]; 
                     this.total = response.data.total;
                     this.isLoading = false; //Loading true
                     // check for empty result
@@ -384,9 +382,9 @@
                 this.filter = {
                     name:'',
                     location:'',
-                    rate:'',
+                    rate:0,
                     fare_min:0,
-                    fare_max:5000000,
+                    fare_max:0,
                     accomodation_size:'',
                 };
                 // Desktop size
@@ -397,28 +395,7 @@
                 this.load_result();
             },
         },
-        // Computed
-       computed:{
-            fare:{
-                get:function(){
-                    // axios.get('/api/rent/list/max_fare').then(response=>{
-                    //     this.fare = response.data;
-                    // })
-                    return fare;
-                },
-                set:function(val){
-                    return val;
-                }
-            },
-        },
-        watch:{
-            fare:function (value) {
-                axios.get('/api/rent/list/max_fare').then(response=>{
-                    return response.data;
-                })
-                
-            }
-        },
+
         // 
         // Components
         components:{Loading,SaleSidebar,JobSidebar,EventSidebar,RestaurantSidebar,ServiceSidebar},

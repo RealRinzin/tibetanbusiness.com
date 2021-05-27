@@ -38,6 +38,9 @@ class EventCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $job = EventCategory::create([
+            'name' => $request->name
+        ]);
     }
 
     /**

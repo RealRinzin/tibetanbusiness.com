@@ -129,7 +129,7 @@ export default {
             // Post comment
             review:{
                 restaurant_basic_info_id:this.restaurant,
-                rate:'',
+                rate:0,
                 comment:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),

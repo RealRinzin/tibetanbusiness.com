@@ -93,7 +93,8 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(event,index) in events">
                                         <a v-bind:href="'/event/'+event.id">
-                                        <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.card"  data-sizes="auto">
+                                            <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Event/Banner/${event.banner})`}'>
+
                                             <ul>
                                                 <li class="btn btn-danger btn-md small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
                                                 <li class="btn small btn-success btn-md " v-else>Free Entry</span></li>
@@ -171,11 +172,12 @@
                     category:'',
                     entry_status:false,
                     fee_min:0,
-                    fee_max:10000000,
+                    fee_max:0,
                     from:'',
-                    to:'2025-12-22',
+                    to:'',
                     entry_free:'',
                 },
+                max_date:'',
                 // loading
                 isLoading : false,//Lazy loading
                 // lazy:false,
@@ -218,10 +220,8 @@
                     this.places ={};
                 }else{
                     if(this.filter.location.length > 2){
-                    // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.filter.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
                     axios.get("/api/map?query="+location)
                     .then(response=>{
-                        // this.places =  response.data.features;
                         this.locations = JSON.parse(response.data.data);
                         this.places = this.locations.suggestedLocations;
                     }) 
@@ -230,6 +230,7 @@
             },
             // loading
             load_result(){
+                
                 if(this.location == null){
                     this.filter.location = ""
                 };
@@ -239,45 +240,61 @@
                 this.search_location = this.filter.location;
                 // Slider Range
                 $( function() {
-                    $( "#slider-range" ).slider({
-                    range: true,
-                    min: 0,
-                    max: 100000,
-                    values: [ 0, 100000],
-                    slide: function( event, ui ) {
-                        $( "#entry_fee" ).val(+ui.values[0]+"-"+ui.values[ 1 ] );
-                    }
-                    });
-                    $( "#entry_fee" ).val( +$("#slider-range" ).slider( "values", 0 )+
-                    "-"+$("#slider-range").slider( "values", 1 ) );
-                } );
-                // Get the result
-                axios.get('/api/search/events?from='
-                +this.filter.from+
-                '&to='+this.filter.to+
-                '&fee_min='+this.filter.fee_min+
-                '&fee_max='+this.filter.fee_max+
-                '&entry_free='+this.filter.entry_status+
-                '&location='+this.filter.location
-                )
-                .then(response=>{ 
-                    this.events = response.data.data;
-                    this.loading_placeholder = false,
-                    this.total = response.data.meta.total;
-                    // Load more button
-                    if(response.data.total == 0){
-                        this.empty_result="We don't found the search item";
-                    }
-                    // if response it there
-                    if (response.data.meta.current_page == response.data.meta.last_page) {
-                        this.load_more_button = false;
-                    }else{
-                        this.load_more_button = true;
-                    }
+                    axios.get('/api/event/list/max_fee').then(response=>{
+                        const max_fee = response.data;
+                        $( "#slider-range" ).slider({
+                        range: true,
+                        min: 0,
+                        max: max_fee,
+                        values: [ 0, max_fee],
+                        slide: function( event, ui ) {
+                            $( "#entry_fee" ).val(+ui.values[0]+"-"+ui.values[ 1 ] );
+                        }
+                        });
+                        $( "#entry_fee" ).val( +$("#slider-range" ).slider( "values", 0 )+
+                        "-"+$("#slider-range").slider( "values", 1 ) );
+                    })
+                });
+                axios.get('/api/event/list/max_date')
+                .then(response => {
+                    this.filter.to = response.data;
                 })
+                // loading
+                axios.get('/api/event/list/max_fee').then(response=>{
+                    const max_fee = response.data;
+                    // Get the result
+                    axios.get('/api/search/events?from='
+                    +this.filter.from+
+                    '&to='+this.filter.to+
+                    '&fee_min='+this.filter.fee_min+
+                    '&fee_max='+max_fee+
+                    '&entry_free='+this.filter.entry_status+
+                    '&location='+this.filter.location
+                    )
+                    .then(response=>{ 
+                        this.events = response.data.data;
+                        this.loading_placeholder = false,
+                        this.total = response.data.meta.total;
+                        // Load more button
+                        if(response.data.total == 0){
+                            this.empty_result="We don't found the search item";
+                        }
+                        // if response it there
+                        if (response.data.meta.current_page == response.data.meta.last_page) {
+                            this.load_more_button = false;
+                        }else{
+                            this.load_more_button = true;
+                        }
+                    })
+                })
+
             },
             // search result
             search_result(){
+                axios.get('/api/event/list/max_date')
+                .then(response => {
+                    this.filter.to = response.data;
+                })
                 this.search_location = this.filter.location;
                 // Desktop
                 if(screen.width < 767){
@@ -322,6 +339,10 @@
             // load more button
             
             load_more(nextPage){
+             axios.get('/api/event/list/max_date')
+                .then(response => {
+                    this.filter.to = response.data;
+                })
                     // this.loading = false;
                 this.isLoading = true; //Loading true
                 axios.get('/api/search/events?name='+this.filter.name+
@@ -361,28 +382,33 @@
             },
             // Reset the search form
             reset(){
-                let today = new Date();
-                let from = format(new Date(today), 'yyyy-MM-dd');
-                this.status = true;
-                // Reset
-                this.empty_result='';
-                // filter paramater
-                this.filter = {
-                    name:'',
-                    location:'',
-                    category:'',
-                    entry_status:false,
-                    fee_min:0,
-                    fee_max:1000000,
-                    from:from,
-                    to:'2022-10-20'
-                };
-                // Desktop
-                if(screen.width < 767){
-                    $("#search_collapse").removeClass("show");
-                }
-                this.search_location = '';
-                this.load_result();
+                // Extract date
+                axios.get('/api/event/list/max_date')
+                .then(response => {
+                    this.max_date = response.data;
+                    let today = new Date();
+                    let from = format(new Date(today), 'yyyy-MM-dd');
+                    this.status = true;
+                    // Reset
+                    this.empty_result='';
+                    // filter paramater
+                    this.filter = {
+                        name:'',
+                        location:'',
+                        category:'',
+                        entry_status:false,
+                        fee_min:0,
+                        fee_max:0,
+                        from:from,
+                        to:this.max_date
+                    };
+                    // Desktop
+                    if(screen.width < 767){
+                        $("#search_collapse").removeClass("show");
+                    }
+                    this.search_location = '';
+                    this.load_result();
+                })
             },
             /**
              * Set Location
@@ -405,16 +431,6 @@
             },
 
         },
-        computed:{
-            min:{
-                get:function(){
-                    return 34 + 56
-                },
-                set:function() {
-                    return 34+45
-                }
-            },
-        },
         // Components
         components:{Loading,SaleSidebar,JobSidebar,RentSidebar,RestaurantSidebar,ServiceSidebar},
         /**
@@ -428,8 +444,12 @@
         // Mounted
         mounted(){
             this.load_result();
+             axios.get('/api/event/list/max_date')
+                .then(response => {
+                    this.filter.to = response.data;
+                })
             // Profession
-        axios.get('/api/event-categories')
+            axios.get('/api/event-categories')
             .then(response=>{
                 this.categories = response.data;
             })

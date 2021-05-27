@@ -18,17 +18,6 @@ class ServiceCategoryController extends Controller
         $categories =  ServiceCategory::orderBy('name', 'asc')->get();
         return $categories->toArray($categories);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -38,29 +27,12 @@ class ServiceCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $job = ServiceCategory::create([
+            'name' => $request->name
+        ]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServiceCategory $serviceCategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ServiceCategory $serviceCategory)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

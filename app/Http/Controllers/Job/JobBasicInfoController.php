@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Job;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Job\JobApplyResource;
 use App\Http\Resources\Job\JobBasicInfoResource;
 use App\Http\Resources\Job\JobBasicInfoResourceCollection;
-use App\Job\JobApply;
+use App\Job\JobDocument;
 use App\Job\JobBasicInfo;
 use Illuminate\Support\Facades\Auth;
 use MetaTag;
@@ -16,7 +15,7 @@ use Mockery\Undefined;
 class JobBasicInfoController extends Controller
 {
     protected $path = '../public/storage/Job/Banner/';
-    protected $document= '../public/storage/Job/';
+    protected $document= '../public/storage/Job/Documents/';
    /**
      * Store a newly created resource in storage.
      *
@@ -106,7 +105,8 @@ class JobBasicInfoController extends Controller
             'instagram' => $request->instagram,
             'website' => $request->website,
         ]);
-        return $job;
+        // Route::redirect('/announcement/4edcc2ddb25b4ccdbf5d532a6124de5c');
+
     }
 
     /**
@@ -131,6 +131,7 @@ class JobBasicInfoController extends Controller
         //
         $job = JobBasicInfo::find($id);
         $job->update($request->all());
+
     }
 
     /**
@@ -149,18 +150,24 @@ class JobBasicInfoController extends Controller
         unlink($unlink);
         unlink($unlink_card);
         unlink($unlink_thumb);
-        // Photos Delete
-        $documents = JobApply::where('job_basic_info_id', $id)->get();
+        // Documents Delete
+        $documents = JobDocument::where('job_basic_info_id', $id)->get();
         for ($i = 0; $i < $documents->count(); $i++) {
             $documents[$i]->delete();
-            $documents_detach = $this->document. $documents[$i]->document;
+            $documents_detach = $this->document. $documents[$i]->path;
+            if($documents[$i]->thumb != ''){
+                $thumb = $this->document. $documents[$i]->thumb;
+                unlink($thumb);
+
+            }
             unlink($documents_detach);
         }
         // Delete
         $job->delete();
         $job->job_interests()->delete();
+        $job->job_documents()->delete();
         $job->job_questions()->delete();
-        $job->job_applies()->delete();
+        // $job->job_applies()->delete();
     }
     /**
      * Get all Rent 
@@ -372,7 +379,7 @@ class JobBasicInfoController extends Controller
                 ->where('profession', 'like', "$request->profession%")
                 ->where('nature', 'like', "$request->nature%")
                 ->where('experience', 'like', "$request->experience%")
-                ->whereBetween('salary', [$request->salary_min, $request->salary_max])
+                // ->whereBetween('salary', [$request->salary_min, $request->salary_max])
                 // ->where('types', 'like', "$request->types%")
                 // ->where('course_name', 'like', "$request->course_name%")
                 // ->where('duration', 'like', "$request->duration%")

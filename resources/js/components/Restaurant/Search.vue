@@ -65,7 +65,7 @@
                                 <div class="row" id="result">
                                     <div class="col-md-12 col-sm-12 col-xs-12 my-2" v-for="(restaurant,index) in restaurants">
                                         <a v-bind:href="'/restaurant/'+restaurant.id">
-                                            <div class="banner lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto"></div>
+                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Restaurant/Banner/${restaurant.card})`}'></div>
                                         <div class="rate" v-if="restaurant.rate > 0.0">
                                             <button class="btn btn-sm small" v-bind:class="restaurant.rate_color">
                                             <i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}
@@ -137,7 +137,7 @@
                 filter:{
                     name:'',
                     location:this.location,
-                    rate:'',
+                    rate:0,
                 },
                 // loading
                 isLoading : false,//Lazy loading
@@ -225,8 +225,8 @@
                 this.loading = false;
                 this.nextPage = 2;
                 axios.get('/api/search/restaurants?name='+
-                this.filter.name+'&location='+
-                this.filter.location+
+                this.filter.name+
+                '&location='+this.filter.location+
                 '&rate='+this.filter.rate+
                 '&page=1')
                 .then((response)=>{ 
@@ -317,7 +317,7 @@
                 this.filter = {
                     name:'',
                     location:'',
-                    rate:'',
+                    rate:0,
                 };
                 // Desktop resize
                 if(screen.width < 767){

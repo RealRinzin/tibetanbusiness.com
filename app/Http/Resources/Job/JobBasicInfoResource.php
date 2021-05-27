@@ -53,7 +53,8 @@ class JobBasicInfoResource extends JsonResource
             'interested' => $this->job_interests->count(),
             // counting the review stars
             'job_interested' => JobInterestResource::collection($this->job_interests),
-            'job_applied' => JobApplyResource::collection($this->job_applies),
+            // 'job_applied' => JobApplyResource::collection($this->job_applies),
+            'job_document' => JobDocumentResource::collection($this->job_documents),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

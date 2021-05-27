@@ -3,11 +3,12 @@
 namespace App\Job;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 use Webpatser\Uuid\Uuid;
 
 class JobDocument extends Model
 {
-    //
+
     //Rent connection
     protected $connection = 'job';
     // Increment
