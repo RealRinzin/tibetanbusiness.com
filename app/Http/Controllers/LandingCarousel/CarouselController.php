@@ -19,8 +19,7 @@ class CarouselController extends Controller
     public function index()
     {
         //
-        $carousels =  Carousel::orderBy('created_at', 'desc')
-        ->inRandomOrder()
+        $carousels =  Carousel::inRandomOrder()
         ->limit('1')
         ->get();
         return $carousels->toArray($carousels);
@@ -63,7 +62,8 @@ class CarouselController extends Controller
             $Original = \Image::make($request->c_name)->save($this->path . $name);
         }
         $jobDocument = Carousel::create([
-            'name' => $name
+            'name' => $name,
+            'photo' => $name
         ]);
     }
 

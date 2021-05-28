@@ -16,11 +16,11 @@ class LandingCarousels extends Migration
         //
         Schema::connection('other')->create('carousels', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('link');
-            $table->string('type');
-            $table->string('quote');
-            $table->string('name');
-            $table->string('photo');
+            $table->string('link')->nullable();
+            $table->string('type')->nullable();
+            $table->string('quote')->nullable();
+            $table->string('name')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

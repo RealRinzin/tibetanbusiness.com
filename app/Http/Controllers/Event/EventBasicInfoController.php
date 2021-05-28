@@ -387,7 +387,6 @@ class EventBasicInfoController extends Controller
         MetaTag::set('title', $request->location);
         MetaTag::set('description', $request->location .'Tibetanbusiness.com' );
         MetaTag::set('image', asset('/img/tibetanbusiness.com'));
-
         // return $request;
         $min = (int)$request->fee_min;
         $max = (int)$request->fee_max;
@@ -406,7 +405,7 @@ class EventBasicInfoController extends Controller
                 ->whereBetween('entry_fee', [$min, $max])
                 // ->Where('entry_free','=','')
                 ->where('start_date', '>=', date('Y-m-d'))
-                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('4'));
+                ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('10'));
         }else{
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
