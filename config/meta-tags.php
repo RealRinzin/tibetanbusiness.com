@@ -41,7 +41,7 @@ return array(
      */
 
     'open_graph' => [
-        'site_name' => 'demo.tibetanbusiness.com',
+        'site_name' => 'tibetanbusiness.com',
         'type' => 'website',
         // 'image' => 'solo.jpg'
     ],
@@ -56,7 +56,7 @@ return array(
     'twitter' => [
         'card' => 'website',
         'creator' => '@Rinzin',
-        'site' => '@demo.tibetanbusiness.com'
+        'site' => '@tibetanbusiness.com'
     ],
 
     /*

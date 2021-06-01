@@ -24,12 +24,9 @@
                                             </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
-                                               <input type="text" @focusin="job_profession_dropdown()" v-model="filter.profession" class="rounded form-control " readonly="readonly" placeholder="Profession" aria-label="Profession">
-                                                <ul id="job_profession_list" style="display:none;transition:1s;z-index:100" class="position-absolute rounded height border">
-                                                    <button type="button" @click="close"  class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <li v-for="profession in professions" :value="profession.name" @click="set_profession(profession.name)">{{profession.name}}</li>
+                                               <input type="text" @keyup="load_profession()" v-model="filter.profession" class="rounded form-control " placeholder="Profession" aria-label="Profession">
+                                                <ul id="job_profession_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
+                                                    <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="profession in professions" :value="profession.name" @click="set_profession(profession.name)">{{profession.name}}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-12 col-sm-12 py-1">
@@ -102,8 +99,7 @@
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
                                         <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                             <div class="position-absolute ml-2" style="bottom:10px" v-if="job.types == 1">
-                                                <button v-if="job.salary > 0" class="btn btn-danger btn-sm font-weight-bolder">Salary:₹ {{job.salary}}-/</button>
-                                                <button v-else class="btn btn-warning btn-sm font-weight-bolder">Salary: Not disclosed</button>
+                                                <button v-if="job.types == 1" class="btn btn-warning btn-sm font-weight-bolder">{{job.profession}}</button>
                                                 <button class="btn btn-danger btn-sm font-weight-bolder">{{job.nature}}</button>
                                                 <button class="btn btn-danger btn-sm font-weight-bolder">Exp: {{job.experience}}</button>
                                             </div>
@@ -213,6 +209,18 @@
          *  Methods
          *  */ 
         methods:{
+            // Loading profession list
+            load_profession(){
+                if(this.filter.profession == 0){
+                    this.professions = {}
+                }
+                if(this.filter.profession.length > 0){
+                axios.get(`/api/occupation/search?name=${this.filter.profession}`)
+                .then(response =>{
+                    this.professions = response.data.data;
+                    })
+                }
+            },
             // star
             setRating: function(rating){
             this.rating= rating;
@@ -233,13 +241,6 @@
                     }
                 }
             },
-            /**
-             * Set Location
-             *  */ 
-            set_location(location,city){
-                this.filter.location = location;
-                this.places = {};
-            },
             // loading
             load_result(){
                 if(this.location == null){
@@ -252,8 +253,6 @@
                         this.is_logged = true
                     }
                 })
-                // Get the result
-                // axios.get('/api/search/jobs?salary_min=0&salary_max=5000000&location='+this.filter.location)
                 axios.get('/api/search/jobs?location='+this.filter.location)
                 .then(response=>{ 
                     this.jobs = response.data.data;
@@ -364,25 +363,33 @@
             },
 
             close(){
-                $("#job_profession_list").css("display", "none");
+                // $("#job_profession_list").css("display", "none");
                 $("#job_experience_list").css("display", "none");
                 $("#job_nature_list").css("display", "none");
             },
+            /**
+             * Set Location
+             *  */ 
+            set_location(location,city){
+                this.filter.location = location;
+                this.places = {};
+            },
             // profession
-        job_profession_dropdown() {
-                $("#job_profession_list").css("display", "block");
+            job_profession_dropdown() {
+                // $("#job_profession_list").css("display", "block");
                 $("#job_experience_list").css("display", "none");
                 $("#job_nature_list").css("display", "none");
             },
             set_profession(profession){
                 this.filter.profession = profession;
-                $("#job_profession_list").css("display", "none");
+                this.professions = {}
+                // $("#job_profession_list").css("display", "none");
             },
             // profession
-        job_experience_dropdown() {
+            job_experience_dropdown() {
                 $("#job_experience_list").css("display", "block");
                 $("#job_location_list").css("display", "none");
-                $("#job_profession_list").css("display", "none");
+                // $("#job_profession_list").css("display", "none");
                 $("#job_nature_list").css("display", "none");
             },
             set_experience(experience){
@@ -393,12 +400,14 @@
             job_nature_dropdown(){
                 $("#job_nature_list").css("display", "block");
                 $("#job_experience_list").css("display", "none");
-                $("#job_profession_list").css("display", "none");
+                // $("#job_profession_list").css("display", "none");
             },
             set_nature(nature){
                 this.filter.nature = nature;
                 $("#job_nature_list").css("display", "none");
             }
+
+            // Loading profession
 
         },
         // Components
@@ -407,10 +416,10 @@
         mounted(){
             this.load_result();
                 // Profession
-                axios.get('/api/occupations')
-                .then(response=>{
-                    this.professions = response.data;
-                })
+                // axios.get('/api/occupations')
+                // // .then(response=>{
+                // //     this.professions = response.data;
+                // // })
         }
     }
 </script>

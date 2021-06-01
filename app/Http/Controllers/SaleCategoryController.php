@@ -20,16 +20,6 @@ class SaleCategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -88,5 +78,12 @@ class SaleCategoryController extends Controller
     public function destroy(SaleCategory $saleCategory)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $saleCategory = SaleCategory::where('name', 'like', "$request->name%")
+        ->orderBy('created_at', 'desc')->paginate('10');
+        return $saleCategory->toArray($saleCategory);
     }
 }

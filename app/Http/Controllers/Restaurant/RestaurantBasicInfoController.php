@@ -220,7 +220,7 @@ class RestaurantBasicInfoController extends Controller
         // Meta Description
         $meta = RestaurantBasicInfo::find($id);
         MetaTag::set('title', $meta->name);
-        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('description', $meta->location . ' ' . $meta->address . ' - ' . $meta->description);
         MetaTag::set('image', asset('storage/Restaurant/Banner/'.$meta->banner));
         // Meta Description End
         return view('restaurant.show', ['id' => RestaurantBasicInfo::find($id)]);

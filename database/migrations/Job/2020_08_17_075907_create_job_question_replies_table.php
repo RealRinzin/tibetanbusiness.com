@@ -18,7 +18,7 @@ class CreateJobQuestionRepliesTable extends Migration
             $table->uuid('user_id');
             $table->uuid('job_question_id');
             $table->string('rate_color', 20)->nullable();
-            $table->string('reply');
+            $table->text('reply',2000);
             $table->string('name');
             $table->string('avatar');
             $table->timestamps();

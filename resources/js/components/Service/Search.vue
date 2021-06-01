@@ -23,11 +23,9 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <input type="text" @focusin="service_category_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Category" aria-label="Service type">
-                                                        <ul id="service_category_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
-                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                    <!-- <input type="text" @focusin="service_category_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Category" aria-label="Service type"> -->
+                                                    <input type="text" @keyup="load_services()" v-model="filter.type" class="rounded form-control "  placeholder="Category" aria-label="Service type">
+                                                        <ul  class="w-100" id="service_category_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
                                                         <li v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
                                                     </ul>
                                                 </div>
@@ -172,6 +170,18 @@
             *  Methods
             *  */ 
         methods:{
+            // loading service list
+            load_services(){
+                if(this.filter.type == 0){
+                    this.categories = {}
+                }
+                if(this.filter.type.length > 0){
+                axios.get(`/api/service-categories/search?name=${this.filter.type}`)
+                .then(response =>{
+                    this.categories = response.data.data;
+                    })
+                }
+            },
             // star
             setRating: function(rating){
             this.rating= rating;
@@ -246,9 +256,6 @@
                 if(screen.width < 767){
                     $("#search_collapse").removeClass("show");
                 }
-                // if(this.filter.rate == 0){
-                //     this.filter.rate = ''
-                // }
                 // 
                 this.nextPage = 2;
                 axios.get('/api/search/services?name='+this.filter.name+
@@ -367,12 +374,6 @@
         // Mounted
         mounted(){
             this.load_result();
-
-            // Profession
-            axios.get('/api/service-categories')
-            .then(response=>{
-                this.categories = response.data;
-            })
         }
     }
 </script>

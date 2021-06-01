@@ -25,7 +25,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->string('address',250)->nullable();
             $table->double('longitude',5,2);
             $table->double('latitude',5,2);
-            $table->text('location',30);
+            $table->string('location',255);
             $table->string('mobile_no',12);
             $table->string('email',100)->nullable();
             $table->string('opening_hour',10);
@@ -42,7 +42,7 @@ class CreateRestaurantsBasicInfoTable extends Migration
             $table->date('sidebar_ad_expire_date')->nullable();
             $table->boolean('popup_ad')->nullable();
             $table->date('popup_expire_date')->nullable();
-            $table->text('description',225)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -52,7 +52,7 @@ class CreateJobBasicInfoTable extends Migration
             $table->date('sidebar_ad_expire_date')->nullable();
             $table->boolean('popup_ad')->nullable();
             $table->date('popup_expire_date')->nullable();
-            $table->text('description', 255)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

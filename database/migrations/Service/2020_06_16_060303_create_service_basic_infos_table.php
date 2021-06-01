@@ -17,14 +17,14 @@ class CreateServiceBasicInfosTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->string('name', 50);
-            $table->text('type', 30);
+            $table->string('type', 100);
             $table->decimal('rate', 5, 1)->nullable();
             $table->string('rate_color', 100)->nullable();
             $table->string('banner', 100);
             $table->string('card', 100);
             $table->string('thumb', 100);
             $table->string('address', 250)->nullable();
-            $table->text('location', 100);
+            $table->string('location', 255);
             $table->double('longitude',5,2);
             $table->double('latitude',5,2);
             $table->string('email', 100)->nullable();
@@ -43,7 +43,7 @@ class CreateServiceBasicInfosTable extends Migration
             $table->date('sidebar_ad_expire_date')->nullable();
             $table->boolean('popup_ad')->nullable();
             $table->date('popup_expire_date')->nullable();
-            $table->text('description', 225)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class CreateRentCommentsTable extends Migration
             $table->uuid('rent_basic_info_id');
             $table->decimal('rate', 5, 1);
             $table->string('rate_color', 20)->nullable();
-            $table->string('comment');
+            $table->text('comment');
             $table->string('name');
             $table->string('avatar');
             $table->timestamps();

@@ -20,7 +20,7 @@ class CreateJobQuestionsTable extends Migration
             $table->uuid('job_basic_info_id');
             $table->string('name',50);
             $table->string('avatar');
-            $table->string('question',500);
+            $table->text('question',2000);
             $table->timestamps();
         });
     }

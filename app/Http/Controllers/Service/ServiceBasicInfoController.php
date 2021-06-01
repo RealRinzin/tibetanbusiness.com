@@ -173,7 +173,7 @@ class ServiceBasicInfoController extends Controller
         // Meta Description
         $meta = ServiceBasicInfo::find($id);
         MetaTag::set('title', $meta->name);
-        MetaTag::set('description', $meta->location. ' '.$meta->description);
+        MetaTag::set('description', $meta->location . ' ' . $meta->address . ' - ' . $meta->description);
         MetaTag::set('image', asset('storage/Service/Banner/'.$meta->banner));
         // Meta Description End
         return view('service.show', ['id' => ServiceBasicInfo::find($id)]);

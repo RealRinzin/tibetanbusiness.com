@@ -1,6 +1,6 @@
 <template> 
     <div class="card p-2 my-2" v-show="show">
-        <h6 class="py-2 font-weight-bolder text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents
+        <h6 class="py-2  text-dark border-bottom"> <span><img src="/img/rent.png" alt=""></span> Rents
                 <span class="text-muted" style="font-size:12px"> -{{place}}</span>
 
          </h6>
@@ -12,11 +12,11 @@
                 <a v-bind:href="'/rent/'+rent.id">
                 <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Sale/Banner/${sale.banner})`}'></div> -->
                 <div class="banner lazyload position-relative" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
-                    <p v-if="rent.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Rent</p>
-                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder" style="bottom:5px;right:2px">Rent:&#x20B9 {{rent.fare}}</p>
+                    <p v-if="rent.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 " style="bottom:5px;right:2px">Rent</p>
+                    <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 " style="bottom:5px;right:2px">Rent:&#x20B9 {{rent.fare}}/-</p>
                 </div>
                 </a>
-                <h6 class="text-muted pt-3 font-weight-bolder">{{rent.name}}</h6>
+                <h6 class="text-muted pt-3 ">{{rent.name}}</h6>
                 <p class="text-muted my-0">{{rent.mobile_no}}</p>
                 <p class="text-muted my-0">{{rent.location}}</p>
             </div>

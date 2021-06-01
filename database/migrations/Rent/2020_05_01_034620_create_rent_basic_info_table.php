@@ -24,7 +24,7 @@ class CreateRentBasicInfoTable extends Migration
             $table->decimal('rate', 5, 1)->nullable();
             $table->string('rate_color', 100)->nullable();
             $table->string('address', 250)->nullable();
-            $table->text('location', 100);
+            $table->string('location', 255);
             $table->double('longitude',5,2);
             $table->double('latitude',5,2);
             $table->string('mobile_no', 12);
@@ -41,7 +41,7 @@ class CreateRentBasicInfoTable extends Migration
             $table->date('sidebar_ad_expire_date')->nullable();
             $table->boolean('popup_ad')->nullable();
             $table->date('popup_expire_date')->nullable();
-            $table->text('description', 225)->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

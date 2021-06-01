@@ -18,7 +18,6 @@
                                         <div class="col-md-12 col-sm-12 py-1">
                                             <input type="text" @keyup="load_location()"  v-model="filter.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
                                             <ul class="w-100" id="myMap_location_dropdown" style="position: absolute;z-index:100;height:auto;font-size:12px">
-                                                <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="place in places" @click="set_location(place.text,place.context[0].text)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
                                                 <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 5">
                                                     <span class="font-weight-bold text-dark">{{place.placeName}}</span>
                                                     <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
@@ -26,11 +25,8 @@
                                             </ul>
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
-                                            <input type="text" @focusin="event_category_dropdown()" v-model="filter.category" class="rounded form-control " readonly="readonly" placeholder="Category" aria-label="Service type">
-                                                <ul id="event_category_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
-                                                <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                            <input type="text" @keyup="load_categories()" v-model="filter.category" class="rounded form-control" placeholder="Category" aria-label="Service type">
+                                                <ul class="w-100" id="event_category_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
                                                 <li v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
                                             </ul>
                                         </div>
@@ -198,6 +194,18 @@
          *  Methods
          *  */ 
         methods:{
+            // load category list
+            load_categories(){
+                if(this.filter.category == 0){
+                    this.categories = {}
+                }
+                if(this.filter.category.length > 0){
+                axios.get(`/api/event-categories/search?name=${this.filter.category}`)
+                .then(response =>{
+                    this.categories = response.data.data;
+                    })
+                }
+            },
             // star
             setRating: function(rating){
             this.rating= rating;
@@ -447,11 +455,6 @@
              axios.get('/api/event/list/max_date')
                 .then(response => {
                     this.filter.to = response.data;
-                })
-            // Profession
-            axios.get('/api/event-categories')
-            .then(response=>{
-                this.categories = response.data;
             })
         }
     }

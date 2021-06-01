@@ -3,7 +3,7 @@
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8T4TQ72G81"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87FMRJ2QCF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -11,8 +11,11 @@
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-        gtag('config', 'G-8T4TQ72G81');
+
+        gtag('config', 'G-87FMRJ2QCF');
     </script>
+    <!-- Google Adsense -->
+    <script data-ad-client="ca-pub-4861711653689806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ MetaTag::get('title') }}</title>

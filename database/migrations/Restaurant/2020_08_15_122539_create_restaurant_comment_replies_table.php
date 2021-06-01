@@ -18,7 +18,7 @@ class CreateRestaurantCommentRepliesTable extends Migration
             $table->uuid('user_id');
             $table->uuid('restaurant_comment_id');
             $table->string('rate_color', 20)->nullable();
-            $table->string('reply');
+            $table->text('reply');
             $table->string('name');
             $table->string('avatar');
             $table->timestamps();

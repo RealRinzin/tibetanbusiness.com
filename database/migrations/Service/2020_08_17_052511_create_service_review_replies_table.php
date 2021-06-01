@@ -17,7 +17,7 @@ class CreateServiceReviewRepliesTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('service_review_id');
-            $table->string('reply');
+            $table->text('reply');
             $table->string('name');
             $table->string('avatar');
             $table->timestamps();

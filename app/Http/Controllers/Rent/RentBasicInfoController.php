@@ -217,7 +217,7 @@ class RentBasicInfoController extends Controller
         $meta = RentBasicInfo::find($id);
         $meta->fare = 'Rs:'.$meta->fare;
         MetaTag::set('title', $meta->name .' - '. $meta->fare);
-        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('description', $meta->location . ' ' . $meta->address . ' - ' . $meta->description);
         MetaTag::set('image', asset('storage/Rent/Banner/'.$meta->banner));
         // Meta Description End
         return view('rent.show', ['id' => RentBasicInfo::find($id)]);
@@ -269,7 +269,7 @@ class RentBasicInfoController extends Controller
         $meta = RentBasicInfo::find($id);
         $meta->fare = 'Rs:'.$meta->fare;
         MetaTag::set('title', $meta->name .' - '. $meta->fare);
-        MetaTag::set('description', $meta->location .' '.$meta->description);
+        MetaTag::set('description', $meta->location . ' ' . $meta->address . ' - ' . $meta->description);
         MetaTag::set('image', asset('storage/Rent/Banner/'.$meta->banner));
         if (Auth::user()->id === RentBasicInfo::find($id)->user_id) {
             return view('dashboard.rent.edit', ['id' => RentBasicInfo::find($id)]);

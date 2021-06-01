@@ -36,25 +36,27 @@ return [
     /**
      *  Laravel Socialite
      * Login
-     *  */ 
+     *  */
     // Github Login
     'github' => [
-        'client_id' => '2975f9fe8f0c66f5aa7b',
-        'client_secret' => 'e4cbd66472e19f57bcda1925460c3a064f6d1656',
-        'redirect' => 'https://demo.tibetanbusiness.com/login/github/callback',
+        // www.tibetanbusiness.com
+        'client_id' => 'af90d1f6d8d6b2d17d8a',
+        'client_secret' => 'a11cc0b3bf4405dcc1cc0f9dc78533b140f827f4',
+        'redirect' => 'https://www.tibetanbusiness.com/login/github/callback',
     ],
     // Facebook Login
     'facebook' => [
-        'client_id' =>  '716233402441348',
-        'client_secret' => 'e48cab5f81eba7e5ad72c9e068a3a094',
-        'redirect' => 'https://demo.tibetanbusiness.com/login/facebook/callback',
-
+        // tibetanbusiness.com
+        'client_id' =>  '320651235266376',
+        'client_secret' => 'ba5b7ff26f82df76340c456ba5802a94',
+        'redirect' => 'https://www.tibetanbusiness.com/login/facebook/callback',
     ],
     // google login
     'google' => [
+        // www.tibetanbusiness.com
         'client_id' =>  '694425608507-kdlo4rn3mfucg55f0q2lc191vbd8po2u.apps.googleusercontent.com',
         'client_secret' => 't7thLrp2t8nzSo0LovnIg_So',
-        'redirect' => 'http://tibetanbusiness.com:8888/login/google/callback',
+        'redirect' => 'http://www.tibetanbusiness.com/login/google/callback',
 
     ],
 

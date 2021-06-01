@@ -23,11 +23,9 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <input type="text" @focusin="sale_type_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Product Type" aria-label="Service type">
-                                                        <ul id="sale_type_list" style="display:none;transition:1s;" class="position-absolute rounded height border">
-                                                        <button type="button" @click="close()" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                    <!-- <input type="text" @focusin="sale_type_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Product Type" aria-label="Service type"> -->
+                                                    <input type="text" @keyup="load_sales()" v-model="filter.type" class="rounded form-control" placeholder="Product Type" aria-label="Service type">
+                                                        <ul class="w-100" id="sale_type_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
                                                         <li v-for="category in categories" :value="category.name" @click="set_type(category.name)">{{category.name}}</li>
                                                     </ul>
                                                 </div>
@@ -170,7 +168,19 @@ export default {
      *  Methods
      *  */ 
     methods:{
-    // load places
+        // load Sale types
+        load_sales(){
+            if(this.filter.type == 0){
+                this.categories = {}
+            }
+            if(this.filter.type.length > 0){
+            axios.get(`/api/sale-categories/search?name=${this.filter.type}`)
+            .then(response =>{
+                this.categories = response.data.data;
+                })
+            }
+        },
+        // load places
         load_location(){
             let location = "\""+ this.filter.location+  "\"";
             if(this.filter.location ==''){
@@ -355,11 +365,6 @@ export default {
     // Mounted
     mounted(){
         this.load_result();
-        // Products
-        axios.get('/api/sale-categories')
-        .then(response=>{
-            this.categories = response.data;
-        })
     }
 }
 </script>

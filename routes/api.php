@@ -249,11 +249,16 @@ use Illuminate\Http\Request;
 // Landing Carousel
 Route::apiResource('carousel', 'LandingCarousel\CarouselController', ['except' => ['show','edit','update','create']]);
 // Occupations
-Route::apiResource('occupations', 'OccupationController', ['except' => ['store','edit', 'destroy','update','create']]);
+Route::apiResource('occupations', 'OccupationController', ['except' => ['edit', 'destroy','create']]);
+Route::get('occupation/search','OccupationController@search')->name('occupations.search');
 Route::apiResource('event-categories', 'EventCategoryController', ['except' => ['show','edit','create']]);
+Route::get('event-categories/search', 'EventCategoryController@search')->name('events.search');
 Route::apiResource('sale-categories', 'SaleCategoryController', ['except' => ['show','edit','create']]);
+Route::get('sale-categories/search', 'SaleCategoryController@search')->name('sales.search');
 Route::apiResource('service-categories', 'ServiceCategoryController', ['except' => ['show', 'edit', 'create']]);
-Route::get('map', 'OccupationController@map');
+Route::get('service-categories/search', 'ServiceCategoryController@search')->name('sales.search');
+
+Route::apiResource('map', 'MapController', ['except' => ['show', 'edit', 'create','store','update','destroy']]);
 // PopUp API
 Route::get('event/list/popup_ad', 'Event\EventBasicInfoController@popup_ad');
 Route::get('job/list/popup_ad', 'Job\JobBasicInfoController@popup_ad');

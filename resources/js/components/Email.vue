@@ -1,18 +1,30 @@
 <template>
     <div class="row">
         <div class="col-12 col-md-6 card py-2">
-        <form class="contact-form" @submit.prevent="sendEmail">
+        <form class="contact-form" @submit.prevent="sendEmail" data-vv-scope="validate">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                    <input type="email" v-validate="'required|email'" class="form-control" name="email" id="email" placeholder="Email">
+                    <div class="valid-feedback"></div>
+                    <div v-if="errors.has('validate.email')" class="invalid-feedback">
+                        <span v-for="error in errors.collect('validate.email')">{{ error }}</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
+                    <input type="text" name="name" v-validate="'required'"  class="form-control" id="name" placeholder="Name">
+                    <div class="valid-feedback"></div>
+                    <div v-if="errors.has('validate.name')" class="invalid-feedback">
+                        <span v-for="error in errors.collect('validate.name')">{{ error }}</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea class="form-control" name="message" id="message" rows="6" required> </textarea>
+                    <textarea class="form-control" v-validate="'required'" name="message" id="message" rows="6" > </textarea>
+                    <div class="valid-feedback"></div>
+                    <div v-if="errors.has('validate.message')" class="invalid-feedback">
+                        <span v-for="error in errors.collect('validate.message')">{{ error }}</span>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-danger">Send Message</button>
             </form>
@@ -38,20 +50,25 @@
 
 <script>
 import emailjs from 'emailjs-com';
+import { Validator } from 'vee-validate';
+
 export default {
   methods: {
-    sendEmail: (e) => {
-    //   emailjs.sendForm('service_nyp3x39', 'template_w5m2djd', e.target, 'user_KUEPWiHsjxRGX713YMj3h') //geniusbulbs@gmail.com setting
-      emailjs.sendForm('service_g6doc6x', 'template_8r2rn1l', e.target, 'user_4XZM3OoOcJejmW6Zkz0O0') // tibetanbusinesscom@gmail.com
-    //   emailjs.sendForm('service_3b6ji5w', 'template_8r2rn1l', e.target, 'user_xY5Nd6x6FgCCO0iutryOf') // support@tibetanbusiness.com
-        .then((result) => {
-              toast.fire({
-                  icon:'success',
-                  title:'Mail Sent!!!',
-              });
-        }, (error) => {
-            console.log('FAILED...', error);
-        });
+      
+    sendEmail(e){                        
+        this.$validator.validateAll('validate').then((result) => { 
+            if(result){
+                emailjs.sendForm('service_g6doc6x', 'template_8r2rn1l', e.target, 'user_4XZM3OoOcJejmW6Zkz0O0') // tibetanbusinesscom@gmail.com
+                .then((result) => {
+                    toast.fire({
+                        icon:'success',
+                        title:'Mail Sent!!!',
+                    });
+                }, (error) => {
+                    console.log('FAILED...', error);
+                });
+            }  
+        })
     }
   }
 }

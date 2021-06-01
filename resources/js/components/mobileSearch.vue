@@ -18,7 +18,7 @@
                                                 <div class="input-group mb-3 input-group-md">
                                                     <input type="text" style="font-size:14px;padding:25px" id="location_mobile_search"  autocomplete="off" class="form-control rounded" @keyup="load_location()" v-model="keyword_location" placeholder="Type location..">
                                                     <ul class="w-100" style="position: absolute;z-index:100;height:auto;top:100%;padding:0px 2px">
-                                                        <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 4">
+                                                        <li style="list-style:none;cursor:pointer"  class="p-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress)" v-if="index <= 4">
                                                             <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
                                                             <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
                                                         </li>

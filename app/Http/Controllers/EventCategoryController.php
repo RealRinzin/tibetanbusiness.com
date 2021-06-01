@@ -19,15 +19,7 @@ class EventCategoryController extends Controller
         return $events->toArray($events);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,27 +35,7 @@ class EventCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(EventCategory $eventCategory)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EventCategory $eventCategory)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -86,5 +58,12 @@ class EventCategoryController extends Controller
     public function destroy(EventCategory $eventCategory)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $eventCategory = EventCategory::where('name', 'like', "$request->name%")
+        ->orderBy('created_at', 'desc')->paginate('10');
+        return $eventCategory->toArray($eventCategory);
     }
 }

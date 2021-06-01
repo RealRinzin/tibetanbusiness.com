@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->uuid('event_basic_info_id');
             $table->decimal('rate', 5, 1);
             $table->string('rate_color', 20)->nullable();
-            $table->string('review');
+            $table->text('review');
             $table->string('name');
             $table->string('avatar');
             $table->timestamps();

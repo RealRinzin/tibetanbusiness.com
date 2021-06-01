@@ -192,7 +192,7 @@ class EventBasicInfoController extends Controller
             $meta->entry_fee = 'Entry Free';
         }else{
             $meta->entry_fee = 'Rs: '.$meta->entry_fee;
-        };
+        }; 
         // Date with Day of the week
         $start_date = date_create($meta->start_date);
         MetaTag::set('title', $meta->name. ' | '. date_format($start_date,"l\,jS F Y"));

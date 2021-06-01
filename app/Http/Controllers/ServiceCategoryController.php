@@ -56,4 +56,11 @@ class ServiceCategoryController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $serviceCategory = ServiceCategory::where('name', 'like', "$request->name%")
+        ->orderBy('created_at', 'desc')->paginate('10');
+        return $serviceCategory->toArray($serviceCategory);
+    }
 }

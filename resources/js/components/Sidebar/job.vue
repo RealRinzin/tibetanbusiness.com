@@ -16,15 +16,16 @@
             <div class="col-6 py-2" v-for="(job,index) in jobs" v-if="index <= 1">
                 <a v-bind:href="'/announcement/'+job.id">
                 <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
-                            <h6 v-if="job.types == 1" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">ANNOUNCEMENTS</h6>
-                            <h6 v-if="job.types == 2" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">JOBS</h6>
+                            <h6 v-if="job.types == 1" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">JOBS</h6>
+                            <h6 v-if="job.types == 2" class="btn btn-success p-1 position-absolute mx-1" style="font-size:10px;bottom:0px">ANNOUNCEMENTS</h6>
 
                     <!-- <p class="text-danger small position-absolute rounded bg-light  price p-1 small m-0 font-weigxht-bolder" style="bottom:2px;right:2px">Rs: {{job.salary}}</p> -->
                 </div>
                 </a>
                 <h6 class="text-muted pt-3 font-weight-bolder">{{job.title}}</h6>
                 <p class="text-muted my-0">{{job.mobile_no}}</p>
-                <p class="text-muted my-0">{{job.location}}</p>
+                <p class="text-muted my-0" v-if="job.types == 1">{{job.location}}</p>
+                <p class="text-muted my-0" v-if="job.types == 2">{{job.country}}</p>
             </div>
         </div>
     </div>

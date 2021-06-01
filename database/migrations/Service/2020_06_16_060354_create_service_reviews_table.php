@@ -19,7 +19,7 @@ class CreateServiceReviewsTable extends Migration
             $table->uuid('service_basic_info_id');
             $table->string('avatar');
             $table->string('name');
-            $table->string('review');
+            $table->text('review');
             $table->decimal('rate', 5, 1);
             $table->string('rate_color', 20)->nullable();
             $table->timestamps();

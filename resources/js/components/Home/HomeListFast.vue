@@ -3,7 +3,7 @@
         <!-- Event -->
         <div class="col-md-10 mx-auto my-4" v-if="events !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Events'"><img src="/img/event.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR - UPCOMING EVENTS</a>
+                <img src="/img/event.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR - UPCOMING EVENTS
             </h6>
             <div class="row" style="min-height:100px">
                 <div v-if="event_loading" class="col-12">
@@ -19,8 +19,8 @@
                     <div class="card" >
                         <a v-bind:href="'event/'+event.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Event/Banner/'+event.thumb"   data-sizes="auto">
-                            <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 font-weight-bolder">Entry Free</p>
-                            <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 font-weight-bolder">Entry:&#x20B9 {{event.entry_fee}}</p>
+                            <p v-if="event.entry_free" class="text-dark small position-absolute rounded bg-warning  price p-1 m-0 ">Entry Free</p>
+                            <p v-else class="text-white small position-absolute rounded bg-danger  price p-1 m-0 ">Entry:&#x20B9 {{event.entry_fee}}</p>
                         </div>
                         </a>
                         <div class="info p-2">
@@ -35,7 +35,7 @@
         <!-- Sales -->
         <div class="col-md-10 mx-auto my-4" v-if="sales !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Sales'"><img src="/img/sale.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SALES</a>
+                <img src="/img/sale.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SALES
             </h6>
             <div class="row">
                 <div v-if="sale_loading" class="col-12">
@@ -51,7 +51,7 @@
                     <div class="card">
                         <a v-bind:href="'sale/'+sale.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.thumb"  data-sizes="auto">
-                            <p class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Price:
+                            <p class="text-white small position-absolute rounded bg-danger price p-1 m-0 ">Price:
                                 <span v-if="sale.price > 0 ">&#x20B9 {{sale.price}}/-</span>
                                 <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
                             </p>
@@ -69,7 +69,7 @@
         <!-- Rents -->
         <div class="col-md-10 mx-auto my-4" v-if="rents !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Rents'"><img src="/img/rent.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RENTS</a>
+                <img src="/img/rent.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RENTS
             </h6>
             <div class="row">
                 <div v-if="rent_loading" class="col-12">
@@ -85,7 +85,7 @@
                     <div class="card">
                         <a v-bind:href="'rent/'+rent.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.thumb+' 100w'"  data-sizes="auto">
-                            <p v-if="rent.fare" class="text-white small position-absolute rounded bg-danger price p-1 m-0 font-weight-bolder">Rent:&#x20B9 {{rent.fare}}</p>
+                            <p v-if="rent.fare" class="text-white small position-absolute rounded bg-danger price p-1 m-0 ">Rent:&#x20B9 {{rent.fare}}</p>
                         </div>
                         </a>
                         <div class="info p-2">
@@ -100,7 +100,7 @@
         <!-- Jobs -->
         <div class="col-md-10 mx-auto my-4" v-if="jobs !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Jobs'"><img src="/img/job.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">JOBS / ANNOUNCEMENTS</a>
+                <img src="/img/job.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">JOBS / ANNOUNCEMENTS
             </h6>
             <div class="row">
                 <div v-if="job_loading" class="col-12">
@@ -137,7 +137,7 @@
         <!-- Services -->
         <div class="col-md-10 mx-auto my-4" v-if="services !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Services'"><img src="/img/service.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SERVICES</a>
+                <img src="/img/service.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SERVICES
             </h6>
             <div class="row">
                 <div v-if="service_loading" class="col-12">
@@ -168,7 +168,7 @@
         <!-- Restaurants -->
         <div class="col-md-10 mx-auto my-4" v-if="restaurants !=''">
             <h6 class="small text-muted py-2 font-weight-bolder">
-                <a :href="'search/Restaurants'"><img src="/img/restaurant.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RESTAURANTS</a>
+                <img src="/img/restaurant.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RESTAURANTS
             </h6>
             <div class="row">
                 <div v-if="restaurant_loading" class="col-12">
@@ -184,7 +184,7 @@
                     <div class="card">
                         <a v-bind:href="'restaurant/'+restaurant.id">
                         <div class="banner rounded-top lazyload" :data-bgset="'/storage/Restaurant/Banner/'+restaurant.card"  data-sizes="auto">
-                            <p v-if="restaurant.rate > 0.0" v-bind:class="restaurant.rate_color" class="btn btn-sm mt-1 mr-1 float-right"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
+                            <p v-if="restaurant.rate > 0.0" v-bind:class="restaurant.rate_color" class="btn btn-sm  small mt-1 mr-1 float-right"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                         </div>
                         </a>
                         <div class="info p-2">

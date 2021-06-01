@@ -16,17 +16,17 @@
                                 <a v-bind:href="'sale/'+sale.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Sale/Banner/'+sale.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Price:
+                                            <p class="btn btn-sm btn-danger small my-0 ">Price:
                                                 <span v-if="sale.price > 0 ">₹{{sale.price}}/-</span>
                                                 <span v-else> <i class="fas fa-phone-alt mr-1"></i> Call </span>
                                             </p>
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{sale.type}}</p>
+                                            <p class="btn btn-sm btn-danger small my-0 ">{{sale.type}}</p>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="types">
                                     <a href="/search/Sales">
-                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-tags mx-1"></i> Deals</p>
+                                        <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-tags mx-1"></i> Deals</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
@@ -44,9 +44,9 @@
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{event.start_date | date}}</p>
-                                            <p class="btn btn-sm bg-warning small my-0 font-weight-bolder text-dark" v-if="event.entry_free">Entry Fee</p>
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder" v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 ">{{event.start_date | date}}</p>
+                                            <p class="btn btn-sm bg-warning small my-0  text-dark" v-if="event.entry_free">Entry Fee</p>
+                                            <p class="btn btn-sm btn-danger small my-0 " v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
                                         </div>
                                     </div>
                                 </a>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="types">
                                     <a href="/search/Events">
-                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-calendar-alt mx-1"></i> Events</p>
+                                        <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-calendar-alt mx-1"></i> Events</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
@@ -74,8 +74,8 @@
                                     <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Rent/Banner/${rent.banner})`}'> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Rent/Banner/'+rent.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Rent:₹{{rent.fare}}/-</p>
-                                            <p class="btn btn-sm btn-danger small my-0 font-weight-bolder">Size: {{rent.accomodation_size}} Person</p>
+                                            <p class="btn btn-sm btn-danger small my-0 ">Rent:₹{{rent.fare}}/-</p>
+                                            <p class="btn btn-sm btn-danger small my-0 ">Size: {{rent.accomodation_size}} Person</p>
                                         </div>
                                     </div>
                                 </a>
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="types">
                                     <a href="/search/Rents">
-                                        <p class="alert alert-success p-1" role="alert"><i class="fas fa-bed mx-1"></i> Rents</p>
+                                        <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-bed mx-1"></i> Rents</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
@@ -103,12 +103,12 @@
                                 <!-- <div class="list" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'></div> -->
                                     <div class="list lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px" v-if="job.types == 1">
-                                            <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0 font-weight-bolder">Salary:₹{{job.salary}}/-</li>
-                                            <li v-else class="btn btn-sm btn-warning small text-dark my-0 font-weight-bolder">Salary: Not Disclosed</li>
-                                            <li class="btn btn-sm btn-danger small my-0 font-weight-bolder">{{job.profession}}</li>
+                                            <li v-if="job.salary >0" class="btn btn-sm btn-danger small my-0 ">Salary:₹{{job.salary}}/-</li>
+                                            <li v-else class="btn btn-sm btn-warning small text-dark my-0 ">Salary: Not Disclosed</li>
+                                            <li class="btn btn-sm btn-danger small my-0 ">{{job.profession}}</li>
                                         </div>
                                         <div class="detail position-absolute ml-2" style="bottom:5px" v-if="job.types == 2">
-                                            <li class="btn btn-sm btn-secondary small my-0 font-weight-bolder">Scholarship Announcements</li>
+                                            <li class="btn btn-sm btn-secondary small my-0 ">Scholarship Announcements</li>
                                         </div>
                                     </div>
                                 </a>
@@ -118,8 +118,8 @@
                                 </div>
                                 <div class="types">
                                     <a href="/search/Jobs">
-                                        <p class="alert alert-warning p-1" role="alert" v-if="job.types == 1"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
-                                        <p class="alert alert-warning p-1" role="alert" v-if="job.types == 2"><i class="fas fa-briefcase mx-1"></i> Announcements</p>
+                                        <p class="alert alert-warning p-1 small" role="alert" v-if="job.types == 1"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
+                                        <p class="alert alert-warning p-1 small" role="alert" v-if="job.types == 2"><i class="fas fa-briefcase mx-1"></i> Announcements</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="types">
                                     <a href="/search/Services">
-                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-tools mx-1"></i> Services</p>
+                                        <p class="alert alert-warning p-1 small" role="alert"><i class="fas fa-tools mx-1"></i> Services</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="types">
                                     <a href="/search/Restaurants">
-                                        <p class="alert alert-warning p-1" role="alert"><i class="fas fa-pizza-slice mx-1"></i> Restaurants</p>
+                                        <p class="alert alert-warning p-1 small" role="alert"><i class="fas fa-pizza-slice mx-1"></i> Restaurants</p>
                                     </a>
                                 </div>
                                 <div class="card-body text-truncate">
