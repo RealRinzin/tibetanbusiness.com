@@ -18,9 +18,9 @@
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{service.name}}</h6>
                                                 <ul>
                                                     <li v-if="service.rating >0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{service.rating}}</a></li>
-                                                    <li v-if="service.facebook != null"><a :href="service.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                    <li v-if="service.website != null"><a :href="service.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
-                                                    <li v-if="service.instagram != null"><a :href="service.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                    <li v-if="service.facebook"><a target="_blank"  :href="service.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                    <li v-if="service.website"><a target="_blank"  :href="service.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                    <li v-if="service.instagram"><a target="_blank"  :href="service.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -56,17 +56,34 @@
                                 </div>
                                 <!-- Info -->
                                 <div class="card my-2">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="service.description">
-                                            <h5 class="text-dark">Brief</h5>
-                                            <p class="text-muted">
-                                                {{service.description}}
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6"> 
-                                            <h6>Location</h6>
+                                    <div  v-if="service.description != null">
+                                        <div class="row p-3" v-if="service.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{service.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
                                                 <map-location :longitude="service.longitude" :latitude="service.latitude"></map-location>
+                                            </div>
                                         </div>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{service.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="service.longitude" :latitude="service.latitude"></map-location>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="service.longitude" :latitude="service.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!--  Photo -->

@@ -316,10 +316,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="description">Event Description <small class="text-success p-1">(Optional)</small></label>
-                                            <textarea rows="5" cols="50" v-validate="'max:150'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                            <textarea rows="5" cols="50" v-validate="'max:15000'" v-model="event.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description " ></textarea>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_update_form.description')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('event_validate_update_form.description')">{{ error }}</span>
@@ -393,7 +393,6 @@ export default {
             if(this.event.entry_free){
                 this.event.entry_fee = 0;
             }
-            console.log(this.event);
             // Update Information
             this.$validator.validateAll('event_validate_update_form').then((result) => {
                 if (result) {

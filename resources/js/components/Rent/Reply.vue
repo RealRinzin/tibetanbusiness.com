@@ -9,7 +9,7 @@
             <div class="text-left w-75">
                 <form @submit.prevent="reply_comment(id)" data-vv-scope="valid_reply_form">
                     <div class="input-group input-group-sm">
-                        <input type="text" v-validate="'required|min:1|max:255'" v-model="create_reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
+                        <input type="text" v-validate="'required|min:1|max:5000'" v-model="create_reply.reply" class="form-control" name="reply" placeholder="Give your reply here!!!">
                         <span class="input-group-append">
                             <button type="submit" class="btn btn-info btn-flat btn-lg" placeholder="Write you Answer..">Reply</button>
                         </span>
@@ -34,7 +34,7 @@
                         </span>
                     </small>
                 </h6>
-                <p class="text-muted">
+                <p class="text-muted small">
                     {{reply.reply}}
                 </p>
             </div>
@@ -56,7 +56,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                                <textarea v-validate="'required'" v-model="update_reply.reply" name="reply_update" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply" rows="4" cols="50">
+                                <textarea v-validate="'required|max:5000'" v-model="update_reply.reply" name="reply_update" class="form-control" :id="update_reply.id" aria-describedby="emailHelp" placeholder="Reply" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('reply_update.reply_update')" class="invalid-feedback">
@@ -147,7 +147,9 @@ export default {
       //  Edit
          edit(id,index){
              this.reply_id = id;
-             axios.get('/api/rent_comment_replies/'+id)
+             axios.get('/api/rent_comment_replies/'+id,{
+                headers : { Authorization : localStorage.getItem("token")}
+             })
              .then(response=>{
                  this.update_reply = response.data;
                 $('#'+id).appendTo("body").modal('show');

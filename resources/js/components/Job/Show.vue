@@ -16,9 +16,9 @@
                                             <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'>
                                             <div class="overlay">
                                                 <div class="d-flex flex-row job">
-                                                    <a v-if="job.facebook" :href="job.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary btn"></i></a>
-                                                    <a v-if="job.instagram" :href="job.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger btn"></i></a>
-                                                    <a v-if="job.website" :href="job.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary btn"></i></a>
+                                                    <a target="_blank" v-if="job.facebook" :href="job.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary btn"></i></a>
+                                                    <a target="_blank" v-if="job.instagram" :href="job.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger btn"></i></a>
+                                                    <a target="_blank" v-if="job.website" :href="job.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary btn"></i></a>
                                                 </div>
                                                 <h5 class="font-weight-bold position-absolute btn btn-danger text-white btn-flat" v-if="job.types ==1">{{job.organization}}</h5>
                                                 <h6 class="font-weight-bold position-absolute btn text-white btn-danger btn-flat">{{job.title}}</h6>
@@ -155,17 +155,35 @@
                                 <!-- Documents -->
                                 <Document :file="job.job_document" v-if="job.job_document.length > 0"/>
                                 <!-- Info -->
-                                <div class="card py-3">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="job.description">
-                                            <h5 class="text-dark">Descriptions</h5>
-                                            <p class="text-muted">
-                                                {{job.description}}
-                                            </p>
+                                <div class="card my-2">
+                                    <div  v-if="job.description != null">
+                                        <div class="row p-3" v-if="job.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{job.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6" v-if="job.types == 1"> 
-                                            <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{job.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="job.longitude" :latitude="job.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!-- Question & Ansert -->

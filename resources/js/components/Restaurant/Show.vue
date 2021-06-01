@@ -18,9 +18,9 @@
                                                     <h6 class="font-weight-bold position-absolute btn btn-danger">{{restaurant.name}}</h6>
                                                     <ul>
                                                         <li v-if="restaurant.rating > 0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{restaurant.rating}}</a></li>
-                                                        <li v-if="restaurant.facebook != null"><a :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                        <li v-if="restaurant.website != null"><a :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
-                                                        <li v-if="restaurant.instagram != null"><a :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                        <li v-if="restaurant.facebook"><a target="_blank" :href="restaurant.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                        <li v-if="restaurant.website"><a target="_blank" :href="restaurant.website"><i class="fab fa-internet-explorer fa-2x btn-secondary btn"></i></a></li>
+                                                        <li v-if="restaurant.instagram"><a target="_blank" :href="restaurant.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>                                
@@ -83,14 +83,34 @@
                                 </div>
                                 <!-- Info -->
                                 <div class="card my-2">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="restaurant.description">
-                                            <h5 class="text-dark">Brief</h5>
-                                            <p class="text-muted">Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+                                    <div  v-if="restaurant.description != null">
+                                        <div class="row p-3" v-if="restaurant.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{restaurant.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{restaurant.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="restaurant.longitude" :latitude="restaurant.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!-- Menu Photo -->

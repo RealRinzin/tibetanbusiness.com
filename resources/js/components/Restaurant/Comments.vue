@@ -18,7 +18,7 @@
 
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="review.comment" class="form-control" name="comment">
+                                    <input type="text" v-validate="'required|min:1|max:5000'" v-model="review.comment" class="form-control" name="comment">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
@@ -65,7 +65,7 @@
                             </small>
                             </h6>
                         <p class="text-muted" style="font-size:12px"><timeago :datetime="comments.created_at" /></p>
-                        <p class="text-muted">{{comments.comment}}</p>
+                        <p class="text-muted small">{{comments.comment}}</p>
                         <replies :id="comments.id" :login_status="is_logged"></replies>
                     </div>
                     </div>
@@ -91,7 +91,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                                <textarea v-validate="'required'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
+                                <textarea v-validate="'required|max:5000'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('restaurant_update_review.review')" class="invalid-feedback">

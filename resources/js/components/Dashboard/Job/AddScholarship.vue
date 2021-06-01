@@ -184,7 +184,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="description">Scholarship Description<small class="text-success p-1">(Optional)</small></label>
-                                                        <textarea rows="5" cols="50" v-validate="'max:150'" v-model="scholarship.description" name="description" class="form-control" id="s_description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                        <textarea rows="5" cols="50" v-validate="'max:15000'" v-model="scholarship.description" name="description" class="form-control" id="s_description" aria-describedby="emailHelp" placeholder="Scholarship Descriptions" ></textarea>
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.description')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.description')">{{ error }}</span>

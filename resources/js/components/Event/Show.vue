@@ -15,10 +15,7 @@
                                         <div class="col-md-12">
                                             <div class="banner lazyload" :data-bgset="'/storage/Event/Banner/'+event.banner"  data-sizes="auto">
                                             <div class="overlay title">
-                                                <!-- <share-it 
-                                                class="bg-light p-0 rounded-1 float-right"
-                                                :icons="true" 
-                                                />  -->
+                                                <h6 class="btn bg-warning text-white border-0 rounded-0"> {{event.category}}</h6>
                                                 <h6 class="font-weight-bold position-absolute  btn btn-danger"> {{event.name}}</h6>
                                                 <ul class="detail">
                                                     <li class="btn btn-danger btn-md"><i class="fas fa-calendar-alt mr-2"></i>{{event.start_date | date}}</li>
@@ -50,9 +47,9 @@
                                                             </p>
                                                         </div>
                                                 <div class="d-flex flex-row justify-content-end">
-                                                    <a v-if="event.facebook" :href="event.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary p-1 rounded"></i></a>
-                                                    <a v-if="event.instagram" :href="event.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger p-1 rounded"></i></a>
-                                                    <a v-if="event.website" :href="event.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary p-1 rounded"></i></a>
+                                                    <a target="_blank" v-if="event.facebook" :href="event.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary p-1 rounded"></i></a>
+                                                    <a target="_blank" v-if="event.instagram" :href="event.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger p-1 rounded"></i></a>
+                                                    <a target="_blank" v-if="event.website" :href="event.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary p-1 rounded"></i></a>
                                                 </div>
                                                     </div>
                                             </div>
@@ -61,16 +58,34 @@
                                 </div>
                                 <!-- Info -->
                                 <div class="card my-2">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="event.description">
-                                            <h5 class="text-dark">Brief</h5>
-                                            <p class="text-muted">
-                                                {{event.description}}
-                                            </p>
+                                    <div  v-if="event.description != null">
+                                        <div class="row p-3" v-if="event.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{event.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="event.longitude" :latitude="event.latitude"></map-location>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6"> 
-                                            <map-location :longitude="event.longitude" :latitude="event.latitude"></map-location>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{event.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="event.longitude" :latitude="event.latitude"></map-location>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="event.longitude" :latitude="event.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!--  Photo -->

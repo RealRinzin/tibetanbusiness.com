@@ -18,8 +18,8 @@
                                                 <h6 class="font-weight-bold position-absolute btn btn-danger">Rs: {{rent.fare}} /-</h6>
                                                 <ul>
                                                     <li v-if="rent.rating >0"><a class="btn-secondary btn text-white"><i class="fas fa-star pr-1 text-warning"></i>{{rent.rating}}</a></li>
-                                                    <li v-if="rent.facebook != null"><a :href="rent.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
-                                                    <li v-if="rent.instagram != null"><a :href="rent.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
+                                                    <li v-if="rent.facebook"><a target="_blank" :href="rent.facebook"><i class="fab fa-facebook-square fa-2x btn-primary btn"></i></a></li>
+                                                    <li v-if="rent.instagram"><a target="_blank" :href="rent.instagram"><i class="fab fa-instagram fa-2x btn-danger btn"></i></a></li>
                                                 </ul>
                                             </div>
                                             </div>                                
@@ -68,17 +68,34 @@
                                 </div>
                                 <!-- Info -->
                                 <div class="card my-2">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="rent.description">
-                                            <h5 class="text-dark">Brief</h5>
-                                            <p class="text-muted">
-                                                {{rent.description}}
-                                            </p>
+                                    <div  v-if="rent.description != null">
+                                        <div class="row p-3" v-if="rent.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{rent.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6"> 
-                                            <h6>Location</h6>
-                                            <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{rent.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="rent.longitude" :latitude="rent.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!-- Room Photo -->

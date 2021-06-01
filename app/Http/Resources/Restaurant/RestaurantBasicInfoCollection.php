@@ -36,6 +36,7 @@ class RestaurantBasicInfoCollection extends ResourceCollection
             'featured_ad' => $this->featured_ad,
             'home_ad' => $this->home_ad,
             'sidebar_ad' => $this->sidebar_ad,
+            'description' => $this->description,
             'popup_ad' => $this->popup_ad,
             // counting the review stars
             'rating' => $this->restaurant_comments->count() > 0 ? round($this->restaurant_comments->sum('rate') / $this->restaurant_comments->count(), 1) : null,

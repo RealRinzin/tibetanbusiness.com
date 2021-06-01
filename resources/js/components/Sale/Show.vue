@@ -39,17 +39,34 @@
                                 </div>
                                 <!-- Info -->
                                 <div class="card my-2">
-                                    <div class="row p-3">
-                                        <div class="col-md-6" v-if="sale.description">
-                                            <h5 class="text-dark">Brief</h5>
-                                            <p class="text-muted">
-                                                {{sale.description}}
-                                            </p>
+                                    <div  v-if="sale.description != null">
+                                        <div class="row p-3" v-if="sale.description.length > 250">
+                                            <div class="col-md-12">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{sale.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6"> 
-                                            <h6>Location</h6>
-                                            <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
+                                        <div class="row p-3" v-else>
+                                            <div class="col-md-6">
+                                                <h5 class="text-dark">Description</h5>
+                                                <p class="text-muted">
+                                                    {{sale.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row p-3" v-else>
+                                            <div class="col-md-12"> 
+                                                <map-location :longitude="sale.longitude" :latitude="sale.latitude"></map-location>
+                                            </div>
                                     </div>
                                 </div>
                                 <!--  Photo -->

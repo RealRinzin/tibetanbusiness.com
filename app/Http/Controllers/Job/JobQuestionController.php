@@ -38,7 +38,7 @@ class JobQuestionController extends Controller
             'user_id' => Auth::user()->id,
             'job_basic_info_id' => $request->job_basic_info_id,
             'question' => $request->question,
-            'name' => $request->name,
+            'name' => Auth::user()->name,
             'avatar' => $request->avatar,
         ]);
         return $question;

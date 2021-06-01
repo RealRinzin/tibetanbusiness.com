@@ -197,7 +197,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="description">Sale Description <small class="text-success p-1">(Optional)</small></label>
-                                            <textarea rows="4" cols="50" v-validate="'max:255'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                            <textarea rows="4" cols="50" v-validate="'max:5000'" v-model="sale.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Descriptions" ></textarea>
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_update_form.description')" class="invalid-feedback">
                                                 <span v-for="error in errors.collect('sale_validate_update_form.description')">{{ error }}</span>

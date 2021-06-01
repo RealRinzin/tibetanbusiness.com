@@ -17,7 +17,7 @@
                                                 @rating-selected ="setRating"
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="review.comment" class="form-control" name="comment">
+                                    <input type="text" v-validate="'required|min:1|max:5000'" v-model="review.comment" class="form-control" name="comment">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
@@ -29,7 +29,7 @@
                             </form>
                         </div>
                         <div v-else>
-                            <p class="pt-3 text-muted">Please login to leave comment</p>
+                            <p class="pt-3 text-muted small">Please login to leave comment</p>
                             <p><a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#login">Login </a></p>
                         </div>
                 </div>
@@ -60,7 +60,7 @@
                                 </small>
                                 </h6>
                             <p class="text-muted" style="font-size:12px"><timeago :datetime="comment.created_at" /></p>
-                            <p class="text-muted">{{comment.comment}}</p>
+                            <p class="text-muted small">{{comment.comment}}</p>
                             <!-- Comment Replies -->
                             <replies :id="comment.id" :login_status="is_logged"></replies>
                         </div>
@@ -88,7 +88,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                                <textarea v-validate="'required'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
+                                <textarea v-validate="'required|max:5000'" v-model="update_review.comment" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Comments" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('rent_update_review.review')" class="invalid-feedback">

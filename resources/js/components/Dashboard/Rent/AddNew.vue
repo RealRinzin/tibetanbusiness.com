@@ -43,7 +43,6 @@
                                             <label for="location">Location<span class="text-danger p-1">*</span></label>
                                             <input type="text" autocomplete="off" name="location" v-validate="'required'" @keyup="load_location()"  v-model="rent.location" class="rounded form-control "  placeholder="Location" aria-label="Location">
                                             <ul class="w-100 pl-0" style="position: absolute;z-index:100">
-                                                <!-- <li style="list-style:none;cursor:pointer"  class="py-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.text,place.context[0].text,index)"><i class="fas fa-map-marker mx-2 text-muted"></i> {{place.text}}, {{place.context[0].text}}</li> -->
                                                 <li style="list-style:none;cursor:pointer"  class="p-2 text-dark border-bottom bg-light" v-for="(place,index) in places" @click="set_location(place.placeName,place.placeAddress,index)" v-if="index <= 5">
                                                     <span class="font-weight-bold text-dark" style="font-size:13px">{{place.placeName}}</span>
                                                     <span class="d-block text-muted" style="font-size:12px">{{place.placeAddress}}</span>
@@ -136,7 +135,7 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="address">Description <small class="text-success">(optional)</small></label>
-                                                    <textarea rows="4" cols="50" v-validate="'max:150'" v-model="rent.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                    <textarea rows="4" cols="50" v-validate="'max:15000'" v-model="rent.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Rent Description" ></textarea>
                                                     <div class="valid-feedback"></div>
                                                     <div v-if="errors.has('rent_validate_add_form.description')" class="invalid-feedback">
                                                         <span v-for="error in errors.collect('rent_validate_add_form.description')">{{ error }}</span>

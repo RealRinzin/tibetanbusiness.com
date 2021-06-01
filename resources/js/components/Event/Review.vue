@@ -20,7 +20,7 @@
 
                                     ></star-rating></p>
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="post_review.review" class="form-control" name="review">
+                                    <input type="text" v-validate="'required|min:1|max:5000'" v-model="post_review.review" class="form-control" name="review">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your comment">Post</button>
                                     </span>
@@ -62,7 +62,7 @@
                                 </small>
                             </h6>
                             <small class="text-muted" style="font-size:12px"><timeago :datetime="event.created_at" /></small>
-                            <p class="text-muted">{{event.review}}</p>
+                            <p class="text-muted small">{{event.review}}</p>
                             <replies :id="event.id" :login_status="is_logged"></replies>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Review<span class="text-danger p-1">*</span></label>
-                                <textarea v-validate="'required'" v-model="update_review.review" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Review" rows="4" cols="50">
+                                <textarea v-validate="'required|max:50000|min:1'" v-model="update_review.review" name="review" class="form-control" id="review" aria-describedby="emailHelp" placeholder="Review" rows="4" cols="50">
                                 </textarea>
                             <div class="valid-feedback"></div>
                             <div v-if="errors.has('event_update_review.review')" class="invalid-feedback">
@@ -125,7 +125,7 @@ export default {
             events_lazy_load:false, //lazy loading
             post_review:{
                 event_basic_info_id:this.event_id,
-                rate:'',
+                rate:0,
                 review:'',
                 avatar:localStorage.getItem('user_avatar'),
                 name:localStorage.getItem('user_name'),

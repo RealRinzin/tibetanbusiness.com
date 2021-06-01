@@ -7,7 +7,7 @@
                         <div v-if="is_logged">
                             <form @submit.prevent="post_question(id)" data-vv-scope="job_valid_question_form">
                                 <div class="input-group input-group-sm">
-                                    <input type="text" v-validate="'required|min:1|max:255'" v-model="question.question" class="form-control" name="question" placeholder="Ask your Questions here !!!">
+                                    <input type="text" v-validate="'required|min:1|max:5000'" v-model="question.question" class="form-control" name="question" placeholder="Ask your Questions here !!!">
                                     <span class="input-group-append">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg" placeholder="Write your Question">Post</button>
                                     </span>
@@ -48,7 +48,7 @@
                                     </span>
                                 </small>
                             </h6>
-                            <p class="text-muted">{{question.question}}</p>
+                            <p class="text-muted small">{{question.question}}</p>
                             <replies :id="question.id" :login_status="is_logged"></replies>
                             </div>
                         </div>

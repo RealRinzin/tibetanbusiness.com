@@ -216,7 +216,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="description">Job Description<small class="text-success p-1">(Optional)</small></label>
-                                                        <textarea rows="5" cols="50" v-validate="'max:150'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                        <textarea rows="5" cols="50" v-validate="'max:15000'" v-model="job.description" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Job Description" ></textarea>
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.description')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.description')">{{ error }}</span>
@@ -268,7 +268,6 @@ export default {
                 this.places ={};
             }else{
                 if(this.job.location.length > 2){
-                // axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+this.job.location+'.json?access_token=pk.eyJ1IjoicmluemluMjAyMCIsImEiOiJja2szcm1iN3ExZHRiMm9wY3Z5OWx6dnZ4In0.4TuimSiBj9l5OKTybvcrAQ&cachebuster=1611047895214&autocomplete=true&types=place%2Clocality&country=in&worldview=in&limit=8')
                 axios.get("/api/map?query="+location)
                 .then(response=>{
                     // this.places =  response.data.features;
