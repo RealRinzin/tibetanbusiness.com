@@ -338,6 +338,14 @@ class SaleBasicInfoController extends Controller
         MetaTag::set('title', $request->location);
         return view('sale.search', ['location' => $request->location]);
     }
+    // location
+    public function location()
+    {
+        $location = SaleBasicInfo::inRandomOrder()
+            ->limit('1')
+            ->get('location');
+        return $location->toArray($location);
+    }
     // Search Query
     public function search(Request $request)
     {

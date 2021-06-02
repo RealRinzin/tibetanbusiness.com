@@ -50,12 +50,12 @@
                   </div>
               </div>
               <div id="list" class="text-left small text-muted font-weight-bold py-3">
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-bed"></i> RENTS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-briefcase"></i> JOBS / ANNOUNCEMENTS</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-tools"></i> SERVICES</a></span>
-                    <span class="d-inline p-2 text-white"><a class="text-white" href="#"><i class="fas fa-pizza-slice"></i> RESTAURANTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Events?location=${location.event}`"><i class="fas fa-calendar-alt"></i> EVENTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Sales?location=${location.sale}`"><i class="fas fa-money-bill-alt"></i> SALES</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Rents?location=${location.rent}`"><i class="fas fa-bed"></i> RENTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Announcements?location=${location.job}`"><i class="fas fa-briefcase"></i> JOBS / ANNOUNCEMENTS</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Services?location=${location.service}`"><i class="fas fa-tools"></i> SERVICES</a></span>
+                    <span class="d-inline p-2 text-white"><a class="text-white" v-bind:href="`/search/Restaurants?location=${location.restaurant}`"><i class="fas fa-pizza-slice"></i> RESTAURANTS</a></span>
               </div>
             </div>
           </div>
@@ -83,8 +83,18 @@ export default {
           {'name':'Services','img':'/img/service.png'},
           {'name':'Restaurants','img':'/img/restaurant.png'},
       ],
+      // location
+        location:{
+            event:{},
+            job:{},
+            rent:{},
+            restaurant:{},
+            sale:{},
+            service:{},
+        }
     }
   },
+  components:{Location},
   methods:{
     load_location(){
       let location = "\""+ this.keyword_location+  "\""
@@ -153,6 +163,36 @@ export default {
   },
     mounted(){
       this.load_carousel();
+      // Event Location
+      axios.get('/api/location/event')
+      .then(response =>{
+        this.location.event = response.data[0].location;
+      })
+      // Rent
+      axios.get('/api/location/rent')
+      .then(response =>{
+        this.location.rent = response.data[0].location;
+      })
+      // Job
+      axios.get('/api/location/job')
+      .then(response =>{
+        this.location.job = response.data[0].location;
+      })
+      // Restaurant
+      axios.get('/api/location/restaurant')
+      .then(response =>{
+        this.location.restaurant = response.data[0].location;
+      })
+      // Sale
+      axios.get('/api/location/sale')
+      .then(response =>{
+        this.location.sale = response.data[0].location;
+      })
+      // Service
+      axios.get('/api/location/service')
+      .then(response =>{
+        this.location.service = response.data[0].location;
+      })
     }
 }
 </script>

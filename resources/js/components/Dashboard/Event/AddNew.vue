@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
-                                            <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
+                                            <label for="mobile">Mobile No<small class="text-success p-1">Optional</small></label>
                                             <input type="text" v-validate="'max:10|digits:10'" v-model="event.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('event_validate_add_form.mobile_no')" class="invalid-feedback">
@@ -319,6 +319,10 @@ export default {
                 this.event.entry_free = true;
             }else{
                 this.event.entry_free = false;
+            }
+            // Setting the end date
+            if(this.event.end_date === undefined){
+                this.event.end_date = this.event.start_date;
             }
         // Adding new event
             this.$validator.validateAll('event_validate_add_form').then((result) => {                  

@@ -23,10 +23,9 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <!-- <input type="text" @focusin="sale_type_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Product Type" aria-label="Service type"> -->
                                                     <input type="text" @keyup="load_sales()" v-model="filter.type" class="rounded form-control" placeholder="Product Type" aria-label="Service type">
-                                                        <ul class="w-100" id="sale_type_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
-                                                        <li v-for="category in categories" :value="category.name" @click="set_type(category.name)">{{category.name}}</li>
+                                                        <ul class="" id="sale_type_list" style="position: absolute;z-index:100;height:auto;font-size:14px">
+                                                            <li class="font-weight-bold py-1" v-for="category in categories" :value="category.name" @click="set_type(category.name)">{{category.name}}</li>
                                                     </ul>
                                                 </div>
 
@@ -173,6 +172,7 @@ export default {
             if(this.filter.type == 0){
                 this.categories = {}
             }
+
             if(this.filter.type.length > 0){
             axios.get(`/api/sale-categories/search?name=${this.filter.type}`)
             .then(response =>{
@@ -348,15 +348,9 @@ export default {
             this.load_result();
         },
         // categoryu
-        sale_type_dropdown() {
-            $("#sale_type_list").css("display", "block");
-        },
         set_type(category){
             this.filter.type = category;
-            $("#sale_type_list").css("display", "none");
-        },
-        close(){
-            $("#sale_type_list").css("display", "none");
+            this.categories = {}
         },
     },
 

@@ -427,6 +427,14 @@ class RestaurantBasicInfoController extends Controller
         MetaTag::set('title', $request->location);
         return view('restaurant.search',['location' => $request->location]);
     }
+    // location
+    public function location()
+    {
+        $location = RestaurantBasicInfo::inRandomOrder()
+            ->limit('1')
+            ->get('location');
+        return $location->toArray($location);
+    }
     // Search Query
     public function search(Request $request){
         if ($request->rate == "0") {

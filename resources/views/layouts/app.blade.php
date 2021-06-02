@@ -41,12 +41,11 @@
     <!-- font -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Loading -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/placeholder-loading/dist/css/placeholder-loading.min.css">
+    <link href="{{ asset('css/lazy-loading.min.css') }}" rel="stylesheet">
     <!-- MapMyIndia -->
     <script src="https://apis.mapmyindia.com/advancedmaps/v1/b26z3h8ijubhswa1o73rmmgirc3tpx9z/map_load?v=1.3"></script>
     <!-- social Sharing -->
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=60222a551e16b800121b009b&product=sop' async='async'></script>
-    <!-- <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5cf249f9f69849001202e135&product=inline-share-buttons' async='async'></script> -->
     <!-- AOS -->
     @if(Request::is('promote-business'))
     <link href="{{ asset('css/aos.min.css') }}" rel="stylesheet">
@@ -424,6 +423,8 @@
     @if((Request::is('search/Events')) || (Request::is('search/Sales')) || (Request::is('search/Rents')) || (Request::is('search/Announcements')))
     <!-- Jquery UI -->
     <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
+    <link rel="preload" type="text/javascript" as="script" href="{{ asset('js/jquery.ui.min.js') }}">
+
     @endif
     <script>
         // Fixed Navbar

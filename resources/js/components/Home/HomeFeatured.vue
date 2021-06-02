@@ -25,7 +25,7 @@
                                     </div>
                                 </a>
                                 <div class="types">
-                                    <a href="/search/Sales">
+                                    <a href="/search/Sales?location=Dharamshala">
                                         <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-tags mx-1"></i> Deals</p>
                                     </a>
                                 </div>
@@ -44,7 +44,8 @@
                                 <a v-bind:href="'event/'+event.id" role="button">
                                     <div class="list lazyload" :data-bgset="'/storage/Event/Banner/'+event.card +' 100w'"  data-sizes="auto">
                                         <div class="detail position-absolute ml-2" style="bottom:5px">
-                                            <p class="btn btn-sm btn-danger small my-0 ">{{event.start_date | date}}</p>
+                                            <p class="btn btn-sm btn-danger small my-0 " v-if="event.end_date">{{event.end_date | date}}</p>
+                                            <p class="btn btn-sm btn-danger small my-0 " v-else>{{event.start_date | date}}</p>
                                             <p class="btn btn-sm bg-warning small my-0  text-dark" v-if="event.entry_free">Entry Fee</p>
                                             <p class="btn btn-sm btn-danger small my-0 " v-else>Entry Fee:₹{{event.entry_fee}}/-</p>
                                         </div>
@@ -54,7 +55,7 @@
                                     <p  class="btn btn-warning btn-sm"><i class="far fa-thumbs-up  mr-1"></i>{{event.interested}} Interested</p>
                                 </div>
                                 <div class="types">
-                                    <a href="/search/Events">
+                                    <a href="/search/Events?location=Dharamshala">
                                         <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-calendar-alt mx-1"></i> Events</p>
                                     </a>
                                 </div>
@@ -83,7 +84,7 @@
                                     <p v-if="rent" v-bind:class="rent.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{rent.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <a href="/search/Rents">
+                                    <a href="/search/Rents?location=Dharamshala">
                                         <p class="alert alert-success p-1 small" role="alert"><i class="fas fa-bed mx-1"></i> Rents</p>
                                     </a>
                                 </div>
@@ -117,7 +118,7 @@
                                     <p v-if="job.applied>0" class="btn btn-success btn-sm small"><i class="fas fa-check text-white fa-1x mr-1"></i>{{job.applied}} Applied</p>
                                 </div>
                                 <div class="types">
-                                    <a href="/search/Jobs">
+                                    <a href="/search/Jobs?location=Dharamshala">
                                         <p class="alert alert-warning p-1 small" role="alert" v-if="job.types == 1"><i class="fas fa-briefcase mx-1"></i> Jobs</p>
                                         <p class="alert alert-warning p-1 small" role="alert" v-if="job.types == 2"><i class="fas fa-briefcase mx-1"></i> Announcements</p>
                                     </a>
@@ -142,7 +143,7 @@
                                     <p v-bind:class="service.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{service.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <a href="/search/Services">
+                                    <a href="/search/Services?location=Dharamshala">
                                         <p class="alert alert-warning p-1 small" role="alert"><i class="fas fa-tools mx-1"></i> Services</p>
                                     </a>
                                 </div>
@@ -166,7 +167,7 @@
                                     <p v-if="restaurant" v-bind:class="restaurant.rate_color" class="btn"><i class="fas fa-star text-white fa-1x mr-1"></i>{{restaurant.rate}}</p>
                                 </div>
                                 <div class="types">
-                                    <a href="/search/Restaurants">
+                                    <a href="/search/Restaurants?location=Dharamshala">
                                         <p class="alert alert-warning p-1 small" role="alert"><i class="fas fa-pizza-slice mx-1"></i> Restaurants</p>
                                     </a>
                                 </div>

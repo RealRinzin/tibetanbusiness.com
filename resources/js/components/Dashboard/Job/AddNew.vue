@@ -98,6 +98,8 @@
                                             <select v-validate="'required'" v-model="job.experience" name="experience" class="form-control" id="experience">
                                                 <option value="" disabled selected>Select Experience</option>
                                                 <option value="Not Required"> Not Required</option>
+                                                <option value="Bachelor"> Bachelor Degree</option>
+                                                <option value="Master"> Master Degree</option>
                                                 <option value="6 Months"> 6 Months</option>
                                                 <option value="1 Yrs"> 1 Years</option>
                                                 <option value="2 Yrs"> 2 Years</option>

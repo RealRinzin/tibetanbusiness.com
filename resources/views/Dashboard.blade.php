@@ -27,7 +27,7 @@
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
     <!-- Datetime picker -->
     <link href="{{ asset('css/datetimepicker.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="{{ asset('css/jquery.ui.min.css') }}" rel="stylesheet">
     <!-- mapmyindia -->
     <script src="https://apis.mapmyindia.com/advancedmaps/v1/b26z3h8ijubhswa1o73rmmgirc3tpx9z/map_load?v=1.3"></script>
 
@@ -44,9 +44,6 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/dashboard" class="nav-link">Home</a>
                 </li>
-                <!-- <li class="nav-item d-none d-sm-inline-block">
-                    <a href="" class="nav-link">Contact</a>
-                </li> -->
             </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -164,7 +161,8 @@
 
     <script src="{{ asset('js/vue-js-toggle.min.js') }}"></script>
     <!-- jquery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/jquery.ui.min.js') }}"></script>
+
     <script>
         $("#clear_storage").click(function() {
             localStorage.removeItem('token');

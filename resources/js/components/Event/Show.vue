@@ -29,13 +29,13 @@
                                         <!-- Overview -->
                                         <div class="col-md-12">
                                             <div class="row p-3 overview">
-                                                    <div class="col-6">
+                                                    <div class="col-md-6 col-sm-8">
                                                         <h6 class="text-muted py-1"><i class="fas fa-calendar-alt mr-2"></i>{{event.name}}</h6>
                                                         <h6 class="text-muted py-1" v-if="event.mobile_no"><i class="fas fa-phone-square-alt pr-2"></i>+91-{{event.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{event.location}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{event.address}}</h6>
                                                     </div>
-                                                    <div class="col-6 text-right text-muted text-bold interested">
+                                                    <div class="col-md-6  col-sm-4 text-right text-muted text-bold interested">
                                                         <div v-if="is_logged">
                                                             <p class="small text-bold" v-if="liked"><i class="fas text-lg text-primary fa-thumbs-up mr-1" @click="thumbs_down(event.interested)"></i>You and {{event.interested -1}} People Interested</p>
                                                             <p class="small text-bold" v-else><i class="far text-lg fa-thumbs-up mr-1" @click="thumbs_up(event.interested)"></i>{{event.interested}} People Interested</p>
@@ -46,11 +46,11 @@
                                                                 {{event.interested}} People Interested
                                                             </p>
                                                         </div>
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <a target="_blank" v-if="event.facebook" :href="event.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary p-1 rounded"></i></a>
-                                                    <a target="_blank" v-if="event.instagram" :href="event.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger p-1 rounded"></i></a>
-                                                    <a target="_blank" v-if="event.website" :href="event.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary p-1 rounded"></i></a>
-                                                </div>
+                                                        <div class="d-flex flex-row justify-content-end">
+                                                            <a target="_blank" v-if="event.facebook" :href="event.facebook" class="m-1"><i class="fab fa-facebook-square fa-1x btn-primary p-1 rounded"></i></a>
+                                                            <a target="_blank" v-if="event.instagram" :href="event.instagram" class="m-1"><i class="fab fa-instagram-square fa-1x btn-danger p-1 rounded"></i></a>
+                                                            <a target="_blank" v-if="event.website" :href="event.website" class="m-1"><i class="fab fa-internet-explorer  btn-secondary p-1 rounded"></i></a>
+                                                        </div>
                                                     </div>
                                             </div>
                                         </div>

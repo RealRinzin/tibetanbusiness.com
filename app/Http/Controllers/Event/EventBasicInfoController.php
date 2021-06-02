@@ -130,7 +130,12 @@ class EventBasicInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request->end_date;
+        // Resetting the end date if null
+        if($request->end_date === null){
+            $request->end_date = $request->start_date;
+        }
+        // Update
         $event = EventBasicInfo::find($id);
         $event->update($request->all());
     }
@@ -308,18 +313,16 @@ class EventBasicInfoController extends Controller
     public function all()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('status', '=', true)
-            ->where('start_date', '>=', date('Y-m-d'))
+            ->where('end_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
     public function featured_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('featured_ad', '=', true)
-            ->where('start_date', '>=', date('Y-m-d'))
+            ->where('end_date', '>=', date('Y-m-d'))
             ->orderBy('created_at', 'desc')
-            // ->limit('1')
             ->inRandomOrder()->get());
         return $events->toArray($events);
     }
@@ -327,9 +330,8 @@ class EventBasicInfoController extends Controller
     public function home_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('home_ad', '=', true)
-            ->where('start_date', '>=', date('Y-m-d'))
+            ->where('end_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -337,9 +339,8 @@ class EventBasicInfoController extends Controller
     public function sidebar_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('sidebar_ad', '=', true)
-            ->where('start_date', '>=', date('Y-m-d'))
+            ->where('end_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
-            // ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
@@ -350,7 +351,7 @@ class EventBasicInfoController extends Controller
         return $max;
     }
     public function  max_date(){
-        $max = EventBasicInfo::where('status', '=', true)->max('start_date');
+        $max = EventBasicInfo::where('status', '=', true)->max('end_date');
         return $max;
 
 
@@ -359,16 +360,24 @@ class EventBasicInfoController extends Controller
     public function popup_ad()
     {
         $events = EventInfoBasicResource::collection(EventBasicInfo::where('popup_ad', '=', true)
+            ->where('end_date', '>=', date('Y-m-d'))
             ->inRandomOrder()
             ->limit('1')
             ->orderBy('created_at', 'desc')->get());
         return $events->toArray($events);
     }
+    // location
+    public function location(){
+        $location = EventBasicInfo::inRandomOrder()
+        ->limit('1')
+        ->get('location');
+        return $location->toArray($location);
+    }
     // sidebar location
     public function sidebar(Request $request,$location){
         $sales =  EventBasicInfo::where('location', 'like', "$location%")
         ->where('status', '=', true)
-        ->where('start_date', '>=', date('Y-m-d'))
+        ->where('end_date', '>=', date('Y-m-d'))
         ->inRandomOrder()
         ->orderBy('created_at', 'desc')->paginate('4');
         return $sales->toArray($sales);
@@ -397,22 +406,20 @@ class EventBasicInfoController extends Controller
             $status = false;
         }
 
-        if(!$status){
+        if (!$status) {
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
-                ->whereBetween('start_date', [$request->from, $request->to])
+                ->whereBetween('end_date', [$request->from, $request->to])
                 ->whereBetween('entry_fee', [$min, $max])
-                // ->Where('entry_free','=','')
-                ->where('start_date', '>=', date('Y-m-d'))
+            //     // ->Where('entry_free','=','')
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('10'));
-        }else{
+        } else {
             return new EventInfoBasicResourceCollection(EventBasicInfo::where('name', 'like', "$request->name%")
                 ->where('location', 'like', "$request->location%")
                 ->where('category', 'like', "$request->category%")
-                ->where('entry_free','=', true)
-                ->whereBetween('start_date', [$request->from, $request->to])
-                ->where('start_date', '>=', date('Y-m-d'))
+                ->where('entry_free', '=', true)
+                ->whereBetween('end_date', [$request->from, $request->to])
                 ->where('status', '=', true)->orderBy('created_at', 'desc')->paginate('10'));
         }
 

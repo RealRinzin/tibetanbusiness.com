@@ -36,6 +36,8 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     <li value="no experience" @click="set_experience('Not Required')">Not Required</li>
+                                                    <li value="Bachelor" @click="set_experience('Bachelor')"> Bachelor Degree</li>
+                                                    <li value="Master" @click="set_experience('Master')"> Master Degree</li>
                                                     <li value="6 Months" @click="set_experience('6 Months')">6 Months</li>
                                                     <li value="1 Yrs" @click="set_experience('1 Years')">1 Year</li>
                                                     <li value="2 Yrs" @click="set_experience('2 Years')">2 Years</li>
@@ -59,11 +61,6 @@
                                             </div>
                                         </div>
                                         <div class="row py-2">
-                                            <!-- <div class="col-md-12 col-sm-12 py-2" id="range">
-                                                <small class="text-muted">Salary:₹{{filter.min}} </small>
-                                                <input type="text" id="salary" class="small text-muted my-2" readonly  style="border:0;">
-                                                <div id="slider-range"></div>
-                                            </div> -->
                                             <div class="col-md-12 py-2 text-center">
                                                 <button class="btn btn-danger btn-md w-25"><small class="fas fa-search"></small></button>
                                                 <button class="btn btn-secondary btn-md w-50" @click="reset()"><small>Reset</small></button>
@@ -376,20 +373,17 @@
             },
             // profession
             job_profession_dropdown() {
-                // $("#job_profession_list").css("display", "block");
                 $("#job_experience_list").css("display", "none");
                 $("#job_nature_list").css("display", "none");
             },
             set_profession(profession){
                 this.filter.profession = profession;
                 this.professions = {}
-                // $("#job_profession_list").css("display", "none");
             },
             // profession
             job_experience_dropdown() {
                 $("#job_experience_list").css("display", "block");
                 $("#job_location_list").css("display", "none");
-                // $("#job_profession_list").css("display", "none");
                 $("#job_nature_list").css("display", "none");
             },
             set_experience(experience){
@@ -400,7 +394,6 @@
             job_nature_dropdown(){
                 $("#job_nature_list").css("display", "block");
                 $("#job_experience_list").css("display", "none");
-                // $("#job_profession_list").css("display", "none");
             },
             set_nature(nature){
                 this.filter.nature = nature;

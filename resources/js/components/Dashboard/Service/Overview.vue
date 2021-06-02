@@ -459,9 +459,9 @@ export default {
         }
     },
     mounted(){
-        axios.get('/api/event-categories')
+        axios.get('/api/service-categories/search')
         .then(response=>{
-            this.categories = response.data;
+            this.categories = response.data.data;
         })
     }
 }

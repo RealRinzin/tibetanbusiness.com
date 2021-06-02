@@ -404,6 +404,14 @@ class RentBasicInfoController extends Controller
         MetaTag::set('title', $request->location);
         return view('rent.search', ['location' => $request->location]);
     }
+    // location
+    public function location()
+    {
+        $location = RentBasicInfo::inRandomOrder()
+            ->limit('1')
+            ->get('location');
+        return $location->toArray($location);
+    }
     // Search Query
     public function search(Request $request)
     {

@@ -2,9 +2,11 @@
     <div class="row">
         <!-- Event -->
         <div class="col-md-10 mx-auto my-4" v-if="events !=''">
-            <h6 class="small text-muted py-2 font-weight-bolder">
-                <img src="/img/event.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR - UPCOMING EVENTS
-            </h6>
+            <a v-bind:href="`/search/Events?location=${location.event}`">
+                <h6 class="small text-muted py-2 font-weight-bolder">
+                    <img src="/img/event.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR - UPCOMING EVENTS
+                </h6>
+            </a>
             <div class="row" style="min-height:100px">
                 <div v-if="event_loading" class="col-12">
                     <div class="row">
@@ -34,9 +36,11 @@
         </div>
         <!-- Sales -->
         <div class="col-md-10 mx-auto my-4" v-if="sales !=''">
-            <h6 class="small text-muted py-2 font-weight-bolder">
-                <img src="/img/sale.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SALES
-            </h6>
+            <a v-bind:href="`/search/Sales?location=${location.sale}`">
+                <h6 class="small text-muted py-2 font-weight-bolder">
+                    <img src="/img/sale.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SALES
+                </h6>
+            </a>
             <div class="row">
                 <div v-if="sale_loading" class="col-12">
                     <div class="row">
@@ -68,9 +72,11 @@
         </div>
         <!-- Rents -->
         <div class="col-md-10 mx-auto my-4" v-if="rents !=''">
-            <h6 class="small text-muted py-2 font-weight-bolder">
-                <img src="/img/rent.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RENTS
-            </h6>
+            <a v-bind:href="`/search/Rents?location=${location.rent}`">
+                <h6 class="small text-muted py-2 font-weight-bolder">
+                    <img src="/img/rent.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RENTS
+                </h6>
+            </a>
             <div class="row">
                 <div v-if="rent_loading" class="col-12">
                     <div class="row">
@@ -99,9 +105,11 @@
         </div>
         <!-- Jobs -->
         <div class="col-md-10 mx-auto my-4" v-if="jobs !=''">
-            <h6 class="small text-muted py-2 font-weight-bolder">
-                <img src="/img/job.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">JOBS / ANNOUNCEMENTS
-            </h6>
+            <a v-bind:href="`/search/Announcements?location=${location.job}`">
+                <h6 class="small text-muted py-2 font-weight-bolder">
+                    <img src="/img/job.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">JOBS / ANNOUNCEMENTS
+                </h6>
+            </a>
             <div class="row">
                 <div v-if="job_loading" class="col-12">
                     <div class="row">
@@ -136,9 +144,11 @@
         </div>
         <!-- Services -->
         <div class="col-md-10 mx-auto my-4" v-if="services !=''">
-            <h6 class="small text-muted py-2 font-weight-bolder">
-                <img src="/img/service.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SERVICES
-            </h6>
+            <a v-bind:href="`/search/Services?location=${location.service}`">
+                <h6 class="small text-muted py-2 font-weight-bolder">
+                    <img src="/img/service.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR SERVICES
+                </h6>
+            </a>
             <div class="row">
                 <div v-if="service_loading" class="col-12">
                     <div class="row">
@@ -167,9 +177,11 @@
         </div>
         <!-- Restaurants -->
         <div class="col-md-10 mx-auto my-4" v-if="restaurants !=''">
+            <a v-bind:href="`/search/Restaurants?location=${location.restaurant}`">
             <h6 class="small text-muted py-2 font-weight-bolder">
                 <img src="/img/restaurant.png" class="mr-2" height="25px" width="25px" alt="tibetanbusiness.com">POPULAR RESTAURANTS
             </h6>
+            </a>
             <div class="row">
                 <div v-if="restaurant_loading" class="col-12">
                     <div class="row">
@@ -217,6 +229,16 @@ export default {
             job_loading:true,
             service_loading:true,
             restaurant_loading:true,
+        // location
+            location:{
+                event:{},
+                job:{},
+                rent:{},
+                restaurant:{},
+                sale:{},
+                service:{},
+            }
+
         }
     },
     // methods / Functions
@@ -226,8 +248,6 @@ export default {
             // home advertisment
             axios.get('api/event/list/home_ad')
             .then(response=>{
-                // this.isLoading = true; //Loading true
-                this.events = response.data;
                 if(response.data.length > 0){
                     this.event_loading = false;
                     this.events = response.data;
@@ -390,6 +410,36 @@ export default {
         this.job_list();
         this.service_list();
         this.restaurant_list();
+              // Event Location
+      axios.get('/api/location/event')
+      .then(response =>{
+        this.location.event = response.data[0].location;
+      })
+      // Rent
+      axios.get('/api/location/rent')
+      .then(response =>{
+        this.location.rent = response.data[0].location;
+      })
+      // Job
+      axios.get('/api/location/job')
+      .then(response =>{
+        this.location.job = response.data[0].location;
+      })
+      // Restaurant
+      axios.get('/api/location/restaurant')
+      .then(response =>{
+        this.location.restaurant = response.data[0].location;
+      })
+      // Sale
+      axios.get('/api/location/sale')
+      .then(response =>{
+        this.location.sale = response.data[0].location;
+      })
+      // Service
+      axios.get('/api/location/service')
+      .then(response =>{
+        this.location.service = response.data[0].location;
+      })
     }
 }
 </script>

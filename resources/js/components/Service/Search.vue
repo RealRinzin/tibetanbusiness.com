@@ -23,10 +23,9 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 py-1">
-                                                    <!-- <input type="text" @focusin="service_category_dropdown()" v-model="filter.type" class="rounded form-control " readonly="readonly" placeholder="Category" aria-label="Service type"> -->
                                                     <input type="text" @keyup="load_services()" v-model="filter.type" class="rounded form-control "  placeholder="Category" aria-label="Service type">
-                                                        <ul  class="w-100" id="service_category_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
-                                                        <li v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
+                                                        <ul  class="w-100" id="service_category_list" style="position: absolute;z-index:100;height:auto;font-size:14px">
+                                                        <li class="font-weight-bold py-1" v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -358,15 +357,9 @@
                 this.search_location = '';
                 this.load_result();
             },
-            service_category_dropdown() {
-                $("#service_category_list").css("display", "block");
-            },
             set_category(type){
                 this.filter.type = type;
-                $("#service_category_list").css("display", "none");
-            },
-            close(){
-                $("#service_category_list").css("display", "none");
+                this.categories = {}
             },
         },
         // Components

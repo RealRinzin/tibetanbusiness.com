@@ -320,6 +320,14 @@ class ServiceBasicInfoController extends Controller
     {
         return new ServiceBasicInfoResource(ServiceBasicInfo::find($id));
     }
+    // location
+    public function location()
+    {
+        $location = ServiceBasicInfo::inRandomOrder()
+            ->limit('1')
+            ->get('location');
+        return $location->toArray($location);
+    }
 
     // Search View
     public function search_engine(Request $request)

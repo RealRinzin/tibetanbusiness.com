@@ -143,8 +143,9 @@ use Illuminate\Http\Request;
     Route::get('restaurant/{restaurant_basic_info}/food_photos', 'Restaurant\RestaurantFoodPhotoController@photos');
     Route::get('restaurant/{restaurant_basic_info}/menu_photos', 'Restaurant\RestaurantMenuPhotoController@photos');
     Route::get('restaurant_comment_replies/{id}', 'Restaurant\RestaurantCommentReplyController@show');
+    Route::get('/location/event', 'Event\EventBasicInfoController@location');
     Route::get('restaurant/list/sidebar/{location}', 'Restaurant\RestaurantBasicInfoController@sidebar');
-
+    Route::get('/location/restaurant', 'Restaurant\RestaurantBasicInfoController@location');
 
 
 /**
@@ -164,6 +165,7 @@ use Illuminate\Http\Request;
     Route::get('rent_comment_replies/{id}', 'Rent\RentCommentReplyController@show');
     Route::get('rent/list/max_fare', 'Rent\RentBasicInfoController@max_fare');
     Route::get('rent/list/sidebar/{location}', 'Rent\RentBasicInfoController@sidebar');
+    Route::get('/location/rent', 'Rent\RentBasicInfoController@location');
 
 
         // Route::get('rent/{rent_basic_info}/facility', 'Rent\RentFacilityController@facility');
@@ -185,6 +187,8 @@ use Illuminate\Http\Request;
     Route::get('job/{job_question}/reply', 'Job\JobQuestionReplyController@reply');
     Route::get('job_question_reply/{id}', 'Job\JobQuestionReplyController@show');
     Route::get('job/list/sidebar/{location}', 'Job\JobBasicInfoController@sidebar');
+    Route::get('/location/job', 'Job\JobBasicInfoController@location');
+
 
     /**
      * Event API 
@@ -203,6 +207,7 @@ use Illuminate\Http\Request;
     Route::get('event/list/sidebar/{location}', 'Event\EventBasicInfoController@sidebar');
     Route::get('event/list/max_fee', 'Event\EventBasicInfoController@max_fee');
     Route::get('event/list/max_date', 'Event\EventBasicInfoController@max_date');
+    Route::get('/location/event', 'Event\EventBasicInfoController@location');
     
     /**
      * SALE API 
@@ -217,6 +222,8 @@ use Illuminate\Http\Request;
     Route::get('sale/view/{id}', 'Sale\SaleBasicInfoController@display');
     Route::get('sale/list/sidebar/{location}', 'Sale\SaleBasicInfoController@sidebar');
     Route::get('sale/list/max_price', 'Sale\SaleBasicInfoController@max_price');
+    Route::get('/location/sale', 'Sale\SaleBasicInfoController@location');
+
 
     /**
      * SERVICE API 
@@ -234,8 +241,7 @@ use Illuminate\Http\Request;
     Route::get('service/{service_review}/reply', 'Service\ServiceReviewReplyController@reply');
     Route::get('service_review_replies/{id}', 'Service\ServiceReviewReplyController@show');
     Route::get('service/list/sidebar/{location}', 'Service\ServiceBasicInfoController@sidebar');
-
-
+    Route::get('/location/service', 'Service\ServiceBasicInfoController@location');
 
 // Search Result
 // restaurant

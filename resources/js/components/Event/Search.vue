@@ -26,9 +26,9 @@
                                         </div>
                                         <div class="col-md-12 col-sm-12 py-1">
                                             <input type="text" @keyup="load_categories()" v-model="filter.category" class="rounded form-control" placeholder="Category" aria-label="Service type">
-                                                <ul class="w-100" id="event_category_list" style="position: absolute;z-index:100;height:auto;font-size:12px">
-                                                <li v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
-                                            </ul>
+                                                <ul class="w-100" id="event_category_list" style="position: absolute;z-index:100;height:auto;font-size:14px">
+                                                    <li class="font-weight-bold py-1" v-for="category in categories" :value="category.name" @click="set_category(category.name)">{{category.name}}</li>
+                                                </ul>
                                         </div>
                                     </div>
                                     <div class="row py-2">
@@ -94,7 +94,8 @@
                                             <ul>
                                                 <li class="btn btn-danger btn-md small" v-if="event.entry_fee > 0">Fee:&#x20B9 {{event.entry_fee}}/-</span></li>
                                                 <li class="btn small btn-success btn-md " v-else>Free Entry</span></li>
-                                                <li class="btn small btn-danger btn-md">{{event.start_date |date}}</li>
+                                                <li class="btn small btn-danger btn-md" v-if="event.end_date">{{event.end_date |date}}</li>
+                                                <li class="btn small btn-danger btn-md" v-else>{{event.start_date |date}}</li>
                                                 <li class="btn small btn-danger btn-md">{{event.category}}</li>
                                             </ul>
                                         </div>
@@ -427,15 +428,11 @@
             },
             // categoryu
             event_category_dropdown() {
-                $("#event_category_list").css("display", "block");
                 $("#event_location_list").css("display", "none");
             },
             set_category(category){
                 this.filter.category = category;
-                $("#event_category_list").css("display", "none");
-            },
-            close(){
-                $("#event_category_list").css("display", "none");
+                this.categories = {}
             },
 
         },
