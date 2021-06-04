@@ -312,8 +312,8 @@
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                <label for="mobile">Mobile No<span class="text-danger p-1">*</span></label>
-                                                <input type="text" v-validate="'required|max:10|digits:10'" v-model="rent.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
+                                                <label for="mobile">Mobile No<span class="text-success p-1">Optional</span></label>
+                                                <input type="text" v-validate="'max:10|digits:10'" v-model="rent.mobile_no" name="mobile_no" class="form-control" id="mobile_no" aria-describedby="emailHelp" placeholder="Mobile No">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.mobile_no')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.mobile_no')">{{ error }}</span>
@@ -353,7 +353,7 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <label for="facebook">Facebook <small class="text-success">(optional)</small></label>
-                                                <input type="text" v-validate="'max:50|url'" v-model="rent.facebook" name="facebook" class="form-control" id="facebook" aria-describedby="emailHelp" placeholder="Facebook">
+                                                <input type="text" v-validate="'url'" v-model="rent.facebook" name="facebook" class="form-control" id="facebook" aria-describedby="emailHelp" placeholder="Facebook">
                                                 <div class="valid-feedback"></div>
                                                 <div v-if="errors.has('rent_validate_update_form.facebook')" class="invalid-feedback">
                                                     <span v-for="error in errors.collect('rent_validate_update_form.facebook')">{{ error }}</span>

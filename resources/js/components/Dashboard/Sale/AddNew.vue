@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-6">
                                         <div class="form-group">
-                                            <label for="entry_fee">Price<span class="text-danger p-1">*</span></label>
+                                            <label for="entry_fee">Price<span class="text-success p-1">Optional</span></label>
                                             <input type="text" v-validate="'numeric|max:6'" v-model="sale.price" name="price" class="form-control" id="price" aria-describedby="emailHelp" placeholder="Price">
                                             <div class="valid-feedback"></div>
                                             <div v-if="errors.has('sale_validate_add_form.price')" class="invalid-feedback">

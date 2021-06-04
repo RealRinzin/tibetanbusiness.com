@@ -29,7 +29,7 @@
                                             <div class="row p-3 overview">
                                                     <div class="col-md-12 col-12">
                                                         <h6 class="text-muted py-1"><i class="fas fa-home mr-2"></i>{{rent.name}}</h6>
-                                                        <h6 class="text-muted py-1"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
+                                                        <h6 class="text-muted py-1" v-if="rent.mobile_no"><i class="fas fa-phone-square-alt pr-2"></i>{{rent.mobile_no}}</h6>
                                                         <h6 class="text-muted"><i class="fas  fa-map-pin mr-2"></i>{{rent.location}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-map-marked-alt mr-2"></i>{{rent.address}}</h6>
                                                         <h6 class="text-muted"><i class="fas fa-users mr-2"></i>{{rent.accomodation_size}} people</h6>
@@ -64,6 +64,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <!-- Contact -->
+                                <div class="card my-2 p-3" v-if="!rent.mobile_no">
+                                    <h6 class="text-dark">Contact Links</h6>
+                                    <div class="d-flex">
+                                        <p v-if="rent.facebook"><a target="_blank" :href="rent.facebook"><i class="fab fa-facebook-square  btn-primary btn py-0 px-1"></i></a></p>
+                                        <p class="mx-1" v-if="rent.instagram"><a target="_blank" :href="rent.instagram"><i class="fab fa-instagram btn-danger btn py-0 px-1"></i></a></p>
                                     </div>
                                 </div>
                                 <!-- Info -->

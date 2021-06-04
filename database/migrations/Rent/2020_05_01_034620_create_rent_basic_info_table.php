@@ -27,11 +27,11 @@ class CreateRentBasicInfoTable extends Migration
             $table->string('location', 255);
             $table->double('longitude',5,2);
             $table->double('latitude',5,2);
-            $table->string('mobile_no', 12);
+            $table->string('mobile_no', 12)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('accomodation_size',2);
             $table->string('instagram', 100)->nullable();
-            $table->string('facebook', 100)->nullable();
+            $table->text('facebook')->nullable();
             $table->boolean('status');
             $table->boolean('featured_ad')->nullable();
             $table->date('featured_ad_expire_date')->nullable();
