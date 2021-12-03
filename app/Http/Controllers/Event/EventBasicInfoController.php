@@ -237,7 +237,8 @@ class EventBasicInfoController extends Controller
     // User Job
     public function user_event()
     {
-        $events = Auth::user()->event_basic_infos;
+        $events = EventBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $events->toArray($events);
     }
     // Banner update

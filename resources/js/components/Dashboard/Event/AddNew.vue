@@ -310,6 +310,7 @@ export default {
         },
 
        add_event(){ 
+           console.log(this.event);
         // Undefined check
            if(this.event.entry_fee === undefined){
                this.event.entry_fee = 0;

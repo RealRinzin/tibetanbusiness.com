@@ -8,7 +8,16 @@
                 <div  class="container py-1" id="service">
                     <div class="row">
                             <div class="col-md-8 col-sm-12">
-                                <!-- basic -->
+        
+                                <div>
+                                    <Adsense
+                                    ins-style="display:inline-block;width:728px;height:90px !important"
+                                data-ad-client="ca-pub-4861711653689806"
+                                data-ad-slot="6351396218">
+                            </Adsense>
+                                        <!-- basic -->
+
+                                </div>
                                 <div class="card">
                                     <div class="row">
                                         <!-- Banner -->

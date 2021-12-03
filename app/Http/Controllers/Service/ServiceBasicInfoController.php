@@ -248,7 +248,8 @@ class ServiceBasicInfoController extends Controller
     // user service
     public function user_service()
     {
-        $service = Auth::user()->service_basic_infos;
+        $service =ServiceBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $service->toArray($service);
     }
     public function banner_update(Request $request, $id)

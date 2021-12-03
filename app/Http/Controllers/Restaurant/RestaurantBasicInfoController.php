@@ -236,7 +236,8 @@ class RestaurantBasicInfoController extends Controller
     public function user_restaurant(User $user,RestaurantBasicInfo $restaurantBasicInfo)
     {
         // Getting only auth resources
-        $restaurants = Auth::user()->restaurant_basic_infos;
+        $restaurants = RestaurantBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $restaurants->toArray($restaurants);
 
         // $restaurants =  RestaurantBasicInfo::all();

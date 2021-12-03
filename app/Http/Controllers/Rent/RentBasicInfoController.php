@@ -234,7 +234,8 @@ class RentBasicInfoController extends Controller
     public function user_rent(User $user, RentBasicInfo $rentBasicInfo)
     {
         // Getting only auth resources
-        $rents = Auth::user()->rent_basic_infos;
+        $rents = RentBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $rents->toArray($rents);
 
     }
@@ -348,18 +349,18 @@ class RentBasicInfoController extends Controller
     }
     public function all(){
     $rents =  RentBasicInfo::where('status', '=', true)
-        ->orderBy('created_at', 'desc')
-        // ->limit('1')
-        ->inRandomOrder()->get();
+            ->inRandomOrder()
+            ->orderBy('created_at', 'desc')
+            ->get();
     return $rents->toArray($rents);
     }
 
     public function featured_ad()
     {
         $rents =  RentBasicInfo::where('featured_ad', '=', true)
+            ->inRandomOrder()
             ->orderBy('created_at', 'desc')
-            ->limit('1')
-            ->inRandomOrder()->get();
+            ->get();
         return $rents->toArray($rents);
     }
     // Front
@@ -367,8 +368,8 @@ class RentBasicInfoController extends Controller
     {
         $rents =  RentBasicInfo::where('home_ad', '=', true)
             ->inRandomOrder()
-            ->limit('1')
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
         return $rents->toArray($rents);
     }
     // Sidebar
@@ -376,25 +377,26 @@ class RentBasicInfoController extends Controller
     {
         $rents =  RentBasicInfo::where('sidebar_ad', '=', true)
             ->inRandomOrder()
-            // ->limit('1')
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('created_at', 'desc')
+            ->get();
         return $rents->toArray($rents);
     }
     // Popup ad
     public function popup_ad()
     {
         $rents = RentBasicInfo::where('popup_ad', '=', true)
-            ->inRandomOrder()
-            ->limit('1')
-            ->orderBy('created_at', 'desc')->get();
+        ->inRandomOrder()
+            ->orderBy('created_at', 'desc')
+            ->get();
         return $rents->toArray($rents);
     }
     // sidebar
     public function sidebar(Request $request,$location){
         $rents =  RentBasicInfo::where('location', 'like', "$location%")
-        ->where('status', '=', true)
-        ->inRandomOrder()
-        ->orderBy('created_at', 'desc')->paginate('4');
+            ->where('status', '=', true)
+            ->inRandomOrder()
+            ->orderBy('created_at', 'desc')
+            ->paginate('4');
         return $rents->toArray($rents);
 
     }

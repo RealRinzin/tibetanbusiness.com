@@ -94,7 +94,8 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 info my-2" v-for="(job,index) in jobs">
                                         <a v-bind:href="'/announcement/'+job.id">
                                         <!-- <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'> -->
-                                        <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto">
+                                        <!-- <div class="banner lazyload" :data-bgset="'/storage/Job/Banner/'+job.card"  data-sizes="auto"> -->
+                                        <div class="banner" v-bind:style='{ backgroundImage: `url(/storage/Job/Banner/${job.banner})`}'>
                                             <div class="position-absolute ml-2" style="bottom:10px" v-if="job.types == 1">
                                                 <button v-if="job.types == 1" class="btn btn-warning btn-sm font-weight-bolder">{{job.profession}}</button>
                                                 <button class="btn btn-danger btn-sm font-weight-bolder">{{job.nature}}</button>

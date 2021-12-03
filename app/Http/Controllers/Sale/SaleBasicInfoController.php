@@ -219,7 +219,8 @@ class SaleBasicInfoController extends Controller
     // User Job
     public function user_sale()
     {
-        $jobs = Auth::user()->sale_basic_infos;
+        $jobs = SaleBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
     // Update status

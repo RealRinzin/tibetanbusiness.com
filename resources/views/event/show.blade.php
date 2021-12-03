@@ -7,5 +7,6 @@
         </div>
     </div>
 </div>
+
 <event-show :event_id="{{$id}}"></event-show>
 @endsection

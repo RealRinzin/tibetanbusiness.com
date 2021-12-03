@@ -34,6 +34,7 @@ class JobDocumentController extends Controller
             'job_basic_info_id' => $request->job_basic_info_id,
             'user_id' => Auth::user()->id,
             'path' => $diir,
+            'thumb' => 'file',
             'extension' => $file_extension,
         ]);
         return $apply;

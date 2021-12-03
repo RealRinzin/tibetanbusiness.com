@@ -433,6 +433,7 @@
                                             <label for="experience">Degree<span class="text-danger p-1">*</span></label>
                                             <select v-validate="'required'" v-model="job.graduation" name="degree" class="form-control" id="degree">
                                                 <option value="" disabled selected>degree</option>
+                                                <option value="Not Required"> Not Required</option>
                                                 <option>Crossponding Course</option>
                                                 <option>Under Graduate Degree</option>
                                                 <option>Graduate Degree</option>
@@ -452,6 +453,7 @@
                                             <label for="experience">Duration<span class="text-danger p-1">*</span></label>
                                             <select v-validate="'required'" v-model="job.duration" name="duration" class="form-control" id="duration">
                                                 <option value="" disabled selected>Duration</option>
+                                                <option value="Not Required"> Not Required</option>
                                                 <option value="6 Months"> 6 Months</option>
                                                 <option value="1 Yrs"> 1 Years</option>
                                                 <option value="2 Yrs"> 2 Years</option>
@@ -521,7 +523,7 @@
                                             <div class="col-md-3 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="instagram">Instagram <small class="text-success">(optional)</small></label>
-                                                        <input type="text" v-validate="'max:50|url'" v-model="job.instagram" name="instagram" class="form-control" id="s_instagram" aria-describedby="emailHelp" placeholder="Instagram">
+                                                        <input type="text" v-validate="'url'" v-model="job.instagram" name="instagram" class="form-control" id="s_instagram" aria-describedby="emailHelp" placeholder="Instagram">
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.instagram')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.instagram')">{{ error }}</span>
@@ -531,7 +533,7 @@
                                                 <div class="col-md-3 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="facebook">Facebook <small class="text-success">(optional)</small></label>
-                                                        <input type="text" v-validate="'max:50|url'" v-model="job.facebook" name="facebook" class="form-control" id="s_facebook" aria-describedby="emailHelp" placeholder="Facebook">
+                                                        <input type="text" v-validate="'url'" v-model="job.facebook" name="facebook" class="form-control" id="s_facebook" aria-describedby="emailHelp" placeholder="Facebook">
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.facebook')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.facebook')">{{ error }}</span>
@@ -541,7 +543,7 @@
                                                 <div class="col-md-3 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="website">Website <small class="text-success">(optional)</small></label>
-                                                        <input type="text" v-validate="'max:50|url'" v-model="job.website" name="website" class="form-control" id="s_website" aria-describedby="emailHelp" placeholder="Facebook">
+                                                        <input type="text" v-validate="'url'" v-model="job.website" name="website" class="form-control" id="s_website" aria-describedby="emailHelp" placeholder="Facebook">
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.website')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.website')">{{ error }}</span>
@@ -561,7 +563,7 @@
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
                                                         <label for="description">job Description<small class="text-success p-1">(Optional)</small></label>
-                                                        <textarea rows="5" cols="50" v-validate="'max:150'" v-model="job.description" name="description" class="form-control" id="s_description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
+                                                        <textarea rows="5" cols="50" v-validate="''" v-model="job.description" name="description" class="form-control" id="s_description" aria-describedby="emailHelp" placeholder="Description | less than 250 word" ></textarea>
                                                         <div class="valid-feedback"></div>
                                                         <div v-if="errors.has('job_validate_add_form.description')" class="invalid-feedback">
                                                             <span v-for="error in errors.collect('job_validate_add_form.description')">{{ error }}</span>

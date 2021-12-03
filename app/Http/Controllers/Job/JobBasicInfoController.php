@@ -105,8 +105,6 @@ class JobBasicInfoController extends Controller
             'instagram' => $request->instagram,
             'website' => $request->website,
         ]);
-        // Route::redirect('/announcement/4edcc2ddb25b4ccdbf5d532a6124de5c');
-
     }
 
     /**
@@ -167,7 +165,6 @@ class JobBasicInfoController extends Controller
         $job->job_interests()->delete();
         $job->job_documents()->delete();
         $job->job_questions()->delete();
-        // $job->job_applies()->delete();
     }
     /**
      * Get all Rent 
@@ -361,7 +358,8 @@ class JobBasicInfoController extends Controller
     // User Job
     public function user_job()
     {
-        $jobs = Auth::user()->job_basic_infos;
+        $jobs = JobBasicInfo::where('user_id','=', Auth::user()->id)
+        ->orderBy('created_at', 'desc')->get();
         return $jobs->toArray($jobs);
     }
     // Search View

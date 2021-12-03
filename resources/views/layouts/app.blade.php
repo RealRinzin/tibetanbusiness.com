@@ -15,7 +15,11 @@
         gtag('config', 'G-87FMRJ2QCF');
     </script>
     <!-- Google Adsense -->
-    <script data-ad-client="ca-pub-4861711653689806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4861711653689806" crossorigin="anonymous"></script>
+    <!-- Facebook Advertisment -->
+    <meta name="facebook-domain-verification" content="w8vgulk2qr6b81jg06k468peirsx1b" />
+    <!-- Google Ad Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ MetaTag::get('title') }}</title>
@@ -24,7 +28,8 @@
     <!-- Faceboook share -->
     {!! MetaTag::openGraph() !!}
     <!-- Twitter Share -->
-    {!! MetaTag::twitterCard() !!}
+    <!-- {!! MetaTag::twitterCard() !!} -->
+    <meta property="fb:app_id" content="320651235266376" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="72x72" href="{{asset('/img/tibetanbusiness.png')}}">
@@ -50,6 +55,9 @@
     @if(Request::is('promote-business'))
     <link href="{{ asset('css/aos.min.css') }}" rel="stylesheet">
     @endif
+    <!-- Google Adsense -->
+    <script data-ad-client="ca-pub-4861711653689806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <!-- CSRF TOKEN -->
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
@@ -84,15 +92,18 @@
                                 <a href="/dashboard/event" class="nav-link">Add Business</a>
                             </li>
                             @endguest
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="/promote-business" class="nav-link">Advertisement</a>
+                            </li>
                         </ul>
                         @else
                         <ul class="navbar-nav d-none d-sm-block">
                             <li class="nav-item d-sm-inline-block">
                                 <a href="index3.html" class="nav-link">Add Business</a>
                             </li>
-                            <!-- <li class="nav-item d-sm-inline-block">
-                                <a href="#" class="nav-link">Promote Business</a>
-                            </li> -->
+                            <li class="nav-item d-sm-inline-block">
+                                <a href="/promote-business" class="nav-link">Advertisement</a>
+                            </li>
                         </ul>
                         <div class="row mx-auto">
                             <div class="col-md-12">
@@ -196,6 +207,9 @@
             <div style="min-height:100vh">
                 @yield('content')
             </div>
+            <div class="google-adsense text-center mb-5">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4861711653689806" data-ad-slot="6351396218" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            </div>
             <footer>
                 <div class="container">
                     <div class="row py-2">
@@ -278,7 +292,7 @@
 
                                 @endguest
                                 </span>
-                                <span><a href="/promote-business" class="text-white-50 mx-1">Promote Business</a></span>
+                                <span><a href="/promote-business" class="text-white-50 mx-1">Advertisement</a></span>
                                 <span><a href="/contact-us" class="text-white-50 mx-1">Contact Us</a></span>
                             </p>
                             <p class="copyright">
@@ -491,6 +505,10 @@
     <!-- Lazy loading -->
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
+    <!-- Google Ad Script -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 
 </html>

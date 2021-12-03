@@ -4,7 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87FMRJ2QCF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-87FMRJ2QCF');
+    </script>
+    <!-- Google Adsense -->
+    <script data-ad-client="ca-pub-4861711653689806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Facebook Advertisment -->
+    <meta name="facebook-domain-verification" content="w8vgulk2qr6b81jg06k468peirsx1b" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ MetaTag::get('title') }}</title>
@@ -144,9 +159,11 @@
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
+
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
         <footer class="main-footer text-center p-3 small">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4861711653689806" data-ad-slot="9293533252" data-ad-format="auto" data-full-width-responsive="true"></ins>
             <strong>Copyright &copy; <?php echo date("Y") ?> <a href="https://www.tibetanbusiness.com">Tibetanbusiness Co</a></strong>
             All rights reserved.
         </footer>
@@ -186,6 +203,10 @@
     </script>
     <script src="{{ asset('js/lazysizes.min.js') }}"></script>
     <script src="{{ asset('js/lazysizes.bgset.min.js') }}"></script>
+    <!-- Google Adsense Script -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 
 </html>

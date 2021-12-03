@@ -194,6 +194,7 @@
                             <div class="col-md-4 col-sm-12" id="sidebar">
                                 <!-- sidebar -->
                                 <job-sidebar :location="location" :id="id"></job-sidebar>
+                                <google-adsense></google-adsense>
                                 <rent-sidebar :location="location"></rent-sidebar>
                                 <sale-sidebar :location="location"></sale-sidebar>
                                 <event-sidebar :location="location"></event-sidebar>

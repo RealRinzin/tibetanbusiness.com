@@ -8,7 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Adsense from "vue-google-adsense/dist/Adsense.min.js";
+import InArticleAdsense from "vue-google-adsense/dist/InArticleAdsense.min.js";
+import InFeedAdsense from "vue-google-adsense/dist/InFeedAdsense.min.js";
 
+Vue.use(require("vue-script2"));
+
+Vue.use(Adsense);
+Vue.use(InArticleAdsense);
+Vue.use(InFeedAdsense);
 import axios from 'axios';
 /**
  * Lazy loading 
@@ -35,6 +43,9 @@ Vue.component('nav-bar', require('./components/Home/NavBar.vue').default);
 Vue.component('auto-complete', require('./components/Autocomplete.vue').default);
 Vue.component('home-list-fast', require('./components/Home/HomeListFast.vue').default);
 Vue.component('map-location', require('./components/Map.vue').default);
+// Google Ad
+Vue.component('google_ad', require('./components/GoogleAd/sidebar_ad.vue').default);
+
 
 /**
  * 

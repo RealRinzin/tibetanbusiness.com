@@ -1,5 +1,9 @@
 <template>
     <div>
+<Adsense
+    data-ad-client="ca-pub-4861711653689806"
+    data-ad-slot="6351396218">
+</Adsense>
         <div id="restaurant">
             <div v-if="!loading">
                 <loading :active.sync="isLoading"></loading>
