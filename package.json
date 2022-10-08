@@ -43,6 +43,6 @@
         "vue-progressbar": "^0.7.5",
         "vue-script2": "^2.1.0",
         "vue-star-rating": "^1.7.0",
-        "vue-timeago": "^5.1.2"
+        "vue-timeago": "^5.1.3"
     }
 }
