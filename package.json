@@ -28,7 +28,7 @@
     "dependencies": {
         "admin-lte": "^3.0.5",
         "date-fns": "^2.16.1",
-        "emailjs": "^3.4.0",
+        "emailjs": "^3.8.1",
         "emailjs-com": "^2.6.4",
         "file-upload-with-preview": "^4.2.0",
         "sweetalert2": "^9.17.2",
