@@ -30,7 +30,7 @@
         "date-fns": "^2.16.1",
         "emailjs": "^3.4.0",
         "emailjs-com": "^2.6.4",
-        "file-upload-with-preview": "^4.2.0",
+        "file-upload-with-preview": "^4.3.0",
         "sweetalert2": "^9.17.2",
         "vee-validate": "^2.2.15",
         "vue-ctk-date-time-picker": "^2.5.0",
